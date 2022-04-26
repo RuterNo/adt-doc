@@ -1,6 +1,5 @@
 {
   "name": "Journey",
-  "summary": "An example of a journey message",
   "payload": {
     "eventTimestamp": "2017-10-31T08:38:02.749Z",
     "journeyId": "RUT:ServiceJourney:31-117215-13227462",
