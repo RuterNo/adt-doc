@@ -24,6 +24,7 @@ jobs:
           sudo sed -i 's#css/global.min.css#global.min.css#g' docs/index.html
           sudo sed -i 's#css/asyncapi.min.css#asyncapi.min.css#g' docs/index.html
           sudo sed -i 's#js/asyncapi-ui.min.js#asyncapi-ui.min.js#g' docs/index.html
+          sudo sed -i 's#0.0.0#${{github.ref_name}}#g' docs/index.html
         shell: bash
 
       - name: Commit files to auto_generated_doc branch
