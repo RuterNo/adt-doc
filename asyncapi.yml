@@ -549,7 +549,8 @@ channels:
         payload:
           $ref: 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt1/json-schemas/audio.json'
         examples: [
-          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt1/examples/audio.json' }
+          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt1/examples/audio.json' },
+          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt1/examples/audio_local.json' },
         ]
         bindings:
           mqtt:

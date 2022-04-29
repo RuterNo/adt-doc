@@ -1,99 +1,100 @@
 {
-  "definitions": {},
+  "$id": "https://schemas.ruter.no/adt/ota/api/v2.1/extended-information/audio-message.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "http://schema.ruter.no/audio.json",
+  "title": "AudioMessage",
+  "description": "This topic provides an audio message intended for passengers onboard the vehicle that should be played on speaker(s) defined in the speaker property of the payload.",
   "type": "object",
-  "title": "Audio MQTT Message",
-  "description": "All audio is sent over one topic and message may contain multiple audio segments that must be played in the order listed",
+  "additionalProperties": true,
   "required": [
-    "eventTimestamp",
-    "expiryTimestamp",
-    "type",
-    "value"
+    "eventDateTime",
+    "expiryDateTime",
+    "preferredStartDateTime",
+    "ref",
+    "audio"
   ],
-  "additionalProperties": false,
   "properties": {
-    "eventTimestamp": {
-      "$id": "#/properties/eventTimestamp",
+    "eventDateTime": {
+      "$id": "#/properties/eventDateTime",
       "type": "string",
-      "description": "Event timestamp must be ISO 8601 UTC",
-      "format": "date-time"
+      "description": "ISO 8601, UTC"
     },
-    "expiryTimestamp": {
-      "$id": "#/properties/expiryTimestamp",
+    "expiryDateTime": {
+      "$id": "#/properties/expiryDateTime",
       "type": "string",
-      "description": "Expiry timestamp must be ISO 8601 UTC",
-      "format": "date-time"
+      "description": "Do not present this information after this time. ISO 8601, UTC"
     },
-    "type": {
-      "$id": "#/properties/type",
+    "preferredStartDateTime": {
+      "$id": "#/properties/preferredStartDateTime",
       "type": "string",
-      "description": "The announcement type",
-      "enum": [
-        "ARRIVING",
-        "DEVIATION",
-        "ANNOUNCEMENT"
-      ]
+      "description": "ISO 8601, UTC"
     },
     "ref": {
-      "$id": "#/properties/ref",
-      "type": "string",
-      "description": "Reference for announcement",
-      "default": "",
-      "examples": [
-        "RUT:StopPlace:03012453"
-      ]
+      "$id": "#/properties/ref"
     },
-    "value": {
-      "$id": "#/properties/value",
+    "audio": {
+      "$id": "#/properties/audio",
       "type": "array",
-      "description": "List of audio files to be played in order",
       "items": {
-        "$id": "#/properties/value/items",
         "type": "object",
-        "description": "Audio",
+        "title": "audio",
         "required": [
-          "encoding",
-          "content"
+          "speaker",
+          "volume"
         ],
-        "additionalProperties": false,
         "properties": {
           "encoding": {
-            "$id": "#/properties/value/items/properties/encoding",
             "type": "string",
-            "description": "Encoding type",
-            "enum": [
+            "description": "Optional. Audio message encoding",
+            "examples": [
               "MP3",
               "OPUS"
             ]
           },
           "content": {
-            "$id": "#/properties/value/properties/content",
             "type": "string",
-            "description": "Base64-encoded audio data",
-            "contentEncoding": "base64"
+            "description": "Optional. BASE64 encoded binary data. Do not use if contentURL is defined"
+          },
+          "contentURL": {
+            "type": "string",
+            "description": "Optional. Location of content. Do not use if content is defined."
           },
           "speaker": {
-            "$id": "#/properties/value/properties/speaker",
             "type": "string",
-            "description": "Target speaker for audio",
-            "default": "PASSENGERS",
-            "enum": [
-              "PASSENGERS",
-              "DRIVER",
-              "EXTERNAL"
+            "description": "Speaker the audio is intended for",
+            "examples": [
+              "INTERNAL",
+              "EXTERNAL",
+              "DRIVER"
             ]
           },
           "volume": {
-            "$id": "#/properties/value/properties/volume",
-            "type": "integer",
-            "description": "Volume 1-100",
-            "default": 70,
-            "minimum": 1,
-            "maximum": 100
+            "type": "number",
+            "description": "Volume in dB"
           }
         }
       }
     }
-  }
+  },
+  "examples": [
+    {
+      "eventDateTime": "2018-11-13T11:40:02.749Z",
+      "expiryDateTime": "2018-11-13T08:40:32.249Z",
+      "preferredStartDateTime": "2018-11-13T08:39:32.749Z",
+      "ref": "RUT:StopPlace:03012453",
+      "audio": [
+        {
+          "encoding": "OPUS",
+          "contentUrl": "\\soundserver\\path\\to\\file",
+          "speaker": "INTERNAL",
+          "volume": 70
+        },
+        {
+          "encoding": "MP3",
+          "content": "SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU3...",
+          "speaker": "INTERNAL",
+          "volume": 70
+        }
+      ]
+    }
+  ]
 }

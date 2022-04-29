@@ -3,7 +3,7 @@ name: AsyncAPI documents processing
 on:
   push:
     tags:
-      - v1.**
+      - v2.**
 
 jobs:
   generate:

@@ -7,8 +7,8 @@
     "ref": "RUT:StopPlace:03012453",
     "audio": [
       {
-        "encoding": "MP3",
-        "content": "SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU3...",
+        "encoding": "OPUS",
+        "contentUrl": "\\soundserver\\path\\to\\file",
         "speaker": "INTERNAL",
         "volume": 70
       },
