@@ -30,7 +30,7 @@ jobs:
       - name: Commit files to auto_generated_doc branch
         uses: GuillaumeFalourd/copy-push-files@v1
         with:
-          target_branch: auto_generated_doc
+          target_branch: master
           target_dir: docs/${{github.ref_name}}
           commit_message: 'Auto-commit from Github Action'
           source_files: docs/index.html docs/js/asyncapi-ui.min.js docs/css/asyncapi.min.css docs/css/global.min.css
