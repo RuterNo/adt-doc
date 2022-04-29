@@ -2,7 +2,6 @@ name: AsyncAPI documents processing
 
 on:
   push:
-    branches: [ adt1 ]
     tags:
       - v1.**
 
