@@ -1,0 +1,86 @@
+---
+# Homepage configuration
+# See https://fontawesome.com/v5/search for icons options
+
+title: "Ruters Digitale Plattform"
+subtitle: "Avtale om digitale tjenester"
+logo: "assets/icons/ruter_icon.svg"
+# icon: "fas fa-skull-crossbones" # Optional icon
+
+header: true
+footer: '<p>Want to suggest an improvement or think you have found a bug? Please <a href="https://github.com/RuterNo/adt-doc/issues"> <i class="fa-brands fa-github"></i> create an issue</a> or let us know: <a href="mailto:rdp-support@ruter.no"> <i class="fas fa-envelope"></i> rdp-support@ruter.no</a></p>' # set false if you want to hide it.
+
+# Optional theme customization
+theme: default
+colors:
+  light:
+    highlight-primary: "#e60000"
+    highlight-secondary: "#e60000"
+    highlight-hover: "rgb(290, 50, 50)"
+    background: "#f5f5f5"
+    card-background: "#ffffff"
+    text: "#363636"
+    text-header: "#ffffff"
+    text-title: "#303030"
+    text-subtitle: "#424242"
+    card-shadow: rgba(0, 0, 0, 0.1)
+    link: "#3273dc"
+    link-hover: "#363636"
+  dark:
+    highlight-primary: "#e60000"
+    highlight-secondary: "#e60000"
+    highlight-hover: "rgb(290, 50, 50)"
+    background: "#131313"
+    card-background: "#2b2b2b"
+    text: "#eaeaea"
+    text-header: "#ffffff"
+    text-title: "#fafafa"
+    text-subtitle: "#f5f5f5"
+    card-shadow: rgba(0, 0, 0, 0.4)
+    link: "#3273dc"
+    link-hover: "#ffdd57"
+
+# Optional message
+message:
+  #url: https://b4bz.io
+  style: "is-dark" # See https://bulma.io/documentation/components/message/#colors for styling options.
+  title: "Warning! Proof-of-concept / Demo-page !"
+  icon: "fa-solid fa-triangle-exclamation"
+  content: "The documentation found on this page is for demo purposes only. <br /> 
+    To see the latest official documentation, please visit: <a href='https://ruter.atlassian.net/wiki/spaces/DS/pages/231178249/Avtale+om+Digitale+Tjenester'>https://ruter.atlassian.net</a>"
+
+# Optional navbar
+# links: [] # Allows for navbar (dark mode, layout, and search) without any links
+links:
+  - name: "Contribute"
+    icon: "fab fa-github"
+    url: "https://github.com/RuterNo/adt-doc"
+    target: "_blank" # optional html a tag target attribute
+  - name: "Wiki"
+    icon: "fas fa-book"
+    url: "https://ruter.atlassian.net/wiki/spaces/DS/pages/231178249/Avtale+om+Digitale+Tjenester"
+
+# Services
+# First level array represent a group.
+# Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
+services:
+  - name: "ADT 1"
+    icon: "fa-solid fa-link"
+    items:
+      - name: "v1.6.2-RC1"
+        logo: "assets/api/ruter_logo_red.svg"
+        subtitle: "Html documentation with examples and json schemas."
+        tag: "api asyncapi doc mqtt external jsonschema"
+        url: "docs/v1.6.2-RC1/index.html"
+        target: "_blank" # optional html a tag target attribute
+  - name: "ADT 2"
+    icon: "fa-solid fa-link"
+    items:
+      - name: "v2.1.0-RC2"
+        logo: "assets/api/ruter_logo_red.svg"
+        subtitle: "Html documentation with examples and json schemas."
+        tag: "api asyncapi doc mqtt external jsonschema"
+        url: "docs/v2.1.0-RC2/index.html"
+        target: "_blank" # optional html a tag target attribute
+
+
