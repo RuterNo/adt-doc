@@ -1,0 +1,9 @@
+{
+  "name": "Notification",
+  "payload": {
+    "eventTimestamp": "2017-10-31T08:38:02.749Z",
+    "urgency": "MEDIUM",
+    "subject": "Lorem ipsum",
+    "content": "Duis aute irure dolor"
+  }
+}
