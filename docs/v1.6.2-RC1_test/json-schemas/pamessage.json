@@ -1,0 +1,66 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schema.ruter.no/pamessage.json",
+  "title": "PA message schema",
+  "type": "object",
+  "required": [
+    "eventTimestamp",
+    "ref"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "EventTimestamp must be ISO 8601 UTC",
+      "format": "date-time"
+    },
+    "ref": {
+      "$id": "#/properties/ref",
+      "type": "string",
+      "examples": [
+        "757fd8b4-2e57-4ad3-9aee-76e793c514d9"
+      ]
+    },
+    "content": {
+      "$id": "#/properties/content",
+      "title": "Content",
+      "type": "array",
+      "items": {
+        "$id": "#/properties/content/items",
+        "type": "object",
+        "required": [
+          "type"
+        ],
+        "properties": {
+          "type": {
+            "$id": "#/properties/content/items/type",
+            "title": "Content type",
+            "type": "string",
+            "examples": [
+              "VIDEO",
+              "IMAGE",
+              "HTML",
+              "TEXT"
+            ]
+          },
+          "duration": {
+            "$id": "#/properties/content/items/duration",
+            "type": "integer",
+            "examples": [
+              10
+            ]
+          },
+          "src": {
+            "$id": "#/properties/content/items/src",
+            "type": "string",
+            "examples": [
+              "../media/1080p_Ruter_Takk.mp4"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
