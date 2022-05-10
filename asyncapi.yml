@@ -399,10 +399,10 @@ channels:
         payload:
           $ref: 'json-schemas/pamessage.json'
         examples: [
-          { '$ref': 'examples/pamessage1.json' },
-          { '$ref': 'examples/pamessage2.json' },
-          { '$ref': 'examples/pamessage3.json' },
-          { '$ref': 'examples/pamessage4.json' }
+          { '$ref': 'examples/pamessage_video.json' },
+          { '$ref': 'examples/pamessage_multiple.json' },
+          { '$ref': 'examples/pamessage_text.json' },
+          { '$ref': 'examples/pamessage_clear.json' }
         ]
         bindings:
           mqtt:
