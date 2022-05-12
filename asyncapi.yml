@@ -43,16 +43,16 @@ channels:
       | Field         | Value                                                                            |
       |---------------|----------------------------------------------------------------------------------|
       | Central Topic | ruter/{operatorId}/{vehicleId}/itxpt/ota/signon/json  |
-      | Schema        | [ signon.json ](https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/signon.json) |
+      | Schema        | [ signon.json ](json-schemas/signon.json) |
       Notify PTA BO that the bus is starting a block.
     publish:
       message:
         name: Signon Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/signon.json'
+          $ref: 'json-schemas/signon.json'
         examples: [
-          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/examples/signon.json' }
+          { '$ref': 'examples/signon.json' }
         ]
         bindings:
           mqtt:
@@ -64,7 +64,7 @@ channels:
       | Field         | Value                                                                            |
       |---------------|----------------------------------------------------------------------------------|
       | Central Topic | ruter/{operatorId}/{vehicleId}/itxpt/ota/signoff/json  |
-      | Schema        | [ signon.json ](https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/signon.json) |
+      | Schema        | [ signon.json ](json-schemas/signon.json) |
       Notify PTA BO that the bus has completed a block.
 
       The content of signoff is the same as signon and uses the same schema.
@@ -73,7 +73,7 @@ channels:
         name: Signoff Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/signon.json'
+          $ref: 'json-schemas/signon.json'
         bindings:
           mqtt:
             qos: 1
@@ -84,7 +84,7 @@ channels:
       | Field         | Value                                                                            |
       |---------------|----------------------------------------------------------------------------------|
       | Central Topic | ruter/{operatorId}/{vehicleId}/itxpt/ota/avl/json  |
-      | Schema        | [ avl.json ](https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/avl.json) |
+      | Schema        | [ avl.json ](json-schemas/avl.json) |
 
       Automatic Vehicle Location. Reporting of the bus's position, course and speed to PTA BO.
     publish:
@@ -92,62 +92,17 @@ channels:
         name: AVL MQTT Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/avl.json'
+          $ref: 'json-schemas/avl.json'
         examples: [
-          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/examples/avl.json' }
+          { '$ref': 'examples/avl.json' }
         ]
         bindings:
           mqtt:
             qos: 0
             retain: false
   'telemetry/{telemetryId}/json':
-    description: |
-      ### Telemetry data
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | ruter/{operatorId}/{vehicleId}/itxpt/ota/telemetry/{telemetryId}/json  |
-      | Schema        | [ avl.json ](https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/avl.json) |
-
-      Vehicle telemetry from systems on the bus.
-
-      Several different kinds of telemetry are available varying by vehicle type. For traditional busses, FMS is the standard defines what data about the vehicle is published on the FMS bus and out by FMStoIP. For trams VehicleToIP defines a a different and more limited set of data. In addition, electrical and hydrogen have proprietary data that is not captured by either.
-
-      This topic generalizes all such data as telemetry defined by a unique id. We will use FMS PGN ids (4-digit hex values) but otherwise use unique ids to identify data from other sources.
-
-      If we define the ids along the lines of FMS we can have 32-bit ids that use the following pattern:
-
-      | Bytes | Description                       |
-      |-------|-----------------------------------|
-      | 1     | Source identifier                 |
-      | 2-4   | Source-specific id, e.g. FMS PGNs |
-
-      Source identifiers will be:
-
-      | Id   | Description |
-      |------|-------------|
-      | 0x00 | FMS         |
-      | 0x01 | non-FMS     |
-      | ...  | new sources |
-
-      Therefore all FMS PGNs become "0000" + 4-digit hex PGN.
-
-      ?> Learn more about the telemetry concept in [this wiki article](https://ruter.atlassian.net/wiki/spaces/TAAS/pages/106004500/Telemetry+concept).
-
-      #### FMS
-      Each of the available data points is defined with a Parameter Group Number (PGN) with fields defined by Suspect Parameter Number (SPN).
-
-      The FMS-to-IP service in the ITxPT standard makes the desired data available on the bus's own network over UDP (multicast broadcast). It sends out only the PGNs previously requested by calling a service. The messages are sent every second, according to ITxPT, and includes all the requested PGNs. The format is in XML.
-
-      We therefore define which PGNs are needed by Ruter and that the XML message should be broken up per PGN and forwarded as JSON.
-
-      #### FMS Parameter Group Number (PGN)
-      This is the list of required PGNs. It should be possible to expand this over time.
-
-      | Code | Description                      | PGN  | SPN                                                                       | Purpose               | ID       | Local topic             |
-      |------|----------------------------------|------|---------------------------------------------------------------------------|----------------------|----------|-------------------------|
-      | DC1  | Door Control 1                   | FE4E | 3411 Status 2 of doors <br> 1820 Ramp/Wheel chairlift <br> 1821 Position of doors   | Doors open / closed  | 0000FE4E | telemetry/0000fe4e/json |
-      | DC2  | Door Control 2                   | FDA5 | XXXX Lock Status Door N <br> XXXX Enable Status Door N <br> XXXX Open Status Door N | Alternative to DC1?  | 0000FDA5 | telemetry/0000fda5/json |
-      | VDHR | High Resolution Vehicle Distance | FEC1 | 917 High resolution total vehicle distance                                | Supplements position | 0000FEC1 | telemetry/0000fec1/json |
+    description:
+      $ref: 'markdown/telemetry_description.md'
     parameters:
       telemetryId:
         $ref: '#/components/parameters/telemetryId'
@@ -156,9 +111,9 @@ channels:
         name: FMS-to-IP data
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/telemetry.json'
+          $ref: 'json-schemas/telemetry.json'
         examples: [
-          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/examples/telemetry.json' }
+          { '$ref': 'examples/telemetry.json' }
         ]
         bindings:
           mqtt:
@@ -171,7 +126,7 @@ channels:
       | Field         | Value                                                                            |
       |---------------|----------------------------------------------------------------------------------|
       | Central Topic | ruter/{operatorId}/{vehicleId}/itxpt/ota/stopsignal/json  |
-      | Schema        | [ stopsignal.json ](https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/stopsignal.json) |
+      | Schema        | [ stopsignal.json ](json-schemas/stopsignal.json) |
 
       This message should be produced whenever the stop signal is turned on or off.
     publish:
@@ -179,9 +134,9 @@ channels:
         name: Stop signalled MQTT Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/stopsignal.json'
+          $ref: 'json-schemas/stopsignal.json'
         examples: [
-          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/examples/stopsignal.json' }
+          { '$ref': 'examples/stopsignal.json' }
         ]
         bindings:
           mqtt:
@@ -193,7 +148,7 @@ channels:
       | Field         | Value                                                                            |
       |---------------|----------------------------------------------------------------------------------|
       | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi_diagnostics  |
-      | Schema        | [ diagnostics.json ](https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/diagnostics.json) |
+      | Schema        | [ diagnostics.json ](json-schemas/diagnostics.json) |
 
       Report to PTA BO about a screen.
 
@@ -204,9 +159,9 @@ channels:
         name: DPI Diagnostics message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/diagnostics.json'
+          $ref: 'json-schemas/diagnostics.json'
         examples: [
-          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/examples/diagnostics.json' }
+          { '$ref': 'examples/diagnostics.json' }
         ]
         bindings:
           mqtt:
@@ -219,7 +174,7 @@ channels:
       | Field         | Value                                                                            |
       |---------------|----------------------------------------------------------------------------------|
       | Central Topic | ruter/{operatorId}/{vehicleId}/itxpt/ota/sales/diagnostics/json  |
-      | Schema        | [ salediagnostics.json ](https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/salediagnostics.json)                                                             |
+      | Schema        | [ salediagnostics.json ](json-schemas/salediagnostics.json)                                                             |
 
       Diagnostics message generated by RuterSalg. More details about fields can be found at https://ruter.atlassian.net/wiki/spaces/TAAS/pages/948928517/OTA+MQTT-Meldinger+benyttet+av+Ruter+Salg.
 
@@ -229,9 +184,9 @@ channels:
         name: RuterSalg Diagnostics MQTT Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/salediagnostics.json'
+          $ref: 'json-schemas/salediagnostics.json'
         examples: [
-          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/examples/salediagnostics.json' }
+          { '$ref': 'examples/salediagnostics.json' }
         ]
         bindings:
           mqtt:
@@ -243,7 +198,7 @@ channels:
       | Field         | Value                                                                            |
       |---------------|----------------------------------------------------------------------------------|
       | Central Topic | ruter/{operatorId}/{vehicleId}/itxpt/ota/sales/saleresult/json |
-      | Schema        | [ saleresult.json ](https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/saleresult.json) |
+      | Schema        | [ saleresult.json ](json-schemas/saleresult.json) |
 
       Sale result message generated by RuterSalg. More details about fields can be found at https://ruterwiki.ruter.no/display/PNS/MQTT+Topics+consumed+and+produced+by+RuterSalg.
 
@@ -255,9 +210,9 @@ channels:
         name: Saleresult MQTT Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/saleresult.json'
+          $ref: 'json-schemas/saleresult.json'
         examples: [
-          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/examples/saleresult.json' }
+          { '$ref': 'examples/saleresult.json' }
         ]
         bindings:
           mqtt:
@@ -269,7 +224,7 @@ channels:
       | Field         | Value                                                                            |
       |---------------|----------------------------------------------------------------------------------|
       | Central Topic | ruter/{operatorId}/{vehicleId}/itxpt/ota/sales/validationresult/json  |
-      | Schema        | [ validationresult.json ](https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/validationresult.json) |
+      | Schema        | [ validationresult.json ](json-schemas/validationresult.json) |
 
       Validation result message generated by RuterSalg. This topic is intended as a live view of validation. This topic is intended for health surveillance, for anyone interesting in whether or not validations are being performed, as well as validation results.
 
@@ -278,9 +233,9 @@ channels:
         name: Validationresult MQTT Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/validationresult.json'
+          $ref: 'json-schemas/validationresult.json'
         examples: [
-          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/examples/validationresult.json' }
+          { '$ref': 'examples/validationresult.json' }
         ]
         bindings:
           mqtt:
@@ -293,7 +248,7 @@ channels:
       | Field         | Value                                                                            |
       |---------------|----------------------------------------------------------------------------------|
       | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/journey  |
-      | Schema        | [ journey.json ](https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/journey.json) |
+      | Schema        | [ journey.json ](json-schemas/journey.json) |
       
       Message containing the stops included in the journey, connections to other lines, positions ++.
     subscribe:
@@ -304,9 +259,9 @@ channels:
         name: Journey Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/journey.json'
+          $ref: 'json-schemas/journey.json'
         examples: [
-          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/examples/journey.json' }
+          { '$ref': 'examples/journey.json' }
         ]
         bindings:
           mqtt:
@@ -318,7 +273,7 @@ channels:
       | Field         | Value                                                                            |
       |---------------|----------------------------------------------------------------------------------|
       | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/nextstop  |
-      | Schema        | [ nextstop.json ](https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/nextstop.json) |
+      | Schema        | [ nextstop.json ](json-schemas/nextstop.json) |
       
       Next stop on the bus's route after leaving a stop.
     subscribe:
@@ -326,9 +281,9 @@ channels:
         name: Next Stop MQTT Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/nextstop.json'
+          $ref: 'json-schemas/nextstop.json'
         examples: [
-          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/examples/nextstop.json' }
+          { '$ref': 'examples/nextstop.json' }
         ]
         bindings:
           mqtt:
@@ -340,7 +295,7 @@ channels:
       | Field         | Value                                                                            |
       |---------------|----------------------------------------------------------------------------------|
       | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/eta  |
-      | Schema        | [ eta.json ](https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/eta.json) |
+      | Schema        | [ eta.json ](json-schemas/eta.json) |
       
       Estimated arrival at the remaining stops.
     subscribe:
@@ -348,9 +303,9 @@ channels:
         name: ETA MQTT Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/eta.json'
+          $ref: 'json-schemas/eta.json'
         examples: [
-          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/examples/nextstop.json' }
+          { '$ref': 'examples/nextstop.json' }
         ]
         bindings:
           mqtt:
@@ -362,7 +317,7 @@ channels:
       | Field         | Value                                                                            |
       |---------------|----------------------------------------------------------------------------------|
       | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/externaldisplay  |
-      | Schema        | [ externaldisplay.json ](https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/externaldisplay.json) |
+      | Schema        | [ externaldisplay.json ](json-schemas/externaldisplay.json) |
       
       Message to be shown on the external destination display. Usually line number (publicCode) and routeName, with support for alternative message.      
 
@@ -371,11 +326,38 @@ channels:
         name: External Display MQTT Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/externaldisplay.json'
+          $ref: 'json-schemas/externaldisplay.json'
         examples: [
-          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/examples/externaldisplay.json' },
-          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/examples/externaldisplay_deadrun.json' }
+          { '$ref': 'examples/externaldisplay.json' },
+          { '$ref': 'examples/externaldisplay_deadrun.json' }
 
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: true
+
+  'pe/dpi/pa':
+    description: |
+      ### Passenger Announcement message:
+      | Field         | Value                                                                            |
+      |---------------|----------------------------------------------------------------------------------|
+      | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/pa  |
+      | Schema        | [ pamessage.json ](json-schemas/pamessage.json) |
+
+      Message to be shown on internal displays. May contain references to videos, html, images, text etc.       
+
+    subscribe:
+      message:
+        name: Passenger Announcement message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: 'json-schemas/pamessage.json'
+        examples: [
+          { '$ref': 'examples/pamessage_video.json' },
+          { '$ref': 'examples/pamessage_multiple.json' },
+          { '$ref': 'examples/pamessage_text.json' },
+          { '$ref': 'examples/pamessage_clear.json' }
         ]
         bindings:
           mqtt:
@@ -387,7 +369,7 @@ channels:
       | Field         | Value                                                                            |
       |---------------|----------------------------------------------------------------------------------|
       | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/arriving  |
-      | Schema        | [ arriving.json ](https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/arriving.json) |
+      | Schema        | [ arriving.json ](json-schemas/arriving.json) |
       
       Notice to passengers that the bus is approaching a stop.      
 
@@ -396,9 +378,9 @@ channels:
         name: Arriving Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/arriving.json'
+          $ref: 'json-schemas/arriving.json'
         examples: [
-          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/examples/arriving.json' }
+          { '$ref': 'examples/arriving.json' }
         ]
         bindings:
           mqtt:
@@ -410,18 +392,22 @@ channels:
       | Field         | Value                                                                            |
       |---------------|----------------------------------------------------------------------------------|
       | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/deviation  |
-      | Schema        | [ deviation.json ](https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/deviation.json) |
+      | Schema        | [ deviation.json ](json-schemas/deviation.json) |
       
       Notice to passengers that the bus is approaching a stop.      
+          ⚠️ Deprecated! No longer in use. Replaced with Passenger Announcement message.
 
     subscribe:
       message:
+        tags:
+          - name: Deprecated
+            description: This message will be removed in a later release.
         name: Deviation MQTT Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/deviation.json'
+          $ref: 'json-schemas/deviation.json'
         examples: [
-          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/examples/deviation.json' }
+          { '$ref': 'examples/deviation.json' }
         ]
         bindings:
           mqtt:
@@ -433,7 +419,7 @@ channels:
       | Field         | Value                                                                            |
       |---------------|----------------------------------------------------------------------------------|
       | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/announcement  |
-      | Schema        | [ announcement.json ](https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/announcement.json) |
+      | Schema        | [ announcement.json ](json-schemas/announcement.json) |
       Announcement to the passengers (ad hoc). Message contains a reference to the scope of the message, if applicable. Typically NSR stopplaceid / lineId or similar.      
           ⚠️ Deprecated! No longer in use.
     subscribe:
@@ -444,9 +430,9 @@ channels:
         name: Announcement MQTT Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/announcement.json'
+          $ref: 'json-schemas/announcement.json'
         examples: [
-          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/examples/announcement.json' }
+          { '$ref': 'examples/announcement.json' }
         ]
         bindings:
           mqtt:
@@ -458,7 +444,7 @@ channels:
       | Field         | Value                                                                            |
       |---------------|----------------------------------------------------------------------------------|
       | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/c2  |
-      | Schema        | [ c2.json ](https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/c2.json) |
+      | Schema        | [ c2.json ](json-schemas/c2.json) |
       
       Command and control messages from Ruter Data Platform.
       
@@ -478,9 +464,9 @@ channels:
         name: C2 MQTT Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/c2.json'
+          $ref: 'json-schemas/c2.json'
         examples: [
-          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/examples/c2.json' }
+          { '$ref': 'examples/c2.json' }
         ]
         bindings:
           mqtt:
@@ -492,7 +478,7 @@ channels:
       | Field         | Value                                                                            |
       |---------------|----------------------------------------------------------------------------------|
       | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/connections  |
-      | Schema        | [ connections.json ](https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/connections.json) |
+      | Schema        | [ connections.json ](json-schemas/connections.json) |
       
       List of connections for the remaining stops on a journey with expected departures.
 
@@ -501,21 +487,45 @@ channels:
         name: The Connections Schema
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/connections.json'
+          $ref: 'json-schemas/connections.json'
         examples: [
-          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/examples/connections.json' }
+          { '$ref': 'examples/connections.json' }
         ]
         bindings:
           mqtt:
             qos: 1
             retain: false
+  'pe/dpi/key_stops':
+    description: |
+      ### Key Stops message:
+      | Field         | Value                                                                            |
+      |---------------|----------------------------------------------------------------------------------|
+      | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/key_stops  |
+      | Schema        | [ key_stops.json ](json-schemas/key_stops.json) |
+
+      List of X number of most trafficked stops in the rest of the journey. Based on predicted number of passengers leaving
+      on each stop
+
+    subscribe:
+      message:
+        name: Key Stops message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: 'json-schemas/key_stops.json'
+        examples: [
+          { '$ref': 'examples/key_stops.json' }
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: true
   'tsp/json':
     description: |
       ### Traffic Preemption MQTT Message
       | Field         | Value                                                                            |
       |---------------|----------------------------------------------------------------------------------|
       | Central Topic | {operatorId}/ruter/{vehicleId}/itxpt/ota/tsp/json |
-      | Schema        | [ tsp.json ](https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/tsp.json) |
+      | Schema        | [ tsp.json ](json-schemas/tsp.json) |
       
       The message to be sent to VHF to ensure that the bus is prioritized at the traffic lights. This message is generated by Ruter when approaching an intersection or, when a stop is just before an intersection, after the doors have closed.
 
@@ -524,9 +534,9 @@ channels:
         name: Traffic Preemption MQTT Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/tsp.json'
+          $ref: 'json-schemas/tsp.json'
         examples: [
-          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/examples/tsp.json' }
+          { '$ref': 'examples/tsp.json' }
         ]
         bindings:
           mqtt:
@@ -538,7 +548,7 @@ channels:
       | Field         | Value                                                                            |
       |---------------|----------------------------------------------------------------------------------|
       | Central Topic | {operatorId}/ruter/{vehicleId}/itxpt/ota/dpi/audio/json  |
-      | Schema        | [ audio.json ](https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/audio.json) |
+      | Schema        | [ audio.json ](json-schemas/audio.json) |
       
       Topic used exclusively to transmit audio messages to be played by the speaker system. The audio messages may contain an array of sound bites, that are to be played in the sequence they have been received. 
 
@@ -547,10 +557,10 @@ channels:
         name: Audio MQTT Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/audio.json'
+          $ref: 'json-schemas/audio.json'
         examples: [
-          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/examples/audio.json' },
-          { '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/examples/audio_local.json' },
+          { '$ref': 'examples/audio.json' },
+          { '$ref': 'examples/audio_local.json' },
         ]
         bindings:
           mqtt:
@@ -562,7 +572,7 @@ channels:
       | Field         | Value                                                                            |
       |---------------|----------------------------------------------------------------------------------|
       | Central Topic | {operatorId}/ruter/{vehicleId}/itxpt/ota/madt/notification/json   |
-      | Schema        | [ notification.json ](https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/notification.json) |
+      | Schema        | [ notification.json ](json-schemas/notification.json) |
       
       Notification message sent to the MADT (Multi-Application Driver Terminal) device inside the bus. To be used to inform the bus driver from the Ruter backoffice.
       The text message may contain the "Line Feed" character (\n), indicating line breaks.
@@ -572,10 +582,10 @@ channels:
         name: Notification MQTT Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/json-schemas/notification.json'
+          $ref: 'json-schemas/notification.json'
         examples: [
           {
-            '$ref': 'https://raw.githubusercontent.com/RuterNo/adt-doc/adt2/examples/notification.json'
+            '$ref': 'examples/notification.json'
           }
         ]
         bindings:
