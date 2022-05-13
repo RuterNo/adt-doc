@@ -1,16 +1,8 @@
-asyncapi: '2.3.0'
+asyncapi: 2.3.0
 info:
   title: Avtale om digitale tjenester - ADT
-  description: |
-    ## Ruters digitale plattform
-    This specification contains interfaces to be used between PTOs (operators) and Ruter.
-
-    #### More info
-    For more information, please go to: [ruterno.github.io](https://ruterno.github.io/)
-
-    #### Comments or suggestions
-    Please open an issue here: [ADT-DOC Issues](https://github.com/RuterNo/adt-doc/issues) 
-
+  description:
+    $ref: markdown/introduction.md
   termsOfService: https://ruter.no
   contact:
     name: RDP Support
@@ -37,220 +29,483 @@ servers:
 
 defaultContentType: application/json
 channels:
-  'signon/json':
-    description: |
-      ### Signon Message
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | ruter/{operatorId}/{vehicleId}/itxpt/ota/signon/json  |
-      | Schema        | [ signon.json ](json-schemas/signon.json) |
-      Notify PTA BO that the bus is starting a block.
-    publish:
-      message:
-        name: Signon Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: 'json-schemas/signon.json'
-        examples: [
-          { '$ref': 'examples/signon.json' }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
-  'signoff/json':
-    description: |
-      ### signoff Message
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | ruter/{operatorId}/{vehicleId}/itxpt/ota/signoff/json  |
-      | Schema        | [ signon.json ](json-schemas/signon.json) |
-      Notify PTA BO that the bus has completed a block.
-
-      The content of signoff is the same as signon and uses the same schema.
-    publish:
-      message:
-        name: Signoff Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: 'json-schemas/signon.json'
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
-  'avl/json':
-    description: |
-      ### AVL Message
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | ruter/{operatorId}/{vehicleId}/itxpt/ota/avl/json  |
-      | Schema        | [ avl.json ](json-schemas/avl.json) |
-
-      Automatic Vehicle Location. Reporting of the bus's position, course and speed to PTA BO.
-    publish:
-      message:
-        name: AVL MQTT Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: 'json-schemas/avl.json'
-        examples: [
-          { '$ref': 'examples/avl.json' }
-        ]
-        bindings:
-          mqtt:
-            qos: 0
-            retain: false
-  'telemetry/{telemetryId}/json':
+  di/assignment_attempt/block:
     description:
-      $ref: 'markdown/telemetry_description.md'
-    parameters:
-      telemetryId:
-        $ref: '#/components/parameters/telemetryId'
+      $ref: markdown/assignment-attempt.md
     publish:
       message:
-        name: FMS-to-IP data
+        name: Assignment Attempt Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'json-schemas/telemetry.json'
-        examples: [
-          { '$ref': 'examples/telemetry.json' }
+          $ref: json-schemas/assignment-attempt.json
+        examples:
+          [
+          { $ref: examples/assignment-attempt.json },
         ]
         bindings:
           mqtt:
-            qos: 0
-            retain: false
-
-  'stopsignal/json':
-    description: |
-      ### Stop signal status:
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | ruter/{operatorId}/{vehicleId}/itxpt/ota/stopsignal/json  |
-      | Schema        | [ stopsignal.json ](json-schemas/stopsignal.json) |
-
-      This message should be produced whenever the stop signal is turned on or off.
+            qos: 1
+            retain: true
+  di/override_attempt/destination_display:
+    description:
+      $ref: markdown/destination-display-override.md
     publish:
       message:
-        name: Stop signalled MQTT Message
+        name: Destination Display Override Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'json-schemas/stopsignal.json'
+          $ref: json-schemas/destination-display-override.json
         examples: [
-          { '$ref': 'examples/stopsignal.json' }
+          { $ref: examples/destination-display-override.json }
         ]
         bindings:
           mqtt:
             qos: 1
             retain: false
-  'pe/dpi_diagnostics':
-    description: |
-      ### DPI Diagnostics message:
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi_diagnostics  |
-      | Schema        | [ diagnostics.json ](json-schemas/diagnostics.json) |
-
-      Report to PTA BO about a screen.
-
-      The DPI application itself produces diagnostic messages.
-      The payload is defined as an object with no pre-defined structure to provide flexibility.
+  oi/vehicle/unique_identifier:
+    description:
+      $ref: markdown/unique-identifier.md
     publish:
       message:
-        name: DPI Diagnostics message
+        name: UniqueIdentifier Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'json-schemas/diagnostics.json'
+          $ref: json-schemas/unique-identifier.json
         examples: [
-          { '$ref': 'examples/diagnostics.json' }
+          { $ref: examples/unique-identifier.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: true
+  pe/activecab:
+    description:
+      $ref: markdown/active-cab.md
+    publish:
+      message:
+        name: ActiveCab Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/active-cab.json
+        examples: [
+          { $ref: examples/active-cab.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: true
+  pe/doorlock:
+    description:
+      $ref: markdown/door-lock.md
+    publish:
+      message:
+        name: DoorLock Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/door-lock.json
+        examples: [
+          { $ref: examples/door-lock.json }
         ]
         bindings:
           mqtt:
             qos: 1
             retain: false
-
-  'infohub/sales/diagnostics/json':
-    description: |
-      ### RuterSalg diagnostics
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | ruter/{operatorId}/{vehicleId}/itxpt/ota/sales/diagnostics/json  |
-      | Schema        | [ salediagnostics.json ](json-schemas/salediagnostics.json)                                                             |
-
-      Diagnostics message generated by RuterSalg. More details about fields can be found at https://ruter.atlassian.net/wiki/spaces/TAAS/pages/948928517/OTA+MQTT-Meldinger+benyttet+av+Ruter+Salg.
-
-      This topic is intended for applications interested in health status for the RuterSalg application on each bus. The health status is intended both as a real time surveillance of health status for each individual bus as well as for aggregating data per operator to see larger, more general issues. The topic can also, when enriched by other data, determine whether or not RuterSalg was used and working on a specific departure.
+  pe/doors_individually:
+    description:
+      $ref: markdown/doors-individually.md
+    publish:
+      message:
+        name: Doors Individually Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/doors-individually.json
+        examples: [
+          { $ref: examples/doors-individually.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+  pe/dpi_ack:
+    description:
+      $ref: markdown/dpi-acknowledge.md
+    publish:
+      message:
+        name: DPIAcknowledge Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/dpi-acknowledge.json
+        examples: [
+          { $ref: examples/dpi-acknowledge.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+  pe/dpi_diagnostics:
+    description:
+      $ref: markdown/dpi-diagnostics.md
+    publish:
+      message:
+        name: DPI Diagnostics Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/dpi-diagnostics.json
+        examples: [
+          { $ref: examples/dpi-diagnostics.json },
+          { $ref: examples/dpi-diagnostics-heartbeat.json },
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+  pe/sales/diagnostics:
+    description:
+      $ref: markdown/sale-diagnostics.md
     publish:
       message:
         name: RuterSalg Diagnostics MQTT Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'json-schemas/salediagnostics.json'
+          $ref: json-schemas/salediagnostics.json
         examples: [
-          { '$ref': 'examples/salediagnostics.json' }
+          { $ref: examples/salediagnostics.json }
         ]
         bindings:
           mqtt:
             qos: 1
             retain: false
-  'infohub/sales/saleresult/json':
-    description: |
-      ### Saleresult Message
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | ruter/{operatorId}/{vehicleId}/itxpt/ota/sales/saleresult/json |
-      | Schema        | [ saleresult.json ](json-schemas/saleresult.json) |
-
-      Sale result message generated by RuterSalg. More details about fields can be found at https://ruterwiki.ruter.no/display/PNS/MQTT+Topics+consumed+and+produced+by+RuterSalg.
-
-      This topic is intended as a live view of sales, and must not be used as the complete truth. This is done elsewhere. This topic is intended for health surveillance, for anyone interesting in whether or not tickets are being sold, and also how many and what kind of tickets.
-
-      Some operators have suggested that they might be interested in using this topic to display sales results on screens separate from the RuterSalg application, intended as information to the travelers purchasing tickets. This topic is well suited for this use case.
+  pe/sales/saleresult:
+    description:
+      $ref: markdown/sale-result.md
     publish:
       message:
         name: Saleresult MQTT Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'json-schemas/saleresult.json'
+          $ref: json-schemas/saleresult.json
         examples: [
-          { '$ref': 'examples/saleresult.json' }
+          { $ref: examples/saleresult.json }
         ]
         bindings:
           mqtt:
             qos: 1
             retain: false
-  'infohub/sales/validationresult/json':
-    description: |
-      ### Validationresult Message
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | ruter/{operatorId}/{vehicleId}/itxpt/ota/sales/validationresult/json  |
-      | Schema        | [ validationresult.json ](json-schemas/validationresult.json) |
-
-      Validation result message generated by RuterSalg. This topic is intended as a live view of validation. This topic is intended for health surveillance, for anyone interesting in whether or not validations are being performed, as well as validation results.
-
+  pe/sales/validationresult:
+    description:
+      $ref: markdown/validation-result.md
     publish:
       message:
         name: Validationresult MQTT Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'json-schemas/validationresult.json'
+          $ref: json-schemas/validationresult.json
         examples: [
-          { '$ref': 'examples/validationresult.json' }
+          { $ref: examples/validationresult.json }
         ]
         bindings:
           mqtt:
             qos: 1
             retain: false
+  sensors/gnss/location:
+    description:
+      $ref: markdown/location.md
+    publish:
+      message:
+        name: Location Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/location.json
+        examples: [
+          { $ref: examples/location.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
+  sensors/odometer:
+    description:
+      $ref: markdown/odometer.md
+    publish:
+      message:
+        name: Odometer Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/odometer.json
+        examples: [
+          { $ref: examples/odometer.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
+  sensors/apc_sensors/{sensorId}:
+    description:
+      $ref: markdown/apc-sensors.md
+    parameters:
+      sensorId:
+        $ref: '#/components/parameters/sensorId'
+    publish:
+      message:
+        name: Apc Sensors Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/apc-sensors.json
+        examples: [
+          { $ref: examples/apc-sensors.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+  sensors/door:
+    description:
+      $ref: markdown/door.md
+    publish:
+      message:
+        name: Door Sensors Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/door.json
+        examples: [
+          { $ref: examples/door.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: true
+  sensors/stop_button:
+    description:
+      $ref: markdown/stop-button.md
+    publish:
+      message:
+        name: Stop Button Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/stop-button.json
+        examples: [
+          { $ref: examples/stop-button.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+  sensors/clock:
+    description:
+      $ref: markdown/clock.md
+    publish:
+      message:
+        name: Clock Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/clock.json
+        examples: [
+          { $ref: examples/clock.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
+  sensors/telemetry/{sensorId}:
+    description:
+      $ref: markdown/telemetry.md
+    parameters:
+      sensorId:
+        $ref: '#/components/parameters/sensorId'
+    publish:
+      message:
+        name: Telemetry data
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/telemetry.json
+        examples: [
+          { $ref: examples/telemetry.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
+  di/assignment_attempt_rejection/block:
+    description:
+      $ref: markdown/assignment-attempt-rejection.md
+    subscribe:
+      message:
+        name: Assignment Attempt Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/assignment-attempt-rejection.json
+        examples: [
+          { $ref: examples/assignment-attempt-rejection.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
+  di/available_destination_displays:
+    description:
+      $ref: markdown/available-destination-displays.md
+    subscribe:
+      message:
+        name: Assignment Attempt Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/available-destination-displays.json
+        examples: [
+          { $ref: examples/available-destination-displays.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: true
 
-  'pe/dpi/journey':
-    description: |
-      ### Journey message:
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/journey  |
-      | Schema        | [ journey.json ](json-schemas/journey.json) |
-      
-      Message containing the stops included in the journey, connections to other lines, positions ++.
+  di/operational_message_to_driver:
+    description:
+      $ref: markdown/operational-message-to-driver.md
+    subscribe:
+      message:
+        name: OperationalMessageToDriver Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/operational-message-to-driver.json
+        examples: [
+          { $ref: examples/operational-message-to-driver.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+  ei/audio_message:
+    description:
+      $ref: markdown/audio.md
+    subscribe:
+      message:
+        name: Audio MQTT Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/audio.json
+        examples: [
+          { $ref: examples/audio.json },
+          { $ref: examples/audio_local.json },
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+  ei/deviation_information:
+    description:
+      $ref: markdown/deviation-information.md
+    subscribe:
+      message:
+        name: Deviation Information Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/deviation-information.json
+        examples: [
+          { $ref: examples/deviation-information.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+  ei/due_information:
+    description:
+      $ref: markdown/due-information.md
+    subscribe:
+      message:
+        name: Due Information Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/due-information.json
+        examples: [
+          { $ref: examples/due-information.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+  ei/transfer_information:
+    description:
+      $ref: markdown/transfer-information.md
+    subscribe:
+      message:
+        name: Transfer Information Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/transfer-information.json
+        examples: [
+          { $ref: examples/transfer-information.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+  oi/current_block/state:
+    description:
+      $ref: markdown/current-block.md
+    subscribe:
+      message:
+        name: Current Block Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/current-block.json
+        examples: [
+          { $ref: examples/current-block.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: true
+  oi/current_vehicle_journey/expected_call:
+    description:
+      $ref: markdown/expected-call.md
+    subscribe:
+      message:
+        name: Expected Call Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/expected-call.json
+        examples: [
+          { $ref: examples/expected-call.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: true
+  oi/current_vehicle_journey/details:
+    description:
+      $ref: markdown/vehicle-journey-details.md
+    subscribe:
+      message:
+        name: UniqueIdentifier Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/vehicle-journey-details.json
+        examples: [
+          { $ref: examples/vehicle-journey-details.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: true
+  pe/tsp:
+    description:
+      $ref: markdown/tsp.md
+    subscribe:
+      message:
+        name: Traffic Preemption MQTT Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/tsp.json
+        examples: [
+          { $ref: examples/tsp.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+  pe/dpi/journey:
+    description:
+      $ref: markdown/dpi-journey.md
     subscribe:
       externalDocs:
         description: https://ruterno.github.io
@@ -259,334 +514,142 @@ channels:
         name: Journey Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'json-schemas/journey.json'
+          $ref: json-schemas/dpi-journey.json
         examples: [
-          { '$ref': 'examples/journey.json' }
+          { $ref: examples/dpi-journey.json }
         ]
         bindings:
           mqtt:
             qos: 1
             retain: true
-  'pe/dpi/nextstop':
-    description: |
-      ### Next Stop message:
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/nextstop  |
-      | Schema        | [ nextstop.json ](json-schemas/nextstop.json) |
-      
-      Next stop on the bus's route after leaving a stop.
+  pe/dpi/nextstop:
+    description:
+      $ref: markdown/dpi-nextstop.md
     subscribe:
       message:
         name: Next Stop MQTT Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'json-schemas/nextstop.json'
+          $ref: json-schemas/dpi-nextstop.json
         examples: [
-          { '$ref': 'examples/nextstop.json' }
+          { $ref: examples/dpi-nextstop.json }
         ]
         bindings:
           mqtt:
             qos: 1
-            retain: false
-  'pe/dpi/eta':
-    description: |
-      ### ETA message:
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/eta  |
-      | Schema        | [ eta.json ](json-schemas/eta.json) |
-      
-      Estimated arrival at the remaining stops.
+            retain: true
+  pe/dpi/eta:
+    description:
+      $ref: markdown/dpi-eta.md
     subscribe:
       message:
         name: ETA MQTT Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'json-schemas/eta.json'
+          $ref: json-schemas/dpi-eta.json
         examples: [
-          { '$ref': 'examples/nextstop.json' }
+          { $ref: examples/dpi-eta.json }
         ]
         bindings:
           mqtt:
             qos: 1
             retain: false
-  'pe/dpi/externaldisplay':
-    description: |
-      ### External Display message:
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/externaldisplay  |
-      | Schema        | [ externaldisplay.json ](json-schemas/externaldisplay.json) |
-      
-      Message to be shown on the external destination display. Usually line number (publicCode) and routeName, with support for alternative message.      
-
+  pe/dpi/externaldisplay:
+    description:
+      $ref: markdown/dpi-externaldisplay.md
     subscribe:
       message:
         name: External Display MQTT Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'json-schemas/externaldisplay.json'
+          $ref: json-schemas/dpi-externaldisplay.json
         examples: [
-          { '$ref': 'examples/externaldisplay.json' },
-          { '$ref': 'examples/externaldisplay_deadrun.json' }
+          { $ref: examples/dpi-externaldisplay.json },
+          { $ref: examples/dpi-externaldisplay_deadrun.json }
 
         ]
         bindings:
           mqtt:
             qos: 1
             retain: true
-
-  'pe/dpi/pa':
-    description: |
-      ### Passenger Announcement message:
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/pa  |
-      | Schema        | [ pamessage.json ](json-schemas/pamessage.json) |
-
-      Message to be shown on internal displays. May contain references to videos, html, images, text etc.       
-
+  pe/dpi/pa:
+    description:
+      $ref: markdown/dpi-pa.md
     subscribe:
       message:
         name: Passenger Announcement message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'json-schemas/pamessage.json'
+          $ref: json-schemas/dpi-pa.json
         examples: [
-          { '$ref': 'examples/pamessage_video.json' },
-          { '$ref': 'examples/pamessage_multiple.json' },
-          { '$ref': 'examples/pamessage_text.json' },
-          { '$ref': 'examples/pamessage_clear.json' }
+          { $ref: examples/dpi-pa_video.json },
+          { $ref: examples/dpi-pa_multiple.json },
+          { $ref: examples/dpi-pa_text.json },
+          { $ref: examples/dpi-pa_clear.json }
         ]
         bindings:
           mqtt:
             qos: 1
             retain: true
-  'pe/dpi/arriving':
-    description: |
-      ### Arriving message:
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/arriving  |
-      | Schema        | [ arriving.json ](json-schemas/arriving.json) |
-      
-      Notice to passengers that the bus is approaching a stop.      
-
+  pe/dpi/arriving:
+    description:
+      $ref: markdown/dpi-arriving.md
     subscribe:
       message:
         name: Arriving Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'json-schemas/arriving.json'
+          $ref: json-schemas/dpi-arriving.json
         examples: [
-          { '$ref': 'examples/arriving.json' }
+          { $ref: examples/dpi-arriving.json }
         ]
         bindings:
           mqtt:
             qos: 1
             retain: false
-  'pe/dpi/deviation':
-    description: |
-      ### Deviation message:
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/deviation  |
-      | Schema        | [ deviation.json ](json-schemas/deviation.json) |
-      
-      Notice to passengers that the bus is approaching a stop.      
-          ⚠️ Deprecated! No longer in use. Replaced with Passenger Announcement message.
-
-    subscribe:
-      message:
-        tags:
-          - name: Deprecated
-            description: This message will be removed in a later release.
-        name: Deviation MQTT Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: 'json-schemas/deviation.json'
-        examples: [
-          { '$ref': 'examples/deviation.json' }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
-  'pe/dpi/announcement':
-    description: |
-      ### Announcement message:
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/announcement  |
-      | Schema        | [ announcement.json ](json-schemas/announcement.json) |
-      Announcement to the passengers (ad hoc). Message contains a reference to the scope of the message, if applicable. Typically NSR stopplaceid / lineId or similar.      
-          ⚠️ Deprecated! No longer in use.
-    subscribe:
-      message:
-        tags:
-          - name: Deprecated
-            description: This message will be removed in a later release.
-        name: Announcement MQTT Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: 'json-schemas/announcement.json'
-        examples: [
-          { '$ref': 'examples/announcement.json' }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
-  'pe/dpi/c2':
-    description: |
-      ### C2 message:
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/c2  |
-      | Schema        | [ c2.json ](json-schemas/c2.json) |
-      
-      Command and control messages from Ruter Data Platform.
-      
-      The c2 channels is reserved for command and control messages originated by Ruter. Typical use cases include:
-      
-      - Diagnostics / debugging
-        - Trigger transfer of debug information
-        - Trigger screenshot of DPI screen
-        - Trigger clearing of cache and refresh of webpage
-      - Content
-        - Trigger display of campaign
-      
-      The payload is defined as an object with no structure to provide flexibility.
-
-    subscribe:
-      message:
-        name: C2 MQTT Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: 'json-schemas/c2.json'
-        examples: [
-          { '$ref': 'examples/c2.json' }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
-  'pe/dpi/connections':
-    description: |
-      ### Connections message:
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/connections  |
-      | Schema        | [ connections.json ](json-schemas/connections.json) |
-      
-      List of connections for the remaining stops on a journey with expected departures.
-
+  pe/dpi/connections:
+    description:
+      $ref: markdown/dpi-connections.md
     subscribe:
       message:
         name: The Connections Schema
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'json-schemas/connections.json'
+          $ref: json-schemas/dpi-connections.json
         examples: [
-          { '$ref': 'examples/connections.json' }
+          { $ref: examples/dpi-connections.json }
         ]
         bindings:
           mqtt:
             qos: 1
             retain: false
-  'pe/dpi/key_stops':
-    description: |
-      ### Key Stops message:
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/key_stops  |
-      | Schema        | [ key_stops.json ](json-schemas/key_stops.json) |
-
-      List of X number of most trafficked stops in the rest of the journey. Based on predicted number of passengers leaving
-      on each stop
-
+  pe/dpi/key_stops:
+    description:
+      $ref: markdown/dpi-key_stops.md
     subscribe:
       message:
         name: Key Stops message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'json-schemas/key_stops.json'
+          $ref: json-schemas/dpi-key_stops.json
         examples: [
-          { '$ref': 'examples/key_stops.json' }
+          { $ref: examples/dpi-key_stops.json }
         ]
         bindings:
           mqtt:
             qos: 1
             retain: true
-  'tsp/json':
-    description: |
-      ### Traffic Preemption MQTT Message
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | {operatorId}/ruter/{vehicleId}/itxpt/ota/tsp/json |
-      | Schema        | [ tsp.json ](json-schemas/tsp.json) |
-      
-      The message to be sent to VHF to ensure that the bus is prioritized at the traffic lights. This message is generated by Ruter when approaching an intersection or, when a stop is just before an intersection, after the doors have closed.
-
+  pe/dpi_command:
+    description:
+      $ref: markdown/dpi-command.md
     subscribe:
       message:
-        name: Traffic Preemption MQTT Message
+        name: DPI Command Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: 'json-schemas/tsp.json'
+          $ref: json-schemas/dpi-command.json
         examples: [
-          { '$ref': 'examples/tsp.json' }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
-  'infohub/dpi/audio/json':
-    description: |
-      ### Audio message:
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | {operatorId}/ruter/{vehicleId}/itxpt/ota/dpi/audio/json  |
-      | Schema        | [ audio.json ](json-schemas/audio.json) |
-      
-      Topic used exclusively to transmit audio messages to be played by the speaker system. The audio messages may contain an array of sound bites, that are to be played in the sequence they have been received. 
-
-    subscribe:
-      message:
-        name: Audio MQTT Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: 'json-schemas/audio.json'
-        examples: [
-          { '$ref': 'examples/audio.json' },
-          { '$ref': 'examples/audio_local.json' },
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
-  'infohub/madt/notification/json':
-    description: |
-      ### MADT Notification
-      | Field         | Value                                                                            |
-      |---------------|----------------------------------------------------------------------------------|
-      | Central Topic | {operatorId}/ruter/{vehicleId}/itxpt/ota/madt/notification/json   |
-      | Schema        | [ notification.json ](json-schemas/notification.json) |
-      
-      Notification message sent to the MADT (Multi-Application Driver Terminal) device inside the bus. To be used to inform the bus driver from the Ruter backoffice.
-      The text message may contain the "Line Feed" character (\n), indicating line breaks.
-
-    subscribe:
-      message:
-        name: Notification MQTT Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: 'json-schemas/notification.json'
-        examples: [
-          {
-            '$ref': 'examples/notification.json'
-          }
+          { $ref: examples/dpi-command.json }
         ]
         bindings:
           mqtt:
@@ -602,8 +665,8 @@ components:
       description: The vehicle ID.
       schema:
         type: string
-    telemetryId:
-      description: The telemetry / sensor ID.
+    sensorId:
+      description: The sensor / telemetry Id.
       schema:
         type: string
   securitySchemes:
