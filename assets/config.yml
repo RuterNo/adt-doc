@@ -67,21 +67,15 @@ services:
   - name: "ADT 1"
     icon: "fa-solid fa-link"
     items:
-      - name: "v1.6.2-RC1"
+      - name: "v1.3.0-RC1"
         logo: "assets/api/ruter_logo_red.svg"
         subtitle: "Html documentation with examples and json schemas."
         tag: "api asyncapi doc mqtt external jsonschema"
-        url: "docs/v1.6.2-RC1/index.html"
+        url: "docs/v1.3.0-RC1/index.html"
         target: "_blank" # optional html a tag target attribute
   - name: "ADT 2"
     icon: "fa-solid fa-link"
     items:
-      - name: "v2.1.0-RC2"
-        logo: "assets/api/ruter_logo_red.svg"
-        subtitle: "Html documentation with examples and json schemas."
-        tag: "api asyncapi doc mqtt external jsonschema"
-        url: "docs/v2.1.0-RC2/index.html"
-        target: "_blank" # optional html a tag target attribute
       - name: "v2.2.0-RC1"
         logo: "assets/api/ruter_logo_red.svg"
         subtitle: "Html documentation with examples and json schemas."
