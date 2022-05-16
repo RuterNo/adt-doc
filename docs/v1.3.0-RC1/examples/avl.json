@@ -1,0 +1,17 @@
+{
+  "name": "AVL",
+  "payload": {
+    "eventTimestamp": "2017-10-31T12:45:50Z",
+    "seqNumber": 0,
+    "latitude": 60.25255,
+    "longitude": 11.0567,
+    "heading": 0.5,
+    "speedOverGround": 34.5,
+    "signalQuality": "AGPS",
+    "numberOfSatellites": 4,
+    "gnssType": "GPS",
+    "gnssCoordinateSystem": "WGS84",
+    "deadReckoning": false,
+    "positionIsSimulated": false
+  }
+}
