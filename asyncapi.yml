@@ -11,7 +11,7 @@ info:
   license:
     name: GPL 3.0
     url: https://ruter.no
-  version: 0.0.0
+  version: version.from.tag
 servers:
   mqtt.transhub.io:
     url: mqtt.transhub.io

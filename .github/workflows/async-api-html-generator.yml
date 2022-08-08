@@ -21,7 +21,7 @@ jobs:
 
       - name: Modify version in index.html
         run: |
-          sudo sed -i 's/0.0.0/${{github.ref_name}}/g' docs/index.html
+          sudo sed -i 's/version\.from\.tag/${{github.ref_name}}/g' docs/index.html
         shell: bash
 
       - name: Commit files to master branch
