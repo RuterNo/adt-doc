@@ -1,0 +1,26 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.ruter.no/stopsignal.json",
+  "type": "object",
+  "title": "Stop signalled MQTT Message",
+  "description": "Notification that passengers have requested a stop",
+  "required": [
+    "eventTimestamp",
+    "stopSignalled"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "Event timestamp must be ISO 8601 UTC",
+      "format": "date-time"
+    },
+    "stopSignalled": {
+      "$id": "#/properties/stopSignalled",
+      "type": "boolean",
+      "description": "Whether or not the stop signal is active"
+    }
+  }
+}
