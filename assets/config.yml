@@ -46,8 +46,7 @@ message:
   style: "is-dark" # See https://bulma.io/documentation/components/message/#colors for styling options.
   title: "Notice!"
   icon: "fa-solid fa-triangle-exclamation"
-  content: "All available versions of ADT have not yet been converted to the new AsyncApi format. <br /> 
-    To see the latest official documentation, please visit: <a href='https://ruter.atlassian.net/wiki/spaces/DS/pages/231178249/Avtale+om+Digitale+Tjenester'>https://ruter.atlassian.net</a>"
+  content: "To see additional information in relation to the API specifications, please visit: <a href='https://ruter.atlassian.net/wiki/spaces/DS/pages/231178249/Avtale+om+Digitale+Tjenester'>https://ruter.atlassian.net</a>"
 
 # Optional navbar
 # links: [] # Allows for navbar (dark mode, layout, and search) without any links
