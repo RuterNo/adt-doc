@@ -59,7 +59,8 @@
               "CHILD",
               "PRAM",
               "BIKE",
-              "WHEELCHAIR"
+              "WHEELCHAIR",
+              "OTHER"
             ]
           },
           "alightingCount": {
