@@ -45,7 +45,7 @@ channels:
         bindings:
           mqtt:
             qos: 1
-            retain: true
+            retain: false
   di/override_attempt/destination_display:
     description:
       $ref: markdown/destination-display-override.md
@@ -207,6 +207,25 @@ channels:
           mqtt:
             qos: 1
             retain: false
+  pe/cardreader_diagnostics/vix/{deviceRef}:
+    description:
+      $ref: markdown/cardreader_diagnostics.md
+    parameters:
+      deviceRef:
+        $ref: '#/components/parameters/deviceRef'
+    publish:
+      message:
+        name: Card Reader Diagnostics
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/cardreader_diagnostics.json
+        examples: [
+          { $ref: examples/cardreader_diagnostics.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
   sensors/gnss/location:
     description:
       $ref: markdown/location.md
@@ -340,7 +359,7 @@ channels:
         bindings:
           mqtt:
             qos: 0
-            retain: false
+            retain: true
   di/available_destination_displays:
     description:
       $ref: markdown/available-destination-displays.md
@@ -667,6 +686,10 @@ components:
         type: string
     sensorId:
       description: The sensor / telemetry Id.
+      schema:
+        type: string
+    deviceRef:
+      description: An unique ID of the unit.
       schema:
         type: string
   securitySchemes:

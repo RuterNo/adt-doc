@@ -32,3 +32,5 @@ The GNSS coordinate system should be described in configValue12, at least if oth
 - MixedGNSSTypes 
 
 “MixedGNSSTypes” is used for receivers using multiple satellite constellations.
+
+Frequency is recommended at 1 message per second. 
