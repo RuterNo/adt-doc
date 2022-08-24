@@ -76,6 +76,12 @@ services:
   - name: "ADT 2"
     icon: "fa-solid fa-link"
     items:
+      - name: "v2.4.0"
+        logo: "assets/api/ruter_logo_red.svg"
+        subtitle: "Html documentation with examples and json schemas."
+        tag: "api asyncapi doc mqtt external jsonschema"
+        url: "docs/v2.4.0/index.html"
+        target: "_blank" # optional html a tag target attribute
       - name: "v2.3.0"
         logo: "assets/api/ruter_logo_red.svg"
         subtitle: "Html documentation with examples and json schemas."
