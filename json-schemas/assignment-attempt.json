@@ -12,6 +12,18 @@
   "description": "Describes an attempt to sign on or off a block from MADT, another GUI or from the PTO backoffice. The result of this request will be confirmed by the PTA backoffice and the results presented either on the topic ruter/{PTO}/{vehicleID}/oi/current_ block/state or the topic ruter/{PTO}/{vehicleID}/di/assignment_attempt_rejection/block.",
   "additionalProperties": true,
   "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "$comment": "Added in version 2.5",
+      "type": "string",
+      "description": "ISO 8601. Reflects the current UTC time."
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "$comment": "Added in version 2.5",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message. Also used to detect duplicate messages received."
+    },
     "fromDateTime": {
       "$id": "#/properties/fromDateTime",
       "type": "string",
