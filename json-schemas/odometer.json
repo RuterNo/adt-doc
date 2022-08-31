@@ -10,6 +10,12 @@
   "description": "Odometer data",
   "additionalProperties": true,
   "properties": {
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "$comment": "Added in version 2.5",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message. Also used to detect duplicate messages received."
+    },
     "distance": {
       "$id": "#/properties/distance",
       "type": "number",
@@ -31,6 +37,7 @@
     {
       "distance": 23434556,
       "atDateTime": "2017-11-30T23:45:52.006Z",
+      "traceId": "2d826a9a-2474-11ed-861d-0242ac120002",
       "messageNumber": 12345
     }
   ]
