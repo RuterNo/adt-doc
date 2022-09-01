@@ -1,0 +1,64 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://schema.ruter.no/salediagnostics.json",
+    "type": "object",
+    "title": "RuterSalg Diagnostics MQTT Message",
+    "required": [
+        "eventTimestamp",
+        "nfcReaderConnected",
+        "printerConnected",
+        "nodAvailable",
+        "sapiAvailable",
+        "loggedIn"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "eventTimestamp": {
+            "$id": "#/properties/eventTimestamp",
+            "type": "string",
+            "description": "Time of diagnostics generated",
+            "format": "date-time"
+        },
+        "nfcReaderConnected": {
+            "$id": "#/properties/nfcReaderConnected",
+            "type": "boolean",
+            "description": "NFC reader connected"
+        },
+        "printerConnected": {
+            "$id": "#/properties/printerConnected",
+            "type": "boolean",
+            "description": "Printer connected"
+        },
+        "nodAvailable": {
+            "$id": "#/properties/nodAvailable",
+            "type": "boolean",
+            "description": "NOD available"
+        },
+        "sapiAvailable": {
+            "$id": "#/properties/sapiAvailable",
+            "type": "boolean",
+            "description": "SAPI available"
+        },
+        "loggedIn": {
+            "$id": "#/properties/loggedIn",
+            "type": "boolean",
+            "description": "User is logged in"
+        },
+        "printerStatus": {
+            "$id": "#/properties/printerStatus",
+            "type": "string",
+            "description": "Last status message from printer"
+        }
+        ,
+        "journeyRef": {
+            "$id": "#/properties/journeyRef",
+            "type": "string",
+            "description": "Last journeyRef obtained by the app"
+        },
+        "stopPlaceId": {
+            "$id": "#/properties/stopPlaceId",
+            "type": "string",
+            "description": "StopPlaceId obtained in NextStop that triggered this diagnostics message"
+        }
+    }
+}
