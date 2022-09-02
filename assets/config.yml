@@ -46,7 +46,15 @@ message:
   style: "is-dark" # See https://bulma.io/documentation/components/message/#colors for styling options.
   title: "Notice!"
   icon: "fa-solid fa-triangle-exclamation"
-  content: "To see additional information in relation to the API specifications, please visit: <a href='https://ruter.atlassian.net/wiki/spaces/DS/pages/231178249/Avtale+om+Digitale+Tjenester'>https://ruter.atlassian.net</a>"
+  content: "<h3>Versioning</h3> 
+    <p>The documentation below follows <a href='https://semver.org/spec/v2.0.0.html'>Semantic Versioning 2.0.0</a></p>
+    <p>
+    - MAJOR version increment indicates incompatible API changes. <br />
+    - MINOR version increment indicates addition of functionality in a backwards-compatible manner. <br />
+    - PATCH version increment indicates backwards-compatible bug fixes. (typos etc.) <br />
+    </p><br />
+    <p>Example: v2.3.1</p><br />
+    <p>To see additional information in relation to the API specifications, please visit: <a href='https://ruter.atlassian.net/wiki/spaces/DS/pages/231178249/Avtale+om+Digitale+Tjenester'>https://ruter.atlassian.net</a></p>"
 
 # Optional navbar
 # links: [] # Allows for navbar (dark mode, layout, and search) without any links
