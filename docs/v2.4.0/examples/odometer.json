@@ -1,8 +1,0 @@
-{
-  "name": "Odometer",
-  "payload": {
-    "distance": 23434556,
-    "atDateTime": "2017-11-30T23:45:52.006Z",
-    "messageNumber": 12345
-  }
-}
