@@ -458,6 +458,22 @@ channels:
           mqtt:
             qos: 1
             retain: false
+  oi/current_destination_display/text:
+    description:
+      $ref: markdown/current-destination-display.md
+    subscribe:
+      message:
+        name: Current Destination Display Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/current-destination-display.json
+        examples: [
+          { $ref: examples/current-destination-display.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: true
   oi/current_block/state:
     description:
       $ref: markdown/current-block.md
