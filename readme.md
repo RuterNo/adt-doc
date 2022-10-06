@@ -63,8 +63,8 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#license">License</a></li>
   </ol>
 </details>
 
@@ -104,7 +104,8 @@ This documentation has been created using:
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get access to Ruters test-environments, please reach out to us: <li><a href="#contact">Contact</a></li>
+To get access to Ruters test-environments, please reach out to us: 
+- [Contact us](#contact)
 
 We recommend familiarizing your self with the MQTT standard, and recommends the use of MQTT v5.
 
@@ -156,17 +157,6 @@ Go to the version specific branch if you need to change the documentation.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the Apache License. See `LICENSE.md` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
 <!-- CONTACT -->
 ## Contact
 
@@ -176,6 +166,12 @@ Project Link: [https://github.com/RuterNo/adt-doc/](https://github.com/RuterNo/a
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- LICENSE -->
+## License
+
+Distributed under the Apache License. See `LICENSE.md` for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
