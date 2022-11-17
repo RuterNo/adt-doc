@@ -30,7 +30,7 @@ servers:
 defaultContentType: application/json
 channels:
   signon/json:
-    description: 
+    description:
       $ref: markdown/signon.md
     publish:
       message:
@@ -54,6 +54,9 @@ channels:
         schemaFormat: application/schema+json;version=draft-07
         payload:
           $ref: json-schemas/signon.json
+        examples: [
+          { $ref: examples/signoff.json }
+        ]
         bindings:
           mqtt:
             qos: 1
