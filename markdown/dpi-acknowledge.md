@@ -1,4 +1,4 @@
-### DPIAcknowledge message:
+### DPI Acknowledge message:
 | Field         | Value                                                       |
 |---------------|-------------------------------------------------------------|
 | Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi_ack                   |
