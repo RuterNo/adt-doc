@@ -1,4 +1,4 @@
-### Vehicle Journey Details message:
+### Unique Identifier message:
 | Field         | Value                                                           |
 |---------------|-----------------------------------------------------------------|
 | Central Topic | -                                                               |
