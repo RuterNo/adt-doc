@@ -83,15 +83,3 @@ While the PTO is responsible for setting up the mqtt bridge configuration correc
 A description of the process can be found in the document below: 
 - [MQTT topic updates](https://ruterno.github.io/ota-schemas/mqtt-updates/index.html)
 
-
-### JSON Schemas
-
-Link to JSON schemas for communication with Ruter Backend APIs:
-* [Schemas for backend APIs](https://github.com/RuterNo/ota-schemas/tree/master/schemas/cdn)
-
-### Example payloads
-
-Link to example Ruter Backend API payloads: 
-* [Ruter Backend API payloads](https://github.com/RuterNo/ota-schemas/tree/master/examples/cdn)
-
-
