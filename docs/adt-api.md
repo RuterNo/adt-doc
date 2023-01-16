@@ -32,6 +32,6 @@ To see additional information in relation to the API specifications, please visi
 
 ## ADT 1
 
-| Version | Doc                         | Json-schemas                                                                            | Example payloads                                                                |
-|---------|-----------------------------|-----------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| Latest  | [v1.3.1](v1.3.1/index.html) | [Json Schemas](https://github.com/RuterNo/adt-doc/tree/master/docs/v1.3.1/json-schemas) | [Examples](https://github.com/RuterNo/adt-doc/tree/master/docs/v1.3.1/examples) |
+| Doc                         | Json-schemas                                                                            | Example payloads                                                                |
+|-----------------------------|-----------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| [v1.3.1](v1.3.1/index.html) | [Json Schemas](https://github.com/RuterNo/adt-doc/tree/master/docs/v1.3.1/json-schemas) | [Examples](https://github.com/RuterNo/adt-doc/tree/master/docs/v1.3.1/examples) |
