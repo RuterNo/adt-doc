@@ -145,7 +145,8 @@ See the [open issues](https://github.com/RuterNo/adt-doc/issues) for a full list
 <!-- CONTRIBUTING -->
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. 
+Any contributions you make are **greatly appreciated**.
 
 If you have a suggestion that would make this better, please open an issue or create a pull request to the corresponding 
 branch. (E.g.  [ADT 2.5](https://github.com/RuterNo/adt-doc/tree/2.5))
