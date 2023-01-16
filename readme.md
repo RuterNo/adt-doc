@@ -22,7 +22,7 @@
 <br />
 <div align="center">
   <a href="https://ruterno.github.io/adt-doc/">
-    <img src="assets/ruter_logo.svg" alt="Logo" width="300" height="80">
+    <img src="docs/assets/ruter_logo.svg" alt="Logo" width="300" height="80">
   </a>
 
 <h3 align="center">API Documentation - Avtale om digitale tjenester (ADT)</h3>
@@ -85,6 +85,7 @@ Content found in this repository:
 * Json-Schemas
 * Example messages
 * AsyncAPI definition file
+* Information on how to setup a vehicle
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
