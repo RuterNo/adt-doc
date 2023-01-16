@@ -22,7 +22,7 @@
 <br />
 <div align="center">
   <a href="https://ruterno.github.io/adt-doc/">
-    <img src="assets/icons/ruter_logo.svg" alt="Logo" width="300" height="80">
+    <img src="docs/assets/ruter_logo.svg" alt="Logo" width="300" height="80">
   </a>
 
 <h3 align="center">API Documentation - Avtale om digitale tjenester (ADT)</h3>
@@ -85,6 +85,7 @@ Content found in this repository:
 * Json-Schemas
 * Example messages
 * AsyncAPI definition file
+* Information on how to setup a vehicle
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -95,7 +96,7 @@ Content found in this repository:
 This documentation has been created using: 
 
 * [![AsyncAPI][AsyncAPI]][AsyncAPI-url]
-* [![Homer][Homer]][Homer-url]
+* [![MKDocs][MKDocs]][Mkdocs-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -185,10 +186,10 @@ Distributed under the Apache License. See `LICENSE.md` for more information.
 [issues-url]: https://github.com/RuterNo/adt-doc/issues
 [license-shield]: https://img.shields.io/github/license/RuterNo/adt-doc.svg?style=for-the-badge
 [license-url]: https://github.com/RuterNo/adt-doc/blob/master/LICENSE.md
-[product-screenshot]: assets/icons/frontpage.png
+[product-screenshot]: docs/assets/frontpage.png
 [AsyncAPI]: https://img.shields.io/badge/AsyncAPI-8851fb?style=for-the-badge&logo=fastapi&logoColor=white
 [AsyncAPI-url]: https://www.asyncapi.com/
-[Homer]: https://img.shields.io/badge/Homer-000000?style=for-the-badge&logo=circle&logoColor=white
-[Homer-url]: https://github.com/bastienwirtz/homer
+[MKDocs]: https://img.shields.io/badge/MKDocs-000000?style=for-the-badge&logo=circle&logoColor=white
+[Mkdocs-url]: https://squidfunk.github.io/mkdocs-material/
 [ADT-DOC-url]: https://ruterno.github.io/adt-doc/
 [releases-url]: https://github.com/RuterNo/adt-doc/releases

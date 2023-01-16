@@ -1,0 +1,96 @@
+<!--
+NOTICE:
+This file is used to override the content on the frontpage.
+-->
+
+
+{% extends "main.html" %}
+
+<!-- Render hero under tabs -->
+{% block tabs %}
+{{ super() }}
+
+<!-- Additional styles for landing page -->
+<style>
+
+  .md-container{
+    background-image: url("assets/images/by.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+
+  /* Application header should be static for the landing page */
+  .md-header {
+    position: initial;
+  }
+
+  /* Remove spacing, as we cannot hide it completely */
+  .md-main__inner {
+    margin: 0;
+  }
+
+  /* Hide table of contents */
+  @media screen and (min-width: 60em) {
+    .md-sidebar--secondary {
+      display: none;
+    }
+  }
+
+  /* Hide navigation */
+  @media screen and (min-width: 76.25em) {
+    .md-sidebar--primary {
+      display: none;
+    }
+  }
+
+  .mdx-hero {
+    margin-top: 50%;
+    background-color: rgba(240, 240, 244, 0.8);
+    padding: 4em;
+    border-radius: 1em;
+  }
+
+</style>
+
+<!-- Hero for landing page -->
+<section class="mdx-container">
+  <div class="md-grid md-typeset">
+    <div class="mdx-hero">
+
+      <!-- Hero content -->
+      <div class="mdx-hero__content">
+        <h1>Technical documentation for Public Transport Operators</h1>
+        <p>{{ config.site_description }}</p>
+
+        <a
+            href="{{ page.next_page.url | url }}"
+            title="{{ page.next_page.title | e }}"
+            class="md-button md-button--primary"
+        >
+          {{ page.next_page.title | e }}
+        </a>
+        <a
+            href="{{ 'mqtt/' | url }}"
+            title="Vehicle Setup"
+            class="md-button"
+        >
+          Vehicle Setup
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block site_nav %}
+<!--Removing navingation links from frontpage-->
+{% endblock %}
+
+<!-- Content -->
+{% block content %}{% endblock %}
+
+<!-- Application footer -->
+{% block footer %}{% endblock %}
