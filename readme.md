@@ -186,7 +186,7 @@ Distributed under the Apache License. See `LICENSE.md` for more information.
 [issues-url]: https://github.com/RuterNo/adt-doc/issues
 [license-shield]: https://img.shields.io/github/license/RuterNo/adt-doc.svg?style=for-the-badge
 [license-url]: https://github.com/RuterNo/adt-doc/blob/master/LICENSE.md
-[product-screenshot]: assets/icons/frontpage.png
+[product-screenshot]: docs/assets/icons/frontpage.png
 [AsyncAPI]: https://img.shields.io/badge/AsyncAPI-8851fb?style=for-the-badge&logo=fastapi&logoColor=white
 [AsyncAPI-url]: https://www.asyncapi.com/
 [MKDocs]: https://img.shields.io/badge/MKDocs-000000?style=for-the-badge&logo=circle&logoColor=white
