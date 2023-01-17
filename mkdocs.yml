@@ -96,6 +96,7 @@ nav:
       - Display setup:
         - Screen configuration: screen-configs.md
         - Troubleshooting client: troubleshooting-client.md
+        - Vehicle Status (Live): live-status.md
   - Contribute:
       - Report an issue: issue.md
 

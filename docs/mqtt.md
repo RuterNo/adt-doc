@@ -16,7 +16,7 @@ Two key elements of the architecture are the MQTT broker and the MQTT bridges.
 ### MQTT broker (Ruter)
 Ruter operates a central MQTT broker that communicates with all the vehicles. The server currently supports the MQTT protocol versions 5.0 and 3.1.1. 
 
-?> _Notice_ To use MQTT protocol version 5.0, make sure that the client library supports it.
+> _Notice_ To use MQTT protocol version 5.0, make sure that the client library supports it.
 
 All communication with the MQTT broker is encrypted during transport using TLS 1.2. 
 
