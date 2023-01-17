@@ -14,6 +14,11 @@ Ruter has created a simple status page showing Live information of SLA requireme
 
 ## Data source
 
+!!! note "Notice!"
+    This application has been made to assist operators in identifying issues with their equipment.
+    The original data source used here is the same as the one used by Ruter to calculate SLA for DPI displays. 
+    However, **this API is not intended for calculating SLA breaches.**
+
 All data shown in the Vehicle Status page comes from the mqtt-topic described here: 
 
 [SLA Insight](/insight)
