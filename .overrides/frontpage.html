@@ -47,11 +47,17 @@ This file is used to override the content on the frontpage.
   }
 
   .mdx-hero {
-    margin-top: 50%;
+    margin-top: 5vh;
     background-color: rgba(240, 240, 244, 0.8);
     padding: 4em;
     border-radius: 1em;
   }
+  @media screen and (min-height: 60em) {
+    .mdx-hero {
+      margin-top: 50vh;
+    }
+  }
+
 
 </style>
 
