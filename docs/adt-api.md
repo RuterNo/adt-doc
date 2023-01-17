@@ -16,7 +16,8 @@ This document describes the MQTT API in use for communication between PTO and PT
     Example: v2.3.1
 
 
-To see additional information in relation to the API specifications, please visit: 
+To see additional information in relation to the API specifications, please visit:
+
 - [https://ruter.atlassian.net](https://ruter.atlassian.net/wiki/spaces/DS/pages/231178249/Avtale+om+Digitale+Tjenester)
 
 
