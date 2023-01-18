@@ -47,7 +47,7 @@ Supported filters are:
 
 Running state of config 1, displaying journey (50% of the width) and additional information (fallback, when no public announcements\* are showing).
 
-This is the only configuration used for 32:9, and _all_ 32:9 screens must be configured to use this configuration.
+This is the default configuration used for 32:9, and most 32:9 screens should be configured to use this configuration.
 
 ![Media](assets/images/client/config/config-1-2.png)
 
@@ -88,8 +88,6 @@ This screen will change.
 ![Running state](assets/images/client/config/config-1-1-2.png)
 
 Running state of config 5, displaying journey (50% of the width) and additional information (fallback, when no public announcements\* are showing).
-
-This is the only configuration used for 32:9, and _all_ 32:9 screens must be configured to use this configuration.
 
 ![Media](assets/images/client/config/config-1-2.png)
 
