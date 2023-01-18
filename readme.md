@@ -109,6 +109,18 @@ To get access to Ruters test-environments, please reach out to us:
 
 We recommend familiarizing your self with the MQTT standard, and recommends the use of MQTT v5.
 
+### Build documentation locally
+#### Install 
+
+```
+pip install mkdocs-material
+```
+
+#### Run
+``` 
+mkdocs serve 
+```
+
 ### Browse Releases
 
 To see the latest current ADT release, please visit:
