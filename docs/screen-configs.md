@@ -102,9 +102,9 @@ General rule of thumb for assignment of configuration id:
 1. All 32:9 (1920x540) screens should always be assigned config 1
 2. All 48:9 (1920x360) screen should always be assigned config 2
 3. All 16:9 (1920x1080 or 960x540) should always be assigned config 3, if any of these conditions are met:
-4. This is the only screen on board
-5. This screen is in front of the bus
-6. Screen config 4 is used for the _right_ screen when 2x 16:9 screens are horizontally aligned, facing the same way (cf. example 1). (For all other 16:9 screens, use config 3)
+  1. This is the only screen on board
+  2. This screen is in front of the bus
+4. Screen config 4 is used for the _right_ screen when 2x 16:9 screens are horizontally aligned, facing the same way (cf. example 1). (For all other 16:9 screens, use config 3)
 
 ![Example 1, 3x 16:9 screens](assets/images/bus/3x16-9.png)
 
