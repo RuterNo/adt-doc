@@ -30,7 +30,7 @@ All topic names must thus be rewritten local/global in the MQTT bridge according
 All data must be JSON and UTF-8 encoded.
 
 ### More info
-For more information, please go to: [Ruter’s ADT agreement v2.5](https://ruter.atlassian.net/wiki/spaces/DS/pages/1921253384/API+v.+2.5 "https://ruter.atlassian.net/wiki/spaces/DS/pages/1921253384/API+v.+2.5").
+For more information, please go to: [Ruter’s ADT agreement](https://ruter.atlassian.net/wiki/spaces/DS/pages/231178249/Avtale+om+Digitale+Tjenester "https://ruter.atlassian.net/wiki/spaces/DS/pages/231178249/Avtale+om+Digitale+Tjenester").
 
 ### Comments or suggestions
 Please open an issue here: [ADT-DOC Issues](https://github.com/RuterNo/adt-doc/issues) 
