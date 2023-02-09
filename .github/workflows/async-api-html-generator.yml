@@ -3,7 +3,7 @@ name: AsyncAPI documents processing
 on:
   push:
     tags:
-      - v2.**
+      - v3.**
 
 jobs:
   generate:
@@ -19,9 +19,11 @@ jobs:
           filepath: asyncapi.yml
           output: docs
 
-      - name: Modify version in index.html
+      - name: Modify HTML output from generator
         run: |
           sudo sed -i 's/version\.from\.tag/${{github.ref_name}}/g' docs/index.html
+          sudo cp stylesheets/doc.css docs/css/
+          sudo sed -i -e '\@</head>@i\<link href="css/doc.css" rel="stylesheet">' docs/index.html
         shell: bash
 
       - name: Commit files to master branch

@@ -410,22 +410,6 @@ channels:
           mqtt:
             qos: 1
             retain: false
-  ei/deviation_information:
-    description:
-      $ref: markdown/deviation-information.md
-    subscribe:
-      message:
-        name: Deviation Information Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/deviation-information.json
-        examples: [
-          { $ref: examples/deviation-information.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
   ei/due_information:
     description:
       $ref: markdown/due-information.md

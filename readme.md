@@ -13,7 +13,7 @@ npm install -g @asyncapi/generator
 To build the documentation, run the following command:
 
 ```
-ag asyncapi.yml @asyncapi/html-template -o output --force-write
+ag asyncapi.yml @asyncapi/html-template -o docs --force-write
 ```
 
 ## More information
