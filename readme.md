@@ -22,7 +22,7 @@
 <br />
 <div align="center">
   <a href="https://ruterno.github.io/adt-doc/">
-    <img src="docs/assets/ruter_logo.svg" alt="Logo" width="300" height="80">
+    <img src="docs/assets/ruter_logo_red.svg" alt="Logo" width="300" height="80">
   </a>
 
 <h3 align="center">API Documentation - Avtale om digitale tjenester (ADT)</h3>
