@@ -1,0 +1,616 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v2.1/operational-information/vehicle-journey-details.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "VehicleJourneyDetails",
+  "type": "object",
+  "required": [
+    "operatingDayDate",
+    "vehicleJourneyRef",
+    "journeyNumber",
+    "journeyPatternRef",
+    "timedJourneyPatternRef",
+    "transportModeCode",
+    "transportAuthority",
+    "plannedStartDateTime",
+    "plannedEndDateTime",
+    "origin",
+    "calls"
+  ],
+  "description": "Vehicle journey details",
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "$comment": "Added in version 2.5",
+      "type": "string",
+      "description": "ISO 8601. Reflects the current UTC time."
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "$comment": "Added in version 2.5",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message. Also used to detect duplicate messages received."
+    },
+    "operatingDayDate": {
+      "$id": "#/properties/operatingDayDate",
+      "type": "string",
+      "description": "The scheduled date of the journey."
+    },
+    "vehicleJourneyRef": {
+      "$id": "#/properties/vehicleJourneyRef",
+      "type": "string",
+      "description": "A Vehicle Journey identifier."
+    },
+    "journeyNumber": {
+      "$id": "#/properties/journeyNumber",
+      "type": "string",
+      "description": "The journey number. May describe a part of the vehicleJourneyRef that should be interpreted in scope of a certain line or an operator."
+    },
+    "journeyPatternRef": {
+      "$id": "#/properties/journeyPatternRef",
+      "type": "string",
+      "description": "A unique identifier for the original journey pattern. E.g. 16-digit ID."
+    },
+    "timedJourneyPatternRef": {
+      "$id": "#/properties/timedJourneyPatternRef",
+      "type": "string",
+      "description": "Optional. Identifier for a journey pattern with a unique timing pattern. Format to be agreed."
+    },
+    "transportModeCode": {
+      "$id": "#/properties/transportModeCode",
+      "type": "string",
+      "description": "The transport mode.",
+      "examples": [
+        "BUS",
+        "TRAM"
+      ]
+    },
+    "transportAuthority": {
+      "$id": "#/properties/transportAuthority",
+      "$ref": "#/definitions/organisationInfo",
+      "description": "Information about the transport authority that provides the journey."
+    },
+    "contractor": {
+      "$id": "#/properties/contractor",
+      "$ref": "#/definitions/organisationInfo",
+      "description": "Optional. Information about the operator that is contracted to operate the journey."
+    },
+    "plannedStartDateTime": {
+      "$id": "#/properties/plannedStartDateTime",
+      "type": "string",
+      "description": "The date and time when the journey is planned to start. ISO 8601, UTC."
+    },
+    "plannedEndDateTime": {
+      "$id": "#/properties/plannedEndDateTime",
+      "type": "string",
+      "description": "The date and time when the journey is planned to end. ISO 8601, UTC."
+    },
+    "origin": {
+      "$id": "#/properties/origin",
+      "$ref": "#/definitions/place",
+      "description": "The place where the journey comes from."
+    },
+    "line": {
+      "$id": "#/properties/line",
+      "$ref": "#/definitions/lineInfo",
+      "description": "Optional. Only provided for service journeys. Information about the journey’s line."
+    },
+    "directionOfLine": {
+      "$id": "#/properties/directionOfLine",
+      "$ref": "#/definitions/directionOfLineInfo",
+      "description": "Optional. Only provided for service journeys. Information about the journey’s direction on the line."
+    },
+    "calls": {
+      "$id": "#/properties/calls",
+      "type": "array",
+      "description": "Points that shall be called at during the journey. At least two items.",
+      "items": {
+        "$ref": "#/definitions/pointCall"
+      }
+    }
+  },
+  "definitions": {
+    "lineInfo": {
+      "type": "object",
+      "title": "Line Info",
+      "required": [
+        "designation",
+        "number"
+      ],
+      "properties": {
+        "ref": {
+          "type": "string",
+          "description": "Optional. Only provided for service journeys. Information about the journey’s line."
+        },
+        "designation": {
+          "type": "string",
+          "description": "The public line number displayed to passengers. Note: this value can be alphanumeric!"
+        },
+        "number": {
+          "type": "string",
+          "description": "Technical line number."
+        },
+        "name": {
+          "type": "string",
+          "description": "Optional. Name of line."
+        }
+      }
+    },
+    "directionOfLineInfo": {
+      "type": "object",
+      "title": "Direction Of Line Info",
+      "required": [
+        "code"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "A value that is unique per direction.",
+          "examples": [
+            "1",
+            "2"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Optional. Name of direction."
+        }
+      }
+    },
+    "place": {
+      "type": "object",
+      "title": "Place",
+      "required": [
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Optional. Name of the origin."
+        },
+        "shortName": {
+          "type": "string",
+          "description": "Optional. Short name of the origin."
+        }
+      }
+    },
+    "destinationDisplay": {
+      "type": "object",
+      "title": "Destination Display",
+      "required": [
+        "lineDesignation",
+        "primaryDestination"
+      ],
+      "properties": {
+        "productName": {
+          "type": "string",
+          "description": "Optional. Name of public transport product."
+        },
+        "symbolName": {
+          "type": "string",
+          "description": "Optional. Controls any symbols in display."
+        },
+        "lineDesignation": {
+          "type": "string",
+          "description": "Displayed line number."
+        },
+        "primaryDestination": {
+          "type": "string",
+          "description": "Names of primary destination."
+        },
+        "secondaryDestination": {
+          "type": "string",
+          "description": "Optional. Names of secondary destination."
+        },
+        "displayKeys": {
+          "type": "array",
+          "description": "Optional. Contains device specific information such as sign codes etcetera. See 5.6.20. A numeric sign code representing the combined destination display information could thus be provided in a contained key with appropriate parameterData. E.g. “Destination=659” It is possible to provide information for multiple display devices in parallel if there is a mixed fleet with different hardware by providing multiple Keys in parallel. E.g. one Key with \"deviceName\": \"SIGN_X\" and another Key with \"deviceName\": \"SIGN_Y\".",
+          "items": {
+            "$ref": "#/definitions/key"
+          }
+        }
+      }
+    },
+    "primaryDestination": {
+      "type": "object",
+      "title": "Primary Destination",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the destination."
+        },
+        "shortName": {
+          "type": "string",
+          "description": "Optional. Short name of the destination."
+        }
+      }
+    },
+    "secondaryDestination": {
+      "type": "object",
+      "title": "Secondary Destination",
+      "required": [
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Optional. Name of the destination."
+        },
+        "shortName": {
+          "type": "string",
+          "description": "Optional. Short name of the destination."
+        },
+        "secondaryDestinationType": {
+          "type": "string",
+          "description": "Optional. The meaning of the secondary destination."
+        }
+      }
+    },
+    "pointCall": {
+      "type": "object",
+      "title": "Point Call",
+      "required": [
+        "sequenceNumber",
+        "journeyPatternPoint",
+        "arrival",
+        "departure"
+      ],
+      "properties": {
+        "sequenceNumber": {
+          "type": "number",
+          "description": "The order of the call on the vehicle journey. Increasing. Note that the numbering can start with a higher number than 1 and that there might be holes in the sequence numbering as not expected calls are excluded."
+        },
+        "journeyPatternPoint": {
+          "$ref": "#/definitions/journeyPatternPointInfo",
+          "description": "The point to call. (May be updated in real time)."
+        },
+        "stopArea": {
+          "$ref": "#/definitions/stopAreaInfo",
+          "description": "Optional. The stop area of the call. (May be updated in real time)."
+        },
+        "stopPoint": {
+          "$ref": "#/definitions/stopPointInfo",
+          "description": "Optional. The stop point of the call. (May be updated in real time)."
+        },
+        "arrival": {
+          "$ref": "#/definitions/arrival",
+          "description": ""
+        },
+        "departure": {
+          "$ref": "#/definitions/departure",
+          "description": ""
+        },
+        "destinationDisplay": {
+          "$ref": "#/definitions/destinationDisplay",
+          "description": "Optional."
+        },
+        "isCancelledCall": {
+          "type": "boolean",
+          "description": "Optional. Only provided if true. Boolean that indicates if this is call is cancelled without being replaced. In this case the call to the above-mentioned stop should be presented as cancelled.",
+          "examples": [
+            "true",
+            "false"
+          ]
+        },
+        "replacedJourneyPatternPoint": {
+          "$ref": "#/definitions/journeyPatternPointInfo",
+          "description": "Optional. Only provided if the original Journey Pattern Point is replaced. Describes the replaced point. Represents the original (planned) information."
+        },
+        "replacedStopArea": {
+          "$ref": "#/definitions/stopAreaInfo",
+          "description": "Optional. Only present if the original StopArea is replaced. Describes the replaced stop area. Represents the original (planned) information."
+        },
+        "replacedStopPoint": {
+          "$ref": "#/definitions/stopPointInfo",
+          "description": "Optional. Only present if the original StopPoint is replaced. Describes the replaced stop point. Represents the original (planned) information."
+        },
+        "fetcherConnections": {
+          "type": "array",
+          "description": "Optional. Planned fetcher (distributor) protected connections. A list of vehicle journeys that must wait for passengers from this vehicle journey at this stop even if it is delayed. Relevant for passenger information.",
+          "items": {
+            "$ref": "#/definitions/connectionInfo"
+          }
+        },
+        "feederConnections": {
+          "type": "array",
+          "description": "Optional. Planned feeder protected connections. A list of vehicle journeys that this vehicle journey should await passengers from at this stop even if the feeding journeys are delayed. Relevant for driver information.",
+          "items": {
+            "$ref": "#/definitions/connectionInfo"
+          }
+        }
+      }
+    },
+    "journeyPatternPointInfo": {
+      "type": "object",
+      "title": "Journey Pattern Point Info",
+      "required": [
+        "ref",
+        "isTimingPoint"
+      ],
+      "properties": {
+        "ref": {
+          "type": "string",
+          "description": "Id of journey pattern point."
+        },
+        "isTimingPoint": {
+          "type": "boolean",
+          "description": "Boolean that indicates if this is a point where the driver should respect the departure time.",
+          "examples": [
+            "true",
+            "false"
+          ]
+        },
+        "location": {
+          "$ref": "#/definitions/position",
+          "description": "Optional. The position of the point in Latitude/Longitude."
+        },
+        "distanceFromPrevious": {
+          "type": "number",
+          "description": "Optional. Meters from previous point. The first call has the value zero."
+        },
+        "tariffZones": {
+          "type": "array",
+          "description": "Optional. Tariff Zones valid for this point.",
+          "items": {
+            "$ref": "#/definitions/tariffZoneInfo"
+          }
+        }
+      }
+    },
+    "position": {
+      "type": "object",
+      "title": "Position",
+      "required": [
+        "latitude",
+        "longitude"
+      ],
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "description": "The latitude in decimal degrees."
+        },
+        "longitude": {
+          "type": "number",
+          "description": "The longitude in decimal degrees."
+        }
+      }
+    },
+    "stopAreaInfo": {
+      "type": "object",
+      "title": "Stop Area Info",
+      "required": [
+        "ref",
+        "name",
+        "shortName"
+      ],
+      "properties": {
+        "ref": {
+          "type": "string",
+          "description": "Id of the Stop Area."
+        },
+        "name": {
+          "type": "string",
+          "description": "Full name. Max 50 characters."
+        },
+        "shortName": {
+          "type": "string",
+          "description": "Optional. Shortened name. Max 16 characters."
+        }
+      }
+    },
+    "stopPointInfo": {
+      "type": "object",
+      "title": "Stop Point Info",
+      "required": [
+        "ref",
+        "name",
+        "localNumber"
+      ],
+      "properties": {
+        "ref": {
+          "type": "string",
+          "description": "Id of the Stop Area."
+        },
+        "name": {
+          "type": "string",
+          "description": "Full name. Max 50 characters."
+        },
+        "shortName": {
+          "type": "string",
+          "description": "Optional. Shortened name. Max 16 characters."
+        },
+        "designation": {
+          "type": "string",
+          "description": "Optional. Track, gate, stop etc. as shown to the public. This is for local orientation within a stop area, bus terminal or station."
+        },
+        "localNumber": {
+          "type": "number",
+          "description": "The display order of stops within a stop area."
+        },
+        "length": {
+          "type": "number",
+          "description": "Optional. The stops capacity in meters."
+        },
+        "stopPointKeys": {
+          "type": "array",
+          "description": "Optional. Array with point specific information.",
+          "items": {
+            "$ref": "#/definitions/key"
+          }
+        }
+      }
+    },
+    "arrival": {
+      "type": "object",
+      "title": "Arrival",
+      "required": [
+        "latestDateTime",
+        "arrivalType"
+      ],
+      "properties": {
+        "latestDateTime": {
+          "type": "string",
+          "description": "The latest arrival time expected according to original plan. Arrival after this time is LATE. ISO 8601, UTC."
+        },
+        "arrivalType": {
+          "type": "string",
+          "description": "Usage of the arrival according to original plan. NoStop and StopNoBoarding means that the departure should NOT be presented public."
+        }
+      }
+    },
+    "departure": {
+      "type": "object",
+      "title": "Departure",
+      "required": [
+        "earliestDateTime",
+        "departureType"
+      ],
+      "properties": {
+        "earliestDateTime": {
+          "type": "string",
+          "description": "The earliest permitted departure time according to original plan. Departure before this time is EARLY. ISO 8601, UTC."
+        },
+        "departureType": {
+          "type": "string",
+          "description": "Usage of the departure according to original plan. NoStop and StopNoAlighting means that the arrival should NOT be presented public."
+        }
+      }
+    },
+    "organisationInfo": {
+      "type": "object",
+      "title": "Organisation Info",
+      "required": [
+        "ref",
+        "code",
+        "name",
+        "number"
+      ],
+      "properties": {
+        "ref": {
+          "type": "string",
+          "description": "A unique identifier."
+        },
+        "code": {
+          "type": "string",
+          "description": "Short abbreviation."
+        },
+        "name": {
+          "type": "string",
+          "description": "Full name."
+        },
+        "number": {
+          "type": "string",
+          "description": "The number of the object that the organisation info refers to. Transport Authority number or Contractor Number."
+        }
+      }
+    },
+    "key": {
+      "type": "object",
+      "title": "Key",
+      "required": [
+        "deviceName",
+        "typeCode",
+        "parameterData"
+      ],
+      "properties": {
+        "deviceName": {
+          "type": "string",
+          "description": "Name of devices for which this key applies."
+        },
+        "typeCode": {
+          "type": "string",
+          "description": "Name of data type."
+        },
+        "parameterData": {
+          "type": "string",
+          "description": "The data formatted in an agreed (that could be customer specific) format for the specified DeviceName and TypeCode."
+        }
+      }
+    },
+    "tariffZoneInfo": {
+      "type": "object",
+      "title": "Tariff Zone Info",
+      "required": [
+        "ref",
+        "number"
+      ],
+      "properties": {
+        "ref": {
+          "type": "string",
+          "description": "A unique identifier."
+        },
+        "number": {
+          "type": "string",
+          "description": "The number of the tariff zone unique within the transport authority."
+        },
+        "code": {
+          "type": "string",
+          "description": "Optional. Short abbreviation."
+        },
+        "name": {
+          "type": "string",
+          "description": "Optional. Full name."
+        }
+      }
+    },
+    "connectionInfo": {
+      "type": "object",
+      "title": "Connection Info",
+      "required": [
+        "connectionRef",
+        "transportModeCode",
+        "lineAuthorityCode",
+        "lineDesignation",
+        "minChangeDurationSeconds"
+      ],
+      "properties": {
+        "connectionRef": {
+          "type": "string",
+          "description": "Identifier used for matching with real-time data in later stage. Is unique in scope of current vehicle journey and call sequenceNumber. Typically has the value of the connecting journeys directionOfLineRef."
+        },
+        "transportModeCode": {
+          "type": "string",
+          "description": "The transport mode. Possible values in examples.",
+          "examples": [
+            "BUS",
+            "TRAM"
+          ]
+        },
+        "lineAuthorityCode": {
+          "type": "string",
+          "description": "Short abbreviation for the organisation providing the connecting journey. Possible values in examples.",
+          "examples": [
+            "SJ",
+            "ÖTåg",
+            "SL"
+          ]
+        },
+        "lineDesignation": {
+          "type": "string",
+          "description": "The public line number displayed to passengers for the connecting journey. Observe that this value can be alphanumeric!"
+        },
+        "directionName": {
+          "type": "string",
+          "description": "Optional. Name of direction for connecting journey."
+        },
+        "stopAreaName": {
+          "type": "string",
+          "description": "Optional. Name of stop for the connecting journey. Only included if different stop than the stop this vehicle stops at."
+        },
+        "stopPointDesignation": {
+          "type": "string",
+          "description": "Optional. Platform/track/gate number or letter as shown to the public for the stop of the connecting journey. This is for local orientation within a stop area, bus terminal or station."
+        },
+        "minChangeDurationSeconds": {
+          "type": "number",
+          "description": "The minimum number of seconds needed to transfer (walk) between the involved vehicles. May need to be multiplied by some factors depending on different passenger abilities."
+        },
+        "maxWaitingUntilTime": {
+          "type": "string",
+          "description": "Optional. The date and time when the connection guarantee ends. The fetcher vehicle may leave at this time even if feeder vehicle has not yet arrived. ISO 8601, UTC."
+        }
+      }
+    }
+  }
+}

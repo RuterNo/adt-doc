@@ -1,0 +1,30 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v2.1/operational-information/unique-identifier.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UniqueIdentifier",
+  "type": "object",
+  "required": [
+    "value",
+    "typeOfValue"
+  ],
+  "description": "A primary and permanent unique identifier used to represent the physical vehicle. For road vehicles: Indicates the globally unique 17 characters long alphanumeric Vehicle Identification Number (VIN) permanently attached to the vehicle. For other modes: Indicates a globally unique number of some sort permanently attached to the vehicle or if this is not possible; to the on-board system. Could be a MAC-address or other GUID.",
+  "additionalProperties": true,
+  "properties": {
+    "value": {
+      "$id": "#/properties/value",
+      "type": "string",
+      "description": "Normally a 17 characters long alphanumeric Vehicle Identification Number (VIN) permanently attached to the vehicle by the vehicle manufacturer. For non-road vehicles where such a permanent identifier is not available or if the VIN is not known some other type of globally unique value could be used."
+    },
+    "typeOfValue": {
+      "$id": "#/properties/typeOfValue",
+      "type": "string",
+      "description": "Possible values in examples.",
+      "examples": [
+        "VIN",
+        "UUID",
+        "PIN",
+        "OTHER"
+      ]
+    }
+  }
+}
