@@ -1,4 +1,4 @@
-# ADT 2 - AsyncApi Documentation
+# ADT 3 - AsyncApi Documentation
 
 ## Prerequisites
 - Node.js
