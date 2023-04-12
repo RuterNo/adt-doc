@@ -20,19 +20,7 @@ To see additional information in relation to the API specifications, please visi
 
 - [https://ruter.atlassian.net](https://ruter.atlassian.net/wiki/spaces/DS/pages/231178249/Avtale+om+Digitale+Tjenester)
 
-
-## ADT 2 
-
-| Version                     | Json-schemas                                                                            | Example payloads                                                                |
-|-----------------------------|-----------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| [v2.6.0](v2.6.0/index.html) | [Json Schemas](https://github.com/RuterNo/adt-doc/tree/master/docs/v2.6.0/json-schemas) | [Examples](https://github.com/RuterNo/adt-doc/tree/master/docs/v2.6.0/examples) |
-| [v2.5.1](v2.5.1/index.html) | [Json Schemas](https://github.com/RuterNo/adt-doc/tree/master/docs/v2.5.1/json-schemas) | [Examples](https://github.com/RuterNo/adt-doc/tree/master/docs/v2.5.1/examples) |
-| [v2.4.2](v2.4.2/index.html) | [Json Schemas](https://github.com/RuterNo/adt-doc/tree/master/docs/v2.4.2/json-schemas) | [Examples](https://github.com/RuterNo/adt-doc/tree/master/docs/v2.4.2/examples) |
-| [v2.3.2](v2.3.2/index.html) | [Json Schemas](https://github.com/RuterNo/adt-doc/tree/master/docs/v2.3.2/json-schemas) | [Examples](https://github.com/RuterNo/adt-doc/tree/master/docs/v2.3.2/examples) |
-| [v2.2.1](v2.2.1/index.html) | [Json Schemas](https://github.com/RuterNo/adt-doc/tree/master/docs/v2.2.1/json-schemas) | [Examples](https://github.com/RuterNo/adt-doc/tree/master/docs/v2.2.1/examples) |
-
-
-## ADT 1
+## Versions
 
 | Doc                         | Json-schemas                                                                            | Example payloads                                                                |
 |-----------------------------|-----------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
