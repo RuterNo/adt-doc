@@ -1,0 +1,8 @@
+{
+  "name": "Due information",
+  "payload": {
+    "expiryDateTime": "2017-10-31T12:45:50Z",
+    "heading": "Arriving at",
+    "body": "Broparken"
+  }
+}
