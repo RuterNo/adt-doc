@@ -22,6 +22,10 @@ To see additional information in relation to the API specifications, please visi
 
 ## Versions
 
-| Doc                         | Json-schemas                                                                            | Example payloads                                                                |
+| Version                     | Json-schemas                                                                            | Example payloads                                                                |
 |-----------------------------|-----------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| [v1.3.1](v1.3.1/index.html) | [Json Schemas](https://github.com/RuterNo/adt-doc/tree/master/docs/v1.3.1/json-schemas) | [Examples](https://github.com/RuterNo/adt-doc/tree/master/docs/v1.3.1/examples) |
+| [v2.6.0](v2.6.0/index.html) | [Json Schemas](https://github.com/RuterNo/adt-doc/tree/master/docs/v2.6.0/json-schemas) | [Examples](https://github.com/RuterNo/adt-doc/tree/master/docs/v2.6.0/examples) |
+| [v2.5.1](v2.5.1/index.html) | [Json Schemas](https://github.com/RuterNo/adt-doc/tree/master/docs/v2.5.1/json-schemas) | [Examples](https://github.com/RuterNo/adt-doc/tree/master/docs/v2.5.1/examples) |
+| [v2.4.2](v2.4.2/index.html) | [Json Schemas](https://github.com/RuterNo/adt-doc/tree/master/docs/v2.4.2/json-schemas) | [Examples](https://github.com/RuterNo/adt-doc/tree/master/docs/v2.4.2/examples) |
+| [v2.3.2](v2.3.2/index.html) | [Json Schemas](https://github.com/RuterNo/adt-doc/tree/master/docs/v2.3.2/json-schemas) | [Examples](https://github.com/RuterNo/adt-doc/tree/master/docs/v2.3.2/examples) |
+| [v2.2.1](v2.2.1/index.html) | [Json Schemas](https://github.com/RuterNo/adt-doc/tree/master/docs/v2.2.1/json-schemas) | [Examples](https://github.com/RuterNo/adt-doc/tree/master/docs/v2.2.1/examples) |
