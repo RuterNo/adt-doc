@@ -1,0 +1,45 @@
+{
+  "name": "Telemetry",
+  "payload": {
+    "eventTimestamp": "2019-10-31T12:45:50Z",
+    "id": "01000008",
+    "payloads": [
+      {
+        "name": "xmin",
+        "value": 0.1
+      },
+      {
+        "name": "xmax",
+        "value": 0.2
+      },
+      {
+        "name": "xavg",
+        "value": 0.15
+      },
+      {
+        "name": "ymin",
+        "value": -0.1
+      },
+      {
+        "name": "ymax",
+        "value": 0.2
+      },
+      {
+        "name": "yavg",
+        "value": 0.1
+      },
+      {
+        "name": "zmin",
+        "value": 0.01
+      },
+      {
+        "name": "zmax",
+        "value": 0.03
+      },
+      {
+        "name": "zavg",
+        "value": 0.02
+      }
+    ]
+  }
+}
