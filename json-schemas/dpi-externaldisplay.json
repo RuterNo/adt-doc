@@ -6,6 +6,7 @@
   "description": "Notification that the external displays should show new destination information",
   "required": [
     "eventTimestamp",
+    "traceId",
     "destination"
   ],
   "additionalProperties": false,
@@ -15,6 +16,12 @@
       "type": "string",
       "description": "Event timestamp must be ISO 8601 UTC",
       "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "$comment": "Since 3.0",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message."
     },
     "publicCode": {
       "$id": "#/properties/publicCode",

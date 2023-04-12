@@ -4,7 +4,8 @@
   "title": "AvailableDestinationDisplays",
   "type": "object",
   "required": [
-    "availableDestinationDisplays"
+    "availableDestinationDisplays",
+    "traceId"
   ],
   "description": "",
   "additionalProperties": true,
@@ -14,6 +15,12 @@
       "type": "string",
       "description": "ISO 8601, UTC",
       "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "$comment": "Since 3.0",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message."
     },
     "availableDestinationDisplays": {
       "$id": "#/properties/availableDestinationDisplays",

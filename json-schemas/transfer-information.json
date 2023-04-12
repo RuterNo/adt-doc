@@ -7,6 +7,7 @@
   "additionalProperties": true,
   "required": [
     "expiryDateTime",
+    "traceId",
     "transferOptions"
   ],
   "properties": {
@@ -14,6 +15,12 @@
       "$id": "#/properties/expiryDateTime",
       "type": "string",
       "description": "Do not present this information after this time. ISO 8601, UTC"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "$comment": "Since 3.0",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message."
     },
     "heading": {
       "$id": "#/properties/heading",

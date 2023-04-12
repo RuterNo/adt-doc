@@ -1,6 +1,7 @@
 {
   "name": "Stop Button",
   "payload": {
+    "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
     "stopPressed": true,
     "atDateTime": "2021-11-30T23:45:52.006Z",
     "messageNumber": 1

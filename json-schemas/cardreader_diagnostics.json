@@ -5,6 +5,7 @@
   "type": "object",
   "required": [
     "eventTimestamp",
+    "traceId",
     "deviceRef",
     "inService"
   ],
@@ -16,6 +17,12 @@
       "type": "string",
       "description": "Event timestamp must be ISO 8601 UTC",
       "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "$comment": "Since 3.0",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message."
     },
     "deviceRef": {
       "$id": "#/properties/deviceRef",

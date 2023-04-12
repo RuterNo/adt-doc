@@ -4,6 +4,7 @@
   "title": "Clock",
   "type": "object",
   "required": [
+    "traceId",
     "localTimeZoneDate",
     "localTimeZoneTime",
     "atDateTime"
@@ -11,6 +12,12 @@
   "description": "",
   "additionalProperties": true,
   "properties": {
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "$comment": "Since 3.0",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message."
+    },
     "localTimeZoneDate": {
       "$id": "#/properties/localTimeZoneDate",
       "type": "string",

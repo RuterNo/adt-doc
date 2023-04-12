@@ -6,6 +6,7 @@
   "description": "For display of arriving information to passengers",
   "required": [
     "eventTimestamp",
+    "traceId",
     "message"
   ],
   "additionalProperties": false,
@@ -15,6 +16,12 @@
       "type": "string",
       "description": "Event timestamp must be ISO 8601 UTC",
       "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "$comment": "Since 3.0",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message."
     },
     "expiryTimestamp": {
       "$id": "#/properties/expiryimestamp",
