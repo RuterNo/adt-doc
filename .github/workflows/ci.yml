@@ -2,8 +2,7 @@ name: ci
 on:
   push:
     branches:
-      - master
-      - main
+      - 3.x
 permissions:
   contents: write
 jobs:
@@ -19,4 +18,4 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git fetch origin gh-pages --depth=1
-      - run: mike deploy --push --update-aliases 2.x latest
+      - run: mike deploy --push 3.x-DRAFT

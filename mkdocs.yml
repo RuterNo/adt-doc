@@ -92,6 +92,7 @@ nav:
           - SLA insight: insight.md
   - Vehicle setup:
       - MQTT bridge config: mqtt.md
+      - Browser requirements: browser-requirements.md
       - File Sync:
         - Packages: packages.md
         - Resources: resources.md
