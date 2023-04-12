@@ -1,9 +1,0 @@
-{
-  "name": "Signoff",
-  "payload": {
-    "eventTimestamp": "2017-10-31T12:45:50Z",
-    "vehicleNumber": "12345",
-    "blockId": "1234:34",
-    "vehicleJourneyId": "35:ABC"
-  }
-}

@@ -1,9 +1,0 @@
-{
-  "name": "CurrentBlock",
-  "payload": {
-    "fromDateTime": "2017-10-31T12:45:50+01:00",
-    "state": "SIGNED_ON",
-    "blockRef": "10023",
-    "operatingDay": "2017-10-31"
-  }
-}
