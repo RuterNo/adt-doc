@@ -21,7 +21,7 @@
       "$id": "#/properties/traceId",
       "$comment": "Since 3.0",
       "type": "string",
-      "description": "A unique identifier to be able to trace this message."
+      "description": "A unique identifier - UUID"
     },
     "estimatedCalls": {
       "$id": "#/properties/estimatedCalls",
