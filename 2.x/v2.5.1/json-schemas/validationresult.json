@@ -1,0 +1,115 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.ruter.no/validationresult.json",
+  "type": "object",
+  "title": "Validationresult MQTT Message",
+  "description": "Result of validation made with the RuterSalg application",
+    "required": [
+        "eventTimestamp",
+        "buzzerCommand",
+        "inspectionResult",
+        "ledCommand"
+    ],
+    "properties": {
+        "eventTimestamp": {
+            "$id": "#/properties/timestamp",
+            "type": "string",
+            "description": "Time of validation",
+            "format": "date-time"
+        },
+        "buzzerCommand": {
+            "$id": "#/properties/buzzerCommand",
+            "type": "object",
+            "description": "Validation result buzzer properties",
+            "required": [
+                "duration",
+                "frequency",
+                "pause",
+                "repeat"
+            ],
+            "properties": {
+                "duration": {
+                    "$id": "#/properties/buzzerCommand/properties/duration",
+                    "type": "integer",
+                    "description": "The duration of each buzz in ms"
+                },
+                "frequency": {
+                    "$id": "#/properties/buzzerCommand/properties/frequency",
+                    "type": "integer",
+                    "title": "Frequency of buzz"
+                },
+                "pause": {
+                    "$id": "#/properties/buzzerCommand/properties/pause",
+                    "type": "integer",
+                    "title": "Duration of pause between each buzz in ms"
+                },
+                "repeat": {
+                    "$id": "#/properties/buzzerCommand/properties/repeat",
+                    "type": "integer",
+                    "title": "The number of times the buzz should be repeated"
+                }
+            }
+        },
+        "inspectionResult": {
+            "$id": "#/properties/inspectionResult",
+            "type": "object",
+            "title": "The result of the inspection",
+            "required": [
+                "code",
+                "message",
+                "validity"
+            ],
+            "properties": {
+                "code": {
+                    "$id": "#/properties/inspectionResult/properties/code",
+                    "type": "integer",
+                    "title": "Result code of validation"
+                },
+                "message": {
+                    "$id": "#/properties/inspectionResult/properties/message",
+                    "type": "string",
+                    "title": "Result message of validation",
+                    "description": "An explanation about the purpose of this instance."
+                },
+                "validity": {
+                    "$id": "#/properties/inspectionResult/properties/validity",
+                    "type": "string",
+                    "title": "The validity of the inspected ticket. Can be VALID or INVALID, but can be supplemented by additional statuses in the future."
+                }
+            }
+        },
+        "ledCommand": {
+            "$id": "#/properties/ledCommand",
+            "type": "object",
+            "title": "Validation result LED commands",
+            "required": [
+                "color",
+                "duration",
+                "pause",
+                "repeat"
+            ],
+            "properties": {
+                "color": {
+                    "$id": "#/properties/ledCommand/properties/color",
+                    "type": "string",
+                    "title": "Color to be lit on LED"
+                },
+                "duration": {
+                    "$id": "#/properties/ledCommand/properties/duration",
+                    "type": "integer",
+                    "title": "The duration of each time the LED is lit"
+                },
+                "pause": {
+                    "$id": "#/properties/ledCommand/properties/pause",
+                    "type": "integer",
+                    "title": "Duration of pauses between each time the LED is lit"
+                },
+                "repeat": {
+                    "$id": "#/properties/ledCommand/properties/repeat",
+                    "type": "integer",
+                    "title": "The number of times the LED should be lit"
+                }
+            }
+        }
+    }
+}

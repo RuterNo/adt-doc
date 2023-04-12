@@ -1,0 +1,20 @@
+{
+  "name": "Telemetry",
+  "payload": {
+    "eventTimestamp": "2017-10-31T12:45:50Z",
+    "id": "0000FEF1",
+    "payloads": [
+      {
+        "subid": 84,
+        "name": "Wheel-Based Vehicle Speed",
+        "unit": "km/h",
+        "value": 55.3
+      },
+      {
+        "subid": 597,
+        "name": "Wheel-Based Vehicle Speed",
+        "value": "released"
+      }
+    ]
+  }
+}

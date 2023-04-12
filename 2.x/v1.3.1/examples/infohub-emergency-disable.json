@@ -1,0 +1,7 @@
+{
+  "name": "Infohub Emergency - Disable",
+  "payload": {
+    "eventTimestamp": "2017-10-31T08:38:02.749Z",
+    "enabled": false
+  }
+}
