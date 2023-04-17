@@ -426,22 +426,6 @@ channels:
           mqtt:
             qos: 1
             retain: false
-  ei/transfer_information:
-    description:
-      $ref: markdown/transfer-information.md
-    subscribe:
-      message:
-        name: Transfer Information Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/transfer-information.json
-        examples: [
-          { $ref: examples/transfer-information.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
   oi/current_block/state:
     description:
       $ref: markdown/current-block.md
