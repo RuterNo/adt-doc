@@ -16,7 +16,6 @@
         {
           "id": "RUT:StopPlace:02190017",
           "name": "Fornebu vest",
-          "connections": [],
           "location": {
             "latitude": 12.33345,
             "longitude": 12.33345
@@ -25,26 +24,6 @@
         {
           "id": "RUT:StopPlace:03010013",
           "name": "Jernbanetorget",
-          "connections": [
-            {
-              "line": {
-                "id": "RUT:Line:30",
-                "name": "Bygdøy via Bygdøynes",
-                "publicCode": "30"
-              },
-              "type": "BUS",
-              "color": "e60000"
-            },
-            {
-              "line": {
-                "id": "RUT:Line:12",
-                "name": "Majorstuen",
-                "publicCode": "12"
-              },
-              "type": "TRAM",
-              "color": "0b91ef"
-            }
-          ],
           "location": {
             "latitude": 12.33345,
             "longitude": 12.33345
