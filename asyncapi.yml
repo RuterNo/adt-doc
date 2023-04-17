@@ -626,6 +626,22 @@ channels:
           mqtt:
             qos: 1
             retain: false
+  pe/input/stop_button:
+    description:
+      $ref: markdown/stop-button-input.md
+    subscribe:
+      message:
+        name: Stop Button Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/stop-button.json
+        examples: [
+          { $ref: examples/stop-button.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
 components:
   parameters:
     operatorId:
