@@ -442,22 +442,6 @@ channels:
           mqtt:
             qos: 1
             retain: true
-  oi/current_vehicle_journey/expected_call:
-    description:
-      $ref: markdown/expected-call.md
-    subscribe:
-      message:
-        name: Expected Call Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/expected-call.json
-        examples: [
-          { $ref: examples/expected-call.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: true
   oi/current_vehicle_journey/details:
     description:
       $ref: markdown/vehicle-journey-details.md
