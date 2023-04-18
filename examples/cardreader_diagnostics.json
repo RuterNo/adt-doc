@@ -2,7 +2,6 @@
   "name": "Card Reader Diagnostics",
   "payload": {
     "eventTimestamp": "2022-05-24T07:00:25Z",
-    "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
     "deviceRef": "RUT1234",
     "inService": true
   }
