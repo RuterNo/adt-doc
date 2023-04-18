@@ -13,7 +13,6 @@
   "properties": {
     "traceId": {
       "$id": "#/properties/traceId",
-      "$comment": "Since 3.0",
       "type": "string",
       "description": "A unique identifier - UUID"
     },
