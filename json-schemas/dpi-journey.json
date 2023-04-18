@@ -100,7 +100,6 @@
             "required": [
               "id",
               "name",
-              "connections",
               "location"
             ],
             "additionalProperties": false,
@@ -114,64 +113,6 @@
                 "$id": "#/properties/route/properties/stopPlaces/items/properties/name",
                 "type": "string",
                 "description": "Public name of stop"
-              },
-              "connections": {
-                "$id": "#/properties/route/properties/stopPlaces/items/properties/connections",
-                "type": "array",
-                "description": "List of connections",
-                "items": {
-                  "$id": "#/properties/route/properties/stopPlaces/items/properties/connections/connection",
-                  "type": "object",
-                  "description": "Connection",
-                  "required": [
-                    "id",
-                    "name",
-                    "publicCode",
-                    "type",
-                    "colour"
-                  ],
-                  "additionalProperties": false,
-                  "properties": {
-                    "id": {
-                      "$id": "#/properties/route/properties/stopPlaces/items/properties/connections/connection/properties/id",
-                      "type": "string",
-                      "description": "Line id"
-                    },
-                    "name": {
-                      "$id": "#/properties/route/properties/stopPlaces/items/properties/connections/connection/properties/name",
-                      "type": "string",
-                      "description": "Public name"
-                    },
-                    "publicCode": {
-                      "$id": "#/properties/route/properties/stopPlaces/items/properties/connections/connection/properties/publicCode",
-                      "type": "string",
-                      "description": "Public code"
-                    },
-                    "type": {
-                      "$id": "#/properties/route/properties/stopPlaces/items/properties/connections/connection/properties/transportType",
-                      "type": "string",
-                      "title": "TransportType",
-                      "description": "Transport type",
-                      "enum": [
-                        "BUS",
-                        "TRAM",
-                        "METRO",
-                        "TRAIN",
-                        "BOAT",
-                        "OTHER"
-                      ]
-                    },
-                    "colour": {
-                      "$id": "#/properties/route/properties/stopPlaces/items/properties/connections/connection/properties/colour",
-                      "type": "string",
-                      "description": "Hex value of display colour",
-                      "examples": [
-                        "e60000"
-                      ],
-                      "pattern": "^[0-9a-fA-F]{6}$"
-                    }
-                  }
-                }
               },
               "location": {
                 "$id": "#/properties/route/properties/stopPlaces/items/properties/location",
