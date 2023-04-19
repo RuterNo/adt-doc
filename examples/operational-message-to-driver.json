@@ -1,6 +1,7 @@
 {
   "name": "OperationalMessageToDriver",
   "payload": {
+    "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
     "heading": "Emergency repair",
     "body": "Service personnel will meet at terminus to adjust door mechanism.",
     "senderRef": "Garage maintenance",

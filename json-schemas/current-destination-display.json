@@ -4,11 +4,17 @@
   "title": "CurrentDestinationDisplay",
   "type": "object",
   "required": [
+    "traceId",
     "name"
   ],
   "description": "",
   "additionalProperties": true,
   "properties": {
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier - UUID"
+    },
     "number": {
       "$id": "#/properties/number",
       "type": "number",

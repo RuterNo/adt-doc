@@ -439,22 +439,6 @@ channels:
           mqtt:
             qos: 1
             retain: false
-  ei/transfer_information:
-    description:
-      $ref: markdown/transfer-information.md
-    subscribe:
-      message:
-        name: Transfer Information Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/transfer-information.json
-        examples: [
-          { $ref: examples/transfer-information.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
   oi/current_vehicle_journey/expected_call:
     description:
       $ref: markdown/expected-call.md
@@ -650,6 +634,22 @@ channels:
           $ref: json-schemas/dpi-command.json
         examples: [
           { $ref: examples/dpi-command.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+  pe/input/stop_button:
+    description:
+      $ref: markdown/stop-button-input.md
+    subscribe:
+      message:
+        name: Stop Button Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/stop-button.json
+        examples: [
+          { $ref: examples/stop-button.json }
         ]
         bindings:
           mqtt:
