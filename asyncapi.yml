@@ -442,22 +442,6 @@ channels:
           mqtt:
             qos: 1
             retain: true
-  oi/current_vehicle_journey/expected_call:
-    description:
-      $ref: markdown/expected-call.md
-    subscribe:
-      message:
-        name: Expected Call Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/expected-call.json
-        examples: [
-          { $ref: examples/expected-call.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: true
   oi/current_vehicle_journey/details:
     description:
       $ref: markdown/vehicle-journey-details.md
@@ -637,6 +621,22 @@ channels:
           $ref: json-schemas/dpi-command.json
         examples: [
           { $ref: examples/dpi-command.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+  pe/input/stop_button:
+    description:
+      $ref: markdown/stop-button-input.md
+    subscribe:
+      message:
+        name: Stop Button Message
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/stop-button.json
+        examples: [
+          { $ref: examples/stop-button.json }
         ]
         bindings:
           mqtt:

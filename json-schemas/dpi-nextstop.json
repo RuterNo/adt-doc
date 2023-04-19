@@ -6,6 +6,7 @@
   "description": "Notification that vehicle has a new next stop",
   "required": [
     "eventTimestamp",
+    "traceId",
     "stopPlaceId",
     "index"
   ],
@@ -16,6 +17,11 @@
       "type": "string",
       "description": "EventTimestamp must be ISO 8601 UTC",
       "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier - UUID"
     },
     "stopPlaceId": {
       "$id": "#/properties/stopPlaceId",
