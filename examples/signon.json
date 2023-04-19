@@ -2,6 +2,7 @@
   "name": "Signon",
   "payload": {
     "eventTimestamp": "2017-10-31T12:45:50Z",
+    "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
     "vehicleNumber": "12345",
     "blockId": "1234:34",
     "vehicleJourneyId": "35:ABC"

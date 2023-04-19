@@ -6,6 +6,7 @@
   "description": "This schema defines the Key Stops message sent as an MQTT message to vehicles",
   "required": [
     "eventTimestamp",
+    "traceId",
     "id",
     "lineId",
     "linePublicCode",
@@ -18,6 +19,11 @@
       "type": "string",
       "description": "EventTimestamp must be ISO 8601 UTC",
       "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier - UUID"
     },
     "id": {
       "$id": "#/properties/id",
