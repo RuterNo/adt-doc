@@ -1,3 +1,5 @@
 /.idea/
 /output/
 /docs/
+
+package-lock.json

@@ -1,0 +1,29 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/assignment/attempt/request/common/assignment-attempt-sign-on.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignmentHeader",
+  "additionalProperties": true,
+  "type": "object",
+  "required": [
+  ],
+  "properties": {
+    "code": {
+      "$id": "#/properties/signOn/signOnCode",
+      "type": "string",
+      "examples": [
+        "PLANNED",
+        "EXTRA",
+        "REPLACEMENT"
+      ]
+    },
+    "vehicleTaskId": {
+      "$id": "#/properties/id",
+      "type": "string"
+    },
+    "firstDepartureDateTime": {
+      "$id": "#/properties/firstDepartureDateTime",
+      "type": "string"
+    }
+
+  }
+}

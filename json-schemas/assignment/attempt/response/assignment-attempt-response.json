@@ -1,0 +1,19 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/assignment/attempt/response/assignment-attempt-response.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignmentAttemptResponse",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "header": {
+      "$id": "#/properties/header",
+      "$ref": "../../common/assignment-header.json"
+    },
+    "result": {
+      "$ref": "common/assignment-attempt-result.json"
+    },
+    "state": {
+      "$ref": "../../status/common/assignment-state.json"
+    }
+  }
+}

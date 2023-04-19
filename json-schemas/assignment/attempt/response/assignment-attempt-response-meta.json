@@ -1,0 +1,7 @@
+{
+  "mode": "subscribe",
+  "mqtt": {
+    "retain": false,
+    "qos": 1
+  }
+}

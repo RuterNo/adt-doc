@@ -1,0 +1,16 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/assignment/status/assignment-status.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignmentStatus",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "header": {
+      "$id": "#/properties/header",
+      "$ref": "../common/assignment-header.json"
+    },
+    "state": {
+      "$ref": "common/assignment-state.json"
+    }
+  }
+}

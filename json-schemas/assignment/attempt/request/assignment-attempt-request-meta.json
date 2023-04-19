@@ -1,0 +1,7 @@
+{
+  "mode": "publish",
+  "mqtt": {
+    "retain": false,
+    "qos": 1
+  }
+}

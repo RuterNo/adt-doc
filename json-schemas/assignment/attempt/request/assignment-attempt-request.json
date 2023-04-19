@@ -1,0 +1,21 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/assignment/attempt/request/assignment-attempt-request.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignmentAttemptRequest",
+  "type": "object",
+  "required": [
+    "header"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "header": {
+      "$ref": "../../common/assignment-header.json"
+    },
+    "signOn": {
+      "$ref": "common/assignment-attempt-sign-on.json"
+    },
+    "signOff": {
+      "$ref": "common/assignment-attempt-sign-off.json"
+    }
+  }
+}
