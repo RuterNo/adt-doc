@@ -11,3 +11,6 @@ transfer options at the next stop.
 This topic should be blanked (provided with empty content) when there is no relevant information to display.
 
 As an added precaution an expiry timestamp is included to assure that outdated information is not presented.
+
+### ⚠️ Deprecation notice! ⚠️
+Please be advised this topic is marked for deletion in later major versions of ADT. 

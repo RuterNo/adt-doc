@@ -443,6 +443,7 @@ channels:
             qos: 1
             retain: false
   ei/transfer_information:
+    deprecated: true
     description:
       $ref: markdown/transfer-information.md
     subscribe:
