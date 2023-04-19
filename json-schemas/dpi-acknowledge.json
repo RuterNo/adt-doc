@@ -1,12 +1,12 @@
 {
   "$id": "https://schemas.ruter.no/adt/ota/api/v2.1/proprietary-extensions/dpi-acknowledge.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "DPIAcknowledge",
+  "title": "DPI Acknowledge",
   "type": "object",
   "required": [
     "eventTimestamp",
-    "type",
-    "payload"
+    "traceId",
+    "messageReceived"
   ],
   "description": "The DPI Ack topic.",
   "additionalProperties": true,
@@ -17,18 +17,35 @@
       "description": "ISO 8601",
       "format": "date-time"
     },
-    "type": {
-      "$id": "#/properties/type",
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "$comment": "Added in version 2.5",
       "type": "string",
-      "examples": [
-        "AUDIO",
-        "DESTINATION"
-      ]
+      "description": "A unique identifier to be able to trace this message. Also used to detect duplicate messages received."
     },
-    "payload": {
-      "$id": "#/properties/payload",
+    "messageReceived": {
+      "$id": "#/properties/messageReceived",
       "type": "object",
-      "description": "Destination text strings."
+      "properties": {
+        "topic": {
+          "type": "string",
+          "description": "Local MQTT topic key of received message"
+        },
+        "eventTimestamp": {
+          "type": "string",
+          "description": "The eventTimestamp of the message received",
+          "format": "date-time"
+        },
+        "traceId": {
+          "type": "string",
+          "description": "The traceId of the message received"
+        }
+      },
+      "required": [
+        "topic",
+        "eventTimestamp",
+        "traceId"
+      ]
     }
   }
 }

@@ -1,9 +1,12 @@
 {
-  "eventTimestamp": "2021-10-31T12:45:90Z",
-  "traceId": "2ccf77aa-463f-4b98-ad19-61ec5d213e36",
+  "name": "DPI Acknowledge",
   "payload": {
-    "topic": "pe/dpi/externaldisplay",
-    "eventTimestamp": "2021-10-31T12:44:10Z",
-    "traceId": "b88aaf6a-b15b-415a-8c44-ac7ad42de59e"
+    "eventTimestamp": "2022-10-31T12:45:50Z",
+    "traceId": "2ccf77aa-463f-4b98-ad19-61ec5d213e36",
+    "messageReceived": {
+      "topic": "pe/dpi/externaldisplay",
+      "eventTimestamp": "2021-10-31T12:44:10Z",
+      "traceId": "b88aaf6a-b15b-415a-8c44-ac7ad42de59e"
+    }
   }
 }
