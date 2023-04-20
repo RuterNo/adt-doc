@@ -175,38 +175,6 @@ channels:
           mqtt:
             qos: 1
             retain: false
-  pe/sales/saleresult:
-    description:
-      $ref: markdown/sale-result.md
-    publish:
-      message:
-        name: Saleresult MQTT Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/saleresult.json
-        examples: [
-          { $ref: examples/saleresult.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
-  pe/sales/validationresult:
-    description:
-      $ref: markdown/validation-result.md
-    publish:
-      message:
-        name: Validationresult MQTT Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/validationresult.json
-        examples: [
-          { $ref: examples/validationresult.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
   pe/cardreader_diagnostics/vix/{deviceRef}:
     description:
       $ref: markdown/cardreader_diagnostics.md
