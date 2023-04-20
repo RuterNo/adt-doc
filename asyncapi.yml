@@ -309,22 +309,6 @@ channels:
           mqtt:
             qos: 1
             retain: false
-  sensors/clock:
-    description:
-      $ref: markdown/clock.md
-    publish:
-      message:
-        name: Clock Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/clock.json
-        examples: [
-          { $ref: examples/clock.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 0
-            retain: false
   sensors/telemetry/{sensorId}:
     description:
       $ref: markdown/telemetry.md
