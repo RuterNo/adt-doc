@@ -204,38 +204,6 @@ channels:
           mqtt:
             qos: 1
             retain: false
-  pe/sales/saleresult:
-    description:
-      $ref: markdown/sale-result.md
-    publish:
-      message:
-        name: Saleresult MQTT Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/saleresult.json
-        examples: [
-          { $ref: examples/saleresult.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
-  pe/sales/validationresult:
-    description:
-      $ref: markdown/validation-result.md
-    publish:
-      message:
-        name: Validationresult MQTT Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/validationresult.json
-        examples: [
-          { $ref: examples/validationresult.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
   pe/cardreader_diagnostics/vix/{deviceRef}:
     description:
       $ref: markdown/cardreader_diagnostics.md
@@ -337,22 +305,6 @@ channels:
         bindings:
           mqtt:
             qos: 1
-            retain: false
-  sensors/clock:
-    description:
-      $ref: markdown/clock.md
-    publish:
-      message:
-        name: Clock Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/clock.json
-        examples: [
-          { $ref: examples/clock.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 0
             retain: false
   sensors/telemetry/{sensorId}:
     description:
