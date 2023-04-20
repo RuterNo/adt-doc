@@ -192,6 +192,14 @@
                   }
                 }
               },
+              "tariffZones": {
+                "$id": "#/properties/route/properties/stopPlaces/items/properties/tariffZones",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of tariff zones for the specific stop."
+              },
               "description": {
                 "$id": "#/properties/route/properties/stopPlaces/items/properties/description",
                 "type": "string",
