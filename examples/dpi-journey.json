@@ -20,7 +20,8 @@
           "location": {
             "latitude": 12.33345,
             "longitude": 12.33345
-          }
+          },
+          "tariffZones" : [ "OST:TariffZone:227", "RUT:TariffZone:1" ]
         },
         {
           "id": "RUT:StopPlace:03010013",
@@ -28,7 +29,8 @@
           "location": {
             "latitude": 12.33345,
             "longitude": 12.33345
-          }
+          },
+          "tariffZones" : [ "RUT:TariffZone:1" ]
         }
       ]
     }

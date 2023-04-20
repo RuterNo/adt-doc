@@ -99,7 +99,8 @@
             "required": [
               "id",
               "name",
-              "location"
+              "location",
+              "tariffZone"
             ],
             "additionalProperties": false,
             "properties": {
@@ -138,6 +139,14 @@
                     "maximum": 180.0000
                   }
                 }
+              },
+              "tariffZone": {
+                "$id": "#/properties/route/properties/stopPlaces/items/properties/tariffZone",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "List of TariffZones for the specific stop."
               },
               "description": {
                 "$id": "#/properties/route/properties/stopPlaces/items/properties/description",
