@@ -1,26 +1,20 @@
 {
   "name": "Available Destination Displays",
   "payload": {
-    "atDateTime": "2020-10-31T12:45:50Z",
+    "eventTimestamp": "2020-10-31T12:45:50Z",
     "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
     "availableDestinationDisplays": [
       {
-        "number": 12,
-        "name": "Airport"
+        "publicCode": "20",
+        "destination": "  Galgeberg"
       },
       {
-        "number": 112,
-        "name": "Bus full"
+        "destination": "  Ikke i trafikk "
       },
       {
-        "number": 125,
-        "name": "Ikke i trafikk "
-      },
-      {
-        "number": 126,
-        "lineDesignation": "N160",
-        "name": "Oslo Bussterminal",
-        "alternativeText": "Ingen påstigning"
+        "publicCode": "N160",
+        "destination": "  Oslo Bussterminal",
+        "alternativeMessage": "  Ingen påstigning"
       }
     ]
   }
