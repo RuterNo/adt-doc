@@ -1,0 +1,30 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/common/assignment-journey.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignmentJourney",
+  "description": "TODO: Missing description",
+  "additionalProperties": true,
+  "type": "object",
+  "required": [
+    "journeyId",
+    "firstDepartureDateTime",
+    "lastArrivalDateTime"
+  ],
+  "properties": {
+    "journeyId": {
+      "$id": "#/properties/journeyId",
+      "description": "TODO: Missing description",
+      "type": "string"
+    },
+    "firstDepartureDateTime": {
+      "$id": "#/properties/firstDepartureDateTime",
+      "description": "TODO: Missing description",
+      "type": "string"
+    },
+    "lastArrivalDateTime": {
+      "$id": "#/properties/lastArrivalDateTime",
+      "description": "TODO: Missing description",
+      "type": "string"
+    }
+  }
+}

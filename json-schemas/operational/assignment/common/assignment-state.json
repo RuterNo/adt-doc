@@ -1,0 +1,78 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/common/assignment-state.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignmentState",
+  "description": "TODO: Missing description",
+  "type": "object",
+  "required": [
+    "assigned",
+    "code",
+    "vehicleTaskId",
+    "operatingDate",
+    "firstDepartureDateTime",
+    "lastArrivalDateTime",
+    "firstJourneyId",
+    "journeys"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "assigned": {
+      "$id": "#/properties/assigned",
+      "description": "TODO: Missing description",
+      "type": "boolean"
+    },
+    "code": {
+      "$id": "#/properties/code",
+      "description": "TODO: Missing description",
+      "type": "string",
+      "examples": [
+        "PLANNED",
+        "EXTRA",
+        "REPLACEMENT",
+        "SHORTENING",
+        "CANCELLED",
+        "BREAKDOWN",
+        "FINISHED",
+        "REPLACED"
+      ]
+    },
+    "vehicleTaskId": {
+      "$id": "#/properties/vehicleTaskId",
+      "description": "TODO: Missing description",
+      "type": "string"
+    },
+    "operatingDate": {
+      "$id": "#/properties/operatingDate",
+      "description": "TODO: Missing description",
+      "type": "string"
+    },
+    "firstJourneyId": {
+      "$id": "#/properties/firstJourneyId",
+      "description": "TODO: Missing description",
+      "type": "string"
+    },
+    "firstDepartureDateTime": {
+      "$id": "#/properties/firstDepartureDateTime",
+      "description": "TODO: Missing description",
+      "type": "string"
+    },
+    "lastArrivalDateTime": {
+      "$id": "#/properties/lastArrivalDateTime",
+      "description": "TODO: Missing description",
+      "type": "string"
+    },
+    "journeys": {
+      "$id": "#/properties/journeys",
+      "description": "TODO: Missing description",
+      "type": "array",
+      "items": {
+        "$ref": "assignment-journey.json"
+      }
+    },
+    "description": {
+      "$id": "#/properties/description",
+      "description": "TODO: Missing description",
+      "type": "string"
+    }
+  }
+}

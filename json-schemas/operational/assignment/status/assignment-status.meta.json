@@ -1,0 +1,8 @@
+{
+  "mode": "subscribe",
+  "mqtt": {
+    "retain": true,
+    "qos": 1,
+    "topic": "{operatorId}/ruter/{vehicleId}/adt/v3/operational/assignment/status"
+  }
+}

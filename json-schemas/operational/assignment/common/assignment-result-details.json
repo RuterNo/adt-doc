@@ -1,0 +1,23 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/common/assignment-result-details.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignmentResultDetails",
+  "description": "TODO: Missing description",
+  "type": "object",
+  "required": [
+    "code"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "code": {
+      "$id": "#/properties/code",
+      "description": "TODO: Missing description",
+      "type": "string"
+    },
+    "description": {
+      "$id": "#/properties/description",
+      "description": "TODO: Missing description",
+      "type": "string"
+    }
+  }
+}

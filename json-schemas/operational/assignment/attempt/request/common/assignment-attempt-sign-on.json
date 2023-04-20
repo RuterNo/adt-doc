@@ -1,0 +1,40 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/attempt/request/common/assignment-attempt-sign-on.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignmentAttemptSignOn",
+  "description": "TODO: Missing description",
+  "additionalProperties": true,
+  "type": "object",
+  "required": [
+    "code",
+    "vehicleTaskId",
+    "firstDepartureDateTime"
+  ],
+  "properties": {
+    "code": {
+      "$id": "#/properties/code",
+      "description": "TODO: Missing description",
+      "type": "string",
+      "examples": [
+        "PLANNED",
+        "EXTRA",
+        "REPLACEMENT"
+      ]
+    },
+    "vehicleTaskId": {
+      "$id": "#/properties/vehicleTaskId",
+      "description": "TODO: Missing description",
+      "type": "string"
+    },
+    "firstDepartureDateTime": {
+      "$id": "#/properties/firstDepartureDateTime",
+      "description": "TODO: Missing description",
+      "type": "string"
+    },
+    "lastArrivalDateTime": {
+      "$id": "#/properties/lastArrivalDateTime",
+      "description": "TODO: Missing description",
+      "type": "string"
+    }
+  }
+}

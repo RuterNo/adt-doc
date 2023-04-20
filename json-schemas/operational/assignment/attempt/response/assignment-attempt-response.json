@@ -1,0 +1,25 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/attempt/response/assignment-attempt-response.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignmentAttemptResponse",
+  "description": "TODO: Missing description",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "header": {
+      "$id": "#/properties/header",
+      "$ref": "../../common/assignment-header.json",
+      "description": "Common header for Assignment messages"
+    },
+    "result": {
+      "$id": "#/properties/result",
+      "$ref": "../../common/assignment-result.json",
+      "description": "TODO: Missing description"
+    },
+    "state": {
+      "$id": "#/properties/state",
+      "$ref": "../../common/assignment-state.json",
+      "description": "TODO: Missing description"
+    }
+  }
+}

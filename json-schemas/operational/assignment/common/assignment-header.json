@@ -1,31 +1,29 @@
 {
-  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/assignment/common/assignment-header.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/common/assignment-header.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "AssignmentHeader",
+  "description": "Common header for Assignment messages",
   "additionalProperties": true,
   "type": "object",
   "required": [
     "traceId",
-    "timestamp",
-    "apiVersion",
+    "eventTimestamp",
     "vehicleId"
   ],
   "properties": {
     "traceId": {
       "$id": "#/properties/traceId",
-      "type": "string",
-      "description": "A unique identifier - UUID"
-    },
-    "timestamp": {
-      "$id": "#/properties/timestamp",
+      "description": "TODO: Missing description",
       "type": "string"
     },
-    "apiVersion": {
-      "$id": "#/properties/apiVersion",
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "description": "Timestamp with millisecond precision",
       "type": "string"
     },
     "vehicleId": {
       "$id": "#/properties/vehicleId",
+      "description": "TODO: Missing description",
       "type": "string"
     }
   }

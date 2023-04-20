@@ -1,8 +1,8 @@
 ### AssignmentAttemptRequest Message
-| Field         | Value                                                                                                        |
-|---------------|--------------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/assignment/attempt/request |
-| Schema        | [ assignment-attempt-request.json ](json-schemas/assignment/attempt/request/assignment-attempt-request.json) |
+| Field         | Value                                                                                                                    |
+|---------------|--------------------------------------------------------------------------------------------------------------------------|
+| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/operational/assignment/attempt/request                                             |
+| Schema        | [ assignment-attempt-request.json ](json-schemas/operational/assignment/attempt/request/assignment-attempt-request.json) |
 
 # Missing description
 

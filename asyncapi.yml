@@ -29,9 +29,9 @@ servers:
 
 defaultContentType: application/json
 channels:
-  assignment/attempt/request:
+  operational/assignment/attempt/request:
     description:
-      $ref: json-schemas/assignment/attempt/request/assignment-attempt-request.md
+      $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request.md
     publish:
       message:
         bindings:
@@ -39,14 +39,14 @@ channels:
             qos: 1
             retain: false
         examples:
-          - $ref: json-schemas/assignment/attempt/request/assignment-attempt-request-example-01.json
+          - $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request-01.example.json
         name: AssignmentAttemptRequest
         payload:
-          $ref: json-schemas/assignment/attempt/request/assignment-attempt-request.json
+          $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request.json
         schemaFormat: application/schema+json;version=draft-07
-  assignment/attempt/response:
+  operational/assignment/attempt/response:
     description:
-      $ref: json-schemas/assignment/attempt/response/assignment-attempt-response.md
+      $ref: json-schemas/operational/assignment/attempt/response/assignment-attempt-response.md
     subscribe:
       message:
         bindings:
@@ -54,14 +54,14 @@ channels:
             qos: 1
             retain: false
         examples:
-          - $ref: json-schemas/assignment/attempt/response/assignment-attempt-response-example-01.json
+          - $ref: json-schemas/operational/assignment/attempt/response/assignment-attempt-response-01.example.json
         name: AssignmentAttemptResponse
         payload:
-          $ref: json-schemas/assignment/attempt/response/assignment-attempt-response.json
+          $ref: json-schemas/operational/assignment/attempt/response/assignment-attempt-response.json
         schemaFormat: application/schema+json;version=draft-07
-  assignment/status:
+  operational/assignment/status:
     description:
-      $ref: json-schemas/assignment/status/assignment-status.md
+      $ref: json-schemas/operational/assignment/status/assignment-status.md
     subscribe:
       message:
         bindings:
@@ -69,10 +69,10 @@ channels:
             qos: 1
             retain: true
         examples:
-          - $ref: json-schemas/assignment/status/assignment-status-example-01.json
+          - $ref: json-schemas/operational/assignment/status/assignment-status-01.example.json
         name: AssignmentStatus
         payload:
-          $ref: json-schemas/assignment/status/assignment-status.json
+          $ref: json-schemas/operational/assignment/status/assignment-status.json
         schemaFormat: application/schema+json;version=draft-07
 
   di/override_attempt/destination_display:
@@ -439,22 +439,6 @@ channels:
           mqtt:
             qos: 1
             retain: false
-  oi/current_vehicle_journey/expected_call:
-    description:
-      $ref: markdown/expected-call.md
-    subscribe:
-      message:
-        name: Expected Call Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/expected-call.json
-        examples: [
-          { $ref: examples/expected-call.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: true
   oi/current_vehicle_journey/details:
     description:
       $ref: markdown/vehicle-journey-details.md
