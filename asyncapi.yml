@@ -362,22 +362,6 @@ channels:
           mqtt:
             qos: 1
             retain: false
-  ei/due_information:
-    description:
-      $ref: markdown/due-information.md
-    subscribe:
-      message:
-        name: Due Information Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/due-information.json
-        examples: [
-          { $ref: examples/due-information.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
   oi/current_block/state:
     description:
       $ref: markdown/current-block.md
