@@ -1,5 +1,5 @@
 /.idea/
 /output/
-/docs/
+/docs/asyncapi/
 
 package-lock.json

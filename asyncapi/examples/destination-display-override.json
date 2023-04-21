@@ -1,0 +1,10 @@
+{
+  "name": "Destination Display Override",
+  "payload": {
+    "eventTimestamp": "2023-04-10T16:45:33.901Z",
+    "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
+    "publicCode": "250",
+    "destination": "  Oslo bussterminal",
+    "alternativeMessage": "  Ingen påstigning"
+  }
+}
