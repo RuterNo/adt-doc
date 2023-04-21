@@ -77,8 +77,10 @@ def update_schema_content(domain):
             schema["title"] = expected_title
             if "description" not in schema:
                 schema["description"] = "TODO: Missing description"
-            properties = schema["properties"]
-            for key, value in properties.items():
+
+            validate_schema_required_fields(glob_path, schema)
+
+            for key, value in schema["properties"].items():
                 value["$id"] = f"#/properties/{key}"
                 if "description" not in value:
                     value["description"] = "TODO: Missing description"
@@ -87,7 +89,15 @@ def update_schema_content(domain):
     return valid
 
 
-def validate(schemas_):
+def validate_schema_required_fields(glob_path, schema):
+    if 'required' in schema:
+        required_fields = schema["required"]
+        for r in required_fields:
+            if r not in schema["properties"]:
+                raise SystemExit(f"Required field [{r}] not defined in {str(glob_path.absolute())}")
+
+
+def validate_required_files(schemas_):
     valid = True
     for name, paths in schemas_.items():
         if 'assignment' in name:
@@ -161,7 +171,7 @@ def update_meta(paths):
 def main():
     domain = "operational"
     schemas = resolve_schemas(domain)
-    validate(schemas)
+    validate_required_files(schemas)
     update_schema_content(domain)
 
     res = {}

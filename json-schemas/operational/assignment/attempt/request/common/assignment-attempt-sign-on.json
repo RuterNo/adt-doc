@@ -8,7 +8,7 @@
   "required": [
     "code",
     "vehicleTaskId",
-    "firstDepartureDateTime"
+    "serviceWindow"
   ],
   "properties": {
     "code": {

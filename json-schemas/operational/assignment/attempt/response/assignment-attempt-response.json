@@ -17,7 +17,7 @@
     },
     "result": {
       "$id": "#/properties/result",
-      "$ref": "../../common/assignment-result.json",
+      "$ref": "common/assignment-result.json",
       "description": "Result and specifications of the processes attempt request"
     },
     "state": {

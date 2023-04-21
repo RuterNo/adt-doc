@@ -7,7 +7,7 @@
   "additionalProperties": true,
   "required": [
     "code",
-    "firstDepartureDateTime"
+    "serviceWindow"
   ],
   "properties": {
     "code": {

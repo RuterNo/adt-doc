@@ -17,8 +17,7 @@
         "CANCELLED",
         "BREAKDOWN",
         "SHORTENING",
-        "FINISHED",
-        "REPLACED"
+        "FINISHED"
       ]
     }
   }
