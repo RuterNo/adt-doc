@@ -2,7 +2,7 @@
   "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/status/assignment-status.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "AssignmentStatus",
-  "description": "TODO: Missing description",
+  "description": "Assignment status for the vehicle as recorded by Ruter",
   "type": "object",
   "additionalProperties": true,
   "properties": {
@@ -13,7 +13,7 @@
     },
     "state": {
       "$id": "#/properties/state",
-      "description": "TODO: Missing description",
+      "description": "The Ruter recorded state of the vehicle assignment",
       "$ref": "../common/assignment-state.json"
     }
   }

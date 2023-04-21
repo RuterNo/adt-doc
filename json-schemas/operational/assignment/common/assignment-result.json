@@ -2,7 +2,7 @@
   "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/common/assignment-result.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "AssignmentResult",
-  "description": "TODO: Missing description",
+  "description": "Result of processing an assignment attempt",
   "type": "object",
   "required": [
     "code"
@@ -11,7 +11,7 @@
   "properties": {
     "code": {
       "$id": "#/properties/code",
-      "description": "TODO: Missing description",
+      "description": "Machine readable codes specifying results",
       "type": "string",
       "examples": [
         "OK",
@@ -22,7 +22,7 @@
     },
     "reason": {
       "$id": "#/properties/reason",
-      "description": "TODO: Missing description",
+      "description": "Machine readable specifications of the code supplied. The list of examples might not be complete",
       "type": "string",
       "examples": [
         "OK",
@@ -41,12 +41,12 @@
     },
     "description": {
       "$id": "#/properties/description",
-      "description": "TODO: Missing description",
+      "description": "Human readable specification of the result",
       "type": "string"
     },
     "details": {
       "$id": "#/properties/details",
-      "description": "TODO: Missing description",
+      "description": "Details specifying the result",
       "type": "array",
       "items": {
         "$ref": "assignment-result-details.json"

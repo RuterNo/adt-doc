@@ -2,28 +2,22 @@
   "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/common/assignment-state.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "AssignmentState",
-  "description": "TODO: Missing description",
+  "description": "Assignment state for the vehicle",
   "type": "object",
   "required": [
     "assigned",
-    "code",
-    "vehicleTaskId",
-    "operatingDate",
-    "firstDepartureDateTime",
-    "lastArrivalDateTime",
-    "firstJourneyId",
-    "journeys"
+    "code"
   ],
   "additionalProperties": true,
   "properties": {
     "assigned": {
       "$id": "#/properties/assigned",
-      "description": "TODO: Missing description",
+      "description": "Is the vehicle currently assigned",
       "type": "boolean"
     },
     "code": {
       "$id": "#/properties/code",
-      "description": "TODO: Missing description",
+      "description": "Assignment code for the vehicle. See documentation for specifications",
       "type": "string",
       "examples": [
         "PLANNED",
@@ -38,32 +32,32 @@
     },
     "vehicleTaskId": {
       "$id": "#/properties/vehicleTaskId",
-      "description": "TODO: Missing description",
+      "description": "The assigned vehicleTask if the vehicle is assigned",
+      "type": "string"
+    },
+    "blockId": {
+      "$id": "#/properties/blockId",
+      "description": "The assigned block if the vehicle is assigned",
       "type": "string"
     },
     "operatingDate": {
       "$id": "#/properties/operatingDate",
-      "description": "TODO: Missing description",
+      "description": "The assigned operating date if the vehicle is assigned",
       "type": "string"
+    },
+    "serviceWindow": {
+      "$id": "#/properties/serviceWindow",
+      "description": "Planed first arrival and last departure for the assignment if the vehicle is assigned",
+      "$ref": "assignment-service-window.json"
     },
     "firstJourneyId": {
       "$id": "#/properties/firstJourneyId",
-      "description": "TODO: Missing description",
-      "type": "string"
-    },
-    "firstDepartureDateTime": {
-      "$id": "#/properties/firstDepartureDateTime",
-      "description": "TODO: Missing description",
-      "type": "string"
-    },
-    "lastArrivalDateTime": {
-      "$id": "#/properties/lastArrivalDateTime",
-      "description": "TODO: Missing description",
+      "description": "The first journey to be serviced if the vehicle is assigned",
       "type": "string"
     },
     "journeys": {
       "$id": "#/properties/journeys",
-      "description": "TODO: Missing description",
+      "description": "A list of journeys to be serviced if the vehicle is assigned",
       "type": "array",
       "items": {
         "$ref": "assignment-journey.json"
@@ -71,7 +65,7 @@
     },
     "description": {
       "$id": "#/properties/description",
-      "description": "TODO: Missing description",
+      "description": "Human readable description of the last action performed that changed the state of the vehicle assignment",
       "type": "string"
     }
   }

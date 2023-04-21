@@ -13,17 +13,17 @@
   "properties": {
     "traceId": {
       "$id": "#/properties/traceId",
-      "description": "TODO: Missing description",
+      "description": "A unique identifier - UUID",
       "type": "string"
     },
     "eventTimestamp": {
       "$id": "#/properties/eventTimestamp",
-      "description": "Timestamp with millisecond precision",
+      "description": "When the recorded event happened",
       "type": "string"
     },
     "vehicleId": {
       "$id": "#/properties/vehicleId",
-      "description": "TODO: Missing description",
+      "description": "A primary and permanent unique identifier used to represent the physical vehicle. For road vehicles: Indicates the globally unique 17 characters long alphanumeric Vehicle Identification Number (VIN) permanently attached to the vehicle. For other modes: Indicates a globally unique number of some sort permanently attached to the vehicle or if this is not possible; to the on-board system. Could be a MAC-address or other GUID.",
       "type": "string"
     }
   }

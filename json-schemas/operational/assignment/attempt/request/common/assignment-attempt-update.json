@@ -2,37 +2,26 @@
   "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/attempt/request/common/assignment-attempt-update.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "AssignmentAttemptUpdate",
-  "description": "TODO: Missing description",
+  "description": "Update an existing vehicle assignment. This operation requires an existing assigned assignment for the vehicle.",
   "type": "object",
   "additionalProperties": true,
   "required": [
     "code",
-    "vehicleTaskId",
     "firstDepartureDateTime"
   ],
   "properties": {
     "code": {
       "$id": "#/properties/code",
-      "description": "TODO: Missing description",
+      "description": "Specification of the update action requested.",
       "type": "string",
       "examples": [
         "SHORTENING"
       ]
     },
-    "vehicleTaskId": {
-      "$id": "#/properties/vehicleTaskId",
-      "description": "TODO: Missing description",
-      "type": "string"
-    },
-    "firstDepartureDateTime": {
-      "$id": "#/properties/firstDepartureDateTime",
-      "description": "TODO: Missing description",
-      "type": "string"
-    },
-    "lastArrivalDateTime": {
-      "$id": "#/properties/lastArrivalDateTime",
-      "description": "TODO: Missing description",
-      "type": "string"
+    "serviceWindow": {
+      "$id": "#/properties/serviceWindow",
+      "description": "First arrival and last departure",
+      "$ref": "../../../common/assignment-service-window.json"
     }
   }
 }
