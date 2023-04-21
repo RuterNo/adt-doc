@@ -1,0 +1,36 @@
+name: Release workflow
+
+on:
+  push:
+    tags:
+      - '**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Generating HTML from my AsyncAPI document
+        uses: docker://asyncapi/github-action-for-generator:2.0.3
+        with:
+          template: '@asyncapi/html-template@0.24.9'
+          filepath: asyncapi/asyncapi.yml
+          output: docs/asyncapi
+
+      - name: Modify HTML output from generator
+        run: |
+          sudo sed -i 's/version\.from\.tag/${{github.ref_name}}/g' docs/asyncapi/index.html
+          sudo cp asyncapi/stylesheets/doc.css docs/asyncapi/css/
+          sudo sed -i -e '\@</head>@i\<link href="css/doc.css" rel="stylesheet">' docs/asyncapi/index.html
+        shell: bash
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - run: pip install mkdocs-material mike
+      - run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch origin gh-pages --depth=1
+      - run: mike deploy --push ${{github.ref_name}}
