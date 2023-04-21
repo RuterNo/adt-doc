@@ -394,22 +394,6 @@ channels:
           mqtt:
             qos: 1
             retain: true
-  oi/current_vehicle_journey/details:
-    description:
-      $ref: markdown/vehicle-journey-details.md
-    subscribe:
-      message:
-        name: UniqueIdentifier Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/vehicle-journey-details.json
-        examples: [
-          { $ref: examples/vehicle-journey-details.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: true
   pe/tsp:
     description:
       $ref: markdown/tsp.md
