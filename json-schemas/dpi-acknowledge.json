@@ -21,7 +21,7 @@
     "traceId": {
       "$id": "#/properties/traceId",
       "type": "string",
-      "description": "A unique identifier to be able to trace this message. Also used to detect duplicate messages received."
+      "description": "A unique identifier - UUID"
     },
     "clientId": {
       "$id": "#/properties/clientId",
