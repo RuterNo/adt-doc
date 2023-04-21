@@ -1,3 +1,5 @@
 /.idea/
 /output/
 /docs/asyncapi/
+
+package-lock.json

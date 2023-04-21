@@ -1,0 +1,8 @@
+{
+  "mode": "publish",
+  "mqtt": {
+    "retain": false,
+    "qos": 1,
+    "topic": "ruter/{operatorId}/{vehicleId}/adt/v3/operational/assignment/attempt/request"
+  }
+}

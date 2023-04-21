@@ -29,23 +29,52 @@ servers:
 
 defaultContentType: application/json
 channels:
-  di/assignment_attempt/block:
+  operational/assignment/attempt/request:
     description:
-      $ref: markdown/assignment-attempt.md
+      $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request.md
     publish:
       message:
-        name: Assignment Attempt Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/assignment-attempt.json
-        examples:
-          [
-          { $ref: examples/assignment-attempt.json },
-        ]
         bindings:
           mqtt:
             qos: 1
             retain: false
+        examples:
+          - $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request-01.example.json
+        name: AssignmentAttemptRequest
+        payload:
+          $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request.json
+        schemaFormat: application/schema+json;version=draft-07
+  operational/assignment/attempt/response:
+    description:
+      $ref: json-schemas/operational/assignment/attempt/response/assignment-attempt-response.md
+    subscribe:
+      message:
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+        examples:
+          - $ref: json-schemas/operational/assignment/attempt/response/assignment-attempt-response-01.example.json
+        name: AssignmentAttemptResponse
+        payload:
+          $ref: json-schemas/operational/assignment/attempt/response/assignment-attempt-response.json
+        schemaFormat: application/schema+json;version=draft-07
+  operational/assignment/status:
+    description:
+      $ref: json-schemas/operational/assignment/status/assignment-status.md
+    subscribe:
+      message:
+        bindings:
+          mqtt:
+            qos: 1
+            retain: true
+        examples:
+          - $ref: json-schemas/operational/assignment/status/assignment-status-01.example.json
+        name: AssignmentStatus
+        payload:
+          $ref: json-schemas/operational/assignment/status/assignment-status.json
+        schemaFormat: application/schema+json;version=draft-07
+
   di/override_attempt/destination_display:
     description:
       $ref: markdown/destination-display-override.md
@@ -296,22 +325,6 @@ channels:
           mqtt:
             qos: 0
             retain: false
-  di/assignment_attempt_rejection/block:
-    description:
-      $ref: markdown/assignment-attempt-rejection.md
-    subscribe:
-      message:
-        name: Assignment Attempt Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/assignment-attempt-rejection.json
-        examples: [
-          { $ref: examples/assignment-attempt-rejection.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 0
-            retain: true
   di/available_destination_displays:
     description:
       $ref: markdown/available-destination-displays.md
@@ -362,22 +375,6 @@ channels:
           mqtt:
             qos: 1
             retain: false
-  oi/current_block/state:
-    description:
-      $ref: markdown/current-block.md
-    subscribe:
-      message:
-        name: Current Block Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/current-block.json
-        examples: [
-          { $ref: examples/current-block.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: true
   pe/tsp:
     description:
       $ref: markdown/tsp.md
