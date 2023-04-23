@@ -4,40 +4,25 @@ Quick mockup to validate Assignment and produce asyncapi spec.
 TODO: Validate schemas and generate asyncapi.yaml?
 """
 
-from pathlib import Path
 import json
+from pathlib import Path
+
 import yaml
-import re
 
 API_VERSION_MAJOR = "3"
 API_VERSION_MINOR = "0"
+SCHEMA_ID_PREFIX = f"https://schemas.ruter.no/adt/ota/api/v{API_VERSION_MAJOR}.{API_VERSION_MINOR}"
 JSON_SCHEMA_VERSION = "http://json-schema.org/draft-07/schema#"
 
+SCHEMA_ROOT = Path("asyncapi/json-schemas")
+PROJECT_ROOT = SCHEMA_ROOT.parent
 
-def resolve_schemas(domain):
-    res = {}
+CREATE_META_IF_MISSING = False
+META_FILE_TEMPLATE = {'mode': 'TODO', 'mqtt': {'qos': 'TODO', 'retain': 'TODO'}, "topic": "TODO"}
 
-    domain_path = Path(f"./json-schemas/{domain}/")
-    string_paths = [str(p) for p in domain_path.rglob(f"*.*") if 'docs' not in str(p)]
 
-    for glob_path in domain_path.rglob("*.json"):
-        if domain in str(glob_path) and "example" not in str(glob_path) and "common" not in str(glob_path) and ".meta.json" not in str(glob_path):
-            name = glob_path.stem
-            doc = list(filter(lambda t: str(t).endswith(f"{name}.md"), string_paths))
-            examples = list(filter(lambda t: 'example.json' in str(t) and name in str(t), string_paths))
-            meta = list(filter(lambda t: '.meta.json' in str(t) and name in str(t), string_paths))
-            tmp = name.split("-")
-            print(name)
-            res[name] = {
-                'schema-file': str(glob_path.absolute()),
-                'schema-file-name': str(glob_path.name),
-                'doc': doc[0],
-                'examples': examples,
-                'title': ''.join([*map(str.title, tmp)]),
-                'meta': meta[0],
-                'topic': str(glob_path.parent).replace('json-schemas/', '').replace('.json', '')
-            }
-    return res
+def j_print(dict_):
+    print(json.dumps(dict_, indent=2, default=str))
 
 
 def read_json(path):
@@ -61,141 +46,165 @@ def write_json(path, content):
         f.write("\n")
 
 
-def update_schema_content(domain):
-    path = Path(f"./json-schemas/{domain}")
+def resolve_schemas():
+    schema_paths = list(set([p for p in PROJECT_ROOT.rglob("*.json") if 'common' not in str(p) and 'meta' not in str(p) and 'example' not in str(p)]))
 
-    valid = True
-    for glob_path in Path(path).rglob("*.json"):
-        if 'example' not in str(glob_path) and 'meta.json' not in str(glob_path):
-            print(f"Updating {str(glob_path)}")
-            schema = read_json(glob_path)
-            expected_id = f"https://schemas.ruter.no/adt/ota/api/v{API_VERSION_MAJOR}.{API_VERSION_MINOR}/{str(glob_path).replace('json-schemas/', '')}"
-            schema["$id"] = expected_id
-            schema["$schema"] = JSON_SCHEMA_VERSION
-            tmp = glob_path.stem.split("-")
+    res = {}
+    for schema_path in schema_paths:
+        examples = [str(p) for p in PROJECT_ROOT.rglob(f"*example.json") if schema_path.stem in str(p)]
+        examples.extend([str(p) for p in PROJECT_ROOT.rglob(f"*{schema_path.name}*") if 'examples' in str(p)])
+        examples.extend([str(p) for p in PROJECT_ROOT.rglob(f"*{schema_path.stem}_*.json") if 'examples' in str(p)])
+        meta = [str(p) for p in PROJECT_ROOT.rglob(f"*{schema_path.stem}.meta.json")]
+        doc = [str(p) for p in PROJECT_ROOT.rglob(f"*{schema_path.stem}.md")]
+
+        if not meta:
+            if CREATE_META_IF_MISSING:
+                print(f"Creating missing meta {str(schema_path)}")
+                meta_name = f"{schema_path.stem}.meta.json"
+                meta_path = schema_path.parent.joinpath(meta_name)
+                write_json(meta_path, META_FILE_TEMPLATE)
+                meta = [str(meta_path)]
+            else:
+                print(f"Skipping schema missing meta {str(schema_path)}")
+                continue
+
+        if not examples:
+            raise SystemExit(f"Missing examples {str(schema_path)}")
+
+        if not doc:
+            raise SystemExit(f"Missing doc {str(schema_path)}")
+
+        channel = str(schema_path.parent.resolve().relative_to(SCHEMA_ROOT.resolve())).replace("-", "_")
+        name = schema_path.stem
+
+        files = {
+            'channel': channel,
+            'schema_path': schema_path,
+            'schema_name': name,
+            'schema_root_path': schema_path.parent,
+            'schema_title': ''.join([*map(str.title, name.replace("_", "-").split("-"))]),
+            'meta': meta[0],
+            'doc': doc[0],
+            'examples': examples,
+        }
+        if channel in res:
+            SystemExit(f"incorrect folder placement {channel}: {schema_path}")
+
+        res[str(channel)] = files
+    return res
+
+
+def update_schema_content(schemas):
+    for channel, resolved_schema in schemas.items():
+        schema_path = resolved_schema["schema_root_path"]
+        spec_paths = [p for p in Path(schema_path).rglob("*.json") if "example.json" not in str(p) and "meta.json" not in str(p)]
+        for spec_path in spec_paths:
+            print(f"Updating {str(spec_path)}")
+            res = read_json(spec_path)
+            validate_required_fields(spec_path, res)
+            relative_path = spec_path.resolve().relative_to(SCHEMA_ROOT.resolve())
+            expected_id = f"{SCHEMA_ID_PREFIX}/{str(relative_path)}"
+            res["$id"] = expected_id
+            res["$schema"] = JSON_SCHEMA_VERSION
+
+            tmp = spec_path.stem.replace("_", "-").split("-")
             expected_title = ''.join([*map(str.title, tmp)])
-            schema["title"] = expected_title
-            if "description" not in schema:
-                schema["description"] = "TODO: Missing description"
+            res['title'] = expected_title
 
-            validate_schema_required_fields(glob_path, schema)
+            if "description" not in res:
+                res["description"] = "TODO: Missing description"
 
-            for key, value in schema["properties"].items():
-                value["$id"] = f"#/properties/{key}"
-                if "description" not in value:
-                    value["description"] = "TODO: Missing description"
-            write_json(glob_path, schema)
-
-    return valid
+            if "properties" in res:
+                for key, value in res["properties"].items():
+                    value["$id"] = f"#/properties/{key}"
+                    if "description" not in value:
+                        value["description"] = "TODO: Missing description"
+            write_json(spec_path, res)
 
 
-def validate_schema_required_fields(glob_path, schema):
+def validate_required_fields(file_path, schema):
     if 'required' in schema:
         required_fields = schema["required"]
         for r in required_fields:
             if r not in schema["properties"]:
-                raise SystemExit(f"Required field [{r}] not defined in {str(glob_path.absolute())}")
-
-
-def validate_required_files(schemas_):
-    valid = True
-    for name, paths in schemas_.items():
-        if 'assignment' in name:
-            valid = docs_exists(paths) and valid
-            valid = examples_exists(paths) and valid
-            valid = meta_exists(paths) and valid
-
-    if not valid:
-        raise SystemExit('Some schemas are not valid')
-
-
-def meta_exists(paths):
-    if not paths['meta']:
-        print(f"{paths['schema-file']: <100} missing meta file")
-        return False
-    return True
-
-
-def examples_exists(paths):
-    if len(paths['examples']) == 0:
-        print(f"{paths['schema-file']: <100} missing example file(s)")
-        return False
-    return True
-
-
-def docs_exists(paths):
-    if not paths['doc']:
-        print(f"{paths['schema-file']: <100} missing documentation file")
-        return False
-    return True
+                raise SystemExit(f"Required field [{r}] not defined in {str(file_path.absolute())}")
 
 
 def update_doc(paths, meta):
     doc_path = paths['doc']
-    lines = read_file(doc_path)
-    res = []
+    if doc_path:
+        lines = read_file(doc_path)
+        res = []
 
-    central_topic = '| Central Topic'
-    schema = '| Schema'
+        central_topic = '| Central Topic'
+        schema = '| Schema'
 
-    for line in lines:
-        if central_topic in line:
-            topic = meta['mqtt']['topic']
-            central_topic_content = f"{central_topic} | {topic}"
-            res.append(f"{central_topic_content: <{len(line) - 1}}|")
-        elif schema in line:
-            schema_path = re.sub(".*json-schema", "json-schema", paths['schema-file'])
-            schema_content = f'{schema}        | [ {paths["schema-file-name"]} ]({schema_path})'
-            res.append(f"{schema_content: <{len(line) - 1}}|")
-        else:
-            res.append(line)
+        for line in lines:
+            if central_topic in line:
+                topic = meta['mqtt']['topic'] if meta else "TODO"
+                central_topic_content = f"{central_topic} | {topic}"
+                res.append(f"{central_topic_content: <{len(line) - 1}}|")
+            elif schema in line:
+                schema_path = project_relative(paths['schema_path'])
+                schema_content = f'{schema}        | [ {paths["schema_path"].name} ]({schema_path})'
+                res.append(f"{schema_content: <{len(line) - 1}}|")
+            else:
+                res.append(line)
 
-    res[0] = f"### {paths['title']} Message"
-    write_file(doc_path, "\n".join(res) + "\n")
+        res[0] = f"### {paths['schema_title']} Message"
+        write_file(doc_path, "\n".join(res) + "\n")
 
 
 def update_meta(paths):
     meta_path = paths['meta']
-    meta = read_json(meta_path)
-    include_vehicle = 'vehicleCentric' not in meta or meta['vehicleCentric']
-    routing_prefix = '{operatorId}/ruter' if 'publish' != meta['mode'] else 'ruter/{operatorId}'
-    if include_vehicle:
-        routing_prefix = routing_prefix + "/{vehicleId}"
-    prefix = f'{routing_prefix}/adt/v{API_VERSION_MAJOR}'
-    topic = f"{prefix}/{paths['topic']}"
-    meta['mqtt']['topic'] = topic
-    write_json(Path(meta_path), meta)
-    return meta
+    if meta_path:
+        meta = read_json(meta_path)
+        include_vehicle = 'vehicleCentric' not in meta or meta['vehicleCentric']
+        routing_prefix = '{operatorId}/ruter' if 'publish' != meta['mode'] else 'ruter/{operatorId}'
+        if include_vehicle:
+            routing_prefix = routing_prefix + "/{vehicleId}"
+        prefix = f'{routing_prefix}/adt/v{API_VERSION_MAJOR}'
+        topic = f"{prefix}/{paths['channel']}"
+        if 'mqtt' not in meta:
+            meta['mqtt'] = {}
+
+        meta['mqtt']['topic'] = topic
+        write_json(Path(meta_path), meta)
+        return meta
+    else:
+        print(f"Missing meta file {paths}")
+        return None
+
+
+def project_relative(path):
+    return str(Path(path).resolve().relative_to(PROJECT_ROOT.resolve()))
 
 
 def main():
-    domain = "operational"
-    schemas = resolve_schemas(domain)
-    validate_required_files(schemas)
-    update_schema_content(domain)
-
+    schemas = resolve_schemas()
+    update_schema_content(schemas)
     res = {}
 
     for name, paths in schemas.items():
         meta = update_meta(paths)
         update_doc(paths, meta)
-        channel = paths['topic']
+        channel = paths['channel']
         res[channel] = {
             "description": {
-                "$ref": paths['doc']
+                "$ref": project_relative(paths['doc'])
             },
             meta['mode']: {
                 "message": {
-                    "name": paths['title'],
+                    "name": paths['schema_title'],
                     "schemaFormat": "application/schema+json;version=draft-07",
                     "payload": {
-                        "$ref": re.sub(".*json-schema", "json-schema", paths['schema-file'])
+                        "$ref": project_relative(paths['schema_path'])
                     },
-                    "examples": [{"$ref": p} for p in paths['examples']],
+                    "examples": [{"$ref": project_relative(p)} for p in paths['examples']],
                     "bindings": {
                         "mqtt": {
-                            "qos": meta['mqtt']['qos'],
-                            "retain": meta['mqtt']['retain']
+                            "qos": meta['mqtt']['qos'] if meta else None,
+                            "retain": meta['mqtt']['retain'] if meta else None
                         }
                     }
                 }
