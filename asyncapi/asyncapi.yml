@@ -375,22 +375,6 @@ channels:
           mqtt:
             qos: 1
             retain: false
-  pe/tsp:
-    description:
-      $ref: markdown/tsp.md
-    subscribe:
-      message:
-        name: Traffic Preemption MQTT Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/tsp.json
-        examples: [
-          { $ref: examples/tsp.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
   pe/dpi/journey:
     description:
       $ref: markdown/dpi-journey.md
