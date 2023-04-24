@@ -1,8 +1,12 @@
 ### Telemetry Message
-| Field         | Value                                                              |
-|---------------|--------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/sensors/telemetry/{sensorId} |
-| Schema        | [ telemetry.json ](json-schemas/sensors/telemetry/telemetry.json)  |
+| Field         | Value                                                                                                     |
+|---------------|-----------------------------------------------------------------------------------------------------------|
+| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/sensors/telemetry/{sensorId}                                        |
+| Schema        | [ telemetry.json ](json-schemas/sensors/telemetry/telemetry.json)                                         |
+| Producer      | PTO                                                                                                       |
+| Consumer      | Ruter BO                                                                                                  |
+| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. | 
+
 
 Several different kinds of sensor/telemetry data are available varying by vehicle type For traditional busses, FMS is the standard that defines what data about the vehicle is published on the FMS bus and further on by ITxPT FMStoIP [service.In](http://service.In "http://service.In") addition, vessels, trams and different bus types have proprietary data not captured by FMS.
 
