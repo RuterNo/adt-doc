@@ -1,0 +1,106 @@
+site_name: Ruters Digitale Plattform
+site_url: https://adt.transhub.io
+site_author: Ruter AS
+site_description: >-
+  API documentation intended for public transport operators (PTO) who needs to communicate with the 
+  public transport authority (PTA) Ruter AS.
+repo_name: RuterNo/adt-doc
+repo_url: https://github.com/RuterNo/adt-doc
+copyright: Copyright &copy; 2023 Ruter AS
+theme:
+  name: material
+  custom_dir: .overrides
+  logo: assets/ruter_logo.svg
+  favicon: assets/favicon-32x32.png
+  palette:
+    scheme: ruter
+  features:
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    - content.tooltips
+    - navigation.footer
+    - navigation.indexes
+    - navigation.sections
+    - navigation.tabs
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/RuterNo
+  version:
+    provider: mike
+
+
+# Extensions
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:materialx.emoji.twemoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Page tree
+nav:
+  - Home: index.md
+  - MQTT API:
+      - ADT messages: adt-api.md
+      - Additional messages:
+          - TSP: tsp.md
+          - SLA insight: insight.md
+  - Vehicle setup:
+      - MQTT bridge config: mqtt.md
+      - Browser requirements: browser-requirements.md
+      - File Sync:
+        - Packages: packages.md
+        - Resources: resources.md
+      - Display setup:
+        - Screen configuration: screen-configs.md
+        - Troubleshooting client: troubleshooting-client.md
+        - Vehicle Status (Live): live-status.md
+  - Contribute:
+      - Report an issue: issue.md
+
+

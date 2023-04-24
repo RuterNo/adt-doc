@@ -1,0 +1,21 @@
+{
+  "name": "Available Destination Displays",
+  "payload": {
+    "eventTimestamp": "2020-10-31T12:45:50Z",
+    "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
+    "availableDestinationDisplays": [
+      {
+        "publicCode": "20",
+        "destination": "  Galgeberg"
+      },
+      {
+        "destination": "  Ikke i trafikk "
+      },
+      {
+        "publicCode": "N160",
+        "destination": "  Oslo Bussterminal",
+        "alternativeMessage": "  Ingen påstigning"
+      }
+    ]
+  }
+}

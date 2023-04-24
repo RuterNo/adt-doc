@@ -1,0 +1,29 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/attempt/response/assignment-attempt-response.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignmentAttemptResponse",
+  "description": "A response to an assignment attempt",
+  "type": "object",
+  "required": [
+    "header",
+    "result"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "header": {
+      "$id": "#/properties/header",
+      "$ref": "../../common/assignment-header.json",
+      "description": "Common header for Assignment messages"
+    },
+    "result": {
+      "$id": "#/properties/result",
+      "$ref": "common/assignment-result.json",
+      "description": "Result and specifications of the processes attempt request"
+    },
+    "state": {
+      "$id": "#/properties/state",
+      "$ref": "../../common/assignment-state.json",
+      "description": "Assignment state as a result of the processed attempt. If the processed attempt did not change the state of the Assignment, this section removed from the response"
+    }
+  }
+}

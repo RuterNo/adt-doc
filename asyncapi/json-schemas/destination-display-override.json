@@ -1,0 +1,46 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v2.1/driver-interaction/destination-display-override.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DestinationDisplayOverride",
+  "type": "object",
+  "required": [
+    "traceId",
+    "eventTimestamp",
+    "destination"
+  ],
+  "description": "Describes a request from MADT or other GUI to manually override the information shown on the destination display. It is up to the presenting system to decide how and for how long the override will apply. A rule could be until next journey begins or a new override_attempt/destination_display is received. The topic could be blanked (provided with a zero-byte payload) to indicate that any overriding information is no longer valid and that the destination display can return to normal",
+  "additionalProperties": true,
+  "properties": {
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier - UUID"
+    },
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "Event Timestamp must be ISO 8601 UTC",
+      "format": "date-time"
+    },
+    "number": {
+      "$id": "#/properties/number",
+      "type": "number",
+      "description": "Numeric value representing the destination sign information to display."
+    },
+    "publicCode": {
+      "$id": "#/properties/publicCode",
+      "type": "string",
+      "description": "Publicly-known number of the line"
+    },
+    "destination": {
+      "$id": "#/properties/destination",
+      "type": "string",
+      "description": "Destination of the bus"
+    },
+    "alternativeMessage": {
+      "$id": "#/properties/alternativeMessage",
+      "type": "string",
+      "description": "Alternative message to be displayed on second line of display"
+    }
+  }
+}

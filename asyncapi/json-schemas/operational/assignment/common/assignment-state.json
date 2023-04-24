@@ -1,0 +1,72 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/common/assignment-state.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignmentState",
+  "description": "Assignment state for the vehicle",
+  "type": "object",
+  "required": [
+    "assigned",
+    "code"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "assigned": {
+      "$id": "#/properties/assigned",
+      "description": "Is the vehicle currently assigned",
+      "type": "boolean"
+    },
+    "code": {
+      "$id": "#/properties/code",
+      "description": "Assignment code for the vehicle. See documentation for specifications",
+      "type": "string",
+      "examples": [
+        "PLANNED",
+        "EXTRA",
+        "REPLACEMENT",
+        "SHORTENING",
+        "CANCELLED",
+        "BREAKDOWN",
+        "FINISHED",
+        "REPLACED"
+      ]
+    },
+    "vehicleTaskId": {
+      "$id": "#/properties/vehicleTaskId",
+      "description": "The assigned vehicleTask if the vehicle is assigned",
+      "type": "string"
+    },
+    "blockId": {
+      "$id": "#/properties/blockId",
+      "description": "The assigned block if the vehicle is assigned",
+      "type": "string"
+    },
+    "operatingDate": {
+      "$id": "#/properties/operatingDate",
+      "description": "The assigned operating date if the vehicle is assigned",
+      "type": "string"
+    },
+    "serviceWindow": {
+      "$id": "#/properties/serviceWindow",
+      "description": "Planed first arrival and last departure for the assignment if the vehicle is assigned",
+      "$ref": "assignment-service-window.json"
+    },
+    "firstJourneyId": {
+      "$id": "#/properties/firstJourneyId",
+      "description": "The first journey to be serviced if the vehicle is assigned",
+      "type": "string"
+    },
+    "journeys": {
+      "$id": "#/properties/journeys",
+      "description": "A list of journeys to be serviced if the vehicle is assigned",
+      "type": "array",
+      "items": {
+        "$ref": "assignment-journey.json"
+      }
+    },
+    "description": {
+      "$id": "#/properties/description",
+      "description": "Human readable description of the last action performed that changed the state of the vehicle assignment",
+      "type": "string"
+    }
+  }
+}

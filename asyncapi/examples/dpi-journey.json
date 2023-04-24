@@ -1,0 +1,39 @@
+{
+  "name": "Journey",
+  "payload": {
+    "eventTimestamp": "2017-10-31T08:38:02.749Z",
+    "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
+    "journeyId": "RUT:ServiceJourney:31-117215-13227462",
+    "journeyRef": "31001-2019-02-17T21:55:00+01:00",
+    "route": {
+      "id": "RUT:Route:31-1041",
+      "name": "Fornebu vest-Tonsenhagen",
+      "line": {
+        "id": "RUT:Line:31",
+        "name": "Snarøya - Fornebu - Tonsenhagen - Grorud",
+        "publicCode": "31"
+      },
+      "stopPlaces": [
+        {
+          "id": "RUT:StopPlace:02190017",
+          "name": "Fornebu vest",
+          "location": {
+            "latitude": 12.33345,
+            "longitude": 12.33345
+          },
+          "tariffZones" : [ "OST:TariffZone:227", "RUT:TariffZone:1" ]
+        },
+        {
+          "id": "RUT:StopPlace:03010013",
+          "name": "Jernbanetorget",
+          "location": {
+            "latitude": 12.33345,
+            "longitude": 12.33345
+          },
+          "tariffZones" : [ "RUT:TariffZone:1" ]
+        }
+      ]
+    }
+  }
+}
+
