@@ -86,6 +86,8 @@ Content found in this repository:
 * Example messages
 * AsyncAPI definition file
 * Information on how to setup a vehicle
+* Documentation on different REST APIs
+* OpenAPI definitions
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -97,6 +99,7 @@ This documentation has been created using:
 
 * [![AsyncAPI][AsyncAPI]][AsyncAPI-url]
 * [![MKDocs][MKDocs]][Mkdocs-url]
+* [![Redocly][Redocly]][Redocly-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -230,5 +233,7 @@ Distributed under the Apache License. See `LICENSE.md` for more information.
 [AsyncAPI-url]: https://www.asyncapi.com/
 [MKDocs]: https://img.shields.io/badge/MKDocs-000000?style=for-the-badge&logo=circle&logoColor=white
 [Mkdocs-url]: https://squidfunk.github.io/mkdocs-material/
+[Redocly]: https://img.shields.io/badge/Redocly-2200ff?style=for-the-badge&logo=openapiinitiative&logoColor=white
+[Redocly-url]: https://redocly.com/
 [ADT-DOC-url]: https://ruterno.github.io/adt-doc/
 [releases-url]: https://github.com/RuterNo/adt-doc/releases
