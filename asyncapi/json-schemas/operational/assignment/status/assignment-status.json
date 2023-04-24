@@ -4,12 +4,21 @@
   "title": "AssignmentStatus",
   "description": "Assignment status for the vehicle as recorded by Ruter",
   "type": "object",
+  "required": [
+    "traceId",
+    "eventTimestamp"
+  ],
   "additionalProperties": true,
   "properties": {
-    "header": {
-      "$id": "#/properties/header",
-      "description": "Common header for Assignment messages",
-      "$ref": "../common/assignment-header.json"
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "description": "The traceId of the assignment attempt request that altered the state",
+      "type": "string"
+    },
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "description": "When Ruter has updated the assignment state",
+      "type": "string"
     },
     "state": {
       "$id": "#/properties/state",

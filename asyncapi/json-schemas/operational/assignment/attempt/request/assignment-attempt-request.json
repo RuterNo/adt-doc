@@ -2,17 +2,23 @@
   "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/attempt/request/assignment-attempt-request.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "AssignmentAttemptRequest",
-  "description": "Request to sign a vehicle on/off, or update an assigned assignment",
+  "description": "Request to sign a vehicle on/off, or update an assigned assignment. The vehicle in question is provided in the mqtt topic name. Response will be sent to this vehicle via assignment attempt response.",
   "type": "object",
   "required": [
-    "header"
+    "traceId",
+    "eventTimestamp"
   ],
   "additionalProperties": true,
   "properties": {
-    "header": {
-      "$id": "#/properties/header",
-      "$ref": "../../common/assignment-header.json",
-      "description": "Common header for Assignment messages"
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "description": "A unique identifier - UUID",
+      "type": "string"
+    },
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "description": "When the recorded event happened",
+      "type": "string"
     },
     "signOn": {
       "$id": "#/properties/signOn",
