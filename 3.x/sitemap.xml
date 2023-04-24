@@ -51,6 +51,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://adt.transhub.io/3.x/timestamps/</loc>
+         <lastmod>2023-04-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://adt.transhub.io/3.x/troubleshooting-client/</loc>
          <lastmod>2023-04-24</lastmod>
          <changefreq>daily</changefreq>
