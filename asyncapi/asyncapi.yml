@@ -210,6 +210,7 @@ channels:
             qos: 0
             retain: false
         examples:
+          - $ref: json-schemas/sensors/telemetry/telemetry-addressing-scheme.example.json
           - $ref: json-schemas/sensors/telemetry/telemetry-01.example.json
         name: Telemetry
         payload:
