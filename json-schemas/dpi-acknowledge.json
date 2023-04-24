@@ -26,7 +26,7 @@
     "clientId": {
       "$id": "#/properties/clientId",
       "type": "string",
-      "description": "A unique identifier of the client receiving the message. Should be persistent and not change from day to day."
+      "description": "The mqtt clientId of the client receiving the message. Should be persistent and not change from day to day."
     },
     "messageReceived": {
       "$id": "#/properties/messageReceived",
