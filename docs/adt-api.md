@@ -20,8 +20,6 @@ To see additional information in relation to the API specifications, please visi
 
 - [https://ruter.atlassian.net](https://ruter.atlassian.net/wiki/spaces/DS/pages/231178249/Avtale+om+Digitale+Tjenester)
 
-## Versions
+## Resources
 
-| Version                          | Json-schemas | Example payloads |
-|----------------------------------|--------------|------------------|
-| [3.0-ALPHA](asyncapi/index.html) | -            | -                |
+[MQTT API Documentation](asyncapi/index.html){target=_blank .md-button }
