@@ -1,8 +1,0 @@
-{
-  "name": "Card Reader Diagnostics",
-  "payload": {
-    "eventTimestamp": "2022-05-24T07:00:25Z",
-    "deviceRef": "RUT1234",
-    "inService": true
-  }
-}
