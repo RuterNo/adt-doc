@@ -12,20 +12,20 @@
         <meta name="author" content="Ruter AS">
       
       
-        <link rel="canonical" href="https://adt.transhub.io/3.0-ALPHA/browser-requirements/">
+        <link rel="canonical" href="https://adt.transhub.io/3.0-ALPHA/timestamps/">
       
       
-        <link rel="prev" href="../mqtt/">
+        <link rel="prev" href="../insight/">
       
       
-        <link rel="next" href="../packages/">
+        <link rel="next" href="../mqtt/">
       
       <link rel="icon" href="../assets/favicon-32x32.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.7">
     
     
       
-        <title>Browser requirements - Ruters Digitale Plattform</title>
+        <title>Standard - Ruters Digitale Plattform</title>
       
     
     
@@ -75,7 +75,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#browser-requirements" class="md-skip">
+        <a href="#standard-for-date-and-timestamps-in-adt" class="md-skip">
           Skip to content
         </a>
       
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Browser requirements
+              Standard
             
           </span>
         </div>
@@ -217,13 +217,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../timestamps/" class="md-tabs__link">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
         Timestamps
       </a>
     </li>
@@ -233,15 +235,13 @@
         
   
   
-    
-  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../mqtt/" class="md-tabs__link md-tabs__link--active">
+      <a href="../mqtt/" class="md-tabs__link">
         Vehicle setup
       </a>
     </li>
@@ -453,14 +453,16 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
       
       
         
@@ -473,7 +475,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Timestamps
@@ -484,11 +486,72 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../timestamps/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Standard
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Standard
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#time" class="md-nav__link">
+    Time
+  </a>
+  
+    <nav class="md-nav" aria-label="Time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#event-timestamp" class="md-nav__link">
+    Event timestamp
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples-date-and-time" class="md-nav__link">
+    Examples date and time
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -506,16 +569,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
       
       
         
@@ -534,7 +595,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_4">
           <span class="md-nav__icon md-icon"></span>
           Vehicle setup
@@ -559,59 +620,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Browser requirements
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../browser-requirements/" class="md-nav__link">
         Browser requirements
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#network" class="md-nav__link">
-    Network
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-requirements" class="md-nav__link">
-    Additional requirements
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -859,15 +872,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#network" class="md-nav__link">
-    Network
+  <a href="#time" class="md-nav__link">
+    Time
   </a>
+  
+    <nav class="md-nav" aria-label="Time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#event-timestamp" class="md-nav__link">
+    Event timestamp
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#additional-requirements" class="md-nav__link">
-    Additional requirements
+  <a href="#examples-date-and-time" class="md-nav__link">
+    Examples date and time
   </a>
   
 </li>
@@ -887,7 +913,7 @@
                   
 
   
-    <a href="https://github.com/RuterNo/adt-doc/edit/master/docs/browser-requirements.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/RuterNo/adt-doc/edit/master/docs/timestamps.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
     </a>
@@ -896,48 +922,80 @@
     
       
     
-    <a href="https://github.com/RuterNo/adt-doc/raw/master/docs/browser-requirements.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/RuterNo/adt-doc/raw/master/docs/timestamps.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
     </a>
   
 
 
-<h1 id="browser-requirements">Browser requirements<a class="headerlink" href="#browser-requirements" title="Permanent link">&para;</a></h1>
-<p>The PTO is required to install and maintain one of the following browsers: </p>
+<h1 id="standard-for-date-and-timestamps-in-adt">Standard for date and timestamps in ADT<a class="headerlink" href="#standard-for-date-and-timestamps-in-adt" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>This page specifies date and time standards between Ruter and PTO's.</p>
+<p>The date and time standards are based on the intersection of <a href="https://datatracker.ietf.org/doc/html/rfc3339">RFC 3339</a>
+and <a href="https://www.iso.org/obp/ui#iso:std:iso:8601:-1:ed-1:v1:en">ISO 8601-1:2019</a>.</p>
+</blockquote>
+<p>Each schema may specify how a timestamp property should be constructed. That will have precedence over what is
+specified in this document.</p>
+<h2 id="time">Time<a class="headerlink" href="#time" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>T</code> should be used as a separator between date and timestamp</li>
+<li>Timestamp can be specified in both UTZ and local time. And timezone should <em>always</em> be specified<ul>
+<li><code>Z</code> for UTC</li>
+<li><code>+01:00</code> for local winter time</li>
+<li><code>+02:00</code> for local summer time</li>
+</ul>
+</li>
+</ul>
+<h3 id="event-timestamp">Event timestamp<a class="headerlink" href="#event-timestamp" title="Permanent link">&para;</a></h3>
+<p>If nothing else is specified and the schema specifies that the property is a <code>eventTimestamp</code>, the following rules
+apply.</p>
+<ul>
+<li>The <code>eventTimestamp</code> should have a minimum precision of milliseconds or higher e.g. nanoseconds.</li>
+</ul>
+<h2 id="examples-date-and-time">Examples date and time<a class="headerlink" href="#examples-date-and-time" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Browser name</th>
-<th>Additional resources</th>
+<th>Description</th>
+<th>Example</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Firefox</td>
-<td><a href="https://www.mozilla.org/en-US/firefox/">mozilla.org</a></td>
+<td>Date with year, month, and day</td>
+<td><code>2023-04-21</code></td>
 </tr>
 <tr>
-<td>Chrome</td>
-<td><a href="https://www.google.com/chrome/">google.com</a></td>
+<td>Time with hours, minutes, and seconds</td>
+<td><code>12:42:15Z</code></td>
 </tr>
 <tr>
-<td>Chromium</td>
-<td><a href="https://www.chromium.org/Home/">chromium.org</a></td>
+<td>Time with hours, minutes, seconds, and fractional seconds (up to 9 digits)</td>
+<td><code>12:43:12.631917Z</code></td>
+</tr>
+<tr>
+<td>Date and time in UTC timezone with hours, minutes, and seconds</td>
+<td><code>2023-04-21T12:42:15Z</code></td>
+</tr>
+<tr>
+<td>Date and time in UTC timezone with hours, minutes, seconds, and fractional seconds</td>
+<td><code>2023-04-21T12:43:12.631917Z</code></td>
+</tr>
+<tr>
+<td>Date and time with hours, minutes, seconds, and timezone offset</td>
+<td><code>2023-04-21T13:44:11.718742+01:00</code></td>
+</tr>
+<tr>
+<td>Date and time with hours, minutes, seconds, and fractional seconds, and timezone offset</td>
+<td><code>2023-04-21T13:44:11.718742+02:00</code></td>
+</tr>
+<tr>
+<td>Date and time with hours, minutes, and seconds, and timezone offset from UTC</td>
+<td><code>2023-04-21T13:44:11Z</code></td>
 </tr>
 </tbody>
 </table>
-<h2 id="network">Network<a class="headerlink" href="#network" title="Permanent link">&para;</a></h2>
-<ul>
-<li>The browser must have internet access (port 443)</li>
-</ul>
-<h2 id="additional-requirements">Additional requirements<a class="headerlink" href="#additional-requirements" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Only stable software versions are to be used. </li>
-<li>The browser needs to be periodically updated and must never be older than 12 months.</li>
-<li>The browser must have persistent storage available. </li>
-<li>All feature flags set to default values, unless otherwise agreed upon with Ruter.</li>
-</ul>
 
 
 
@@ -964,7 +1022,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../mqtt/" class="md-footer__link md-footer__link--prev" aria-label="Previous: MQTT bridge config" rel="prev">
+          <a href="../insight/" class="md-footer__link md-footer__link--prev" aria-label="Previous: SLA insight" rel="prev">
             <div class="md-footer__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
             </div>
@@ -973,20 +1031,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                MQTT bridge config
+                SLA insight
               </div>
             </div>
           </a>
         
         
           
-          <a href="../packages/" class="md-footer__link md-footer__link--next" aria-label="Next: Packages" rel="next">
+          <a href="../mqtt/" class="md-footer__link md-footer__link--next" aria-label="Next: MQTT bridge config" rel="next">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Packages
+                MQTT bridge config
               </div>
             </div>
             <div class="md-footer__button md-icon">
