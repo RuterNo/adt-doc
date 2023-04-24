@@ -1,0 +1,26 @@
+{
+  "name": "Available Destination Displays",
+  "payload": {
+    "atDateTime": "2020-10-31T12:45:50Z",
+    "availableDestinationDisplays": [
+      {
+        "number": 12,
+        "name": "Airport"
+      },
+      {
+        "number": 112,
+        "name": "Bus full"
+      },
+      {
+        "number": 125,
+        "name": "Ikke i trafikk "
+      },
+      {
+        "number": 126,
+        "lineDesignation": "N160",
+        "name": "Oslo Bussterminal",
+        "alternativeText": "Ingen påstigning"
+      }
+    ]
+  }
+}

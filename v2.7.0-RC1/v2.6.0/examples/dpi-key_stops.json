@@ -1,0 +1,59 @@
+{
+  "name": "Key Stops",
+  "payload": {
+    "eventTimestamp": "2022-05-10T10:35:16.708Z",
+    "id": "RUT:ServiceJourney:18-164036-22694106",
+    "lineId": "RUT:Line:18",
+    "linePublicCode": "18",
+    "stopPlaces": [
+      {
+        "stopPlaceId": "NSR:StopPlace:3986",
+        "stopPlaceIndex": 11,
+        "boarding": {
+          "predictedValue": 23,
+          "qualityIndicator": "GOOD"
+        },
+        "alighting": {
+          "predictedValue": 23,
+          "qualityIndicator": "GOOD"
+        }
+      },
+      {
+        "stopPlaceId": "NSR:StopPlace:6258",
+        "stopPlaceIndex": 16,
+        "boarding": {
+          "predictedValue": 24,
+          "qualityIndicator": "GOOD"
+        },
+        "alighting": {
+          "predictedValue": 24,
+          "qualityIndicator": "GOOD"
+        }
+      },
+      {
+        "stopPlaceId": "NSR:StopPlace:6269",
+        "stopPlaceIndex": 20,
+        "boarding": {
+          "predictedValue": 25,
+          "qualityIndicator": "GOOD"
+        },
+        "alighting": {
+          "predictedValue": 25,
+          "qualityIndicator": "GOOD"
+        }
+      },
+      {
+        "stopPlaceId": "NSR:StopPlace:6266",
+        "stopPlaceIndex": 26,
+        "boarding": {
+          "predictedValue": 27,
+          "qualityIndicator": "GOOD"
+        },
+        "alighting": {
+          "predictedValue": 27,
+          "qualityIndicator": "GOOD"
+        }
+      }
+    ]
+  }
+}
