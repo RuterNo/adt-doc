@@ -27,12 +27,12 @@
     "alightingCount": {
       "$id": "#/properties/alightingCount",
       "type": "number",
-      "description": "Accumulated number of alighting passengers detected by this sensor since last reset."
+      "description": "Total number of alighting passengers detected by this sensor since last reset."
     },
     "boardingCount": {
       "$id": "#/properties/boardingCount",
       "type": "number",
-      "description": "Accumulated number of boarding passengers detected by this sensor since last reset."
+      "description": "Total number of boarding passengers detected by this sensor since last reset."
     },
     "atDateTime": {
       "$id": "#/properties/atDateTime",
@@ -43,7 +43,7 @@
       "$id": "#/properties/messageNumber",
       "$comment": "Added in version 2.1",
       "type": "number",
-      "description": "Optional. Sequence number, increased by one for each new message. Used to validate consistency in the data stream."
+      "description": "Sequence number, increased by one for each new message. Used to validate consistency in the data stream."
     },
     "categoryActivities": {
       "$id": "#/properties/categoryActivities",
@@ -59,23 +59,23 @@
         "properties": {
           "categoryRef": {
             "type": "string",
-            "description": "Object class reference. Possible values given in examples.",
-            "examples": [
+            "description": "Object class reference. Any of the following object categories.",
+            "values": [
               "ADULT",
               "CHILD",
               "PRAM",
               "BIKE",
               "WHEELCHAIR",
-              "OTHER"
+              "UNKNOWN"
             ]
           },
           "alightingCount": {
             "type": "number",
-            "description": "Accumulated number of alighting of this category detected by this sensor since last reset."
+            "description": "Number of alighting of this category detected by this sensor since last reset."
           },
           "boardingCount": {
             "type": "number",
-            "description": "Accumulated number of boarding of this category detected by this sensor since last reset."
+            "description": "Number of boarding of this category detected by this sensor since last reset."
           }
         }
       }

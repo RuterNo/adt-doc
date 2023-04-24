@@ -1,12 +1,13 @@
 {
-  "name": "Due information",
+  "name": "DPI Acknowledge",
   "payload": {
-    "eventTimestamp": "2021-10-31T12:45:50Z",
-    "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
-    "type": "DESTINATION",
-    "payload": {
-      "text": "400 Oslo Lufthavn",
-      "additionalText": "o/ Eltonåsen"
+    "eventTimestamp": "2022-10-31T12:45:50Z",
+    "traceId": "2ccf77aa-463f-4b98-ad19-61ec5d213e36",
+    "clientId": "8fac6c64la4cap4b21R90d",
+    "messageReceived": {
+      "topic": "pe/dpi/journey",
+      "eventTimestamp": "2021-10-31T12:44:10Z",
+      "traceId": "b88aaf6a-b15b-415a-8c44-ac7ad42de59e"
     }
   }
 }
