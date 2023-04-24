@@ -33,4 +33,4 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git fetch origin gh-pages --depth=1
-      - run: mike deploy --push --update-aliases ${{github.ref_name}} latest
+      - run: mike deploy --push ${{github.ref_name}}

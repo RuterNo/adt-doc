@@ -40,4 +40,4 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git fetch origin gh-pages --depth=1
-      - run: mike deploy --push $RELEASE_NAME
+      - run: mike deploy --push --update-aliases $RELEASE_NAME latest
