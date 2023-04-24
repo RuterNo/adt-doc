@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.ruter.no/adt/ota/api/v2.1/sensor/telemetry.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/sensors/telemetry/telemetry.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Telemetry",
   "type": "object",
@@ -39,8 +39,7 @@
       "description": "If FMS data or accelerometry, one payload per SPN. Else, one payload.",
       "items": {
         "type": "object",
-        "required": [
-        ],
+        "required": [],
         "properties": {
           "subid": {
             "type": "string",

@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.ruter.no/adt/ota/api/v2.1/sensor/location.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/sensors/gnss/location/location.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Location",
   "type": "object",
@@ -31,7 +31,7 @@
     "latitudeDirection": {
       "$id": "#/properties/latitudeDirection",
       "type": "string",
-      "description": "Optional. Latitude direction (“N” or “S”)."
+      "description": "Optional. Latitude direction (\u201cN\u201d or \u201cS\u201d)."
     },
     "longitudeDegree": {
       "$id": "#/properties/longitudeDegree",
@@ -41,7 +41,7 @@
     "longitudeDirection": {
       "$id": "#/properties/longitudeDirection",
       "type": "string",
-      "description": "Optional. Longitude direction (“W” or “E”)."
+      "description": "Optional. Longitude direction (\u201cW\u201d or \u201cE\u201d)."
     },
     "altitude": {
       "$id": "#/properties/altitude",

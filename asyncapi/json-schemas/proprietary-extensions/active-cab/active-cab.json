@@ -1,14 +1,14 @@
 {
-  "$id": "https://schemas.ruter.no/adt/ota/api/v2.1/proprietary-extensions/door-lock.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/proprietary-extensions/active-cab/active-cab.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "DoorLock",
+  "title": "ActiveCab",
   "type": "object",
   "required": [
     "eventTimestamp",
     "traceId",
-    "locked"
+    "activeCab"
   ],
-  "description": "Door lock event",
+  "description": "Used to keep track of what direction the train is driving",
   "additionalProperties": true,
   "properties": {
     "eventTimestamp": {
@@ -21,20 +21,15 @@
       "type": "string",
       "description": "A unique identifier - UUID"
     },
-    "locked": {
-      "$id": "#/properties/locked",
-      "type": "boolean",
-      "description": "",
+    "activeCab": {
+      "$id": "#/properties/activeCab",
+      "type": "string",
+      "description": "Text for active cab",
       "examples": [
-        "true",
-        "false"
+        "c1",
+        "c2",
+        "inactive"
       ]
     }
-  },
-  "examples": [
-    {
-      "eventTimestamp": "2020-10-31T08:38:02.749Z",
-      "locked": false
-    }
-  ]
+  }
 }

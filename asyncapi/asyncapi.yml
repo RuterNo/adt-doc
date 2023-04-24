@@ -25,7 +25,7 @@ servers:
           - '8883'
           - '9883'
     security:
-      - user-password: []
+      - user-password: [ ]
 
 defaultContentType: application/json
 channels:
@@ -74,6 +74,147 @@ channels:
         payload:
           $ref: json-schemas/operational/assignment/status/assignment-status.json
         schemaFormat: application/schema+json;version=draft-07
+  proprietary_extensions/active_cab:
+    description:
+      $ref: json-schemas/proprietary-extensions/active-cab/active-cab.md
+    publish:
+      message:
+        bindings:
+          mqtt:
+            qos: '1'
+            retain: true
+        examples:
+          - $ref: json-schemas/proprietary-extensions/active-cab/active-cab.example.json
+        name: ActiveCab
+        payload:
+          $ref: json-schemas/proprietary-extensions/active-cab/active-cab.json
+        schemaFormat: application/schema+json;version=draft-07
+  proprietary_extensions/door_lock:
+    description:
+      $ref: json-schemas/proprietary-extensions/door-lock/door-lock.md
+    publish:
+      message:
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+        examples:
+          - $ref: json-schemas/proprietary-extensions/door-lock/door-lock.example.json
+        name: DoorLock
+        payload:
+          $ref: json-schemas/proprietary-extensions/door-lock/door-lock.json
+        schemaFormat: application/schema+json;version=draft-07
+  proprietary_extensions/doors_individually:
+    description:
+      $ref: json-schemas/proprietary-extensions/doors-individually/doors-individually.md
+    publish:
+      message:
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+        examples:
+          - $ref: json-schemas/proprietary-extensions/doors-individually/doors-individually.example.json
+        name: DoorsIndividually
+        payload:
+          $ref: json-schemas/proprietary-extensions/doors-individually/doors-individually.json
+        schemaFormat: application/schema+json;version=draft-07
+  sensors/apc/{sensorId}:
+    description:
+      $ref: json-schemas/sensors/apc/apc.md
+    parameters:
+      sensorId:
+        $ref: '#/components/parameters/sensorId'
+    publish:
+      message:
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+        examples:
+          - $ref: json-schemas/sensors/apc/apc-01.example.json
+        name: Apc
+        payload:
+          $ref: json-schemas/sensors/apc/apc.json
+        schemaFormat: application/schema+json;version=draft-07
+  sensors/door:
+    description:
+      $ref: json-schemas/sensors/door/door.md
+    publish:
+      message:
+        bindings:
+          mqtt:
+            qos: 1
+            retain: true
+        examples:
+          - $ref: json-schemas/sensors/door/door-01.example.json
+        name: Door
+        payload:
+          $ref: json-schemas/sensors/door/door.json
+        schemaFormat: application/schema+json;version=draft-07
+  sensors/gnss/location:
+    description:
+      $ref: json-schemas/sensors/gnss/location/location.md
+    publish:
+      message:
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
+        examples:
+          - $ref: json-schemas/sensors/gnss/location/location-01.example.json
+        name: Location
+        payload:
+          $ref: json-schemas/sensors/gnss/location/location.json
+        schemaFormat: application/schema+json;version=draft-07
+  sensors/odometer:
+    description:
+      $ref: json-schemas/sensors/odometer/odometer.md
+    publish:
+      message:
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
+        examples:
+          - $ref: json-schemas/sensors/odometer/odometer-01.example.json
+        name: Odometer
+        payload:
+          $ref: json-schemas/sensors/odometer/odometer.json
+        schemaFormat: application/schema+json;version=draft-07
+  sensors/stop_button:
+    description:
+      $ref: json-schemas/sensors/stop-button/stop-button.md
+    publish:
+      message:
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+        examples:
+          - $ref: json-schemas/sensors/stop-button/stop-button-01.example.json
+        name: StopButton
+        payload:
+          $ref: json-schemas/sensors/stop-button/stop-button.json
+        schemaFormat: application/schema+json;version=draft-07
+  sensors/telemetry/{sensorId}:
+    description:
+      $ref: json-schemas/sensors/telemetry/telemetry.md
+    parameters:
+      sensorId:
+        $ref: '#/components/parameters/sensorId'
+    publish:
+      message:
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
+        examples:
+          - $ref: json-schemas/sensors/telemetry/telemetry-01.example.json
+        name: Telemetry
+        payload:
+          $ref: json-schemas/sensors/telemetry/telemetry.json
+        schemaFormat: application/schema+json;version=draft-07
 
   di/override_attempt/destination_display:
     description:
@@ -107,54 +248,6 @@ channels:
           mqtt:
             qos: 1
             retain: true
-  pe/activecab:
-    description:
-      $ref: markdown/active-cab.md
-    publish:
-      message:
-        name: ActiveCab Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/active-cab.json
-        examples: [
-          { $ref: examples/active-cab.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: true
-  pe/doorlock:
-    description:
-      $ref: markdown/door-lock.md
-    publish:
-      message:
-        name: DoorLock Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/door-lock.json
-        examples: [
-          { $ref: examples/door-lock.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
-  pe/doors_individually:
-    description:
-      $ref: markdown/doors-individually.md
-    publish:
-      message:
-        name: Doors Individually Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/doors-individually.json
-        examples: [
-          { $ref: examples/doors-individually.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
   pe/dpi_ack:
     description:
       $ref: markdown/dpi-acknowledge.md
@@ -218,108 +311,6 @@ channels:
           $ref: json-schemas/cardreader_diagnostics.json
         examples: [
           { $ref: examples/cardreader_diagnostics.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 0
-            retain: false
-  sensors/gnss/location:
-    description:
-      $ref: markdown/location.md
-    publish:
-      message:
-        name: Location Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/location.json
-        examples: [
-          { $ref: examples/location.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 0
-            retain: false
-  sensors/odometer:
-    description:
-      $ref: markdown/odometer.md
-    publish:
-      message:
-        name: Odometer Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/odometer.json
-        examples: [
-          { $ref: examples/odometer.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 0
-            retain: false
-  sensors/apc_sensors/{sensorId}:
-    description:
-      $ref: markdown/apc-sensors.md
-    parameters:
-      sensorId:
-        $ref: '#/components/parameters/sensorId'
-    publish:
-      message:
-        name: Apc Sensors Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/apc-sensors.json
-        examples: [
-          { $ref: examples/apc-sensors.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
-  sensors/door:
-    description:
-      $ref: markdown/door.md
-    publish:
-      message:
-        name: Door Sensors Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/door.json
-        examples: [
-          { $ref: examples/door.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: true
-  sensors/stop_button:
-    description:
-      $ref: markdown/stop-button.md
-    publish:
-      message:
-        name: Stop Button Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/stop-button.json
-        examples: [
-          { $ref: examples/stop-button.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
-  sensors/telemetry/{sensorId}:
-    description:
-      $ref: markdown/telemetry.md
-    parameters:
-      sensorId:
-        $ref: '#/components/parameters/sensorId'
-    publish:
-      message:
-        name: Telemetry data
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/telemetry.json
-        examples: [
-          { $ref: examples/telemetry.json }
         ]
         bindings:
           mqtt:
@@ -535,10 +526,9 @@ channels:
         name: Stop Button Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/stop-button.json
-        examples: [
-          { $ref: examples/stop-button.json }
-        ]
+          $ref: json-schemas/sensors/stop-button/stop-button.json
+        examples:
+          - $ref: json-schemas/sensors/stop-button/stop-button-01.example.json
         bindings:
           mqtt:
             qos: 1

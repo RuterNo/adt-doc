@@ -1,0 +1,11 @@
+{
+  "mode": "publish",
+  "mqtt": {
+    "qos": 1,
+    "retain": false,
+    "topic": "ruter/{operatorId}/{vehicleId}/adt/v3/sensors/apc/{sensorId}",
+    "params": [
+      "sensorId"
+    ]
+  }
+}

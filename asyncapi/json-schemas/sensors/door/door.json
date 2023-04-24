@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.ruter.no/adt/ota/api/v2.1/sensor/door.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/sensors/door/door.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Door",
   "type": "object",
@@ -7,7 +7,7 @@
     "doorOpen",
     "atDateTime"
   ],
-  "description": "Describes if any door is open (or to be more precise – if the door lock is released). Also see topic pe/doors_individually for status on individual doors.",
+  "description": "Describes if any door is open (if the door lock is released). Also see topic pe/doors_individually for status on individual doors.",
   "additionalProperties": true,
   "properties": {
     "traceId": {
