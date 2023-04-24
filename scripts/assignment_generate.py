@@ -51,7 +51,7 @@ def resolve_schemas():
 
     res = {}
     for schema_path in schema_paths:
-        examples = [str(p) for p in PROJECT_ROOT.rglob(f"*example.json") if schema_path.stem in str(p)]
+        examples = [str(p) for p in schema_path.parent.rglob(f"*example.json") if schema_path.stem in str(p)]
         examples.extend([str(p) for p in PROJECT_ROOT.rglob(f"*{schema_path.name}*") if 'examples' in str(p)])
         examples.extend([str(p) for p in PROJECT_ROOT.rglob(f"*{schema_path.stem}_*.json") if 'examples' in str(p)])
         meta = [str(p) for p in PROJECT_ROOT.rglob(f"*{schema_path.stem}.meta.json")]
@@ -159,16 +159,33 @@ def update_meta(paths):
     meta_path = paths['meta']
     if meta_path:
         meta = read_json(meta_path)
-        include_vehicle = 'vehicleCentric' not in meta or meta['vehicleCentric']
+        if 'mqtt' not in meta:
+            meta['mqtt'] = {
+                'qos': 'TODO',
+                'retain': 'TODO'
+            }
+
+        mqtt = meta['mqtt']
+        if 'qos' not in mqtt:
+            mqtt['qos'] = 'TODO'
+        if 'retain' not in mqtt:
+            mqtt['retain'] = 'TODO'
+
         routing_prefix = '{operatorId}/ruter' if 'publish' != meta['mode'] else 'ruter/{operatorId}'
+        include_vehicle = 'vehicleCentric' not in meta or meta['vehicleCentric']
         if include_vehicle:
             routing_prefix = routing_prefix + "/{vehicleId}"
         prefix = f'{routing_prefix}/adt/v{API_VERSION_MAJOR}'
         topic = f"{prefix}/{paths['channel']}"
-        if 'mqtt' not in meta:
-            meta['mqtt'] = {}
+        topic_params = mqtt['params'] if 'params' in mqtt else []
 
-        meta['mqtt']['topic'] = topic
+        for topic_param in topic_params:
+            topic = f'{topic}/{{{topic_param}}}'
+
+        mqtt['topic'] = topic
+        paths['channel'] = topic.replace(f"{prefix}/", ""
+                                         )
+
         write_json(Path(meta_path), meta)
         return meta
     else:
@@ -187,12 +204,23 @@ def main():
 
     for name, paths in schemas.items():
         meta = update_meta(paths)
+        mqtt = meta['mqtt']
         update_doc(paths, meta)
         channel = paths['channel']
+        schema_params = None
+        if 'params' in mqtt and len(mqtt['params']) > 0:
+            tmp = {}
+            for param in mqtt['params']:
+                tmp[param] = {
+                    '$ref': f'#/components/parameters/{param}'
+                }
+            schema_params = tmp
+
         res[channel] = {
             "description": {
                 "$ref": project_relative(paths['doc'])
             },
+
             meta['mode']: {
                 "message": {
                     "name": paths['schema_title'],
@@ -210,6 +238,8 @@ def main():
                 }
             }
         }
+        if schema_params:
+            res[channel]['parameters'] = schema_params
 
     print(yaml.dump({"channels": res}))
 

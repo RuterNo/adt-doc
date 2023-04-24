@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.ruter.no/adt/ota/api/v2.1/sensor/odometer.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/sensors/odometer/odometer.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Odometer",
   "type": "object",

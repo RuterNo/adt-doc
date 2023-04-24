@@ -1,7 +1,7 @@
 {
-  "$id": "https://schemas.ruter.no/adt/ota/api/v2.1/sensor/apc-sensors.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/sensors/apc/apc.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "ApcSensors",
+  "title": "Apc",
   "type": "object",
   "required": [
     "doorRef",
