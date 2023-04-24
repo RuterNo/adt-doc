@@ -1,7 +1,21 @@
 ### DPI Acknowledge message:
 | Field         | Value                                                       |
 |---------------|-------------------------------------------------------------|
-| Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi_ack                   |
+| Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/ack                   |
 | Schema        | [ dpi-acknowledge.json ](json-schemas/dpi-acknowledge.json) |
 
-The DPI Ack topic is used to inform the Ruter BO about the content presented on the PTO’s own systems for Dynamic Passenger Information in the vehicle. Usually, this is destination displays. The rest of DPI is presented by Ruter’s own DPI system, and does not need this kind of acknowledgement message.
+The DPI Ack topic is used to inform the Ruter BO about the correct transfer and interpretation of messages to the vehicle.
+
+Ruter shall receive an acknowledgment message for the following topics: 
+
+| Topic                     | Responsible for producing ack |
+|---------------------------|-------------------------------|
+| External display messages | PTO                           |
+| Audio messages            | PTO                           |
+| Journey messages          | DPI application               |
+| NextStop messages         | DPI application               |
+
+The ack message should be produced as soon as the message is received and validated. This is a confirmation that the system
+on board the vehicle have received the data and is capable of acting on it. 
+
+No confirmation message should be returned if the system is unable to playback the content. (e.g. invalid message format)
