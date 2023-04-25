@@ -1,0 +1,13 @@
+{
+  "name": "Sales Diagnostics",
+  "payload": {
+    "eventTimestamp": "2020-04-28T13:49:50.814Z",
+    "nfcReaderConnected": false,
+    "printerConnected": true,
+    "nodAvailable": true,
+    "sapiAvailable": false,
+    "loggedIn": true,
+    "journeyRef": "42911-2020-05-25T16:42:00+02:00",
+    "stopPlaceId": "NSR:StopPlace:59734"
+  }
+}
