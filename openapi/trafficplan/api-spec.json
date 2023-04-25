@@ -1,0 +1,241 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "traffic-plan",
+    "description": "The traffic plan API is used to browse and download traffic plan exports. The exports are organized by contract-id and version. For each contract there exists one or more exports with unique versions.",
+    "version": "version.from.tag"
+  },
+  "servers": [
+    {
+      "url": "https://netex-export.transhub.io/v1"
+    }
+  ],
+  "paths": {
+    "/token": {
+      "post": {
+        "summary": "Fetch token",
+        "description": "Used to fetch an authentication token. The token is needed to identify the client when using the other endpoints in the API. The token is valid for one hour.",
+        "security": [],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "grant_type": {
+                    "type": "string",
+                    "example": "client_credentials"
+                  },
+                  "scope": {
+                    "type": "string",
+                    "example": "https://netex-export.transhub.io/contract"
+                  },
+                  "client_id": {
+                    "type": "string",
+                    "example": "[my-client-id]"
+                  },
+                  "client_secret": {
+                    "type": "string",
+                    "example": "[my-client-secret]"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The request was successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "access_token": {
+                      "type": "string"
+                    },
+                    "expires_in": {
+                      "type": "integer"
+                    },
+                    "token_type": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "access_token": "[token]",
+                  "expires_in": 3600,
+                  "token_type": "Bearer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contracts": {
+      "get": {
+        "summary": "Fetch contract ids",
+        "description": "Used to fetch the id and name of all contracts available to the client.",
+        "responses": {
+          "200": {
+            "description": "The request was successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "contracts": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "contract_id": {
+                            "type": "string"
+                          },
+                          "contract_name": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "example": {
+                  "contracts": [
+                    {
+                      "contract_id": "RUT:OperatorContract:1234",
+                      "contract_name": "Contract 1234"
+                    },
+                    {
+                      "contract_id": "RUT:OperatorContract:5678",
+                      "contract_name": "Contract 5678"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "client-authorizer": []
+          }
+        ]
+      }
+    },
+    "/contract/{contract-id}/status": {
+      "get": {
+        "summary": "Find latest version",
+        "description": "Used to find all versions for a specific contract.",
+        "responses": {
+          "200": {
+            "description": "The request was successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "contract": {
+                      "type": "string"
+                    },
+                    "versions": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "example": {
+                    "contract": "RUT:OperatorContract:1234",
+                    "versions": [
+                      "1000",
+                      "1001",
+                      "1002",
+                      "1003"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "client-authorizer": []
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/contract-id"
+        }
+      ]
+    },
+    "/contract/{contract-id}/version/{version-id}": {
+      "get": {
+        "summary": "Fetch export url",
+        "description": "Used to get the url to an export for a specific contract with a specific version. The url can be used to download the export directly. It is pre-signed and valid for one hour.",
+        "responses": {
+          "200": {
+            "description": "The request was successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "signed-url": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "signed-url": "https://ruter-plandata-netex-export-prod.s3.eu-west-1.amazonaws.com/RUT%3AOperator%3A123/RUT%3AOperatorContract%3A1234/1000/dummy-kontrakt-netex.zip?AWSAccessKeyId=[key]&Expires=1682114216&Signature=[signature]"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "client-authorizer": []
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "$ref": "#/components/parameters/contract-id"
+        },
+        {
+          "name": "version-id",
+          "in": "path",
+          "description": "The requested operator contract version.",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ]
+    }
+  },
+  "components": {
+    "parameters": {
+      "contract-id": {
+        "name": "contract-id",
+        "in": "path",
+        "description": "The id of the requested operator contract.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    "securitySchemes": {
+      "client-authorizer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
