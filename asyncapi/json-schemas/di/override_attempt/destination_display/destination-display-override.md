@@ -1,4 +1,4 @@
-### DestinationDisplayOverride Message
+### Destination Display Override Message
 | Field         | Value                                                                                                                         |
 |---------------|-------------------------------------------------------------------------------------------------------------------------------|
 | Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/di/override_attempt/destination_display                                                 |

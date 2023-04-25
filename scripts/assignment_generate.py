@@ -151,7 +151,7 @@ def update_doc(paths, meta):
             else:
                 res.append(line)
 
-        res[0] = f"### {paths['schema_title']} Message"
+        #res[0] = f"### {paths['schema_title']} Message"
         write_file(doc_path, "\n".join(res) + "\n")
 
 

@@ -1,4 +1,4 @@
-### AvailableDestinationDisplays Message
+### Available Destination Displays Message
 | Field         | Value                                                                                                                       |
 |---------------|-----------------------------------------------------------------------------------------------------------------------------|
 | Central Topic | {operatorId}/ruter/{vehicleId}/adt/v3/di/available_destination_displays                                                     |

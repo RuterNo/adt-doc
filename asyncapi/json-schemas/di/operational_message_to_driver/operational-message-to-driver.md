@@ -1,4 +1,4 @@
-### OperationalMessageToDriver Message
+### Operational Message to Driver Message
 | Field         | Value                                                                                                                    |
 |---------------|--------------------------------------------------------------------------------------------------------------------------|
 | Central Topic | {operatorId}/ruter/{vehicleId}/adt/v3/di/operational_message_to_driver                                                   |

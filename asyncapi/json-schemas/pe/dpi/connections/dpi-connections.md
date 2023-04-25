@@ -1,4 +1,4 @@
-### DpiConnections Message
+### Connections Message
 | Field         | Value                                                                                                             |
 |---------------|-------------------------------------------------------------------------------------------------------------------|
 | Central Topic | {operatorId}/ruter/{vehicleId}/adt/v3/pe/dpi/connections                                                          |

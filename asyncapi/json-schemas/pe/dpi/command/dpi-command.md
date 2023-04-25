@@ -1,4 +1,4 @@
-### DpiCommand Message
+### Command Message
 | Field         | Value                                                                                                             |
 |---------------|-------------------------------------------------------------------------------------------------------------------|
 | Central Topic | {operatorId}/ruter/{vehicleId}/adt/v3/pe/dpi/command                                                              |

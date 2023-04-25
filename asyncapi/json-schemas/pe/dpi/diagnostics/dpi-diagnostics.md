@@ -1,4 +1,4 @@
-### DpiDiagnostics Message
+### Diagnostics Message
 | Field         | Value                                                                                                             |
 |---------------|-------------------------------------------------------------------------------------------------------------------|
 | Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/pe/dpi/diagnostics                                                          |
