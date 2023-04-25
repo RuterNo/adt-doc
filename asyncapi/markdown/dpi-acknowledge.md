@@ -1,8 +1,11 @@
 ### DPI Acknowledge message:
-| Field         | Value                                                       |
-|---------------|-------------------------------------------------------------|
-| Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/ack                   |
-| Schema        | [ dpi-acknowledge.json ](json-schemas/dpi-acknowledge.json) |
+| Field         | Value                                                                                                     |
+|---------------|-----------------------------------------------------------------------------------------------------------|
+| Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/ack                                                                 |
+| Schema        | [ dpi-acknowledge.json ](json-schemas/dpi-acknowledge.json)                                               |
+| Producer      | PTO, [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                          |
+| Consumer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                               |
+| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. | 
 
 The DPI Ack topic is used to inform the Ruter BO about the correct transfer and interpretation of messages to the vehicle.
 

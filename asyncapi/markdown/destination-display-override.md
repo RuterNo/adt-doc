@@ -1,5 +1,8 @@
 ### Destination Display Override Message
-| Field         | Value                                                                                 |
-|---------------|---------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/di/override_attempt/destination_display                |
-| Schema        | [ destination-display-override.json ](json-schemas/destination-display-override.json) |
+| Field         | Value                                                                                                     |
+|---------------|-----------------------------------------------------------------------------------------------------------|
+| Central Topic | ruter/{operatorId}/{vehicleId}/di/override_attempt/destination_display                                    |
+| Schema        | [ destination-display-override.json ](json-schemas/destination-display-override.json)                     |
+| Producer      | PTO                                                                                                       |
+| Consumer      | Ruter BO                                                                                                  |
+| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. | 

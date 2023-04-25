@@ -1,8 +1,11 @@
 ### Location Message
-| Field         | Value                                                |
-|---------------|------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/sensors/gnss/location|
-| Schema        | [ location.json ](json-schemas/sensors/gnss/location/location.json)|
+| Field         | Value                                                                                                     |
+|---------------|-----------------------------------------------------------------------------------------------------------|
+| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/sensors/gnss/location                                               |
+| Schema        | [ location.json ](json-schemas/sensors/gnss/location/location.json)                                       |
+| Producer      | PTO                                                                                                       |
+| Consumer      | Ruter BO                                                                                                  |
+| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. | 
 
 Describes the GNSS navigation receiver feedback in metric format. The periodicity of updates to be expected should be
 described as number of seconds in configValue01 for this topic under topic:
