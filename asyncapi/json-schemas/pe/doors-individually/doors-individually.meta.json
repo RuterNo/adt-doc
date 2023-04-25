@@ -3,6 +3,6 @@
   "mqtt": {
     "qos": 1,
     "retain": false,
-    "topic": "ruter/{operatorId}/{vehicleId}/adt/v3/proprietary_extensions/doors_individually"
+    "topic": "ruter/{operatorId}/{vehicleId}/adt/v3/pe/doors_individually"
   }
 }

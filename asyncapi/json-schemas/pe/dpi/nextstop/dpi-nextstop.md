@@ -1,7 +1,7 @@
-### Next Stop message:
+### DpiNextstop Message
 | Field         | Value                                                 |
 |---------------|-------------------------------------------------------|
-| Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi/nextstop        |
-| Schema        | [ dpi-nextstop.json ](json-schemas/dpi-nextstop.json) |
+| Central Topic | {operatorId}/ruter/{vehicleId}/adt/v3/pe/dpi/nextstop |
+| Schema        | [ dpi-nextstop.json ](json-schemas/pe/dpi/nextstop/dpi-nextstop.json)|
 
 Next stop on the buss route after leaving a stop.

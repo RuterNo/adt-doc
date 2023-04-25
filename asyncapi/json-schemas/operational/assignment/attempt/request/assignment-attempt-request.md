@@ -5,7 +5,7 @@
 | Schema        | [ assignment-attempt-request.json ](json-schemas/operational/assignment/attempt/request/assignment-attempt-request.json) |
 
 ### AssignmentAttemptRequest Usage
-`operational/assignment/attempt` follows the request/response/state pattern. When a `request` is made to the request topic, a `response` will be available at the response topic once Ruter has finished processing. 
+`operational/assignment/attempt` follows the request/response/state pattern. When a `request` is made to the request topic, a `response` will be available at the response topic once Ruter has finished processing.
 In addition, if the `request` results in a change of `state`, the state topic will be updated to reflect the current state as seen by Ruter.
 
 An `AssignmentAttemptRequest` can be made for:

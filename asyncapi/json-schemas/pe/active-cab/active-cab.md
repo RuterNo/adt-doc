@@ -1,5 +1,5 @@
 ### ActiveCab Message
 | Field         | Value                                                                               |
 |---------------|-------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/proprietary_extensions/active_cab             |
-| Schema        | [ active-cab.json ](json-schemas/proprietary-extensions/active-cab/active-cab.json) |
+| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/pe/active_cab                                 |
+| Schema        | [ active-cab.json ](json-schemas/pe/active-cab/active-cab.json)                     |
