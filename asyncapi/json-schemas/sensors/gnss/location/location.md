@@ -7,33 +7,8 @@
 | Consumer      | Ruter BO                                                                                                  |
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. | 
 
-Describes the GNSS navigation receiver feedback in metric format. The periodicity of updates to be expected should be
-described as number of seconds in configValue01 for this topic under topic:
-```
-ruter/{PTO}/{vehicleID}/mi/provider_clients//provided_topics
-```
+Describes the GNSS navigation receiver feedback in metric format.
 
-The GNSS type should be described in configValue11. Information about the used GNSS System. MixedGNSSTypes is used for
-receivers using multiple satellite constellations. Possible values:
-- GPS
-- Glonass
-- Galileo
-- Beidou
-- IRNSS
-- Other
-- DeadReckoning
-- MixedGNSSTypes
+The GNSS type is expected to be GPS. The GNSS coordinate system is expected be “WGS84”.
 
-The GNSS coordinate system should be described in configValue12, at least if other than “WGS84”. Possible values:
-- GPS
-- Glonass
-- Galileo
-- Beidou
-- IRNSS
-- Other
-- DeadReckoning
-- MixedGNSSTypes
-
-“MixedGNSSTypes” is used for receivers using multiple satellite constellations.
-
-Frequency is recommended at 1 message per second.
+Frequency is expected to be at 1 message per second.
