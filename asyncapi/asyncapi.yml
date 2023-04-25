@@ -284,15 +284,15 @@ channels:
             retain: false
   pe/sales/diagnostics:
     description:
-      $ref: markdown/sale-diagnostics.md
+      $ref: markdown/sales-diagnostics.md
     publish:
       message:
         name: RuterSalg Diagnostics MQTT Message
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/salediagnostics.json
+          $ref: json-schemas/salesdiagnostics.json
         examples: [
-          { $ref: examples/salediagnostics.json }
+          { $ref: examples/salesdiagnostics.json }
         ]
         bindings:
           mqtt:
