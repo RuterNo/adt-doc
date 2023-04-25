@@ -3,6 +3,6 @@
   "mqtt": {
     "retain": false,
     "qos": 1,
-    "topic": "ruter/{operatorId}/{vehicleId}/adt/v3/pe/dpi_diagnostics"
+    "topic": "ruter/{operatorId}/{vehicleId}/adt/v3/pe/dpi/ack"
   }
 }

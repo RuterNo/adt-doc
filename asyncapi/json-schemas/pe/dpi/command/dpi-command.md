@@ -1,8 +1,8 @@
 ### DpiCommand Message
 | Field         | Value                                                              |
 |---------------|--------------------------------------------------------------------|
-| Central Topic | {operatorId}/ruter/{vehicleId}/adt/v3/pe/dpi_command               |
-| Schema        | [ dpi-command.json ](json-schemas/pe/dpi_command/dpi-command.json) |
+| Central Topic | {operatorId}/ruter/{vehicleId}/adt/v3/pe/dpi/command               |
+| Schema        | [ dpi-command.json ](json-schemas/pe/dpi/command/dpi-command.json) |
 
 This channels is reserved for command and control messages originated by Ruter. Typical use cases include:
 

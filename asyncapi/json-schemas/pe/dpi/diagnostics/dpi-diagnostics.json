@@ -1,7 +1,7 @@
 {
   "definitions": {},
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/pe/dpi_diagnostics/dpi-diagnostics.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/pe/dpi/diagnostics/dpi-diagnostics.json",
   "type": "object",
   "title": "DpiDiagnostics",
   "required": [

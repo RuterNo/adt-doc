@@ -248,33 +248,33 @@ channels:
           mqtt:
             qos: 1
             retain: true
-  pe/dpi_ack:
+  pe/dpi/ack:
     description:
-      $ref: json-schemas/pe/dpi_ack/dpi-acknowledge.md
+      $ref: json-schemas/pe/dpi/ack/dpi-acknowledge.md
     publish:
       message:
         name: DpiAcknowledge
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/pe/dpi_ack/dpi-acknowledge.json
+          $ref: json-schemas/pe/dpi/ack/dpi-acknowledge.json
         examples:
-          - $ref: json-schemas/pe/dpi_ack/dpi-acknowledge.example.json
+          - $ref: json-schemas/pe/dpi/ack/dpi-acknowledge.example.json
         bindings:
           mqtt:
             qos: 1
             retain: false
-  pe/dpi_diagnostics:
+  pe/dpi/diagnostics:
     description:
-      $ref: json-schemas/pe/dpi_diagnostics/dpi-diagnostics.md
+      $ref: json-schemas/pe/dpi/diagnostics/dpi-diagnostics.md
     publish:
       message:
         name: DpiDiagnostics
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/pe/dpi_diagnostics/dpi-diagnostics.json
+          $ref: json-schemas/pe/dpi/diagnostics/dpi-diagnostics.json
         examples:
-          - $ref: json-schemas/pe/dpi_diagnostics/dpi-diagnostics-heartbeat.example.json
-          - $ref: json-schemas/pe/dpi_diagnostics/dpi-diagnostics.example.json
+          - $ref: json-schemas/pe/dpi/diagnostics/dpi-diagnostics-heartbeat.example.json
+          - $ref: json-schemas/pe/dpi/diagnostics/dpi-diagnostics.example.json
         bindings:
           mqtt:
             qos: 1
@@ -485,17 +485,17 @@ channels:
           mqtt:
             qos: 1
             retain: true
-  pe/dpi_command:
+  pe/dpi/command:
     description:
-      $ref: json-schemas/pe/dpi_command/dpi-command.md
+      $ref: json-schemas/pe/dpi/command/dpi-command.md
     subscribe:
       message:
         name: DpiCommand
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/pe/dpi_command/dpi-command.json
+          $ref: json-schemas/pe/dpi/command/dpi-command.json
         examples:
-          - $ref: json-schemas/pe/dpi_command/dpi-command.example.json
+          - $ref: json-schemas/pe/dpi/command/dpi-command.example.json
         bindings:
           mqtt:
             qos: 1

@@ -1,8 +1,8 @@
 ### DpiAcknowledge Message
 | Field         | Value                                                                  |
 |---------------|------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/pe/dpi_ack                       |
-| Schema        | [ dpi-acknowledge.json ](json-schemas/pe/dpi_ack/dpi-acknowledge.json) |
+| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/pe/dpi/ack                       |
+| Schema        | [ dpi-acknowledge.json ](json-schemas/pe/dpi/ack/dpi-acknowledge.json) |
 
 The DPI Ack topic is used to inform the Ruter BO about the correct transfer and interpretation of messages to the vehicle.
 
