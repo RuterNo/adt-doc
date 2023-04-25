@@ -68,13 +68,16 @@
             "description": "Optional. Location of content. Do not use if content is defined."
           },
           "speaker": {
-            "type": "string",
-            "description": "Speaker the audio is intended for",
-            "examples": [
-              "INTERNAL",
-              "EXTERNAL",
-              "DRIVER"
-            ]
+            "type": "array",
+            "description": "Speaker targets the audio is intended for",
+            "items": {
+              "type": "string",
+              "examples": [
+                "INTERNAL",
+                "EXTERNAL",
+                "DRIVER"
+              ]
+            }
           },
           "volume": {
             "type": "number",
