@@ -9,13 +9,13 @@
       {
         "encoding": "OPUS",
         "contentUrl": "http://webserver.local/resources/safety_long.opus",
-        "speaker": "INTERNAL",
+        "speaker": ["INTERNAL"],
         "volume": 70
       },
       {
         "encoding": "MP3",
         "content": "SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU3...",
-        "speaker": "INTERNAL",
+        "speaker": ["INTERNAL"],
         "volume": 70
       }
     ]
