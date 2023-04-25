@@ -3,6 +3,9 @@
 |---------------|--------------------------------------------------------------------------------------------------------------------------|
 | Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/operational/assignment/attempt/request                                             |
 | Schema        | [ assignment-attempt-request.json ](json-schemas/operational/assignment/attempt/request/assignment-attempt-request.json) |
+| Producer      | PTO                                                                                                                      |
+| Consumer      | Ruter BO                                                                                                                 |
+| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.                | 
 
 ### AssignmentAttemptRequest Usage
 `operational/assignment/attempt` follows the request/response/state pattern. When a `request` is made to the request topic, a `response` will be available at the response topic once Ruter has finished processing.
