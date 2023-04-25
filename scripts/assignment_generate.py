@@ -111,14 +111,14 @@ def update_schema_content(schemas):
             expected_title = ''.join([*map(str.title, tmp)])
             res['title'] = expected_title
 
-            if "description" not in res:
-                res["description"] = "TODO: Missing description"
+            #if "description" not in res:
+            #    res["description"] = "TODO: Missing description"
 
             if "properties" in res:
                 for key, value in res["properties"].items():
                     value["$id"] = f"#/properties/{key}"
-                    if "description" not in value:
-                        value["description"] = "TODO: Missing description"
+                #    if "description" not in value:
+                #        value["description"] = "TODO: Missing description"
             write_json(spec_path, res)
 
 
@@ -151,7 +151,7 @@ def update_doc(paths, meta):
             else:
                 res.append(line)
 
-        res[0] = f"### {paths['schema_title']} Message"
+        #res[0] = f"### {paths['schema_title']} Message"
         write_file(doc_path, "\n".join(res) + "\n")
 
 

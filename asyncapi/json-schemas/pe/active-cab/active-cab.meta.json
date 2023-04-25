@@ -1,0 +1,8 @@
+{
+  "mode": "publish",
+  "mqtt": {
+    "qos": "1",
+    "retain": true,
+    "topic": "ruter/{operatorId}/{vehicleId}/adt/v3/pe/active_cab"
+  }
+}

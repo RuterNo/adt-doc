@@ -74,9 +74,9 @@ channels:
         payload:
           $ref: json-schemas/operational/assignment/status/assignment-status.json
         schemaFormat: application/schema+json;version=draft-07
-  proprietary_extensions/active_cab:
+  pe/active_cab:
     description:
-      $ref: json-schemas/proprietary-extensions/active-cab/active-cab.md
+      $ref: json-schemas/pe/active-cab/active-cab.md
     publish:
       message:
         bindings:
@@ -84,14 +84,14 @@ channels:
             qos: '1'
             retain: true
         examples:
-          - $ref: json-schemas/proprietary-extensions/active-cab/active-cab.example.json
+          - $ref: json-schemas/pe/active-cab/active-cab.example.json
         name: ActiveCab
         payload:
-          $ref: json-schemas/proprietary-extensions/active-cab/active-cab.json
+          $ref: json-schemas/pe/active-cab/active-cab.json
         schemaFormat: application/schema+json;version=draft-07
-  proprietary_extensions/door_lock:
+  pe/door_lock:
     description:
-      $ref: json-schemas/proprietary-extensions/door-lock/door-lock.md
+      $ref: json-schemas/pe/door-lock/door-lock.md
     publish:
       message:
         bindings:
@@ -99,14 +99,14 @@ channels:
             qos: 1
             retain: false
         examples:
-          - $ref: json-schemas/proprietary-extensions/door-lock/door-lock.example.json
+          - $ref: json-schemas/pe/door-lock/door-lock.example.json
         name: DoorLock
         payload:
-          $ref: json-schemas/proprietary-extensions/door-lock/door-lock.json
+          $ref: json-schemas/pe/door-lock/door-lock.json
         schemaFormat: application/schema+json;version=draft-07
-  proprietary_extensions/doors_individually:
+  pe/doors_individually:
     description:
-      $ref: json-schemas/proprietary-extensions/doors-individually/doors-individually.md
+      $ref: json-schemas/pe/doors-individually/doors-individually.md
     publish:
       message:
         bindings:
@@ -114,10 +114,10 @@ channels:
             qos: 1
             retain: false
         examples:
-          - $ref: json-schemas/proprietary-extensions/doors-individually/doors-individually.example.json
+          - $ref: json-schemas/pe/doors-individually/doors-individually.example.json
         name: DoorsIndividually
         payload:
-          $ref: json-schemas/proprietary-extensions/doors-individually/doors-individually.json
+          $ref: json-schemas/pe/doors-individually/doors-individually.json
         schemaFormat: application/schema+json;version=draft-07
   sensors/apc/{sensorId}:
     description:
@@ -219,16 +219,15 @@ channels:
 
   di/override_attempt/destination_display:
     description:
-      $ref: markdown/destination-display-override.md
+      $ref: json-schemas/di/override_attempt/destination_display/destination-display-override.md
     publish:
       message:
-        name: Destination Display Override Message
+        name: DestinationDisplayOverride
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/destination-display-override.json
-        examples: [
-          { $ref: examples/destination-display-override.json }
-        ]
+          $ref: json-schemas/di/override_attempt/destination_display/destination-display-override.json
+        examples:
+          - $ref: json-schemas/di/override_attempt/destination_display/destination-display-override.example.json
         bindings:
           mqtt:
             qos: 1
@@ -249,35 +248,33 @@ channels:
           mqtt:
             qos: 1
             retain: true
-  pe/dpi_ack:
+  pe/dpi/ack:
     description:
-      $ref: markdown/dpi-acknowledge.md
+      $ref: json-schemas/pe/dpi/ack/dpi-acknowledge.md
     publish:
       message:
-        name: DPIAcknowledge Message
+        name: DpiAcknowledge
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/dpi-acknowledge.json
-        examples: [
-          { $ref: examples/dpi-acknowledge.json }
-        ]
+          $ref: json-schemas/pe/dpi/ack/dpi-acknowledge.json
+        examples:
+          - $ref: json-schemas/pe/dpi/ack/dpi-acknowledge.example.json
         bindings:
           mqtt:
             qos: 1
             retain: false
-  pe/dpi_diagnostics:
+  pe/dpi/diagnostics:
     description:
-      $ref: markdown/dpi-diagnostics.md
+      $ref: json-schemas/pe/dpi/diagnostics/dpi-diagnostics.md
     publish:
       message:
-        name: DPI Diagnostics Message
+        name: DpiDiagnostics
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/dpi-diagnostics.json
-        examples: [
-          { $ref: examples/dpi-diagnostics.json },
-          { $ref: examples/dpi-diagnostics-heartbeat.json },
-        ]
+          $ref: json-schemas/pe/dpi/diagnostics/dpi-diagnostics.json
+        examples:
+          - $ref: json-schemas/pe/dpi/diagnostics/dpi-diagnostics-heartbeat.example.json
+          - $ref: json-schemas/pe/dpi/diagnostics/dpi-diagnostics.example.json
         bindings:
           mqtt:
             qos: 1
@@ -319,16 +316,15 @@ channels:
             retain: false
   di/available_destination_displays:
     description:
-      $ref: markdown/available-destination-displays.md
+      $ref: json-schemas/di/available-destination-displays/available-destination-displays.md
     subscribe:
       message:
-        name: Assignment Attempt Message
+        name: AvailableDestinationDisplays
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/available-destination-displays.json
-        examples: [
-          { $ref: examples/available-destination-displays.json }
-        ]
+          $ref: json-schemas/di/available-destination-displays/available-destination-displays.json
+        examples:
+          - $ref: json-schemas/di/available-destination-displays/available-destination-displays.example.json
         bindings:
           mqtt:
             qos: 1
@@ -336,185 +332,170 @@ channels:
 
   di/operational_message_to_driver:
     description:
-      $ref: markdown/operational-message-to-driver.md
+      $ref: json-schemas/di/operational_message_to_driver/operational-message-to-driver.md
     subscribe:
       message:
-        name: OperationalMessageToDriver Message
+        name: OperationalMessageToDriver
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/operational-message-to-driver.json
-        examples: [
-          { $ref: examples/operational-message-to-driver.json }
-        ]
+          $ref: json-schemas/di/operational_message_to_driver/operational-message-to-driver.json
+        examples:
+          - $ref: json-schemas/di/operational_message_to_driver/operational-message-to-driver.example.json
         bindings:
           mqtt:
             qos: 1
             retain: false
-  ei/audio_message:
+  pe/audio:
     description:
-      $ref: markdown/audio.md
+      $ref: json-schemas/pe/audio/audio.md
     subscribe:
       message:
-        name: Audio MQTT Message
+        name: Audio
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/audio.json
-        examples: [
-          { $ref: examples/audio.json },
-          { $ref: examples/audio_local.json },
-        ]
+          $ref: json-schemas/pe/audio/audio.json
+        examples:
+          - $ref: json-schemas/pe/audio/audio_local.example.json
+          - $ref: json-schemas/pe/audio/audio.example.json
         bindings:
           mqtt:
             qos: 1
             retain: false
   pe/dpi/journey:
     description:
-      $ref: markdown/dpi-journey.md
+      $ref: json-schemas/pe/dpi/journey/dpi-journey.md
     subscribe:
-      externalDocs:
-        description: https://ruterno.github.io
-        url: https://ruterno.github.io/#/docs/ota?id=vehicle-journey
       message:
-        name: Journey Message
+        name: DpiJourney
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/dpi-journey.json
-        examples: [
-          { $ref: examples/dpi-journey.json }
-        ]
+          $ref: json-schemas/pe/dpi/journey/dpi-journey.json
+        examples:
+          - $ref: json-schemas/pe/dpi/journey/dpi-journey.example.json
         bindings:
           mqtt:
             qos: 1
             retain: true
   pe/dpi/nextstop:
     description:
-      $ref: markdown/dpi-nextstop.md
+      $ref: json-schemas/pe/dpi/nextstop/dpi-nextstop.md
     subscribe:
       message:
-        name: Next Stop MQTT Message
+        name: DpiNextstop
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/dpi-nextstop.json
-        examples: [
-          { $ref: examples/dpi-nextstop.json }
-        ]
+          $ref: json-schemas/pe/dpi/nextstop/dpi-nextstop.json
+        examples:
+          - $ref: json-schemas/pe/dpi/nextstop/dpi-nextstop.example.json
         bindings:
           mqtt:
             qos: 1
             retain: true
   pe/dpi/eta:
     description:
-      $ref: markdown/dpi-eta.md
+      $ref: json-schemas/pe/dpi/eta/dpi-eta.md
     subscribe:
       message:
-        name: ETA MQTT Message
+        name: DpiEta
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/dpi-eta.json
-        examples: [
-          { $ref: examples/dpi-eta.json }
-        ]
+          $ref: json-schemas/pe/dpi/eta/dpi-eta.json
+        examples:
+          - $ref: json-schemas/pe/dpi/eta/dpi-eta.example.json
         bindings:
           mqtt:
             qos: 1
             retain: false
   pe/dpi/externaldisplay:
     description:
-      $ref: markdown/dpi-externaldisplay.md
+      $ref: json-schemas/pe/dpi/externaldisplay/dpi-externaldisplay.md
     subscribe:
       message:
-        name: External Display MQTT Message
+        name: DpiExternaldisplay
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/dpi-externaldisplay.json
-        examples: [
-          { $ref: examples/dpi-externaldisplay.json },
-          { $ref: examples/dpi-externaldisplay_deadrun.json }
-
-        ]
+          $ref: json-schemas/pe/dpi/externaldisplay/dpi-externaldisplay.json
+        examples:
+          - $ref: json-schemas/pe/dpi/externaldisplay/dpi-externaldisplay_deadrun.example.json
+          - $ref: json-schemas/pe/dpi/externaldisplay/dpi-externaldisplay.example.json
         bindings:
           mqtt:
             qos: 1
             retain: true
   pe/dpi/pa:
     description:
-      $ref: markdown/dpi-pa.md
+      $ref: json-schemas/pe/dpi/pa/dpi-pa.md
     subscribe:
       message:
-        name: Passenger Announcement message
+        name: DpiPa
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/dpi-pa.json
-        examples: [
-          { $ref: examples/dpi-pa_video.json },
-          { $ref: examples/dpi-pa_multiple.json },
-          { $ref: examples/dpi-pa_text.json },
-          { $ref: examples/dpi-pa_clear.json }
-        ]
+          $ref: json-schemas/pe/dpi/pa/dpi-pa.json
+        examples:
+          - $ref: json-schemas/pe/dpi/pa/dpi-pa_multiple.example.json
+          - $ref: json-schemas/pe/dpi/pa/dpi-pa_text.example.json
+          - $ref: json-schemas/pe/dpi/pa/dpi-pa_clear.example.json
+          - $ref: json-schemas/pe/dpi/pa/dpi-pa_video.example.json
         bindings:
           mqtt:
             qos: 1
             retain: true
   pe/dpi/arriving:
     description:
-      $ref: markdown/dpi-arriving.md
+      $ref: json-schemas/pe/dpi/arriving/dpi-arriving.md
     subscribe:
       message:
-        name: Arriving Message
+        name: DpiArriving
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/dpi-arriving.json
-        examples: [
-          { $ref: examples/dpi-arriving.json }
-        ]
+          $ref: json-schemas/pe/dpi/arriving/dpi-arriving.json
+        examples:
+          - $ref: json-schemas/pe/dpi/arriving/dpi-arriving.example.json
         bindings:
           mqtt:
             qos: 1
             retain: false
   pe/dpi/connections:
     description:
-      $ref: markdown/dpi-connections.md
+      $ref: json-schemas/pe/dpi/connections/dpi-connections.md
     subscribe:
       message:
-        name: The Connections Schema
+        name: DpiConnections
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/dpi-connections.json
-        examples: [
-          { $ref: examples/dpi-connections.json }
-        ]
+          $ref: json-schemas/pe/dpi/connections/dpi-connections.json
+        examples:
+          - $ref: json-schemas/pe/dpi/connections/dpi-connections.example.json
         bindings:
           mqtt:
             qos: 1
             retain: false
   pe/dpi/key_stops:
     description:
-      $ref: markdown/dpi-key_stops.md
+      $ref: json-schemas/pe/dpi/key_stops/dpi-key_stops.md
     subscribe:
       message:
-        name: Key Stops message
+        name: DpiKeyStops
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/dpi-key_stops.json
-        examples: [
-          { $ref: examples/dpi-key_stops.json }
-        ]
+          $ref: json-schemas/pe/dpi/key_stops/dpi-key_stops.json
+        examples:
+          - $ref: json-schemas/pe/dpi/key_stops/dpi-key_stops.example.json
         bindings:
           mqtt:
             qos: 1
             retain: true
-  pe/dpi_command:
+  pe/dpi/command:
     description:
-      $ref: markdown/dpi-command.md
+      $ref: json-schemas/pe/dpi/command/dpi-command.md
     subscribe:
       message:
-        name: DPI Command Message
+        name: DpiCommand
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/dpi-command.json
-        examples: [
-          { $ref: examples/dpi-command.json }
-        ]
+          $ref: json-schemas/pe/dpi/command/dpi-command.json
+        examples:
+          - $ref: json-schemas/pe/dpi/command/dpi-command.example.json
         bindings:
           mqtt:
             qos: 1
