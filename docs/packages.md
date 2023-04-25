@@ -2,10 +2,10 @@
 
 Ruter publishes a packages manifest that provides a list of packages that should be installed on vehicles at the following locations.
 
-| Environment | URL | Purpose |
-| --- | ---| --- |
-| Prod | https://pto-api.transhub.io/packages.json | All vehicles running regular routes |
-| Stage | https://pto-api.stage.transhub.io/packages.json | Test rigs, vehicles being tested before running regular routes |
+| Environment | URL                                             | Purpose                                                        |
+|-------------|-------------------------------------------------|----------------------------------------------------------------|
+| Prod        | https://pto-api.transhub.io/packages.json       | All vehicles running regular routes                            |
+| Stage       | https://pto-api.stage.transhub.io/packages.json | Test rigs, vehicles being tested before running regular routes |
 
 These locations should be checked once daily, at a minimum, after 16.00 CET, which is our cutoff for changes for the day, Monday to Friday.
 
@@ -43,6 +43,7 @@ The packages should end up deployed in a structure like this:
 * $APPLICATION_ROOT
   * app
   * media
+  * resources
     
 The directory application can actually be anything as long as it is the root of the web site that is served.
 
@@ -55,13 +56,15 @@ Manually setting up this structure would be done with the following steps (verif
 ~ # sha256sum application-2021-02-25T14-25-12Z.zip media-2019-10-16T15-11-00Z.zip
 5258f1e757ab9fb1e222601c793030219b7064b21206d234fc094bbdaf546fd0  application-2021-02-25T14-25-12Z.zip
 44a143c13ab452b7bd5d06f4ce3373af7b5a4da0095b42a3db27bd04e172072b  media-2019-10-16T15-11-00Z.zip
-~ # mkdir -P /var/www/application
-~ # cd /var/www/application
+~ # mkdir -P /var/www/application && cd /var/www/application
 /var/www/application # unzip ~/application-2021-02-25T14-25-12Z.zip
-/var/www/application # mkdir media
-/var/www/application # cd media
+/var/www/application # mkdir media && cd media
 /var/www/application/media # unzip ~/media-2019-10-16T15-11-00Z.zip
 /var/www/application/media # cd ..
+/var/www/application # mkdir resources && cd resources
+/var/www/application/resources # curl -O https://pto-api.test.transhub.io/resources/stop-requested-2020-11-02T15-02-50Z.mp3
+/var/www/application/resources # curl -O https://pto-api.test.transhub.io/resources/safety_long.opus
+/var/www/application/resources # cd ..
 /var/www/application # tree
 ..
 ├── app
@@ -84,17 +87,20 @@ Manually setting up this structure would be done with the following steps (verif
 │   ├── vendor.ded55e6e43e867840fc3.bundle.js.map
 │   ├── vendor_app.ded55e6e43e867840fc3.bundle.js
 │   └── vendor_app.ded55e6e43e867840fc3.bundle.js.map
-└── media
-    ├── 1080p_Ruter_Holdning_Glad.mp4
-    ├── 1080p_Toyen_K2.mp4
-    ├── 480p_Ruter_Holdning_Glad.mp4
-    ├── 480p_Toyen_K2.mp4
-    ├── 720p_Ruter_Holdning_Glad.mp4
-    ├── 720p_Toyen_K2.mp4
-    ├── campaign34.html
-    ├── manifest.js
-    ├── manifest.json
-    └── ruter-sommerkampanje.mp4
+├── media
+│   ├── 1080p_Ruter_Holdning_Glad.mp4
+│   ├── 1080p_Toyen_K2.mp4
+│   ├── 480p_Ruter_Holdning_Glad.mp4
+│   ├── 480p_Toyen_K2.mp4
+│   ├── 720p_Ruter_Holdning_Glad.mp4
+│   ├── 720p_Toyen_K2.mp4
+│   ├── campaign34.html
+│   ├── manifest.js
+│   ├── manifest.json
+│   └── ruter-sommerkampanje.mp4
+└── resources
+    ├── stop-requested-2020-10-28T19-37-00Z.mp3
+    └── safety_long.opus
 
 ```
 Automation should be based on these kinds of steps.
