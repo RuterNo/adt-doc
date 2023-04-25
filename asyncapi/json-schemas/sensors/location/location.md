@@ -1,4 +1,5 @@
 ### Location Message
+
 | Field         | Value                                                                                                     |
 |---------------|-----------------------------------------------------------------------------------------------------------|
 | Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/sensors/location                                                    |
@@ -9,6 +10,7 @@
 
 Describes the GNSS navigation receiver feedback in metric format.
 
-The GNSS type is expected to be GPS. The GNSS coordinate system is expected be “WGS84”.
+The GNSS type is expected to be GPS. The GNSS coordinate system is expected be “WGS84”. Negative values is used south of
+the equator and west of Greenwich.
 
 Frequency is expected to be at 1 message per second.
