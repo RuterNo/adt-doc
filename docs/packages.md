@@ -125,4 +125,4 @@ server {
 
 When a web server is set up, displays in a vehicle would point to the DPI application with a url like `http://webserver.local/app/index.html`.
 
-See [DPI Bus Monitor Screen Configuration](/screen-configs) documentation for more details about setting up displays with the correct content.
+See [DPI Bus Monitor Screen Configuration](../screen-configs) documentation for more details about setting up displays with the correct content.
