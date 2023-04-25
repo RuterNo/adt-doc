@@ -88,7 +88,6 @@ nav:
   - MQTT API:
       - ADT messages: adt-api.md
       - Additional messages:
-          - TSP: tsp.md
           - SLA insight: insight.md
   - Timestamps:
       - Standard: timestamps.md
