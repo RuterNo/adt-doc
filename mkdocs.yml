@@ -85,12 +85,12 @@ markdown_extensions:
 # Page tree
 nav:
   - Home: index.md
-  - MQTT API:
+  - API:
       - ADT messages: adt-api.md
+      - Data formats:
+          - Time and Date: timestamps.md
       - Additional messages:
           - SLA insight: insight.md
-  - Timestamps:
-      - Standard: timestamps.md
   - Vehicle setup:
       - MQTT bridge config: mqtt.md
       - Browser requirements: browser-requirements.md
