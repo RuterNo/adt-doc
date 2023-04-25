@@ -86,7 +86,8 @@ markdown_extensions:
 nav:
   - Home: index.md
   - API:
-      - ADT messages: adt-api.md
+      - MQTT Api: mqtt-api.md
+      - Traffic plan: traffic-plan.md
       - Data formats:
           - Time and Date: timestamps.md
       - Additional messages:
@@ -101,7 +102,5 @@ nav:
         - Screen configuration: screen-configs.md
         - Troubleshooting client: troubleshooting-client.md
         - Vehicle Status (Live): live-status.md
-  - REST API:
-      - Traffic plan: traffic-plan.md
   - Contribute:
       - Report an issue: issue.md
