@@ -152,7 +152,7 @@ channels:
         payload:
           $ref: json-schemas/sensors/door/door.json
         schemaFormat: application/schema+json;version=draft-07
-  sensors/gnss/location:
+  sensors/location:
     description:
       $ref: json-schemas/sensors/location/location.md
     publish:
@@ -162,10 +162,10 @@ channels:
             qos: 0
             retain: false
         examples:
-          - $ref: json-schemas/sensors/gnss/location/location-01.example.json
+          - $ref: json-schemas/sensors/location/location-01.example.json
         name: Location
         payload:
-          $ref: json-schemas/sensors/gnss/location/location.json
+          $ref: json-schemas/sensors/location/location.json
         schemaFormat: application/schema+json;version=draft-07
   sensors/odometer:
     description:
