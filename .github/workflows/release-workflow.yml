@@ -18,9 +18,15 @@ jobs:
           filepath: asyncapi/asyncapi.yml
           output: docs/asyncapi
 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+      - run: npx @redocly/cli build-docs -o docs/openapi/trafficplan/index.html openapi/trafficplan/api-spec.json
+
       - name: Modify HTML output from generator
         run: |
           sudo sed -i 's/version\.from\.tag/${{github.ref_name}}/g' docs/asyncapi/index.html
+          sudo sed -i 's/version\.from\.tag/${{github.ref_name}}/g' docs/openapi/trafficplan/index.html
           sudo cp asyncapi/stylesheets/doc.css docs/asyncapi/css/
           sudo sed -i -e '\@</head>@i\<link href="css/doc.css" rel="stylesheet">' docs/asyncapi/index.html
         shell: bash
