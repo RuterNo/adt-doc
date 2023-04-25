@@ -8,7 +8,7 @@
     "audio": [
       {
         "encoding": "OPUS",
-        "contentUrl": "\\soundserver\\path\\to\\file",
+        "contentUrl": "http://webserver.local/resources/safety_long.opus",
         "speaker": "INTERNAL",
         "volume": 70
       },
