@@ -85,8 +85,8 @@ markdown_extensions:
 # Page tree
 nav:
   - Home: index.md
-  - MQTT API:
-      - ADT messages: adt-api.md
+  - API:
+      - MQTT Api: mqtt-api.md
       - Additional messages:
           - TSP: tsp.md
           - SLA insight: insight.md
