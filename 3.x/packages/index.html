@@ -1023,6 +1023,7 @@
 <li>$APPLICATION_ROOT</li>
 <li>app</li>
 <li>media</li>
+<li>resources</li>
 </ul>
 <p>The directory application can actually be anything as long as it is the root of the web site that is served.</p>
 <p>Manually setting up this structure would be done with the following steps (verified in an Alpine container in Docker):</p>
@@ -1032,46 +1033,51 @@
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>~<span class="w"> </span><span class="c1"># sha256sum application-2021-02-25T14-25-12Z.zip media-2019-10-16T15-11-00Z.zip</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>5258f1e757ab9fb1e222601c793030219b7064b21206d234fc094bbdaf546fd0<span class="w">  </span>application-2021-02-25T14-25-12Z.zip
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>44a143c13ab452b7bd5d06f4ce3373af7b5a4da0095b42a3db27bd04e172072b<span class="w">  </span>media-2019-10-16T15-11-00Z.zip
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>~<span class="w"> </span><span class="c1"># mkdir -P /var/www/application</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>~<span class="w"> </span><span class="c1"># cd /var/www/application</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>/var/www/application<span class="w"> </span><span class="c1"># unzip ~/application-2021-02-25T14-25-12Z.zip</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>/var/www/application<span class="w"> </span><span class="c1"># mkdir media</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>/var/www/application<span class="w"> </span><span class="c1"># cd media</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>/var/www/application/media<span class="w"> </span><span class="c1"># unzip ~/media-2019-10-16T15-11-00Z.zip</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>/var/www/application/media<span class="w"> </span><span class="c1"># cd ..</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>/var/www/application<span class="w"> </span><span class="c1"># tree</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>..
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>├──<span class="w"> </span>app
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>│<span class="w">   </span>├──<span class="w"> </span>04889d2190d60b7f58a067bc5b3a0a99.woff2
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>│<span class="w">   </span>├──<span class="w"> </span>1087eb494954e58ec8f09de436610b14.woff2
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>│<span class="w">   </span>├──<span class="w"> </span>1e38058be4260221196853453c75c794.woff2
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>│<span class="w">   </span>├──<span class="w"> </span>3e96977e3611f5114b5141ff066fb067.woff2
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>│<span class="w">   </span>├──<span class="w"> </span>9ff5d1282d1cd14560959772a68e721d.woff2
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>│<span class="w">   </span>├──<span class="w"> </span>app.ded55e6e43e867840fc3.bundle.js
-<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>│<span class="w">   </span>├──<span class="w"> </span>app.ded55e6e43e867840fc3.bundle.js.map
-<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>│<span class="w">   </span>├──<span class="w"> </span>e0e8c1b4bcd0dd594ac08449f2dc19e6.woff2
-<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>│<span class="w">   </span>├──<span class="w"> </span>favicon.ico
-<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>│<span class="w">   </span>├──<span class="w"> </span>index.html
-<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>│<span class="w">   </span>├──<span class="w"> </span>static
-<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>img
-<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>info1.png
-<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>ruter-logo.png
-<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>│<span class="w">   </span>│<span class="w">       </span>└──<span class="w"> </span>tram-map.png
-<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>│<span class="w">   </span>├──<span class="w"> </span>vendor.ded55e6e43e867840fc3.bundle.js
-<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>│<span class="w">   </span>├──<span class="w"> </span>vendor.ded55e6e43e867840fc3.bundle.js.map
-<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>│<span class="w">   </span>├──<span class="w"> </span>vendor_app.ded55e6e43e867840fc3.bundle.js
-<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>│<span class="w">   </span>└──<span class="w"> </span>vendor_app.ded55e6e43e867840fc3.bundle.js.map
-<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>└──<span class="w"> </span>media
-<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="w">    </span>├──<span class="w"> </span>1080p_Ruter_Holdning_Glad.mp4
-<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="w">    </span>├──<span class="w"> </span>1080p_Toyen_K2.mp4
-<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="w">    </span>├──<span class="w"> </span>480p_Ruter_Holdning_Glad.mp4
-<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="w">    </span>├──<span class="w"> </span>480p_Toyen_K2.mp4
-<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="w">    </span>├──<span class="w"> </span>720p_Ruter_Holdning_Glad.mp4
-<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="w">    </span>├──<span class="w"> </span>720p_Toyen_K2.mp4
-<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="w">    </span>├──<span class="w"> </span>campaign34.html
-<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="w">    </span>├──<span class="w"> </span>manifest.js
-<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="w">    </span>├──<span class="w"> </span>manifest.json
-<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="w">    </span>└──<span class="w"> </span>ruter-sommerkampanje.mp4
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>~<span class="w"> </span><span class="c1"># mkdir -P /var/www/application &amp;&amp; cd /var/www/application</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>/var/www/application<span class="w"> </span><span class="c1"># unzip ~/application-2021-02-25T14-25-12Z.zip</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>/var/www/application<span class="w"> </span><span class="c1"># mkdir media &amp;&amp; cd media</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>/var/www/application/media<span class="w"> </span><span class="c1"># unzip ~/media-2019-10-16T15-11-00Z.zip</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>/var/www/application/media<span class="w"> </span><span class="c1"># cd ..</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>/var/www/application<span class="w"> </span><span class="c1"># mkdir resources &amp;&amp; cd resources</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>/var/www/application/resources<span class="w"> </span><span class="c1"># curl -O https://pto-api.test.transhub.io/resources/stop-requested-2020-11-02T15-02-50Z.mp3</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>/var/www/application/resources<span class="w"> </span><span class="c1"># curl -O https://pto-api.test.transhub.io/resources/safety_long.opus</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>/var/www/application/resources<span class="w"> </span><span class="c1"># cd ..</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>/var/www/application<span class="w"> </span><span class="c1"># tree</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>..
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>├──<span class="w"> </span>app
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>│<span class="w">   </span>├──<span class="w"> </span>04889d2190d60b7f58a067bc5b3a0a99.woff2
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>│<span class="w">   </span>├──<span class="w"> </span>1087eb494954e58ec8f09de436610b14.woff2
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>│<span class="w">   </span>├──<span class="w"> </span>1e38058be4260221196853453c75c794.woff2
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>│<span class="w">   </span>├──<span class="w"> </span>3e96977e3611f5114b5141ff066fb067.woff2
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>│<span class="w">   </span>├──<span class="w"> </span>9ff5d1282d1cd14560959772a68e721d.woff2
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>│<span class="w">   </span>├──<span class="w"> </span>app.ded55e6e43e867840fc3.bundle.js
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>│<span class="w">   </span>├──<span class="w"> </span>app.ded55e6e43e867840fc3.bundle.js.map
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>│<span class="w">   </span>├──<span class="w"> </span>e0e8c1b4bcd0dd594ac08449f2dc19e6.woff2
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>│<span class="w">   </span>├──<span class="w"> </span>favicon.ico
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>│<span class="w">   </span>├──<span class="w"> </span>index.html
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>│<span class="w">   </span>├──<span class="w"> </span>static
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>img
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>info1.png
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>ruter-logo.png
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>│<span class="w">   </span>│<span class="w">       </span>└──<span class="w"> </span>tram-map.png
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>│<span class="w">   </span>├──<span class="w"> </span>vendor.ded55e6e43e867840fc3.bundle.js
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>│<span class="w">   </span>├──<span class="w"> </span>vendor.ded55e6e43e867840fc3.bundle.js.map
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>│<span class="w">   </span>├──<span class="w"> </span>vendor_app.ded55e6e43e867840fc3.bundle.js
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>│<span class="w">   </span>└──<span class="w"> </span>vendor_app.ded55e6e43e867840fc3.bundle.js.map
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>├──<span class="w"> </span>media
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>│<span class="w">   </span>├──<span class="w"> </span>1080p_Ruter_Holdning_Glad.mp4
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>│<span class="w">   </span>├──<span class="w"> </span>1080p_Toyen_K2.mp4
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>│<span class="w">   </span>├──<span class="w"> </span>480p_Ruter_Holdning_Glad.mp4
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>│<span class="w">   </span>├──<span class="w"> </span>480p_Toyen_K2.mp4
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>│<span class="w">   </span>├──<span class="w"> </span>720p_Ruter_Holdning_Glad.mp4
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>│<span class="w">   </span>├──<span class="w"> </span>720p_Toyen_K2.mp4
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>│<span class="w">   </span>├──<span class="w"> </span>campaign34.html
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>│<span class="w">   </span>├──<span class="w"> </span>manifest.js
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>│<span class="w">   </span>├──<span class="w"> </span>manifest.json
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>│<span class="w">   </span>└──<span class="w"> </span>ruter-sommerkampanje.mp4
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>└──<span class="w"> </span>resources
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a><span class="w">    </span>├──<span class="w"> </span>stop-requested-2020-10-28T19-37-00Z.mp3
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="w">    </span>└──<span class="w"> </span>safety_long.opus
 </code></pre></div>
 Automation should be based on these kinds of steps.</p>
 <h2 id="web-server">Web Server<a class="headerlink" href="#web-server" title="Permanent link">&para;</a></h2>
