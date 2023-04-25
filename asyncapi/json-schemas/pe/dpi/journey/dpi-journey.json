@@ -14,7 +14,7 @@
     "eventTimestamp": {
       "$id": "#/properties/eventTimestamp",
       "type": "string",
-      "description": "Event Timestamp must be ISO 8601 UTC",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)",
       "format": "date-time"
     },
     "traceId": {
@@ -35,7 +35,7 @@
     "routeChangeTimestamp": {
       "$id": "#/properties/routeChangeTimestamp",
       "type": "string",
-      "description": "Event Timestamp must be ISO 8601 UTC",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)",
       "format": "date-time"
     },
     "route": {
