@@ -6,6 +6,7 @@
   "required": [
     "doorRef",
     "isOpen",
+    "traceId",
     "eventTimestamp"
   ],
   "description": "This object is used to represent a door individually.",

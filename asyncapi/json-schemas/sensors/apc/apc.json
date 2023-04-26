@@ -7,6 +7,8 @@
     "doorRef",
     "alightingCount",
     "boardingCount",
+    "traceId",
+    "messageNumber",
     "eventTimestamp",
     "categoryActivities"
   ],

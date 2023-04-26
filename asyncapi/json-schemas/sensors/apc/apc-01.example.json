@@ -4,6 +4,7 @@
     "doorRef": "01",
     "alightingCount": 23,
     "boardingCount": 12,
+    "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
     "eventTimestamp": "2017-10-31T12:45:50.749Z",
     "messageNumber": 123456,
     "categoryActivities": [
