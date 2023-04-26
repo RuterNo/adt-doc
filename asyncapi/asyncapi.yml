@@ -595,6 +595,21 @@ channels:
           mqtt:
             qos: 1
             retain: false
+  pe/vehicle/api:
+    description:
+      $ref: 'markdown/api.md'
+    subscribe:
+      message:
+        name: Api
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/api.json
+        examples:
+          - $ref: examples/api.example.json
+        bindings:
+          mqtt:
+            qos: 1
+            retain: true
 components:
   parameters:
     operatorId:
