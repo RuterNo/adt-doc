@@ -17,7 +17,7 @@
     "eventTimestamp": {
       "$id": "#/properties/eventTimestamp",
       "type": "string",
-      "description": "Time in ISO 8601 timestamp format when this message was produced",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)",
       "examples": [
         "2020-03-10T20:56:44.864401Z"
       ]
@@ -30,10 +30,7 @@
     "expiryTimestamp": {
       "$id": "#/properties/expiryTimestamp",
       "type": "string",
-      "description": "Time in ISO 8601 timestamp format after which this message is invalid",
-      "examples": [
-        "2020-03-10T21:01:44.864401Z"
-      ]
+      "description": "Timestamp As specified in the [ADT documentation.](https://adt.transhub.io), after which this message is invalid"
     },
     "nextStop": {
       "$id": "#/properties/nextStop",

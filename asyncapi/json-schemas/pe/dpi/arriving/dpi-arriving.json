@@ -14,7 +14,7 @@
     "eventTimestamp": {
       "$id": "#/properties/eventTimestamp",
       "type": "string",
-      "description": "Event timestamp must be ISO 8601 UTC",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)",
       "format": "date-time"
     },
     "traceId": {
@@ -25,7 +25,7 @@
     "expiryTimestamp": {
       "$id": "#/properties/expiryTimestamp",
       "type": "string",
-      "description": "Expiry timestamp must be ISO 8601 UTC, do not play or display after",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io). Do not play or display after",
       "format": "date-time"
     },
     "ref": {

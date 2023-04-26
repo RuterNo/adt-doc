@@ -1,12 +1,12 @@
 {
   "name": "DPI Acknowledge",
   "payload": {
-    "eventTimestamp": "2022-10-31T12:45:50Z",
+    "eventTimestamp": "2017-10-31T12:45:50.749Z",
     "traceId": "2ccf77aa-463f-4b98-ad19-61ec5d213e36",
     "clientId": "8fac6c64la4cap4b21R90d",
     "messageReceived": {
       "topic": "pe/dpi/journey",
-      "eventTimestamp": "2021-10-31T12:44:10Z",
+      "eventTimestamp": "2017-10-31T12:45:50.749Z",
       "traceId": "b88aaf6a-b15b-415a-8c44-ac7ad42de59e"
     }
   }
