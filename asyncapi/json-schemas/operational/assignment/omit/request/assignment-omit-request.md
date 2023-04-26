@@ -10,7 +10,7 @@
 ### AssignmentOmitRequest Usage
 `operational/assignment/omit` follows the request/response/state pattern. When a `request` is made to the request topic, a `response` will be available at the response topic once Ruter has finished processing.
 
-- All omits are effective immediately.
+- All omissions are effective immediately.
 - All omit request will get an omit response under the topic [assignment/omit/response](../response/assignment-omit-response.md)
 - Please provide all fields marked as `required` in the schema specifications.
 
