@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Traffic Event Reporting API",
-    "description": "Use this API to report cancellation and delay events directly to Ruter, along\nwith a flag indicating whether you as an operator consider that the event was\noutside your control, and that you should be exempt from being fined for\nbreach(es) of contract incurred as a consequence of the traffic event.\n",
+    "description": "Use this API to report cancellation and delay events directly to Ruter, along\nwith a flag indicating whether you as an operator consider that the event was\noutside your control, and that you should be exempt from being fined for any\nbreach(es) of contract incurred as a consequence of the traffic event.\n",
     "version": "1"
   },
   "servers": [
@@ -240,7 +240,7 @@
           },
           "isOperatorExempt": {
             "type": "boolean",
-            "description": "A flag indicating whether you as an operator should be exempt from being fined for\nbreach(es) of contract incurred as a consequence of this traffic event.\n",
+            "description": "A flag indicating whether you as an operator should be exempt from being fined for any\nbreach(es) of contract incurred as a consequence of this traffic event.\n",
             "default": true
           }
         }
@@ -304,13 +304,13 @@
           },
           "reasonDescription": {
             "type": "string",
-            "description": "A further detailing of the reason for the traffic event, and if relevant, an\nexplanation for why you as an operator should be exempt from being fined for\nbreach(es) of contract incurred as a consequence of this traffic event (see\n`isOperatorExempt`). Required if `reason` is set to `OTHER`.\n",
+            "description": "Required if `reason` is set to `OTHER`, optional otherwise. A further detailing of the\nreason for the traffic event, and if relevant, an explanation for why you as an\noperator should be exempt from being fined for breach(es) of contract incurred as a\nconsequence of this traffic event (see `isOperatorExempt`).\n",
             "example": "En feilparkert bil blokkerte traséen",
             "default": "null"
           },
           "journeyRef": {
             "type": "string",
-            "description": "A reference to the planned journey that is affected by this traffic event, if only a\nsingle journey is affected.\n\nFormat should be one of:\n- `RUT:DatedServiceJourney:<dated journey ID from plan data>`\n- `RUT:DatedServiceJourney:<vehicle task ID>-<journey start time in ISO offset format>`\n",
+            "description": "Required if `lineRef` is `null`. A reference to the planned journey that is affected\nby this traffic event, if only a single journey is affected.\n\nFormat should be one of:\n- `RUT:DatedServiceJourney:<dated journey ID from plan data>`\n- `RUT:DatedServiceJourney:<vehicle task ID>-<journey start time in ISO offset format>`\n",
             "example": "RUT:DatedServiceJourney:1234-2023-01-01T13:00:00+01:00",
             "default": "null"
           },
@@ -322,37 +322,37 @@
           },
           "startDateTime": {
             "type": "string",
-            "description": "Required if `journeyRef` is `null`. An ISO UTC date string representing the date and\ntime that the traffic event started. If `null`, the start time of the journey\nrepresented by `journeyRef` will be used instead.\n",
+            "description": "Required if `journeyRef` is `null`, optional otherwise. An ISO UTC date string\nrepresenting the date and time that the traffic event started. If `null`, the start\ntime of the journey represented by `journeyRef` is used instead.\n",
             "example": "2023-01-01T12:00:00Z",
             "default": "null"
           },
           "endDateTime": {
             "type": "string",
-            "description": "Required if `journeyRef` is `null`. An ISO UTC date string representing the date and\ntime that the traffic event ended. If `null`, the end time of the journey represented\nby `journeyRef`, plus `delayMinutes` if given, will be used instead.\n",
+            "description": "Required if `journeyRef` is `null`, optional otherwise. An ISO UTC date string\nrepresenting the date and time that the traffic event ended. If `null`, the end time\nof the journey represented by `journeyRef`, plus `delayMinutes` if given, is used\ninstead.\n",
             "example": "2023-01-01T13:00:00Z",
             "default": "null"
           },
           "leftStopPlaceRef": {
             "type": "string",
-            "description": "Required if `category` is `CANCELLATION` and `subcategory` is `PARTIAL`, ignored\notherwise. Should contain an NSR reference to one of the 2 stop places delimiting the\nsequence of stops affected by the partial cancellation, or to the single stop if only\none stop is affected. See `rightStopPlaceRef`.\n",
+            "description": "Required if `category` is `CANCELLATION` and `subcategory` is `PARTIAL`, ignored\notherwise. An NSR reference to one of the 2 stop places delimiting the sequence of\nstops affected by the partial cancellation, or to the single stop if only one stop is\naffected. See `rightStopPlaceRef`.\n",
             "example": "NSR:StopPlace:123",
             "default": "null"
           },
           "rightStopPlaceRef": {
             "type": "string",
-            "description": "Required if `category` is `CANCELLATION` and `subcategory` is `PARTIAL`, ignored\notherwise. Should contain an NSR reference to the other of the 2 stop places\ndelimiting the sequence of stops affected by the partial cancellation, or to the\nsingle stop if only one stop is affected. See `leftStopPlaceRef`.\n",
+            "description": "Required if `category` is `CANCELLATION` and `subcategory` is `PARTIAL`, ignored\notherwise. An NSR reference to the other of the 2 stop places delimiting the sequence\nof stops affected by the partial cancellation, or to the single stop if only one stop\nis affected. See `leftStopPlaceRef`.\n",
             "example": "NSR:StopPlace:246",
             "default": "null"
           },
           "delayMinutes": {
             "type": "integer",
-            "description": "Required if `category` is `DELAY`, ignored otherwise. Should contain the number of\nminutes that the journey is delayed.\n",
+            "description": "Required if `category` is `DELAY`, ignored otherwise. The number of minutes that the\njourney is delayed.\n",
             "format": "int32",
             "example": 21
           },
           "isOperatorExempt": {
             "type": "boolean",
-            "description": "A flag indicating whether you as an operator consider that the event was outside your\ncontrol, and that you should be exempt from being fined for breach(es) of contract\nincurred as a consequence of the traffic event. If needed, an exemption reason can be\nprovided in the `reasonDescription` field.\n"
+            "description": "A flag indicating whether you as an operator consider that the event was outside your\ncontrol, and that you should be exempt from being fined for any breach(es) of contract\nincurred as a consequence of the traffic event. If needed, an exemption reason can be\nprovided in the `reasonDescription` field.\n"
           }
         }
       }
