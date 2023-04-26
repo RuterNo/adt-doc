@@ -5,7 +5,6 @@
   "type": "object",
   "required": [
     "distance",
-    "traceId",
     "eventTimestamp"
   ],
   "description": "Odometer data",
