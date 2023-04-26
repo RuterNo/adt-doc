@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Traffic Event Reporting API",
-    "description": "Use this API to report cancellation and delay events directly to Ruter, along\nwith a flag indicating whether you consider that the event was outside your\ncontrol, and that you as an operator should be exempt from being fined for\nbreach(es) of contract incurred as a consequence of the traffic event.\n",
+    "description": "Use this API to report cancellation and delay events directly to Ruter, along\nwith a flag indicating whether you as an operator consider that the event was\noutside your control, and that you as an operator should be exempt from being\nfined for breach(es) of contract incurred as a consequence of the traffic event.\n",
     "version": "1"
   },
   "servers": [
