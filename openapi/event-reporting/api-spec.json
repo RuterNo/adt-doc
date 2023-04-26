@@ -310,39 +310,43 @@
           },
           "journeyRef": {
             "type": "string",
-            "description": "A reference to the planned journey that is affected by this traffic event, if only a\nsingle journey is affected. Ignored if `lineRef` is set.\n\nFormat should be one of:\n- `RUT:DatedServiceJourney:<dated journey ID from plan data>`\n- `RUT:DatedServiceJourney:<vehicle task ID>-<journey start time in ISO offset format>`\n",
-            "example": "RUT:DatedServiceJourney:1234-2023-01-01T13:00:00+01:00"
+            "description": "A reference to the planned journey that is affected by this traffic event, if only a\nsingle journey is affected.\n\nFormat should be one of:\n- `RUT:DatedServiceJourney:<dated journey ID from plan data>`\n- `RUT:DatedServiceJourney:<vehicle task ID>-<journey start time in ISO offset format>`\n",
+            "example": "RUT:DatedServiceJourney:1234-2023-01-01T13:00:00+01:00",
+            "default": "null"
           },
           "lineRef": {
             "type": "string",
-            "description": "A reference to the affected line when multiple journeys are affected by this traffic\nevent. Required if `journeyRef` is `null`.\n",
-            "example": "RUT:Line:123"
+            "description": "Required if `journeyRef` is `null`, ignored otherwise. A reference to the affected\nline when multiple journeys are affected by this traffic event.\n",
+            "example": "RUT:Line:123",
+            "default": "null"
           },
           "startDateTime": {
             "type": "string",
-            "description": "An ISO UTC date string representing the date and time that the traffic event started.\nIf `null`, the start time of the journey represented by `journeyRef` will be used\ninstead. Required if `journeyRef` is `null`.\n",
-            "example": "2023-01-01T12:00:00Z"
+            "description": "Required if `journeyRef` is `null`. An ISO UTC date string representing the date and\ntime that the traffic event started. If `null`, the start time of the journey\nrepresented by `journeyRef` will be used instead.\n",
+            "example": "2023-01-01T12:00:00Z",
+            "default": "null"
           },
           "endDateTime": {
             "type": "string",
-            "description": "An ISO UTC date string representing the date and time that the traffic event ended. If\n`null`, the end time of the journey represented by `journeyRef`, plus `delayMinutes`\nif given, will be used instead. Required if `journeyRef` is `null`.\n",
-            "example": "2023-01-01T13:00:00Z"
+            "description": "Required if `journeyRef` is `null`. An ISO UTC date string representing the date and\ntime that the traffic event ended. If `null`, the end time of the journey represented\nby `journeyRef`, plus `delayMinutes` if given, will be used instead.\n",
+            "example": "2023-01-01T13:00:00Z",
+            "default": "null"
           },
           "leftStopPlaceRef": {
             "type": "string",
-            "description": "Required if `category` is `CANCELLATION` and `subcategory` is `PARTIAL`—ignored\notherwise. Should contain an NSR reference to one of the 2 stop places delimiting the\nsequence of stops affected by the partial cancellation, or to the single stop if only\none stop is affected. See `rightStopPlaceRef`.\n",
+            "description": "Required if `category` is `CANCELLATION` and `subcategory` is `PARTIAL`, ignored\notherwise. Should contain an NSR reference to one of the 2 stop places delimiting the\nsequence of stops affected by the partial cancellation, or to the single stop if only\none stop is affected. See `rightStopPlaceRef`.\n",
             "example": "NSR:StopPlace:123",
             "default": "null"
           },
           "rightStopPlaceRef": {
             "type": "string",
-            "description": "Required if `category` is `CANCELLATION` and `subcategory` is `PARTIAL`—ignored\notherwise. Should contain an NSR reference to the other of the 2 stop places\ndelimiting the sequence of stops affected by the partial cancellation, or to the\nsingle stop if only one stop is affected. See `leftStopPlaceRef`.\n",
+            "description": "Required if `category` is `CANCELLATION` and `subcategory` is `PARTIAL`, ignored\notherwise. Should contain an NSR reference to the other of the 2 stop places\ndelimiting the sequence of stops affected by the partial cancellation, or to the\nsingle stop if only one stop is affected. See `leftStopPlaceRef`.\n",
             "example": "NSR:StopPlace:246",
             "default": "null"
           },
           "delayMinutes": {
             "type": "integer",
-            "description": "Required if `category` is `DELAY`—ignored otherwise. Should contain the number of\nminutes that the journey is delayed.\n",
+            "description": "Required if `category` is `DELAY`, ignored otherwise. Should contain the number of\nminutes that the journey is delayed.\n",
             "format": "int32",
             "example": 21
           },
