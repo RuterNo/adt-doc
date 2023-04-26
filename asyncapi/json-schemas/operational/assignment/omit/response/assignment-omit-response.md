@@ -11,4 +11,3 @@
 When an AssignmentAttemptRequest is made, and Ruter has finished processing, the results are presented as AssignmentAttemptResponse.
 The response contains:
 - `result` to indicate if processing by Ruter has been successfully processed, or not. See the schema for possible codes.
-- `state` as a representation of the Assignment state as seen by Ruter after processing is completed.
