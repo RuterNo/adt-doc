@@ -45,11 +45,14 @@
         },
         "responses": {
           "201": {
-            "description": "The traffic event was registered",
+            "description": "The traffic event was registered.\n\nThe response contains a single traffic event for the given journey if the\nregistration provided a `journeyRef`. If the registration provided a `lineRef`\nand a time interval, the response contains one traffic event for each journey\nthat took place on the given line in the given time period.\n",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TrafficEvent"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TrafficEvent"
+                  }
                 }
               }
             }
