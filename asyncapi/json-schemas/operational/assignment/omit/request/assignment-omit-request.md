@@ -12,6 +12,6 @@
 
 - All omits are effective immediately.
 - All omit request will get an omit response under the topic [assignment/omit/response](../response/assignment-omit-response.md)
-- Please provide all fields marked as `reqired` in the schema specifications.
+- Please provide all fields marked as `required` in the schema specifications.
 
 #### Omit - NO_INTENTION
