@@ -7,7 +7,7 @@
   "required": [
     "eventTimestamp",
     "traceId",
-    "screenId",
+    "clientId",
     "type"
   ],
   "additionalProperties": false,
@@ -23,8 +23,8 @@
       "type": "string",
       "description": "A unique identifier - UUID"
     },
-    "screenId": {
-      "$id": "#/properties/screenId",
+    "clientId": {
+      "$id": "#/properties/clientId",
       "type": "string",
       "title": "Screen id",
       "examples": [
