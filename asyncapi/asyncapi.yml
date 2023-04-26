@@ -77,9 +77,9 @@ channels:
         payload:
           $ref: json-schemas/operational/assignment/status/assignment-status.json
         schemaFormat: application/schema+json;version=draft-07
-  operational/assignment/unable/request:
+  operational/assignment/omit/request:
     description:
-      $ref: json-schemas/operational/assignment/unable/request/assignment-unable-request.md
+      $ref: json-schemas/operational/assignment/omit/request/assignment-omit-request.md
     publish:
       message:
         bindings:
@@ -87,14 +87,14 @@ channels:
             qos: 1
             retain: false
         examples:
-          - $ref: json-schemas/operational/assignment/unable/request/assignment-unable-request-no-intention.example.json
-        name: AssignmentUnableRequest
+          - $ref: json-schemas/operational/assignment/omit/request/assignment-omit-request-no-intention.example.json
+        name: AssignmentOmitRequest
         payload:
-          $ref: json-schemas/operational/assignment/unable/request/assignment-unable-request.json
+          $ref: json-schemas/operational/assignment/omit/request/assignment-omit-request.json
         schemaFormat: application/schema+json;version=draft-07
-  operational/assignment/unable/response:
+  operational/assignment/omit/response:
     description:
-      $ref: json-schemas/operational/assignment/unable/response/assignment-unable-response.md
+      $ref: json-schemas/operational/assignment/omit/response/assignment-omit-response.md
     subscribe:
       message:
         bindings:
@@ -102,10 +102,10 @@ channels:
             qos: 1
             retain: false
         examples:
-          - $ref: json-schemas/operational/assignment/unable/response/assignment-unable-response-no-intention.example.json
-        name: AssignmentUnableResponse
+          - $ref: json-schemas/operational/assignment/omit/response/assignment-omit-response-no-intention.example.json
+        name: AssignmentOmitResponse
         payload:
-          $ref: json-schemas/operational/assignment/unable/response/assignment-unable-response.json
+          $ref: json-schemas/operational/assignment/omit/response/assignment-omit-response.json
         schemaFormat: application/schema+json;version=draft-07
   pe/active_cab:
     description:
