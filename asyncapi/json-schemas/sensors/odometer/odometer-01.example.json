@@ -1,8 +1,9 @@
 {
   "name": "Odometer",
   "payload": {
+    "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
+    "eventTimestamp": "2017-11-30T23:45:52.006Z",
     "distance": 23434556,
-    "atDateTime": "2017-11-30T23:45:52.006Z",
     "messageNumber": 12345
   }
 }
