@@ -1,8 +1,8 @@
 ### RuterSalg diagnostics
 | Field         | Value                                                                                                             |
 |---------------|-------------------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/pe/sales/diagnostics                                                               |
-| Schema        | [ sales-diagnostics.json ](json-schemas/pe/sales/sales-diagnostics.json)                                          |
+| Central Topic | ruter/{operatorId}/{vehicleRef}/pe/sales/diagnostics                                                              |
+| Schema        | [ sales-diagnostics.json ](json-schemas/pe/sales/diagnostics/sales-diagnostics.json)                              |
 | Producer      | RuterSalg                                                                                                         |
 | Consumer      | RuterSalg                                                                                                         |
 | Service Level | ⛔ Ruter internal API. No restrictions apply. Api may be removed or modified freely by Ruter within major version. | 

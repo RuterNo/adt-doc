@@ -1,8 +1,8 @@
 ### RuterSalg current_stop
 | Field         | Value                                                                                                             |
 |---------------|-------------------------------------------------------------------------------------------------------------------|
-| Central Topic | {operatorId}/ruter/{vehicleId}/pe/sales/current_stop                                                              |
-| Schema        | [ sales-current_stop.json ](json-schemas/pe/sales/sales-current_stop.json)                                        |
+| Central Topic | {operatorId}/ruter/{vehicleRef}/pe/sales/current_stop                                                             |
+| Schema        | [ sales-current_stop.json ](json-schemas/pe/sales/current_stop/sales-current_stop.json)                           |
 | Producer      | RuterSalg                                                                                                         |
 | Consumer      | RuterSalg                                                                                                         |
 | Service Level | ⛔ Ruter internal API. No restrictions apply. Api may be removed or modified freely by Ruter within major version. | 
