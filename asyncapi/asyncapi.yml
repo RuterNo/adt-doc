@@ -39,7 +39,10 @@ channels:
             qos: 1
             retain: false
         examples:
-          - $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request-01.example.json
+          - $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request-signoff-finished.example.json
+          - $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request-signon-planned.example.json
+          - $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request-update-shortening.example.json
+          - $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request-signon-extra.example.json
         name: AssignmentAttemptRequest
         payload:
           $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request.json
@@ -54,7 +57,7 @@ channels:
             qos: 1
             retain: false
         examples:
-          - $ref: json-schemas/operational/assignment/attempt/response/assignment-attempt-response-01.example.json
+          - $ref: json-schemas/operational/assignment/attempt/response/assignment-attempt-response-signon-planned.example.json
         name: AssignmentAttemptResponse
         payload:
           $ref: json-schemas/operational/assignment/attempt/response/assignment-attempt-response.json
@@ -69,7 +72,7 @@ channels:
             qos: 1
             retain: true
         examples:
-          - $ref: json-schemas/operational/assignment/status/assignment-status-01.example.json
+          - $ref: json-schemas/operational/assignment/status/assignment-status-signon-planned.example.json
         name: AssignmentStatus
         payload:
           $ref: json-schemas/operational/assignment/status/assignment-status.json

@@ -1,0 +1,13 @@
+{
+  "name": "Assignment State - PLANNED",
+  "payload": {
+    "eventTimeStamp": "2023-04-27T12:40:12.831913Z",
+    "traceId": "083b71c4-e417-11ed-b5ea-0242ac120003",
+    "state": {
+      "assigned": true,
+      "code": "PLANNED",
+      "vehicleTaskId": "99991",
+      "operatingDate": "2023-04-27"
+    }
+  }
+}
