@@ -1,5 +1,8 @@
 {
   "mode": "publish",
+  "service-level": "external",
+  "producer": "pto",
+  "consumer": "assignment",
   "mqtt": {
     "retain": false,
     "qos": 1,

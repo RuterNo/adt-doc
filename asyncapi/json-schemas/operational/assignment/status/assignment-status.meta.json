@@ -1,5 +1,8 @@
 {
   "mode": "subscribe",
+  "service-level": "external",
+  "producer": "assignment",
+  "consumer": "pto",
   "mqtt": {
     "retain": true,
     "qos": 1,

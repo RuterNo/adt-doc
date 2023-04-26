@@ -4,7 +4,7 @@
 | Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/operational/assignment/attempt/request                                             |
 | Schema        | [ assignment-attempt-request.json ](json-schemas/operational/assignment/attempt/request/assignment-attempt-request.json) |
 | Producer      | PTO                                                                                                                      |
-| Consumer      | Ruter BO                                                                                                                 |
+| Consumer      | [Ruter Assignment](https://github.com/orgs/RuterNo/teams/assignment)                                                     |
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.                | 
 
 ### AssignmentAttemptRequest Usage

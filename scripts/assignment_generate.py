@@ -20,6 +20,19 @@ PROJECT_ROOT = SCHEMA_ROOT.parent
 CREATE_META_IF_MISSING = False
 META_FILE_TEMPLATE = {'mode': 'TODO', 'mqtt': {'qos': 'TODO', 'retain': 'TODO'}, "topic": "TODO"}
 
+SERVICE_LEVELS = {
+    'internal': '⛔ Ruter internal API. No restrictions apply. Api may be removed or modified freely by Ruter within major version.',
+    'external': '✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.'
+}
+
+TEAMS = {
+    'sales': 'Ruter Sales',
+    'pto': 'PTO',
+    'ruter': 'Ruter BO',
+    'dpi': '[Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)',
+    'assignment': '[Ruter Assignment](https://github.com/orgs/RuterNo/teams/assignment)'
+}
+
 
 def j_print(dict_):
     print(json.dumps(dict_, indent=2, default=str))
@@ -40,10 +53,14 @@ def write_file(path, content):
         f.write(content)
 
 
+def write_bytes_to_file(path, content):
+    with open(path, "wb") as f:
+        f.write(content)
+
+
 def write_json(path, content):
-    with open(path, "w") as f:
-        json.dump(content, f, indent=2, default=str)
-        f.write("\n")
+    json_string = (json.dumps(content, indent=2, default=str, ensure_ascii=False) + "\n").encode("UTF-8")
+    write_bytes_to_file(path, json_string)
 
 
 def resolve_schemas():
@@ -111,14 +128,9 @@ def update_schema_content(schemas):
             expected_title = ''.join([*map(str.title, tmp)])
             res['title'] = expected_title
 
-            #if "description" not in res:
-            #    res["description"] = "TODO: Missing description"
-
             if "properties" in res:
                 for key, value in res["properties"].items():
                     value["$id"] = f"#/properties/{key}"
-                #    if "description" not in value:
-                #        value["description"] = "TODO: Missing description"
             write_json(spec_path, res)
 
 
@@ -130,6 +142,18 @@ def validate_required_fields(file_path, schema):
                 raise SystemExit(f"Required field [{r}] not defined in {str(file_path.absolute())}")
 
 
+def resolve_doc_line(line, anchor, meta, key, definitions):
+    if anchor in line:
+        res_key = meta[key] if key in meta else None
+        res_desc = definitions[res_key] if res_key in definitions else None
+        res_line = f'{anchor: <16}| {res_desc}'
+        if res_key and res_desc:
+            return f"{res_line: <{len(line) - 1}}|"
+
+    print(f"{key} not defined in meta.json")
+    return None
+
+
 def update_doc(paths, meta):
     doc_path = paths['doc']
     if doc_path:
@@ -138,20 +162,33 @@ def update_doc(paths, meta):
 
         central_topic = '| Central Topic'
         schema = '| Schema'
-
+        producer = '| Producer'
+        consumer = '| Consumer'
+        service_level = '| Service Level'
         for line in lines:
+            res_line = None
             if central_topic in line:
                 topic = meta['mqtt']['topic'] if meta else "TODO"
-                central_topic_content = f"{central_topic} | {topic}"
+                central_topic_content = f"{central_topic: <16}| {topic}"
                 res.append(f"{central_topic_content: <{len(line) - 1}}|")
+                continue
             elif schema in line:
                 schema_path = project_relative(paths['schema_path'])
-                schema_content = f'{schema}        | [ {paths["schema_path"].name} ]({schema_path})'
+                schema_content = f'{schema: <16}| [ {paths["schema_path"].name} ]({schema_path})'
                 res.append(f"{schema_content: <{len(line) - 1}}|")
-            else:
-                res.append(line)
+                continue
 
-        #res[0] = f"### {paths['schema_title']} Message"
+            res_line = resolve_doc_line(line, service_level, meta, "service-level", SERVICE_LEVELS) if not res_line else res_line
+            res_line = resolve_doc_line(line, producer, meta, "producer", TEAMS) if not res_line else res_line
+            res_line = resolve_doc_line(line, consumer, meta, "consumer", TEAMS) if not res_line else res_line
+
+            if res_line:
+                res.append(res_line)
+                continue
+
+            res.append(line)
+
+        # res[0] = f"### {paths['schema_title']} Message"
         write_file(doc_path, "\n".join(res) + "\n")
 
 
@@ -183,8 +220,7 @@ def update_meta(paths):
             topic = f'{topic}/{{{topic_param}}}'
 
         mqtt['topic'] = topic
-        paths['channel'] = topic.replace(f"{prefix}/", ""
-                                         )
+        paths['channel'] = topic.replace(f"{prefix}/", "")
 
         write_json(Path(meta_path), meta)
         return meta
@@ -201,7 +237,6 @@ def main():
     schemas = resolve_schemas()
     update_schema_content(schemas)
     res = {}
-
     for name, paths in schemas.items():
         meta = update_meta(paths)
         mqtt = meta['mqtt']
