@@ -11,6 +11,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://adt.transhub.io/3.x/event-reporting/</loc>
+         <lastmod>2023-04-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://adt.transhub.io/3.x/insight/</loc>
          <lastmod>2023-04-26</lastmod>
          <changefreq>daily</changefreq>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf8" />
+  <title>Traffic Event Reporting API</title>
+  <!-- needed for adaptive design -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script src="https://cdn.redoc.ly/redoc/v2.0.0/bundles/redoc.standalone.js"></script><style data-styled="true" data-styled-version="5.3.3">.fcjMZs{width:calc(100% - 40%);padding:0 40px;}/*!sc*/
+@media print,screen and (max-width:75rem){.fcjMZs{width:100%;padding:40px 40px;}}/*!sc*/
+data-styled.g4[id="sc-hKwDye"]{content:"fcjMZs,"}/*!sc*/
+.kKqedw{padding:40px 0;}/*!sc*/
+.kKqedw:last-child{min-height:calc(100vh + 1px);}/*!sc*/
+.sc-eCImPb > .sc-eCImPb:last-child{min-height:initial;}/*!sc*/
+@media print,screen and (max-width:75rem){.kKqedw{padding:0;}}/*!sc*/
+.hexvPn{padding:40px 0;position:relative;}/*!sc*/
+.hexvPn:last-child{min-height:calc(100vh + 1px);}/*!sc*/
+.sc-eCImPb > .sc-eCImPb:last-child{min-height:initial;}/*!sc*/
+@media print,screen and (max-width:75rem){.hexvPn{padding:0;}}/*!sc*/
+.hexvPn:not(:last-of-type):after{position:absolute;bottom:0;width:100%;display:block;content:'';border-bottom:1px solid rgba(0,0,0,0.2);}/*!sc*/
+data-styled.g5[id="sc-eCImPb"]{content:"kKqedw,hexvPn,"}/*!sc*/
+.vSqXI{width:40%;color:#ffffff;background-color:#263238;padding:0 40px;}/*!sc*/
+@media print,screen and (max-width:75rem){.vSqXI{width:100%;padding:40px 40px;}}/*!sc*/
+data-styled.g6[id="sc-jRQBWg"]{content:"vSqXI,"}/*!sc*/
+.dKDnzb{background-color:#263238;}/*!sc*/
+data-styled.g7[id="sc-gKclnd"]{content:"dKDnzb,"}/*!sc*/
+.jTXZbd{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;width:100%;padding:0;}/*!sc*/
+@media print,screen and (max-width:75rem){.jTXZbd{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;}}/*!sc*/
+data-styled.g8[id="sc-iCfMLu"]{content:"jTXZbd,"}/*!sc*/
+.kwcwWd{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.85714em;line-height:1.6em;color:#333333;}/*!sc*/
+data-styled.g9[id="sc-furwcr"]{content:"kwcwWd,"}/*!sc*/
+.QwiBS{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.57143em;line-height:1.6em;color:#333333;margin:0 0 20px;}/*!sc*/
+data-styled.g10[id="sc-pVTFL"]{content:"QwiBS,"}/*!sc*/
+.hwMGJl{color:#ffffff;}/*!sc*/
+data-styled.g12[id="sc-kDTinF"]{content:"hwMGJl,"}/*!sc*/
+.kyZwVG{border-bottom:1px solid rgba(38,50,56,0.3);margin:1em 0 1em 0;color:rgba(38,50,56,0.5);font-weight:normal;text-transform:uppercase;font-size:0.929em;line-height:20px;}/*!sc*/
+data-styled.g13[id="sc-iqseJM"]{content:"kyZwVG,"}/*!sc*/
+.bNUQy{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.bNUQy:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+h1:hover > .sc-crHmcD::before,h2:hover > .bNUQy::before,.bNUQy:hover::before{visibility:visible;}/*!sc*/
+data-styled.g14[id="sc-crHmcD"]{content:"bNUQy,"}/*!sc*/
+.jLPfXH{height:18px;width:18px;min-width:18px;vertical-align:middle;float:right;-webkit-transition:-webkit-transform 0.2s ease-out;-webkit-transition:transform 0.2s ease-out;transition:transform 0.2s ease-out;-webkit-transform:rotateZ(-90deg);-ms-transform:rotateZ(-90deg);transform:rotateZ(-90deg);}/*!sc*/
+.bPEzCN{height:1.5em;width:1.5em;min-width:1.5em;vertical-align:middle;float:left;-webkit-transition:-webkit-transform 0.2s ease-out;-webkit-transition:transform 0.2s ease-out;transition:transform 0.2s ease-out;-webkit-transform:rotateZ(-90deg);-ms-transform:rotateZ(-90deg);transform:rotateZ(-90deg);}/*!sc*/
+.bPEzCN polygon{fill:#1d8127;}/*!sc*/
+.laPRNF{height:20px;width:20px;min-width:20px;vertical-align:middle;float:right;-webkit-transition:-webkit-transform 0.2s ease-out;-webkit-transition:transform 0.2s ease-out;transition:transform 0.2s ease-out;-webkit-transform:rotateZ(0);-ms-transform:rotateZ(0);transform:rotateZ(0);}/*!sc*/
+.laPRNF polygon{fill:white;}/*!sc*/
+data-styled.g15[id="sc-egiyK"]{content:"jLPfXH,bPEzCN,laPRNF,"}/*!sc*/
+.kCCtqV{border-left:1px solid #7c7cbb;box-sizing:border-box;position:relative;padding:10px 10px 10px 0;}/*!sc*/
+@media screen and (max-width:50rem){.kCCtqV{display:block;overflow:hidden;}}/*!sc*/
+tr:first-of-type > .sc-hBUSln,tr.last > .kCCtqV{border-left-width:0;background-position:top left;background-repeat:no-repeat;background-size:1px 100%;}/*!sc*/
+tr:first-of-type > .sc-hBUSln{background-image:linear-gradient( to bottom, transparent 0%, transparent 22px, #7c7cbb 22px, #7c7cbb 100% );}/*!sc*/
+tr.last > .sc-hBUSln{background-image:linear-gradient( to bottom, #7c7cbb 0%, #7c7cbb 22px, transparent 22px, transparent 100% );}/*!sc*/
+tr.last + tr > .sc-hBUSln{border-left-color:transparent;}/*!sc*/
+tr.last:first-child > .sc-hBUSln{background:none;border-left-color:transparent;}/*!sc*/
+data-styled.g18[id="sc-hBUSln"]{content:"kCCtqV,"}/*!sc*/
+.fwnkRw{vertical-align:top;line-height:20px;white-space:nowrap;font-size:13px;font-family:Courier,monospace;}/*!sc*/
+.fwnkRw.deprecated{-webkit-text-decoration:line-through;text-decoration:line-through;color:#707070;}/*!sc*/
+data-styled.g20[id="sc-fFeiMQ"]{content:"fwnkRw,"}/*!sc*/
+.fOwWgB{border-bottom:1px solid #9fb4be;padding:10px 0;width:75%;box-sizing:border-box;}/*!sc*/
+tr.expanded .sc-bkkeKt{border-bottom:none;}/*!sc*/
+@media screen and (max-width:50rem){.fOwWgB{padding:0 20px;border-bottom:none;border-left:1px solid #7c7cbb;}tr.last > .sc-bkkeKt{border-left:none;}}/*!sc*/
+data-styled.g21[id="sc-bkkeKt"]{content:"fOwWgB,"}/*!sc*/
+.fMdASL{color:#7c7cbb;font-family:Courier,monospace;margin-right:10px;}/*!sc*/
+.fMdASL::before{content:'';display:inline-block;vertical-align:middle;width:10px;height:1px;background:#7c7cbb;}/*!sc*/
+.fMdASL::after{content:'';display:inline-block;vertical-align:middle;width:1px;background:#7c7cbb;height:7px;}/*!sc*/
+data-styled.g22[id="sc-ieecCq"]{content:"fMdASL,"}/*!sc*/
+.wbnF{border-collapse:separate;border-radius:3px;font-size:14px;border-spacing:0;width:100%;}/*!sc*/
+.wbnF > tr{vertical-align:middle;}/*!sc*/
+@media screen and (max-width:50rem){.wbnF{display:block;}.wbnF > tr,.wbnF > tbody > tr{display:block;}}/*!sc*/
+@media screen and (max-width:50rem) and (-ms-high-contrast:none){.wbnF td{float:left;width:100%;}}/*!sc*/
+.wbnF .sc-dJjYzT,.wbnF .sc-dJjYzT .sc-dJjYzT .sc-dJjYzT,.wbnF .sc-dJjYzT .sc-dJjYzT .sc-dJjYzT .sc-dJjYzT .sc-dJjYzT{margin:1em;margin-right:0;background:#fafafa;}/*!sc*/
+.wbnF .sc-dJjYzT .sc-dJjYzT,.wbnF .sc-dJjYzT .sc-dJjYzT .sc-dJjYzT .sc-dJjYzT,.wbnF .sc-dJjYzT .sc-dJjYzT .sc-dJjYzT .sc-dJjYzT .sc-dJjYzT .sc-dJjYzT{background:#ffffff;}/*!sc*/
+data-styled.g24[id="sc-hGPBjI"]{content:"wbnF,"}/*!sc*/
+.eCLDJY > ul{list-style:none;padding:0;margin:0;margin:0 -5px;}/*!sc*/
+.eCLDJY > ul > li{padding:5px 10px;display:inline-block;background-color:#11171a;border-bottom:1px solid rgba(0,0,0,0.5);cursor:pointer;text-align:center;outline:none;color:#ccc;margin:0 5px 5px 5px;border:1px solid #07090b;border-radius:5px;min-width:60px;font-size:0.9em;font-weight:bold;}/*!sc*/
+.eCLDJY > ul > li.react-tabs__tab--selected{color:#333333;background:#ffffff;}/*!sc*/
+.eCLDJY > ul > li.react-tabs__tab--selected:focus{outline:auto;}/*!sc*/
+.eCLDJY > ul > li:only-child{-webkit-flex:none;-ms-flex:none;flex:none;min-width:100px;}/*!sc*/
+.eCLDJY > ul > li.tab-success{color:#1d8127;}/*!sc*/
+.eCLDJY > ul > li.tab-redirect{color:#ffa500;}/*!sc*/
+.eCLDJY > ul > li.tab-info{color:#87ceeb;}/*!sc*/
+.eCLDJY > ul > li.tab-error{color:#d41f1c;}/*!sc*/
+.eCLDJY > .react-tabs__tab-panel{background:#11171a;}/*!sc*/
+.eCLDJY > .react-tabs__tab-panel > div,.eCLDJY > .react-tabs__tab-panel > pre{padding:20px;margin:0;}/*!sc*/
+.eCLDJY > .react-tabs__tab-panel > div > pre{padding:0;}/*!sc*/
+data-styled.g30[id="sc-cxpSdN"]{content:"eCLDJY,"}/*!sc*/
+.hGZPxu code[class*='language-'],.hGZPxu pre[class*='language-']{text-shadow:0 -0.1em 0.2em black;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none;}/*!sc*/
+@media print{.hGZPxu code[class*='language-'],.hGZPxu pre[class*='language-']{text-shadow:none;}}/*!sc*/
+.hGZPxu pre[class*='language-']{padding:1em;margin:0.5em 0;overflow:auto;}/*!sc*/
+.hGZPxu .token.comment,.hGZPxu .token.prolog,.hGZPxu .token.doctype,.hGZPxu .token.cdata{color:hsl(30,20%,50%);}/*!sc*/
+.hGZPxu .token.punctuation{opacity:0.7;}/*!sc*/
+.hGZPxu .namespace{opacity:0.7;}/*!sc*/
+.hGZPxu .token.property,.hGZPxu .token.tag,.hGZPxu .token.number,.hGZPxu .token.constant,.hGZPxu .token.symbol{color:#4a8bb3;}/*!sc*/
+.hGZPxu .token.boolean{color:#e64441;}/*!sc*/
+.hGZPxu .token.selector,.hGZPxu .token.attr-name,.hGZPxu .token.string,.hGZPxu .token.char,.hGZPxu .token.builtin,.hGZPxu .token.inserted{color:#a0fbaa;}/*!sc*/
+.hGZPxu .token.selector + a,.hGZPxu .token.attr-name + a,.hGZPxu .token.string + a,.hGZPxu .token.char + a,.hGZPxu .token.builtin + a,.hGZPxu .token.inserted + a,.hGZPxu .token.selector + a:visited,.hGZPxu .token.attr-name + a:visited,.hGZPxu .token.string + a:visited,.hGZPxu .token.char + a:visited,.hGZPxu .token.builtin + a:visited,.hGZPxu .token.inserted + a:visited{color:#4ed2ba;-webkit-text-decoration:underline;text-decoration:underline;}/*!sc*/
+.hGZPxu .token.property.string{color:white;}/*!sc*/
+.hGZPxu .token.operator,.hGZPxu .token.entity,.hGZPxu .token.url,.hGZPxu .token.variable{color:hsl(40,90%,60%);}/*!sc*/
+.hGZPxu .token.atrule,.hGZPxu .token.attr-value,.hGZPxu .token.keyword{color:hsl(350,40%,70%);}/*!sc*/
+.hGZPxu .token.regex,.hGZPxu .token.important{color:#e90;}/*!sc*/
+.hGZPxu .token.important,.hGZPxu .token.bold{font-weight:bold;}/*!sc*/
+.hGZPxu .token.italic{font-style:italic;}/*!sc*/
+.hGZPxu .token.entity{cursor:help;}/*!sc*/
+.hGZPxu .token.deleted{color:red;}/*!sc*/
+data-styled.g32[id="sc-iJKOTD"]{content:"hGZPxu,"}/*!sc*/
+.gjxyHD{opacity:0.7;-webkit-transition:opacity 0.3s ease;transition:opacity 0.3s ease;text-align:right;}/*!sc*/
+.gjxyHD:focus-within{opacity:1;}/*!sc*/
+.gjxyHD > button{background-color:transparent;border:0;color:inherit;padding:2px 10px;font-family:Roboto,sans-serif;font-size:14px;line-height:1.5em;cursor:pointer;outline:0;}/*!sc*/
+.gjxyHD > button:hover,.gjxyHD > button:focus{background:rgba(255,255,255,0.1);}/*!sc*/
+data-styled.g33[id="sc-giYglK"]{content:"gjxyHD,"}/*!sc*/
+.eqZXtE{position:relative;}/*!sc*/
+data-styled.g38[id="sc-ikJyIC"]{content:"eqZXtE,"}/*!sc*/
+.hgRRjA{margin-left:10px;text-transform:none;font-size:0.929em;color:black;}/*!sc*/
+data-styled.g42[id="sc-cCcXHH"]{content:"hgRRjA,"}/*!sc*/
+.fYaHea{font-family:Roboto,sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
+.fYaHea p:last-child{margin-bottom:0;}/*!sc*/
+.fYaHea h1{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.85714em;line-height:1.6em;color:#32329f;margin-top:0;}/*!sc*/
+.fYaHea h2{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.57143em;line-height:1.6em;color:#333333;}/*!sc*/
+.fYaHea code{color:#e53935;background-color:rgba(38,50,56,0.05);font-family:Courier,monospace;border-radius:2px;border:1px solid rgba(38,50,56,0.1);padding:0 5px;font-size:13px;font-weight:400;word-break:break-word;}/*!sc*/
+.fYaHea pre{font-family:Courier,monospace;white-space:pre;background-color:#11171a;color:white;padding:20px;overflow-x:auto;line-height:normal;border-radius:0px;border:1px solid rgba(38,50,56,0.1);}/*!sc*/
+.fYaHea pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
+.fYaHea pre code:before,.fYaHea pre code:after{content:none;}/*!sc*/
+.fYaHea blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
+.fYaHea img{max-width:100%;box-sizing:content-box;}/*!sc*/
+.fYaHea ul,.fYaHea ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
+.fYaHea ul ul,.fYaHea ol ul,.fYaHea ul ol,.fYaHea ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
+.fYaHea table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
+.fYaHea table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
+.fYaHea table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
+.fYaHea table th,.fYaHea table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
+.fYaHea table th{text-align:left;font-weight:bold;}/*!sc*/
+.fYaHea .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.fYaHea .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+.fYaHea h1:hover > .share-link::before,.fYaHea h2:hover > .share-link::before,.fYaHea .share-link:hover::before{visibility:visible;}/*!sc*/
+.fYaHea a{-webkit-text-decoration:auto;text-decoration:auto;color:#32329f;}/*!sc*/
+.fYaHea a:visited{color:#32329f;}/*!sc*/
+.fYaHea a:hover{color:#6868cf;-webkit-text-decoration:auto;text-decoration:auto;}/*!sc*/
+.fhPxtY{font-family:Roboto,sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
+.fhPxtY p:last-child{margin-bottom:0;}/*!sc*/
+.fhPxtY p:first-child{margin-top:0;}/*!sc*/
+.fhPxtY p:last-child{margin-bottom:0;}/*!sc*/
+.fhPxtY h1{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.85714em;line-height:1.6em;color:#32329f;margin-top:0;}/*!sc*/
+.fhPxtY h2{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.57143em;line-height:1.6em;color:#333333;}/*!sc*/
+.fhPxtY code{color:#e53935;background-color:rgba(38,50,56,0.05);font-family:Courier,monospace;border-radius:2px;border:1px solid rgba(38,50,56,0.1);padding:0 5px;font-size:13px;font-weight:400;word-break:break-word;}/*!sc*/
+.fhPxtY pre{font-family:Courier,monospace;white-space:pre;background-color:#11171a;color:white;padding:20px;overflow-x:auto;line-height:normal;border-radius:0px;border:1px solid rgba(38,50,56,0.1);}/*!sc*/
+.fhPxtY pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
+.fhPxtY pre code:before,.fhPxtY pre code:after{content:none;}/*!sc*/
+.fhPxtY blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
+.fhPxtY img{max-width:100%;box-sizing:content-box;}/*!sc*/
+.fhPxtY ul,.fhPxtY ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
+.fhPxtY ul ul,.fhPxtY ol ul,.fhPxtY ul ol,.fhPxtY ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
+.fhPxtY table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
+.fhPxtY table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
+.fhPxtY table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
+.fhPxtY table th,.fhPxtY table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
+.fhPxtY table th{text-align:left;font-weight:bold;}/*!sc*/
+.fhPxtY .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.fhPxtY .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+.fhPxtY h1:hover > .share-link::before,.fhPxtY h2:hover > .share-link::before,.fhPxtY .share-link:hover::before{visibility:visible;}/*!sc*/
+.fhPxtY a{-webkit-text-decoration:auto;text-decoration:auto;color:#32329f;}/*!sc*/
+.fhPxtY a:visited{color:#32329f;}/*!sc*/
+.fhPxtY a:hover{color:#6868cf;-webkit-text-decoration:auto;text-decoration:auto;}/*!sc*/
+data-styled.g43[id="sc-cidDSM"]{content:"fYaHea,fhPxtY,"}/*!sc*/
+.eahewB{font-family:Roboto,sans-serif;font-weight:400;line-height:1.5em;}/*!sc*/
+.eahewB p:last-child{margin-bottom:0;}/*!sc*/
+.eahewB p:first-child{margin-top:0;}/*!sc*/
+.eahewB p:last-child{margin-bottom:0;}/*!sc*/
+.eahewB p{display:inline-block;}/*!sc*/
+.eahewB h1{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.85714em;line-height:1.6em;color:#32329f;margin-top:0;}/*!sc*/
+.eahewB h2{font-family:Montserrat,sans-serif;font-weight:400;font-size:1.57143em;line-height:1.6em;color:#333333;}/*!sc*/
+.eahewB code{color:#e53935;background-color:rgba(38,50,56,0.05);font-family:Courier,monospace;border-radius:2px;border:1px solid rgba(38,50,56,0.1);padding:0 5px;font-size:13px;font-weight:400;word-break:break-word;}/*!sc*/
+.eahewB pre{font-family:Courier,monospace;white-space:pre;background-color:#11171a;color:white;padding:20px;overflow-x:auto;line-height:normal;border-radius:0px;border:1px solid rgba(38,50,56,0.1);}/*!sc*/
+.eahewB pre code{background-color:transparent;color:white;padding:0;}/*!sc*/
+.eahewB pre code:before,.eahewB pre code:after{content:none;}/*!sc*/
+.eahewB blockquote{margin:0;margin-bottom:1em;padding:0 15px;color:#777;border-left:4px solid #ddd;}/*!sc*/
+.eahewB img{max-width:100%;box-sizing:content-box;}/*!sc*/
+.eahewB ul,.eahewB ol{padding-left:2em;margin:0;margin-bottom:1em;}/*!sc*/
+.eahewB ul ul,.eahewB ol ul,.eahewB ul ol,.eahewB ol ol{margin-bottom:0;margin-top:0;}/*!sc*/
+.eahewB table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all;border-collapse:collapse;border-spacing:0;margin-top:1.5em;margin-bottom:1.5em;}/*!sc*/
+.eahewB table tr{background-color:#fff;border-top:1px solid #ccc;}/*!sc*/
+.eahewB table tr:nth-child(2n){background-color:#fafafa;}/*!sc*/
+.eahewB table th,.eahewB table td{padding:6px 13px;border:1px solid #ddd;}/*!sc*/
+.eahewB table th{text-align:left;font-weight:bold;}/*!sc*/
+.eahewB .share-link{cursor:pointer;margin-left:-20px;padding:0;line-height:1;width:20px;display:inline-block;outline:0;}/*!sc*/
+.eahewB .share-link:before{content:'';width:15px;height:15px;background-size:contain;background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMCIgeT0iMCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cGF0aCBmaWxsPSIjMDEwMTAxIiBkPSJNNDU5LjcgMjMzLjRsLTkwLjUgOTAuNWMtNTAgNTAtMTMxIDUwLTE4MSAwIC03LjktNy44LTE0LTE2LjctMTkuNC0yNS44bDQyLjEtNDIuMWMyLTIgNC41LTMuMiA2LjgtNC41IDIuOSA5LjkgOCAxOS4zIDE1LjggMjcuMiAyNSAyNSA2NS42IDI0LjkgOTAuNSAwbDkwLjUtOTAuNWMyNS0yNSAyNS02NS42IDAtOTAuNSAtMjQuOS0yNS02NS41LTI1LTkwLjUgMGwtMzIuMiAzMi4yYy0yNi4xLTEwLjItNTQuMi0xMi45LTgxLjYtOC45bDY4LjYtNjguNmM1MC01MCAxMzEtNTAgMTgxIDBDNTA5LjYgMTAyLjMgNTA5LjYgMTgzLjQgNDU5LjcgMjMzLjR6TTIyMC4zIDM4Mi4ybC0zMi4yIDMyLjJjLTI1IDI0LjktNjUuNiAyNC45LTkwLjUgMCAtMjUtMjUtMjUtNjUuNiAwLTkwLjVsOTAuNS05MC41YzI1LTI1IDY1LjUtMjUgOTAuNSAwIDcuOCA3LjggMTIuOSAxNy4yIDE1LjggMjcuMSAyLjQtMS40IDQuOC0yLjUgNi44LTQuNWw0Mi4xLTQyYy01LjQtOS4yLTExLjYtMTgtMTkuNC0yNS44IC01MC01MC0xMzEtNTAtMTgxIDBsLTkwLjUgOTAuNWMtNTAgNTAtNTAgMTMxIDAgMTgxIDUwIDUwIDEzMSA1MCAxODEgMGw2OC42LTY4LjZDMjc0LjYgMzk1LjEgMjQ2LjQgMzkyLjMgMjIwLjMgMzgyLjJ6Ii8+PC9zdmc+Cg==');opacity:0.5;visibility:hidden;display:inline-block;vertical-align:middle;}/*!sc*/
+.eahewB h1:hover > .share-link::before,.eahewB h2:hover > .share-link::before,.eahewB .share-link:hover::before{visibility:visible;}/*!sc*/
+.eahewB a{-webkit-text-decoration:auto;text-decoration:auto;color:#32329f;}/*!sc*/
+.eahewB a:visited{color:#32329f;}/*!sc*/
+.eahewB a:hover{color:#6868cf;-webkit-text-decoration:auto;text-decoration:auto;}/*!sc*/
+data-styled.g44[id="sc-jcFjpl"]{content:"eahewB,"}/*!sc*/
+.ddxnzs{position:relative;}/*!sc*/
+data-styled.g45[id="sc-caiLqq"]{content:"ddxnzs,"}/*!sc*/
+.jOBPNj:hover > .sc-giYglK{opacity:1;}/*!sc*/
+data-styled.g50[id="sc-jObWnj"]{content:"jOBPNj,"}/*!sc*/
+.sRoPx{font-family:Courier,monospace;font-size:13px;white-space:pre;contain:content;overflow-x:auto;}/*!sc*/
+.sRoPx .redoc-json code > .collapser{display:none;pointer-events:none;}/*!sc*/
+.sRoPx .callback-function{color:gray;}/*!sc*/
+.sRoPx .collapser:after{content:'-';cursor:pointer;}/*!sc*/
+.sRoPx .collapsed > .collapser:after{content:'+';cursor:pointer;}/*!sc*/
+.sRoPx .ellipsis:after{content:' … ';}/*!sc*/
+.sRoPx .collapsible{margin-left:2em;}/*!sc*/
+.sRoPx .hoverable{padding-top:1px;padding-bottom:1px;padding-left:2px;padding-right:2px;border-radius:2px;}/*!sc*/
+.sRoPx .hovered{background-color:rgba(235,238,249,1);}/*!sc*/
+.sRoPx .collapser{background-color:transparent;border:0;color:#fff;font-family:Courier,monospace;font-size:13px;padding-right:6px;padding-left:6px;padding-top:0;padding-bottom:0;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;width:15px;height:15px;position:absolute;top:4px;left:-1.5em;cursor:default;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-user-select:none;padding:2px;}/*!sc*/
+.sRoPx .collapser:focus{outline-color:#fff;outline-style:dotted;outline-width:1px;}/*!sc*/
+.sRoPx ul{list-style-type:none;padding:0px;margin:0px 0px 0px 26px;}/*!sc*/
+.sRoPx li{position:relative;display:block;}/*!sc*/
+.sRoPx .hoverable{display:inline-block;}/*!sc*/
+.sRoPx .selected{outline-style:solid;outline-width:1px;outline-style:dotted;}/*!sc*/
+.sRoPx .collapsed > .collapsible{display:none;}/*!sc*/
+.sRoPx .ellipsis{display:none;}/*!sc*/
+.sRoPx .collapsed > .ellipsis{display:inherit;}/*!sc*/
+data-styled.g51[id="sc-dPiLbb"]{content:"sRoPx,"}/*!sc*/
+.eidhyg{padding:0.9em;background-color:rgba(38,50,56,0.4);margin:0 0 10px 0;display:block;font-family:Montserrat,sans-serif;font-size:0.929em;line-height:1.5em;}/*!sc*/
+data-styled.g52[id="sc-bBHHxi"]{content:"eidhyg,"}/*!sc*/
+.iYcnri{font-family:Montserrat,sans-serif;font-size:12px;position:absolute;z-index:1;top:-11px;left:12px;font-weight:600;color:rgba(255,255,255,0.7);}/*!sc*/
+data-styled.g53[id="sc-cNKqjZ"]{content:"iYcnri,"}/*!sc*/
+.bcpfGN{position:relative;}/*!sc*/
+data-styled.g54[id="sc-AjmGg"]{content:"bcpfGN,"}/*!sc*/
+.iUheaL{margin-top:15px;}/*!sc*/
+data-styled.g57[id="sc-jgrJph"]{content:"iUheaL,"}/*!sc*/
+.gHbDui{vertical-align:middle;font-size:13px;line-height:20px;}/*!sc*/
+data-styled.g59[id="sc-lbhJGD"]{content:"gHbDui,"}/*!sc*/
+.eLMLxg{color:rgba(102,102,102,0.9);}/*!sc*/
+data-styled.g60[id="sc-iNGGcK"]{content:"eLMLxg,"}/*!sc*/
+.ifsMbX{color:#666;}/*!sc*/
+data-styled.g61[id="sc-jeraig"]{content:"ifsMbX,"}/*!sc*/
+.eyZzuM{vertical-align:middle;font-size:13px;line-height:20px;}/*!sc*/
+data-styled.g63[id="sc-nVkyK"]{content:"eyZzuM,"}/*!sc*/
+.eSyGZd{color:#d41f1c;font-size:0.9em;font-weight:normal;margin-left:20px;line-height:1;}/*!sc*/
+data-styled.g64[id="sc-hiwPVj"]{content:"eSyGZd,"}/*!sc*/
+.hqhiLz{border-radius:2px;word-break:break-word;background-color:rgba(51,51,51,0.05);color:rgba(51,51,51,0.9);padding:0 5px;border:1px solid rgba(51,51,51,0.1);font-family:Courier,monospace;}/*!sc*/
+.sc-clIzBv + .sc-clIzBv{margin-left:0;}/*!sc*/
+data-styled.g68[id="sc-clIzBv"]{content:"hqhiLz,"}/*!sc*/
+.dezuum{margin-top:0;margin-bottom:0.5em;}/*!sc*/
+data-styled.g93[id="sc-dFtzxp"]{content:"dezuum,"}/*!sc*/
+.cfBNBf{border:1px solid #32329f;color:#32329f;font-weight:normal;margin-left:0.5em;padding:4px 8px 4px;display:inline-block;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}/*!sc*/
+data-styled.g94[id="sc-brSvTw"]{content:"cfBNBf,"}/*!sc*/
+.eXEyiA{width:9ex;display:inline-block;height:13px;line-height:13px;background-color:#333;border-radius:3px;background-repeat:no-repeat;background-position:6px 4px;font-size:7px;font-family:Verdana,sans-serif;color:white;text-transform:uppercase;text-align:center;font-weight:bold;vertical-align:middle;margin-right:6px;margin-top:2px;}/*!sc*/
+.eXEyiA.get{background-color:#2F8132;}/*!sc*/
+.eXEyiA.post{background-color:#186FAF;}/*!sc*/
+.eXEyiA.put{background-color:#95507c;}/*!sc*/
+.eXEyiA.options{background-color:#947014;}/*!sc*/
+.eXEyiA.patch{background-color:#bf581d;}/*!sc*/
+.eXEyiA.delete{background-color:#cc3333;}/*!sc*/
+.eXEyiA.basic{background-color:#707070;}/*!sc*/
+.eXEyiA.link{background-color:#07818F;}/*!sc*/
+.eXEyiA.head{background-color:#A23DAD;}/*!sc*/
+.eXEyiA.hook{background-color:#32329f;}/*!sc*/
+data-styled.g101[id="sc-ilfuhL"]{content:"eXEyiA,"}/*!sc*/
+.cBjpjq{margin:0;padding:0;}/*!sc*/
+.cBjpjq:first-child{padding-bottom:32px;}/*!sc*/
+.sc-uojGG .sc-uojGG{font-size:0.929em;}/*!sc*/
+.fZvBef{margin:0;padding:0;display:none;}/*!sc*/
+.fZvBef:first-child{padding-bottom:32px;}/*!sc*/
+.sc-uojGG .sc-uojGG{font-size:0.929em;}/*!sc*/
+data-styled.g102[id="sc-uojGG"]{content:"cBjpjq,fZvBef,"}/*!sc*/
+.iVJVQY{list-style:none inside none;overflow:hidden;text-overflow:ellipsis;padding:0;}/*!sc*/
+data-styled.g103[id="sc-bilyIR"]{content:"iVJVQY,"}/*!sc*/
+.cbGskd{cursor:pointer;color:#333333;margin:0;padding:12.5px 20px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;font-family:Montserrat,sans-serif;font-size:0.929em;text-transform:none;background-color:#fafafa;}/*!sc*/
+.cbGskd:hover{color:#32329f;background-color:#e1e1e1;}/*!sc*/
+.cbGskd .sc-egiyK{height:1.5em;width:1.5em;}/*!sc*/
+.cbGskd .sc-egiyK polygon{fill:#333333;}/*!sc*/
+.jDuioL{cursor:pointer;color:#333333;margin:0;padding:12.5px 20px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;-ms-flex-pack:justify;justify-content:space-between;font-family:Montserrat,sans-serif;background-color:#fafafa;}/*!sc*/
+.jDuioL:hover{color:#32329f;background-color:#ededed;}/*!sc*/
+.jDuioL .sc-egiyK{height:1.5em;width:1.5em;}/*!sc*/
+.jDuioL .sc-egiyK polygon{fill:#333333;}/*!sc*/
+data-styled.g104[id="sc-eGPXGI"]{content:"cbGskd,jDuioL,"}/*!sc*/
+.hTIqli{display:inline-block;vertical-align:middle;width:auto;overflow:hidden;text-overflow:ellipsis;}/*!sc*/
+.gPtqKT{display:inline-block;vertical-align:middle;width:calc(100% - 38px);overflow:hidden;text-overflow:ellipsis;}/*!sc*/
+data-styled.g105[id="sc-hAcGzb"]{content:"hTIqli,gPtqKT,"}/*!sc*/
+.hjTfvW{font-size:0.8em;margin-top:10px;text-align:center;position:fixed;width:260px;bottom:0;background:#fafafa;}/*!sc*/
+.hjTfvW a,.hjTfvW a:visited,.hjTfvW a:hover{color:#333333 !important;padding:5px 0;border-top:1px solid #e1e1e1;-webkit-text-decoration:none;text-decoration:none;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;}/*!sc*/
+.hjTfvW img{width:15px;margin-right:5px;}/*!sc*/
+@media screen and (max-width:50rem){.hjTfvW{width:100%;}}/*!sc*/
+data-styled.g106[id="sc-kYHfwS"]{content:"hjTfvW,"}/*!sc*/
+.jYAhkx{cursor:pointer;position:relative;margin-bottom:5px;}/*!sc*/
+data-styled.g112[id="sc-FNXRL"]{content:"jYAhkx,"}/*!sc*/
+.hxZHzL{font-family:Courier,monospace;margin-left:10px;-webkit-flex:1;-ms-flex:1;flex:1;overflow-x:hidden;text-overflow:ellipsis;}/*!sc*/
+data-styled.g113[id="sc-jWUzzU"]{content:"hxZHzL,"}/*!sc*/
+.bxamQ{outline:0;color:inherit;width:100%;text-align:left;cursor:pointer;padding:10px 30px 10px 20px;border-radius:4px 4px 0 0;background-color:#11171a;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;white-space:nowrap;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;border:1px solid transparent;border-bottom:0;-webkit-transition:border-color 0.25s ease;transition:border-color 0.25s ease;}/*!sc*/
+.bxamQ ..sc-jWUzzU{color:#ffffff;}/*!sc*/
+.bxamQ:focus{box-shadow:inset 0 2px 2px rgba(0,0,0,0.45),0 2px 0 rgba(128,128,128,0.25);}/*!sc*/
+data-styled.g114[id="sc-eFegNN"]{content:"bxamQ,"}/*!sc*/
+.huMmnt{font-size:0.929em;line-height:20px;background-color:#186FAF;color:#ffffff;padding:3px 10px;text-transform:uppercase;font-family:Montserrat,sans-serif;margin:0;}/*!sc*/
+data-styled.g115[id="sc-fmBCVi"]{content:"huMmnt,"}/*!sc*/
+.fuqHqW{position:absolute;width:100%;z-index:100;background:#fafafa;color:#263238;box-sizing:border-box;box-shadow:0px 0px 6px rgba(0,0,0,0.33);overflow:hidden;border-bottom-left-radius:4px;border-bottom-right-radius:4px;-webkit-transition:all 0.25s ease;transition:all 0.25s ease;visibility:hidden;-webkit-transform:translateY(-50%) scaleY(0);-ms-transform:translateY(-50%) scaleY(0);transform:translateY(-50%) scaleY(0);}/*!sc*/
+data-styled.g116[id="sc-lkgTHX"]{content:"fuqHqW,"}/*!sc*/
+.fUpXCf{padding:10px;}/*!sc*/
+data-styled.g117[id="sc-jlRLRk"]{content:"fUpXCf,"}/*!sc*/
+.ggmziU{padding:5px;border:1px solid #ccc;background:#fff;word-break:break-all;color:#32329f;}/*!sc*/
+.ggmziU > span{color:#333333;}/*!sc*/
+data-styled.g118[id="sc-dUbtfd"]{content:"ggmziU,"}/*!sc*/
+.hoRAnv{display:block;border:0;width:100%;text-align:left;padding:10px;border-radius:2px;margin-bottom:4px;line-height:1.5em;cursor:pointer;color:#1d8127;background-color:rgba(29,129,39,0.07);}/*!sc*/
+.hoRAnv:focus{outline:auto #1d8127;}/*!sc*/
+.gBqHPX{display:block;border:0;width:100%;text-align:left;padding:10px;border-radius:2px;margin-bottom:4px;line-height:1.5em;cursor:pointer;color:#d41f1c;background-color:rgba(212,31,28,0.07);cursor:default;}/*!sc*/
+.gBqHPX:focus{outline:auto #d41f1c;}/*!sc*/
+.gBqHPX::before{content:"—";font-weight:bold;width:1.5em;text-align:center;display:inline-block;vertical-align:top;}/*!sc*/
+.gBqHPX:focus{outline:0;}/*!sc*/
+data-styled.g119[id="sc-htJRVC"]{content:"hoRAnv,gBqHPX,"}/*!sc*/
+.jHtNTU{vertical-align:top;}/*!sc*/
+data-styled.g123[id="sc-fXeWAj"]{content:"jHtNTU,"}/*!sc*/
+.bTvSgn{font-size:1.3em;padding:0.2em 0;margin:3em 0 1.1em;color:#333333;font-weight:normal;}/*!sc*/
+data-styled.g124[id="sc-fIosxK"]{content:"bTvSgn,"}/*!sc*/
+.ilWCwE{margin-bottom:30px;}/*!sc*/
+data-styled.g129[id="sc-iFMAIt"]{content:"ilWCwE,"}/*!sc*/
+.lptroy{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;width:20px;height:20px;-webkit-align-self:center;-ms-flex-item-align:center;align-self:center;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;color:#32329f;}/*!sc*/
+data-styled.g130[id="sc-iqVWFU"]{content:"lptroy,"}/*!sc*/
+.iFeLMl{width:260px;background-color:#fafafa;overflow:hidden;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-backface-visibility:hidden;backface-visibility:hidden;height:100vh;position:-webkit-sticky;position:sticky;position:-webkit-sticky;top:0;}/*!sc*/
+@media screen and (max-width:50rem){.iFeLMl{position:fixed;z-index:20;width:100%;background:#fafafa;display:none;}}/*!sc*/
+@media print{.iFeLMl{display:none;}}/*!sc*/
+data-styled.g131[id="sc-eWfVMQ"]{content:"iFeLMl,"}/*!sc*/
+.cxHKpm{outline:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-color:#f2f2f2;color:#32329f;display:none;cursor:pointer;position:fixed;right:20px;z-index:100;border-radius:50%;box-shadow:0 0 20px rgba(0,0,0,0.3);bottom:44px;width:60px;height:60px;padding:0 20px;}/*!sc*/
+@media screen and (max-width:50rem){.cxHKpm{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;}}/*!sc*/
+.cxHKpm svg{color:#0065FB;}/*!sc*/
+@media print{.cxHKpm{display:none;}}/*!sc*/
+data-styled.g132[id="sc-kTLmzF"]{content:"cxHKpm,"}/*!sc*/
+.cjkacg{font-family:Roboto,sans-serif;font-size:14px;font-weight:400;line-height:1.5em;color:#333333;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;position:relative;text-align:left;-webkit-font-smoothing:antialiased;font-smoothing:antialiased;text-rendering:optimizeSpeed !important;tap-highlight-color:rgba(0,0,0,0);-webkit-text-size-adjust:100%;text-size-adjust:100%;}/*!sc*/
+.cjkacg *{box-sizing:border-box;-webkit-tap-highlight-color:rgba(255,255,255,0);}/*!sc*/
+data-styled.g133[id="sc-dwsnSq"]{content:"cjkacg,"}/*!sc*/
+.jxeukX{z-index:1;position:relative;overflow:hidden;width:calc(100% - 260px);contain:layout;}/*!sc*/
+@media print,screen and (max-width:50rem){.jxeukX{width:100%;}}/*!sc*/
+data-styled.g134[id="sc-jtXEFf"]{content:"jxeukX,"}/*!sc*/
+.bLydqy{background:#263238;position:absolute;top:0;bottom:0;right:0;width:calc((100% - 260px) * 0.4);}/*!sc*/
+@media print,screen and (max-width:75rem){.bLydqy{display:none;}}/*!sc*/
+data-styled.g135[id="sc-eldieg"]{content:"bLydqy,"}/*!sc*/
+.qyDlP{padding:5px 0;}/*!sc*/
+data-styled.g136[id="sc-kiIyQV"]{content:"qyDlP,"}/*!sc*/
+.KrPzq{width:calc(100% - 40px);box-sizing:border-box;margin:0 20px;padding:5px 10px 5px 20px;border:0;border-bottom:1px solid #e1e1e1;font-family:Roboto,sans-serif;font-weight:bold;font-size:13px;color:#333333;background-color:transparent;outline:none;}/*!sc*/
+data-styled.g137[id="sc-cLpAjG"]{content:"KrPzq,"}/*!sc*/
+.liFvtQ{position:absolute;left:20px;height:1.8em;width:0.9em;}/*!sc*/
+.liFvtQ path{fill:#333333;}/*!sc*/
+data-styled.g138[id="sc-iIUQWv"]{content:"liFvtQ,"}/*!sc*/
+</style>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Roboto:300,400,700" rel="stylesheet">
+</head>
+
+<body>
+  
+      <div id="redoc"><div class="sc-dwsnSq cjkacg redoc-wrap"><div class="sc-eWfVMQ iFeLMl menu-content" style="top:0px;height:calc(100vh - 0px)"><div role="search" class="sc-kiIyQV qyDlP"><svg class="sc-iIUQWv liFvtQ search-icon" version="1.1" viewBox="0 0 1000 1000" x="0px" xmlns="http://www.w3.org/2000/svg" y="0px"><path d="M968.2,849.4L667.3,549c83.9-136.5,66.7-317.4-51.7-435.6C477.1-25,252.5-25,113.9,113.4c-138.5,138.3-138.5,362.6,0,501C219.2,730.1,413.2,743,547.6,666.5l301.9,301.4c43.6,43.6,76.9,14.9,104.2-12.4C981,928.3,1011.8,893,968.2,849.4z M524.5,522c-88.9,88.7-233,88.7-321.8,0c-88.9-88.7-88.9-232.6,0-321.3c88.9-88.7,233-88.7,321.8,0C613.4,289.4,613.4,433.3,524.5,522z"></path></svg><input type="text" value="" placeholder="Search..." aria-label="Search" class="sc-cLpAjG KrPzq search-input"/></div><div class="sc-ikJyIC eqZXtE scrollbar-container undefined"><ul class="sc-uojGG cBjpjq" role="menu"><li data-item-id="tag/v1traffic-events" class="sc-bilyIR iVJVQY"><label type="tag" role="menuitem" class="sc-eGPXGI cbGskd -depth1"><span title="/v1/traffic-events" class="sc-hAcGzb hTIqli">/v1/traffic-events</span><svg class="sc-egiyK jLPfXH" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></label><ul class="sc-uojGG fZvBef"><li data-item-id="tag/v1traffic-events/operation/create" class="sc-bilyIR iVJVQY"><label role="menuitem" class="sc-eGPXGI jDuioL -depth2"><span type="post" class="sc-ilfuhL eXEyiA operation-type post">post</span><span width="calc(100% - 38px)" class="sc-hAcGzb gPtqKT">Register traffic event</span></label></li></ul></li></ul><div class="sc-kYHfwS hjTfvW"><a target="_blank" rel="noopener noreferrer" href="https://redocly.com/redoc/">API docs by Redocly</a></div></div></div><div class="sc-kTLmzF cxHKpm"><div class="sc-iqVWFU lptroy"><svg class="" style="transform:translate(2px, -4px) rotate(180deg);transition:transform 0.2s ease" viewBox="0 0 926.23699 573.74994" version="1.1" x="0px" y="0px" width="15" height="15"><g transform="translate(904.92214,-879.1482)"><path d="
+          m -673.67664,1221.6502 -231.2455,-231.24803 55.6165,
+          -55.627 c 30.5891,-30.59485 56.1806,-55.627 56.8701,-55.627 0.6894,
+          0 79.8637,78.60862 175.9427,174.68583 l 174.6892,174.6858 174.6892,
+          -174.6858 c 96.079,-96.07721 175.253196,-174.68583 175.942696,
+          -174.68583 0.6895,0 26.281,25.03215 56.8701,
+          55.627 l 55.6165,55.627 -231.245496,231.24803 c -127.185,127.1864
+          -231.5279,231.248 -231.873,231.248 -0.3451,0 -104.688,
+          -104.0616 -231.873,-231.248 z
+        " fill="currentColor"></path></g></svg><svg class="" style="transform:translate(2px, 4px);transition:transform 0.2s ease" viewBox="0 0 926.23699 573.74994" version="1.1" x="0px" y="0px" width="15" height="15"><g transform="translate(904.92214,-879.1482)"><path d="
+          m -673.67664,1221.6502 -231.2455,-231.24803 55.6165,
+          -55.627 c 30.5891,-30.59485 56.1806,-55.627 56.8701,-55.627 0.6894,
+          0 79.8637,78.60862 175.9427,174.68583 l 174.6892,174.6858 174.6892,
+          -174.6858 c 96.079,-96.07721 175.253196,-174.68583 175.942696,
+          -174.68583 0.6895,0 26.281,25.03215 56.8701,
+          55.627 l 55.6165,55.627 -231.245496,231.24803 c -127.185,127.1864
+          -231.5279,231.248 -231.873,231.248 -0.3451,0 -104.688,
+          -104.0616 -231.873,-231.248 z
+        " fill="currentColor"></path></g></svg></div></div><div class="sc-jtXEFf jxeukX api-content"><div class="sc-eCImPb kKqedw"><div class="sc-iCfMLu jTXZbd"><div class="sc-hKwDye fcjMZs api-info"><h1 class="sc-furwcr sc-dFtzxp kwcwWd dezuum">Traffic Event Reporting API<!-- --> <span>(<!-- -->1<!-- -->)</span></h1><p>Download OpenAPI specification<!-- -->:<a download="openapi.json" target="_blank" class="sc-brSvTw cfBNBf">Download</a></p><div class="sc-iJKOTD sc-cidDSM hGZPxu fYaHea"></div><div class="sc-iJKOTD sc-cidDSM hGZPxu fYaHea" data-role="redoc-summary"></div><div class="sc-iJKOTD sc-cidDSM hGZPxu fYaHea" data-role="redoc-description"><p>Use this API to report cancellation and delay events directly to Ruter, along
+with a flag indicating whether you consider that the event was outside your
+control, and that you as an operator should be exempt from being fined for
+breach(es) of contract incurred as a consequence of the traffic event.</p>
+</div></div></div></div><div id="tag/v1traffic-events" data-section-id="tag/v1traffic-events" class="sc-eCImPb kKqedw"><div class="sc-iCfMLu jTXZbd"><div class="sc-hKwDye fcjMZs"><h1 class="sc-furwcr kwcwWd"><a class="sc-crHmcD bNUQy" href="#tag/v1traffic-events" aria-label="tag/v1traffic-events"></a>/v1/traffic-events</h1></div></div></div><div id="tag/v1traffic-events/operation/create" data-section-id="tag/v1traffic-events/operation/create" class="sc-eCImPb hexvPn"><div data-section-id="operation/create" id="operation/create" class="sc-iCfMLu jTXZbd"><div class="sc-hKwDye fcjMZs"><h2 class="sc-pVTFL QwiBS"><a class="sc-crHmcD bNUQy" href="#tag/v1traffic-events/operation/create" aria-label="tag/v1traffic-events/operation/create"></a>Register traffic event<!-- --> </h2><div class="sc-iFMAIt ilWCwE"><div class="sc-iJKOTD sc-cidDSM hGZPxu fYaHea"><p>Report a cancellation or delay event.</p>
+</div></div><div><h5 class="sc-iqseJM kyZwVG">header<!-- --> Parameters</h5><table class="sc-hGPBjI wbnF"><tbody><tr class="last "><td class="sc-hBUSln sc-fFeiMQ kCCtqV fwnkRw" kind="field" title="Authorization"><span class="sc-ieecCq fMdASL"></span><span class="property-name">Authorization</span></td><td class="sc-bkkeKt fOwWgB"><div><div><span class="sc-lbhJGD sc-iNGGcK gHbDui eLMLxg"></span><span class="sc-lbhJGD sc-jeraig gHbDui ifsMbX">string</span></div> <div><div class="sc-iJKOTD sc-cidDSM hGZPxu fhPxtY"><p>OAuth2 access token as Bearer token.</p>
+<p><strong>NOTE:</strong> Separate documentation will be provided on how to obtain client
+credentials and use these to request access tokens.</p>
+</div></div></div></td></tr></tbody></table></div><h5 class="sc-iqseJM kyZwVG">Request Body schema: <span class="sc-cCcXHH hgRRjA">application/json</span></h5><div class="sc-iJKOTD sc-cidDSM hGZPxu fYaHea"></div><table class="sc-hGPBjI wbnF"><tbody><tr class=""><td class="sc-hBUSln sc-fFeiMQ kCCtqV fwnkRw" kind="field" title="category"><span class="sc-ieecCq fMdASL"></span><span class="property-name">category</span><div class="sc-nVkyK sc-hiwPVj eyZzuM eSyGZd">required</div></td><td class="sc-bkkeKt fOwWgB"><div><div><span class="sc-lbhJGD sc-iNGGcK gHbDui eLMLxg"></span><span class="sc-lbhJGD sc-jeraig gHbDui ifsMbX">string</span></div><div><span class="sc-lbhJGD gHbDui"> <!-- -->Enum<!-- -->:</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;CANCELLATION&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;DELAY&quot;</span> </div> <div><div class="sc-iJKOTD sc-cidDSM hGZPxu fhPxtY"><p>The main category of the traffic event.</p>
+</div></div></div></td></tr><tr class=""><td class="sc-hBUSln sc-fFeiMQ kCCtqV fwnkRw" kind="field" title="subcategory"><span class="sc-ieecCq fMdASL"></span><span class="property-name">subcategory</span><div class="sc-nVkyK sc-hiwPVj eyZzuM eSyGZd">required</div></td><td class="sc-bkkeKt fOwWgB"><div><div><span class="sc-lbhJGD sc-iNGGcK gHbDui eLMLxg"></span><span class="sc-lbhJGD sc-jeraig gHbDui ifsMbX">string</span></div><div><span class="sc-lbhJGD gHbDui"> <!-- -->Enum<!-- -->:</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;FULL&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;PARTIAL&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;FROM_START&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;IN_TRANSIT&quot;</span> </div> <div><div class="sc-iJKOTD sc-cidDSM hGZPxu fhPxtY"><p>The subcategory of the traffic event.</p>
+<p>Permitted values if <code>category</code> is <code>CANCELLATION</code>:</p>
+<ul>
+<li><code>FULL</code></li>
+<li><code>PARTIAL</code></li>
+</ul>
+<p>Permitted values if <code>category</code> is <code>DELAY</code>:</p>
+<ul>
+<li><code>FROM_START</code></li>
+<li><code>IN_TRANSIT</code></li>
+</ul>
+</div></div></div></td></tr><tr class=""><td class="sc-hBUSln sc-fFeiMQ kCCtqV fwnkRw" kind="field" title="reason"><span class="sc-ieecCq fMdASL"></span><span class="property-name">reason</span><div class="sc-nVkyK sc-hiwPVj eyZzuM eSyGZd">required</div></td><td class="sc-bkkeKt fOwWgB"><div><div><span class="sc-lbhJGD sc-iNGGcK gHbDui eLMLxg"></span><span class="sc-lbhJGD sc-jeraig gHbDui ifsMbX">string</span></div><div><span class="sc-lbhJGD gHbDui"> <!-- -->Enum<!-- -->:</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;DRIVER_ERROR&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;CUSTOMER_CARE&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;TICKET_INSPECTION&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;FAULTY_TICKET_MACHINE&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;FAULTY_TAAS_SYSTEM&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;FAULTY_SIS_SYSTEM&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;FAULTY_DOOR&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;FAULTY_ENGINE&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;FAULTY_GEARBOX&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;FAULTY_BRAKES&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;NO_POWER&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;HEAVY_SNOWFALL&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;SLIPPERY_ROADS&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;IMPROPERLY_PARKED_VEHICLE&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;ROAD_WORK&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;ROAD_ACCIDENT&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;FALLEN_DEBRIS&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;TRAFFIC_CONGESTION&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;EVENT&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;DEMONSTRATION&quot;</span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;OTHER&quot;</span> </div> <div><div class="sc-iJKOTD sc-cidDSM hGZPxu fhPxtY"><p>The reason for the traffic event. If set to <code>OTHER</code>, a description must be provided in
+the <code>reasonDescription</code> field.</p>
+</div></div></div></td></tr><tr class=""><td class="sc-hBUSln sc-fFeiMQ kCCtqV fwnkRw" kind="field" title="reasonDescription"><span class="sc-ieecCq fMdASL"></span><span class="property-name">reasonDescription</span></td><td class="sc-bkkeKt fOwWgB"><div><div><span class="sc-lbhJGD sc-iNGGcK gHbDui eLMLxg"></span><span class="sc-lbhJGD sc-jeraig gHbDui ifsMbX">string</span></div><div><span class="sc-lbhJGD gHbDui"> <!-- -->Default:<!-- --> </span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;null&quot;</span></div> <div><div class="sc-iJKOTD sc-cidDSM hGZPxu fhPxtY"><p>A further detailing of the reason for the traffic event, and if relevant, an
+explanation for why you as an operator should be exempt from being fined for
+breach(es) of contract incurred as a consequence of this traffic event (see
+<code>isOperatorExempt</code>). Required if <code>reason</code> is set to <code>OTHER</code>.</p>
+</div></div></div></td></tr><tr class=""><td class="sc-hBUSln sc-fFeiMQ kCCtqV fwnkRw" kind="field" title="journeyRef"><span class="sc-ieecCq fMdASL"></span><span class="property-name">journeyRef</span></td><td class="sc-bkkeKt fOwWgB"><div><div><span class="sc-lbhJGD sc-iNGGcK gHbDui eLMLxg"></span><span class="sc-lbhJGD sc-jeraig gHbDui ifsMbX">string</span></div><div><span class="sc-lbhJGD gHbDui"> <!-- -->Default:<!-- --> </span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;null&quot;</span></div> <div><div class="sc-iJKOTD sc-cidDSM hGZPxu fhPxtY"><p>A reference to the planned journey that is affected by this traffic event, if only a
+single journey is affected.</p>
+<p>Format should be one of:</p>
+<ul>
+<li><code>RUT:DatedServiceJourney:&lt;dated journey ID from plan data&gt;</code></li>
+<li><code>RUT:DatedServiceJourney:&lt;vehicle task ID&gt;-&lt;journey start time in ISO offset format&gt;</code></li>
+</ul>
+</div></div></div></td></tr><tr class=""><td class="sc-hBUSln sc-fFeiMQ kCCtqV fwnkRw" kind="field" title="lineRef"><span class="sc-ieecCq fMdASL"></span><span class="property-name">lineRef</span></td><td class="sc-bkkeKt fOwWgB"><div><div><span class="sc-lbhJGD sc-iNGGcK gHbDui eLMLxg"></span><span class="sc-lbhJGD sc-jeraig gHbDui ifsMbX">string</span></div><div><span class="sc-lbhJGD gHbDui"> <!-- -->Default:<!-- --> </span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;null&quot;</span></div> <div><div class="sc-iJKOTD sc-cidDSM hGZPxu fhPxtY"><p>Required if <code>journeyRef</code> is <code>null</code>, ignored otherwise. A reference to the affected
+line when multiple journeys are affected by this traffic event.</p>
+</div></div></div></td></tr><tr class=""><td class="sc-hBUSln sc-fFeiMQ kCCtqV fwnkRw" kind="field" title="startDateTime"><span class="sc-ieecCq fMdASL"></span><span class="property-name">startDateTime</span></td><td class="sc-bkkeKt fOwWgB"><div><div><span class="sc-lbhJGD sc-iNGGcK gHbDui eLMLxg"></span><span class="sc-lbhJGD sc-jeraig gHbDui ifsMbX">string</span></div><div><span class="sc-lbhJGD gHbDui"> <!-- -->Default:<!-- --> </span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;null&quot;</span></div> <div><div class="sc-iJKOTD sc-cidDSM hGZPxu fhPxtY"><p>Required if <code>journeyRef</code> is <code>null</code>. An ISO UTC date string representing the date and
+time that the traffic event started. If <code>null</code>, the start time of the journey
+represented by <code>journeyRef</code> will be used instead.</p>
+</div></div></div></td></tr><tr class=""><td class="sc-hBUSln sc-fFeiMQ kCCtqV fwnkRw" kind="field" title="endDateTime"><span class="sc-ieecCq fMdASL"></span><span class="property-name">endDateTime</span></td><td class="sc-bkkeKt fOwWgB"><div><div><span class="sc-lbhJGD sc-iNGGcK gHbDui eLMLxg"></span><span class="sc-lbhJGD sc-jeraig gHbDui ifsMbX">string</span></div><div><span class="sc-lbhJGD gHbDui"> <!-- -->Default:<!-- --> </span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;null&quot;</span></div> <div><div class="sc-iJKOTD sc-cidDSM hGZPxu fhPxtY"><p>Required if <code>journeyRef</code> is <code>null</code>. An ISO UTC date string representing the date and
+time that the traffic event ended. If <code>null</code>, the end time of the journey represented
+by <code>journeyRef</code>, plus <code>delayMinutes</code> if given, will be used instead.</p>
+</div></div></div></td></tr><tr class=""><td class="sc-hBUSln sc-fFeiMQ kCCtqV fwnkRw" kind="field" title="leftStopPlaceRef"><span class="sc-ieecCq fMdASL"></span><span class="property-name">leftStopPlaceRef</span></td><td class="sc-bkkeKt fOwWgB"><div><div><span class="sc-lbhJGD sc-iNGGcK gHbDui eLMLxg"></span><span class="sc-lbhJGD sc-jeraig gHbDui ifsMbX">string</span></div><div><span class="sc-lbhJGD gHbDui"> <!-- -->Default:<!-- --> </span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;null&quot;</span></div> <div><div class="sc-iJKOTD sc-cidDSM hGZPxu fhPxtY"><p>Required if <code>category</code> is <code>CANCELLATION</code> and <code>subcategory</code> is <code>PARTIAL</code>, ignored
+otherwise. Should contain an NSR reference to one of the 2 stop places delimiting the
+sequence of stops affected by the partial cancellation, or to the single stop if only
+one stop is affected. See <code>rightStopPlaceRef</code>.</p>
+</div></div></div></td></tr><tr class=""><td class="sc-hBUSln sc-fFeiMQ kCCtqV fwnkRw" kind="field" title="rightStopPlaceRef"><span class="sc-ieecCq fMdASL"></span><span class="property-name">rightStopPlaceRef</span></td><td class="sc-bkkeKt fOwWgB"><div><div><span class="sc-lbhJGD sc-iNGGcK gHbDui eLMLxg"></span><span class="sc-lbhJGD sc-jeraig gHbDui ifsMbX">string</span></div><div><span class="sc-lbhJGD gHbDui"> <!-- -->Default:<!-- --> </span> <span class="sc-lbhJGD sc-clIzBv gHbDui hqhiLz">&quot;null&quot;</span></div> <div><div class="sc-iJKOTD sc-cidDSM hGZPxu fhPxtY"><p>Required if <code>category</code> is <code>CANCELLATION</code> and <code>subcategory</code> is <code>PARTIAL</code>, ignored
+otherwise. Should contain an NSR reference to the other of the 2 stop places
+delimiting the sequence of stops affected by the partial cancellation, or to the
+single stop if only one stop is affected. See <code>leftStopPlaceRef</code>.</p>
+</div></div></div></td></tr><tr class=""><td class="sc-hBUSln sc-fFeiMQ kCCtqV fwnkRw" kind="field" title="delayMinutes"><span class="sc-ieecCq fMdASL"></span><span class="property-name">delayMinutes</span></td><td class="sc-bkkeKt fOwWgB"><div><div><span class="sc-lbhJGD sc-iNGGcK gHbDui eLMLxg"></span><span class="sc-lbhJGD sc-jeraig gHbDui ifsMbX">integer</span><span class="sc-lbhJGD sc-jeraig gHbDui ifsMbX"> <!-- -->&lt;<!-- -->int32<!-- -->&gt;<!-- --> </span></div> <div><div class="sc-iJKOTD sc-cidDSM hGZPxu fhPxtY"><p>Required if <code>category</code> is <code>DELAY</code>, ignored otherwise. Should contain the number of
+minutes that the journey is delayed.</p>
+</div></div></div></td></tr><tr class="last "><td class="sc-hBUSln sc-fFeiMQ kCCtqV fwnkRw" kind="field" title="isOperatorExempt"><span class="sc-ieecCq fMdASL"></span><span class="property-name">isOperatorExempt</span><div class="sc-nVkyK sc-hiwPVj eyZzuM eSyGZd">required</div></td><td class="sc-bkkeKt fOwWgB"><div><div><span class="sc-lbhJGD sc-iNGGcK gHbDui eLMLxg"></span><span class="sc-lbhJGD sc-jeraig gHbDui ifsMbX">boolean</span></div> <div><div class="sc-iJKOTD sc-cidDSM hGZPxu fhPxtY"><p>A flag indicating whether you as an operator consider that the event was outside your
+control, and that you should be exempt from being fined for breach(es) of contract
+incurred as a consequence of the traffic event. If needed, an exemption reason can be
+provided in the <code>reasonDescription</code> field.</p>
+</div></div></div></td></tr></tbody></table><div><h3 class="sc-fIosxK bTvSgn">Responses</h3><div><button class="sc-htJRVC hoRAnv"><svg class="sc-egiyK bPEzCN" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg><strong class="sc-fXeWAj jHtNTU">201<!-- --> </strong><span class="sc-jcFjpl eahewB"><p>The traffic event was registered.</p>
+<p>The response contains a single traffic event for the given journey if the
+registration provided a <code>journeyRef</code>. If the registration provided a <code>lineRef</code>
+and a time interval, the response contains one traffic event for each journey
+that took place on the given line in the given time period.</p>
+</span></button></div><div><button class="sc-htJRVC gBqHPX" disabled=""><strong class="sc-fXeWAj jHtNTU">400<!-- --> </strong><span class="sc-jcFjpl eahewB"><p>One or more invalid input parameters (e.g., invalid <code>category</code>)</p>
+</span></button></div><div><button class="sc-htJRVC gBqHPX" disabled=""><strong class="sc-fXeWAj jHtNTU">401<!-- --> </strong><span class="sc-jcFjpl eahewB"><p>Expired access token</p>
+</span></button></div><div><button class="sc-htJRVC gBqHPX" disabled=""><strong class="sc-fXeWAj jHtNTU">403<!-- --> </strong><span class="sc-jcFjpl eahewB"><p>Invalid access token or insufficient access for operation</p>
+</span></button></div></div></div><div class="sc-jRQBWg sc-gKclnd vSqXI dKDnzb"><div class="sc-FNXRL jYAhkx"><button class="sc-eFegNN bxamQ"><span type="post" class="sc-fmBCVi huMmnt http-verb post">post</span><span class="sc-jWUzzU hxZHzL">/adt/3.x/v1/traffic-events</span><svg class="sc-egiyK laPRNF" style="margin-right:-25px" version="1.1" viewBox="0 0 24 24" x="0" xmlns="http://www.w3.org/2000/svg" y="0" aria-hidden="true"><polygon points="17.3 8.3 12 13.6 6.7 8.3 5.3 9.7 12 16.4 18.7 9.7 "></polygon></svg></button><div aria-hidden="true" class="sc-lkgTHX fuqHqW"><div class="sc-jlRLRk fUpXCf"><div class="sc-iJKOTD sc-cidDSM hGZPxu fhPxtY"></div><div tabindex="0" role="button"><div class="sc-dUbtfd ggmziU"><span>https://adt-event-reporting.transhub.io</span>/adt/3.x/v1/traffic-events</div></div></div></div></div><div><h3 class="sc-kDTinF hwMGJl"> <!-- -->Request samples<!-- --> </h3><div class="sc-cxpSdN eCLDJY" data-rttabs="true"><ul class="react-tabs__tab-list" role="tablist"><li class="react-tabs__tab react-tabs__tab--selected" role="tab" id="react-tabs-0" aria-selected="true" aria-disabled="false" aria-controls="react-tabs-1" tabindex="0" data-rttab="true">Payload</li></ul><div class="react-tabs__tab-panel react-tabs__tab-panel--selected" role="tabpanel" id="react-tabs-1" aria-labelledby="react-tabs-0"><div><div class="sc-AjmGg bcpfGN"><span class="sc-cNKqjZ iYcnri">Content type</span><div class="sc-bBHHxi eidhyg">application/json</div></div><div class="sc-jgrJph iUheaL"><div class="sc-jObWnj jOBPNj"><div class="sc-giYglK gjxyHD"><button><div class="sc-caiLqq ddxnzs">Copy</div></button></div><div class="sc-iJKOTD hGZPxu sc-dPiLbb sRoPx"><div class="redoc-json"><code><button class="collapser" aria-label="collapse"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable "><span class="property token string">"category"</span>: <span class="token string">&quot;CANCELLATION&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"subcategory"</span>: <span class="token string">&quot;PARTIAL&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"reason"</span>: <span class="token string">&quot;IMPROPERLY_PARKED_VEHICLE&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"reasonDescription"</span>: <span class="token string">&quot;En feilparkert bil blokkerte traséen&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"journeyRef"</span>: <span class="token string">&quot;RUT:DatedServiceJourney:1234-2023-01-01T13:00:00+01:00&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"lineRef"</span>: <span class="token string">&quot;RUT:Line:123&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"startDateTime"</span>: <span class="token string">&quot;2023-01-01T12:00:00Z&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"endDateTime"</span>: <span class="token string">&quot;2023-01-01T13:00:00Z&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"leftStopPlaceRef"</span>: <span class="token string">&quot;NSR:StopPlace:123&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"rightStopPlaceRef"</span>: <span class="token string">&quot;NSR:StopPlace:246&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"delayMinutes"</span>: <span class="token number">21</span><span class="token punctuation">,</span></div></li><li><div class="hoverable "><span class="property token string">"isOperatorExempt"</span>: <span class="token boolean">true</span></div></li></ul><span class="token punctuation">}</span></code></div></div></div></div></div></div></div></div><div><h3 class="sc-kDTinF hwMGJl"> <!-- -->Response samples<!-- --> </h3><div class="sc-cxpSdN eCLDJY" data-rttabs="true"><ul class="react-tabs__tab-list" role="tablist"><li class="tab-success react-tabs__tab--selected" role="tab" id="react-tabs-2" aria-selected="true" aria-disabled="false" aria-controls="react-tabs-3" tabindex="0" data-rttab="true">201</li></ul><div class="react-tabs__tab-panel react-tabs__tab-panel--selected" role="tabpanel" id="react-tabs-3" aria-labelledby="react-tabs-2"><div><div class="sc-AjmGg bcpfGN"><span class="sc-cNKqjZ iYcnri">Content type</span><div class="sc-bBHHxi eidhyg">application/json</div></div><div class="sc-jgrJph iUheaL"><div class="sc-jObWnj jOBPNj"><div class="sc-giYglK gjxyHD"><button><div class="sc-caiLqq ddxnzs">Copy</div></button><button> Expand all </button><button> Collapse all </button></div><div class="sc-iJKOTD hGZPxu sc-dPiLbb sRoPx"><div class="redoc-json"><code><button class="collapser" aria-label="collapse"></button><span class="token punctuation">[</span><span class="ellipsis"></span><ul class="array collapsible"><li><div class="hoverable "><button class="collapser" aria-label="collapse"></button><span class="token punctuation">{</span><span class="ellipsis"></span><ul class="obj collapsible"><li><div class="hoverable collapsed"><span class="property token string">"id"</span>: <span class="token string">&quot;1234-1&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"registrationId"</span>: <span class="token number">1234</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"status"</span>: <span class="token string">&quot;REGISTERED&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"trafficCaseNumber"</span>: <span class="token string">&quot;2023-1234&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"category"</span>: <span class="token string">&quot;CANCELLATION&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"subcategory"</span>: <span class="token string">&quot;PARTIAL&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"reasonCategory"</span>: <span class="token string">&quot;TRAFFIC_CONDITIONS&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"reasonSubcategory"</span>: <span class="token string">&quot;OBSTRUCTION&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"reason"</span>: <span class="token string">&quot;IMPROPERLY_PARKED_VEHICLE&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"reasonDescription"</span>: <span class="token string">&quot;En feilparkert bil blokkerte traséen&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"journeyRef"</span>: <span class="token string">&quot;RUT:DatedServiceJourney:123456&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"lineRef"</span>: <span class="token string">&quot;RUT:Line:123&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"vehicleTaskId"</span>: <span class="token string">&quot;1234&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"startDateTime"</span>: <span class="token string">&quot;2023-01-01T12:00:00Z&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"endDateTime"</span>: <span class="token string">&quot;2023-01-01T12:00:00Z&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"affectedQuayRefs"</span>: <button class="collapser" aria-label="expand"></button><span class="token punctuation">[</span><span class="ellipsis"></span><ul class="array collapsible"><li><div class="hoverable collapsed"><span class="token string">&quot;NSR:Quay:123&quot;</span>,</div></li><li><div class="hoverable collapsed"><span class="token string">&quot;NSR:Quay:246&quot;</span></div></li></ul><span class="token punctuation">]</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"delayMinutes"</span>: <span class="token number">21</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"registeredBy"</span>: <span class="token string">&quot;Ruterbuss AS&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"registeredAt"</span>: <span class="token string">&quot;2023-01-01T12:03:00Z&quot;</span><span class="token punctuation">,</span></div></li><li><div class="hoverable collapsed"><span class="property token string">"isOperatorExempt"</span>: <span class="token boolean">true</span></div></li></ul><span class="token punctuation">}</span></div></li></ul><span class="token punctuation">]</span></code></div></div></div></div></div></div></div></div></div></div></div></div><div class="sc-eldieg bLydqy"></div></div></div>
+      <script>
+      const __redoc_state = {"menu":{"activeItemIdx":-1},"spec":{"data":{"openapi":"3.0.1","info":{"title":"Traffic Event Reporting API","description":"Use this API to report cancellation and delay events directly to Ruter, along\nwith a flag indicating whether you consider that the event was outside your\ncontrol, and that you as an operator should be exempt from being fined for\nbreach(es) of contract incurred as a consequence of the traffic event.\n","version":"1"},"servers":[{"url":"https://adt-event-reporting.transhub.io"}],"paths":{"/adt/3.x/v1/traffic-events":{"post":{"tags":["/v1/traffic-events"],"summary":"Register traffic event","description":"Report a cancellation or delay event.","operationId":"create","parameters":[{"name":"Authorization","in":"header","description":"OAuth2 access token as Bearer token.\n\n**NOTE:** Separate documentation will be provided on how to obtain client\ncredentials and use these to request access tokens.\n","content":{"*/*":{"schema":{"type":"string"}}}}],"requestBody":{"content":{"application/json":{"schema":{"$ref":"#/components/schemas/TrafficEventRegistration"}}},"required":true},"responses":{"201":{"description":"The traffic event was registered.\n\nThe response contains a single traffic event for the given journey if the\nregistration provided a `journeyRef`. If the registration provided a `lineRef`\nand a time interval, the response contains one traffic event for each journey\nthat took place on the given line in the given time period.\n","content":{"application/json":{"schema":{"type":"array","items":{"$ref":"#/components/schemas/TrafficEvent"}}}}},"400":{"description":"One or more invalid input parameters (e.g., invalid `category`)"},"401":{"description":"Expired access token"},"403":{"description":"Invalid access token or insufficient access for operation"}}}}},"components":{"schemas":{"TrafficEvent":{"required":["category","endDateTime","id","isOperatorExempt","journeyRef","lineRef","reason","reasonCategory","reasonSubcategory","registeredAt","registeredBy","registrationId","startDateTime","status","subcategory","vehicleTaskId"],"type":"object","properties":{"id":{"type":"string","description":"The traffic event ID. Format: <registration-ID>-<sequence number>","example":"1234-1"},"registrationId":{"type":"integer","description":"The ID of the traffic event registration that was submitted for this traffic event.","format":"int64","example":1234},"status":{"type":"string","description":"The status of the traffic event.","default":"LOGGED","enum":["REGISTERED","LOGGED","NOTIFIED","RECALLED"]},"trafficCaseNumber":{"type":"string","description":"The traffic case number of the Ruterlogg traffic case that was created from the\ntraffic event registration submitted for this traffic event.\n","example":"2023-1234"},"category":{"type":"string","description":"The main category of the traffic event.","example":"CANCELLATION","enum":["CANCELLATION","DELAY"]},"subcategory":{"type":"string","description":"The subcategory of the traffic event.","example":"PARTIAL","enum":["FULL","PARTIAL","FROM_START","IN_TRANSIT"]},"reasonCategory":{"type":"string","description":"The reason category of the traffic event. Inferred from `category`, `subcategory` and\n`reason`.\n","example":"TRAFFIC_CONDITIONS"},"reasonSubcategory":{"type":"string","description":"The reason subcategory of the traffic event. Inferred from `category`, `subcategory`\nand `reason`.\n","example":"OBSTRUCTION","enum":["DRIVER_ERROR","CUSTOMER_CARE","TICKET_INSPECTION","FAULTY_TICKET_MACHINE","FAULTY_TAAS_SYSTEM","FAULTY_SIS_SYSTEM","FAULTY_DOOR","FAULTY_ENGINE","FAULTY_GEARBOX","FAULTY_BRAKES","NO_POWER","HEAVY_SNOWFALL","SLIPPERY_ROADS","IMPROPERLY_PARKED_VEHICLE","ROAD_WORK","ROAD_ACCIDENT","FALLEN_DEBRIS","TRAFFIC_CONGESTION","EVENT","DEMONSTRATION","OTHER"]},"reason":{"type":"string","description":"The reason for the traffic event.","example":"IMPROPERLY_PARKED_VEHICLE"},"reasonDescription":{"type":"string","description":"If needed, a further detailing of the reason for the traffic event.","example":"En feilparkert bil blokkerte traséen","default":"null"},"journeyRef":{"type":"string","description":"A reference to the planned journey that is affected by this traffic event.","example":"RUT:DatedServiceJourney:123456"},"lineRef":{"type":"string","description":"A reference to the line that the journey is serving.","example":"RUT:Line:123"},"vehicleTaskId":{"type":"string","description":"The ID of the vehicle task that the journey was part of.","example":"1234"},"startDateTime":{"type":"string","description":"An ISO UTC date string representing the date and time that the traffic event started.","example":"2023-01-01T12:00:00Z","default":"<journey start time>"},"endDateTime":{"type":"string","description":"An ISO UTC date string representing the date and time that the traffic event ended.","example":"2023-01-01T12:00:00Z","default":"<journey end time + delay if any>"},"affectedQuayRefs":{"type":"array","description":"If `category` is `CANCELLATION`: A list wth references to the quays affected by\nthe partial cancellation.\n\n`null` otherwise.\n","example":["NSR:Quay:123","NSR:Quay:246"],"items":{"type":"string"}},"delayMinutes":{"type":"integer","description":"If `category` is `DELAY`: The number of minutes that the journey is delayed.\n\n`null` otherwise.\n","format":"int32","example":21},"registeredBy":{"type":"string","description":"Your operator's client identifier, automatically inferred from your API credentials.","example":"Ruterbuss AS"},"registeredAt":{"type":"string","description":"The date and time that the traffic event was registered, in ISO UTC format.","example":"2023-01-01T12:03:00Z"},"isOperatorExempt":{"type":"boolean","description":"A flag indicating whether you as an operator should be exempt from being fined for\nbreach(es) of contract incurred as a consequence of this traffic event.\n","default":true}}},"TrafficEventRegistration":{"required":["category","isOperatorExempt","reason","subcategory"],"type":"object","properties":{"category":{"type":"string","description":"The main category of the traffic event.","example":"CANCELLATION","enum":["CANCELLATION","DELAY"]},"subcategory":{"type":"string","description":"The subcategory of the traffic event.\n\nPermitted values if `category` is `CANCELLATION`:\n- `FULL`\n- `PARTIAL`\n\nPermitted values if `category` is `DELAY`:\n- `FROM_START`\n- `IN_TRANSIT`\n","example":"PARTIAL","enum":["FULL","PARTIAL","FROM_START","IN_TRANSIT"]},"reason":{"type":"string","description":"The reason for the traffic event. If set to `OTHER`, a description must be provided in\nthe `reasonDescription` field.\n","example":"IMPROPERLY_PARKED_VEHICLE","enum":["DRIVER_ERROR","CUSTOMER_CARE","TICKET_INSPECTION","FAULTY_TICKET_MACHINE","FAULTY_TAAS_SYSTEM","FAULTY_SIS_SYSTEM","FAULTY_DOOR","FAULTY_ENGINE","FAULTY_GEARBOX","FAULTY_BRAKES","NO_POWER","HEAVY_SNOWFALL","SLIPPERY_ROADS","IMPROPERLY_PARKED_VEHICLE","ROAD_WORK","ROAD_ACCIDENT","FALLEN_DEBRIS","TRAFFIC_CONGESTION","EVENT","DEMONSTRATION","OTHER"]},"reasonDescription":{"type":"string","description":"A further detailing of the reason for the traffic event, and if relevant, an\nexplanation for why you as an operator should be exempt from being fined for\nbreach(es) of contract incurred as a consequence of this traffic event (see\n`isOperatorExempt`). Required if `reason` is set to `OTHER`.\n","example":"En feilparkert bil blokkerte traséen","default":"null"},"journeyRef":{"type":"string","description":"A reference to the planned journey that is affected by this traffic event, if only a\nsingle journey is affected.\n\nFormat should be one of:\n- `RUT:DatedServiceJourney:<dated journey ID from plan data>`\n- `RUT:DatedServiceJourney:<vehicle task ID>-<journey start time in ISO offset format>`\n","example":"RUT:DatedServiceJourney:1234-2023-01-01T13:00:00+01:00","default":"null"},"lineRef":{"type":"string","description":"Required if `journeyRef` is `null`, ignored otherwise. A reference to the affected\nline when multiple journeys are affected by this traffic event.\n","example":"RUT:Line:123","default":"null"},"startDateTime":{"type":"string","description":"Required if `journeyRef` is `null`. An ISO UTC date string representing the date and\ntime that the traffic event started. If `null`, the start time of the journey\nrepresented by `journeyRef` will be used instead.\n","example":"2023-01-01T12:00:00Z","default":"null"},"endDateTime":{"type":"string","description":"Required if `journeyRef` is `null`. An ISO UTC date string representing the date and\ntime that the traffic event ended. If `null`, the end time of the journey represented\nby `journeyRef`, plus `delayMinutes` if given, will be used instead.\n","example":"2023-01-01T13:00:00Z","default":"null"},"leftStopPlaceRef":{"type":"string","description":"Required if `category` is `CANCELLATION` and `subcategory` is `PARTIAL`, ignored\notherwise. Should contain an NSR reference to one of the 2 stop places delimiting the\nsequence of stops affected by the partial cancellation, or to the single stop if only\none stop is affected. See `rightStopPlaceRef`.\n","example":"NSR:StopPlace:123","default":"null"},"rightStopPlaceRef":{"type":"string","description":"Required if `category` is `CANCELLATION` and `subcategory` is `PARTIAL`, ignored\notherwise. Should contain an NSR reference to the other of the 2 stop places\ndelimiting the sequence of stops affected by the partial cancellation, or to the\nsingle stop if only one stop is affected. See `leftStopPlaceRef`.\n","example":"NSR:StopPlace:246","default":"null"},"delayMinutes":{"type":"integer","description":"Required if `category` is `DELAY`, ignored otherwise. Should contain the number of\nminutes that the journey is delayed.\n","format":"int32","example":21},"isOperatorExempt":{"type":"boolean","description":"A flag indicating whether you as an operator consider that the event was outside your\ncontrol, and that you should be exempt from being fined for breach(es) of contract\nincurred as a consequence of the traffic event. If needed, an exemption reason can be\nprovided in the `reasonDescription` field.\n"}}}}}}},"searchIndex":{"store":["tag/v1traffic-events","tag/v1traffic-events/operation/create"],"index":{"version":"2.3.9","fields":["title","description"],"fieldVectors":[["title/0",[0,0.871]],["description/0",[]],["title/1",[1,0.575,2,0.575,3,0.151]],["description/1",[3,0.129,4,0.492,5,0.492,6,0.492,7,0.492]]],"invertedIndex":[["adt/3.x/v1/traffic-ev",{"_index":7,"title":{},"description":{"1":{}}}],["cancel",{"_index":5,"title":{},"description":{"1":{}}}],["delay",{"_index":6,"title":{},"description":{"1":{}}}],["event",{"_index":3,"title":{"1":{}},"description":{"1":{}}}],["regist",{"_index":1,"title":{"1":{}},"description":{}}],["report",{"_index":4,"title":{},"description":{"1":{}}}],["traffic",{"_index":2,"title":{"1":{}},"description":{}}],["v1/traffic-ev",{"_index":0,"title":{"0":{}},"description":{}}]],"pipeline":[]}},"options":{}};
+
+      var container = document.getElementById('redoc');
+      Redoc.hydrate(__redoc_state, container);
+
+      </script>
+</body>
+
+</html>
