@@ -137,7 +137,7 @@
           "reason": {
             "type": "string",
             "description": "The reason for the traffic event.",
-            "example": "FAULTY_PARKING"
+            "example": "IMPROPERLY_PARKED_VEHICLE"
           },
           "reasonDescription": {
             "type": "string",
