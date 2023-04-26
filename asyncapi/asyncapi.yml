@@ -77,6 +77,36 @@ channels:
         payload:
           $ref: json-schemas/operational/assignment/status/assignment-status.json
         schemaFormat: application/schema+json;version=draft-07
+  operational/assignment/unable/request:
+    description:
+      $ref: json-schemas/operational/assignment/unable/request/assignment-unable-request.md
+    publish:
+      message:
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+        examples:
+          - $ref: json-schemas/operational/assignment/unable/request/assignment-unable-request-no-intention.example.json
+        name: AssignmentUnableRequest
+        payload:
+          $ref: json-schemas/operational/assignment/unable/request/assignment-unable-request.json
+        schemaFormat: application/schema+json;version=draft-07
+  operational/assignment/unable/response:
+    description:
+      $ref: json-schemas/operational/assignment/unable/response/assignment-unable-response.md
+    subscribe:
+      message:
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+        examples:
+          - $ref: json-schemas/operational/assignment/unable/response/assignment-unable-response-no-intention.example.json
+        name: AssignmentUnableResponse
+        payload:
+          $ref: json-schemas/operational/assignment/unable/response/assignment-unable-response.json
+        schemaFormat: application/schema+json;version=draft-07
   pe/active_cab:
     description:
       $ref: json-schemas/pe/active-cab/active-cab.md

@@ -1,0 +1,12 @@
+{
+  "mode": "subscribe",
+  "service-level": "external",
+  "vehicleCentric": false,
+  "producer": "assignment",
+  "consumer": "pto",
+  "mqtt": {
+    "retain": false,
+    "qos": 1,
+    "topic": "{operatorId}/ruter/back_office/adt/v3/operational/assignment/unable/response"
+  }
+}

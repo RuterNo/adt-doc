@@ -20,7 +20,7 @@
     },
     "serviceWindow": {
       "$id": "#/properties/serviceWindow",
-      "description": "First arrival and last departure",
+      "description": "First departure and last arrival",
       "$ref": "../../../common/assignment-service-window.json"
     }
   }
