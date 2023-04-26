@@ -6,7 +6,7 @@
     "result":{
       "code": "OK",
       "reason": "OK",
-      "description": "The plan has been updated"
+      "description": "The omission is successfully registered"
     }
   }
 }
