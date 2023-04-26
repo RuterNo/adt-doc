@@ -107,7 +107,13 @@
           "status": {
             "type": "string",
             "description": "The status of the traffic event.",
-            "default": "LOGGED"
+            "default": "LOGGED",
+            "enum": [
+              "REGISTERED",
+              "LOGGED",
+              "NOTIFIED",
+              "RECALLED"
+            ]
           },
           "trafficCaseNumber": {
             "type": "string",
@@ -117,22 +123,55 @@
           "category": {
             "type": "string",
             "description": "The main category of the traffic event.",
-            "example": "CANCELLATION"
+            "example": "CANCELLATION",
+            "enum": [
+              "CANCELLATION",
+              "DELAY"
+            ]
           },
           "subcategory": {
             "type": "string",
             "description": "The subcategory of the traffic event.",
-            "example": "PARTIAL"
+            "example": "PARTIAL",
+            "enum": [
+              "FULL",
+              "PARTIAL",
+              "FROM_START",
+              "IN_TRANSIT"
+            ]
           },
           "reasonCategory": {
             "type": "string",
-            "description": "The reason category of the traffic event.",
+            "description": "The reason category of the traffic event. Inferred from `category`, `subcategory` and\n`reason`.\n",
             "example": "TRAFFIC_CONDITIONS"
           },
           "reasonSubcategory": {
             "type": "string",
-            "description": "The reason subcategory of the traffic event.",
-            "example": "OBSTRUCTION"
+            "description": "The reason subcategory of the traffic event. Inferred from `category`, `subcategory`\nand `reason`.\n",
+            "example": "OBSTRUCTION",
+            "enum": [
+              "DRIVER_ERROR",
+              "CUSTOMER_CARE",
+              "TICKET_INSPECTION",
+              "FAULTY_TICKET_MACHINE",
+              "FAULTY_TAAS_SYSTEM",
+              "FAULTY_SIS_SYSTEM",
+              "FAULTY_DOOR",
+              "FAULTY_ENGINE",
+              "FAULTY_GEARBOX",
+              "FAULTY_BRAKES",
+              "NO_POWER",
+              "HEAVY_SNOWFALL",
+              "SLIPPERY_ROADS",
+              "IMPROPERLY_PARKED_VEHICLE",
+              "ROAD_WORK",
+              "ROAD_ACCIDENT",
+              "FALLEN_DEBRIS",
+              "TRAFFIC_CONGESTION",
+              "EVENT",
+              "DEMONSTRATION",
+              "OTHER"
+            ]
           },
           "reason": {
             "type": "string",
@@ -309,7 +348,7 @@
           },
           "isOperatorExempt": {
             "type": "boolean",
-            "description": "A flag indicating whether you consider that the event was outside your control, and\nthat you as an operator should be exempt from being fined for breach(es) of contract\nincurred as a consequence of the traffic event. If needed, an exemption reason can be\nprovided in the `reasonDescription` field.\n"
+            "description": "A flag indicating whether you as an operator consider that the event was outside your\ncontrol, and that you should be exempt from being fined for breach(es) of contract\nincurred as a consequence of the traffic event. If needed, an exemption reason can be\nprovided in the `reasonDescription` field.\n"
           }
         }
       }
