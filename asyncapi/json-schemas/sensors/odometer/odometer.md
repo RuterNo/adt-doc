@@ -8,6 +8,6 @@
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. | 
 
 Describes an odometer value in meters based on total vehicle distance or similar. Absolute value of less importance but
-should be strictly increasing within the scope of a journey.
+should be increasing within the scope of a journey.
 
 Frequency is expected at 1 message per second.
