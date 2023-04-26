@@ -5,6 +5,7 @@
   "type": "object",
   "required": [
     "doorOpen",
+    "traceId",
     "eventTimestamp"
   ],
   "description": "Describes if any door is open (if the door lock is released). Also see topic pe/doors_individually for status on individual doors.",
