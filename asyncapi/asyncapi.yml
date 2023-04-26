@@ -515,6 +515,21 @@ channels:
           mqtt:
             qos: 1
             retain: false
+  pe/vehicle/api:
+    description:
+      $ref: json-schemas/pe/vehicle/api/api.md
+    subscribe:
+      message:
+        name: Api
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/pe/vehicle/api/api.json
+        examples:
+          - $ref: json-schemas/pe/vehicle/api/api.example.json
+        bindings:
+          mqtt:
+            qos: 1
+            retain: true
 components:
   parameters:
     operatorId:
