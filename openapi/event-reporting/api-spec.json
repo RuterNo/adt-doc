@@ -176,8 +176,8 @@
             "type": "array",
             "description": "If `category` is `CANCELLATION`: A list wth references to the quays affected by\nthe partial cancellation.\n\n`null` otherwise.\n",
             "example": [
-              "RUT:Quay:123",
-              "RUT:Quay:246"
+              "NSR:Quay:123",
+              "NSR:Quay:246"
             ],
             "items": {
               "type": "string"
