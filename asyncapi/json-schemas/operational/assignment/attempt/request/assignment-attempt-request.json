@@ -10,15 +10,16 @@
   ],
   "additionalProperties": true,
   "properties": {
-    "traceId": {
-      "$id": "#/properties/traceId",
-      "description": "A unique identifier - UUID",
-      "type": "string"
-    },
     "eventTimestamp": {
       "$id": "#/properties/eventTimestamp",
-      "description": "When the recorded event happened",
-      "type": "string"
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)",
+      "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier - UUID"
     },
     "signOn": {
       "$id": "#/properties/signOn",

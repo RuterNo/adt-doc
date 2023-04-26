@@ -10,15 +10,16 @@
   ],
   "additionalProperties": true,
   "properties": {
-    "traceId": {
-      "$id": "#/properties/traceId",
-      "description": "The traceId of the assignment attempt request that altered the state",
-      "type": "string"
-    },
     "eventTimestamp": {
       "$id": "#/properties/eventTimestamp",
-      "description": "When Ruter has updated the assignment state",
-      "type": "string"
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)",
+      "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier - UUID"
     },
     "state": {
       "$id": "#/properties/state",
