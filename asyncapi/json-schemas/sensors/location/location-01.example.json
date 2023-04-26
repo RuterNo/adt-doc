@@ -2,7 +2,7 @@
   "name": "Location",
   "payload": {
     "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
-    "eventTimestamp": "2017-11-30T23:45:52Z",
+    "eventTimestamp": "2017-10-31T12:45:50.749Z",
     "latitudeDegree": 59.251356,
     "longitudeDegree": 11.581231,
     "altitude": 124,
