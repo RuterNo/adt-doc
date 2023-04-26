@@ -5,6 +5,7 @@
     "title": "RuterSalg Diagnostics MQTT Message",
     "required": [
         "eventTimestamp",
+        "traceId",
         "nfcReaderConnected",
         "printerConnected",
         "nodAvailable",
