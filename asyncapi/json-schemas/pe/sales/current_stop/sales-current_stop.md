@@ -1,7 +1,7 @@
 ### RuterSalg current_stop
 | Field         | Value                                                                                                             |
 |---------------|-------------------------------------------------------------------------------------------------------------------|
-| Central Topic | {operatorId}/ruter/{vehicleRef}/pe/sales/current_stop                                                             |
+| Central Topic | {operatorId}/ruter/{vehicleRef}/adt/v3/pe/sales/current_stop                                                      |
 | Schema        | [ sales-current_stop.json ](json-schemas/pe/sales/current_stop/sales-current_stop.json)                           |
 | Producer      | RuterSalg                                                                                                         |
 | Consumer      | RuterSalg                                                                                                         |
