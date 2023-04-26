@@ -6,11 +6,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://adt.transhub.io/3.x/adt-api/</loc>
-         <lastmod>2023-04-26</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://adt.transhub.io/3.x/browser-requirements/</loc>
          <lastmod>2023-04-26</lastmod>
          <changefreq>daily</changefreq>
@@ -27,6 +22,11 @@
     </url>
     <url>
          <loc>https://adt.transhub.io/3.x/live-status/</loc>
+         <lastmod>2023-04-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://adt.transhub.io/3.x/mqtt-api/</loc>
          <lastmod>2023-04-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -56,12 +56,12 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://adt.transhub.io/3.x/troubleshooting-client/</loc>
+         <loc>https://adt.transhub.io/3.x/traffic-plan/</loc>
          <lastmod>2023-04-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://adt.transhub.io/3.x/tsp/</loc>
+         <loc>https://adt.transhub.io/3.x/troubleshooting-client/</loc>
          <lastmod>2023-04-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
