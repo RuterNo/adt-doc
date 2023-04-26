@@ -1,0 +1,8 @@
+{
+  "mode": "publish",
+  "mqtt": {
+    "retain": false,
+    "qos": 0,
+    "topic": "ruter/{operatorId}/{vehicleId}/adt/v3/pe/cardreader_diagnostics/vix/{deviceRef}"
+  }
+}

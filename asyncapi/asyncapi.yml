@@ -297,18 +297,18 @@ channels:
             retain: false
   pe/cardreader_diagnostics/vix/{deviceRef}:
     description:
-      $ref: markdown/cardreader_diagnostics.md
+      $ref: json-schemas/pe/cardreader/vix/vix-cardreader_diagnostics.md
     parameters:
       deviceRef:
         $ref: '#/components/parameters/deviceRef'
     publish:
       message:
-        name: Card Reader Diagnostics
+        name: VIX Card Reader Diagnostics
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/cardreader_diagnostics.json
+          $ref: json-schemas/pe/cardreader/vix/vix-cardreader_diagnostics.json
         examples: [
-          { $ref: examples/cardreader_diagnostics.json }
+          { $ref: json-schemas/pe/cardreader/vix/vix-cardreader_diagnostics.json }
         ]
         bindings:
           mqtt:
