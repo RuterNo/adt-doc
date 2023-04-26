@@ -3,6 +3,6 @@
   "payload": {
     "doorRef": "01",
     "isOpen": true,
-    "atDateTime": "2021-10-31T12:45:50Z"
+    "eventTimestamp": "2021-10-31T12:45:50Z"
   }
 }
