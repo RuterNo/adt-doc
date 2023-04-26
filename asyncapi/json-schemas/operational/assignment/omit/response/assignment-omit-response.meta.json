@@ -7,6 +7,6 @@
   "mqtt": {
     "retain": false,
     "qos": 1,
-    "topic": "{operatorId}/ruter/back_office/adt/v3/operational/assignment/unable/response"
+    "topic": "{operatorId}/ruter/back_office/adt/v3/operational/assignment/omit/response"
   }
 }

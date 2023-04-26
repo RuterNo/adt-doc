@@ -1,8 +1,8 @@
 {
-  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/unable/request/assignment-unable-request.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/omit/request/assignment-omit-request.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "AssignmentUnableRequest",
-  "description": "Request to sign a vehicle on/off, or update an assigned assignment. The vehicle in question is provided in the mqtt topic name. Response will be sent to this vehicle via assignment attempt response.",
+  "title": "AssignmentOmitRequest",
+  "description": "Request to omit a specified service. Response will be sent to this vehicle via assignment attempt response.",
   "type": "object",
   "required": [
     "traceId",
@@ -23,7 +23,7 @@
     },
     "code": {
       "$id": "#/properties/code",
-      "description": "Specification of why the PTO is unable to perform the service",
+      "description": "Specification of why the PTO will omit the service",
       "type": "string",
       "examples": [
         "NO_INTENTION"

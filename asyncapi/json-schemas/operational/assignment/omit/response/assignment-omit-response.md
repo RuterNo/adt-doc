@@ -1,8 +1,8 @@
 ### AssignmentAttemptResponse Message
 | Field         | Value                                                                                                                       |
 |---------------|-----------------------------------------------------------------------------------------------------------------------------|
-| Central Topic | {operatorId}/ruter/back_office/adt/v3/operational/assignment/unable/response                                                |
-| Schema        | [ assignment-unable-response.json ](json-schemas/operational/assignment/unable/response/assignment-unable-response.json)    |
+| Central Topic | {operatorId}/ruter/back_office/adt/v3/operational/assignment/omit/response                                                  |
+| Schema        | [ assignment-omit-response.json ](json-schemas/operational/assignment/omit/response/assignment-omit-response.json)          |
 | Producer      | [Ruter Assignment](https://github.com/orgs/RuterNo/teams/assignment)                                                        |
 | Consumer      | PTO                                                                                                                         |
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.                   |

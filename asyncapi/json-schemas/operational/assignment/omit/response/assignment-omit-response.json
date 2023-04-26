@@ -1,8 +1,8 @@
 {
-  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/unable/response/assignment-unable-response.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/omit/response/assignment-omit-response.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "AssignmentUnableResponse",
-  "description": "A response to an assignment attempt request",
+  "title": "AssignmentOmitResponse",
+  "description": "A response to an assignment omit request",
   "type": "object",
   "required": [
     "traceId",
@@ -24,7 +24,7 @@
     },
     "result": {
       "$id": "#/properties/result",
-      "$ref": "common/assignment-result.json",
+      "$ref": "../../common/assignment-result.json",
       "description": "Result and specifications of the processes attempt request"
     }
   }
