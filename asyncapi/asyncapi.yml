@@ -77,6 +77,36 @@ channels:
         payload:
           $ref: json-schemas/operational/assignment/status/assignment-status.json
         schemaFormat: application/schema+json;version=draft-07
+  operational/assignment/omit/request:
+    description:
+      $ref: json-schemas/operational/assignment/omit/request/assignment-omit-request.md
+    publish:
+      message:
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+        examples:
+          - $ref: json-schemas/operational/assignment/omit/request/assignment-omit-request-no-intention.example.json
+        name: AssignmentOmitRequest
+        payload:
+          $ref: json-schemas/operational/assignment/omit/request/assignment-omit-request.json
+        schemaFormat: application/schema+json;version=draft-07
+  operational/assignment/omit/response:
+    description:
+      $ref: json-schemas/operational/assignment/omit/response/assignment-omit-response.md
+    subscribe:
+      message:
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+        examples:
+          - $ref: json-schemas/operational/assignment/omit/response/assignment-omit-response-no-intention.example.json
+        name: AssignmentOmitResponse
+        payload:
+          $ref: json-schemas/operational/assignment/omit/response/assignment-omit-response.json
+        schemaFormat: application/schema+json;version=draft-07
   pe/active_cab:
     description:
       $ref: json-schemas/pe/active-cab/active-cab.md

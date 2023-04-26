@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/attempt/response/common/assignment-result.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/common/assignment-result.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "AssignmentResult",
   "description": "Result of processing an assignment attempt",

@@ -209,9 +209,11 @@ def update_meta(paths):
             mqtt['retain'] = 'TODO'
 
         routing_prefix = '{operatorId}/ruter' if 'publish' != meta['mode'] else 'ruter/{operatorId}'
-        include_vehicle = 'vehicleCentric' not in meta or meta['vehicleCentric']
-        if include_vehicle:
+        vehicle_centric = 'vehicleCentric' not in meta or meta['vehicleCentric']
+        if vehicle_centric:
             routing_prefix = routing_prefix + "/{vehicleId}"
+        else:
+            routing_prefix = routing_prefix + "/back_office"
         prefix = f'{routing_prefix}/adt/v{API_VERSION_MAJOR}'
         topic = f"{prefix}/{paths['channel']}"
         topic_params = mqtt['params'] if 'params' in mqtt else []

@@ -47,7 +47,7 @@
     },
     "serviceWindow": {
       "$id": "#/properties/serviceWindow",
-      "description": "Planed first arrival and last departure for the assignment if the vehicle is assigned",
+      "description": "Planed first departure and last arrival for the assignment if the vehicle is assigned",
       "$ref": "assignment-service-window.json"
     },
     "firstJourneyId": {
