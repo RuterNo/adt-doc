@@ -7,4 +7,4 @@
 | Consumer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                       |
 | Service Level | ⛔ Ruter internal API. No restrictions apply. Api may be removed or modified freely by Ruter within major version. |
 
-Message used to retrieve information about the vehicle and supported APIs.
+Message used by Ruter to distribute information about the vehicle and it's supported APIs as provided by the PTO.
