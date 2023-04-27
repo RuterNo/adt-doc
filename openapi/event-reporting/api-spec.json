@@ -390,7 +390,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "description": "The SLA breach ID. Must be `null` on registration. Format: <sequence number>",
+            "description": "The SLA breach ID. Must be `null` on registration.",
             "example": "1234-1",
             "default": "null"
           },
