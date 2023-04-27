@@ -308,7 +308,7 @@ channels:
         payload:
           $ref: json-schemas/pe/cardreader/vix/vix-cardreader_diagnostics.json
         examples: [
-          { $ref: json-schemas/pe/cardreader/vix/vix-cardreader_diagnostics.json }
+          { $ref: json-schemas/pe/cardreader/vix/vix-cardreader_diagnostics.example.json }
         ]
         bindings:
           mqtt:
