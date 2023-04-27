@@ -42,10 +42,10 @@ jobs:
 
       - name: Make Json Schemas available
         run: |
-          sudo cp -r asyncapi/json-schemas docs/json-schemas
-          sudo find docs/json-schemas/ -name "*example.json" -type f -delete
-          sudo find docs/json-schemas/ -name "*.meta.json" -type f -delete
-          sudo find docs/json-schemas/ -name "*.md" -type f -delete
+          sudo cp -r asyncapi/json-schemas docs/asyncapi/json-schemas
+          sudo find docs/asyncapi/json-schemas/ -name "*example.json" -type f -delete
+          sudo find docs/asyncapi/json-schemas/ -name "*.meta.json" -type f -delete
+          sudo find docs/asyncapi/json-schemas/ -name "*.md" -type f -delete
         shell: bash
 
       - uses: actions/setup-python@v4
