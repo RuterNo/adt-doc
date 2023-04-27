@@ -1,0 +1,42 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/di/operational_message_to_driver/operational-message-to-driver.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "OperationalMessageToDriver",
+  "type": "object",
+  "required": [
+    "traceId",
+    "heading",
+    "body",
+    "senderRef",
+    "eventTimestamp"
+  ],
+  "description": "Operational message to driver",
+  "additionalProperties": true,
+  "properties": {
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier - UUID"
+    },
+    "heading": {
+      "$id": "#/properties/heading",
+      "type": "string",
+      "description": ""
+    },
+    "body": {
+      "$id": "#/properties/body",
+      "type": "string",
+      "description": ""
+    },
+    "senderRef": {
+      "$id": "#/properties/senderRef",
+      "type": "string",
+      "description": ""
+    },
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)"
+    }
+  }
+}
