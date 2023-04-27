@@ -39,6 +39,21 @@
         "true",
         "false"
       ]
+    },
+    "messageNumber": {
+      "$id": "#/properties/messageNumber",
+      "$comment": "Added in version 2.1",
+      "type": "number",
+      "description": "Optional. Sequence number, increased by one for each new message. Used to validate consistency in the data stream."
     }
-  }
+  },
+  "examples": [
+    {
+      "eventTimestamp": "2021-11-30T23:45:52.006Z",
+      "traceId": "c26f450f-2418-4792-a567-05f6771cba7a",
+      "stopPressed": true,
+      "accessibility": false,
+      "messageNumber": 1
+    }
+  ]
 }
