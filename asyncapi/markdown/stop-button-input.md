@@ -1,7 +1,7 @@
 ### Remote Stop Button Message
 | Field         | Value                                                                                                     |
 |---------------|-----------------------------------------------------------------------------------------------------------|
-| Central Topic | {operatorId}/ruter/{vehicleId}/pe/input/stop_button                                                       |
+| Central Topic | {operatorId}/ruter/{vehicleId}/adt/v3/pe/input/stop_button                                                |
 | Schema        | [ stop-button.json ](json-schemas/stop-button.json)                                                       |
 | Producer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                               |
 | Consumer      | PTO                                                                                                       |
