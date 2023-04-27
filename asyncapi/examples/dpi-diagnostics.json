@@ -2,7 +2,7 @@
   "name": "DPI Diagnostics",
   "payload": {
     "eventTimestamp": "2018-10-31T12:45:50Z",
-    "screenId": "ad71dba8-c881-11e8-a8d5-f2801f1b9fd1",
+    "clientId": "ad71dba8-c881-11e8-a8d5-f2801f1b9fd1",
     "type": "STATUS",
     "payload": {
       "version": {
