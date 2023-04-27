@@ -88,6 +88,7 @@ nav:
   - API:
       - MQTT Api: mqtt-api.md
       - Traffic plan: traffic-plan.md
+      - Event reporting: event-reporting.md
       - Data formats:
           - Time and Date: timestamps.md
       - Additional messages:
