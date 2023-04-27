@@ -33,6 +33,14 @@ jobs:
           sudo sed -i -e '\@</head>@i\<link href="css/doc.css" rel="stylesheet">' docs/asyncapi/index.html
         shell: bash
 
+      - name: Make Json Schemas available
+        run: |
+          sudo cp -r asyncapi/json-schemas docs/asyncapi/json-schemas
+          sudo find docs/asyncapi/json-schemas/ -name "*example.json" -type f -delete
+          sudo find docs/asyncapi/json-schemas/ -name "*.meta.json" -type f -delete
+          sudo find docs/asyncapi/json-schemas/ -name "*.md" -type f -delete
+        shell: bash
+
       - uses: actions/setup-python@v4
         with:
           python-version: 3.x
