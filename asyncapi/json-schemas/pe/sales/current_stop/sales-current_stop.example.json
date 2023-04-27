@@ -1,0 +1,15 @@
+{
+  "name": "SalesCurrentStop",
+  "payload": {
+    "eventTimestamp": "2020-04-28T13:49:50.814Z",
+    "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
+    "journeyRef": "42911-2020-05-25T16:42:00+02:00",
+    "vehicleRef": "VNE5248P50M039131",
+    "chainId": "140",
+    "lineId": "RUT:Line:140",
+    "blockId": "44f45aeb-7e7a-456f-b326-0546e988ae00",
+    "quayId": "NSR:Quay:17023",
+    "stopPlaceId": "NSR:StopPlace:4000",
+    "tariffZone": "RUT:TariffZone:227"
+  }
+}

@@ -314,15 +314,31 @@ channels:
             retain: false
   pe/sales/diagnostics:
     description:
-      $ref: markdown/sales-diagnostics.md
+      $ref: json-schemas/pe/sales/diagnostics/sales-diagnostics.md
     publish:
       message:
-        name: RuterSalg Diagnostics MQTT Message
+        name: SalesDiagnostics
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/salesdiagnostics.json
+          $ref: json-schemas/pe/sales/diagnostics/sales-diagnostics.json
         examples: [
-          { $ref: examples/salesdiagnostics.json }
+          { $ref: json-schemas/pe/sales/diagnostics/sales-diagnostics.example.json }
+        ]
+        bindings:
+          mqtt:
+            qos: 1
+            retain: true
+  pe/sales/current_stop:
+    description:
+      $ref: json-schemas/pe/sales/current_stop/sales-current_stop.md
+    publish:
+      message:
+        name: SalesCurrentStop
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/pe/sales/current_stop/sales-current_stop.json
+        examples: [
+          { $ref: json-schemas/pe/sales/current_stop/sales-current_stop.example.json }
         ]
         bindings:
           mqtt:
