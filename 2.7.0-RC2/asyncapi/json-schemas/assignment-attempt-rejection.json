@@ -1,0 +1,55 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v2.1/driver-interaction/assignment-attempt-rejection.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignmentAttemptRejection",
+  "type": "object",
+  "required": [
+    "fromDateTime",
+    "result"
+  ],
+  "description": "Describes a negative result from the back-office of an attempt to sign on or off a block from MADT or another GUI",
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "$comment": "Added in version 2.5",
+      "type": "string",
+      "description": "ISO 8601. Reflects the current UTC time."
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "$comment": "Added in version 2.5",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message. Also used to detect duplicate messages received."
+    },
+    "fromDateTime": {
+      "$id": "#/properties/fromDateTime",
+      "type": "string",
+      "description": "Time from which the sign on/off was supposed to apply. ISO 8601, UTC"
+    },
+    "blockRef": {
+      "$id": "#/properties/blockRef",
+      "type": "string",
+      "description": "Optional. Not provided for sign off. Otherwise the Block identifier."
+    },
+    "result": {
+      "$id": "#/properties/result",
+      "type": "string",
+      "description": "Possible values listed in examples",
+      "examples": [
+        "INTERNAL_ERROR",
+        "TIMEOUT",
+        "SERVICE_CLOSED",
+        "NOT_SUCCEDED",
+        "NOT_GRANTED",
+        "NOT_SUPPORTED",
+        "NOT_UNDERSTOOD"
+      ]
+    },
+    "errorText": {
+      "$id": "#/properties/errorText",
+      "type": "string",
+      "description": "Optional. Only provided if there is an error text."
+    }
+  }
+}

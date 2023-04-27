@@ -1,0 +1,82 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v2.1/sensor/location.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Location",
+  "type": "object",
+  "description": "Location sensor data",
+  "required": [
+    "latitudeDegree",
+    "longitudeDegree",
+    "altitude",
+    "fixDateTime",
+    "speedOverGround",
+    "trackDegreeTrue",
+    "signalQuality",
+    "numberOfSatellites",
+    "hdop"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "latitudeDegree": {
+      "$id": "#/properties/latitudeDegree",
+      "type": "number",
+      "description": "Latitude coordinate in decimal degrees."
+    },
+    "latitudeDirection": {
+      "$id": "#/properties/latitudeDirection",
+      "type": "string",
+      "description": "Optional. Latitude direction (“N” or “S”)."
+    },
+    "longitudeDegree": {
+      "$id": "#/properties/longitudeDegree",
+      "type": "number",
+      "description": "Longitude coordinate in decimal degrees."
+    },
+    "longitudeDirection": {
+      "$id": "#/properties/longitudeDirection",
+      "type": "string",
+      "description": "Optional. Longitude direction (“W” or “E”)."
+    },
+    "altitude": {
+      "$id": "#/properties/altitude",
+      "type": "number",
+      "description": "Altitude value (m) above mean sea level."
+    },
+    "fixDateTime": {
+      "$id": "#/properties/fixDateTime",
+      "type": "string",
+      "description": "ISO 8601. Reflects the UTC time provided by the GNSS equipment for position fix. This is the point in time the location applies to."
+    },
+    "messageNumber": {
+      "$id": "#/properties/messageNumber",
+      "$comment": "Added in version 2.1",
+      "type": "number",
+      "description": "Optional. Sequence number, increased by one for each new message. Used to validate consistency in the data stream."
+    },
+    "speedOverGround": {
+      "$id": "#/properties/speedOverGround",
+      "type": "number",
+      "description": "GNSS based speed over ground (m/s)."
+    },
+    "trackDegreeTrue": {
+      "$id": "#/properties/trackDegreeTrue",
+      "type": "number",
+      "description": "Direction of travel in relation to the geographical North Pole (0-360 degrees)."
+    },
+    "signalQuality": {
+      "$id": "#/properties/signalQuality",
+      "type": "number",
+      "description": "GPS quality indicator. 0 - Fix not available. 1 - GPS fix. 2 - Differential GPS fix. 3 = PPS fix. 4 = Real Time Kinematic. 5 = Float RTK. 6 = Estimated (dead reckoning). 7 = Manual input mode. 8 = Simulation mode"
+    },
+    "numberOfSatellites": {
+      "$id": "#/properties/numberOfSatellites",
+      "type": "number",
+      "description": "Number of satellites used."
+    },
+    "hdop": {
+      "$id": "#/properties/hdop",
+      "type": "number",
+      "description": "Value of precision in horizontal dilution."
+    }
+  }
+}

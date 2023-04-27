@@ -1,0 +1,41 @@
+{
+  "name": "Expected Call",
+  "payload": {
+    "updatedAtDateTime": "2017-10-31T12:45:50Z",
+    "vehicleJourneyRef": "9015001098702345",
+    "callSequenceNumber": 3,
+    "pointRef": "9025001000012345",
+    "tariffZone": {
+      "ref": "225",
+      "number": "2V"
+    },
+    "atStop": true,
+    "observedTimeOfArrival": "2017-10-31T12:45:50Z",
+    "estimatedTimeOfDeparture": "2017-10-31T12:46:30Z",
+    "serviceDeviation": 30,
+    "holdReason": "CONNECTION_PROTECTION",
+    "holdUntil": "2017-10-31T12:46:30Z",
+    "restriction": "NO_ALIGHTING",
+    "previousCall": {
+      "callSequenceNumber": 2,
+      "pointRef": "9025001000012333",
+      "observedTimeOfArrival": "2017-10-31T12:43:50Z",
+      "observedTimeOfDeparture": "2017-10-31T12:44:32Z"
+    },
+    "laterCalls": [
+      {
+        "callSequenceNumber": 4,
+        "pointRef": "9025001000012377",
+        "estimatedTimeOfArrival": "2017-10-31T12:48:23Z",
+        "estimatedTimeOfDeparture": "2017-10-31T12:49:10Z",
+        "restriction": "NO_BOARDING"
+      },
+      {
+        "callSequenceNumber": 5,
+        "pointRef": "9025001000012332",
+        "estimatedTimeOfArrival": "2017-10-31T12:53:50Z",
+        "estimatedTimeOfDeparture": "2017-10-31T12:54:20Z"
+      }
+    ]
+  }
+}
