@@ -1,0 +1,296 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/pe/dpi/connections/dpi-connections.json",
+  "type": "object",
+  "title": "DpiConnections",
+  "description": "This schema defines the connection message sent as an MQTT message to buses",
+  "required": [
+    "eventTimestamp",
+    "traceId",
+    "expiryTimestamp",
+    "nextStop",
+    "journeyId",
+    "routeId",
+    "calls"
+  ],
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)",
+      "examples": [
+        "2020-03-10T20:56:44.864401Z"
+      ]
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier - UUID"
+    },
+    "expiryTimestamp": {
+      "$id": "#/properties/expiryTimestamp",
+      "type": "string",
+      "description": "Timestamp As specified in the [ADT documentation.](https://adt.transhub.io), after which this message is invalid"
+    },
+    "nextStop": {
+      "$id": "#/properties/nextStop",
+      "type": "object",
+      "title": "The Next Stop Schema",
+      "description": "The ids of the next stop that this message is valid for",
+      "default": {},
+      "required": [
+        "stopPlaceId",
+        "quayId"
+      ],
+      "properties": {
+        "stopPlaceId": {
+          "$id": "#/properties/nextStop/properties/stopPlaceId",
+          "type": "string",
+          "description": "NSR stop place id for the next stop",
+          "examples": [
+            "NSR:StopPlace:3799"
+          ]
+        },
+        "quayId": {
+          "$id": "#/properties/nextStop/properties/quayId",
+          "type": "string",
+          "description": "NSR quay id for the next stop",
+          "examples": [
+            "NSR:Quay:6801"
+          ]
+        }
+      }
+    },
+    "journeyId": {
+      "$id": "#/properties/journeyId",
+      "type": "string",
+      "description": "An explanation about the purpose of this instance.",
+      "examples": [
+        "RUT:ServiceJourney:160-137140-16254500"
+      ]
+    },
+    "routeId": {
+      "$id": "#/properties/routeId",
+      "type": "string",
+      "description": "The route id, which corresponds to the route id in the journey message",
+      "examples": [
+        "RUT:Route:160-3504"
+      ]
+    },
+    "calls": {
+      "$id": "#/properties/calls",
+      "type": "array",
+      "description": "An array of the remaining calls on a journey, including the current next stop",
+      "items": {
+        "$id": "#/properties/calls/items",
+        "type": "object",
+        "title": "The Call Schema",
+        "description": "A future call on a journey that collects connections",
+        "required": [
+          "name",
+          "stopPlaceId",
+          "quayId",
+          "index",
+          "connections"
+        ],
+        "properties": {
+          "name": {
+            "$id": "#/properties/calls/items/properties/name",
+            "type": "string",
+            "description": "Name of stop place (optional)",
+            "default": null,
+            "examples": [
+              "Kveldsroveien"
+            ]
+          },
+          "stopPlaceId": {
+            "$id": "#/properties/calls/items/properties/stopPlaceId",
+            "type": "string",
+            "description": "NSR stop place id",
+            "examples": [
+              "NSR:StopPlace:3799"
+            ]
+          },
+          "quayId": {
+            "$id": "#/properties/calls/items/properties/quayId",
+            "type": "string",
+            "description": "NSR quay id",
+            "examples": [
+              "NSR:Quay:6801"
+            ]
+          },
+          "index": {
+            "$id": "#/properties/calls/items/properties/index",
+            "type": "integer",
+            "description": "Index to stop's position in the journey"
+          },
+          "connections": {
+            "$id": "#/properties/calls/items/properties/connections",
+            "type": "array",
+            "description": "A list of connections by line/direction",
+            "items": {
+              "$id": "#/properties/calls/items/properties/connections/items",
+              "type": "object",
+              "title": "The Connection Schema",
+              "description": "A connection for a given line/direction",
+              "required": [
+                "line",
+                "direction",
+                "departures"
+              ],
+              "properties": {
+                "line": {
+                  "$id": "#/properties/calls/items/properties/connections/items/properties/line",
+                  "type": "object",
+                  "title": "The Line Schema",
+                  "description": "Line information",
+                  "required": [
+                    "id",
+                    "publicCode",
+                    "transportMode"
+                  ],
+                  "properties": {
+                    "id": {
+                      "$id": "#/properties/calls/items/properties/connections/items/properties/line/properties/id",
+                      "type": "string",
+                      "description": "Ruter's id for the line",
+                      "examples": [
+                        "RUT:Line:31"
+                      ]
+                    },
+                    "publicCode": {
+                      "$id": "#/properties/calls/items/properties/connections/items/properties/line/properties/publicCode",
+                      "type": "string",
+                      "description": "The publically visible identifier for this line",
+                      "examples": [
+                        "31"
+                      ]
+                    },
+                    "transportMode": {
+                      "$id": "#/properties/calls/items/properties/connections/items/properties/line/properties/transportMode",
+                      "type": "string",
+                      "description": "Transport mode",
+                      "examples": [
+                        "bus"
+                      ]
+                    }
+                  }
+                },
+                "direction": {
+                  "$id": "#/properties/calls/items/properties/connections/items/properties/direction",
+                  "type": "string",
+                  "description": "An indicator of direction for a line",
+                  "examples": [
+                    "1",
+                    "2"
+                  ]
+                },
+                "quay": {
+                  "$id": "#/properties/calls/items/properties/connections/items/properties/quay",
+                  "type": "object",
+                  "title": "The Quay Schema",
+                  "description": "Information about where the connection departs from",
+                  "required": [
+                    "id"
+                  ],
+                  "properties": {
+                    "id": {
+                      "$id": "#/properties/calls/items/properties/connections/items/properties/quay/properties/id",
+                      "type": "string",
+                      "description": "NSR id for the quay",
+                      "examples": [
+                        "NSR:Quay:3131"
+                      ]
+                    },
+                    "publicCode": {
+                      "$id": "#/properties/calls/items/properties/connections/items/properties/quay/properties/publicCode",
+                      "type": "string",
+                      "description": "The publically visible identifier for this quay",
+                      "examples": [
+                        "A"
+                      ]
+                    },
+                    "description": {
+                      "$id": "#/properties/calls/items/properties/connections/items/properties/quay/properties/description",
+                      "type": "string",
+                      "description": "Description of where quay is located",
+                      "examples": [
+                        "I Kirkeveien"
+                      ]
+                    }
+                  }
+                },
+                "departures": {
+                  "$id": "#/properties/calls/items/properties/connections/items/properties/departures",
+                  "type": "array",
+                  "description": "A list of departures for the line/direction (empty if there are none)",
+                  "items": {
+                    "$id": "#/properties/calls/items/properties/connections/items/properties/departures/items",
+                    "type": "object",
+                    "title": "The Departure Schema",
+                    "description": "Information about a departure",
+                    "required": [
+                      "destination",
+                      "text"
+                    ],
+                    "properties": {
+                      "destination": {
+                        "$id": "#/properties/calls/items/properties/connections/items/properties/departures/items/properties/destination",
+                        "type": "string",
+                        "description": "Visible destination of bus",
+                        "examples": [
+                          "Bygdøy"
+                        ]
+                      },
+                      "via": {
+                        "$id": "#/properties/calls/items/properties/connections/items/properties/departures/items/properties/destination",
+                        "type": "string",
+                        "description": "Visible via information of bus (optional)",
+                        "examples": [
+                          "Bydøysnes"
+                        ]
+                      },
+                      "text": {
+                        "$id": "#/properties/calls/items/properties/connections/items/properties/departures/items/properties/display",
+                        "type": "string",
+                        "description": "Display text for departure time",
+                        "examples": [
+                          "5 min",
+                          "14:55"
+                        ]
+                      },
+                      "departureTime": {
+                        "$id": "#/properties/calls/items/properties/connections/items/properties/departures/items/properties/departureTime",
+                        "type": "string",
+                        "description": "Expected departure time for UTC in ISO 8601 date/time format",
+                        "examples": [
+                          "2020-03-10T21:02:00Z"
+                        ]
+                      },
+                      "delay": {
+                        "$id": "#/properties/calls/items/properties/connections/items/properties/departures/items/properties/delay",
+                        "type": "string",
+                        "description": "Recorded delay for the departure in ISO 8601 duration format",
+                        "examples": [
+                          "PT0S"
+                        ]
+                      },
+                      "journeyId": {
+                        "$id": "#/properties/calls/items/properties/connections/items/properties/departures/items/properties/journeyId",
+                        "type": "string",
+                        "description": "Journey id of the bus making the call",
+                        "examples": [
+                          "RUT:ServiceJourney:31-138571-15639955"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
