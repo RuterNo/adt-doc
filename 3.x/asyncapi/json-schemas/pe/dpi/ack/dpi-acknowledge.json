@@ -37,10 +37,13 @@
           "description": "Local MQTT topic key of received message"
         },
         "eventTimestamp": {
-          "$ref": "#/properties/eventTimestamp"
+          "type": "string",
+          "description": "The eventTimestamp of the message received",
+          "format": "date-time"
         },
         "traceId": {
-          "$ref": "#/properties/traceId"
+          "type": "string",
+          "description": "The traceId of the message received"
         }
       },
       "required": [
