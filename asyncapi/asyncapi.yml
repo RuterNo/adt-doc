@@ -329,7 +329,6 @@ channels:
           mqtt:
             qos: 1
             retain: true
-
   di/operational_message_to_driver:
     description:
       $ref: json-schemas/di/operational_message_to_driver/operational-message-to-driver.md
