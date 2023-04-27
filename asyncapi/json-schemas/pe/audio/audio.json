@@ -70,11 +70,14 @@
           "speakers": {
             "type": "array",
             "description": "Speaker targets the audio is intended for",
-            "enum": [
-              "INTERNAL",
-              "EXTERNAL",
-              "DRIVER"
-            ]
+            "items": {
+              "type": "string",
+              "enum": [
+                "INTERNAL",
+                "EXTERNAL",
+                "DRIVER"
+              ]
+            }
           },
           "volume": {
             "type": "number",
