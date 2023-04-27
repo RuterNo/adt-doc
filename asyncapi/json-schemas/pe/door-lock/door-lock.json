@@ -30,11 +30,5 @@
         "false"
       ]
     }
-  },
-  "examples": [
-    {
-      "eventTimestamp": "2020-10-31T08:38:02.749Z",
-      "locked": false
-    }
-  ]
+  }
 }
