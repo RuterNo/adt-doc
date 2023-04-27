@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "Traffic Event Reporting API",
-    "description": "Use this API to report cancellation and delay events directly to Ruter, along\nwith a flag indicating whether you as an operator consider that the event was\noutside your control, and that you should be exempt from being fined for any\nbreach(es) of contract incurred as a consequence of the traffic event.\n",
+    "title": "Event Reporting API",
+    "description": "Use this API to report cancellation and delay events, as well as other SLA\nbreaches, directly to Ruter, along with a flag indicating whether you as an\noperator consider that the event was outside your control, and that you should\nbe exempt from being fined for incurred/reported SLA breach(es).\n",
     "version": "1"
   },
   "servers": [
@@ -68,6 +68,61 @@
           }
         }
       }
+    },
+    "/adt/3.x/v1/sla-breaches": {
+      "post": {
+        "tags": [
+          "/v1/sla-breaches"
+        ],
+        "summary": "Register SLA breach",
+        "description": "Report an SLA breach directly to Ruter, along with a flag indicating whether you as an\noperator consider that the breach was outside your control, and that you should be\nexempt from being fined for the breach.\n",
+        "operationId": "create_1",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "description": "OAuth2 access token as Bearer token.\n\n**NOTE:** Separate documentation will be provided on how to obtain client\ncredentials and use these to request access tokens.\n",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SlaBreach"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "The SLA breach was registered.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SlaBreach"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "One or more invalid input parameters (e.g., invalid `category`)"
+          },
+          "401": {
+            "description": "Expired access token"
+          },
+          "403": {
+            "description": "Invalid access token or insufficient access for operation"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -89,6 +144,7 @@
           "startDateTime",
           "status",
           "subcategory",
+          "trafficCaseNumber",
           "vehicleTaskId"
         ],
         "type": "object",
@@ -123,22 +179,12 @@
           "category": {
             "type": "string",
             "description": "The main category of the traffic event.",
-            "example": "CANCELLATION",
-            "enum": [
-              "CANCELLATION",
-              "DELAY"
-            ]
+            "example": "CANCELLATION"
           },
           "subcategory": {
             "type": "string",
             "description": "The subcategory of the traffic event.",
-            "example": "PARTIAL",
-            "enum": [
-              "FULL",
-              "PARTIAL",
-              "FROM_START",
-              "IN_TRANSIT"
-            ]
+            "example": "PARTIAL"
           },
           "reasonCategory": {
             "type": "string",
@@ -148,30 +194,7 @@
           "reasonSubcategory": {
             "type": "string",
             "description": "The reason subcategory of the traffic event. Inferred from `category`, `subcategory`\nand `reason`.\n",
-            "example": "OBSTRUCTION",
-            "enum": [
-              "DRIVER_ERROR",
-              "CUSTOMER_CARE",
-              "TICKET_INSPECTION",
-              "FAULTY_TICKET_MACHINE",
-              "FAULTY_TAAS_SYSTEM",
-              "FAULTY_SIS_SYSTEM",
-              "FAULTY_DOOR",
-              "FAULTY_ENGINE",
-              "FAULTY_GEARBOX",
-              "FAULTY_BRAKES",
-              "NO_POWER",
-              "HEAVY_SNOWFALL",
-              "SLIPPERY_ROADS",
-              "IMPROPERLY_PARKED_VEHICLE",
-              "ROAD_WORK",
-              "ROAD_ACCIDENT",
-              "FALLEN_DEBRIS",
-              "TRAFFIC_CONGESTION",
-              "EVENT",
-              "DEMONSTRATION",
-              "OTHER"
-            ]
+            "example": "OBSTRUCTION"
           },
           "reason": {
             "type": "string",
@@ -202,14 +225,12 @@
           "startDateTime": {
             "type": "string",
             "description": "An ISO UTC date string representing the date and time that the traffic event started.",
-            "example": "2023-01-01T12:00:00Z",
-            "default": "<journey start time>"
+            "example": "2023-01-01T12:00:00Z"
           },
           "endDateTime": {
             "type": "string",
             "description": "An ISO UTC date string representing the date and time that the traffic event ended.",
-            "example": "2023-01-01T12:00:00Z",
-            "default": "<journey end time + delay if any>"
+            "example": "2023-01-01T12:00:00Z"
           },
           "affectedQuayRefs": {
             "type": "array",
@@ -240,7 +261,7 @@
           },
           "isOperatorExempt": {
             "type": "boolean",
-            "description": "A flag indicating whether you as an operator should be exempt from being fined for any\nbreach(es) of contract incurred as a consequence of this traffic event.\n",
+            "description": "A flag indicating whether you as an operator should be exempt from being fined for any\nSLA breach(es) incurred as a consequence of this traffic event.\n",
             "default": true
           }
         }
@@ -304,7 +325,7 @@
           },
           "reasonDescription": {
             "type": "string",
-            "description": "Required if `reason` is set to `OTHER`, optional otherwise. A further detailing of the\nreason for the traffic event, and if relevant, an explanation for why you as an\noperator should be exempt from being fined for breach(es) of contract incurred as a\nconsequence of this traffic event (see `isOperatorExempt`).\n",
+            "description": "Required if `reason` is set to `OTHER`, optional otherwise. A further detailing of the\nreason for the traffic event, and if relevant, an explanation for why you as an\noperator should be exempt from being fined for any SLA breach(es) incurred as a\nconsequence of this traffic event (see `isOperatorExempt`).\n",
             "example": "En feilparkert bil blokkerte traséen",
             "default": "null"
           },
@@ -352,7 +373,75 @@
           },
           "isOperatorExempt": {
             "type": "boolean",
-            "description": "A flag indicating whether you as an operator consider that the event was outside your\ncontrol, and that you should be exempt from being fined for any breach(es) of contract\nincurred as a consequence of the traffic event. If needed, an exemption reason can be\nprovided in the `reasonDescription` field.\n"
+            "description": "A flag indicating whether you as an operator consider that the event was outside your\ncontrol, and that you should be exempt from being fined for any SLA breach(es)\nincurred as a consequence of the traffic event. If needed, an exemption reason can be\nprovided in the `reasonDescription` field.\n"
+          }
+        }
+      },
+      "SlaBreach": {
+        "required": [
+          "category",
+          "contractRef",
+          "endDateTime",
+          "isOperatorExempt",
+          "reason",
+          "startDateTime"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The SLA breach ID. Must be `null` on registration. Format: <sequence number>",
+            "example": "1234-1",
+            "default": "null"
+          },
+          "trafficCaseNumber": {
+            "type": "string",
+            "description": "The traffic case number of the Ruterlogg traffic case that was created to log this SLA\nbreach. Must be `null` on registration.\n",
+            "example": "2023-1234",
+            "default": "null"
+          },
+          "category": {
+            "type": "string",
+            "description": "The SLA breach category.",
+            "example": "DATA_QUALITY",
+            "enum": [
+              "DATA_QUALITY"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "description": "The reason for the SLA breach.",
+            "example": "TAAS_ERROR",
+            "enum": [
+              "TAAS_ERROR",
+              "SIS_ERROR",
+              "OTHER"
+            ]
+          },
+          "reasonDescription": {
+            "type": "string",
+            "description": "Required if `reason` is `OTHER`, optional otherwise. A further detailing of the reason\nfor the SLA breach, and if relevant, an explanation for why you as an operator should\nbe exempt from being fined for this breach.\n",
+            "example": "TaaS MQTT-broker var utilgjengelig",
+            "default": "null"
+          },
+          "contractRef": {
+            "type": "string",
+            "description": "A reference to the contract that governs the SLA that was breached.",
+            "example": "RUT:Contract:123"
+          },
+          "startDateTime": {
+            "type": "string",
+            "description": "An ISO UTC date string representing the date and time that the SLA breach started.",
+            "example": "2023-01-01T12:00:00Z"
+          },
+          "endDateTime": {
+            "type": "string",
+            "description": "An ISO UTC date string representing the date and time that the SLA breach ended.",
+            "example": "2023-01-01T12:00:00Z"
+          },
+          "isOperatorExempt": {
+            "type": "boolean",
+            "description": "A flag flag indicating whether you as an operator consider that the breach was outside\nyour control, and that you should be exempt from being fined for the breach.\n"
           }
         }
       }
