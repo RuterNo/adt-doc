@@ -1,8 +1,8 @@
-# Traffic Event Reporting API
+# Event Reporting API
 
-Use this API to report cancellation and delay events directly to Ruter, along with a flag indicating
-whether you consider that the event was outside your control, and that you as an operator should be
-exempt from being fined for breach(es) of contract incurred as a consequence of the traffic event.
+Use this API to report cancellation and delay events, as well as other SLA breaches, directly to
+Ruter, along with a flag indicating whether you as an operator consider that the event was outside
+your control, and that you should be exempt from being fined for incurred/reported SLA breach(es).
 
 ## Resources
 
