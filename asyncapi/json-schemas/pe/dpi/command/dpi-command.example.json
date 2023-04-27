@@ -6,7 +6,7 @@
     "type": "DEBUG",
     "payload": {
       "command": "LOG_TRANSFER",
-      "arg": {
+      "args": {
         "level": "ERROR",
         "limit": 10,
         "page": 0
