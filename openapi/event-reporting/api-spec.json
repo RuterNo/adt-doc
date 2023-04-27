@@ -249,6 +249,11 @@
             "format": "int32",
             "example": 21
           },
+          "isOperatorExempt": {
+            "type": "boolean",
+            "description": "A flag indicating whether you as an operator should be exempt from being fined for any\nSLA breach(es) incurred as a consequence of this traffic event.\n",
+            "default": true
+          },
           "registeredBy": {
             "type": "string",
             "description": "Your operator's client identifier, automatically inferred from your API credentials.",
@@ -258,11 +263,6 @@
             "type": "string",
             "description": "The date and time that the traffic event was registered, in ISO UTC format.",
             "example": "2023-01-01T12:03:00Z"
-          },
-          "isOperatorExempt": {
-            "type": "boolean",
-            "description": "A flag indicating whether you as an operator should be exempt from being fined for any\nSLA breach(es) incurred as a consequence of this traffic event.\n",
-            "default": true
           }
         }
       },
@@ -442,6 +442,18 @@
           "isOperatorExempt": {
             "type": "boolean",
             "description": "A flag flag indicating whether you as an operator consider that the breach was outside\nyour control, and that you should be exempt from being fined for the breach.\n"
+          },
+          "registeredBy": {
+            "type": "string",
+            "description": "Your operator's client identifier, automatically inferred from your API credentials.\nMust be `null` on registration.\n",
+            "example": "Ruterbuss AS",
+            "default": "null"
+          },
+          "registeredAt": {
+            "type": "string",
+            "description": "The date and time that the traffic event was registered, in ISO UTC format. Must be\n`null` on registration.\n",
+            "example": "2023-01-01T12:03:00Z",
+            "default": "null"
           }
         }
       }
