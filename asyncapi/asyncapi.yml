@@ -47,36 +47,6 @@ channels:
         payload:
           $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request.json
         schemaFormat: application/schema+json;version=draft-07
-  operational/assignment/attempt/response:
-    description:
-      $ref: json-schemas/operational/assignment/attempt/response/assignment-attempt-response.md
-    subscribe:
-      message:
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
-        examples:
-          - $ref: json-schemas/operational/assignment/attempt/response/assignment-attempt-response-signon-planned.example.json
-        name: AssignmentAttemptResponse
-        payload:
-          $ref: json-schemas/operational/assignment/attempt/response/assignment-attempt-response.json
-        schemaFormat: application/schema+json;version=draft-07
-  operational/assignment/status:
-    description:
-      $ref: json-schemas/operational/assignment/status/assignment-status.md
-    subscribe:
-      message:
-        bindings:
-          mqtt:
-            qos: 1
-            retain: true
-        examples:
-          - $ref: json-schemas/operational/assignment/status/assignment-status-signon-planned.example.json
-        name: AssignmentStatus
-        payload:
-          $ref: json-schemas/operational/assignment/status/assignment-status.json
-        schemaFormat: application/schema+json;version=draft-07
   operational/assignment/omit/request:
     description:
       $ref: json-schemas/operational/assignment/omit/request/assignment-omit-request.md
@@ -91,21 +61,6 @@ channels:
         name: AssignmentOmitRequest
         payload:
           $ref: json-schemas/operational/assignment/omit/request/assignment-omit-request.json
-        schemaFormat: application/schema+json;version=draft-07
-  operational/assignment/omit/response:
-    description:
-      $ref: json-schemas/operational/assignment/omit/response/assignment-omit-response.md
-    subscribe:
-      message:
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
-        examples:
-          - $ref: json-schemas/operational/assignment/omit/response/assignment-omit-response-no-intention.example.json
-        name: AssignmentOmitResponse
-        payload:
-          $ref: json-schemas/operational/assignment/omit/response/assignment-omit-response.json
         schemaFormat: application/schema+json;version=draft-07
   pe/active_cab:
     description:
@@ -265,22 +220,6 @@ channels:
           mqtt:
             qos: 1
             retain: false
-  oi/vehicle/unique_identifier:
-    description:
-      $ref: markdown/unique-identifier.md
-    publish:
-      message:
-        name: UniqueIdentifier Message
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/unique-identifier.json
-        examples: [
-          { $ref: examples/unique-identifier.json }
-        ]
-        bindings:
-          mqtt:
-            qos: 1
-            retain: true
   pe/dpi/ack:
     description:
       $ref: json-schemas/pe/dpi/ack/dpi-acknowledge.md
@@ -363,6 +302,51 @@ channels:
           mqtt:
             qos: 0
             retain: false
+  operational/assignment/attempt/response:
+    description:
+      $ref: json-schemas/operational/assignment/attempt/response/assignment-attempt-response.md
+    subscribe:
+      message:
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+        examples:
+          - $ref: json-schemas/operational/assignment/attempt/response/assignment-attempt-response-signon-planned.example.json
+        name: AssignmentAttemptResponse
+        payload:
+          $ref: json-schemas/operational/assignment/attempt/response/assignment-attempt-response.json
+        schemaFormat: application/schema+json;version=draft-07
+  operational/assignment/status:
+    description:
+      $ref: json-schemas/operational/assignment/status/assignment-status.md
+    subscribe:
+      message:
+        bindings:
+          mqtt:
+            qos: 1
+            retain: true
+        examples:
+          - $ref: json-schemas/operational/assignment/status/assignment-status-signon-planned.example.json
+        name: AssignmentStatus
+        payload:
+          $ref: json-schemas/operational/assignment/status/assignment-status.json
+        schemaFormat: application/schema+json;version=draft-07
+  operational/assignment/omit/response:
+    description:
+      $ref: json-schemas/operational/assignment/omit/response/assignment-omit-response.md
+    subscribe:
+      message:
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+        examples:
+          - $ref: json-schemas/operational/assignment/omit/response/assignment-omit-response-no-intention.example.json
+        name: AssignmentOmitResponse
+        payload:
+          $ref: json-schemas/operational/assignment/omit/response/assignment-omit-response.json
+        schemaFormat: application/schema+json;version=draft-07
   di/available_destination_displays:
     description:
       $ref: json-schemas/di/available-destination-displays/available-destination-displays.md

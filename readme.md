@@ -190,14 +190,8 @@ Contributions are what make the open source community such an amazing place to l
 Any contributions you make are **greatly appreciated**.
 
 If you have a suggestion that would make this better, please open an issue or create a pull request to the corresponding 
-branch. (E.g.  [ADT 2.5](https://github.com/RuterNo/adt-doc/tree/2.5))
+branch. (E.g.  [ADT 3.x](https://github.com/RuterNo/adt-doc/tree/3.x))
 
-### Notice
-Files in this branch is the result of gitHub actions.
-
-Go to the version specific branch if you need to change the documentation.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACT -->
 ## Contact
