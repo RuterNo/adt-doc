@@ -3,10 +3,10 @@ Stylesheet to override some of the styling in the generated asyncApi HTML doc.
 */
 @media (min-width: 1024px) {
     .aui-root .container\:base .sidebar {
-        width: 22rem !important;
+        width: 21rem !important;
     }
     .aui-root .container\:base .sidebar--content {
-        width: 20rem !important;
+        width: 19rem !important;
     }
 }
 
