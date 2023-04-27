@@ -21,7 +21,7 @@ Ruter has created a simple status page showing Live information of SLA requireme
 
 All data shown in the Vehicle Status page comes from the mqtt-topic described here: 
 
-[SLA Insight](/insight)
+[SLA Insight](../insight)
 
 ## Authentication
 
