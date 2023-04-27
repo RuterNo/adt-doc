@@ -24,11 +24,6 @@
             "type": "string",
             "description": "A unique identifier to be able to trace this message. Also used to detect duplicate messages received."
         },
-        "progressRef": {
-            "$id": "#/properties/progressRef",
-            "type": "string",
-            "description": "A reference to the Progress event that triggered this message. Matches the traceId from the Progress event."
-        },
         "journeyRef": {
             "$id": "#/properties/journeyRef",
             "type": "string",
