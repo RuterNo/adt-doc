@@ -47,14 +47,14 @@
         "type": "object",
         "title": "audio",
         "required": [
-          "speaker",
+          "speakers",
           "volume"
         ],
         "properties": {
           "encoding": {
             "type": "string",
             "description": "Optional. Audio message encoding",
-            "examples": [
+            "enum": [
               "MP3",
               "OPUS"
             ]
@@ -67,17 +67,14 @@
             "type": "string",
             "description": "Optional. Location of content. Do not use if content is defined."
           },
-          "speaker": {
+          "speakers": {
             "type": "array",
             "description": "Speaker targets the audio is intended for",
-            "items": {
-              "type": "string",
-              "examples": [
-                "INTERNAL",
-                "EXTERNAL",
-                "DRIVER"
-              ]
-            }
+            "enum": [
+              "INTERNAL",
+              "EXTERNAL",
+              "DRIVER"
+            ]
           },
           "volume": {
             "type": "number",
