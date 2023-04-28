@@ -355,13 +355,13 @@
           },
           "leftCancelledStopPlaceRef": {
             "type": "string",
-            "description": "Required if `category` is `CANCELLATION` and `subcategory` is `PARTIAL`, ignored\notherwise. An NSR reference to one of the 2 stop places delimiting the sequence of\nstops affected by the partial cancellation, or to the single stop if only one stop is\naffected. See `rightStopPlaceRef`.\n",
+            "description": "Required if `category` is `CANCELLATION` and `subcategory` is `PARTIAL`, ignored\notherwise. An NSR reference to one of the 2 stop places delimiting the sequence of\nstops affected by the partial cancellation, or to the single stop if only one stop is\naffected. See `rightCancelledStopPlaceRef`.\n",
             "example": "NSR:StopPlace:123",
             "default": "null"
           },
           "rightCancelledStopPlaceRef": {
             "type": "string",
-            "description": "Required if `category` is `CANCELLATION` and `subcategory` is `PARTIAL`, ignored\notherwise. An NSR reference to the other of the 2 stop places delimiting the sequence\nof stops affected by the partial cancellation, or to the single stop if only one stop\nis affected. See `leftStopPlaceRef`.\n",
+            "description": "Required if `category` is `CANCELLATION` and `subcategory` is `PARTIAL`, ignored\notherwise. An NSR reference to the other of the 2 stop places delimiting the sequence\nof stops affected by the partial cancellation, or to the single stop if only one stop\nis affected. See `leftCancelledStopPlaceRef`.\n",
             "example": "NSR:StopPlace:246",
             "default": "null"
           },
