@@ -9,7 +9,7 @@
         "nfcReaderConnected",
         "printerConnected",
         "nodAvailable",
-        "sapiAvailable",
+        "backendAvailable",
         "loggedIn"
     ],
     "additionalProperties": false,
@@ -39,12 +39,12 @@
         "nodAvailable": {
             "$id": "#/properties/nodAvailable",
             "type": "boolean",
-            "description": "NOD available"
+            "description": "Whether the NOD backend is reachable"
         },
-        "sapiAvailable": {
-            "$id": "#/properties/sapiAvailable",
+        "backendAvailable": {
+            "$id": "#/properties/backendAvailable",
             "type": "boolean",
-            "description": "SAPI available"
+            "description": "Whether the RuterSalg backend is reachable"
         },
         "loggedIn": {
             "$id": "#/properties/loggedIn",
@@ -65,7 +65,17 @@
         "stopPlaceId": {
             "$id": "#/properties/stopPlaceId",
             "type": "string",
-            "description": "StopPlaceId obtained in NextStop that triggered this diagnostics message"
+            "description": "StopPlaceId of the upcoming stop"
+        },
+        "tariffZone": {
+            "$id": "#/properties/tariffZone",
+            "type": "string",
+            "description": "The tariff zone the vehicle is currently in"
+        },
+        "progressRef": {
+            "$id": "#/properties/progressRef",
+            "type": "string",
+            "description": "A reference to the Progress event that triggered this message. Matches the traceId from the Progress event."
         }
     }
 }
