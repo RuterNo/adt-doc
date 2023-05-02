@@ -8,7 +8,7 @@
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.                |
 
 ### AssignmentOmitRequest Usage
-`operational/assignment/omit` follows the request/response/state pattern. When a `request` is made to the request topic, a `response` will be available at the response topic once Ruter has finished processing.
+`operational/assignment/omit` follows the request/response pattern. When a `request` is made to the request topic, a `response` will be available at the response topic once Ruter has finished processing.
 
 - All omissions are effective immediately.
 - All omit request will get an omit response under the topic [assignment/omit/response](../response/assignment-omit-response.md)
