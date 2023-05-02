@@ -2,6 +2,7 @@
   "name": "Sales Diagnostics",
   "payload": {
     "eventTimestamp": "2020-04-28T13:49:50.814Z",
+    "traceId": "eb313932-c011-4466-9c8b-1be0ebfdcfb6",
     "nfcReaderConnected": false,
     "printerConnected": true,
     "nodAvailable": true,
