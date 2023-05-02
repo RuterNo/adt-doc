@@ -39,13 +39,13 @@ An `AssignmentAttemptRequest` can be made for:
 
 ##### Sign On - PLANNED
 - `Default` The vehicle will be signed on to service the pre-existing plans for the specified `serviceWindow`
-- If `lastAttivalDateTime` is provided, the assignment will contain all journeys/stops from (including) `firstDepartureDateTime` until (excluding) the specified `lastAttivalDateTime`
-- If `lastAttivalDateTime` is not provided, the assignment will contain all journeys/stops from (including) `firstDepartureDateTime` until the end of the block
+- If `lastArrivalDateTime` is provided, the assignment will contain all journeys/stops from (including) `firstDepartureDateTime` until (excluding) the specified `lastArrivalDateTime`
+- If `lastArrivalDateTime` is not provided, the assignment will contain all journeys/stops from (including) `firstDepartureDateTime` until the end of the block
 
 ##### Sign On - EXTRA
 - Used if additional vehicles are demanded to serve the pre-existing plans for the specified `serviceWindow`
-- If `lastAttivalDateTime` is provided, the assignment will contain all journeys/stops from (including) `firstDepartureDateTime` until (excluding) the specified `lastAttivalDateTime`
-- If `lastAttivalDateTime` is not provided, the assignment will contain all journeys/stops from (including) `firstDepartureDateTime` until the end of the journey
+- If `lastArrivalDateTime` is provided, the assignment will contain all journeys/stops from (including) `firstDepartureDateTime` until (excluding) the specified `lastArrivalDateTime`
+- If `lastArrivalDateTime` is not provided, the assignment will contain all journeys/stops from (including) `firstDepartureDateTime` until the end of the journey
 
 ##### Sign On - REPLACEMENT
 - Used if another vehicle can not service parts of its assignment. The other vehicle should be signed off.
@@ -65,5 +65,5 @@ An `AssignmentAttemptRequest` can be made for:
 - Operational change of a pre-existing assigned assignment for a vehicle.
 - Failed attempts will not affect the assignment state for a vehicle.
 - `serviceWindow.firstDepartureDateTime` is required
-- If `lastAttivalDateTime` is provided, journeys/stops from (including) `firstDepartureDateTime` until (excluding) the specified `lastArrivalDateTime` are removed from the assignment
-- If `lastAttivalDateTime` is not provided, the stop with `firstDepartureDateTime` will be removed from the assignment
+- If `lastArrivalDateTime` is provided, journeys/stops from (including) `firstDepartureDateTime` until (excluding) the specified `lastArrivalDateTime` are removed from the assignment
+- If `lastArrivalDateTime` is not provided, the stop with `firstDepartureDateTime` will be removed from the assignment
