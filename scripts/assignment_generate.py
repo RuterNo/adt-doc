@@ -45,7 +45,7 @@ def read_json(path):
 
 def read_file(path):
     with open(path, "r") as f:
-        return [line.rstrip() for line in f]
+        return [line.replace("\n", "") for line in f]
 
 
 def write_file(path, content):
@@ -187,9 +187,9 @@ def update_doc(paths, meta):
                 continue
 
             res.append(line)
-
-        # res[0] = f"### {paths['schema_title']} Message"
-        write_file(doc_path, "\n".join(res) + "\n")
+        if json.dumps(lines) != json.dumps(res):
+            # res[0] = f"### {paths['schema_title']} Message"
+            write_file(doc_path, "\n".join(res) + "\n")
 
 
 def update_meta(paths):
