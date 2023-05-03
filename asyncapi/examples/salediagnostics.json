@@ -9,6 +9,7 @@
     "sapiAvailable": false,
     "loggedIn": true,
     "journeyRef": "42911-2020-05-25T16:42:00+02:00",
-    "stopPlaceId": "NSR:StopPlace:59734"
+    "stopPlaceId": "NSR:StopPlace:59734",
+    "progressRef": "eb313932-c011-4466-9c8b-1be0ebfdcfb6"
   }
 }
