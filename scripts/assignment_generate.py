@@ -131,7 +131,9 @@ def update_schema_content(schemas):
             if "properties" in res:
                 for key, value in res["properties"].items():
                     value["$id"] = f"#/properties/{key}"
-            write_json(spec_path, res)
+            original = read_json(spec_path)
+            if json.dumps(original) != json.dumps(res):
+                write_json(spec_path, res)
 
 
 def validate_required_fields(file_path, schema):
