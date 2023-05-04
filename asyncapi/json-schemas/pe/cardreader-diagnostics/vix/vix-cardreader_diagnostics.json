@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/pe/cardreader/vix/vix-cardreader_diagnostics.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/pe/cardreader-diagnostics/vix/vix-cardreader_diagnostics.json",
   "type": "object",
-  "title": "VIX Card Reader Diagnostics",
+  "title": "VixCardreaderDiagnostics",
   "required": [
     "eventTimestamp",
     "traceId",
