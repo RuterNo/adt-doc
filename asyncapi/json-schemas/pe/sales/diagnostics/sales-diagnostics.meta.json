@@ -1,5 +1,5 @@
 {
-  "mode": "subscribe",
+  "mode": "publish",
   "mqtt": {
     "retain": true,
     "qos": 1,
