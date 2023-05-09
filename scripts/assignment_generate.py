@@ -185,13 +185,11 @@ def update_doc(paths, meta):
             if central_topic in line:
                 topic = meta['mqtt']['topic'] if meta else "TODO"
                 central_topic_content = f"{central_topic: <16}| {topic}"
-                res.append(f"{central_topic_content: <{len(line) - 1}}|")
-                continue
+                res_line = f"{central_topic_content: <{len(line) - 1}}|"
             elif schema in line:
                 schema_path = project_relative(paths['schema_path'])
                 schema_content = f'{schema: <16}| [ {paths["schema_path"].name} ]({schema_path})'
-                res.append(f"{schema_content: <{len(line) - 1}}|")
-                continue
+                res_line = f"{schema_content: <{len(line) - 1}}|"
 
             res_line = resolve_doc_line(line, service_level, meta, "service-level", SERVICE_LEVELS) if not res_line else res_line
             res_line = resolve_doc_line(line, producer, meta, "producer", TEAMS) if not res_line else res_line
@@ -199,9 +197,9 @@ def update_doc(paths, meta):
 
             if res_line:
                 res.append(res_line)
-                continue
+            else:
+                res.append(line)
 
-            res.append(line)
         if json.dumps(lines) != json.dumps(res):
             # res[0] = f"### {paths['schema_title']} Message"
             write_file(doc_path, "\n".join(res) + "\n")
@@ -269,6 +267,46 @@ def validate_meta(meta, name):
             print(f"[WARN] {name: <50} does not define meta value for {', '.join(not_defined)}")
 
 
+def update_async_api(async_api, meta, paths):
+    channel = paths['channel']
+    mqtt = meta['mqtt']
+    schema_params = None
+    if 'params' in mqtt and len(mqtt['params']) > 0:
+        tmp = {}
+        for param in mqtt['params']:
+            tmp[param] = {
+                '$ref': f'#/components/parameters/{param}'
+            }
+        schema_params = tmp
+    async_api['channels'][channel] = {
+        "description": {
+            "$ref": project_relative(paths['doc'])
+        },
+        "parameters": None,
+        meta['mode']: {
+            "message": {
+                "name": paths['schema_title'],
+                "schemaFormat": "application/schema+json;version=draft-07",
+                "payload": {
+                    "$ref": project_relative(paths['schema_path'])
+                },
+                "examples": [{"$ref": project_relative(p)} for p in paths['examples']],
+                "bindings": {
+                    "mqtt": {
+                        "qos": meta['mqtt']['qos'] if meta else None,
+                        "retain": meta['mqtt']['retain'] if meta else None
+                    }
+                }
+            }
+        }
+    }
+    if schema_params and len(schema_params.keys()) > 0:
+        async_api['channels'][channel]['parameters'] = schema_params
+    else:
+        if 'channels' in async_api and channel in async_api['channels'] and 'parameters' in async_api['channels'][channel]:
+            async_api['channels'][channel].pop('parameters')
+
+
 def main():
     schemas = resolve_schemas()
     update_schema_content(schemas)
@@ -277,45 +315,8 @@ def main():
 
     for name, paths in schemas.items():
         meta = update_meta(paths, name)
-        mqtt = meta['mqtt']
         update_doc(paths, meta)
-        channel = paths['channel']
-        schema_params = None
-        if 'params' in mqtt and len(mqtt['params']) > 0:
-            tmp = {}
-            for param in mqtt['params']:
-                tmp[param] = {
-                    '$ref': f'#/components/parameters/{param}'
-                }
-            schema_params = tmp
-
-        async_api['channels'][channel] = {
-            "description": {
-                "$ref": project_relative(paths['doc'])
-            },
-            "parameters": None,
-            meta['mode']: {
-                "message": {
-                    "name": paths['schema_title'],
-                    "schemaFormat": "application/schema+json;version=draft-07",
-                    "payload": {
-                        "$ref": project_relative(paths['schema_path'])
-                    },
-                    "examples": [{"$ref": project_relative(p)} for p in paths['examples']],
-                    "bindings": {
-                        "mqtt": {
-                            "qos": meta['mqtt']['qos'] if meta else None,
-                            "retain": meta['mqtt']['retain'] if meta else None
-                        }
-                    }
-                }
-            }
-        }
-        if schema_params and len(schema_params.keys()) > 0:
-            async_api['channels'][channel]['parameters'] = schema_params
-        else:
-            if 'channels' in async_api and channel in async_api['channels'] and 'parameters' in async_api['channels'][channel]:
-                async_api['channels'][channel].pop('parameters')
+        update_async_api(async_api, meta, paths)
 
     ruamel_yaml.dump(
         async_api,
