@@ -5,9 +5,16 @@ TODO: Validate schemas and generate asyncapi.yaml?
 """
 
 import json
+import sys
 from pathlib import Path
 
-import yaml
+from ruamel.yaml import YAML
+
+ruamel_yaml = YAML(typ='rt')
+ruamel_yaml.indent(mapping=2, sequence=4, offset=2)
+ruamel_yaml.width = 4096
+
+WRITE_CHANGES_TO_ASYNC_API_YML = False
 
 API_VERSION_MAJOR = "3"
 API_VERSION_MINOR = "0"
@@ -36,6 +43,15 @@ TEAMS = {
 
 def j_print(dict_):
     print(json.dumps(dict_, indent=2, default=str))
+
+
+def read_yaml(path):
+    with open(path) as stream:
+        try:
+            return ruamel_yaml.load(stream)
+        except Exception as exc:
+            print(exc)
+            return None
 
 
 def read_json(path):
@@ -116,7 +132,6 @@ def update_schema_content(schemas):
         schema_path = resolved_schema["schema_root_path"]
         spec_paths = [p for p in Path(schema_path).rglob("*.json") if "example.json" not in str(p) and "meta.json" not in str(p)]
         for spec_path in spec_paths:
-            print(f"Updating {str(spec_path)}")
             res = read_json(spec_path)
             validate_required_fields(spec_path, res)
             relative_path = spec_path.resolve().relative_to(SCHEMA_ROOT.resolve())
@@ -152,7 +167,6 @@ def resolve_doc_line(line, anchor, meta, key, definitions):
         if res_key and res_desc:
             return f"{res_line: <{len(line) - 1}}|"
 
-    print(f"{key} not defined in meta.json")
     return None
 
 
@@ -161,7 +175,6 @@ def update_doc(paths, meta):
     if doc_path:
         lines = read_file(doc_path)
         res = []
-
         central_topic = '| Central Topic'
         schema = '| Schema'
         producer = '| Producer'
@@ -194,7 +207,7 @@ def update_doc(paths, meta):
             write_file(doc_path, "\n".join(res) + "\n")
 
 
-def update_meta(paths):
+def update_meta(paths, name):
     meta_path = paths['meta']
     if meta_path:
         meta = read_json(meta_path)
@@ -227,6 +240,7 @@ def update_meta(paths):
         paths['channel'] = topic.replace(f"{prefix}/", "")
 
         write_json(Path(meta_path), meta)
+        validate_meta(meta, name)
         return meta
     else:
         print(f"Missing meta file {paths}")
@@ -237,12 +251,32 @@ def project_relative(path):
     return str(Path(path).resolve().relative_to(PROJECT_ROOT.resolve()))
 
 
+def validate_meta(meta, name):
+    fields = [
+        'consumer',
+        'producer',
+        'service-level'
+    ]
+
+    if not meta:
+        print(f"[WARN] no meta found {meta}")
+    else:
+        not_defined = []
+        for field in fields:
+            if field not in meta:
+                not_defined.append(field)
+        if len(not_defined) > 0:
+            print(f"[WARN] {name: <50} does not define meta value for {', '.join(not_defined)}")
+
+
 def main():
     schemas = resolve_schemas()
     update_schema_content(schemas)
-    res = {}
+    asyncapi_path = Path("asyncapi/asyncapi.yml")
+    async_api = read_yaml(asyncapi_path)
+
     for name, paths in schemas.items():
-        meta = update_meta(paths)
+        meta = update_meta(paths, name)
         mqtt = meta['mqtt']
         update_doc(paths, meta)
         channel = paths['channel']
@@ -255,11 +289,11 @@ def main():
                 }
             schema_params = tmp
 
-        res[channel] = {
+        async_api['channels'][channel] = {
             "description": {
                 "$ref": project_relative(paths['doc'])
             },
-
+            "parameters": None,
             meta['mode']: {
                 "message": {
                     "name": paths['schema_title'],
@@ -277,10 +311,16 @@ def main():
                 }
             }
         }
-        if schema_params:
-            res[channel]['parameters'] = schema_params
+        if schema_params and len(schema_params.keys()) > 0:
+            async_api['channels'][channel]['parameters'] = schema_params
+        else:
+            if 'channels' in async_api and channel in async_api['channels'] and 'parameters' in async_api['channels'][channel]:
+                async_api['channels'][channel].pop('parameters')
 
-    print(yaml.dump({"channels": res}))
+    ruamel_yaml.dump(
+        async_api,
+        asyncapi_path if WRITE_CHANGES_TO_ASYNC_API_YML else sys.stdout
+    )
 
 
 if __name__ == '__main__':
