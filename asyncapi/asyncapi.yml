@@ -25,7 +25,7 @@ servers:
           - '8883'
           - '9883'
     security:
-      - user-password: [ ]
+      - user-password: []
 
 defaultContentType: application/json
 channels:
@@ -34,79 +34,79 @@ channels:
       $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request.md
     publish:
       message:
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
+        name: AssignmentAttemptRequest
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request.json
         examples:
           - $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request-signoff-finished.example.json
           - $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request-signon-planned.example.json
           - $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request-update-shortening.example.json
           - $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request-signon-extra.example.json
-        name: AssignmentAttemptRequest
-        payload:
-          $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request.json
-        schemaFormat: application/schema+json;version=draft-07
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
   operational/assignment/omit/request:
     description:
       $ref: json-schemas/operational/assignment/omit/request/assignment-omit-request.md
     publish:
       message:
+        name: AssignmentOmitRequest
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/operational/assignment/omit/request/assignment-omit-request.json
+        examples:
+          - $ref: json-schemas/operational/assignment/omit/request/assignment-omit-request-no-intention.example.json
         bindings:
           mqtt:
             qos: 1
             retain: false
-        examples:
-          - $ref: json-schemas/operational/assignment/omit/request/assignment-omit-request-no-intention.example.json
-        name: AssignmentOmitRequest
-        payload:
-          $ref: json-schemas/operational/assignment/omit/request/assignment-omit-request.json
-        schemaFormat: application/schema+json;version=draft-07
   pe/active_cab:
     description:
       $ref: json-schemas/pe/active-cab/active-cab.md
     publish:
       message:
+        name: ActiveCab
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/pe/active-cab/active-cab.json
+        examples:
+          - $ref: json-schemas/pe/active-cab/active-cab.example.json
         bindings:
           mqtt:
             qos: '1'
             retain: true
-        examples:
-          - $ref: json-schemas/pe/active-cab/active-cab.example.json
-        name: ActiveCab
-        payload:
-          $ref: json-schemas/pe/active-cab/active-cab.json
-        schemaFormat: application/schema+json;version=draft-07
   pe/door_lock:
     description:
       $ref: json-schemas/pe/door-lock/door-lock.md
     publish:
       message:
+        name: DoorLock
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/pe/door-lock/door-lock.json
+        examples:
+          - $ref: json-schemas/pe/door-lock/door-lock.example.json
         bindings:
           mqtt:
             qos: 1
             retain: false
-        examples:
-          - $ref: json-schemas/pe/door-lock/door-lock.example.json
-        name: DoorLock
-        payload:
-          $ref: json-schemas/pe/door-lock/door-lock.json
-        schemaFormat: application/schema+json;version=draft-07
   pe/doors_individually:
     description:
       $ref: json-schemas/pe/doors-individually/doors-individually.md
     publish:
       message:
+        name: DoorsIndividually
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/pe/doors-individually/doors-individually.json
+        examples:
+          - $ref: json-schemas/pe/doors-individually/doors-individually.example.json
         bindings:
           mqtt:
             qos: 1
             retain: false
-        examples:
-          - $ref: json-schemas/pe/doors-individually/doors-individually.example.json
-        name: DoorsIndividually
-        payload:
-          $ref: json-schemas/pe/doors-individually/doors-individually.json
-        schemaFormat: application/schema+json;version=draft-07
   sensors/apc/{sensorId}:
     description:
       $ref: json-schemas/sensors/apc/apc.md
@@ -115,76 +115,76 @@ channels:
         $ref: '#/components/parameters/sensorId'
     publish:
       message:
+        name: Apc
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/sensors/apc/apc.json
+        examples:
+          - $ref: json-schemas/sensors/apc/apc-01.example.json
         bindings:
           mqtt:
             qos: 1
             retain: false
-        examples:
-          - $ref: json-schemas/sensors/apc/apc-01.example.json
-        name: Apc
-        payload:
-          $ref: json-schemas/sensors/apc/apc.json
-        schemaFormat: application/schema+json;version=draft-07
   sensors/door:
     description:
       $ref: json-schemas/sensors/door/door.md
     publish:
       message:
+        name: Door
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/sensors/door/door.json
+        examples:
+          - $ref: json-schemas/sensors/door/door-01.example.json
         bindings:
           mqtt:
             qos: 1
             retain: true
-        examples:
-          - $ref: json-schemas/sensors/door/door-01.example.json
-        name: Door
-        payload:
-          $ref: json-schemas/sensors/door/door.json
-        schemaFormat: application/schema+json;version=draft-07
   sensors/location:
     description:
       $ref: json-schemas/sensors/location/location.md
     publish:
       message:
+        name: Location
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/sensors/location/location.json
+        examples:
+          - $ref: json-schemas/sensors/location/location-01.example.json
         bindings:
           mqtt:
             qos: 0
             retain: false
-        examples:
-          - $ref: json-schemas/sensors/location/location-01.example.json
-        name: Location
-        payload:
-          $ref: json-schemas/sensors/location/location.json
-        schemaFormat: application/schema+json;version=draft-07
   sensors/odometer:
     description:
       $ref: json-schemas/sensors/odometer/odometer.md
     publish:
       message:
+        name: Odometer
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/sensors/odometer/odometer.json
+        examples:
+          - $ref: json-schemas/sensors/odometer/odometer-01.example.json
         bindings:
           mqtt:
             qos: 0
             retain: false
-        examples:
-          - $ref: json-schemas/sensors/odometer/odometer-01.example.json
-        name: Odometer
-        payload:
-          $ref: json-schemas/sensors/odometer/odometer.json
-        schemaFormat: application/schema+json;version=draft-07
   sensors/stop_button:
     description:
       $ref: json-schemas/sensors/stop-button/stop-button.md
     publish:
       message:
+        name: StopButton
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/sensors/stop-button/stop-button.json
+        examples:
+          - $ref: json-schemas/sensors/stop-button/stop-button-01.example.json
         bindings:
           mqtt:
             qos: 1
             retain: false
-        examples:
-          - $ref: json-schemas/sensors/stop-button/stop-button-01.example.json
-        name: StopButton
-        payload:
-          $ref: json-schemas/sensors/stop-button/stop-button.json
-        schemaFormat: application/schema+json;version=draft-07
   sensors/telemetry/{sensorId}:
     description:
       $ref: json-schemas/sensors/telemetry/telemetry.md
@@ -193,18 +193,16 @@ channels:
         $ref: '#/components/parameters/sensorId'
     publish:
       message:
+        name: Telemetry
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/sensors/telemetry/telemetry.json
+        examples:
+          - $ref: json-schemas/sensors/telemetry/telemetry-01.example.json
         bindings:
           mqtt:
             qos: 0
             retain: false
-        examples:
-          - $ref: json-schemas/sensors/telemetry/telemetry-addressing-scheme.example.json
-          - $ref: json-schemas/sensors/telemetry/telemetry-01.example.json
-        name: Telemetry
-        payload:
-          $ref: json-schemas/sensors/telemetry/telemetry.json
-        schemaFormat: application/schema+json;version=draft-07
-
   di/override_attempt/destination_display:
     description:
       $ref: json-schemas/di/override_attempt/destination_display/destination-display-override.md
@@ -260,9 +258,8 @@ channels:
         schemaFormat: application/schema+json;version=draft-07
         payload:
           $ref: json-schemas/pe/sales/diagnostics/sales-diagnostics.json
-        examples: [
-          { $ref: json-schemas/pe/sales/diagnostics/sales-diagnostics.example.json }
-        ]
+        examples:
+          - $ref: json-schemas/pe/sales/diagnostics/sales-diagnostics.example.json
         bindings:
           mqtt:
             qos: 1
@@ -270,15 +267,14 @@ channels:
   pe/sales/current_stop:
     description:
       $ref: json-schemas/pe/sales/current_stop/sales-current_stop.md
-    publish:
+    subscribe:
       message:
         name: SalesCurrentStop
         schemaFormat: application/schema+json;version=draft-07
         payload:
           $ref: json-schemas/pe/sales/current_stop/sales-current_stop.json
-        examples: [
-          { $ref: json-schemas/pe/sales/current_stop/sales-current_stop.example.json }
-        ]
+        examples:
+          - $ref: json-schemas/pe/sales/current_stop/sales-current_stop.example.json
         bindings:
           mqtt:
             qos: 1
@@ -306,46 +302,46 @@ channels:
       $ref: json-schemas/operational/assignment/attempt/response/assignment-attempt-response.md
     subscribe:
       message:
+        name: AssignmentAttemptResponse
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/operational/assignment/attempt/response/assignment-attempt-response.json
+        examples:
+          - $ref: json-schemas/operational/assignment/attempt/response/assignment-attempt-response-signon-planned.example.json
         bindings:
           mqtt:
             qos: 1
             retain: false
-        examples:
-          - $ref: json-schemas/operational/assignment/attempt/response/assignment-attempt-response-signon-planned.example.json
-        name: AssignmentAttemptResponse
-        payload:
-          $ref: json-schemas/operational/assignment/attempt/response/assignment-attempt-response.json
-        schemaFormat: application/schema+json;version=draft-07
   operational/assignment/status:
     description:
       $ref: json-schemas/operational/assignment/status/assignment-status.md
     subscribe:
       message:
+        name: AssignmentStatus
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/operational/assignment/status/assignment-status.json
+        examples:
+          - $ref: json-schemas/operational/assignment/status/assignment-status-signon-planned.example.json
         bindings:
           mqtt:
             qos: 1
             retain: true
-        examples:
-          - $ref: json-schemas/operational/assignment/status/assignment-status-signon-planned.example.json
-        name: AssignmentStatus
-        payload:
-          $ref: json-schemas/operational/assignment/status/assignment-status.json
-        schemaFormat: application/schema+json;version=draft-07
   operational/assignment/omit/response:
     description:
       $ref: json-schemas/operational/assignment/omit/response/assignment-omit-response.md
     subscribe:
       message:
+        name: AssignmentOmitResponse
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/operational/assignment/omit/response/assignment-omit-response.json
+        examples:
+          - $ref: json-schemas/operational/assignment/omit/response/assignment-omit-response-no-intention.example.json
         bindings:
           mqtt:
             qos: 1
             retain: false
-        examples:
-          - $ref: json-schemas/operational/assignment/omit/response/assignment-omit-response-no-intention.example.json
-        name: AssignmentOmitResponse
-        payload:
-          $ref: json-schemas/operational/assignment/omit/response/assignment-omit-response.json
-        schemaFormat: application/schema+json;version=draft-07
   di/available_destination_displays:
     description:
       $ref: json-schemas/di/available-destination-displays/available-destination-displays.md
