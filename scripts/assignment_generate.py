@@ -16,7 +16,7 @@ ruamel_yaml = YAML(typ='rt')
 ruamel_yaml.indent(mapping=2, sequence=4, offset=2)
 ruamel_yaml.width = 4096
 
-WRITE_CHANGES_TO_ASYNC_API_YML = False
+WRITE_CHANGES_TO_ASYNC_API_YML = True
 
 API_VERSION_MAJOR = "3"
 API_VERSION_MINOR = "0"
