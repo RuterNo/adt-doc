@@ -1,2 +1,4 @@
+jsonschema==4.17.3
+jsonschema-pyref==0.1.0
 ruamel.yaml==0.17.24
 ruamel.yaml.clib==0.2.7

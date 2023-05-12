@@ -1,7 +1,7 @@
 {
   "name": "Assignment Attempt Request - SignOn - EXTRA",
   "payload": {
-    "eventTimeStamp": "2023-04-27T12:40:12.631912Z",
+    "eventTimestamp": "2023-04-27T12:40:12.631912Z",
     "traceId": "083b71c4-e417-11ed-b5ea-0242ac120002",
     "signOn": {
       "code": "EXTRA",

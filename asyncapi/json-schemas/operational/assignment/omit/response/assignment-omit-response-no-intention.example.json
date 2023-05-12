@@ -1,7 +1,7 @@
 {
   "name": "Assignment Omit Response - NO INTENTION",
   "payload": {
-    "eventTimeStamp": "2023-04-27T12:40:12.731913Z",
+    "eventTimestamp": "2023-04-27T12:40:12.731913Z",
     "traceId": "083b71c4-e417-11ed-b5ea-0242ac120003",
     "result":{
       "code": "OK",

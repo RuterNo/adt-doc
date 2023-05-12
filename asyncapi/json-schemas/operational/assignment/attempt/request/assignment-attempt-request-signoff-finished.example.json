@@ -1,7 +1,7 @@
 {
   "name": "Assignment Attempt Request - SignOff - FINISHED",
   "payload": {
-    "eventTimeStamp": "2023-04-27T14:43:12.631911Z",
+    "eventTimestamp": "2023-04-27T14:43:12.631911Z",
     "traceId": "083b71c4-e417-11ed-b5ea-0242ac120001",
     "signOff": {
       "code": "FINISHED"

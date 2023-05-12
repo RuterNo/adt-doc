@@ -8,6 +8,8 @@ import json
 import sys
 from pathlib import Path
 
+from jsonschema import Draft7Validator, RefResolver
+from jsonschema.exceptions import RefResolutionError
 from ruamel.yaml import YAML
 
 ruamel_yaml = YAML(typ='rt')
@@ -307,8 +309,38 @@ def update_async_api(async_api, meta, paths):
             async_api['channels'][channel].pop('parameters')
 
 
+def validate_examples(schemas_):
+    valid = True
+    for key, schema_ in schemas_.items():
+        schema_path = Path(schema_['schema_path'])
+        for example_path in schema_['examples']:
+
+            schemas = (json.load(open(source)) for source in SCHEMA_ROOT.rglob("*.json"))
+            schema_store = {schema["$id"]: schema for schema in schemas if '$id' in schema}
+
+            schema = json.load(open(schema_path))
+            instance = json.load(open(example_path))
+            resolver = RefResolver.from_schema(schema, store=schema_store)
+            validator = Draft7Validator(schema, resolver=resolver)
+
+            try:
+                errors = sorted(validator.iter_errors(instance['payload']), key=lambda e: e.path)
+                for error in errors:
+                    valid = False
+                    print(f"\n************************\n"
+                          f"[ERROR] Example is not valid: {Path(example_path).resolve()}"
+                          f"\n************************\n")
+                    print(error)
+            except RefResolutionError as e:
+                print(e)
+
+    if not valid:
+        raise SystemExit("Examples are not valid")
+
+
 def main():
     schemas = resolve_schemas()
+    validate_examples(schemas)
     update_schema_content(schemas)
     asyncapi_path = Path("asyncapi/asyncapi.yml")
     async_api = read_yaml(asyncapi_path)
