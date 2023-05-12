@@ -311,15 +311,13 @@ def update_async_api(async_api, meta, paths):
 
 def validate_examples(schemas_):
     valid = True
+    schemas = (read_json(source) for source in SCHEMA_ROOT.rglob("*.json"))
+    schema_store = {schema["$id"]: schema for schema in schemas if '$id' in schema}
     for key, schema_ in schemas_.items():
         schema_path = Path(schema_['schema_path'])
         for example_path in schema_['examples']:
-
-            schemas = (json.load(open(source)) for source in SCHEMA_ROOT.rglob("*.json"))
-            schema_store = {schema["$id"]: schema for schema in schemas if '$id' in schema}
-
-            schema = json.load(open(schema_path))
-            instance = json.load(open(example_path))
+            schema = read_json(schema_path)
+            instance = read_json(example_path)
             resolver = RefResolver.from_schema(schema, store=schema_store)
             validator = Draft7Validator(schema, resolver=resolver)
 
@@ -332,6 +330,7 @@ def validate_examples(schemas_):
                           f"\n************************\n")
                     print(error)
             except RefResolutionError as e:
+                valid = False
                 print(e)
 
     if not valid:
