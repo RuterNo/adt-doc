@@ -1,9 +1,0 @@
-{
-  "name": "External Display",
-  "payload": {
-    "eventTimestamp": "2017-10-31T08:38:02.749Z",
-    "publicCode": "20",
-    "destination": "Galgeberg",
-    "alternativeMessage": "Duis aute irure dolor"
-  }
-}

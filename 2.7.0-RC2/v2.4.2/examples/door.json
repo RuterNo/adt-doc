@@ -1,7 +1,0 @@
-{
-  "name": "Door Sensor",
-  "payload": {
-    "doorOpen": true,
-    "atDateTime": "2021-11-30T23:45:52.006Z"
-  }
-}
