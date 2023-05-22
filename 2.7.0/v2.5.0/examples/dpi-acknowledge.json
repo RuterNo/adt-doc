@@ -1,0 +1,11 @@
+{
+  "name": "Due information",
+  "payload": {
+    "eventTimestamp": "2021-10-31T12:45:50Z",
+    "type": "DESTINATION",
+    "payload": {
+      "text": "400 Oslo Lufthavn",
+      "additionalText": "o/ Eltonåsen"
+    }
+  }
+}

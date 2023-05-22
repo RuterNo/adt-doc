@@ -1,0 +1,30 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v2.1/sensor/clock.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Clock",
+  "type": "object",
+  "required": [
+    "localTimeZoneDate",
+    "localTimeZoneTime",
+    "atDateTime"
+  ],
+  "description": "",
+  "additionalProperties": true,
+  "properties": {
+    "localTimeZoneDate": {
+      "$id": "#/properties/localTimeZoneDate",
+      "type": "string",
+      "description": "Date formatted as YYYY-MM-DD where YYYY = year MM = month [01..12] DD = day [01..31]."
+    },
+    "localTimeZoneTime": {
+      "$id": "#/properties/localTimeZoneTime",
+      "type": "string",
+      "description": "Time formatted as hh:mm:ss where hh = hour [00..23] mm = minute [00..59] ss = seconds [00..59]."
+    },
+    "atDateTime": {
+      "$id": "#/properties/atDateTime",
+      "type": "string",
+      "description": "ISO 8601. Reflects the UTC time when the information was provided."
+    }
+  }
+}

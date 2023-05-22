@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.ruter.no/signon.json",
+  "type": "object",
+  "title": "Signon and Signoff MQTT Message",
+  "description": "Notification to PTA BO that a block is being started or resumed, or completed",
+  "required": [
+    "eventTimestamp",
+    "vehicleNumber",
+    "blockId",
+    "vehicleJourneyId"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "Event timestamp must be ISO 8601 UTC",
+      "format": "date-time"
+    },
+    "vehicleNumber": {
+      "$id": "#/properties/vehicleNumber",
+      "type": "string",
+      "description": "Bus id"
+    },
+    "blockId": {
+      "$id": "#/properties/blockId",
+      "type": "string",
+      "description": "Block Id"
+    },
+    "vehicleJourneyId": {
+      "$id": "#/properties/vehicleJourneyId",
+      "type": "string",
+      "description": "Vehicle Journey Id"
+    }
+  }
+}
