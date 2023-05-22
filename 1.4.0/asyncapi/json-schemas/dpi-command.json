@@ -1,0 +1,49 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.ruter.no/c2.json",
+  "type": "object",
+  "title": "C2 MQTT Message",
+  "description": "Message sent to bus to control DPI functions",
+  "required": [
+    "eventTimestamp",
+    "type",
+    "payload"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "Event timestamp must be ISO 8601 UTC",
+      "format": "date-time"
+    },
+    "type": {
+      "$id": "#/properties/type",
+      "type": "string",
+      "description": "The Type Schema"
+    },
+    "payload": {
+      "$id": "#/properties/payload",
+      "type": "object",
+      "description": "Command and arguments",
+      "required": [
+        "command",
+        "args"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "command": {
+          "$id": "#/properties/payload/properties/command",
+          "type": "string",
+          "description": "Command name"
+        },
+        "args": {
+          "$id": "#/properties/payload/properties/args",
+          "type": "object",
+          "description": "Arguments to be passed to command"
+        }
+      }
+    }
+  }
+}
