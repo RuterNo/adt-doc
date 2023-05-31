@@ -264,21 +264,6 @@ channels:
           mqtt:
             qos: 1
             retain: true
-  pe/sales/current_stop:
-    description:
-      $ref: json-schemas/pe/sales/current_stop/sales-current_stop.md
-    subscribe:
-      message:
-        name: SalesCurrentStop
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/pe/sales/current_stop/sales-current_stop.json
-        examples:
-          - $ref: json-schemas/pe/sales/current_stop/sales-current_stop.example.json
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
   pe/cardreader_diagnostics/vix/{deviceRef}:
     description:
       $ref: json-schemas/pe/cardreader-diagnostics/vix/vix-cardreader_diagnostics.md
@@ -296,6 +281,21 @@ channels:
         bindings:
           mqtt:
             qos: 0
+            retain: false
+  pe/sales/current_stop:
+    description:
+      $ref: json-schemas/pe/sales/current_stop/sales-current_stop.md
+    subscribe:
+      message:
+        name: SalesCurrentStop
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/pe/sales/current_stop/sales-current_stop.json
+        examples:
+          - $ref: json-schemas/pe/sales/current_stop/sales-current_stop.example.json
+        bindings:
+          mqtt:
+            qos: 1
             retain: false
   operational/assignment/attempt/response:
     description:
