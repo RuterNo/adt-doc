@@ -73,6 +73,16 @@
       "$id": "#/properties/tariffZone",
       "type": "string",
       "description": "The tariff zone the vehicle is currently in"
+    },
+    "stopPlaceIdNextStop": {
+      "$id": "#/properties/stopPlaceIdNextStop",
+      "type": "string",
+      "description": "StopPlaceId for the next stop after the current stop (not by plan, but by actual progress, as these sometimes deviate)"
+    },
+    "tariffZoneNextStop": {
+      "$id": "#/properties/tariffZoneNextStop",
+      "type": "string",
+      "description": "The tariff zone of the next stop. This can be used to determine if the vehicle is leaving a zone."
     }
   }
 }

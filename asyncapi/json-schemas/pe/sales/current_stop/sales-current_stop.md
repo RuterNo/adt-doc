@@ -9,3 +9,6 @@
 
 Used to alert the RuterSalg app about the current stop. This message is triggered when the Progress entity determines that the bus is arriving
 at the quay, meaning it is maximum 35 meters from the quay, approaching it. Contains information about the zone the current stop belongs to.
+
+The message also contains information about the NEXT stop and its zone. This is used to determine if the bus is approaching a zone border. One
+use for this is whether or not to sell a "smart ticket" if the passenger has funds in their travel purse.
