@@ -32,15 +32,15 @@
 ![Update static content](assets/images/pto/static_update.png)
 
 ### Operator responsibilities:
-- Download static content pack(s) from Routers regularly
-  - At least once a day
-  - If it only happens once, then the download must take place after 16:00 each day, and be available in the vehicle until the following day
+- Download static content pack(s) from Ruter regularly
+    - At least once a day
+    - If it only happens once, then the download must take place after 16:00 each day, and be available in the vehicle until the following day
 - Validate that the package has been downloaded correctly (SHA hash verification)
 - Set aside 16GB of storage capacity in the vehicle for storing static files
-  - Typically MP4, HTML, JS, images, mp3 etc.
-  - NOTE: the entire capacity of 16GB must be able to be used for DPI content. That is when the contents are to be extracted, the router's zip file must be in a different area than the destination files.
+    - Typically MP4, HTML, JS, images, mp3 etc.
+    - NOTE: the entire capacity of 16GB must be able to be used for DPI content. That is when the contents are to be extracted, the ruter's zip file must be in a different area than the destination files.
 - Push out new content packs to the vehicles when they are in the depot and before they are in traffic the next day
-  - NOTE: Only files that have changed since the previous version should be transferred to the vehicle. Changes must be diffused and synchronized, e.g. with a tool like rsync.
+    - NOTE: Only files that have changed since the previous version should be transferred to the vehicle. Changes must be diffused and synchronized, e.g. with a tool like rsync.
 - Updates will come on two channels:
     - Stage
         - planned changes come here first, and must be verified that they work on a test vehicle by the operator, before they are promoted to prod.
@@ -63,12 +63,12 @@
 ![MQTT bridge update](assets/images/pto/mqtt_update.png)
 
 ### Operator responsibilities:
-- Download configuration updates from Router regularly
-- This must happen at the same time as the check of static content
+- Download configuration updates from Ruter regularly
+    - This must happen at the same time as the check of static content
 - Build up vehicle-specific configurations based on Ruter's configuration
     - Insert variable names where needed
-    - Example : `{operator}/router/{vehicle_id}/adt/v3/pe/dpi/journey`
-    translates to: `alpha/router/990552/adt/v3/pe/dpi/journey`
+    - Example : `{operator}/ruter/{vehicle_id}/adt/v3/pe/dpi/journey`
+    translates to: `alpha/ruter/990552/adt/v3/pe/dpi/journey`
 - Push out new content packs to the vehicles when they are in the depot and before they are in traffic the next day
 - Updates will come on two channels:
     - Stage
