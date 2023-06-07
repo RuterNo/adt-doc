@@ -11,6 +11,8 @@
     "blockId": "44f45aeb-7e7a-456f-b326-0546e988ae00",
     "quayId": "NSR:Quay:17023",
     "stopPlaceId": "NSR:StopPlace:4000",
-    "tariffZone": "RUT:TariffZone:227"
+    "tariffZone": "RUT:TariffZone:227",
+    "stopPlaceIdNextStop": "NSR:StopPlace:4001",
+    "tariffZoneNextStop": "RUT:TariffZone:227"
   }
 }
