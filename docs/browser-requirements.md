@@ -17,6 +17,6 @@ The PTO is required to install and maintain one of the following browsers:
 
 - Only stable software versions are to be used. 
 - The browser needs to be periodically updated and must never be older than 12 months.
-- The browser must have persistent storage available. 
+- The browser must have persistent storage available. This includes, among other things, that it cannot run in incognito mode.
 - All feature flags set to default values, unless otherwise agreed upon with Ruter.
 

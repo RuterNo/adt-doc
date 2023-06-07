@@ -103,5 +103,7 @@ nav:
         - Screen configuration: screen-configs.md
         - Troubleshooting client: troubleshooting-client.md
         - Vehicle Status (Live): live-status.md
+      - PTO / PTA responsibilities:
+        - DPI Services: pto-pta-responsibilities.md
   - Contribute:
       - Report an issue: issue.md
