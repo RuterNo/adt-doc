@@ -105,5 +105,6 @@ nav:
         - Vehicle Status (Live): live-status.md
       - PTO / PTA responsibilities:
         - DPI Services: pto-pta-responsibilities.md
+        - Operator Portal: operator_portal.md
   - Contribute:
       - Report an issue: issue.md
