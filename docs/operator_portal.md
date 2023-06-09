@@ -2,7 +2,9 @@
 
 ## Description 
 
-Ruter is intending to create an operator portal where PTOs will be able to access:
+Ruter will develop an operator portal in co-operation with the current PTOs. 
+
+### Intended functionality
 
 - current status of vehicles
 - SLA calculations
