@@ -9,7 +9,7 @@
     "traceId",
     "message"
   ],
-  "additionalProperties": false,
+  "additionalProperties": true,
   "properties": {
     "eventTimestamp": {
       "$id": "#/properties/eventTimestamp",
@@ -37,13 +37,13 @@
       "$id": "#/properties/message",
       "type": "object",
       "description": "Message for one or more language",
-      "additionalProperties": false,
+      "additionalProperties": true,
       "patternProperties": {
         "^[a-z]{2}(-[a-z]{2})?$": {
           "$id": "#/properties/message/patternProperties/multilingualMessage",
           "type": "object",
           "description": "A multilingual message",
-          "additionalProperties": false,
+          "additionalProperties": true,
           "properties": {
             "title": {
               "$id": "#/properties/message/patternProperties/multilingualMessage/properties/title",

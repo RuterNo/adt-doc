@@ -13,6 +13,7 @@
     "routeId",
     "calls"
   ],
+  "additionalProperties": true,
   "properties": {
     "eventTimestamp": {
       "$id": "#/properties/eventTimestamp",
