@@ -12,7 +12,7 @@
     "linePublicCode",
     "stopPlaces"
   ],
-  "additionalProperties": false,
+  "additionalProperties": true,
   "properties": {
     "eventTimestamp": {
       "$id": "#/properties/eventTimestamp",
@@ -84,9 +84,9 @@
             "properties": {
               "predictedValue": {
                 "$id": "#/properties/stopPlaces/items/boarding/predictedValue",
-                "type": "number",
+                "type": "integer",
                 "examples": [
-                  1.4375
+                  23
                 ]
               },
               "qualityIndicator": {
@@ -111,9 +111,9 @@
             "properties": {
               "predictedValue": {
                 "$id": "#/properties/stopPlaces/items/alighting/predictedValue",
-                "type": "number",
+                "type": "integer",
                 "examples": [
-                  0.4375
+                  23
                 ]
               },
               "qualityIndicator": {

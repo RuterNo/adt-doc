@@ -9,7 +9,7 @@
     "traceId",
     "estimatedCalls"
   ],
-  "additionalItems": false,
+  "additionalProperties": true,
   "properties": {
     "eventTimestamp": {
       "$id": "#/properties/eventTimestamp",
@@ -35,7 +35,7 @@
           "stopPlaceId",
           "text"
         ],
-        "additionalProperties": false,
+        "additionalProperties": true,
         "properties": {
           "eta": {
             "$id": "#/properties/estimatedCalls/items/properties/eta",
