@@ -11,7 +11,7 @@
     "type",
     "payload"
   ],
-  "additionalProperties": true,
+  "additionalProperties": false,
   "properties": {
     "eventTimestamp": {
       "$id": "#/properties/eventTimestamp",
@@ -37,7 +37,7 @@
         "command",
         "args"
       ],
-      "additionalProperties": true,
+      "additionalProperties": false,
       "properties": {
         "command": {
           "$id": "#/properties/payload/properties/command",

@@ -9,7 +9,7 @@
     "traceId",
     "destination"
   ],
-  "additionalProperties": true,
+  "additionalProperties": false,
   "properties": {
     "eventTimestamp": {
       "$id": "#/properties/eventTimestamp",
