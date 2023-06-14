@@ -10,7 +10,7 @@
     "stopPlaceId",
     "index"
   ],
-  "additionalProperties": true,
+  "additionalProperties": false,
   "properties": {
     "eventTimestamp": {
       "$id": "#/properties/eventTimestamp",
