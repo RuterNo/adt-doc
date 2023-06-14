@@ -11,11 +11,11 @@
         "stopPlaceId": "NSR:StopPlace:3986",
         "stopPlaceIndex": 11,
         "boarding": {
-          "predictedValue": 23,
+          "predictedValue": 0.33333334,
           "qualityIndicator": "GOOD"
         },
         "alighting": {
-          "predictedValue": 23,
+          "predictedValue": 5.233333,
           "qualityIndicator": "GOOD"
         }
       },
@@ -23,11 +23,11 @@
         "stopPlaceId": "NSR:StopPlace:6258",
         "stopPlaceIndex": 16,
         "boarding": {
-          "predictedValue": 24,
+          "predictedValue": 1.4375,
           "qualityIndicator": "GOOD"
         },
         "alighting": {
-          "predictedValue": 24,
+          "predictedValue": 0.28125,
           "qualityIndicator": "GOOD"
         }
       },
@@ -35,11 +35,11 @@
         "stopPlaceId": "NSR:StopPlace:6269",
         "stopPlaceIndex": 20,
         "boarding": {
-          "predictedValue": 25,
+          "predictedValue": 6.6968083,
           "qualityIndicator": "GOOD"
         },
         "alighting": {
-          "predictedValue": 25,
+          "predictedValue": 12.484042,
           "qualityIndicator": "GOOD"
         }
       },
@@ -47,11 +47,11 @@
         "stopPlaceId": "NSR:StopPlace:6266",
         "stopPlaceIndex": 26,
         "boarding": {
-          "predictedValue": 27,
+          "predictedValue": 1.5,
           "qualityIndicator": "GOOD"
         },
         "alighting": {
-          "predictedValue": 27,
+          "predictedValue": 0.4375,
           "qualityIndicator": "GOOD"
         }
       }

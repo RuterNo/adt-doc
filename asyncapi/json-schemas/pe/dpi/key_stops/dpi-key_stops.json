@@ -84,9 +84,9 @@
             "properties": {
               "predictedValue": {
                 "$id": "#/properties/stopPlaces/items/boarding/predictedValue",
-                "type": "integer",
+                "type": "number",
                 "examples": [
-                  23
+                  1.4375
                 ]
               },
               "qualityIndicator": {
@@ -111,9 +111,9 @@
             "properties": {
               "predictedValue": {
                 "$id": "#/properties/stopPlaces/items/alighting/predictedValue",
-                "type": "integer",
+                "type": "number",
                 "examples": [
-                  23
+                  0.4375
                 ]
               },
               "qualityIndicator": {
