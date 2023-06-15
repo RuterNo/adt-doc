@@ -8,7 +8,7 @@
     "eventTimestamp",
     "route"
   ],
-  "additionalProperties": false,
+  "additionalProperties": true,
   "properties": {
     "eventTimestamp": {
       "$id": "#/properties/eventTimestamp",
@@ -42,7 +42,7 @@
         "line",
         "stopPlaces"
       ],
-      "additionalProperties": false,
+      "additionalProperties": true,
       "properties": {
         "id": {
           "$id": "#/properties/route/properties/id",
@@ -63,7 +63,7 @@
             "name",
             "publicCode"
           ],
-          "additionalProperties": false,
+          "additionalProperties": true,
           "properties": {
             "id": {
               "$id": "#/properties/route/properties/line/properties/id",
@@ -96,7 +96,7 @@
               "connections",
               "location"
             ],
-            "additionalProperties": false,
+            "additionalProperties": true,
             "properties": {
               "id": {
                 "$id": "#/properties/route/properties/stopPlaces/items/properties/id",
@@ -123,7 +123,7 @@
                     "type",
                     "colour"
                   ],
-                  "additionalProperties": false,
+                  "additionalProperties": true,
                   "properties": {
                     "id": {
                       "$id": "#/properties/route/properties/stopPlaces/items/properties/connections/connection/properties/id",
@@ -174,7 +174,7 @@
                   "latitude",
                   "longitude"
                 ],
-                "additionalProperties": false,
+                "additionalProperties": true,
                 "properties": {
                   "latitude": {
                     "$id": "#/properties/route/properties/stopPlaces/items/properties/location/properties/latitude",
