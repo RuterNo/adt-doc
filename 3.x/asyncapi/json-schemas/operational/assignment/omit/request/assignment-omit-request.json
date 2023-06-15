@@ -29,11 +29,6 @@
         "NO_INTENTION"
       ]
     },
-    "vehicleTaskId": {
-      "$id": "#/properties/vehicleTaskId",
-      "description": "Reference to the vehicle task to apply the omission",
-      "type": "string"
-    },
     "serviceWindow": {
       "$id": "#/properties/serviceWindow",
       "description": "First departure and last arrival",
