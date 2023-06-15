@@ -7,7 +7,7 @@
     "eventTimestamp",
     "ref"
   ],
-  "additionalProperties": false,
+  "additionalProperties": true,
   "properties": {
     "eventTimestamp": {
       "$id": "#/properties/eventTimestamp",
