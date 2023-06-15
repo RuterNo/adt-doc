@@ -8,7 +8,7 @@
     "eventTimestamp",
     "estimatedCalls"
   ],
-  "additionalItems": false,
+  "additionalProperties": false,
   "properties": {
     "eventTimestamp": {
       "$id": "#/properties/eventTimestamp",
@@ -29,7 +29,7 @@
           "stopPlaceId",
           "text"
         ],
-        "additionalProperties": false,
+        "additionalProperties": true,
         "properties": {
           "eta": {
             "$id": "#/properties/estimatedCalls/items/properties/eta",
