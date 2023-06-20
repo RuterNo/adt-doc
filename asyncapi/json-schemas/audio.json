@@ -7,6 +7,7 @@
   "additionalProperties": true,
   "required": [
     "eventDateTime",
+    "traceId",
     "expiryDateTime",
     "preferredStartDateTime",
     "ref",
@@ -18,6 +19,11 @@
       "type": "string",
       "description": "ISO 8601, UTC",
       "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message."
     },
     "expiryDateTime": {
       "$id": "#/properties/expiryDateTime",

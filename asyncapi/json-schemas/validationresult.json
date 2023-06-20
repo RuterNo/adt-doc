@@ -6,6 +6,7 @@
   "description": "Result of validation made with the RuterSalg application",
     "required": [
         "eventTimestamp",
+        "traceId",
         "buzzerCommand",
         "inspectionResult",
         "ledCommand"
@@ -16,6 +17,11 @@
             "type": "string",
             "description": "Time of validation",
             "format": "date-time"
+        },
+        "traceId": {
+            "$id": "#/properties/traceId",
+            "type": "string",
+            "description": "A unique identifier to be able to trace this message."
         },
         "buzzerCommand": {
             "$id": "#/properties/buzzerCommand",

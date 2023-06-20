@@ -6,6 +6,7 @@
   "description": "Notification that vehicle should transmit a traffic preemption message",
   "required": [
     "eventTimestamp",
+    "traceId",
     "message"
   ],
   "additionalProperties": false,
@@ -15,6 +16,11 @@
       "type": "string",
       "description": "Event timestamp must be ISO 8601 UTC",
       "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message."
     },
     "message": {
       "$id": "#/properties/message",

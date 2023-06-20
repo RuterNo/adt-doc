@@ -6,6 +6,7 @@
   "description": "Notification to PTA BO that a block is being started or resumed, or completed",
   "required": [
     "eventTimestamp",
+    "traceId",
     "vehicleNumber",
     "blockId",
     "vehicleJourneyId"
@@ -17,6 +18,11 @@
       "type": "string",
       "description": "Event timestamp must be ISO 8601 UTC",
       "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message."
     },
     "vehicleNumber": {
       "$id": "#/properties/vehicleNumber",

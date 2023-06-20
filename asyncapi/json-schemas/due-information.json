@@ -7,9 +7,15 @@
   "additionalProperties": true,
   "required": [
     "expiryDateTime",
+    "traceId",
     "body"
   ],
   "properties": {
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message."
+    },
     "expiryDateTime": {
       "$id": "#/properties/expiryDateTime",
       "type": "string",

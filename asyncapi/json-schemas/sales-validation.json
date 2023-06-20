@@ -4,10 +4,17 @@
   "title": "SalesValidation",
   "type": "object",
   "deprecationMessage": "This topic will be deprecated from future versions, it is recommended to use sales, validation and Sales: Diagnostics",
-  "required": [],
+  "required": [
+    "traceId"
+  ],
   "description": "Submits status of RuterSales application in the vehicle. The status can be submitted both at a periodic interval and when a ticket is sold or validated.",
   "additionalProperties": true,
   "properties": {
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message."
+    },
     "status": {
       "$id": "#/properties/status",
       "type": "string",

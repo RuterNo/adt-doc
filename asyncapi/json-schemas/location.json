@@ -5,6 +5,7 @@
   "type": "object",
   "description": "Location sensor data",
   "required": [
+    "traceId",
     "latitudeDegree",
     "longitudeDegree",
     "altitude",
@@ -17,6 +18,11 @@
   ],
   "additionalProperties": true,
   "properties": {
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message."
+    },
     "latitudeDegree": {
       "$id": "#/properties/latitudeDegree",
       "type": "number",
