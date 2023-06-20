@@ -4,17 +4,11 @@
   "title": "DestinationDisplayOverride",
   "type": "object",
   "required": [
-    "traceId",
     "number"
   ],
   "description": "Describes a request from MADT or other GUI to manually override the information shown on the destination display. It is up to the presenting system to decide how and for how long the override will apply. A rule could be until next journey begins or a new override_attempt/destination_display is received. The topic could be blanked (provided with a zero-byte payload) to indicate that any overriding information is no longer valid and that the destination display can return to normal",
   "additionalProperties": true,
   "properties": {
-    "traceId": {
-      "$id": "#/properties/traceId",
-      "type": "string",
-      "description": "A unique identifier to be able to trace this message."
-    },
     "atDateTime": {
       "$id": "#/properties/atDateTime",
       "type": "string",

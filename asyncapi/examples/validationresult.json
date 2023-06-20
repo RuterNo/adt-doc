@@ -2,7 +2,6 @@
   "name": "ValidationResult",
   "payload": {
     "eventTimestamp": "2020-04-22T10:28:37.337Z",
-    "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
     "inspectionResult": {
       "code": 205,
       "message": "Validert 22/04/2020 13:19 Enkeltbillett 1 Voksen ",

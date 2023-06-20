@@ -4,7 +4,6 @@
   "title": "OperationalMessageToDriver",
   "type": "object",
   "required": [
-    "traceId",
     "heading",
     "body",
     "senderRef",
@@ -13,11 +12,6 @@
   "description": "Operational message to driver",
   "additionalProperties": true,
   "properties": {
-    "traceId": {
-      "$id": "#/properties/traceId",
-      "type": "string",
-      "description": "A unique identifier to be able to trace this message."
-    },
     "heading": {
       "$id": "#/properties/heading",
       "type": "string",

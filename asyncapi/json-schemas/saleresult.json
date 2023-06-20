@@ -5,7 +5,6 @@
     "title": "Saleresult MQTT Message",
     "description": "Result of sale made with the RuterSalg application",
     "required": [
-        "traceId",
         "paymentMethod",
         "mediaType",
         "vendorId",
@@ -13,11 +12,6 @@
         "tickets"
     ],
     "properties": {
-        "traceId": {
-            "$id": "#/properties/traceId",
-            "type": "string",
-            "description": "A unique identifier to be able to trace this message."
-        },
         "paymentMethod": {
             "$id": "#/properties/paymentMethod",
             "type": "integer",

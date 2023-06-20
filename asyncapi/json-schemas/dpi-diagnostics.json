@@ -6,7 +6,6 @@
   "title": "The Root Schema",
   "required": [
     "eventTimestamp",
-    "traceId",
     "clientId",
     "type"
   ],
@@ -17,11 +16,6 @@
       "type": "string",
       "description": "EventTimestamp must be ISO 8601 UTC",
       "format": "date-time"
-    },
-    "traceId": {
-      "$id": "#/properties/traceId",
-      "type": "string",
-      "description": "A unique identifier to be able to trace this message."
     },
     "clientId": {
       "$id": "#/properties/clientId",

@@ -6,7 +6,6 @@
   "description": "List of stops for current journey in block",
   "required": [
     "eventTimestamp",
-    "traceId",
     "route"
   ],
   "additionalProperties": true,
@@ -16,11 +15,6 @@
       "type": "string",
       "description": "Event Timestamp must be ISO 8601 UTC",
       "format": "date-time"
-    },
-    "traceId": {
-      "$id": "#/properties/traceId",
-      "type": "string",
-      "description": "A unique identifier to be able to trace this message."
     },
     "journeyId": {
       "$id": "#/properties/journeyId",

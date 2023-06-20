@@ -2,7 +2,6 @@
   "name": "Journey",
   "payload": {
     "eventTimestamp": "2017-10-31T08:38:02.749Z",
-    "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
     "journeyId": "RUT:ServiceJourney:31-117215-13227462",
     "journeyRef": "31001-2019-02-17T21:55:00+01:00",
     "route": {

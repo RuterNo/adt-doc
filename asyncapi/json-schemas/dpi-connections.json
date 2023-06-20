@@ -6,7 +6,6 @@
   "description": "This schema defines the connection message sent as an MQTT message to buses",
   "required": [
     "eventTimestamp",
-    "traceId",
     "expiryTimestamp",
     "nextStop",
     "journeyId",
@@ -21,11 +20,6 @@
       "examples": [
         "2020-03-10T20:56:44.864401Z"
       ]
-    },
-    "traceId": {
-      "$id": "#/properties/traceId",
-      "type": "string",
-      "description": "A unique identifier to be able to trace this message."
     },
     "expiryTimestamp": {
       "$id": "#/properties/expiryTimestamp",

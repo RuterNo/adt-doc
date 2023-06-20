@@ -4,18 +4,12 @@
   "title": "StopButton",
   "type": "object",
   "required": [
-    "traceId",
     "stopPressed",
     "atDateTime"
   ],
   "description": "Describes if passengers have requested that the bus should stop (stop button pressed).",
   "additionalProperties": true,
   "properties": {
-    "traceId": {
-      "$id": "#/properties/traceId",
-      "type": "string",
-      "description": "A unique identifier to be able to trace this message."
-    },
     "stopPressed": {
       "$id": "#/properties/stopPressed",
       "type": "boolean",
