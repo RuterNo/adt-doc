@@ -5,6 +5,7 @@
   "type": "object",
   "required": [
     "eventTimestamp",
+    "traceId",
     "type",
     "payload"
   ],
@@ -16,6 +17,11 @@
       "type": "string",
       "description": "ISO 8601",
       "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message."
     },
     "type": {
       "$id": "#/properties/type",
