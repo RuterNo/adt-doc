@@ -6,6 +6,7 @@
   "description": "Estimated time of arrival for future stops on a journey",
   "required": [
     "eventTimestamp",
+    "traceId",
     "estimatedCalls"
   ],
   "additionalProperties": true,
@@ -15,6 +16,11 @@
       "type": "string",
       "description": "Event timestamp must be ISO 8601 UTC",
       "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message."
     },
     "estimatedCalls": {
       "$id": "#/properties/estimatedCalls",

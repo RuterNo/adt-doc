@@ -2,6 +2,7 @@
   "name": "NextStop",
   "payload": {
     "eventTimestamp": "2017-10-31T08:38:02.749Z",
+    "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
     "stopPlaceId": "RUT:StopPlace:03012453",
     "index": 0
   }
