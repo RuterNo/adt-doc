@@ -130,10 +130,10 @@
       "TrafficEvent": {
         "required": [
           "category",
+          "datedJourneyRef",
           "endDateTime",
           "id",
           "isOperatorExempt",
-          "journeyRef",
           "lineRef",
           "reason",
           "reasonCategory",
@@ -152,13 +152,13 @@
           "id": {
             "type": "string",
             "description": "The traffic event ID. Format: <registration-ID>-<sequence number>",
-            "example": "1234-1"
+            "example": "123-1"
           },
           "registrationId": {
             "type": "integer",
             "description": "The ID of the traffic event registration that was submitted for this traffic event.",
             "format": "int64",
-            "example": 1234
+            "example": 123
           },
           "status": {
             "type": "string",
@@ -174,7 +174,7 @@
           "trafficCaseNumber": {
             "type": "string",
             "description": "The traffic case number of the Ruterlogg traffic case that was created from the\ntraffic event registration submitted for this traffic event.\n",
-            "example": "2023-1234"
+            "example": "1970-234"
           },
           "category": {
             "type": "string",
@@ -194,23 +194,23 @@
           "reasonSubcategory": {
             "type": "string",
             "description": "The reason subcategory of the traffic event. Inferred from `category`, `subcategory`\nand `reason`.\n",
-            "example": "OBSTRUCTION"
+            "example": "SLOW_TRAFFIC"
           },
           "reason": {
             "type": "string",
             "description": "The reason for the traffic event.",
-            "example": "IMPROPERLY_PARKED_VEHICLE"
+            "example": "TRAFFIC_CONGESTION"
           },
           "reasonDescription": {
             "type": "string",
             "description": "If needed, a further detailing of the reason for the traffic event.",
-            "example": "En feilparkert bil blokkerte traséen",
+            "example": "Generelt mye trafikk og kø",
             "default": "null"
           },
-          "journeyRef": {
+          "datedJourneyRef": {
             "type": "string",
-            "description": "A reference to the planned journey that is affected by this traffic event.",
-            "example": "RUT:DatedServiceJourney:123456"
+            "description": "A reference to the dated journey that is affected by this traffic event.",
+            "example": "djj-4b60ddfd3a2aa810939912e08b76c58e"
           },
           "lineRef": {
             "type": "string",
@@ -225,16 +225,16 @@
           "startDateTime": {
             "type": "string",
             "description": "An ISO UTC date string representing the date and time that the traffic event started.",
-            "example": "2023-01-01T12:00:00Z"
+            "example": "1970-01-01T12:00:00Z"
           },
           "endDateTime": {
             "type": "string",
             "description": "An ISO UTC date string representing the date and time that the traffic event ended.",
-            "example": "2023-01-01T12:00:00Z"
+            "example": "1970-01-01T13:00:00Z"
           },
-          "affectedQuayRefs": {
+          "quayRefs": {
             "type": "array",
-            "description": "If `category` is `CANCELLATION`: A list wth references to the quays affected by\nthe partial cancellation.\n\n`null` otherwise.\n",
+            "description": "If `category` is `CANCELLATION`: A list of NSR quay references to the quays\naffected by the cancellation.\n\n`null` otherwise.\n",
             "example": [
               "NSR:Quay:123",
               "NSR:Quay:246"
@@ -262,7 +262,7 @@
           "registeredAt": {
             "type": "string",
             "description": "The date and time that the traffic event was registered, in ISO UTC format.",
-            "example": "2023-01-01T12:03:00Z"
+            "example": "1970-01-01T12:00:00Z"
           }
         }
       },
@@ -297,73 +297,76 @@
           },
           "reason": {
             "type": "string",
-            "description": "The reason for the traffic event. If set to `OTHER`, a description must be provided in\nthe `reasonDescription` field.\n",
-            "example": "IMPROPERLY_PARKED_VEHICLE",
+            "description": "The reason for the traffic event. If set to `OTHER_OBSTRUCTION` or\n`OTHER_TECHNICAL_PROBLEM`, a description must be provided in the `reasonDescription`\nfield.\n",
+            "example": "TRAFFIC_CONGESTION",
             "enum": [
-              "DRIVER_ERROR",
+              "BOOM_BARRIER_OPENING",
               "CUSTOMER_CARE",
-              "TICKET_INSPECTION",
-              "FAULTY_TICKET_MACHINE",
-              "FAULTY_TAAS_SYSTEM",
-              "FAULTY_SIS_SYSTEM",
-              "FAULTY_DOOR",
-              "FAULTY_ENGINE",
-              "FAULTY_GEARBOX",
-              "FAULTY_BRAKES",
-              "NO_POWER",
-              "HEAVY_SNOWFALL",
-              "SLIPPERY_ROADS",
-              "IMPROPERLY_PARKED_VEHICLE",
-              "ROAD_WORK",
-              "ROAD_ACCIDENT",
-              "FALLEN_DEBRIS",
-              "TRAFFIC_CONGESTION",
-              "EVENT",
               "DEMONSTRATION",
-              "OTHER"
+              "DRIVER_ERROR",
+              "EARLIER_DELAY",
+              "EVENT",
+              "FALLEN_DEBRIS",
+              "FAULTY_BRAKES",
+              "FAULTY_ENGINE",
+              "FAULTY_DOOR",
+              "FAULTY_GEARBOX",
+              "FAULTY_SIS_SYSTEM",
+              "FAULTY_TAAS_SYSTEM",
+              "FAULTY_TICKET_MACHINE",
+              "HEAVY_SNOWFALL",
+              "IMPROPERLY_PARKED_VEHICLE",
+              "NO_POWER",
+              "OTHER_OBSTRUCTION",
+              "OTHER_TECHNICAL_PROBLEM",
+              "ROAD_ACCIDENT",
+              "ROAD_WORK",
+              "SIGNAL_ERROR",
+              "SLIPPERY_ROADS",
+              "TICKET_INSPECTION",
+              "TRAFFIC_CONGESTION"
             ]
           },
           "reasonDescription": {
             "type": "string",
-            "description": "Required if `reason` is set to `OTHER`, optional otherwise. A further detailing of the\nreason for the traffic event, and if relevant, an explanation for why you as an\noperator should be exempt from being fined for any SLA breach(es) incurred as a\nconsequence of this traffic event (see `isOperatorExempt`).\n",
+            "description": "Required if `reason` is set to `OTHER_OBSTRUCTION` or `OTHER_TECHNICAL_PROBLEM`,\noptional otherwise. A further detailing of the reason for the traffic event, and if\nrelevant, an explanation for why you as an operator should be exempt from being fined\nfor any SLA breach(es) incurred as a consequence of this traffic event (see\n`isOperatorExempt`).\n",
             "example": "En feilparkert bil blokkerte traséen",
-            "default": "null"
-          },
-          "journeyRef": {
-            "type": "string",
-            "description": "Required if `lineRef` is `null`. A reference to the planned journey that is affected\nby this traffic event, if only a single journey is affected.\n\nFormat should be one of:\n- `RUT:DatedServiceJourney:<dated journey ID from plan data>`\n- `RUT:DatedServiceJourney:<vehicle task ID>-<journey start time in ISO offset format>`\n",
-            "example": "RUT:DatedServiceJourney:1234-2023-01-01T13:00:00+01:00",
-            "default": "null"
-          },
-          "lineRef": {
-            "type": "string",
-            "description": "Required if `journeyRef` is `null`, ignored otherwise. A reference to the affected\nline when multiple journeys are affected by this traffic event.\n",
-            "example": "RUT:Line:123",
             "default": "null"
           },
           "startDateTime": {
             "type": "string",
-            "description": "Required if `journeyRef` is `null`, optional otherwise. An ISO UTC date string\nrepresenting the date and time that the traffic event started. If `null`, the start\ntime of the journey represented by `journeyRef` is used instead.\n",
-            "example": "2023-01-01T12:00:00Z",
+            "description": "Required if `datedJourneyRef` is `null`, optional otherwise. An ISO UTC date string\nrepresenting the date and time that the traffic event started. If `null`, the start\ntime of the journey represented by `datedJourneyRef` is used instead.\n",
+            "example": "1870-01-01T12:00:00Z",
             "default": "null"
           },
           "endDateTime": {
             "type": "string",
-            "description": "Required if `journeyRef` is `null`, optional otherwise. An ISO UTC date string\nrepresenting the date and time that the traffic event ended. If `null`, the end time\nof the journey represented by `journeyRef`, plus `delayMinutes` if given, is used\ninstead.\n",
-            "example": "2023-01-01T13:00:00Z",
+            "description": "Required if `datedJourneyRef` is `null`, optional otherwise. An ISO UTC date string\nrepresenting the date and time that the traffic event ended. If `null`, the end time\nof the journey represented by `datedJourneyRef`, plus `delayMinutes` if given, is used\ninstead.\n",
+            "example": "1970-01-01T13:00:00Z",
             "default": "null"
           },
-          "leftCancelledStopPlaceRef": {
+          "datedJourneyRef": {
             "type": "string",
-            "description": "Required if `category` is `CANCELLATION` and `subcategory` is `PARTIAL`, ignored\notherwise. An NSR reference to one of the 2 stop places delimiting the sequence of\nstops affected by the partial cancellation, or to the single stop if only one stop is\naffected. See `rightCancelledStopPlaceRef`.\n",
-            "example": "NSR:StopPlace:123",
+            "description": "Required if `lineRef` is `null`. A reference to the planned journey that is affected\nby this traffic event, if only a single journey is affected.\n\nFormat should be one of:\n- `<dated journey ID from plan data>`\n- `<vehicle task ID>-<journey start date time in ISO offset format>`\n",
+            "example": "1234-1970-01-01T11:00:00+01:00",
             "default": "null"
           },
-          "rightCancelledStopPlaceRef": {
+          "lineRef": {
             "type": "string",
-            "description": "Required if `category` is `CANCELLATION` and `subcategory` is `PARTIAL`, ignored\notherwise. An NSR reference to the other of the 2 stop places delimiting the sequence\nof stops affected by the partial cancellation, or to the single stop if only one stop\nis affected. See `leftCancelledStopPlaceRef`.\n",
-            "example": "NSR:StopPlace:246",
+            "description": "Required if `datedJourneyRef` is `null`, ignored otherwise. A reference to the\naffected line when multiple journeys are affected by this traffic event.\n",
+            "example": "RUT:Line:123",
             "default": "null"
+          },
+          "stopPlaceOrQuayRefs": {
+            "type": "array",
+            "description": "Required if `category` is `CANCELLATION` and `subcategory` is `PARTIAL`,\nignored otherwise. A list of NSR stop place or quay references to the stop\nplaces or quays that are affected by this partial cancellation event.\n",
+            "example": [
+              "NSR:StopPlace:123",
+              "NSR:Quay:246"
+            ],
+            "items": {
+              "type": "string"
+            }
           },
           "delayMinutes": {
             "type": "integer",
@@ -432,12 +435,12 @@
           "startDateTime": {
             "type": "string",
             "description": "An ISO UTC date string representing the date and time that the SLA breach started.",
-            "example": "2023-01-01T12:00:00Z"
+            "example": "1970-01-01T12:00:00Z"
           },
           "endDateTime": {
             "type": "string",
             "description": "An ISO UTC date string representing the date and time that the SLA breach ended.",
-            "example": "2023-01-01T12:00:00Z"
+            "example": "1970-01-01T13:00:00Z"
           },
           "isOperatorExempt": {
             "type": "boolean",
@@ -452,7 +455,7 @@
           "registeredAt": {
             "type": "string",
             "description": "The date and time that the traffic event was registered, in ISO UTC format. Must be\n`null` on registration.\n",
-            "example": "2023-01-01T12:03:00Z",
+            "example": "1970-01-01T12:00:00Z",
             "default": "null"
           }
         }
