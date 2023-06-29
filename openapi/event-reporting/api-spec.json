@@ -132,7 +132,7 @@
           "category",
           "datedJourneyRef",
           "endDateTime",
-          "id",
+          "eventNumber",
           "isOperatorExempt",
           "lineRef",
           "reason",
@@ -149,9 +149,9 @@
         ],
         "type": "object",
         "properties": {
-          "id": {
+          "eventNumber": {
             "type": "string",
-            "description": "The traffic event ID. Format: <registration-ID>-<sequence number>",
+            "description": "The traffic event number. Format: <registration-ID>-<sequence number>",
             "example": "123-1"
           },
           "registrationId": {
