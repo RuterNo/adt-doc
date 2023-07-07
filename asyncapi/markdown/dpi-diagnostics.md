@@ -1,7 +1,7 @@
 ### DPI Diagnostics message:
 | Field         | Value                                                       |
 |---------------|-------------------------------------------------------------|
-| Central Topic | {operatorId}/ruter/{vehicleId}/pe/dpi_diagnostics           |
+| Central Topic | ruter/{operatorId}/{vehicleId}/pe/dpi_diagnostics           |
 | Schema        | [ dpi-diagnostics.json ](json-schemas/dpi-diagnostics.json) |
 
 Report to PTA BO about a screen.
