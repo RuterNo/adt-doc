@@ -1,0 +1,35 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v2.1/proprietary-extensions/doors-individually.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Cardreader Diagnostics",
+  "type": "object",
+  "required": [
+    "eventTimestamp",
+    "deviceRef",
+    "inService"
+  ],
+  "description": "Diagnostics message sent from any Vix-validator running Ruter-firmware in the vehicle. Can be used by both PTA and PTO to monitor the operational status of these units.",
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "Event timestamp must be ISO 8601 UTC",
+      "format": "date-time"
+    },
+    "deviceRef": {
+      "$id": "#/properties/deviceRef",
+      "type": "string",
+      "description": "An unique ID of the unit. This value is appended to the published topic.\n"
+    },
+    "inService": {
+      "$id": "#/properties/inService",
+      "type": "boolean",
+      "description": "True if cardreader is in service.",
+      "examples": [
+        "true",
+        "false"
+      ]
+    }
+  }
+}
