@@ -179,6 +179,21 @@ channels:
           mqtt:
             qos: 1
             retain: false
+  pe/dpi/ack:
+    description:
+      $ref: markdown/dpi-ack.md
+    publish:
+      message:
+        name: DpiAcknowledge
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/dpi-ack.json
+        examples:
+          - $ref: examples/dpi-ack.example.json
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
   pe/dpi_diagnostics:
     description:
       $ref: 'markdown/dpi-diagnostics.md'
