@@ -1,0 +1,65 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.ruter.no/announcement.json",
+  "type": "object",
+  "title": "Announcement MQTT Message",
+  "required": [
+    "eventTimestamp",
+    "message"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "Event timestamp must be ISO 8601 UTC",
+      "format": "date-time"
+    },
+    "expiryTimestamp": {
+      "$id": "#/properties/expiryTimestamp",
+      "type": "string",
+      "description": "Expiry timestamp must be ISO 8601 UTC",
+      "format": "date-time"
+    },
+    "message": {
+      "$id": "#/properties/message",
+      "type": "object",
+      "description": "Message for one or more language",
+      "additionalProperties": true,
+      "patternProperties": {
+        "^[a-z]{2}(-[a-z]{2})?$": {
+          "$id": "#/properties/message/patternProperties/multilingualMessage",
+          "type": "object",
+          "title": "A multilingual message",
+          "properties": {
+            "title": {
+              "$id": "#/properties/message/patternProperties/multilingualMessage/properties/title",
+              "type": "string",
+              "description": "Title"
+            },
+            "text": {
+              "$id": "#/properties/message/patternProperties/multilingualMessage/properties/text",
+              "type": "string",
+              "description": "Body text"
+            }
+          }
+        }
+      }
+    },
+    "ref": {
+      "$id": "#/properties/ref",
+      "type": "array",
+      "title": "List of affected scopes",
+      "items": {
+        "$id": "#/properties/ref/items",
+        "type": "string",
+        "description": "StopPlaceId, LineId, RouteId, VehicleJourneyId or other references that define scope",
+        "examples": [
+          "RUT:Line:31",
+          "NSR:StopPlace:6468",
+          "RUT:Route:31-1041"
+        ]
+      }
+    }
+  }
+}
