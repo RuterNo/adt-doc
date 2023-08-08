@@ -75,6 +75,16 @@
       "$id": "#/properties/progressRef",
       "type": "string",
       "description": "A reference to the Progress event that triggered this message. Matches the traceId from the Progress event."
+    },
+    "appVersion": {
+      "$id": "#/properties/appVersion",
+      "type": "string",
+      "description": "Version of the RuterSalg app that sent the message"
+    },
+    "userId": {
+      "$id": "#/properties/userId",
+      "type": "string",
+      "description": "The userId of the logged in user"
     }
   }
 }

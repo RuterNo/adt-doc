@@ -10,6 +10,8 @@
     "loggedIn": true,
     "journeyRef": "42911-2020-05-25T16:42:00+02:00",
     "stopPlaceId": "NSR:StopPlace:59734",
-    "progressRef": "3841a268-0c03-4588-b476-211be0f26a0d"
+    "progressRef": "3841a268-0c03-4588-b476-211be0f26a0d",
+    "appVersion": "2.5.1",
+    "userId":"nor12345"
   }
 }
