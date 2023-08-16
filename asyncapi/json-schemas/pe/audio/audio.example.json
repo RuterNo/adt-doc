@@ -10,14 +10,17 @@
       {
         "encoding": "MP3",
         "content": "SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU3...",
-        "speakers": ["INTERNAL"],
-        "volume": 70
+        "speakers": {
+          "INTERNAL": 70
+        }
       },
       {
         "encoding": "MP3",
         "content": "SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU3...",
-        "speakers": ["INTERNAL", "EXTERNAL"],
-        "volume": 70
+        "speakers": {
+          "INTERNAL": 70,
+          "EXTERNAL": 40
+        }
       }
     ]
   }
