@@ -1,9 +1,9 @@
 {
-  "name": "Stop Button - button pressed",
+  "name": "Stop Button - stop signal reset",
   "payload": {
     "eventTimestamp": "2021-11-30T23:45:52.006Z",
     "traceId": "c26f450f-2418-4792-a567-05f6771cba7a",
-    "stopPressed": true,
+    "stopPressed": false,
     "accessibility": false
   }
 }
