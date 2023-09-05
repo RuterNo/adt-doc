@@ -31,7 +31,7 @@ ID | Subid | Name | Value | Recommended refresh interval | Remarks
 --- | --- | --- | --- | --- | ---
 **0001FF25** | 10003 | Wall charger connected | boolean | onChange | 
 **0001FF25** | 10004 | Fast charger connected | boolean | onChange | 
-**0001FF25** | 10005 | Charging Active | boolean | onChange | 
+**0001FF25** | 10005 | Charging active | boolean | onChange | 
 **01000002** | | Temperature indoor | float | 6/min | * Unit Celcius <br>* Resolution <= 1 C
 | | tempfront | Temperature indoor front | float | | |
 | | tempmiddle | Temperature indoor middle | float | | |
