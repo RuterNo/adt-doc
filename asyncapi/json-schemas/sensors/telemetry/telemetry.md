@@ -29,17 +29,17 @@ Optional unless stated explicitly in the main ADT document.
 
 ID | Subid | Name | Value | Recommended refresh interval | Remarks
 --- | --- | --- | --- | --- | ---
-**0001FF25** | 10003 | Wall charger connected | | onChange |
-**0001FF25** | 10004 | Fast charger connected | | onChange |
-**0001FF25** | 10005 | Charging Active | | onChange |
+**0001FF25** | 10003 | Wall charger connected | boolean | onChange | 
+**0001FF25** | 10004 | Fast charger connected | boolean | onChange | 
+**0001FF25** | 10005 | Charging Active | boolean | onChange | 
 **01000002** | | Temperature indoor | float | 6/min | * Unit Celcius <br>* Resolution <= 1 C
 | | tempfront | Temperature indoor front | float | | |
 | | tempmiddle | Temperature indoor middle | float | | |
 | | temprear | Temperature indoor rear | float | | |
-**01000005** | | SOC | float | 1/min |
+**01000005** | | SOC | float | 1/min | 
 **01000006** | | Transmission mode | combustion/electric | onChange | Intended for hybrid vehicles
-**01000007** | | Windscreen wiper active | true/false | onChange | Taken to represent a measurement of the ground truth binary rainfall state, given that it is a better predictor of the binary rainfall state than radar- or gauge-based measurements
-**01000008** | | Accelerometry | | 6/min | * Bandwidth >= 100 hz <br>* Unit g <br>* Resolution <= 0.01 g
+**01000007** | | Windscreen wiper active | boolean | onChange | Taken to represent a measurement of the ground truth binary rainfall state, given that it is a better predictor of the binary rainfall state than radar- or gauge-based measurements
+**01000008** | | Accelerometry | | 6/min | * Bandwidth >= 100 hz <br>* Unit: g <br>* Resolution <= 0.01 g
 | | xmin | Min x value last interval | float | | |
 | | xmax | Max x value last interval | float | | |
 | | xavg | Average x value last interval | float | | |
@@ -49,5 +49,5 @@ ID | Subid | Name | Value | Recommended refresh interval | Remarks
 | | zmin | Min z value last interval | float | | |
 | | zmax | Max z value last interval | float | | |
 | | zavg | Average z value last interval | float | | |
-**01000009** | | Temperature outdoor | float | 1/min |* Unit Celcius <br>* Resolution <= 1 C <br>* Measured at front of vehicle as near as possible to the ground
+**01000009** | | Temperature outdoor | float | 1/min |* Unit: Celcius <br>* Resolution <= 1 C <br>* Measured at front of vehicle as near as possible to the ground
 **0100000A** | | Accumulated energy consumption | float | 1/min | * Energy consumed <br>* Including HVAC <br>* Unit: kWh
