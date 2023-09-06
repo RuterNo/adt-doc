@@ -1,15 +1,15 @@
 {
-  "name": "Telemetry",
+  "name": "Fast charger connected",
   "payload": {
     "eventTimestamp": "2022-05-09T13:27:59.624Z",
     "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
     "messageNumber": 1,
-    "id": "01000007",
+    "id": "0001FF25",
     "payloads": [
       {
-        "name": "Temperature outdoor",
-        "unit": "C",
-        "value": 20.7
+        "subid": "10004",
+        "name": "Fast charger connected",
+        "value": true
       }
     ]
   }

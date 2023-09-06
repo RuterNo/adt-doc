@@ -1,5 +1,5 @@
 {
-  "name": "Telemetry",
+  "name": "Windscreen wiper active",
   "payload": {
     "eventTimestamp": "2022-05-09T13:27:59.624Z",
     "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
@@ -7,9 +7,8 @@
     "id": "01000007",
     "payloads": [
       {
-        "name": "Temperature outdoor",
-        "unit": "kWh",
-        "value": 0.972
+        "name": "Windscreen wiper active",
+        "value": true
       }
     ]
   }

@@ -1,15 +1,15 @@
 {
-  "name": "Telemetry",
+  "name": "Wall charger connected",
   "payload": {
     "eventTimestamp": "2022-05-09T13:27:59.624Z",
     "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
     "messageNumber": 1,
-    "id": "01000005",
+    "id": "0001FF25",
     "payloads": [
       {
-        "name": "SOC",
-        "unit": "%",
-        "value": 20.3
+        "subid": "10003",
+        "name": "Wall charger connected",
+        "value": true
       }
     ]
   }
