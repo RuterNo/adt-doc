@@ -21,7 +21,7 @@ jobs:
       - name: Generating HTML from my AsyncAPI document
         uses: docker://asyncapi/github-action-for-generator:2.0.3
         with:
-          template: '@asyncapi/html-template@0.28.4'
+          template: '@asyncapi/html-template@0.25.2'
           filepath: asyncapi/asyncapi.yml
           output: docs/asyncapi
 
