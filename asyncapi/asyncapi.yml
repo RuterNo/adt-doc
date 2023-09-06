@@ -200,7 +200,17 @@ channels:
         payload:
           $ref: json-schemas/sensors/telemetry/telemetry.json
         examples:
-          - $ref: json-schemas/sensors/telemetry/telemetry-01.example.json
+          - $ref: json-schemas/sensors/telemetry/telemetry-accelerometry-01.example.json
+          - $ref: json-schemas/sensors/telemetry/telemetry-accumulated-energy-consumption-01.example.json
+          - $ref: json-schemas/sensors/telemetry/telemetry-charging-active-01.example.json
+          - $ref: json-schemas/sensors/telemetry/telemetry-fast-charger-connected-01.example.json
+          - $ref: json-schemas/sensors/telemetry/telemetry-soc-01.example.json
+          - $ref: json-schemas/sensors/telemetry/telemetry-temperature-indoor-01.example.json
+          - $ref: json-schemas/sensors/telemetry/telemetry-temperature-indoor-02.example.json
+          - $ref: json-schemas/sensors/telemetry/telemetry-temperature-outdoor-01.example.json
+          - $ref: json-schemas/sensors/telemetry/telemetry-transmission-mode-01.example.json
+          - $ref: json-schemas/sensors/telemetry/telemetry-wall-charger-connected-01.example.json
+          - $ref: json-schemas/sensors/telemetry/telemetry-windscreen-wiper-active-01.example.json
         bindings:
           mqtt:
             qos: 0
