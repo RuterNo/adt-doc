@@ -44,7 +44,7 @@
         "properties": {
           "subid": {
             "type": "string",
-            "description": "Subid is used to identifyy the payloads when there is more than one posisble payload."
+            "description": "Subid is used to identify the payload when there is more than one possible type of payload."
           },
           "name": {
             "type": "string",
