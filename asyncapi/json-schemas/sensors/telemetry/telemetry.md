@@ -29,10 +29,11 @@ Optional unless stated explicitly in the main ADT document.
 
 ID | Subid | Name | Value | Recommended refresh interval | Remarks
 --- | --- | --- | --- | --- | ---
-**0001FF25** | 10003 | Wall charger connected | boolean | onChange | 
-**0001FF25** | 10004 | Fast charger connected | boolean | onChange | 
-**0001FF25** | 10005 | Charging active | boolean | onChange | 
-**01000002** | | Temperature indoor | float | 6/min | * Unit: Celcius <br>* Resolution: <= 1 C
+**0001FF25** | | Charger | | onChange | 
+| | 10003 | Wall charger connected | boolean | | 
+| | 10004 | Fast charger connected | boolean | | 
+| | 10005 | Charging active | boolean | | 
+**01000002** | | Temperature indoor | | 6/min | * Unit: Celcius <br>* Resolution: <= 1 C
 | | tempavg | Temperature indoor average | float | | | 
 | | tempfront | Temperature indoor front | float | | |
 | | tempmiddle | Temperature indoor middle | float | | |

@@ -1,5 +1,5 @@
 {
-  "name": "Wall charger connected",
+  "name": "Charger",
   "payload": {
     "eventTimestamp": "2022-05-09T13:27:59.624Z",
     "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
@@ -9,6 +9,16 @@
       {
         "subid": "10003",
         "name": "Wall charger connected",
+        "value": true
+      },
+      {
+        "subid": "10004",
+        "name": "Fast charger connected",
+        "value": true
+      },
+      {
+        "subid": "10005",
+        "name": "Charging active",
         "value": true
       }
     ]
