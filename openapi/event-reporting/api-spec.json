@@ -414,17 +414,31 @@
           "reason": {
             "type": "string",
             "description": "The reason for the SLA breach.",
-            "example": "TAAS_ERROR",
+            "example": "DOOR_STATUS",
             "enum": [
-              "TAAS_ERROR",
-              "SIS_ERROR",
-              "OTHER"
+              "ACCELEROMETER",
+              "AUTOMATIC_PASSENGER_COUNT",
+              "BATTERY_LEVEL",
+              "CHARGING_STATUS",
+              "CLOCK",
+              "DOOR_STATUS",
+              "DYNAMIC_PASSENGER_INFORMATION",
+              "ENERGY_CONSUMPTION",
+              "INSIDE_TEMPERATURE",
+              "ODOMETER",
+              "OUTSIDE_TEMPERATURE",
+              "POSITION",
+              "SIGN_ON_SIGN_OFF",
+              "STOP_SIGNAL",
+              "TICKET_SALE",
+              "VALIDATION_OF_RIGHT_TO_TRAVEL",
+              "WINDSCREEN_WIPER_STATUS"
             ]
           },
           "reasonDescription": {
             "type": "string",
-            "description": "Required if `reason` is `OTHER`, optional otherwise. A further detailing of the reason\nfor the SLA breach, and if relevant, an explanation for why you as an operator should\nbe exempt from being fined for this breach.\n",
-            "example": "TaaS MQTT-broker var utilgjengelig",
+            "description": "Optional. A further detailing of the reason for the SLA breach, and if relevant, an\nexplanation for why you as an operator should be exempt from being fined for this\nbreach.\n",
+            "example": "Feil på sensor for dørstatus",
             "default": "null"
           },
           "contractRef": {
@@ -454,7 +468,7 @@
           },
           "registeredAt": {
             "type": "string",
-            "description": "The date and time that the traffic event was registered, in ISO UTC format. Must be\n`null` on registration.\n",
+            "description": "The date and time that the SLA breach was registered, in ISO UTC format. Automatically\nset on receipt of SLA breach. Must be `null` on registration.\n",
             "example": "1970-01-01T12:00:00Z",
             "default": "null"
           }
