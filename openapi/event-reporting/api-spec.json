@@ -383,7 +383,6 @@
       "SlaBreach": {
         "required": [
           "category",
-          "contractRef",
           "isOperatorExempt",
           "reason"
         ],
@@ -452,13 +451,13 @@
           },
           "startDateTime": {
             "type": "string",
-            "description": "Required if `contractRef` is set and both `datedJourneyRef` and `vehicleTaskId` are\n`null`, ignored otherwise. An ISO UTC date string representing the date and time that\nthe SLA breach started. If not set, breach duration is derived from referenced journey\nor vehicle task, in that order.\n",
+            "description": "Required if `contractRef` is set and both `datedJourneyRef` and `vehicleTaskId` are\n`null`, ignored otherwise. An ISO UTC date string representing the date and time that\nthe SLA breach started. If not set, breach duration is inferred from referenced\njourney or vehicle task, in that order.\n",
             "example": "1970-01-01T12:00:00Z",
             "default": "null"
           },
           "endDateTime": {
             "type": "string",
-            "description": "Required if `contractRef` is set and both `datedJourneyRef` and `vehicleTaskId` are\n`null`, ignored otherwise. An ISO UTC date string representing the date and time that\nthe SLA breach ended. If not set, breach duration is derived from referenced journey\nor vehicle task, in that order.\n",
+            "description": "Required if `contractRef` is set and both `datedJourneyRef` and `vehicleTaskId` are\n`null`, ignored otherwise. An ISO UTC date string representing the date and time that\nthe SLA breach ended. If not set, breach duration is inferred from referenced journey\nor vehicle task, in that order.\n",
             "example": "1970-01-01T13:00:00Z",
             "default": "null"
           },
@@ -474,7 +473,7 @@
           },
           "registeredAt": {
             "type": "string",
-            "description": "The date and time that the SLA breach was registered, in ISO UTC format. Automatically\nset on receipt of SLA breach. Must be `null` on registration.\n",
+            "description": "The date and time that the SLA breach was registered, in ISO UTC format. Automatically\nset on registration. Must be `null` on registration.\n",
             "example": "1970-01-01T12:00:00Z",
             "default": "null"
           }
