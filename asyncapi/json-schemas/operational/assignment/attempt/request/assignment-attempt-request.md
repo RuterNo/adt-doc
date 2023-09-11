@@ -79,8 +79,8 @@ An `AssignmentAttemptRequest` can be made for:
       </journeys>
     </Block>
   </blocks>
-</VehicleScheduleFrame>```
-
+</VehicleScheduleFrame>
+```
 
 ##### Sign On - PLANNED
 - `Default` The vehicle will be signed on to service the pre-existing plans for the specified `serviceWindow`
