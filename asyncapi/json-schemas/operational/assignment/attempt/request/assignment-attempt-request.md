@@ -23,25 +23,26 @@ An `AssignmentAttemptRequest` can be made for:
   1. signOn
   2. signOff
   3. update
-- All attempts are effective immediately.
+- All attempts are effective as soon as Ruter has processed them.
 - All attempt request will get an attempt response under the topic [assignment/attempt/response](../response/assignment-attempt-response.md)
 - Any request leading to a change of existing assignment state is reflected under the topic [assignment/state](../../status/assignment-status.md)
 - Please provide all fields marked as `reqired` in the schema specifications.
 
 #### Sign On
 - Any pre-existing assigned assignments will be signed off `AssignmentState.assigned=true`
-- Sign on attempts are effective immediately. The vehicle will immediately be assigned the new plan `AssignmentState.assigned=true`
+- Sign on attempts are effective are effective as soon as Ruter has processed them. The vehicle will be assigned the new plan `AssignmentState.assigned=true`
 - If the attempt request fails, the state of the vehicle is `AssignmentState.assigned=false`
+- A `block` contains a set of journeys.
 - A `vehicleTask` is a set of one or more blocks that can be served by one vehicle during one operating day.
-  A `block` contains a set of journeys.
-  In the example below, the vehicle task with `vehicleTaskId` 59001 contains 2 blocks.
-- All signOn-attempts require the field `vehicleTaskId` and `serviceWindow`.
-  The service window defines which journeys in the vehicle task to be signed on.
-  - If the service window contains both `firstDepartureDateTime` and `lastArrivalDateTime`, the vehicle will be logged on
-  to all the journeys in the vehicle task between those times. Note that the times may be on the same calendar date
-  or on 2 consecutive dates.
-  - If the service window contains only `firstDepartureDateTime`, the vehicle will be logged on
-    to the journeys from `firstDepartureDateTime` to the end of that block. 
+  In the example below, the vehicle task with `vehicleTaskId=59001` contains 2 blocks.
+- All signOn-attempts require the fields `vehicleTaskId` and `serviceWindow`.
+  - `vehicleTaskId`: Can be found in the common file in the NeTEx export under this path `VehicleScheduleFrame.blocks[].Block.PrivateCode`
+  - `serviceWindow`: Defines a time range for which journeys the vehicle should be signed on.
+    - If the service window contains both `firstDepartureDateTime` and `lastArrivalDateTime`, the vehicle will be logged on
+      to all the journeys in the vehicle task between those times. Note that the times may be on the same calendar date
+      or on 2 consecutive dates.
+    - If the service window contains only `firstDepartureDateTime`, the vehicle will be logged on
+      to the journeys from `firstDepartureDateTime` to the end of that block.
 
 ##### Example of NeTEx definition of a vehicle task with 2 blocks
 ```xml
