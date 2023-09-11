@@ -32,9 +32,53 @@ An `AssignmentAttemptRequest` can be made for:
 - Any pre-existing assigned assignments will be signed off `AssignmentState.assigned=true`
 - Sign on attempts are effective immediately. The vehicle will immediately be assigned the new plan `AssignmentState.assigned=true`
 - If the attempt request fails, the state of the vehicle is `AssignmentState.assigned=false`
-- A `vehicleTask` is a set of one or more blocks containing the journeys to be served.
-- All signOn-attempts require the field `vehicleTask`.
-- Journeys outside the specified `vehicleTask` will never be included
+- A `vehicleTask` is a set of one or more blocks that can be served by one vehicle during one operating day.
+  A `block` contains a set of journeys.
+  In the example below, the vehicle task with `vehicleTaskId` 59001 contains 2 blocks.
+- All signOn-attempts require the field `vehicleTaskId` and `serviceWindow`.
+  The service window defines which journeys in the vehicle task to be signed on.
+  - If the service window contains both `firstDepartureDateTime` and `lastArrivalDateTime`, the vehicle will be logged on
+  to all the journeys in the vehicle task between those times. Note that the times may be on the same calendar date
+  or on 2 consecutive dates.
+  - If the service window contains only `firstDepartureDateTime`, the vehicle will be logged on
+    to the journeys from `firstDepartureDateTime` to the end of that block. 
+
+##### Example of NeTEx definition of a vehicle task with 2 blocks
+```xml
+<VehicleScheduleFrame version="20220908125021" id="RUT:VehicleScheduleFrame:1">
+  <blocks>
+    <Block version="20220908125021" id="RUT:Block:168197-59001mut-202209081312000">
+      <PrivateCode>59001</PrivateCode>
+      <StartTime>11:12:00</StartTime>
+      <EndTime>14:41:00</EndTime>
+      <dayTypes>
+        <DayTypeRef ref="RUT:DayType:2022-09-08"/>
+      </dayTypes>
+      <StartPointRef ref="RUT:ScheduledStopPoint:Fg" version="20220908125021"/>
+      <EndPointRef ref="RUT:ScheduledStopPoint:Fg" version="20220908125021"/>
+      <journeys>
+        <DeadRunRef ref="RUT:DeadRun:006723-008020-131200"/>
+        <VehicleJourneyRef ref="RUT:ServiceJourney:003565-004003-131500"/>
+        ...
+      </journeys>
+    </Block>
+    <Block version="20220908125021" id="RUT:Block:168197-59001muwt-202209080359000">
+      <PrivateCode>59001</PrivateCode>
+      <StartTime>01:59:00</StartTime>
+      <EndTime>06:16:00</EndTime>
+      <dayTypes>
+        <DayTypeRef ref="RUT:DayType:2022-09-08"/>
+      </dayTypes>
+      <StartPointRef ref="RUT:ScheduledStopPoint:Fg" version="20220908125021"/>
+      <EndPointRef ref="RUT:ScheduledStopPoint:Fg" version="20220908125021"/>
+      <journeys>
+      <DeadRunRef ref="RUT:DeadRun:006713-008006-035900"/>
+      <VehicleJourneyRef ref="RUT:ServiceJourney:002521-002932-041700"/>
+      ...
+      </journeys>
+    </Block>
+  </blocks>
+</VehicleScheduleFrame>```
 
 
 ##### Sign On - PLANNED
