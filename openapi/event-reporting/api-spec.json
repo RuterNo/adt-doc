@@ -336,7 +336,7 @@
           "startDateTime": {
             "type": "string",
             "description": "Required if `datedJourneyRef` is `null`, optional otherwise. An ISO UTC date string\nrepresenting the date and time that the traffic event started. If `null`, the start\ntime of the journey represented by `datedJourneyRef` is used instead.\n",
-            "example": "1870-01-01T12:00:00Z",
+            "example": "1970-01-01T12:00:00Z",
             "default": "null"
           },
           "endDateTime": {
@@ -394,13 +394,7 @@
           "id": {
             "type": "string",
             "description": "The SLA breach ID. Must be `null` on registration.",
-            "example": "1234-1",
-            "default": "null"
-          },
-          "trafficCaseNumber": {
-            "type": "string",
-            "description": "The traffic case number of the Ruterlogg traffic case that was created to log this SLA\nbreach. Must be `null` on registration.\n",
-            "example": "2023-1234",
+            "example": "1234",
             "default": "null"
           },
           "category": {
@@ -437,7 +431,7 @@
           },
           "reasonDescription": {
             "type": "string",
-            "description": "Optional. A further detailing of the reason for the SLA breach, and if relevant, an\nexplanation for why you as an operator should be exempt from being fined for this\nbreach.\n",
+            "description": "Optional. A further detailing of the reason for the SLA breach, and if relevant, an\nexplanation for why you as an operator should be exempt from being fined for this\nbreach (see `isOperatorExempt`).\n",
             "example": "Feil på sensor for dørstatus",
             "default": "null"
           },
@@ -458,7 +452,7 @@
           },
           "isOperatorExempt": {
             "type": "boolean",
-            "description": "A flag flag indicating whether you as an operator consider that the breach was outside\nyour control, and that you should be exempt from being fined for the breach.\n"
+            "description": "A flag flag indicating whether you as an operator consider that the breach was outside\nyour control, and that you should be exempt from being fined for the breach. If\nneeded, an exemption reason can be provided in the `reasonDescription` field.\n"
           },
           "registeredBy": {
             "type": "string",
