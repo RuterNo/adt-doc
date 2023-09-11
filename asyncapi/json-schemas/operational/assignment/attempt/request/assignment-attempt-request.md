@@ -34,7 +34,7 @@ An `AssignmentAttemptRequest` can be made for:
 - If the attempt request fails, the state of the vehicle is `AssignmentState.assigned=false`
 - A `block` contains a set of journeys.
 - A `vehicleTask` is a set of one or more blocks that can be served by one vehicle during one operating day.
-  In the example below, the vehicle task with `vehicleTaskId=59001` contains 2 blocks.
+  In the example below, the vehicle task with `vehicleTaskId=59001` consists of the 2 `Block`s with `PrivateCode=59001`.
 - All signOn-attempts require the fields `vehicleTaskId` and `serviceWindow`.
   - `vehicleTaskId`: Can be found in the common file in the NeTEx export under this path `VehicleScheduleFrame.blocks[].Block.PrivateCode`
   - `serviceWindow`: Defines a time range for which journeys the vehicle should be signed on.
