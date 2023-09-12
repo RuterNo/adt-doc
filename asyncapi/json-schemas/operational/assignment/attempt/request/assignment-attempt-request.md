@@ -19,7 +19,7 @@ An `AssignmentAttemptRequest` can be made for:
 | SignOff | Signing a vehicle off from an assigned assignment                                             |
 | Update  | Altering an assigned assignment                                                               |
 
-- The message is composed of three operations (signOn, signOff, update). Only one operation will be processed per message reveived by Ruter. This gives that each message should only contain one operation. If the message contains more than one operating, the order of precedence is the following:
+- The message is composed of three operations (signOn, signOff, update). Only one operation will be processed per message reveived by Ruter. This gives that each message should only contain one operation. If the message contains more than one operation, the order of precedence is the following:
   1. signOn
   2. signOff
   3. update
