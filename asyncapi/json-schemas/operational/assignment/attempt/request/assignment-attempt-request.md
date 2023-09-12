@@ -116,5 +116,5 @@ An `AssignmentAttemptRequest` can be made for:
 - Operational change of a pre-existing assigned assignment for a vehicle.
 - Failed attempts will not affect the assignment state for a vehicle.
 - `serviceWindow.firstDepartureDateTime` is required
-- If `lastArrivalDateTime` is provided, journeys/stops from (including) `firstDepartureDateTime` until (excluding) the specified `lastArrivalDateTime` are removed from the assignment
+- If `lastArrivalDateTime` is provided, journeys/stops from (including) `firstDepartureDateTime` until (including) the specified `lastArrivalDateTime` are removed from the assignment
 - If `lastArrivalDateTime` is not provided, the stop with `firstDepartureDateTime` will be removed from the assignment
