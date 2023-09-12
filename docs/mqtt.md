@@ -43,6 +43,10 @@ listener 1883
 listener 9883
 protocol websockets
 allow_anonymous true
+
+#
+# Ruter MQTT Bridge
+#
 connection ruter-central-mqtt-broker
 address {MQTT_BROKER}:8883
 bridge_cafile /etc/mosquitto/conf.d/amazon.ca.crt
@@ -58,6 +62,8 @@ start_type automatic
 restart_timeout 10
 keepalive_interval 60
 
+# Subscribe for these topics
+# topic in/out qos shortroute longroute
 topic stop_button OUT 1 sensors/ ruter/{operator}/{vehicleid}/adt/v3/sensors/
 topic stop_button IN 1 pe/input/ {operator}/ruter/{vehicleid}/adt/v3/pe/input/
 topic door OUT 1 sensors/ ruter/{operator}/{vehicleid}/adt/v3/sensors/
