@@ -39,8 +39,9 @@ An `AssignmentAttemptRequest` can be made for:
   - `vehicleTaskId`: Can be found in the common file in the NeTEx export under this path `VehicleScheduleFrame.blocks[].Block.PrivateCode`
   - `serviceWindow`: Defines a time range for which journeys the vehicle should be signed on.
     - If the service window contains both `firstDepartureDateTime` and `lastArrivalDateTime`, the vehicle will be logged on
-      to all the journeys in the vehicle task between those times. Note that the times may be on the same calendar date
-      or on 2 consecutive dates.
+      to all the journeys in the vehicle task between those times.
+      These journeys may be part of 1 or more `Block`s.
+      Note that the times may be on the same calendar date or on 2 consecutive dates.
     - If the service window contains only `firstDepartureDateTime`, the vehicle will be logged on
       to the journeys from `firstDepartureDateTime` to the end of that block.
 
