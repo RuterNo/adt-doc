@@ -19,30 +19,21 @@ An `AssignmentAttemptRequest` can be made for:
 | SignOff | Signing a vehicle off from an assigned assignment                                             |
 | Update  | Altering an assigned assignment                                                               |
 
-- The message is composed of three operations (signOn, signOff, update). Each message must only contain one of these. If the message contains more than one part, the order of precedence is the following:
+- The message is composed of three operations (signOn, signOff, update). Only one operation will be processed per message reveived by Ruter. This gives that each message should only contain one operation. If the message contains more than one operation, the order of precedence is the following:
   1. signOn
   2. signOff
   3. update
-- All attempts are effective as soon as Ruter has processed them.
-- All attempt request will get an attempt response under the topic [assignment/attempt/response](../response/assignment-attempt-response.md)
+- Attempt request will get an attempt response under the topic [assignment/attempt/response](../response/assignment-attempt-response.md)
+  - Except: Attempts sent with an `eventTimestamp` equal to or earlier than the `eventTimestamp` of a previously sent message will be discarded without response.
 - Any request leading to a change of existing assignment state is reflected under the topic [assignment/state](../../status/assignment-status.md)
+  - This topic will also be updated it Ruter has initiated any change to the existing assignment
+- Any assigned assignments will be automatically signed off two hours after the last planned arrival in the last planned journey.
 - Please provide all fields marked as `reqired` in the schema specifications.
 
-#### Sign On
-- Any pre-existing assigned assignments will be signed off `AssignmentState.assigned=true`
-- Sign on attempts are effective are effective as soon as Ruter has processed them. The vehicle will be assigned the new plan `AssignmentState.assigned=true`
-- If the attempt request fails, the state of the vehicle is `AssignmentState.assigned=false`
+#### Definitions
 - A `block` contains a set of journeys.
 - A `vehicleTask` is a set of one or more blocks that can be served by one vehicle during one operating day.
   In the example below, the vehicle task with `vehicleTaskId=59001` consists of the 2 `Block`s with `<PrivateCode>59001</PrivateCode>`.
-- All signOn-attempts require the fields `vehicleTaskId` and `serviceWindow`.
-  - `vehicleTaskId`: Can be found in the common file in the NeTEx export under this path `VehicleScheduleFrame.blocks[].Block.PrivateCode`
-  - `serviceWindow`: Defines a time range for which journeys the vehicle should be signed on.
-    - If the service window contains both `firstDepartureDateTime` and `lastArrivalDateTime`, the vehicle will be logged on
-      to all the journeys in the vehicle task between those times. Note that the times may be on the same calendar date
-      or on 2 consecutive dates.
-    - If the service window contains only `firstDepartureDateTime`, the vehicle will be logged on
-      to the journeys from `firstDepartureDateTime` to the end of that block.
 
 ##### Example of NeTEx definition of a vehicle task with 2 blocks
 ```xml
@@ -81,6 +72,20 @@ An `AssignmentAttemptRequest` can be made for:
   </blocks>
 </VehicleScheduleFrame>
 ```
+
+#### Sign On
+- Any pre-existing assigned assignments will be signed off `AssignmentState.assigned=true`
+- If the attempt request succeeds, the vehicle will be assigned the new plan `AssignmentState.assigned=true`
+- If the attempt request fails, the state of the vehicle is `AssignmentState.assigned=false`
+  - The reason for failing will be available under the response topic [assignment/attempt/response](../response/assignment-attempt-response.md)
+- All signOn-attempts require the fields `vehicleTaskId` and `serviceWindow`.
+  - `vehicleTaskId`: Can be found in the common file in the NeTEx export under this path `VehicleScheduleFrame.blocks[].Block.PrivateCode`
+  - `serviceWindow`: Defines a time range for which journeys the vehicle should be signed on.
+    - If the service window contains both `firstDepartureDateTime` and `lastArrivalDateTime`, the vehicle will be logged on
+      to all the journeys in the vehicle task between those times. Note that the times may be on the same calendar date
+      or on 2 consecutive dates.
+    - If the service window contains only `firstDepartureDateTime`, the vehicle will be logged on
+      to the journeys from `firstDepartureDateTime` to the end of that block.
 
 ##### Sign On - PLANNED
 - `Default` The vehicle will be signed on to service the pre-existing plans for the specified `serviceWindow`
