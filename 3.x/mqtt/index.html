@@ -712,8 +712,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example-configuration-file-mosquitto" class="md-nav__link">
-    Example configuration file (Mosquitto)
+  <a href="#example-configuration-file-mosquitto-v2017" class="md-nav__link">
+    Example configuration file (Mosquitto v2.0.17)
   </a>
   
 </li>
@@ -1178,8 +1178,8 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example-configuration-file-mosquitto" class="md-nav__link">
-    Example configuration file (Mosquitto)
+  <a href="#example-configuration-file-mosquitto-v2017" class="md-nav__link">
+    Example configuration file (Mosquitto v2.0.17)
   </a>
   
 </li>
@@ -1245,9 +1245,10 @@ Ruter is an active member in the international standard committee.</p>
 <h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
 <p>Two key elements of the architecture are the MQTT broker and the MQTT bridges. </p>
 <h3 id="mqtt-broker-ruter">MQTT broker (Ruter)<a class="headerlink" href="#mqtt-broker-ruter" title="Permanent link">&para;</a></h3>
-<p>Ruter operates a central MQTT broker that communicates with all the vehicles. The server currently supports the MQTT protocol versions 5.0 and 3.1.1. </p>
+<p>Ruter operates a central MQTT broker that communicates with all the vehicles. </p>
 <blockquote>
-<p><em>Notice</em> To use MQTT protocol version 5.0, make sure that the client library supports it.</p>
+<p><em>Notice</em>  Starting from ADT 3+ all vehicle bridges towards this broker are required to use the MQTT protocol version 5. 
+Support for MQTT v3.1 will be removed at a later stage.</p>
 </blockquote>
 <p>All communication with the MQTT broker is encrypted during transport using TLS 1.2. </p>
 <h3 id="mqtt-bridge-on-board-vehicle">MQTT bridge (On-board Vehicle)<a class="headerlink" href="#mqtt-bridge-on-board-vehicle" title="Permanent link">&para;</a></h3>
@@ -1255,45 +1256,55 @@ Ruter is an active member in the international standard committee.</p>
 <p>To get access to the MQTT broker, you need to reach out to Ruter to be provided with credentials. </p>
 <p>There is no strict requirement as to what implementation you chose of the mqtt bridge, as long as it is stable and fullfills the standard. </p>
 <p>There are multiple open-source solutions to choose from, i.e. <a href="https://mosquitto.org/">https://mosquitto.org</a>.  </p>
-<h4 id="example-configuration-file-mosquitto">Example configuration file (Mosquitto)<a class="headerlink" href="#example-configuration-file-mosquitto" title="Permanent link">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>port 1883
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>listener 9883
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>protocol websockets
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>log_type all
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>log_timestamp true
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>connection_messages true
+<h4 id="example-configuration-file-mosquitto-v2017">Example configuration file (Mosquitto v2.0.17)<a class="headerlink" href="#example-configuration-file-mosquitto-v2017" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>user mosquitto
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>log_type all
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>connection_messages true
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>log_timestamp true
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>listener 1883
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>listener 9883
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>protocol websockets
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>allow_anonymous true
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>#
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a># Ruter MQTT Bridge
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>#
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>connection bus-to-authority-bridge
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>address mqtt.test.transhub.io:8883
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>remote_username *****
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>remote_password *****
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>bridge_attempt_unsubscribe true
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>bridge_protocol_version mqttv311
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>bridge_tls_version tlsv1.2
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>bridge_cafile /usr/local/etc/mosquitto/conf.d/amazon.ca.pem
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>bridge_insecure false
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>cleansession true
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>try_private true
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>start_type automatic
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>restart_timeout 10
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a># Subscribe for these topics
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a># topic type in/out qos shortroute longroute
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>topic json in 1 infohub/dpi/journey/ OPERATOR_ID/ruter/VEHICLE_ID/itxpt/ota/dpi/journey/
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>topic json in 1 infohub/dpi/externaldisplay/ OPERATOR_ID/ruter/VEHICLE_ID/itxpt/ota/dpi/externaldisplay/
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>topic json in 1 infohub/dpi/nextstop/ OPERATOR_ID/ruter/VEHICLE_ID/itxpt/ota/dpi/nextstop/
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>topic json in 1 infohub/dpi/eta/ OPERATOR_ID/ruter/VEHICLE_ID/itxpt/ota/dpi/eta/
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>topic json in 1 infohub/dpi/announcement/ OPERATOR_ID/ruter/VEHICLE_ID/itxpt/ota/dpi/announcement/
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>topic json in 1 infohub/dpi/deviation/ OPERATOR_ID/ruter/VEHICLE_ID/itxpt/ota/dpi/deviation/
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>topic json in 1 infohub/dpi/audio/ OPERATOR_ID/ruter/VEHICLE_ID/itxpt/ota/dpi/audio/
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>topic json in 1 infohub/dpi/arriving/ OPERATOR_ID/ruter/VEHICLE_ID/itxpt/ota/dpi/arriving/
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>topic json in 1 infohub/dpi/c2/ OPERATOR_ID/ruter/VEHICLE_ID/itxpt/ota/dpi/c2/
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>topic json out 1 infohub/dpi/diagnostics/ ruter/OPERATOR_ID/VEHICLE_ID/itxpt/ota/dpi/diagnostics/
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>connection ruter-central-mqtt-broker
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>address {MQTT_BROKER}:8883
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>bridge_cafile /etc/mosquitto/conf.d/amazon.ca.crt
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>remote_username {MQTT_USERNAME}
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>remote_password {MQTT_PASSWORD}
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>remote_clientid {CLIENT_ID_BASED_ON_VIN}
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>bridge_protocol_version mqttv50
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>bridge_tls_version tlsv1.2
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>notifications false
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>cleansession true
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>try_private true
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>start_type automatic
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>restart_timeout 10
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>keepalive_interval 60
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>topic stop_button OUT 1 sensors/ ruter/{operator}/{vehicleid}/adt/v3/sensors/
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>topic stop_button IN 1 pe/input/ {operator}/ruter/{vehicleid}/adt/v3/pe/input/
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>topic door OUT 1 sensors/ ruter/{operator}/{vehicleid}/adt/v3/sensors/
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>topic location OUT 0 sensors/ ruter/{operator}/{vehicleid}/adt/v3/sensors/gnss/
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>topic odometer OUT 0 sensors/ ruter/{operator}/{vehicleid}/adt/v3/sensors/
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>topic # OUT 1 sensors/apc/ ruter/{operator}/{vehicleid}/adt/v3/sensors/apc/
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>topic # OUT 0 sensors/telemetry/ ruter/{operator}/{vehicleid}/adt/v3/sensors/telemetry/
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>topic status IN 1 operational/assignment/ {operator}/ruter/{vehicleid}/adt/v3/operational/assignment/
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>topic audio IN 1 pe/ {operator}/ruter/{vehicleid}/adt/v3/pe/
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>topic request OUT 1 operational/assignment/attempt/ ruter/{operator}/{vehicleid}/adt/v3/operational/assignment/attempt/
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>topic response IN 1 operational/assignment/attempt/ {operator}/ruter/{vehicleid}/adt/v3/operational/assignment/attempt/
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>topic request OUT 1 operational/assignment/omit/ ruter/{operator}/back_office/adt/v3/operational/assignment/omit/
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a>topic response IN 1 operational/assignment/omit/ {operator}/ruter/back_office/adt/v3/operational/assignment/omit/
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>topic destination_display OUT 1 di/override_attempt/ ruter/{operator}/{vehicleid}/adt/v3/di/override_attempt/
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>topic available_destination_displays IN 1 di/ {operator}/ruter/{vehicleid}/adt/v3/di/
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>topic operational_message_to_driver IN 1 di/ {operator}/ruter/{vehicleid}/adt/v3/di/
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>topic diagnostics OUT 1 pe/sales/ ruter/{operator}/{vehicleid}/adt/v3/pe/sales/
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>topic current_stop IN 1 pe/sales/ ruter/{operator}/{vehicleid}/adt/v3/pe/sales/
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>topic # OUT 0 pe/cardreader_diagnostics/vix/ ruter/{operator}/{vehicleid}/adt/v3/pe/cardreader_diagnostics/vix/
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>topic # IN 1 pe/dpi/ {operator}/ruter/{vehicleid}/adt/v3/pe/dpi/
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>topic diagnostics OUT 1 pe/dpi/ ruter/{operator}/{vehicleid}/adt/v3/pe/dpi/
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>topic ack OUT 1 pe/dpi/ ruter/{operator}/{vehicleid}/adt/v3/pe/dpi/
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>topic doors_individually OUT 1 pe/ ruter/{operator}/{vehicleid}/adt/v3/pe/
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>topic door_lock OUT 1 pe/ ruter/{operator}/{vehicleid}/adt/v3/pe/
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a>topic active_cab OUT 1 pe/ ruter/{operator}/{vehicleid}/adt/v3/pe/
 </code></pre></div>
 <h2 id="updating-configurations-and-dpi-content">Updating configurations and DPI content<a class="headerlink" href="#updating-configurations-and-dpi-content" title="Permanent link">&para;</a></h2>
 <p>Ruter reserves the right to update the topic configuration and content packages when it deems it necessary. </p>
