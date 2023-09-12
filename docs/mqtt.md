@@ -14,9 +14,10 @@ For more information, see:
 Two key elements of the architecture are the MQTT broker and the MQTT bridges. 
 
 ### MQTT broker (Ruter)
-Ruter operates a central MQTT broker that communicates with all the vehicles. The server currently supports the MQTT protocol versions 5.0 and 3.1.1. 
+Ruter operates a central MQTT broker that communicates with all the vehicles. 
 
-> _Notice_ To use MQTT protocol version 5.0, make sure that the client library supports it.
+> _Notice_  Starting from ADT 3+ all vehicle bridges towards this broker are required to use the MQTT protocol version 5. 
+> Support for MQTT v3.1 will be removed at a later stage.
 
 All communication with the MQTT broker is encrypted during transport using TLS 1.2. 
 
@@ -30,47 +31,65 @@ There is no strict requirement as to what implementation you chose of the mqtt b
 
 There are multiple open-source solutions to choose from, i.e. [https://mosquitto.org](https://mosquitto.org/).  
 
-#### Example configuration file (Mosquitto)
+#### Example configuration file (Mosquitto v2.0.17)
 
 ```
-port 1883
+
+user mosquitto
+log_type all
+connection_messages true
+log_timestamp true
+listener 1883
 listener 9883
 protocol websockets
-log_type all
-log_timestamp true
-
-connection_messages true
 allow_anonymous true
 
 #
 # Ruter MQTT Bridge
 #
-connection bus-to-authority-bridge
-address mqtt.test.transhub.io:8883
-remote_username *****
-remote_password *****
-bridge_attempt_unsubscribe true
-bridge_protocol_version mqttv311
+connection ruter-central-mqtt-broker
+address {MQTT_BROKER}:8883
+bridge_cafile /etc/mosquitto/conf.d/amazon.ca.crt
+remote_username {MQTT_USERNAME}
+remote_password {MQTT_PASSWORD}
+remote_clientid {CLIENT_ID_BASED_ON_VIN}
+bridge_protocol_version mqttv50
 bridge_tls_version tlsv1.2
-bridge_cafile /usr/local/etc/mosquitto/conf.d/amazon.ca.pem
-bridge_insecure false
+notifications false
 cleansession true
 try_private true
 start_type automatic
 restart_timeout 10
+keepalive_interval 60
 
 # Subscribe for these topics
-# topic type in/out qos shortroute longroute
-topic json in 1 infohub/dpi/journey/ OPERATOR_ID/ruter/VEHICLE_ID/itxpt/ota/dpi/journey/
-topic json in 1 infohub/dpi/externaldisplay/ OPERATOR_ID/ruter/VEHICLE_ID/itxpt/ota/dpi/externaldisplay/
-topic json in 1 infohub/dpi/nextstop/ OPERATOR_ID/ruter/VEHICLE_ID/itxpt/ota/dpi/nextstop/
-topic json in 1 infohub/dpi/eta/ OPERATOR_ID/ruter/VEHICLE_ID/itxpt/ota/dpi/eta/
-topic json in 1 infohub/dpi/announcement/ OPERATOR_ID/ruter/VEHICLE_ID/itxpt/ota/dpi/announcement/
-topic json in 1 infohub/dpi/deviation/ OPERATOR_ID/ruter/VEHICLE_ID/itxpt/ota/dpi/deviation/
-topic json in 1 infohub/dpi/audio/ OPERATOR_ID/ruter/VEHICLE_ID/itxpt/ota/dpi/audio/
-topic json in 1 infohub/dpi/arriving/ OPERATOR_ID/ruter/VEHICLE_ID/itxpt/ota/dpi/arriving/
-topic json in 1 infohub/dpi/c2/ OPERATOR_ID/ruter/VEHICLE_ID/itxpt/ota/dpi/c2/
-topic json out 1 infohub/dpi/diagnostics/ ruter/OPERATOR_ID/VEHICLE_ID/itxpt/ota/dpi/diagnostics/
+# topic in/out qos shortroute longroute
+topic stop_button OUT 1 sensors/ ruter/{operator}/{vehicleid}/adt/v3/sensors/
+topic stop_button IN 1 pe/input/ {operator}/ruter/{vehicleid}/adt/v3/pe/input/
+topic door OUT 1 sensors/ ruter/{operator}/{vehicleid}/adt/v3/sensors/
+topic location OUT 0 sensors/ ruter/{operator}/{vehicleid}/adt/v3/sensors/gnss/
+topic odometer OUT 0 sensors/ ruter/{operator}/{vehicleid}/adt/v3/sensors/
+topic # OUT 1 sensors/apc/ ruter/{operator}/{vehicleid}/adt/v3/sensors/apc/
+topic # OUT 0 sensors/telemetry/ ruter/{operator}/{vehicleid}/adt/v3/sensors/telemetry/
+topic status IN 1 operational/assignment/ {operator}/ruter/{vehicleid}/adt/v3/operational/assignment/
+topic audio IN 1 pe/ {operator}/ruter/{vehicleid}/adt/v3/pe/
+topic request OUT 1 operational/assignment/attempt/ ruter/{operator}/{vehicleid}/adt/v3/operational/assignment/attempt/
+topic response IN 1 operational/assignment/attempt/ {operator}/ruter/{vehicleid}/adt/v3/operational/assignment/attempt/
+topic request OUT 1 operational/assignment/omit/ ruter/{operator}/back_office/adt/v3/operational/assignment/omit/
+topic response IN 1 operational/assignment/omit/ {operator}/ruter/back_office/adt/v3/operational/assignment/omit/
+topic destination_display OUT 1 di/override_attempt/ ruter/{operator}/{vehicleid}/adt/v3/di/override_attempt/
+topic available_destination_displays IN 1 di/ {operator}/ruter/{vehicleid}/adt/v3/di/
+topic operational_message_to_driver IN 1 di/ {operator}/ruter/{vehicleid}/adt/v3/di/
+topic diagnostics OUT 1 pe/sales/ ruter/{operator}/{vehicleid}/adt/v3/pe/sales/
+topic current_stop IN 1 pe/sales/ ruter/{operator}/{vehicleid}/adt/v3/pe/sales/
+topic # OUT 0 pe/cardreader_diagnostics/vix/ ruter/{operator}/{vehicleid}/adt/v3/pe/cardreader_diagnostics/vix/
+topic # IN 1 pe/dpi/ {operator}/ruter/{vehicleid}/adt/v3/pe/dpi/
+topic diagnostics OUT 1 pe/dpi/ ruter/{operator}/{vehicleid}/adt/v3/pe/dpi/
+topic ack OUT 1 pe/dpi/ ruter/{operator}/{vehicleid}/adt/v3/pe/dpi/
+topic doors_individually OUT 1 pe/ ruter/{operator}/{vehicleid}/adt/v3/pe/
+topic door_lock OUT 1 pe/ ruter/{operator}/{vehicleid}/adt/v3/pe/
+topic active_cab OUT 1 pe/ ruter/{operator}/{vehicleid}/adt/v3/pe/
+
 
 ```
 

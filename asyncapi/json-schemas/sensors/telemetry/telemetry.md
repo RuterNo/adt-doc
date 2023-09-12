@@ -29,22 +29,27 @@ Optional unless stated explicitly in the main ADT document.
 
 ID | Subid | Name | Value | Recommended refresh interval | Remarks
 --- | --- | --- | --- | --- | ---
-**0001FF25** | 10003 | Wall Charger connected | | onChange |
-**0001FF25** | 10004 | Fast Charger connected | | onChange |
-**0001FF25** | 10005 | Charging Active | | onChange |
-**01000002** | | Temperature inside average | float | 1/min |
-**01000005** | | SOC | float | 1/min |
+**0001FF25** | | Charger | | onChange | 
+| | 10003 | Wall charger connected | boolean | | 
+| | 10004 | Fast charger connected | boolean | | 
+| | 10005 | Charging active | boolean | | 
+**01000002** | | Temperature indoor | | 6/min | * Unit: Celcius <br>* Resolution: <= 1 C
+| | tempavg | Temperature indoor average | float | | | 
+| | tempfront | Temperature indoor front | float | | |
+| | tempmiddle | Temperature indoor middle | float | | |
+| | temprear | Temperature indoor rear | float | | |
+**01000005** | | SOC | float | 1/min | 
 **01000006** | | Transmission mode | combustion/electric | onChange | Intended for hybrid vehicles
-**01000007** | | Windscreen wiper active | True/false | onChange | Taken to represent a measurement of the ground truth binary rainfall state, given that it is a better predictor of the binary rainfall state than radar- or gauge-based measurements
-**01000008** | | Accelerometry | | 1/min | * Bandwidth >= 100 hz<br> * Resolution <= 0.01 g
-| | xmin | Min x value last minute | g | | |
-| | xmax | Max x value last minute | g | | |
-| | xavg | Average x value last minute | g | | |
-| | ymin | Min y value last minute | g | | |
-| | ymax | Max y value last minute | g | | |
-| | yavg | Average y value last minute | g | | |
-| | zmin | Min z value last minute | g | | |
-| | zmax | Max z value last minute | g | | |
-| | zavg | Average z value last minute | g | | |
-**01000009** | | Outdoor temperature | float | 1/min |* Unit Celcius <br>* Resolution <= 1 C <br>* Measured at front of vehicle as near as possible to the ground
+**01000007** | | Windscreen wiper active | boolean | onChange | Taken to represent a measurement of the ground truth binary rainfall state, given that it is a better predictor of the binary rainfall state than radar- or gauge-based measurements
+**01000008** | | Accelerometry | | 6/min | * Bandwidth: >= 100 hz <br>* Unit: g <br>* Resolution: <= 0.01 g
+| | xmin | Min x value last interval | float | | |
+| | xmax | Max x value last interval | float | | |
+| | xavg | Average x value last interval | float | | |
+| | ymin | Min y value last interval | float | | |
+| | ymax | Max y value last interval | float | | |
+| | yavg | Average y value last interval | float | | |
+| | zmin | Min z value last interval | float | | |
+| | zmax | Max z value last interval | float | | |
+| | zavg | Average z value last interval | float | | |
+**01000009** | | Temperature outdoor | float | 1/min |* Unit: Celcius <br>* Resolution: <= 1 C <br>* Measured at front of vehicle as near as possible to the ground
 **0100000A** | | Accumulated energy consumption | float | 1/min | * Energy consumed <br>* Including HVAC <br>* Unit: kWh
