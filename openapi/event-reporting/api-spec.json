@@ -336,7 +336,7 @@
           "startDateTime": {
             "type": "string",
             "description": "Required if `datedJourneyRef` is `null`, optional otherwise. An ISO UTC date string\nrepresenting the date and time that the traffic event started. If `null`, the start\ntime of the journey represented by `datedJourneyRef` is used instead.\n",
-            "example": "1870-01-01T12:00:00Z",
+            "example": "1970-01-01T12:00:00Z",
             "default": "null"
           },
           "endDateTime": {
@@ -383,24 +383,15 @@
       "SlaBreach": {
         "required": [
           "category",
-          "contractRef",
-          "endDateTime",
           "isOperatorExempt",
-          "reason",
-          "startDateTime"
+          "reason"
         ],
         "type": "object",
         "properties": {
-          "id": {
+          "breachNumber": {
             "type": "string",
-            "description": "The SLA breach ID. Must be `null` on registration.",
-            "example": "1234-1",
-            "default": "null"
-          },
-          "trafficCaseNumber": {
-            "type": "string",
-            "description": "The traffic case number of the Ruterlogg traffic case that was created to log this SLA\nbreach. Must be `null` on registration.\n",
-            "example": "2023-1234",
+            "description": "The SLA breach number. Must be `null` on registration.",
+            "example": "1234",
             "default": "null"
           },
           "category": {
@@ -414,37 +405,65 @@
           "reason": {
             "type": "string",
             "description": "The reason for the SLA breach.",
-            "example": "TAAS_ERROR",
+            "example": "DOOR_STATUS",
             "enum": [
-              "TAAS_ERROR",
-              "SIS_ERROR",
-              "OTHER"
+              "ACCELEROMETER",
+              "AUTOMATIC_PASSENGER_COUNT",
+              "BATTERY_LEVEL",
+              "CHARGING_STATUS",
+              "CLOCK",
+              "DOOR_STATUS",
+              "DYNAMIC_PASSENGER_INFORMATION",
+              "ENERGY_CONSUMPTION",
+              "INSIDE_TEMPERATURE",
+              "ODOMETER",
+              "OUTSIDE_TEMPERATURE",
+              "POSITION",
+              "SIGN_ON_SIGN_OFF",
+              "STOP_SIGNAL",
+              "TICKET_SALE",
+              "VALIDATION_OF_RIGHT_TO_TRAVEL",
+              "WINDSCREEN_WIPER_STATUS"
             ]
           },
           "reasonDescription": {
             "type": "string",
-            "description": "Required if `reason` is `OTHER`, optional otherwise. A further detailing of the reason\nfor the SLA breach, and if relevant, an explanation for why you as an operator should\nbe exempt from being fined for this breach.\n",
-            "example": "TaaS MQTT-broker var utilgjengelig",
+            "description": "Optional. A further detailing of the reason for the SLA breach, and if relevant, an\nexplanation for why you as an operator should be exempt from being fined for this\nbreach (see `isOperatorExempt`).\n",
+            "example": "Feil på sensor for dørstatus",
+            "default": "null"
+          },
+          "datedJourneyRef": {
+            "type": "string",
+            "description": "Required if both `vehicleTaskId` and `contractRef` are `null`, takes precedence\nover both otherwise. A reference to the planned journey that is affected by this SLA\nbreach.\n\nFormat should be one of:\n- `<dated journey ID from plan data>`\n- `<vehicle task ID>-<journey start date time in ISO offset format>`\n",
+            "example": "1234-1970-01-01T11:00:00+01:00",
+            "default": "null"
+          },
+          "vehicleTaskId": {
+            "type": "string",
+            "description": "Required if both `datedJourneyRef` and `contractRef` are `null`, takes precedence over\n`contractRef` otherwise. The ID of the vehicle task that is affected by this SLA\nbreach.\n",
+            "example": "1234",
             "default": "null"
           },
           "contractRef": {
             "type": "string",
-            "description": "A reference to the contract that governs the SLA that was breached.",
+            "description": "Required if both `datedJourneyRef` and `vehicleTaskId` are `null`, ignored otherwise.\nA reference to the contract that governs the SLA that was breached.\n",
             "example": "RUT:Contract:123"
           },
           "startDateTime": {
             "type": "string",
-            "description": "An ISO UTC date string representing the date and time that the SLA breach started.",
-            "example": "1970-01-01T12:00:00Z"
+            "description": "Required if `contractRef` is set and both `datedJourneyRef` and `vehicleTaskId` are\n`null`, ignored otherwise. An ISO UTC date string representing the date and time that\nthe SLA breach started. If not set, breach duration is inferred from referenced\njourney or vehicle task, in that order.\n",
+            "example": "1970-01-01T12:00:00Z",
+            "default": "null"
           },
           "endDateTime": {
             "type": "string",
-            "description": "An ISO UTC date string representing the date and time that the SLA breach ended.",
-            "example": "1970-01-01T13:00:00Z"
+            "description": "Required if `contractRef` is set and both `datedJourneyRef` and `vehicleTaskId` are\n`null`, ignored otherwise. An ISO UTC date string representing the date and time that\nthe SLA breach ended. If not set, breach duration is inferred from referenced journey\nor vehicle task, in that order.\n",
+            "example": "1970-01-01T13:00:00Z",
+            "default": "null"
           },
           "isOperatorExempt": {
             "type": "boolean",
-            "description": "A flag flag indicating whether you as an operator consider that the breach was outside\nyour control, and that you should be exempt from being fined for the breach.\n"
+            "description": "A flag flag indicating whether you as an operator consider that the breach was outside\nyour control, and that you should be exempt from being fined for the breach. If\nneeded, an exemption reason can be provided in the `reasonDescription` field.\n"
           },
           "registeredBy": {
             "type": "string",
@@ -454,7 +473,7 @@
           },
           "registeredAt": {
             "type": "string",
-            "description": "The date and time that the traffic event was registered, in ISO UTC format. Must be\n`null` on registration.\n",
+            "description": "The date and time that the SLA breach was registered, in ISO UTC format. Automatically\nset on registration. Must be `null` on registration.\n",
             "example": "1970-01-01T12:00:00Z",
             "default": "null"
           }
