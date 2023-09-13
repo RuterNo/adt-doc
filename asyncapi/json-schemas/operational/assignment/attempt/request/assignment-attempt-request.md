@@ -148,4 +148,4 @@ When SHORTENING
     }
 }
 ```
-Then; Both visits at Quay 3 will be removed from the assignment
+Then; both visits at Quay 3 will be removed from the assignment. Effectively, the vehicle should turn around at Journey 1 Quay 2 and continue servicing Journey 2 from Quay 2
