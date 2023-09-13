@@ -212,6 +212,12 @@
             "description": "A reference to the dated journey that is affected by this traffic event.",
             "example": "djj-4b60ddfd3a2aa810939912e08b76c58e"
           },
+          "vehicleInternalNumber": {
+            "type": "string",
+            "description": "The SIS internal number of the vehicle assigned to the journey and affected by this\nevent, if any.\n",
+            "example": "123456",
+            "default": "null"
+          },
           "lineRef": {
             "type": "string",
             "description": "A reference to the line that the journey is serving.",
@@ -351,6 +357,12 @@
             "example": "1234-1970-01-01T11:00:00+01:00",
             "default": "null"
           },
+          "vehicleInternalNumber": {
+            "type": "string",
+            "description": "Required if `datedJourneyRef` is set and a vehicle has been assigned to the journey.\nThe SIS internal number of the assigned vehicle that is affected by this traffic\nevent, including prefixed garage number.\n",
+            "example": "123456",
+            "default": "null"
+          },
           "lineRef": {
             "type": "string",
             "description": "Required if `datedJourneyRef` is `null`, ignored otherwise. A reference to the\naffected line when multiple journeys are affected by this traffic event.\n",
@@ -359,7 +371,7 @@
           },
           "stopPlaceOrQuayRefs": {
             "type": "array",
-            "description": "Required if `category` is `CANCELLATION` and `subcategory` is `PARTIAL`,\nignored otherwise. A list of NSR stop place or quay references to the stop\nplaces or quays that are affected by this partial cancellation event.\n",
+            "description": "Required if `category` is `CANCELLATION` and `subcategory` is `PARTIAL`,\nignored otherwise. A list of NSR stop place or quay references to the stop\nplaces or quays that are affected by the partial cancellation.\n",
             "example": [
               "NSR:StopPlace:123",
               "NSR:Quay:246"
@@ -408,7 +420,7 @@
             "example": "DOOR_STATUS",
             "enum": [
               "ACCELEROMETER",
-              "AUTOMATIC_PASSENGER_COUNT",
+              "AUTOMATIC_PASSENGER_COUNTING",
               "BATTERY_LEVEL",
               "CHARGING_STATUS",
               "CLOCK",
@@ -444,10 +456,17 @@
             "example": "1234",
             "default": "null"
           },
+          "vehicleInternalNumber": {
+            "type": "string",
+            "description": "Required if `datedJourneyRef` or `vehicleTaskId` is set and a vehicle has been\nassigned to the journey or vehicle task. The SIS internal number of the\nassigned vehicle that is affected by this SLA breach, including prefixed garage\nnumber.\n",
+            "example": "123456",
+            "default": "null"
+          },
           "contractRef": {
             "type": "string",
             "description": "Required if both `datedJourneyRef` and `vehicleTaskId` are `null`, ignored otherwise.\nA reference to the contract that governs the SLA that was breached.\n",
-            "example": "RUT:Contract:123"
+            "example": "RUT:Contract:123",
+            "default": "null"
           },
           "startDateTime": {
             "type": "string",
