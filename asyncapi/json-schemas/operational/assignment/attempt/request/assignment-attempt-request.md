@@ -97,10 +97,14 @@ An `AssignmentAttemptRequest` can be made for:
 - Used if additional vehicles are demanded to serve the pre-existing plans for the specified `serviceWindow`
 - If `lastArrivalDateTime` is provided, the assignment will contain all journeys/stops from (including) `firstDepartureDateTime` until (including) the specified `lastArrivalDateTime`
 - If `lastArrivalDateTime` is not provided, the assignment will contain all journeys/stops from (including) `firstDepartureDateTime` until the end of the journey
-
 ##### Sign On - REPLACEMENT
-- Used if another vehicle can not service parts of its assignment. The other vehicle should be signed off.
+- Used if another vehicle can not service parts of its assignment. 
+  The other vehicle should be signed off using either `SHORTENING` or `BREAKDOWN`
+  If the other vehicle is not signed off, RUTER will automatically try to sign it off using a the custom code `REPLACED`
+
+Anu other vehicle not signed on as `EXTRA` will be automatically signed off. Alternatively, a sign off should be sent for 
 - `serviceWindow` is honoured as `PLANNED`
+
 ### Sign Off
 #### Sign Off - FINISHED
 - The vehicle has serviced all journeys in the assignment
