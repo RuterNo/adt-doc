@@ -27,7 +27,7 @@
       "$id": "#/properties/messageNumber",
       "$comment": "Added in version 2.1",
       "type": "number",
-      "description": "Sequence number, increased by one for each new message. Used to validate consistency in the data stream."
+      "description": "Optional. Sequence number, increased by one for each new message. Used to validate consistency in the data stream."
     },
     "id": {
       "$id": "#/properties/id",
@@ -37,26 +37,25 @@
     "payloads": {
       "$id": "#/properties/payloads",
       "type": "array",
-      "description": "",
+      "description": "If FMS data or accelerometry, one payload per SPN. Else, one payload.",
       "items": {
         "type": "object",
-        "required": ["value"],
+        "required": [],
         "properties": {
           "subid": {
             "type": "string",
-            "description": "Subid is used to identify the payload when there is more than one possible type of payload."
+            "description": "Optional. Only to be used for SPN."
           },
           "name": {
             "type": "string",
-            "description": "Descriptive name of the payload"
+            "description": "Optional."
           },
           "unit": {
             "type": "string",
-            "description": "Unit used by the sensor. Only used for number values"
+            "description": "Optional."
           },
           "value": {
-            "description": "",
-            "type": ["number", "boolean", "string"]
+            "description": ""
           }
         }
       }
