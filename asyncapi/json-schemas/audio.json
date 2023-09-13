@@ -7,23 +7,17 @@
   "description": "All audio is sent over one topic and message may contain multiple audio segments that must be played in the order listed",
   "required": [
     "eventTimestamp",
-    "traceId",
     "expiryTimestamp",
     "type",
     "value"
   ],
-  "additionalProperties": true,
+  "additionalProperties": false,
   "properties": {
     "eventTimestamp": {
       "$id": "#/properties/eventTimestamp",
       "type": "string",
       "description": "Event timestamp must be ISO 8601 UTC",
       "format": "date-time"
-    },
-    "traceId": {
-      "$id": "#/properties/traceId",
-      "type": "string",
-      "description": "A unique identifier to be able to trace this message."
     },
     "expiryTimestamp": {
       "$id": "#/properties/expiryTimestamp",
