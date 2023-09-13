@@ -5,7 +5,6 @@
     "traceId": "083b71c4-e417-11ed-b5ea-0242ac120004",
     "update": {
       "code": "SHORTENING",
-      "vehicleTaskId": "99991",
       "serviceWindow": {
         "firstDepartureDateTime": "2023-04-27T13:23:00Z",
         "lastArrivalDateTime": "2023-04-27T13:37:00Z"

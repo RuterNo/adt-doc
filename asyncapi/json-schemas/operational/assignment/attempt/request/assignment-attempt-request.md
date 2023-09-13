@@ -118,3 +118,34 @@ An `AssignmentAttemptRequest` can be made for:
 - `serviceWindow.firstDepartureDateTime` is required
 - If `lastArrivalDateTime` is provided, journeys/stops from (including) `firstDepartureDateTime` until (including) the specified `lastArrivalDateTime` are removed from the assignment
 - If `lastArrivalDateTime` is not provided, the stop with `firstDepartureDateTime` will be removed from the assignment
+##### Example case for SHORTENING
+
+Given two journeys:
+```
+Journey 1
+Quay 1 dep 2023-04-27T10:00Z
+Quay 2 arr 2023-04-27T10:01Z, dep 2023-04-27T10:01Z
+Quay 3 arr 2023-04-27T10:02Z
+
+Journey 2
+Quay 3 dep 2023-04-27T10:03Z
+Quay 2 arr 2023-04-27T10:04Z, dep 2023-04-27T10:04Z
+Quay 1 arr 2023-04-27T10:05Z
+```
+When SHORTENING
+```json
+{
+    "eventTimestamp": "2023-04-27T12:40:12.631914Z",
+    "traceId": "083b71c4-e417-11ed-b5ea-0242ac120004",
+    "update":
+    {
+        "code": "SHORTENING",
+        "serviceWindow":
+        {
+            "firstDepartureDateTime": "2023-04-27T10:02Z",
+            "lastArrivalDateTime": "2023-04-27T10:03Z"
+        }
+    }
+}
+```
+Then; Both visits at Quay 3 will be removed from the assignment
