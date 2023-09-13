@@ -47,8 +47,7 @@
         "type": "object",
         "title": "audio",
         "required": [
-          "speakers",
-          "volume"
+          "speakers"
         ],
         "properties": {
           "encoding": {
@@ -68,20 +67,11 @@
             "description": "Optional. Location of content. Do not use if content is defined."
           },
           "speakers": {
-            "type": "array",
-            "description": "Speaker targets the audio is intended for",
-            "items": {
-              "type": "string",
-              "enum": [
-                "INTERNAL",
-                "EXTERNAL",
-                "DRIVER"
-              ]
+            "type": "object",
+            "description": "Speaker targets and volume the audio is intended for",
+            "additionalProperties": {
+              "type": "integer"
             }
-          },
-          "volume": {
-            "type": "number",
-            "description": "Volume in dB"
           }
         }
       }
