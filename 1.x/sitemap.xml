@@ -2,57 +2,57 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://adt.transhub.io/1.x/</loc>
-         <lastmod>2023-09-06</lastmod>
+         <lastmod>2023-09-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/1.x/insight/</loc>
-         <lastmod>2023-09-06</lastmod>
+         <lastmod>2023-09-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/1.x/issue/</loc>
-         <lastmod>2023-09-06</lastmod>
+         <lastmod>2023-09-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/1.x/live-status/</loc>
-         <lastmod>2023-09-06</lastmod>
+         <lastmod>2023-09-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/1.x/mqtt-api/</loc>
-         <lastmod>2023-09-06</lastmod>
+         <lastmod>2023-09-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/1.x/mqtt/</loc>
-         <lastmod>2023-09-06</lastmod>
+         <lastmod>2023-09-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/1.x/packages/</loc>
-         <lastmod>2023-09-06</lastmod>
+         <lastmod>2023-09-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/1.x/resources/</loc>
-         <lastmod>2023-09-06</lastmod>
+         <lastmod>2023-09-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/1.x/screen-configs/</loc>
-         <lastmod>2023-09-06</lastmod>
+         <lastmod>2023-09-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/1.x/troubleshooting-client/</loc>
-         <lastmod>2023-09-06</lastmod>
+         <lastmod>2023-09-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/1.x/tsp/</loc>
-         <lastmod>2023-09-06</lastmod>
+         <lastmod>2023-09-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
