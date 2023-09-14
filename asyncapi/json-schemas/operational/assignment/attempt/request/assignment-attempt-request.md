@@ -24,7 +24,6 @@ An `AssignmentAttemptRequest` can be made for:
   2. signOff
   3. update
 - Attempt request will get an attempt response under the topic [assignment/attempt/response](../response/assignment-attempt-response.md)
-  - Except: Attempts sent with an `eventTimestamp` earlier than the `eventTimestamp` of a previously sent message will be discarded without response.
 - Any request leading to a change of existing assignment state is reflected under the topic [assignment/state](../../status/assignment-status.md)
   - This topic will also be updated it Ruter has initiated any change to the existing assignment
 - Please provide all fields marked as `reqired` in the schema specifications.
