@@ -11,13 +11,15 @@
   "properties": {
     "code": {
       "$id": "#/properties/code",
-      "description": "Specification as to the reason why the vehicle will no longer service journeys",
+      "description": "Specification as to the reason why the vehicle will no longer service journeys. The codes REPLACED and EXPIRED are only in use by RUTER initiating automatic actions on signed on vehicles.",
       "type": "string",
       "examples": [
         "CANCELLED",
         "BREAKDOWN",
         "SHORTENING",
-        "FINISHED"
+        "FINISHED",
+        "REPLACED",
+        "EXPIRED"
       ]
     }
   }

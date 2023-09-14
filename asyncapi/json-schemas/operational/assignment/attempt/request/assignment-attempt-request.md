@@ -24,11 +24,11 @@ An `AssignmentAttemptRequest` can be made for:
   2. signOff
   3. update
 - Attempt request will get an attempt response under the topic [assignment/attempt/response](../response/assignment-attempt-response.md)
-  - Except: Attempts sent with an `eventTimestamp` equal to or earlier than the `eventTimestamp` of a previously sent message will be discarded without response.
+  - Except: Attempts sent with an `eventTimestamp` earlier than the `eventTimestamp` of a previously sent message will be discarded without response.
 - Any request leading to a change of existing assignment state is reflected under the topic [assignment/state](../../status/assignment-status.md)
   - This topic will also be updated it Ruter has initiated any change to the existing assignment
-- Any assigned assignments will be automatically signed off two hours after the last planned arrival in the last planned journey.
 - Please provide all fields marked as `reqired` in the schema specifications.
+
 
 #### Definitions
 - A `block` contains a set of journeys.
@@ -114,6 +114,11 @@ Anu other vehicle not signed on as `EXTRA` will be automatically signed off. Alt
 - Remaining not serviced stops/journeys in the assignment will not be serviced (by any vehicles).
 #### Sign Off - SHORTENING
 - Same as `CANCELLED`
+#### Additional Sign Off codes used by RUTER
+- `REPLACED`
+  When a vehicle attempts a SignOn with the code `REPLACED`. Any other vehicle signed on to the same vehicle task and not marked as `EXTRA` will be automatically signed off with the code `REPLACED`.
+- `EXPIRED`
+  Given a successfull signOn, if the vehicle is not signed off before two hours after the last planned arrival. The veicle will be automatically signed off with the code `EXPIRED`.
 
 ### Update
 #### Update - SHORTENING
