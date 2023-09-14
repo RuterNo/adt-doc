@@ -27,7 +27,8 @@
         "CANCELLED",
         "BREAKDOWN",
         "FINISHED",
-        "REPLACED"
+        "REPLACED",
+        "EXPIRED"
       ]
     },
     "vehicleTaskId": {
