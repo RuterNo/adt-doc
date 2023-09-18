@@ -80,49 +80,49 @@ An `AssignmentAttemptRequest` can be made for:
 - All signOn-attempts require the fields `vehicleTaskId` and `serviceWindow`.
   - `vehicleTaskId`: Can be found in the common file in the NeTEx export under this path `VehicleScheduleFrame.blocks[].Block.PrivateCode`
   - `serviceWindow`: Defines a time range for which journeys the vehicle should be signed on.
-    - If the service window contains both `firstDepartureDateTime` and `lastArrivalDateTime`, the vehicle will be logged on
+    If the service window contains both `firstDepartureDateTime` and `lastArrivalDateTime`, the vehicle will be logged on
       to all the journeys in the vehicle task between those times.
       These journeys may be part of 1 or more `Block`s.
       Note that the times may be on the same calendar date or on 2 consecutive dates.
-    - If the service window contains only `firstDepartureDateTime`, the vehicle will be logged on
-      to the journeys from `firstDepartureDateTime` to the end of that block.
 
 ##### Sign On - PLANNED
-- `Default` The vehicle will be signed on to service the pre-existing plans for the specified `serviceWindow`
-- If `lastArrivalDateTime` is provided, the assignment will contain all journeys/stops from (including) `firstDepartureDateTime` until (including) the specified `lastArrivalDateTime`
-- If `lastArrivalDateTime` is not provided, the assignment will contain all journeys/stops from (including) `firstDepartureDateTime` until (including) the end of the block
+The vehicle will be signed on to service the pre-existing plans for the specified `serviceWindow`
+
+If `lastArrivalDateTime` is not provided, the assignment will contain all journeys/stops from (including) `firstDepartureDateTime` until (including) the end of the block
 
 ##### Sign On - EXTRA
-- Used if additional vehicles are demanded to serve the pre-existing plans for the specified `serviceWindow`
-- If `lastArrivalDateTime` is provided, the assignment will contain all journeys/stops from (including) `firstDepartureDateTime` until (including) the specified `lastArrivalDateTime`
-- If `lastArrivalDateTime` is not provided, the assignment will contain all journeys/stops from (including) `firstDepartureDateTime` until the end of the journey
-##### Sign On - REPLACEMENT
-- Used if another vehicle can not service parts of its assignment. 
-  The other vehicle should be signed off using either `SHORTENING` or `BREAKDOWN`
-  If the other vehicle is not signed off, RUTER will automatically try to sign it off using a the custom code `REPLACED`
+Used if additional vehicles are demanded to serve the pre-existing plans for the specified `serviceWindow`
 
-Anu other vehicle not signed on as `EXTRA` will be automatically signed off. Alternatively, a sign off should be sent for 
+If `lastArrivalDateTime` is not provided, the assignment will contain all journeys/stops from (including) `firstDepartureDateTime` until the end of the journey
+
+##### Sign On - REPLACEMENT
+Used if another vehicle can not service parts of its assignment. 
+The other vehicle should be signed off using either `SHORTENING` or `BREAKDOWN`
+If the other vehicle is not signed off, RUTER will automatically try to sign it off using the custom code `REPLACED`
+
+Any other vehicle not signed on as `EXTRA` will be automatically signed off. Alternatively, a sign off should be sent for 
 - `serviceWindow` is honoured as `PLANNED`
 
 ### Sign Off
 #### Sign Off - FINISHED
-- The vehicle has serviced all journeys in the assignment
+The vehicle has serviced all journeys in the assignment
 #### Sign Off - BREAKDOWN
-- The vehicle has broken down, or in some way not capable of servicing the rest of the assignment
+The vehicle has broken down, or in some way not capable of servicing the rest of the assignment
 #### Sign Off - CANCELLED
-- Remaining not serviced stops/journeys in the assignment will not be serviced (by any vehicles).
+Remaining not serviced stops/journeys in the assignment will not be serviced (by any vehicles).
 #### Sign Off - SHORTENING
-- Same as `CANCELLED`
+Same as `CANCELLED`
 #### Additional Sign Off codes used by RUTER
 - `REPLACED`
   When a vehicle attempts a SignOn with the code `REPLACED`. Any other vehicle signed on to the same vehicle task and not marked as `EXTRA` will be automatically signed off with the code `REPLACED`.
 - `EXPIRED`
-  Given a successfull signOn, if the vehicle is not signed off before two hours after the last planned arrival. The veicle will be automatically signed off with the code `EXPIRED`.
+  Given a successfull signOn, if the vehicle is not signed off before two hours after the last planned arrival. The vehicle will be automatically signed off with the code `EXPIRED`.
 
 ### Update
 #### Update - SHORTENING
-- Operational change of a pre-existing assigned assignment for a vehicle.
-- Failed attempts will not affect the assignment state for a vehicle.
+Operational change of a pre-existing assigned assignment for a vehicle.
+
+Failed attempts will not affect the assignment state for a vehicle.
 - `serviceWindow.firstDepartureDateTime` is required
 - If `lastArrivalDateTime` is provided, journeys/stops from (including) `firstDepartureDateTime` until (including) the specified `lastArrivalDateTime` are removed from the assignment
 - If `lastArrivalDateTime` is not provided, the stop with `firstDepartureDateTime` will be removed from the assignment
