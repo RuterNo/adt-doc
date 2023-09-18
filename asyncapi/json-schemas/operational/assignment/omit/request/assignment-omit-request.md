@@ -15,4 +15,4 @@
 
 #### Omit - NO_INTENTION
 
-Inform Ruter that the PTO has no intention of servicing the journeys that are defined in the provided service window.
+Inform Ruter that the PTO has no intention of servicing the journeys and stops that are defined in the provided service window.
