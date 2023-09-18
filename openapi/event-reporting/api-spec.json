@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://adt-event-reporting.transhub.io"
+      "url": "https://adt-event-reporting-api.stage.transhub.io"
     }
   ],
   "paths": {
