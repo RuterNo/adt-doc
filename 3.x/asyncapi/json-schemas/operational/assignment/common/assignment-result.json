@@ -36,8 +36,7 @@
         "DEPARTURE_DATE_TIME_INVALID",
         "SIGN_OFF_CODE_INVALID",
         "SIGN_ON_CODE_INVALID",
-        "UPDATE_CODE_INVALID",
-        "ASSIGNED_ASSIGNMENT_NOT_FOUND"
+        "UPDATE_CODE_INVALID"
       ]
     },
     "description": {

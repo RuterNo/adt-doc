@@ -11,7 +11,7 @@
   "properties": {
     "code": {
       "$id": "#/properties/code",
-      "description": "Specification as to the reason why the vehicle will no longer service journeys.",
+      "description": "Specification as to the reason why the vehicle will no longer service journeys",
       "type": "string",
       "examples": [
         "CANCELLED",

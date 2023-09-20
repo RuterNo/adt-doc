@@ -29,11 +29,6 @@
       "type": "string",
       "description": "A reference to the Progress event that triggered this message. Matches the traceId from the Progress event."
     },
-    "actualCallRef": {
-      "$id": "#/properties/actualCallRef",
-      "type": "string",
-      "description": "A reference to actualCallRef on the Progress event that triggered this message. This is necessary because some journeys serve the same stopPlaceId twice"
-    },
     "journeyRef": {
       "$id": "#/properties/journeyRef",
       "type": "string",

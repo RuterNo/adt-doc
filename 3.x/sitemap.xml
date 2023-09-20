@@ -2,82 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://adt.transhub.io/3.x/</loc>
-         <lastmod>2023-09-19</lastmod>
+         <lastmod>2023-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/3.x/browser-requirements/</loc>
-         <lastmod>2023-09-19</lastmod>
+         <lastmod>2023-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/3.x/event-reporting/</loc>
-         <lastmod>2023-09-19</lastmod>
+         <lastmod>2023-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/3.x/insight/</loc>
-         <lastmod>2023-09-19</lastmod>
+         <lastmod>2023-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/3.x/issue/</loc>
-         <lastmod>2023-09-19</lastmod>
+         <lastmod>2023-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/3.x/live-status/</loc>
-         <lastmod>2023-09-19</lastmod>
+         <lastmod>2023-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/3.x/mqtt-api/</loc>
-         <lastmod>2023-09-19</lastmod>
+         <lastmod>2023-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/3.x/mqtt/</loc>
-         <lastmod>2023-09-19</lastmod>
+         <lastmod>2023-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/3.x/operator_portal/</loc>
-         <lastmod>2023-09-19</lastmod>
+         <lastmod>2023-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/3.x/packages/</loc>
-         <lastmod>2023-09-19</lastmod>
+         <lastmod>2023-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/3.x/pto-pta-responsibilities/</loc>
-         <lastmod>2023-09-19</lastmod>
+         <lastmod>2023-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/3.x/resources/</loc>
-         <lastmod>2023-09-19</lastmod>
+         <lastmod>2023-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/3.x/screen-configs/</loc>
-         <lastmod>2023-09-19</lastmod>
+         <lastmod>2023-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/3.x/timestamps/</loc>
-         <lastmod>2023-09-19</lastmod>
+         <lastmod>2023-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/3.x/traffic-plan/</loc>
-         <lastmod>2023-09-19</lastmod>
+         <lastmod>2023-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://adt.transhub.io/3.x/troubleshooting-client/</loc>
-         <lastmod>2023-09-19</lastmod>
+         <lastmod>2023-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
