@@ -2,12 +2,12 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Event Reporting API",
-    "description": "Use this API to report cancellation and delay events, as well as other SLA\nbreaches, directly to Ruter, along with a flag indicating whether you as an\noperator consider that the event was outside your control, and that you should\nbe exempt from being fined for incurred/reported SLA breach(es).\n",
+    "description": "Use this API to report cancellation and delay events, as well as other SLA\nbreaches, directly to Ruter, along with a flag indicating whether you as an operator consider that\nthe event was outside your control, and that you should be exempt from being fined for\nincurred/reported SLA breach(es).\n",
     "version": "1"
   },
   "servers": [
     {
-      "url": "https://adt-event-reporting.transhub.io"
+      "url": "https://adt-event-reporting-api.stage.transhub.io"
     }
   ],
   "paths": {
@@ -16,14 +16,14 @@
         "tags": [
           "/v1/traffic-events"
         ],
-        "summary": "Register traffic event",
+        "summary": "Report traffic event",
         "description": "Report a cancellation or delay event.",
-        "operationId": "create",
+        "operationId": "report-traffic-event",
         "parameters": [
           {
             "name": "Authorization",
             "in": "header",
-            "description": "OAuth2 access token as Bearer token.\n\n**NOTE:** Separate documentation will be provided on how to obtain client\ncredentials and use these to request access tokens.\n",
+            "description": "OAuth2 access token as Bearer token.\n\n**NOTE:** Separate documentation will be provided on how to obtain client credentials and use these\nto request access tokens.\n",
             "content": {
               "*/*": {
                 "schema": {
@@ -45,7 +45,7 @@
         },
         "responses": {
           "201": {
-            "description": "The traffic event was registered.\n\nThe response contains a single traffic event for the given journey if the\nregistration provided a `journeyRef`. If the registration provided a `lineRef`\nand a time interval, the response contains one traffic event for each journey\nthat took place on the given line in the given time period.\n",
+            "description": "The traffic event was registered.\n\nThe response contains a single traffic event for the given journey if the registration provided a\n`journeyRef`. If the registration provided a `lineRef` and a time interval, the response contains\none traffic event for each journey that took place on the given line in the given time period.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -74,14 +74,14 @@
         "tags": [
           "/v1/sla-breaches"
         ],
-        "summary": "Register SLA breach",
-        "description": "Report an SLA breach directly to Ruter, along with a flag indicating whether you as an\noperator consider that the breach was outside your control, and that you should be\nexempt from being fined for the breach.\n",
-        "operationId": "create_1",
+        "summary": "Report SLA breach",
+        "description": "Report an SLA breach directly to Ruter, along with a flag indicating whether you as\nan operator consider that the breach was outside your control, and that you should be exempt from\nbeing fined for the breach.\n",
+        "operationId": "report-sla-breach",
         "parameters": [
           {
             "name": "Authorization",
             "in": "header",
-            "description": "OAuth2 access token as Bearer token.\n\n**NOTE:** Separate documentation will be provided on how to obtain client\ncredentials and use these to request access tokens.\n",
+            "description": "OAuth2 access token as Bearer token.\n\n**NOTE:** Separate documentation will be provided on how to obtain client credentials and use these\nto request access tokens.\n",
             "content": {
               "*/*": {
                 "schema": {
@@ -212,6 +212,12 @@
             "description": "A reference to the dated journey that is affected by this traffic event.",
             "example": "djj-4b60ddfd3a2aa810939912e08b76c58e"
           },
+          "vehicleInternalNumber": {
+            "type": "string",
+            "description": "The internal number of the vehicle assigned to the journey and affected by this\nevent, if any.\n",
+            "example": "123456",
+            "default": "null"
+          },
           "lineRef": {
             "type": "string",
             "description": "A reference to the line that the journey is serving.",
@@ -234,7 +240,7 @@
           },
           "quayRefs": {
             "type": "array",
-            "description": "If `category` is `CANCELLATION`: A list of NSR quay references to the quays\naffected by the cancellation.\n\n`null` otherwise.\n",
+            "description": "If `category` is `CANCELLATION`: A list of NSR quay references to the quays\naffected by the cancellation. `null` otherwise.\n",
             "example": [
               "NSR:Quay:123",
               "NSR:Quay:246"
@@ -245,13 +251,13 @@
           },
           "delayMinutes": {
             "type": "integer",
-            "description": "If `category` is `DELAY`: The number of minutes that the journey is delayed.\n\n`null` otherwise.\n",
+            "description": "If `category` is `DELAY`: The number of minutes that the journey is delayed. `null`\notherwise.\n",
             "format": "int32",
             "example": 21
           },
           "isOperatorExempt": {
             "type": "boolean",
-            "description": "A flag indicating whether you as an operator should be exempt from being fined for any\nSLA breach(es) incurred as a consequence of this traffic event.\n",
+            "description": "A flag indicating whether you as an operator should be exempt from being fined for\nany SLA breach(es) incurred as a consequence of this traffic event.\n",
             "default": true
           },
           "registeredBy": {
@@ -297,7 +303,7 @@
           },
           "reason": {
             "type": "string",
-            "description": "The reason for the traffic event. If set to `OTHER_OBSTRUCTION` or\n`OTHER_TECHNICAL_PROBLEM`, a description must be provided in the `reasonDescription`\nfield.\n",
+            "description": "The reason for the traffic event. If set to `OTHER_OBSTRUCTION` or\n`OTHER_TECHNICAL_PROBLEM`, a description must be provided in the `reasonDescription` field.\n",
             "example": "TRAFFIC_CONGESTION",
             "enum": [
               "BOOM_BARRIER_OPENING",
@@ -329,19 +335,19 @@
           },
           "reasonDescription": {
             "type": "string",
-            "description": "Required if `reason` is set to `OTHER_OBSTRUCTION` or `OTHER_TECHNICAL_PROBLEM`,\noptional otherwise. A further detailing of the reason for the traffic event, and if\nrelevant, an explanation for why you as an operator should be exempt from being fined\nfor any SLA breach(es) incurred as a consequence of this traffic event (see\n`isOperatorExempt`).\n",
+            "description": "Required if `reason` is set to `OTHER_OBSTRUCTION` or `OTHER_TECHNICAL_PROBLEM`,\noptional otherwise. A further detailing of the reason for the traffic event, and if relevant, an\nexplanation for why you as an operator should be exempt from being fined for any SLA breach(es)\nincurred as a consequence of this traffic event (see `isOperatorExempt`).\n",
             "example": "En feilparkert bil blokkerte traséen",
             "default": "null"
           },
           "startDateTime": {
             "type": "string",
-            "description": "Required if `datedJourneyRef` is `null`, optional otherwise. An ISO UTC date string\nrepresenting the date and time that the traffic event started. If `null`, the start\ntime of the journey represented by `datedJourneyRef` is used instead.\n",
+            "description": "Required if `datedJourneyRef` is `null`, optional otherwise. An ISO UTC date string\nrepresenting the date and time that the traffic event started. If `null`, the start time of the\njourney represented by `datedJourneyRef` is used instead.\n",
             "example": "1970-01-01T12:00:00Z",
             "default": "null"
           },
           "endDateTime": {
             "type": "string",
-            "description": "Required if `datedJourneyRef` is `null`, optional otherwise. An ISO UTC date string\nrepresenting the date and time that the traffic event ended. If `null`, the end time\nof the journey represented by `datedJourneyRef`, plus `delayMinutes` if given, is used\ninstead.\n",
+            "description": "Required if `datedJourneyRef` is `null`, optional otherwise. An ISO UTC date string\nrepresenting the date and time that the traffic event ended. If `null`, the end time of the journey\nrepresented by `datedJourneyRef`, plus `delayMinutes` if given, is used instead.\n",
             "example": "1970-01-01T13:00:00Z",
             "default": "null"
           },
@@ -349,6 +355,12 @@
             "type": "string",
             "description": "Required if `lineRef` is `null`. A reference to the planned journey that is affected\nby this traffic event, if only a single journey is affected.\n\nFormat should be one of:\n- `<dated journey ID from plan data>`\n- `<vehicle task ID>-<journey start date time in ISO offset format>`\n",
             "example": "1234-1970-01-01T11:00:00+01:00",
+            "default": "null"
+          },
+          "vehicleInternalNumber": {
+            "type": "string",
+            "description": "Required if `datedJourneyRef` is set and a vehicle has been assigned to the journey.\nThe internal number of the assigned vehicle that is affected by this traffic event, including\nprefixed garage number.\n",
+            "example": "123456",
             "default": "null"
           },
           "lineRef": {
@@ -359,7 +371,7 @@
           },
           "stopPlaceOrQuayRefs": {
             "type": "array",
-            "description": "Required if `category` is `CANCELLATION` and `subcategory` is `PARTIAL`,\nignored otherwise. A list of NSR stop place or quay references to the stop\nplaces or quays that are affected by this partial cancellation event.\n",
+            "description": "Required if `category` is `CANCELLATION` and `subcategory` is `PARTIAL`,\nignored otherwise. A list of NSR stop place or quay references to the stop places or quays that are\naffected by the partial cancellation.\n",
             "example": [
               "NSR:StopPlace:123",
               "NSR:Quay:246"
@@ -376,7 +388,7 @@
           },
           "isOperatorExempt": {
             "type": "boolean",
-            "description": "A flag indicating whether you as an operator consider that the event was outside your\ncontrol, and that you should be exempt from being fined for any SLA breach(es)\nincurred as a consequence of the traffic event. If needed, an exemption reason can be\nprovided in the `reasonDescription` field.\n"
+            "description": "A flag indicating whether you as an operator consider that the event was outside your\ncontrol, and that you should be exempt from being fined for any SLA breach(es) incurred as a\nconsequence of the traffic event. If needed, an exemption reason can be provided in the\n`reasonDescription` field.\n"
           }
         }
       },
@@ -408,7 +420,7 @@
             "example": "DOOR_STATUS",
             "enum": [
               "ACCELEROMETER",
-              "AUTOMATIC_PASSENGER_COUNT",
+              "AUTOMATIC_PASSENGER_COUNTING",
               "BATTERY_LEVEL",
               "CHARGING_STATUS",
               "CLOCK",
@@ -428,42 +440,49 @@
           },
           "reasonDescription": {
             "type": "string",
-            "description": "Optional. A further detailing of the reason for the SLA breach, and if relevant, an\nexplanation for why you as an operator should be exempt from being fined for this\nbreach (see `isOperatorExempt`).\n",
+            "description": "Optional. A further detailing of the reason for the SLA breach, and if relevant, an\nexplanation for why you as an operator should be exempt from being fined for this breach (see\n`isOperatorExempt`).\n",
             "example": "Feil på sensor for dørstatus",
             "default": "null"
           },
           "datedJourneyRef": {
             "type": "string",
-            "description": "Required if both `vehicleTaskId` and `contractRef` are `null`, takes precedence\nover both otherwise. A reference to the planned journey that is affected by this SLA\nbreach.\n\nFormat should be one of:\n- `<dated journey ID from plan data>`\n- `<vehicle task ID>-<journey start date time in ISO offset format>`\n",
+            "description": "Required if both `vehicleTaskId` and `contractRef` are `null`, takes precedence\nover both otherwise. A reference to the planned journey that is affected by this SLA breach.\n\nFormat should be one of:\n- `<dated journey ID from plan data>`\n- `<vehicle task ID>-<journey start date time in ISO offset format>`\n",
             "example": "1234-1970-01-01T11:00:00+01:00",
             "default": "null"
           },
           "vehicleTaskId": {
             "type": "string",
-            "description": "Required if both `datedJourneyRef` and `contractRef` are `null`, takes precedence over\n`contractRef` otherwise. The ID of the vehicle task that is affected by this SLA\nbreach.\n",
+            "description": "Required if both `datedJourneyRef` and `contractRef` are `null`, takes precedence\nover `contractRef` otherwise. The ID of the vehicle task that is affected by this SLA breach.\n",
             "example": "1234",
+            "default": "null"
+          },
+          "vehicleInternalNumber": {
+            "type": "string",
+            "description": "Required if `datedJourneyRef` or `vehicleTaskId` is set and a vehicle has been\nassigned to the journey or vehicle task. The internal number of the assigned vehicle that is\naffected by this SLA breach, including prefixed garage number.\n",
+            "example": "123456",
             "default": "null"
           },
           "contractRef": {
             "type": "string",
             "description": "Required if both `datedJourneyRef` and `vehicleTaskId` are `null`, ignored otherwise.\nA reference to the contract that governs the SLA that was breached.\n",
-            "example": "RUT:Contract:123"
+            "example": "RUT:Contract:123",
+            "default": "null"
           },
           "startDateTime": {
             "type": "string",
-            "description": "Required if `contractRef` is set and both `datedJourneyRef` and `vehicleTaskId` are\n`null`, ignored otherwise. An ISO UTC date string representing the date and time that\nthe SLA breach started. If not set, breach duration is inferred from referenced\njourney or vehicle task, in that order.\n",
+            "description": "Required if `contractRef` is set and both `datedJourneyRef` and `vehicleTaskId` are\n`null`, ignored otherwise. An ISO UTC date string representing the date and time that the SLA breach\nstarted. If not set, breach duration is inferred from referenced journey or vehicle task, in that\norder.\n",
             "example": "1970-01-01T12:00:00Z",
             "default": "null"
           },
           "endDateTime": {
             "type": "string",
-            "description": "Required if `contractRef` is set and both `datedJourneyRef` and `vehicleTaskId` are\n`null`, ignored otherwise. An ISO UTC date string representing the date and time that\nthe SLA breach ended. If not set, breach duration is inferred from referenced journey\nor vehicle task, in that order.\n",
+            "description": "Required if `contractRef` is set and both `datedJourneyRef` and `vehicleTaskId` are\n`null`, ignored otherwise. An ISO UTC date string representing the date and time that the SLA breach\nended. If not set, breach duration is inferred from referenced journey or vehicle task, in that\norder.\n",
             "example": "1970-01-01T13:00:00Z",
             "default": "null"
           },
           "isOperatorExempt": {
             "type": "boolean",
-            "description": "A flag flag indicating whether you as an operator consider that the breach was outside\nyour control, and that you should be exempt from being fined for the breach. If\nneeded, an exemption reason can be provided in the `reasonDescription` field.\n"
+            "description": "A flag flag indicating whether you as an operator consider that the breach was\noutside your control, and that you should be exempt from being fined for the breach. If needed, an\nexemption reason can be provided in the `reasonDescription` field.\n"
           },
           "registeredBy": {
             "type": "string",
@@ -473,7 +492,7 @@
           },
           "registeredAt": {
             "type": "string",
-            "description": "The date and time that the SLA breach was registered, in ISO UTC format. Automatically\nset on registration. Must be `null` on registration.\n",
+            "description": "The date and time that the SLA breach was registered, in ISO UTC format.\nAutomatically set on registration. Must be `null` on registration.\n",
             "example": "1970-01-01T12:00:00Z",
             "default": "null"
           }
