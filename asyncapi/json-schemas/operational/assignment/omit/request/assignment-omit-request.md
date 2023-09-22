@@ -12,7 +12,14 @@
 
 - All omit request will get an omit response under the topic [assignment/omit/response](../response/assignment-omit-response.md)
 - Please provide all fields marked as `required` in the schema specifications.
+- Note that there is no vehicle involved in this exchange.
 
 #### Omit - NO_INTENTION
 
-Inform Ruter that the PTO has no intention of servicing the journeys and stops that are defined in the provided service window.
+Inform Ruter that the PTO has no intention of servicing the journeys and stops defined by the provided service window.
+
+- All omit attempts require the fields `vehicleTaskId` and `serviceWindow`.
+  - `vehicleTaskId`: Can be found in the common file in the NeTEx export under this path `VehicleScheduleFrame.blocks[].Block.PrivateCode`
+  - `serviceWindow`: Defines a time range for which calls or journeys the PTO has no intention of servicing.
+    Times provided may belong to the same calendar date, or 2 consecutive dates
+    Attempts not containing valid date times for `firstDepartureDateTime` and `lastArrivalDateTimes` will be rejected.
