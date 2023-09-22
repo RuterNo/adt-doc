@@ -17,7 +17,7 @@ An `AssignmentAttemptRequest` can be made for:
 |---------|-----------------------------------------------------------------------------------------------|
 | SignOn  | Creating an Assignment for a vehicle. Signing a vehicle on to a set of planned journeys/stops |
 | SignOff | Signing a vehicle off from an assigned assignment                                             |
-| Update  | Altering an assigned assignment                                                               |
+| Update  | Altering an existing assigned assignment                                                      |
 
 - The message is composed of three operations (signOn, signOff, update). Only one operation will be processed per message reveived by Ruter. This gives that each message should only contain one operation. If the message contains more than one operation, the order of precedence is the following:
   1. signOn
@@ -25,7 +25,7 @@ An `AssignmentAttemptRequest` can be made for:
   3. update
 - Attempt request will get an attempt response under the topic [assignment/attempt/response](../response/assignment-attempt-response.md)
 - Any request leading to a change of existing assignment state is reflected under the topic [assignment/state](../../status/assignment-status.md)
-  - This topic will also be updated it Ruter has initiated any change to the existing assignment
+  - This topic will also be updated when Ruter has initiated any change to the existing assignment
 - Please provide all fields marked as `reqired` in the schema specifications.
 
 
@@ -80,20 +80,16 @@ An `AssignmentAttemptRequest` can be made for:
 - All signOn-attempts require the fields `vehicleTaskId` and `serviceWindow`.
   - `vehicleTaskId`: Can be found in the common file in the NeTEx export under this path `VehicleScheduleFrame.blocks[].Block.PrivateCode`
   - `serviceWindow`: Defines a time range for which journeys the vehicle should be signed on.
-    If the service window contains both `firstDepartureDateTime` and `lastArrivalDateTime`, the vehicle will be logged on
-      to all the journeys in the vehicle task between those times.
-      These journeys may be part of 1 or more `Block`s.
-      Note that the times may be on the same calendar date or on 2 consecutive dates.
+    The vehicle will be signed on to all the journeys in the vehicle task between provided times.
+    Signed on journeys may be part of 1 or more `Block`s.
+    Times provided may belong to the same calendar date, or 2 consecutive dates
+    Attempts not containing valid date times for `firstDepartureDateTime` and `lastArrivalDateTimes` will be rejected. Resulting in `AssignmentState.assigned=false`
 
 ##### Sign On - PLANNED
 The vehicle will be signed on to service the pre-existing plans for the specified `serviceWindow`
 
-If `lastArrivalDateTime` is not provided, the assignment will contain all journeys/stops from (including) `firstDepartureDateTime` until (including) the end of the block
-
 ##### Sign On - EXTRA
 Used if additional vehicles are demanded to serve the pre-existing plans for the specified `serviceWindow`
-
-If `lastArrivalDateTime` is not provided, the assignment will contain all journeys/stops from (including) `firstDepartureDateTime` until the end of the journey
 
 ##### Sign On - REPLACEMENT
 Used if another vehicle can not service parts of its assignment. 
@@ -123,9 +119,8 @@ Same as `CANCELLED`
 Operational change of a pre-existing assigned assignment for a vehicle.
 
 Failed attempts will not affect the assignment state for a vehicle.
-- `serviceWindow.firstDepartureDateTime` is required
-- If `lastArrivalDateTime` is provided, journeys/stops from (including) `firstDepartureDateTime` until (including) the specified `lastArrivalDateTime` are removed from the assignment
-- If `lastArrivalDateTime` is not provided, the stop with `firstDepartureDateTime` will be removed from the assignment
+- `serviceWindow` is honoured as `SignOn - PLANNED`
+
 ##### Example case for SHORTENING
 
 Given two journeys:
