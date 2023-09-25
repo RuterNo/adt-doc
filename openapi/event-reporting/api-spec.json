@@ -458,25 +458,25 @@
           },
           "vehicleInternalNumber": {
             "type": "string",
-            "description": "Required if `datedJourneyRef` or `vehicleTaskId` is set and a vehicle has been\nassigned to the journey or vehicle task. The internal number of the assigned vehicle that is\naffected by this SLA breach, including prefixed garage number.\n",
+            "description": "Required if `datedJourneyRef` or `vehicleTaskId` is set and a vehicle has been\nassigned to the journey or vehicle task, or if all of `datedJourneyRef`, `vehicleTaskId` and\n`contractRef` are `null`. The internal number of the assigned vehicle that is affected by this SLA\nbreach, including prefixed garage number.\n",
             "example": "123456",
             "default": "null"
           },
           "contractRef": {
             "type": "string",
-            "description": "Required if both `datedJourneyRef` and `vehicleTaskId` are `null`, ignored otherwise.\nA reference to the contract that governs the SLA that was breached.\n",
+            "description": "Required if all of `datedJourneyRef`, `vehicleTaskId` and `vehicleInternalNumber` are\n`null`, ignored otherwise. A reference to the contract that governs the SLA that was breached.\n",
             "example": "RUT:Contract:123",
             "default": "null"
           },
           "startDateTime": {
             "type": "string",
-            "description": "Required if `contractRef` is set and both `datedJourneyRef` and `vehicleTaskId` are\n`null`, ignored otherwise. An ISO UTC date string representing the date and time that the SLA breach\nstarted. If not set, breach duration is inferred from referenced journey or vehicle task, in that\norder.\n",
+            "description": "Required if `contractRef` or `vehicleInternalNumber` is set and both\n`datedJourneyRef` and `vehicleTaskId` are `null`, ignored otherwise. An ISO UTC date string\nrepresenting the date and time that the SLA breach started. If not set, breach duration is inferred\nfrom referenced journey or vehicle task, in that order.\n",
             "example": "1970-01-01T12:00:00Z",
             "default": "null"
           },
           "endDateTime": {
             "type": "string",
-            "description": "Required if `contractRef` is set and both `datedJourneyRef` and `vehicleTaskId` are\n`null`, ignored otherwise. An ISO UTC date string representing the date and time that the SLA breach\nended. If not set, breach duration is inferred from referenced journey or vehicle task, in that\norder.\n",
+            "description": "Required if `contractRef` or `vehicleInternalNumber` is set and both\n`datedJourneyRef` and `vehicleTaskId` are `null`, ignored otherwise. An ISO UTC date string\nrepresenting the date and time that the SLA breach ended. If not set, breach duration is inferred\nfrom referenced journey or vehicle task, in that order.\n",
             "example": "1970-01-01T13:00:00Z",
             "default": "null"
           },
