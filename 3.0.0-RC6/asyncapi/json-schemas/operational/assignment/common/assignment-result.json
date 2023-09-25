@@ -1,0 +1,57 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/common/assignment-result.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignmentResult",
+  "description": "Result of processing an assignment attempt",
+  "type": "object",
+  "required": [
+    "code"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "code": {
+      "$id": "#/properties/code",
+      "description": "Machine readable codes specifying results",
+      "type": "string",
+      "examples": [
+        "OK",
+        "BAD_REQUEST",
+        "INTERNAL_ERROR",
+        "NOT_IMPLEMENTED"
+      ]
+    },
+    "reason": {
+      "$id": "#/properties/reason",
+      "description": "Machine readable specifications of the code supplied. The list of examples might not be complete",
+      "type": "string",
+      "examples": [
+        "OK",
+        "TIMEOUT",
+        "ATTEMPT_EXPIRED",
+        "JOURNEY_NOT_FOUND",
+        "VEHICLE_TASK_NOT_FOUND",
+        "VEHICLE_ID_INVALID",
+        "API_VERSION_INVALID",
+        "ARRIVAL_DATE_TIME_INVALID",
+        "DEPARTURE_DATE_TIME_INVALID",
+        "SIGN_OFF_CODE_INVALID",
+        "SIGN_ON_CODE_INVALID",
+        "UPDATE_CODE_INVALID",
+        "ASSIGNED_ASSIGNMENT_NOT_FOUND"
+      ]
+    },
+    "description": {
+      "$id": "#/properties/description",
+      "description": "Human readable specification of the result",
+      "type": "string"
+    },
+    "details": {
+      "$id": "#/properties/details",
+      "description": "Details specifying the result",
+      "type": "array",
+      "items": {
+        "$ref": "assignment-result-details.json"
+      }
+    }
+  }
+}

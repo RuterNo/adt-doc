@@ -1,0 +1,27 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/attempt/request/common/assignment-attempt-update.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignmentAttemptUpdate",
+  "description": "Update an existing vehicle assignment. This operation requires an existing assigned assignment for the vehicle.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "code",
+    "serviceWindow"
+  ],
+  "properties": {
+    "code": {
+      "$id": "#/properties/code",
+      "description": "Specification of the update action requested.",
+      "type": "string",
+      "examples": [
+        "SHORTENING"
+      ]
+    },
+    "serviceWindow": {
+      "$id": "#/properties/serviceWindow",
+      "description": "First departure and last arrival",
+      "$ref": "../../../common/assignment-service-window.json"
+    }
+  }
+}
