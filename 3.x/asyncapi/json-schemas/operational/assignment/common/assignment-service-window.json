@@ -6,8 +6,7 @@
   "additionalProperties": true,
   "type": "object",
   "required": [
-    "firstDepartureDateTime",
-    "lastArrivalDateTime"
+    "firstDepartureDateTime"
   ],
   "properties": {
     "firstDepartureDateTime": {
