@@ -9,7 +9,7 @@
 
 This message should be interpreted as if the stop button, accessibility button or the stop was served by the vehicle.
 
-A corresponding message should be produced on `/sensors/stop_button` as normal, confirming that the stop signal lights was 
+A corresponding message should be produced on `/sensors/stop_button` as normal with the same `traceId` as received in this message, confirming that the stop signal lights was 
 lit and the vehicle actually served the stop. 
 
 Frequency: on change
