@@ -548,6 +548,8 @@ channels:
           $ref: json-schemas/sensors/stop-button/stop-button.json
         examples:
           - $ref: json-schemas/sensors/stop-button/stop-button-01.example.json
+          - $ref: json-schemas/sensors/stop-button/stop-button-02.example.json
+          - $ref: json-schemas/sensors/stop-button/stop-button-03.example.json
         bindings:
           mqtt:
             qos: 1
