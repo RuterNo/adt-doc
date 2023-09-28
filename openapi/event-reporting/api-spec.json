@@ -136,11 +136,8 @@
           "isOperatorExempt",
           "lineRef",
           "reason",
-          "reasonCategory",
-          "reasonSubcategory",
           "registeredAt",
           "registeredBy",
-          "registrationId",
           "startDateTime",
           "status",
           "subcategory",
@@ -153,12 +150,6 @@
             "type": "string",
             "description": "The traffic event number. Format: <registration-ID>-<sequence number>",
             "example": "123-1"
-          },
-          "registrationId": {
-            "type": "integer",
-            "description": "The ID of the traffic event registration that was submitted for this traffic event.",
-            "format": "int64",
-            "example": 123
           },
           "status": {
             "type": "string",
@@ -185,16 +176,6 @@
             "type": "string",
             "description": "The subcategory of the traffic event.",
             "example": "PARTIAL"
-          },
-          "reasonCategory": {
-            "type": "string",
-            "description": "The reason category of the traffic event. Inferred from `category`, `subcategory` and\n`reason`.\n",
-            "example": "TRAFFIC_CONDITIONS"
-          },
-          "reasonSubcategory": {
-            "type": "string",
-            "description": "The reason subcategory of the traffic event. Inferred from `category`, `subcategory`\nand `reason`.\n",
-            "example": "SLOW_TRAFFIC"
           },
           "reason": {
             "type": "string",
