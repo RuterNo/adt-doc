@@ -116,7 +116,7 @@ We recommend familiarizing your self with the MQTT standard, and recommends the 
 
 #### Installing the AsyncApi Generator
 ```
-npm install -g @asyncapi/generator
+npm install -g @asyncapi/generator@1.9.18
 ```
 
 #### Building the asyncApi documentation
