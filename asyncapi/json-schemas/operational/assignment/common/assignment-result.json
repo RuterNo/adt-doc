@@ -37,7 +37,9 @@
         "SIGN_OFF_CODE_INVALID",
         "SIGN_ON_CODE_INVALID",
         "UPDATE_CODE_INVALID",
-        "ASSIGNED_ASSIGNMENT_NOT_FOUND"
+        "ASSIGNED_ASSIGNMENT_NOT_FOUND",
+        "ASSIGNMENT_NOT_PRODUCED",
+        "ASSIGNMENT_UPDATED_BY_RUTER"
       ]
     },
     "description": {
