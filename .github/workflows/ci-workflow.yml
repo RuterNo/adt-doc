@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: '18.x'
       - run: npm install -g @asyncapi/generator@1.9.18
-      - run: ag asyncapi/asyncapi.yml @asyncapi/html-template -o docs/asyncapi --force-write
+      - run: ag asyncapi/asyncapi.yml @asyncapi/html-template@0.28.4 -o docs/asyncapi --force-write
 
       - name: Modify HTML output from generator
         run: |
@@ -48,4 +48,4 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git fetch origin gh-pages --depth=1
-      - run: mike deploy --push --update-aliases $RELEASE_NAME latest
+      - run: mike deploy --push $RELEASE_NAME
