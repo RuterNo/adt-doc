@@ -105,7 +105,7 @@ The vehicle has serviced all journeys in the assignment
 #### Sign Off - BREAKDOWN
 The vehicle has broken down, or in some way not capable of servicing the rest of the assignment
 #### Sign Off - CANCELLED
-Remaining not serviced stops/journeys in the assignment will not be serviced (by any vehicles).
+Remaining not serviced stops/journeys in the assignment will not be serviced (by the assigned vehicle).
 #### Sign Off - SHORTENING
 Same as `CANCELLED`
 #### Additional Sign Off codes used by RUTER
