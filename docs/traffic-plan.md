@@ -19,7 +19,8 @@ Vehicle tasks are found in the export by combining `Block` elements with the sam
 2. Verify that the vehicle tasks contains the same journeys.
    A journey is identified by:
     - Trip id (Norwegian: turnummer).
-      This is found in `ServiceJourney > KeyValue` with `Key` 'hastusIds'.
+      This is found in `ServiceJourney > KeyValue` with `Key` 'hastusIds' and a list of trip ids in `Value`.
+      Each element in the list is a separate journey that is part of a separate vehicle task.
     - lineRef
     - direction
 
