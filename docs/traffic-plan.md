@@ -15,17 +15,19 @@ The consistency of plan data can be done as follows:
 
 1. Verify that the vehicle tasks are the same.
 Vehicle tasks are found in the export by combining `Block` elements with the same `PrivateCode`.
+
 2. Verify that the vehicle tasks contains the same journeys.
-A journey is identified by:
-   - Trip id (Norwegian: turnummer).
-     This is found in `ServiceJourney > KeyValue` with `Key` 'hastusIds'.
-   - lineRef
-   - direction
+   A journey is identified by:
+    - Trip id (Norwegian: turnummer).
+      This is found in `ServiceJourney > KeyValue` with `Key` 'hastusIds'.
+    - lineRef
+    - direction
+
 3. Verify that the journeys are correct:
-   - start time
-   - end time
-   - correct stop places in the correct order.
-     (This is important to be able to sign on/off parts of journeys.)
+    - start time
+    - end time
+    - correct stop places in the correct order.
+      (This is important to be able to sign on/off parts of journeys.)
 
 ## Resources
 
