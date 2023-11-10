@@ -19,7 +19,7 @@ An `AssignmentAttemptRequest` can be made for:
 | SignOff | Signing a vehicle off from an assigned assignment                                             |
 | Update  | Altering an existing assigned assignment                                                      |
 
-- The message is composed of three operations (signOn, signOff, update). Only one operation will be processed per message reveived by Ruter. This gives that each message should only contain one operation. If the message contains more than one operation, the order of precedence is the following:
+- The message is composed of three operations (signOn, signOff, update). Only one operation will be processed per message received by Ruter. This gives that each message should only contain one operation. If the message contains more than one operation, the order of precedence is the following:
   1. signOn
   2. signOff
   3. update
@@ -82,8 +82,8 @@ An `AssignmentAttemptRequest` can be made for:
   - `serviceWindow`: Defines a time range for which journeys the vehicle should be signed on.
     The vehicle will be signed on to all the journeys in the vehicle task between provided times.
     Signed on journeys may be part of 1 or more `Block`s.
-    Times provided may belong to the same calendar date, or 2 consecutive dates
-    Attempts not containing valid date times for `firstDepartureDateTime` and `lastArrivalDateTimes` will be rejected. Resulting in `AssignmentState.assigned=false`
+    Times provided may belong to the same calendar date, or 2 consecutive dates.
+    Attempts not containing valid date times for `firstDepartureDateTime` and `lastArrivalDateTimes` will be rejected, resulting in `AssignmentState.assigned=false`
 
 ##### Sign On - PLANNED
 The vehicle will be signed on to service the pre-existing plans for the specified `serviceWindow`
