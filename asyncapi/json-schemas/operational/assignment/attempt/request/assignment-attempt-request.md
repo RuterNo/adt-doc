@@ -93,11 +93,9 @@ Used if additional vehicles are demanded to serve the pre-existing plans for the
 
 ##### Sign On - REPLACEMENT
 Used if another vehicle can not service parts of its assignment. 
-The other vehicle should be signed off using either `SHORTENING` or `BREAKDOWN`
-If the other vehicle is not signed off, RUTER will automatically try to sign it off using the custom code `REPLACED`
+The operator should sign off the other vehicle using either `SHORTENING` or `BREAKDOWN`.
 
-Any other vehicle not signed on as `EXTRA` will be automatically signed off. Alternatively, a sign off should be sent for 
-- `serviceWindow` is honoured as `PLANNED`
+_Note: Ruter will not sign off the other vehicle automatically._
 
 ### Sign Off
 #### Sign Off - FINISHED
@@ -106,7 +104,7 @@ The vehicle has serviced all journeys in the assignment
 The vehicle has broken down, or in some way not capable of servicing the rest of the assignment
 #### Sign Off - CANCELLED
 Remaining not serviced stops/journeys in the assignment will not be serviced (by the assigned vehicle).
-#### Sign Off - SHORTENING
+#### Sign Off - SHORTENING _(Deprecated)_
 Same as `CANCELLED`
 #### Additional Sign Off codes used by RUTER
 - `REPLACED`
@@ -123,7 +121,7 @@ Failed attempts will not affect the assignment state for a vehicle.
 
 ##### Example case for SHORTENING
 
-Given two journeys:
+Given an assignment (vehicle plan) with two journeys:
 ```
 Journey 1
 Quay 1 dep 2023-04-27T10:00Z
@@ -151,4 +149,15 @@ When SHORTENING
     }
 }
 ```
-Then; both visits at Quay 3 will be removed from the assignment. Effectively, the vehicle should turn around at Journey 1 Quay 2 and continue servicing Journey 2 from Quay 2
+Then; both visits at Quay 3 will be removed from the assignment.
+The resulting assignment will be:
+```
+Journey 1
+Quay 1 dep 2023-04-27T10:00Z
+Quay 2 arr 2023-04-27T10:01Z, dep 2023-04-27T10:01Z
+
+Journey 2
+Quay 2 arr 2023-04-27T10:04Z, dep 2023-04-27T10:04Z
+Quay 1 arr 2023-04-27T10:05Z
+```
+Effectively, the vehicle should turn around at Journey 1 Quay 2 and continue servicing Journey 2 from Quay 2
