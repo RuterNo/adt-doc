@@ -8,11 +8,11 @@
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.                |
 
 ### AssignmentOmitRequest Usage
-`operational/assignment/omit` follows the request/response pattern. When a `request` is made to the request topic, a `response` will be available at the response topic once Ruter has finished processing.
+`operational/assignment/omit` follows the request/response pattern. When a `request` is made to this topic, a `response` will be available at the [response topic](../response/assignment-omit-response.md) once Ruter has finished processing.
 
-- All omit request will get an omit response under the topic [assignment/omit/response](../response/assignment-omit-response.md)
+- All omit request will get an omit response under the [response topic](../response/assignment-omit-response.md)
 - Please provide all fields marked as `required` in the schema specifications.
-- Note that there is no vehicle involved in this exchange.
+- Note that there are no vehicles involved in this exchange.
 
 #### Omit - NO_INTENTION
 

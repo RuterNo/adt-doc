@@ -8,8 +8,8 @@
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.                |
 
 ### AssignmentAttemptRequest Usage
-`operational/assignment/attempt` follows the request/response/state pattern. When a `request` is made to the request topic, a `response` will be available at the response topic once Ruter has finished processing.
-In addition, if the `request` results in a change of `state`, the state topic will be updated to reflect the current state as seen by Ruter.
+Follows the request/response/state pattern. When a `request` is made to the request topic, a `response` will be available at the [response topic](../response/assignment-attempt-response.md) once Ruter has finished processing.
+In addition, if the `request` results in a change of `state`, the [status topic](../../status/assignment-status.md) will be updated to reflect the current state as seen by Ruter.
 
 An `AssignmentAttemptRequest` can be made for:
 
@@ -23,8 +23,8 @@ An `AssignmentAttemptRequest` can be made for:
   1. signOn
   2. signOff
   3. update
-- Attempt request will get an attempt response under the topic [assignment/attempt/response](../response/assignment-attempt-response.md)
-- Any request leading to a change of existing assignment state is reflected under the topic [assignment/state](../../status/assignment-status.md)
+- Attempt request will get an attempt response under the [response topic](../response/assignment-attempt-response.md)
+- Any request leading to a change of existing assignment state is reflected under the [status topic](../../status/assignment-status.md)
   - This topic will also be updated when Ruter has initiated any change to the existing assignment
 - Please provide all fields marked as `reqired` in the schema specifications.
 
@@ -76,7 +76,7 @@ An `AssignmentAttemptRequest` can be made for:
 - Any pre-existing assigned assignments will be signed off `AssignmentState.assigned=true`
 - If the attempt request succeeds, the vehicle will be assigned the new plan `AssignmentState.assigned=true`
 - If the attempt request fails, the state of the vehicle is `AssignmentState.assigned=false`
-  - The reason for failing will be available under the response topic [assignment/attempt/response](../response/assignment-attempt-response.md)
+  - The reason for failing will be available under the [response topic](../response/assignment-attempt-response.md)
 - All signOn-attempts require the fields `vehicleTaskId` and `serviceWindow`.
   - `vehicleTaskId`: Can be found in the common file in the NeTEx export under this path `VehicleScheduleFrame.blocks[].Block.PrivateCode`
   - `serviceWindow`: Defines a time range for which journeys the vehicle should be signed on.
