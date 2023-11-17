@@ -104,11 +104,9 @@ The vehicle has serviced all journeys in the assignment
 The vehicle has broken down, or in some way not capable of servicing the rest of the assignment
 #### Sign Off - CANCELLED
 Remaining not serviced stops/journeys in the assignment will not be serviced (by the assigned vehicle).
-#### Sign Off - SHORTENING _(Deprecated)_
+#### Sign Off - SHORTENING
 Same as `CANCELLED`
 #### Additional Sign Off codes used by RUTER
-- `REPLACED`
-  When a vehicle attempts a SignOn with the code `REPLACED`. Any other vehicle signed on to the same vehicle task and not marked as `EXTRA` will be automatically signed off with the code `REPLACED`.
 - `EXPIRED`
   Given a successfull signOn, if the vehicle is not signed off before two hours after the last planned arrival. The vehicle will be automatically signed off with the code `EXPIRED`.
 
