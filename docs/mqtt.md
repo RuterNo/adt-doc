@@ -21,6 +21,14 @@ Ruter operates a central MQTT broker that communicates with all the vehicles.
 
 All communication with the MQTT broker is encrypted during transport using TLS 1.2. 
 
+!!! info "MQTT Brokers "
+    To get access to the brokers, please reach out to [rdp-support@ruter.no](mailto:rdp-support@ruter.no).
+
+    | Environment | Hostname                   | Description                                                    |
+    |-------------|----------------------------|----------------------------------------------------------------|
+    | PROD        | **mqtt.transhub.io**       | Production environment.                                        |
+    | STAGE       | **mqtt.stage.transhub.io** | Test-environment. Used during PTO integration testing and CAT. | 
+
 ### MQTT bridge (On-board Vehicle)
 
 The operator is to maintain a MQTT bridge on board the vehicle. The MQTT bridge acts as a proxy and forwards requests back and forth between the vehicle and Ruter. 
@@ -98,6 +106,17 @@ topic active_cab OUT 1 pe/ ruter/{operator}/{vehicleid}/adt/v3/pe/
 Ruter reserves the right to update the topic configuration and content packages when it deems it necessary. 
 
 While the PTO is responsible for setting up the mqtt bridge configuration correctly according to the software running on the vehicle, Ruter provides an api listing all the topics that should be made available for the services on-board the vehicle. 
+
+!!! info "MQTT Topic configurations "
+    
+    | Environment | API version | Topic list                                                                             | Example config - Mosquitto 2.0                                                                         |
+    |-------------|-------------|----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+    | PROD        | ADT3        | [https://mqtt-api.transhub.io/v/adt3](https://mqtt-api.transhub.io/v/adt3)             | [https://mqtt-api.transhub.io/v/adt3/example](https://mqtt-api.transhub.io/v/adt3/example)             | 
+    | PROD        | ADT2        | [https://mqtt-api.transhub.io/v/adt2](https://mqtt-api.transhub.io/v/adt2)             | [https://mqtt-api.transhub.io/v/adt2/example](https://mqtt-api.transhub.io/v/adt2/example)             |
+    | PROD        | ADT1 / OTA  | [https://mqtt-api.transhub.io/v/adt1](https://mqtt-api.transhub.io/v/adt1)             | [https://mqtt-api.transhub.io/v/adt1/example](https://mqtt-api.transhub.io/v/adt1/example)             |
+    | STAGE       | ADT3        | [https://mqtt-api.stage.transhub.io/v/adt3](https://mqtt-api.stage.transhub.io/v/adt3) | [https://mqtt-api.stage.transhub.io/v/adt3/example](https://mqtt-api.stage.transhub.io/v/adt3/example) | 
+    | STAGE       | ADT2        | [https://mqtt-api.stage.transhub.io/v/adt2](https://mqtt-api.stage.transhub.io/v/adt2) | [https://mqtt-api.stage.transhub.io/v/adt2/example](https://mqtt-api.stage.transhub.io/v/adt2/example) |
+    | STAGE       | ADT1 / OTA  | [https://mqtt-api.stage.transhub.io/v/adt1](https://mqtt-api.stage.transhub.io/v/adt1) | [https://mqtt-api.stage.transhub.io/v/adt1/example](https://mqtt-api.stage.transhub.io/v/adt1/example) |
 
 A description of the process can be found in the document below: 
 - [MQTT topic updates](https://ruterno.github.io/ota-schemas/mqtt-updates/index.html)
