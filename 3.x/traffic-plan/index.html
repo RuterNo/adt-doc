@@ -474,6 +474,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#resources" class="md-nav__link">
     <span class="md-ellipsis">
       Resources
@@ -1165,6 +1174,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#resources" class="md-nav__link">
     <span class="md-ellipsis">
       Resources
@@ -1207,16 +1225,39 @@
 <h1 id="traffic-plan-export-api">Traffic plan export API<a class="headerlink" href="#traffic-plan-export-api" title="Permanent link">&para;</a></h1>
 <p>The API is used for syncing traffic plans between operators and Ruter. Operators can either use the exported traffic 
 plans directly for sign-on or compare their own traffic plans against the exported plans in order to find differences 
-that may lead to sign-on failing. </p>
-<div class="admonition note">
-<p class="admonition-title">comparing traffic plans</p>
-<p>The following script may be used as aid for comparing plans: 
-<a href="https://github.com/RuterNo/compare-traffic-plan">compare-traffic-plan</a></p>
-</div>
+that may lead to sign-on failing.</p>
 <h2 id="about-the-exports">About the exports<a class="headerlink" href="#about-the-exports" title="Permanent link">&para;</a></h2>
 <p>The traffic plans are exported in NeTEx format. Each export-file contains plans related to one contract within a time 
 period of 14 days. Each week new exports are generated and made available in the API. The exports have a version number 
 to differentiate between exports for the same contract.</p>
+<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<p>The consistency of plan data can be done as follows:</p>
+<ol>
+<li>
+<p>Verify that the vehicle tasks are the same.
+Vehicle tasks are found in the export by combining <code>Block</code> elements with the same <code>PrivateCode</code>.</p>
+</li>
+<li>
+<p>Verify that the vehicle tasks contains the same journeys.
+   A journey is identified by:</p>
+<ul>
+<li>Trip id (Norwegian: turnummer).
+  This is found in <code>ServiceJourney &gt; KeyValue</code> with <code>Key</code> 'hastusIds' and a list of trip ids in <code>Value</code>.
+  Each element in the list is a separate journey that is part of a separate vehicle task.</li>
+<li>lineRef</li>
+<li>direction</li>
+</ul>
+</li>
+<li>
+<p>Verify that the journeys are correct:</p>
+<ul>
+<li>start time</li>
+<li>end time</li>
+<li>correct stop places in the correct order.
+  (This is important to be able to sign on/off parts of journeys.)</li>
+</ul>
+</li>
+</ol>
 <h2 id="resources">Resources<a class="headerlink" href="#resources" title="Permanent link">&para;</a></h2>
 <p><a class="md-button" href="../openapi/trafficplan/" target="_blank">API Documentation</a></p>
 
