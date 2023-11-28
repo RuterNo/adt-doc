@@ -8,8 +8,8 @@
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.                |
 
 ### AssignmentAttemptRequest Usage
-`operational/assignment/attempt` follows the request/response/state pattern. When a `request` is made to the request topic, a `response` will be available at the response topic once Ruter has finished processing.
-In addition, if the `request` results in a change of `state`, the state topic will be updated to reflect the current state as seen by Ruter.
+Follows the request/response/state pattern. When a `request` is made to the request topic, a `response` will be available at the [response topic](../response/assignment-attempt-response.md) once Ruter has finished processing.
+In addition, if the `request` results in a change of `state`, the [status topic](../../status/assignment-status.md) will be updated to reflect the current state as seen by Ruter.
 
 An `AssignmentAttemptRequest` can be made for:
 
@@ -23,8 +23,8 @@ An `AssignmentAttemptRequest` can be made for:
   1. signOn
   2. signOff
   3. update
-- Attempt request will get an attempt response under the topic [assignment/attempt/response](../response/assignment-attempt-response.md)
-- Any request leading to a change of existing assignment state is reflected under the topic [assignment/state](../../status/assignment-status.md)
+- Attempt request will get an attempt response under the [response topic](../response/assignment-attempt-response.md)
+- Any request leading to a change of existing assignment state is reflected under the [status topic](../../status/assignment-status.md)
   - This topic will also be updated when Ruter has initiated any change to the existing assignment
 - Please provide all fields marked as `reqired` in the schema specifications.
 
@@ -76,7 +76,7 @@ An `AssignmentAttemptRequest` can be made for:
 - Any pre-existing assigned assignments will be signed off `AssignmentState.assigned=true`
 - If the attempt request succeeds, the vehicle will be assigned the new plan `AssignmentState.assigned=true`
 - If the attempt request fails, the state of the vehicle is `AssignmentState.assigned=false`
-  - The reason for failing will be available under the response topic [assignment/attempt/response](../response/assignment-attempt-response.md)
+  - The reason for failing will be available under the [response topic](../response/assignment-attempt-response.md)
 - All signOn-attempts require the fields `vehicleTaskId` and `serviceWindow`.
   - `vehicleTaskId`: Can be found in the common file in the NeTEx export under this path `VehicleScheduleFrame.blocks[].Block.PrivateCode`
   - `serviceWindow`: Defines a time range for which journeys the vehicle should be signed on.
@@ -93,11 +93,9 @@ Used if additional vehicles are demanded to serve the pre-existing plans for the
 
 ##### Sign On - REPLACEMENT
 Used if another vehicle can not service parts of its assignment. 
-The other vehicle should be signed off using either `SHORTENING` or `BREAKDOWN`
-If the other vehicle is not signed off, RUTER will automatically try to sign it off using the custom code `REPLACED`
+The operator should sign off the other vehicle using either `SHORTENING` or `BREAKDOWN`.
 
-Any other vehicle not signed on as `EXTRA` will be automatically signed off. Alternatively, a sign off should be sent for 
-- `serviceWindow` is honoured as `PLANNED`
+_Note: Ruter will not sign off the other vehicle automatically._
 
 ### Sign Off
 #### Sign Off - FINISHED
@@ -109,8 +107,6 @@ Remaining not serviced stops/journeys in the assignment will not be serviced (by
 #### Sign Off - SHORTENING
 Same as `CANCELLED`
 #### Additional Sign Off codes used by RUTER
-- `REPLACED`
-  When a vehicle attempts a SignOn with the code `REPLACED`. Any other vehicle signed on to the same vehicle task and not marked as `EXTRA` will be automatically signed off with the code `REPLACED`.
 - `EXPIRED`
   Given a successfull signOn, if the vehicle is not signed off before two hours after the last planned arrival. The vehicle will be automatically signed off with the code `EXPIRED`.
 
@@ -123,7 +119,7 @@ Failed attempts will not affect the assignment state for a vehicle.
 
 ##### Example case for SHORTENING
 
-Given two journeys:
+Given an assignment (vehicle plan) with two journeys:
 ```
 Journey 1
 Quay 1 dep 2023-04-27T10:00Z
@@ -151,4 +147,15 @@ When SHORTENING
     }
 }
 ```
-Then; both visits at Quay 3 will be removed from the assignment. Effectively, the vehicle should turn around at Journey 1 Quay 2 and continue servicing Journey 2 from Quay 2
+Then; both visits at Quay 3 will be removed from the assignment.
+The resulting assignment will be:
+```
+Journey 1
+Quay 1 dep 2023-04-27T10:00Z
+Quay 2 arr 2023-04-27T10:01Z, dep 2023-04-27T10:01Z
+
+Journey 2
+Quay 2 arr 2023-04-27T10:04Z, dep 2023-04-27T10:04Z
+Quay 1 arr 2023-04-27T10:05Z
+```
+Effectively, the vehicle should turn around at Journey 1 Quay 2 and continue servicing Journey 2 from Quay 2
