@@ -1348,6 +1348,31 @@ Ruter is an active member in the international standard committee.</p>
 Support for MQTT v3.1 will be removed at a later stage.</p>
 </blockquote>
 <p>All communication with the MQTT broker is encrypted during transport using TLS 1.2. </p>
+<div class="admonition info">
+<p class="admonition-title">MQTT Brokers </p>
+<p>To get access to the brokers, please reach out to <a href="mailto:rdp-support@ruter.no">rdp-support@ruter.no</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Environment</th>
+<th>Hostname</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PROD</td>
+<td><strong>mqtt.transhub.io</strong></td>
+<td>Production environment.</td>
+</tr>
+<tr>
+<td>STAGE</td>
+<td><strong>mqtt.stage.transhub.io</strong></td>
+<td>Test-environment. Used during PTO integration testing and CAT.</td>
+</tr>
+</tbody>
+</table>
+</div>
 <h3 id="mqtt-bridge-on-board-vehicle">MQTT bridge (On-board Vehicle)<a class="headerlink" href="#mqtt-bridge-on-board-vehicle" title="Permanent link">&para;</a></h3>
 <p>The operator is to maintain a MQTT bridge on board the vehicle. The MQTT bridge acts as a proxy and forwards requests back and forth between the vehicle and Ruter. </p>
 <p>To get access to the MQTT broker, you need to reach out to Ruter to be provided with credentials. </p>
@@ -1412,6 +1437,57 @@ Support for MQTT v3.1 will be removed at a later stage.</p>
 <h2 id="updating-configurations-and-dpi-content">Updating configurations and DPI content<a class="headerlink" href="#updating-configurations-and-dpi-content" title="Permanent link">&para;</a></h2>
 <p>Ruter reserves the right to update the topic configuration and content packages when it deems it necessary. </p>
 <p>While the PTO is responsible for setting up the mqtt bridge configuration correctly according to the software running on the vehicle, Ruter provides an api listing all the topics that should be made available for the services on-board the vehicle. </p>
+<div class="admonition info">
+<p class="admonition-title">MQTT Topic configurations </p>
+<table>
+<thead>
+<tr>
+<th>Environment</th>
+<th>API version</th>
+<th>Topic list</th>
+<th>Example config - Mosquitto 2.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PROD</td>
+<td>ADT3</td>
+<td><a href="https://mqtt-api.transhub.io/v/adt3">https://mqtt-api.transhub.io/v/adt3</a></td>
+<td><a href="https://mqtt-api.transhub.io/v/adt3/example">https://mqtt-api.transhub.io/v/adt3/example</a></td>
+</tr>
+<tr>
+<td>PROD</td>
+<td>ADT2</td>
+<td><a href="https://mqtt-api.transhub.io/v/adt2">https://mqtt-api.transhub.io/v/adt2</a></td>
+<td><a href="https://mqtt-api.transhub.io/v/adt2/example">https://mqtt-api.transhub.io/v/adt2/example</a></td>
+</tr>
+<tr>
+<td>PROD</td>
+<td>ADT1 / OTA</td>
+<td><a href="https://mqtt-api.transhub.io/v/adt1">https://mqtt-api.transhub.io/v/adt1</a></td>
+<td><a href="https://mqtt-api.transhub.io/v/adt1/example">https://mqtt-api.transhub.io/v/adt1/example</a></td>
+</tr>
+<tr>
+<td>STAGE</td>
+<td>ADT3</td>
+<td><a href="https://mqtt-api.stage.transhub.io/v/adt3">https://mqtt-api.stage.transhub.io/v/adt3</a></td>
+<td><a href="https://mqtt-api.stage.transhub.io/v/adt3/example">https://mqtt-api.stage.transhub.io/v/adt3/example</a></td>
+</tr>
+<tr>
+<td>STAGE</td>
+<td>ADT2</td>
+<td><a href="https://mqtt-api.stage.transhub.io/v/adt2">https://mqtt-api.stage.transhub.io/v/adt2</a></td>
+<td><a href="https://mqtt-api.stage.transhub.io/v/adt2/example">https://mqtt-api.stage.transhub.io/v/adt2/example</a></td>
+</tr>
+<tr>
+<td>STAGE</td>
+<td>ADT1 / OTA</td>
+<td><a href="https://mqtt-api.stage.transhub.io/v/adt1">https://mqtt-api.stage.transhub.io/v/adt1</a></td>
+<td><a href="https://mqtt-api.stage.transhub.io/v/adt1/example">https://mqtt-api.stage.transhub.io/v/adt1/example</a></td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>A description of the process can be found in the document below: 
 - <a href="https://ruterno.github.io/ota-schemas/mqtt-updates/index.html">MQTT topic updates</a></p>
 
