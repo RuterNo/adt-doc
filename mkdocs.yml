@@ -92,6 +92,7 @@ nav:
       - Data formats:
           - Time and Date: timestamps.md
       - Additional messages:
+          - TSP: tsp.md
           - SLA insight: insight.md
   - Vehicle setup:
       - MQTT bridge config: mqtt.md
