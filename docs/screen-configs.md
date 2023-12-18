@@ -6,7 +6,7 @@ These screens are accessible directly through a URL with following schema: `{Bas
 ## Overview of screen types
 
 | Id       | Content                                  | Aspect ratio | Optimal screen resolution (width x height) | Vehicle type   |
-|----------|------------------------------------------|--------------|--------------------------------------------|----------------|
+| -------- | ---------------------------------------- | ------------ | ------------------------------------------ | -------------- |
 | 1        | Vertical journey, Public Announcement    | 32:9         | 1920x540                                   | Bus            |
 | 2        | Horizontal journey                       | 48:9         | 1920x360                                   | Bus            |
 | 3        | Vertical journey                         | 16:9         | 1920x1080, 960x540                         | Bus            |
@@ -84,11 +84,7 @@ Active public announcements will replace journey.
 
 This configuration is used to display a horizontal view of the line, on a 32:9 display.
 
-!!! note "Draft!"
-    The visualization below is prone to change. This is not the finished product.
-
 ![Running state](assets/images/client/config/config-5-1.png)
-
 
 ### Assignment of screen config id for screens
 
@@ -97,8 +93,8 @@ General rule of thumb for assignment of configuration id:
 1. All 32:9 (1920x540) screens should usually be assigned config 1
 2. All 48:9 (1920x360) screen should always be assigned config 2
 3. All 16:9 (1920x1080 or 960x540) should always be assigned config 3, if any of these conditions are met:
-    1. This is the only screen on board
-    2. This screen is in front of the bus
+   1. This is the only screen on board
+   2. This screen is in front of the bus
 4. Screen config 4 is used for the _right_ screen when 2x 16:9 screens are horizontally aligned, facing the same way (cf. example 1). (For all other 16:9 screens, use config 3)
 5. Screen config 5 is used for the 32:9 screens are vertically aligned. (For all other 32:9 screens, use config 1)
 
