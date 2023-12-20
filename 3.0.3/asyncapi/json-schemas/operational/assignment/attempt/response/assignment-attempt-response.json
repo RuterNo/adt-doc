@@ -1,0 +1,36 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/attempt/response/assignment-attempt-response.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignmentAttemptResponse",
+  "description": "A response to an assignment attempt request",
+  "type": "object",
+  "required": [
+    "traceId",
+    "eventTimestamp",
+    "result"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)",
+      "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier - UUID"
+    },
+    "result": {
+      "$id": "#/properties/result",
+      "$ref": "../../common/assignment-result.json",
+      "description": "Result and specifications of the request"
+    },
+    "state": {
+      "$id": "#/properties/state",
+      "$ref": "../../common/assignment-state.json",
+      "description": "Assignment state as a result of the processed attempt. If the processed attempt did not change the state of the Assignment, this section removed from the response"
+    }
+  }
+}
