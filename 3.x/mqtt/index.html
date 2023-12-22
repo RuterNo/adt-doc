@@ -540,8 +540,6 @@
       
         
       
-        
-      
     
     
     
@@ -574,27 +572,6 @@
             Additional messages
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../tsp/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    TSP
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -792,21 +769,6 @@
       Updating configurations and DPI content
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Updating configurations and DPI content">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#additional-information" class="md-nav__link">
-    <span class="md-ellipsis">
-      Additional information
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1311,21 +1273,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Updating configurations and DPI content">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#additional-information" class="md-nav__link">
-    <span class="md-ellipsis">
-      Additional information
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -1465,7 +1412,7 @@ Support for MQTT v3.1 will be removed at a later stage.</p>
 <a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>topic active_cab OUT 1 pe/ ruter/{operator}/{vehicleid}/adt/v3/pe/
 </code></pre></div>
 <h2 id="updating-configurations-and-dpi-content">Updating configurations and DPI content<a class="headerlink" href="#updating-configurations-and-dpi-content" title="Permanent link">&para;</a></h2>
-<p>Ruter reserves the right to update the topic configuration and content packages when it deems it necessary.</p>
+<p>Ruter reserves the right to update the topic configuration and content packages when it deems it necessary. </p>
 <p>While the PTO is responsible for setting up the mqtt bridge configuration correctly according to the software running on the vehicle, Ruter provides an api listing all the topics that should be made available for the services on-board the vehicle. </p>
 <div class="admonition info">
 <p class="admonition-title">MQTT Topic configurations </p>
@@ -1518,9 +1465,6 @@ Support for MQTT v3.1 will be removed at a later stage.</p>
 </tbody>
 </table>
 </div>
-<p>These locations should be checked once daily, at a minimum, after 16.00 CET, which is our cutoff for changes for the day, Monday to Friday.
-It is expected that new bridge configurations should be available on all vehicles running in regular traffic after 05.00 CET the following day.</p>
-<h3 id="additional-information">Additional information<a class="headerlink" href="#additional-information" title="Permanent link">&para;</a></h3>
 <p>A description of the process can be found in the document below: 
 - <a href="https://ruterno.github.io/ota-schemas/mqtt-updates/index.html">MQTT topic updates</a></p>
 
