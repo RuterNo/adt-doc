@@ -17,6 +17,7 @@ These screens are accessible directly through a URL with following schema: `{Bas
 | t3       | Next stop / destination                  | 128:9        | 1920x285                                   | Tram (SL18)    |
 | b1       | Vertical journey                         | 16:9         | 1920x1080                                  | Ferry (Boreal) |
 | b2       | Next stop, sensors / Public Announcement | 16:9         | 1920x1080                                  | Ferry (Boreal) |
+| b3       | Next stop, Public Announcement           | 9:16         | 1080x1920                                  | Ferry (Norled) |
 
 \* These are approx. values and subject to change.
 
@@ -156,3 +157,9 @@ When there is no active media content playing, the screen will show information 
 - telemetry/01001016 - water temperature
 - telemetry/01001011 - temperature outside (ambient)
 - weather - wind data
+
+### Screen config b3
+
+Running state of config b3. Intended for screens in portrait mode showing journey on map, public announcements are shown.
+
+![B3](assets/images/client/config/config-b3-1.png)
