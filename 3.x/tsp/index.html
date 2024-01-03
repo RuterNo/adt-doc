@@ -12,13 +12,13 @@
         <meta name="author" content="Ruter AS">
       
       
-        <link rel="canonical" href="https://adt.transhub.io/3.x/insight/">
+        <link rel="canonical" href="https://adt.transhub.io/3.x/tsp/">
       
       
-        <link rel="prev" href="../tsp/">
+        <link rel="prev" href="../timestamps/">
       
       
-        <link rel="next" href="../mqtt/">
+        <link rel="next" href="../insight/">
       
       
       <link rel="icon" href="../assets/favicon-32x32.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>SLA insight - Ruters Digitale Plattform</title>
+        <title>TSP - Ruters Digitale Plattform</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sla-insight" class="md-skip">
+        <a href="#tsp-messages" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SLA insight
+              TSP
             
           </span>
         </div>
@@ -583,27 +583,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../tsp/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    TSP
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -620,7 +599,7 @@
           
   
   <span class="md-ellipsis">
-    SLA insight
+    TSP
   </span>
   
 
@@ -631,7 +610,7 @@
         
   
   <span class="md-ellipsis">
-    SLA insight
+    TSP
   </span>
   
 
@@ -653,85 +632,128 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#background" class="md-nav__link">
+  <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
-      Background
+      Summary
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#apis" class="md-nav__link">
+  <a href="#description-of-messages" class="md-nav__link">
     <span class="md-ellipsis">
-      APIs
+      Description of messages
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="APIs">
+    <nav class="md-nav" aria-label="Description of messages">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#display-status-v1" class="md-nav__link">
+  <a href="#vehicle-monitoring" class="md-nav__link">
     <span class="md-ellipsis">
-      Display status V1
+      Vehicle monitoring
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Display status V1">
+    <nav class="md-nav" aria-label="Vehicle monitoring">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#functional-description" class="md-nav__link">
+  <a href="#fields" class="md-nav__link">
     <span class="md-ellipsis">
-      Functional description
+      Fields
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#evaluation" class="md-nav__link">
+  <a href="#example-payload" class="md-nav__link">
     <span class="md-ellipsis">
-      Evaluation
+      Example payload
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#journey" class="md-nav__link">
+    <span class="md-ellipsis">
+      Journey
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Journey">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fields_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fields
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fields">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#link" class="md-nav__link">
+    <span class="md-ellipsis">
+      Link
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-payload_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example payload
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tsp-ack" class="md-nav__link">
+    <span class="md-ellipsis">
+      TSP ack
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TSP ack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fields_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fields
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#technical-description" class="md-nav__link">
+  <a href="#example-payload_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Technical description
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Technical description">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#payload-fields" class="md-nav__link">
-    <span class="md-ellipsis">
-      Payload fields
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Payload fields">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#display" class="md-nav__link">
-    <span class="md-ellipsis">
-      Display
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#specific-fault-messages" class="md-nav__link">
-    <span class="md-ellipsis">
-      Specific Fault Messages
+      Example payload
     </span>
   </a>
   
@@ -746,65 +768,13 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#json-schemas" class="md-nav__link">
     <span class="md-ellipsis">
-      Examples
+      JSON Schemas
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#topic-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Topic structure
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-1-vehicle-ok" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example 1 - vehicle OK
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-2-vehicle-fail" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example 2 - vehicle FAIL
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-3-on-dead-run" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example 3 - on dead-run
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -812,6 +782,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../insight/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SLA insight
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1343,85 +1334,128 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#background" class="md-nav__link">
+  <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
-      Background
+      Summary
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#apis" class="md-nav__link">
+  <a href="#description-of-messages" class="md-nav__link">
     <span class="md-ellipsis">
-      APIs
+      Description of messages
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="APIs">
+    <nav class="md-nav" aria-label="Description of messages">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#display-status-v1" class="md-nav__link">
+  <a href="#vehicle-monitoring" class="md-nav__link">
     <span class="md-ellipsis">
-      Display status V1
+      Vehicle monitoring
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Display status V1">
+    <nav class="md-nav" aria-label="Vehicle monitoring">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#functional-description" class="md-nav__link">
+  <a href="#fields" class="md-nav__link">
     <span class="md-ellipsis">
-      Functional description
+      Fields
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#evaluation" class="md-nav__link">
+  <a href="#example-payload" class="md-nav__link">
     <span class="md-ellipsis">
-      Evaluation
+      Example payload
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#journey" class="md-nav__link">
+    <span class="md-ellipsis">
+      Journey
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Journey">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fields_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fields
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fields">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#link" class="md-nav__link">
+    <span class="md-ellipsis">
+      Link
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-payload_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example payload
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tsp-ack" class="md-nav__link">
+    <span class="md-ellipsis">
+      TSP ack
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TSP ack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fields_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fields
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#technical-description" class="md-nav__link">
+  <a href="#example-payload_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Technical description
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Technical description">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#payload-fields" class="md-nav__link">
-    <span class="md-ellipsis">
-      Payload fields
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Payload fields">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#display" class="md-nav__link">
-    <span class="md-ellipsis">
-      Display
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#specific-fault-messages" class="md-nav__link">
-    <span class="md-ellipsis">
-      Specific Fault Messages
+      Example payload
     </span>
   </a>
   
@@ -1436,65 +1470,13 @@
     </nav>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#json-schemas" class="md-nav__link">
     <span class="md-ellipsis">
-      Examples
+      JSON Schemas
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Examples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#topic-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Topic structure
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-1-vehicle-ok" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example 1 - vehicle OK
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-2-vehicle-fail" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example 2 - vehicle FAIL
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example-3-on-dead-run" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example 3 - on dead-run
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1513,7 +1495,7 @@
                   
 
   
-    <a href="https://github.com/RuterNo/adt-doc/edit/master/docs/insight.md" title="Edit this page" class="md-content__button md-icon">
+    <a href="https://github.com/RuterNo/adt-doc/edit/master/docs/tsp.md" title="Edit this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
     </a>
@@ -1522,51 +1504,97 @@
     
       
     
-    <a href="https://github.com/RuterNo/adt-doc/raw/master/docs/insight.md" title="View source of this page" class="md-content__button md-icon">
+    <a href="https://github.com/RuterNo/adt-doc/raw/master/docs/tsp.md" title="View source of this page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
     </a>
   
 
 
-<h1 id="sla-insight">SLA Insight<a class="headerlink" href="#sla-insight" title="Permanent link">&para;</a></h1>
-<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
-<p>The PTO is the single entity being responsible for monitoring interfaces and equipment on board their own vehicles. The 
-APIs below should only be viewed as a supplement, and not a replacement of any monitoring solutions by the PTO.</p>
-<p>To provide some insights into what Ruter AS observes from our part, we have decided to share some insights into our 
-continuous monitoring systems. By observing these data, the PTOs have an additional tool to help them identify and resolve
-issues that may disrupt the customer experience on board their vehicle. </p>
-<h2 id="apis">APIs<a class="headerlink" href="#apis" title="Permanent link">&para;</a></h2>
-<h3 id="display-status-v1">Display status V1<a class="headerlink" href="#display-status-v1" title="Permanent link">&para;</a></h3>
-<h4 id="functional-description">Functional description<a class="headerlink" href="#functional-description" title="Permanent link">&para;</a></h4>
-<p>This application has been made to assist operators in identifying issues with their equipment.
-The original data source used here is the same as the one used by Ruter to calculate SLA for DPI displays. However, <strong>this API is not intended for calculating SLA breaches.</strong></p>
-<p>The application reports any change to display statuses as retained messages on MQTT. This way the last know status of the vehicle is available to the operator at any time.</p>
-<h4 id="evaluation">Evaluation<a class="headerlink" href="#evaluation" title="Permanent link">&para;</a></h4>
-<p>Based on data sent to the vehicle and DPI diagnostic messages received from the vehicle, the following things are checked:</p>
-<ul>
-<li>Are any displays running?</li>
-<li>Are the right number of displays running for the bus type?</li>
-<li>Are the displays running the right version of the DPI application?</li>
-<li>Are the displays showing the current route?</li>
-<li>Do the screens have client-side storage in browser? </li>
-<li>Is the screen resolution matched to the right display type?</li>
-</ul>
-<p>These are determined in the ComplianceCalculator class. It will evaluate all of these and produce the following compliance values:</p>
-<ul>
-<li><em>OK</em> - all tests have passed</li>
-<li><em>FAIL</em> - one or more test has failed</li>
-<li><em>NOT_IN_SERVICE</em> - the bus is on a dead run, so no compliance is required.</li>
-<li><em>UNKNOWN</em> - we don't know what journey the bus should be on so cannot evaluate compliance</li>
-</ul>
-<p><em>FAIL</em> is the only value that implies SLA non-compliance.</p>
-<p>Along with the overall Compliance value, a list of zero or more ComplianceFault values to explain the result. In addition, metadata is recorded so that the correctness of the Compliance value can be understood. This includes information about the current journey/route, counts of known and seen displays, and a list of displays from which we received heartbeats.</p>
-<h4 id="technical-description">Technical description<a class="headerlink" href="#technical-description" title="Permanent link">&para;</a></h4>
-<h5 id="payload-fields">Payload fields<a class="headerlink" href="#payload-fields" title="Permanent link">&para;</a></h5>
+<h1 id="tsp-messages">TSP Messages<a class="headerlink" href="#tsp-messages" title="Permanent link">&para;</a></h1>
+<p><strong>Version 1.0</strong></p>
+<p>The TSP messages (Transit Signal Priority) are used to communicate with BYMs signal priority solution.</p>
+<p>The messages are encoded as json payloads, and you can validate any payload by using the corresponding JSON schema 
+definition found in the corresponding <a href="#JSON-Schemas">JSON schema repository</a>.</p>
+<p>MQTT is used as the transport mechanism for all TSP messages. MQTT is a simple pub-sub based messaging protocol, that 
+works on top of TCP/IP as well as on websockets.</p>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>The following is a summary of the messages</p>
 <table>
 <thead>
 <tr>
-<th>Field</th>
+<th>Local topic</th>
+<th>Change</th>
+<th>Receiver</th>
+<th>Name</th>
+<th>Comments</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bym/ruter/[vehicleRef]/[Line]/vm/v1</td>
+<td>yes</td>
+<td>BYM</td>
+<td><a href="#Vehicle-monitoring">Vehicle monitoring</a></td>
+<td>added 'v1' in topicname</td>
+</tr>
+<tr>
+<td>bym/ruter/[vehicleRef]/journey/v1</td>
+<td>yes</td>
+<td>BYM</td>
+<td><a href="#Journey">Journey</a></td>
+<td>added 'v1' in topicname + added missing distanceMeter in journeyPattern</td>
+</tr>
+<tr>
+<td>ruter/bym/[vehicleRef]/tspack/v1</td>
+<td>yes</td>
+<td>Ruter</td>
+<td><a href="#TSP-ack">TSP ack</a></td>
+<td>added 'v1' in topicname</td>
+</tr>
+</tbody>
+</table>
+<h2 id="description-of-messages">Description of messages<a class="headerlink" href="#description-of-messages" title="Permanent link">&para;</a></h2>
+<h3 id="vehicle-monitoring">Vehicle monitoring<a class="headerlink" href="#vehicle-monitoring" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>Vehicle monitoring</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>bym/ruter/[vehicleRef]/[Line]/vm/v1</td>
+</tr>
+<tr>
+<td>qos</td>
+<td>0</td>
+</tr>
+<tr>
+<td>retained</td>
+<td>false</td>
+</tr>
+<tr>
+<td>frequency</td>
+<td>approx. 1/sec per vehicle</td>
+</tr>
+<tr>
+<td>Schema</td>
+<td>vehiclemonitoring.json</td>
+</tr>
+</tbody>
+</table>
+<h4 id="fields">Fields<a class="headerlink" href="#fields" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -1574,211 +1602,377 @@ The original data source used here is the same as the one used by Ruter to calcu
 <tbody>
 <tr>
 <td>eventTimestamp</td>
-<td>string.</td>
-<td>ISO-8601 format / UTC, the evaluation time</td>
+<td>string</td>
+<td>Timestamp of the event that triggered this message. ISO 8601 UTC.</td>
 </tr>
 <tr>
-<td>Compliance</td>
-<td>enumeration</td>
-<td>OK / FAIL / UNKNOWN / NOT_IN_SERVICE</td>
+<td>publishedTimestamp</td>
+<td>string</td>
+<td>Timestamp close to when the message was generated. ISO 8601 UTC.</td>
 </tr>
 <tr>
-<td>ComplianceFaults</td>
-<td>array of string</td>
-<td>List of faults, if any are detected, regardless of overall compliance. See list of possible strings in a later section</td>
+<td>traceId</td>
+<td>string</td>
+<td>trace-id of this message. UUID.</td>
 </tr>
 <tr>
-<td>JourneyStatus</td>
-<td>enumeration</td>
-<td>ON_SERVICE_JOURNEY / ON_DEAD_RUN / UNKNOWN. LatestJourneyId is evaluate to determine this value.</td>
+<td>vehicleRef</td>
+<td>string</td>
+<td>Reference of the vehicle. 17-character VIN or 8 character number.</td>
 </tr>
 <tr>
-<td>TotalDisplayCount</td>
+<td>offJourney</td>
+<td>boolean</td>
+<td>true if the vehicle is currently off the intended journey. In that case quayRef, distanceMeter, order and delaySeconds values will freeze</td>
+</tr>
+<tr>
+<td>journeyPatternRef</td>
+<td>string</td>
+<td>Reference to the journey pattern the vehicle is currently driving.</td>
+</tr>
+<tr>
+<td>quayRef</td>
+<td>string</td>
+<td>Reference to the quay that the vehicle is currently at or driving towards.</td>
+</tr>
+<tr>
+<td>order</td>
 <td>integer</td>
-<td>count of all client IDs that have been recorded since state has been recorded. (State will be reset after 4 hours of inactivity.)</td>
+<td>The order of the quay that the vehicle is currently at or driving towards</td>
 </tr>
 <tr>
-<td>ExpectedDisplayCount</td>
+<td>position</td>
+<td>geoJSON</td>
+<td>Location of of the vehicle, GeoJSON geometry object, type Point, WGS84</td>
+</tr>
+<tr>
+<td>distanceMeter</td>
+<td>number</td>
+<td>The distance driven towards the quay that the vehicle is currently at or driving towards. Note: approximate if odometer is missing</td>
+</tr>
+<tr>
+<td>occupancyPercent</td>
 <td>integer</td>
-<td>number of expected client IDs / displays for this vehicle. If incorrect, please contact: <code>rdp-support@ruter.no</code></td>
+<td>The occupancy of the bus delivered in percent.</td>
 </tr>
 <tr>
-<td>LiveDisplayCount</td>
+<td>delaySeconds</td>
 <td>integer</td>
-<td>count of displays sending heartbeat at evaluation time. These will be listed in the following item.</td>
+<td>The current delay of the vehicle compared to the plan</td>
 </tr>
 <tr>
-<td>Displays</td>
-<td>array of Display</td>
-<td>list of all displays sending heartbeat at evaluation time. See next section for definition of Display.</td>
+<td>doorsOpen</td>
+<td>boolean</td>
+<td>true if one or more doors are open</td>
 </tr>
 </tbody>
 </table>
-<h6 id="display">Display<a class="headerlink" href="#display" title="Permanent link">&para;</a></h6>
+<h4 id="example-payload">Example payload<a class="headerlink" href="#example-payload" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&quot;eventTimestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2019-10-15T09:06:10.285218Z&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">&quot;publishedTimestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2019-10-15T09:06:15.285218Z&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">&quot;traceId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;40634dfc-b8bc-44b5-9353-161ac0b0e80b&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">&quot;vehicleRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;XYZ0123X0X0123456&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">&quot;offJourney&quot;</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">&quot;journeyPatternRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;RUT:JourneyPattern:123&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">&quot;quayRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NSR:Quay:123&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">&quot;order&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">&quot;distanceMeter&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">32.5</span><span class="p">,</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">&quot;position&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="nt">&quot;coordinates&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">10.7522</span><span class="p">,</span><span class="w"> </span><span class="mf">59.9139</span><span class="p">]</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="nt">&quot;delaySeconds&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-10</span><span class="p">,</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="nt">&quot;doorsOpen&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="journey">Journey<a class="headerlink" href="#journey" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>Field</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>Journey</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>bym/ruter/[vehicleRef]/journey/v1</td>
+</tr>
+<tr>
+<td>qos</td>
+<td>1</td>
+</tr>
+<tr>
+<td>retained</td>
+<td>true</td>
+</tr>
+<tr>
+<td>frequency</td>
+<td>approx. 1/hour per vehicle</td>
+</tr>
+<tr>
+<td>Schema</td>
+<td>journey.json</td>
+</tr>
+</tbody>
+</table>
+<h4 id="fields_1">Fields<a class="headerlink" href="#fields_1" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>ClientId</td>
+<td>eventTimestamp</td>
 <td>string</td>
-<td>UUID generated and persisted on CPU unit running display</td>
+<td>Timestamp of the event that triggered this message. ISO 8601 UTC.</td>
 </tr>
 <tr>
-<td>DisplayId</td>
+<td>publishedTimestamp</td>
 <td>string</td>
-<td>Current configuration of display</td>
+<td>Timestamp close to when the message was generated. ISO 8601 UTC.</td>
 </tr>
 <tr>
-<td>RouteId</td>
-<td>string / null</td>
-<td>Route id reported by display. Found in local mqtt topic: <code>pe/dpi/journey</code>, field: <code>/route/id</code></td>
-</tr>
-<tr>
-<td>DPIVersion</td>
+<td>traceId</td>
 <td>string</td>
-<td>DPI version reported by display</td>
+<td>trace-id of this message. UUID.</td>
 </tr>
 <tr>
-<td>MediaVersion</td>
-<td>string / null</td>
-<td>Media package version reported by display</td>
+<td>vehicleRef</td>
+<td>string</td>
+<td>Reference of the vehicle. 17-character VIN or 8 character number.</td>
+</tr>
+<tr>
+<td>offDuty</td>
+<td>boolean</td>
+<td>true if the vehicle does not currently drive a journey. If true, journeyPatternRef, line and journeyPattern will be null</td>
+</tr>
+<tr>
+<td>journeyPatternRef</td>
+<td>string</td>
+<td>Reference to the journey pattern the vehicle is currently driving</td>
+</tr>
+<tr>
+<td>line</td>
+<td>string</td>
+<td>Line number</td>
+</tr>
+<tr>
+<td>destination</td>
+<td>string</td>
+<td>The name of the stopPlace of the last quay in journeyPattern</td>
+</tr>
+<tr>
+<td>journeyPattern</td>
+<td>array</td>
+<td>Array of Links (see below) The complete journeyPattern the vehicle is to drive</td>
 </tr>
 </tbody>
 </table>
-<h6 id="specific-fault-messages">Specific Fault Messages<a class="headerlink" href="#specific-fault-messages" title="Permanent link">&para;</a></h6>
+<h5 id="link">Link<a class="headerlink" href="#link" title="Permanent link">&para;</a></h5>
 <table>
 <thead>
 <tr>
-<th>Code</th>
+<th>Name</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>DATA_OUT_OF_SYNC</td>
-<td>all displays have incorrect route</td>
+<td>order</td>
+<td>integer</td>
+<td>The order of the stop</td>
 </tr>
 <tr>
-<td>DATA_PARTLY_IN_SYNC</td>
-<td>some displays have incorrect route</td>
+<td>quayRef</td>
+<td>string</td>
+<td>Reference to the quay of the stop</td>
 </tr>
 <tr>
-<td>NO_LIVE_DISPLAYS</td>
-<td>n live = 0</td>
+<td>distanceMeter</td>
+<td>number</td>
+<td>The distance the vehicle intend to drive towards this stop</td>
 </tr>
 <tr>
-<td>DISPLAYS_MISSING</td>
-<td>expect n live, found n &lt; expected, but n &gt; 0</td>
-</tr>
-<tr>
-<td>TOO_MANY_DISPLAYS</td>
-<td>expect n live, found n&gt; expected</td>
-</tr>
-<tr>
-<td>NO_PERSISTENCE_FEATURE</td>
-<td>when some displays missing, assume no persistence</td>
-</tr>
-<tr>
-<td>VERSION_NOT_UPGRADED</td>
-<td>all displays are out of date</td>
-</tr>
-<tr>
-<td>VERSION_INCOMPLETE_UPGRADE</td>
-<td>some displays are out of date</td>
-</tr>
-<tr>
-<td>NO_MESSAGES_FROM_BUS</td>
-<td>no MQTT messages were received (including position)</td>
-</tr>
-<tr>
-<td>MISCONFIGURED_DISPLAYS</td>
-<td>all displays are misconfigured</td>
-</tr>
-<tr>
-<td>PARTLY_MISCONFIGURED_DISPLAYS</td>
-<td>some displays are misconfigured</td>
+<td>lineString</td>
+<td>geoJSON</td>
+<td>The line the vehicle intend to drive. GeoJSON geometry object, type LineString, WGS84</td>
 </tr>
 </tbody>
 </table>
-<h4 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h4>
-<h5 id="topic-structure">Topic structure<a class="headerlink" href="#topic-structure" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>{operator}/ruter/{vehicleId}/pe/sla/displays/v1
+<h4 id="example-payload_1">Example payload<a class="headerlink" href="#example-payload_1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">  </span><span class="nt">&quot;eventTimestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2019-10-15T09:06:10.285218Z&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;publishedTimestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2019-10-15T09:06:15.285218Z&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">&quot;traceId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;40634dfc-b8bc-44b5-9353-161ac0b0e80b&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">&quot;vehicleRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;XYZ0123X0X0123456&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">&quot;offDuty&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">&quot;journeyPatternRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;RUT:JourneyPattern:123&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">&quot;line&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;36E&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">&quot;destination&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Oslo Bussterminal&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">&quot;journeyPattern&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">      </span><span class="nt">&quot;order&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">      </span><span class="nt">&quot;quayRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NSR:Quay:123&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">      </span><span class="nt">&quot;distanceMeter&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">      </span><span class="nt">&quot;lineString&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LineString&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">        </span><span class="nt">&quot;coordinates&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">[[</span><span class="mf">10.7522</span><span class="p">,</span><span class="w"> </span><span class="mf">59.9139</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">10.7522</span><span class="p">,</span><span class="w"> </span><span class="mf">59.9139</span><span class="p">]]</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="p">},</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">      </span><span class="nt">&quot;order&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">      </span><span class="nt">&quot;quayRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NSR:Quay:1234&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">      </span><span class="nt">&quot;distanceMeter&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">100.7</span><span class="p">,</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">      </span><span class="nt">&quot;lineString&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;LineString&quot;</span><span class="p">,</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">        </span><span class="nt">&quot;coordinates&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">[[</span><span class="mf">10.7522</span><span class="p">,</span><span class="w"> </span><span class="mf">59.9139</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">10.7522</span><span class="p">,</span><span class="w"> </span><span class="mf">59.9139</span><span class="p">]]</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">  </span><span class="p">]</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="p">}</span>
 </code></pre></div>
-<h5 id="example-1-vehicle-ok">Example 1 - vehicle OK<a class="headerlink" href="#example-1-vehicle-ok" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>{
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  &quot;eventTimestamp&quot;: &quot;2022-01-24T15:46:00Z&quot;,
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  &quot;compliance&quot;: &quot;OK&quot;,
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  &quot;complianceFaults&quot;: [],
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  &quot;journeyStatus&quot;: &quot;ON_SERVICE_JOURNEY&quot;,
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  &quot;totalDisplayCount&quot;: 4,
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>  &quot;expectedDisplayCount&quot;: 4,
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>  &quot;liveDisplayCount&quot;: 4,
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>  &quot;displays&quot;: [
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    {
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>      &quot;clientId&quot;: &quot;d1d8b91d3a137x4c567a5c&quot;,
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>      &quot;displayId&quot;: &quot;1&quot;,
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>      &quot;routeId&quot;: &quot;RUT:Route:110-58&quot;,
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>      &quot;dpiVersion&quot;: &quot;2022-01-17T12:17:31Z&quot;,
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>      &quot;mediaVersion&quot;: &quot;2021-12-27T09:41:00Z&quot;
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    },
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    {
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>      &quot;clientId&quot;: &quot;f4d2205br6c8ai4d0eO910&quot;,
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>      &quot;displayId&quot;: &quot;2&quot;,
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>      &quot;routeId&quot;: &quot;RUT:Route:110-58&quot;,
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>      &quot;dpiVersion&quot;: &quot;2022-01-17T12:17:31Z&quot;,
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>      &quot;mediaVersion&quot;: &quot;2021-12-27T09:41:00Z&quot;
-<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>    },
-<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>    {
-<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>      &quot;clientId&quot;: &quot;7cbc2125l5c12E43049a94&quot;,
-<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>      &quot;displayId&quot;: &quot;3&quot;,
-<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>      &quot;routeId&quot;: &quot;RUT:Route:110-58&quot;,
-<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>      &quot;dpiVersion&quot;: &quot;2022-01-17T12:17:31Z&quot;,
-<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>      &quot;mediaVersion&quot;: &quot;2021-12-27T09:41:00Z&quot;
-<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>    },
-<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>    {
-<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>      &quot;clientId&quot;: &quot;9d2fc206ld7b8x42ebga04&quot;,
-<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>      &quot;displayId&quot;: &quot;4&quot;,
-<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>      &quot;routeId&quot;: &quot;RUT:Route:110-58&quot;,
-<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>      &quot;dpiVersion&quot;: &quot;2022-01-17T12:17:31Z&quot;,
-<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>      &quot;mediaVersion&quot;: &quot;2021-12-27T09:41:00Z&quot;
-<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>    }
-<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>  ]
-<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>}
+<p>offDuty example:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;eventTimestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2019-10-15T09:06:10.285218Z&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;publishedTimestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2019-10-15T09:06:15.285218Z&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">&quot;traceId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;40634dfc-b8bc-44b5-9353-161ac0b0e80b&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">&quot;vehicleRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;XYZ0123X0X0123456&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nt">&quot;offDuty&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nt">&quot;journeyPatternRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="nt">&quot;line&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="nt">&quot;destination&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="nt">&quot;journeyPattern&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">}</span>
+</code></pre></div></p>
+<h3 id="tsp-ack">TSP ack<a class="headerlink" href="#tsp-ack" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>TSP ack</td>
+</tr>
+<tr>
+<td>topic</td>
+<td>ruter/bym/[vehicleRef]/tspack/v1</td>
+</tr>
+<tr>
+<td>qos</td>
+<td>0</td>
+</tr>
+<tr>
+<td>retained</td>
+<td>false</td>
+</tr>
+<tr>
+<td>frequency</td>
+<td>approx. 1/min per vehicle?</td>
+</tr>
+<tr>
+<td>Schema</td>
+<td>tspack.json</td>
+</tr>
+</tbody>
+</table>
+<h4 id="fields_2">Fields<a class="headerlink" href="#fields_2" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eventTimestamp</td>
+<td>string</td>
+<td>Timestamp of the event that triggered this message. ISO 8601 UTC.</td>
+</tr>
+<tr>
+<td>publishedTimestamp</td>
+<td>string</td>
+<td>Timestamp close to when the message was generated. ISO 8601 UTC.</td>
+</tr>
+<tr>
+<td>traceId</td>
+<td>string</td>
+<td>trace-id of this message. UUID.</td>
+</tr>
+<tr>
+<td>vehicleRef</td>
+<td>string</td>
+<td>Reference of the vehicle. 17-character VIN or 8 character number.</td>
+</tr>
+<tr>
+<td>line</td>
+<td>string</td>
+<td>Line number</td>
+</tr>
+<tr>
+<td>journeyPatternRef</td>
+<td>string</td>
+<td>Reference to the journey pattern the vehicle is currently driving.</td>
+</tr>
+<tr>
+<td>signalRef</td>
+<td>string</td>
+<td>Reference to the signal that was triggered</td>
+</tr>
+<tr>
+<td>signalName</td>
+<td>string</td>
+<td>Name of the signal/crossroads</td>
+</tr>
+<tr>
+<td>signalPosition</td>
+<td>geoJson</td>
+<td>Coordinates of the signal that was triggered, as defined by GeoJson type Point: [longitude, latitude]</td>
+</tr>
+<tr>
+<td>priorityLevel</td>
+<td>string</td>
+<td>What priority was given</td>
+</tr>
+</tbody>
+</table>
+<h4 id="example-payload_2">Example payload<a class="headerlink" href="#example-payload_2" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;eventTimestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2019-10-15T09:06:10.285218Z&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">&quot;publishedTimestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2019-10-15T09:06:15.285218Z&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">&quot;traceId&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;40634dfc-b8bc-44b5-9353-161ac0b0e80b&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">&quot;vehicleRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;XYZ0123X0X0123456&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">  </span><span class="nt">&quot;line&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;36E&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="nt">&quot;journeyPatternRef&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;RUT:JourneyPattern:123&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="nt">&quot;triggerPointRef&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;?&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="nt">&quot;triggerPointName&quot;</span><span class="p">:</span><span class="w">  </span><span class="s2">&quot;?&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="nt">&quot;triggerPointPosition&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Point&quot;</span><span class="p">,</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="nt">&quot;coordinates&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mf">10.7522</span><span class="p">,</span><span class="w"> </span><span class="mf">59.9139</span><span class="p">]</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">  </span><span class="nt">&quot;priorityLevel&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;?&quot;</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="p">}</span>
 </code></pre></div>
-<h5 id="example-2-vehicle-fail">Example 2 - vehicle FAIL<a class="headerlink" href="#example-2-vehicle-fail" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>{
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  &quot;eventTimestamp&quot;: &quot;2022-01-24T16:12:00Z&quot;,
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  &quot;compliance&quot;: &quot;FAIL&quot;,
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  &quot;complianceFaults&quot;: [
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    &quot;NO_LIVE_DISPLAYS&quot;
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  ],
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  &quot;journeyStatus&quot;: &quot;ON_SERVICE_JOURNEY&quot;,
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>  &quot;totalDisplayCount&quot;: 3,
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>  &quot;expectedDisplayCount&quot;: 3,
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>  &quot;liveDisplayCount&quot;: 0,
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>  &quot;displays&quot;: []
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>}
-</code></pre></div>
-<h5 id="example-3-on-dead-run">Example 3 - on dead-run<a class="headerlink" href="#example-3-on-dead-run" title="Permanent link">&para;</a></h5>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>{
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  &quot;eventTimestamp&quot;: &quot;2022-01-24T16:02:00Z&quot;,
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>  &quot;compliance&quot;: &quot;NOT_IN_SERVICE&quot;,
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>  &quot;complianceFaults&quot;: [
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    &quot;NO_LIVE_DISPLAYS&quot;
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>  ],
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>  &quot;journeyStatus&quot;: &quot;ON_DEAD_RUN&quot;,
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>  &quot;totalDisplayCount&quot;: 4,
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>  &quot;expectedDisplayCount&quot;: 4,
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>  &quot;liveDisplayCount&quot;: 0,
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>  &quot;displays&quot;: []
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>}
-</code></pre></div>
+<h2 id="json-schemas">JSON Schemas<a class="headerlink" href="#json-schemas" title="Permanent link">&para;</a></h2>
+<p>Link to JSON schemas and examples for all messages:
+* <a href="https://github.com/RuterNo/tsp-mqtt-schemas">TSP MQTT schemas</a></p>
+<p><em>Notice</em> The schemas are of version 0.7 of the JSON Schema standard, which is still under development. For more information, see:
+<a href="https://json-schema.org/specification.html">https://json-schema.org</a></p>
 
 
 
@@ -1814,7 +2008,7 @@ The original data source used here is the same as the one used by Ruter to calcu
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../tsp/" class="md-footer__link md-footer__link--prev" aria-label="Previous: TSP">
+          <a href="../timestamps/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Time and Date">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -1824,20 +2018,20 @@ The original data source used here is the same as the one used by Ruter to calcu
                 Previous
               </span>
               <div class="md-ellipsis">
-                TSP
+                Time and Date
               </div>
             </div>
           </a>
         
         
           
-          <a href="../mqtt/" class="md-footer__link md-footer__link--next" aria-label="Next: MQTT bridge config">
+          <a href="../insight/" class="md-footer__link md-footer__link--next" aria-label="Next: SLA insight">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                MQTT bridge config
+                SLA insight
               </div>
             </div>
             <div class="md-footer__button md-icon">
