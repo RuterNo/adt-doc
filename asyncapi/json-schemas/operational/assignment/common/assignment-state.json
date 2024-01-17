@@ -39,6 +39,7 @@
     "blockId": {
       "$id": "#/properties/blockId",
       "description": "The assigned block if the vehicle is assigned",
+      "deprecationMessage": "BlockId makes no sense as, the journeys in this assignment might span several blocks - This field will not be populated.",
       "type": "string"
     },
     "operatingDate": {
