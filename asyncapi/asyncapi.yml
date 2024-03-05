@@ -202,7 +202,6 @@ channels:
         examples:
           - $ref: json-schemas/sensors/telemetry/telemetry-charger-01.example.json
           - $ref: json-schemas/sensors/telemetry/telemetry-temperature-indoor-01.example.json
-          - $ref: json-schemas/sensors/telemetry/telemetry-temperature-indoor-02.example.json
           - $ref: json-schemas/sensors/telemetry/telemetry-soc-01.example.json
           - $ref: json-schemas/sensors/telemetry/telemetry-transmission-mode-01.example.json
           - $ref: json-schemas/sensors/telemetry/telemetry-windscreen-wiper-active-01.example.json

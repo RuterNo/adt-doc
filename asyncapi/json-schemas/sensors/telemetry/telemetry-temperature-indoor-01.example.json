@@ -11,6 +11,24 @@
         "name": "Temperature indoor average",
         "unit": "C",
         "value": 18.1
+      },
+      {
+        "subid": "tempfront",
+        "name": "Temperature indoor front",
+        "unit": "C",
+        "value": 18.2
+      },
+      {
+        "subid": "tempmiddle",
+        "name": "Temperature indoor middle",
+        "unit": "C",
+        "value": 18.1
+      },
+      {
+        "subid": "temprear",
+        "name": "Temperature indoor rear",
+        "unit": "C",
+        "value": 18.4
       }
     ]
   }

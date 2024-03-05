@@ -9,46 +9,55 @@
       {
         "subid": "xmin",
         "name": "Min x value last interval",
+        "unit": "g",
         "value": 0.1
       },
       {
         "subid": "xmax",
         "name": "Max x value last interval",
+        "unit": "g",
         "value": 0.2
       },
       {
         "subid": "xavg",
         "name": "Average x value last interval",
+        "unit": "g",
         "value": 0.15
       },
       {
         "subid": "ymin",
         "name": "Min y value last interval",
+        "unit": "g",
         "value": -0.1
       },
       {
         "subid": "ymax",
         "name": "Max y value last interval",
+        "unit": "g",
         "value": 0.2
       },
       {
         "subid": "yavg",
         "name": "Average y value last interval",
+        "unit": "g",
         "value": 0.1
       },
       {
         "subid": "zmin",
         "name": "Min z value last interval",
+        "unit": "g",
         "value": 0.01
       },
       {
         "subid": "zmax",
         "name": "Max z value last interval",
+        "unit": "g",
         "value": 0.03
       },
       {
         "subid": "zavg",
         "name": "Average z value last interval",
+        "unit": "g",
         "value": 0.02
       }
     ]
