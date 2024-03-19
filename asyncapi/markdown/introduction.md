@@ -33,14 +33,18 @@ All data must be JSON and UTF-8 encoded.
 
 The diagram below shows an overview of the most important messages that manage the assignment and journey of a vehicle.
 
+<!--
 ```mermaid
 sequenceDiagram
-    Vehicle ->> Ruter: 1. SignOn
+    Vehicle ->> Ruter: 1. Signon
     Ruter ->> Vehicle: 2. MADT
     Vehicle ->> Ruter: 3. Location
     Ruter ->> Vehicle: 4. Journey
     Ruter ->> Vehicle: 5. ExternalDisplay
 ```
+-->
+
+![Overview of important messages](../images/Overview-1.x.png)
 
 1. The vehicle signs on
 2. Ruter sends a textual message with the status of the signon to the vehicle
