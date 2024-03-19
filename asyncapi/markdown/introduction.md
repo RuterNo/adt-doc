@@ -44,8 +44,8 @@ sequenceDiagram
 
 1. The vehicle signs on
 2. Ruter sends a response with the status of the signon
-3. Based on the location of the vehicle, Ruter calculates the current journey and stop of the vehicle.
-4. Ruter updates the Journey 
+3. Based on the location of the vehicle, Ruter calculates which journey in the assignment the vehicle is on, which stop it is going to next, etc.
+4. Ruter sends the current journey to the vehicle 
 5. Ruter changes external display
 
 ### More info
