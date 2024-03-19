@@ -29,6 +29,63 @@ All topic names must thus be rewritten local/global in the MQTT bridge according
 #### Data format
 All data must be JSON and UTF-8 encoded.
 
+### Overview
+
+The diagram below shows an overview of the most important messages that manage the change assignment and journey for a vehicle.
+
+```mermaid
+sequenceDiagram
+    Vehicle ->> Ruter: 1. AssignmentAttemptRequest signOn
+    Ruter ->> Vehicle: 2. AssignmentAttemptResponse
+    Vehicle ->> Ruter: 3. Location
+    Ruter ->> Vehicle: 4. Journey
+    Ruter ->> Vehicle: 5. ExternalDisplay
+```
+
+1. The vehicle signs on
+2. Ruter sends a response with the status of the signon
+3. Based on the location of the vehicle, Ruter calculates the current journey and stop of the vehicle.
+4. Ruter updates the Journey 
+5. Ruter changes external display
+
+### --- FLYTTES TIL 1.x ---
+
+The diagram below shows an overview of the most important messages that manage the change assignment and journey for a vehicle.
+
+```mermaid
+sequenceDiagram
+    Vehicle ->> Ruter: 1. SignOn
+    Ruter ->> Vehicle: 2. MADT
+    Vehicle ->> Ruter: 3. Location
+    Ruter ->> Vehicle: 4. Journey
+    Ruter ->> Vehicle: 5. ExternalDisplay
+```
+
+1. The vehicle signs on
+2. Ruter sends a textual response with the status of the signon
+3. Based on the location of the vehicle, Ruter calculates the current journey and stop of the vehicle.
+4. Ruter updates the Journey
+5. Ruter changes external display
+
+### --- FLYTTES TIL 2.x ---
+
+The diagram below shows an overview of the most important messages that manage the change assignment and journey for a vehicle.
+
+```mermaid
+sequenceDiagram
+    Vehicle ->> Ruter: 1. SignOn request
+    Ruter ->> Vehicle: 2. Signon response
+    Vehicle ->> Ruter: 3. Location
+    Ruter ->> Vehicle: 4. Journey
+    Ruter ->> Vehicle: 5. ExternalDisplay
+```
+
+1. The vehicle signs on
+2. Ruter sends a response with the status of the signon
+3. Based on the location of the vehicle, Ruter calculates the current journey and stop of the vehicle.
+4. Ruter updates the Journey
+5. Ruter changes external display
+
 ### More info
 For more information, please go to: [Ruter’s ADT agreement](https://ruter.atlassian.net/wiki/spaces/DS/pages/231178249/Avtale+om+Digitale+Tjenester "https://ruter.atlassian.net/wiki/spaces/DS/pages/231178249/Avtale+om+Digitale+Tjenester").
 
