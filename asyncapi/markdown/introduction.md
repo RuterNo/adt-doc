@@ -29,5 +29,25 @@ All topic names must thus be rewritten local/global in the MQTT bridge according
 #### Data format
 All data must be JSON and UTF-8 encoded.
 
+### Overview
+
+The diagram below shows an overview of the most important messages that manage the assignment and journey of a vehicle.
+
+```mermaid
+sequenceDiagram
+    Vehicle ->> Ruter: 1. SignOn
+    Ruter ->> Vehicle: 2. MADT
+    Vehicle ->> Ruter: 3. Location
+    Ruter ->> Vehicle: 4. Journey
+    Ruter ->> Vehicle: 5. ExternalDisplay
+```
+
+1. The vehicle signs on
+2. Ruter sends a textual message with the status of the signon to the vehicle
+3. Based on the location of the vehicle, Ruter calculates which journey in the assignment the vehicle is on, which stop it is going to next, etc.
+4. If the position matches a journey in the assignmment, Ruter sends a journey message to the vehicle,
+5. ...and Ruter changes external display
+
+
 ### Comments or suggestions
 Please open an issue here: [ADT-DOC Issues](https://github.com/RuterNo/adt-doc/issues) 
