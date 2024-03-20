@@ -30,7 +30,7 @@ jobs:
           sudo sed -i 's/version\.from\.tag/'"$RELEASE_NAME"'/g' docs/asyncapi/index.html
           sudo cp asyncapi/stylesheets/doc.css docs/asyncapi/css/
           sudo mkdir docs/asyncapi/images/
-          sudo cp asyncapi/images/* docs/asyncapi/images/
+          sudo cp asyncapi/markdown/images/* docs/asyncapi/images/
           sudo sed -i -e '\@</head>@i\<link href="css/doc.css" rel="stylesheet">' docs/asyncapi/index.html
         shell: bash
 
