@@ -592,7 +592,7 @@ channels:
           mqtt:
             qos: 1
             retain: true
-  infohub/madt/notification/json:
+  itxpt/ota/madt/notification/json:
     description:
       $ref: 'markdown/madt-notification.md'
     subscribe:
