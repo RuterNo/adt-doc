@@ -33,6 +33,9 @@ All data must be JSON and UTF-8 encoded.
 
 The diagram below shows an overview of the most important messages that manage the assignment and journey of a vehicle.
 
+![Overview of important messages](images/Overview-3.x.png)
+
+<!-- Source:
 ```mermaid
 sequenceDiagram
     Vehicle ->> Ruter: 1. AssignmentAttemptRequest signOn
@@ -41,6 +44,7 @@ sequenceDiagram
     Ruter ->> Vehicle: 4. Journey
     Ruter ->> Vehicle: 5. ExternalDisplay
 ```
+-->
 
 1. The vehicle signs on
 2. Ruter sends a response with the status of the signon
