@@ -1,0 +1,64 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/sensors/telemetry/telemetry.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Telemetry",
+  "type": "object",
+  "required": [
+    "eventTimestamp",
+    "traceId",
+    "id",
+    "payloads"
+  ],
+  "description": "",
+  "additionalProperties": true,
+  "properties": {
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "$comment": "Added in version 2.5",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message. Also used to detect duplicate messages received."
+    },
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)."
+    },
+    "messageNumber": {
+      "$id": "#/properties/messageNumber",
+      "$comment": "Added in version 2.1",
+      "type": "number",
+      "description": "Sequence number, increased by one for each new message. Used to validate consistency in the data stream."
+    },
+    "id": {
+      "$id": "#/properties/id",
+      "type": "string",
+      "description": "Eight digit hex as defined above."
+    },
+    "payloads": {
+      "$id": "#/properties/payloads",
+      "type": "array",
+      "description": "",
+      "items": {
+        "type": "object",
+        "required": ["value"],
+        "properties": {
+          "subid": {
+            "type": "string",
+            "description": "Subid is used to identify the payload when there is more than one possible type of payload."
+          },
+          "name": {
+            "type": "string",
+            "description": "Descriptive name of the payload"
+          },
+          "unit": {
+            "type": "string",
+            "description": "Unit used by the sensor. Only used for number values"
+          },
+          "value": {
+            "description": "The value is expected to be a number, boolean, or string."
+          }
+        }
+      }
+    }
+  }
+}

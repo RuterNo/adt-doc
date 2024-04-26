@@ -1,0 +1,35 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/attempt/request/common/assignment-attempt-sign-on.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignmentAttemptSignOn",
+  "description": "Attempt to sign the vehicle on to a specified plan.",
+  "additionalProperties": true,
+  "type": "object",
+  "required": [
+    "code",
+    "vehicleTaskId",
+    "serviceWindow"
+  ],
+  "properties": {
+    "code": {
+      "$id": "#/properties/code",
+      "description": "Specification of the reason why the vehicle should be signed on.",
+      "type": "string",
+      "examples": [
+        "PLANNED",
+        "EXTRA",
+        "REPLACEMENT"
+      ]
+    },
+    "vehicleTaskId": {
+      "$id": "#/properties/vehicleTaskId",
+      "description": "Id of the vehicle task. To pick the plan from",
+      "type": "string"
+    },
+    "serviceWindow": {
+      "$id": "#/properties/serviceWindow",
+      "description": "First departure and last arrival",
+      "$ref": "../../../common/assignment-service-window.json"
+    }
+  }
+}
