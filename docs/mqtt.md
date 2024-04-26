@@ -103,7 +103,7 @@ topic active_cab OUT 1 pe/ ruter/{operator}/{vehicleid}/adt/v3/pe/
 
 ## Updating configurations and DPI content
 
-Ruter reserves the right to update the topic configuration and content packages when it deems it necessary. 
+Ruter reserves the right to update the topic configuration and content packages when it deems it necessary.
 
 While the PTO is responsible for setting up the mqtt bridge configuration correctly according to the software running on the vehicle, Ruter provides an api listing all the topics that should be made available for the services on-board the vehicle. 
 
@@ -117,6 +117,12 @@ While the PTO is responsible for setting up the mqtt bridge configuration correc
     | STAGE       | ADT3        | [https://mqtt-api.stage.transhub.io/v/adt3](https://mqtt-api.stage.transhub.io/v/adt3) | [https://mqtt-api.stage.transhub.io/v/adt3/example](https://mqtt-api.stage.transhub.io/v/adt3/example) | 
     | STAGE       | ADT2        | [https://mqtt-api.stage.transhub.io/v/adt2](https://mqtt-api.stage.transhub.io/v/adt2) | [https://mqtt-api.stage.transhub.io/v/adt2/example](https://mqtt-api.stage.transhub.io/v/adt2/example) |
     | STAGE       | ADT1 / OTA  | [https://mqtt-api.stage.transhub.io/v/adt1](https://mqtt-api.stage.transhub.io/v/adt1) | [https://mqtt-api.stage.transhub.io/v/adt1/example](https://mqtt-api.stage.transhub.io/v/adt1/example) |
+
+
+These locations should be checked once daily, at a minimum, after 16.00 CET, which is our cutoff for changes for the day, Monday to Friday.
+It is expected that new bridge configurations should be available on all vehicles running in regular traffic after 05.00 CET the following day.
+
+### Additional information
 
 A description of the process can be found in the document below: 
 - [MQTT topic updates](https://ruterno.github.io/ota-schemas/mqtt-updates/index.html)
