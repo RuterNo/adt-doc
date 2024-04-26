@@ -1,0 +1,43 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/omit/request/assignment-omit-request.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignmentOmitRequest",
+  "description": "Request to omit a specified service. Response will be sent to the back office via assignment attempt response.",
+  "type": "object",
+  "required": [
+    "traceId",
+    "eventTimestamp"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)",
+      "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier - UUID"
+    },
+    "code": {
+      "$id": "#/properties/code",
+      "description": "Specification of why the PTO will omit the service",
+      "type": "string",
+      "examples": [
+        "NO_INTENTION"
+      ]
+    },
+    "vehicleTaskId": {
+      "$id": "#/properties/vehicleTaskId",
+      "description": "Reference to the vehicle task to apply the omission",
+      "type": "string"
+    },
+    "serviceWindow": {
+      "$id": "#/properties/serviceWindow",
+      "description": "First departure and last arrival",
+      "$ref": "../../common/assignment-service-window.json"
+    }
+  }
+}
