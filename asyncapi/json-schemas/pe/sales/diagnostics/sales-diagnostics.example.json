@@ -3,6 +3,7 @@
   "payload": {
     "eventTimestamp": "2020-04-28T13:49:50.814Z",
     "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
+    "spanId":"76867064-33bb-4c3a-b692-1b688253441a",
     "metrics": {
       "nfcStatus": {
         "interfaceType": "usb",
