@@ -6,6 +6,7 @@
   "required": [
     "eventTimestamp",
     "traceId",
+    "spanId",
     "metrics",
     "context"
   ],
@@ -48,7 +49,12 @@
       "type": "object",
       "description": "Contains fields with context data",
       "required": [
-        "trigger",
+        "vehicleRef",
+        "progressRef",
+        "lineRef",
+        "assignmentRef",
+        "chainId",
+        "stopPlaceId",
         "appVersion",
         "userId"
       ],
@@ -110,5 +116,6 @@
           "description": "The userId of the logged in user"
         }
       }
+    }
   }
 }
