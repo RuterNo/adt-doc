@@ -24,6 +24,11 @@
       "type": "string",
       "description": "A unique identifier to be able to trace this message. Also used to detect duplicate messages received."
     },
+    "spanId": {
+      "$id": "#/properties/spanId",
+      "type": "string",
+      "description": "A unique identifier for an individual step of a transaction. Consists of the spanId from the current_stop message and a new UUID for this step, separated by a colon."
+    },
     "progressRef": {
       "$id": "#/properties/progressRef",
       "type": "string",
