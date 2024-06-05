@@ -6,7 +6,6 @@
   "required": [
     "eventTimestamp",
     "traceId",
-    "spanId",
     "metrics",
     "context"
   ],
