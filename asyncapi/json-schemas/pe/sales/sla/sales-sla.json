@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/pe/sales/diagnostics/sales-diagnostics.json",
+  "type": "object",
+  "title": "SalesSla",
+  "required": [
+    "eventTimestamp",
+    "traceId",
+    "spanId",
+    "metrics",
+    "context"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "Time of diagnostics generated",
+      "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier for the transaction. Also used to detect duplicate messages received. Matches the traceId of the incoming current_stop message"
+    },
+    "spanId": {
+      "$id": "#/properties/spanId",
+      "type": "string",
+      "description": "A unique identifier for an individual step of a transaction. Consists of the spanId from the current_stop message and a new UUID for this step, separated by a colon."
+    },
+    "metrics": {
+      "$id": "#/properties/metrics",
+      "type": "object",
+      "description": "Contains measurable diagnostics fields",
+      "required": [
+        "loggedIn"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "loggedIn": {
+          "$id": "#/properties/metrics/properties/loggedIn",
+          "type": "boolean",
+          "description": "Whether or not the user is logged in to RuterSalg"
+        }
+      }
+    },
+    "context": {
+      "$id": "#/properties/context",
+      "type": "object",
+      "description": "Contains fields with context data",
+      "required": [
+        "vehicleRef",
+        "progressRef",
+        "lineRef",
+        "assignmentRef",
+        "chainId",
+        "stopPlaceId",
+        "appVersion",
+        "userId"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "vehicleRef": {
+          "$id": "#/properties/context/properties/vehicleRef",
+          "type": "string",
+          "description": "A reference to the Progress event that triggered this message. Matches the traceId from the Progress event."
+        },
+        "progressRef": {
+          "$id": "#/properties/context/properties/progressRef",
+          "type": "string",
+          "description": "A reference to the Progress event that triggered this message. Matches the traceId from the Progress event."
+        },
+        "lineRef": {
+          "$id": "#/properties/context/properties/lineRef",
+          "type": "string",
+          "description": "A reference to the Progress event that triggered this message. Matches the traceId from the Progress event."
+        },
+        "assignmentRef": {
+          "$id": "#/properties/context/properties/assignmentRef",
+          "type": "string",
+          "description": "A reference to the Progress event that triggered this message. Matches the traceId from the Progress event."
+        },
+        "actualCallRef": {
+          "$id": "#/properties/context/properties/actualCallRef",
+          "type": "string",
+          "description": "A reference to the Progress event that triggered this message. Matches the traceId from the Progress event."
+        },
+        "chainId": {
+          "$id": "#/properties/context/properties/chainId",
+          "type": "string",
+          "description": "A reference to the Progress event that triggered this message. Matches the traceId from the Progress event."
+        },
+        "journeyRef": {
+          "$id": "#/properties/context/properties/journeyRef",
+          "type": "string",
+          "description": "Last journeyRef obtained by the app"
+        },
+        "stopPlaceId": {
+          "$id": "#/properties/context/properties/stopPlaceId",
+          "type": "string",
+          "description": "StopPlaceId of the upcoming stop"
+        },
+        "tariffZone": {
+          "$id": "#/properties/context/properties/tariffZone",
+          "type": "string",
+          "description": "The tariff zone the vehicle is currently in"
+        },
+        "appVersion": {
+          "$id": "#/properties/context/properties/appVersion",
+          "type": "string",
+          "description": "Version of the RuterSalg app that sent the message"
+        },
+        "userId": {
+          "$id": "#/properties/context/properties/userId",
+          "type": "string",
+          "description": "The userId of the logged in user"
+        }
+      }
+    }
+  }
+}

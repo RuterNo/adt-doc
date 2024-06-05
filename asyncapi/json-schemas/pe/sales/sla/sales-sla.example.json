@@ -1,0 +1,24 @@
+{
+  "name": "SalesSla",
+  "payload": {
+    "eventTimestamp": "2020-04-28T13:49:50.814Z",
+    "traceId":"c6494c5c-eff7-45ec-a8d9-722a387eefb2",
+    "spanId":"76867064-33bb-4c3a-b692-1b688253441a:bdda2da8-72e7-467e-940c-21173b4aa3d9",
+    "metrics" : {
+      "loggedIn": true
+    },
+    "context": {
+      "vehicleRef":"XNL404P500D041745",
+      "lineRef":"RUT:Line:81",
+      "progressRef": "3841a268-0c03-4588-b476-211be0f26a0d",
+      "assignmentRef":"bdc4e54425fb418fa7ca5ea769d18416",
+      "actualCallRef":"bd58550c-bd45-4047-adf5-a7f8cab3ff05",
+      "chainId": "130",
+      "journeyRef": "42911-2020-05-25T16:42:00+02:00",
+      "stopPlaceId": "NSR:StopPlace:3996",
+      "tariffZone": "RUT:TariffZone:227",
+      "appVersion": "2.7.1",
+      "userId": "nor12345"
+    }
+  }
+}
