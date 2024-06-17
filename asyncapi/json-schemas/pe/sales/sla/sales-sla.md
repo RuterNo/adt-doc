@@ -2,7 +2,7 @@
 | Field         | Value                                                                                                             |
 |---------------|-------------------------------------------------------------------------------------------------------------------|
 | Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/pe/sales/sla                                                                |
-| Schema        | [ sales-sla.json ](json-schemas/pe/sales/diagnostics/sales-sla.json)                                              |
+| Schema        | [ sales-sla.json ](json-schemas/pe/sales/sla/sales-sla.json)                                                      |
 | Producer      | RuterSalg                                                                                                         |
 | Consumer      | RuterSalg                                                                                                         |
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.         | 
