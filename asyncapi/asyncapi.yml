@@ -200,14 +200,14 @@ channels:
         payload:
           $ref: json-schemas/sensors/telemetry/telemetry.json
         examples:
-          - $ref: json-schemas/sensors/telemetry/telemetry-charger-01.example.json
           - $ref: json-schemas/sensors/telemetry/telemetry-temperature-indoor-01.example.json
           - $ref: json-schemas/sensors/telemetry/telemetry-soc-01.example.json
-          - $ref: json-schemas/sensors/telemetry/telemetry-transmission-mode-01.example.json
           - $ref: json-schemas/sensors/telemetry/telemetry-windscreen-wiper-active-01.example.json
+          - $ref: json-schemas/sensors/telemetry/telemetry-charger-01.example.json
+          - $ref: json-schemas/sensors/telemetry/telemetry-accumulated-energy-consumption-01.example.json
+          - $ref: json-schemas/sensors/telemetry/telemetry-transmission-mode-01.example.json
           - $ref: json-schemas/sensors/telemetry/telemetry-accelerometry-01.example.json
           - $ref: json-schemas/sensors/telemetry/telemetry-temperature-outdoor-01.example.json
-          - $ref: json-schemas/sensors/telemetry/telemetry-accumulated-energy-consumption-01.example.json
         bindings:
           mqtt:
             qos: 0
@@ -564,6 +564,21 @@ channels:
           $ref: json-schemas/pe/vehicle/api/api.json
         examples:
           - $ref: json-schemas/pe/vehicle/api/api.example.json
+        bindings:
+          mqtt:
+            qos: 1
+            retain: true
+  pe/sales/sla:
+    description:
+      $ref: json-schemas/pe/sales/sla/sales-sla.md
+    publish:
+      message:
+        name: SalesSla
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/pe/sales/sla/sales-sla.json
+        examples:
+          - $ref: json-schemas/pe/sales/sla/sales-sla.example.json
         bindings:
           mqtt:
             qos: 1
