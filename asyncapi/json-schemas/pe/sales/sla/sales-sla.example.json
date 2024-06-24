@@ -18,7 +18,8 @@
       "stopPlaceId": "NSR:StopPlace:3996",
       "tariffZone": "RUT:TariffZone:227",
       "appVersion": "2.7.1",
-      "userId": "nor12345"
+      "userId": "nor12345",
+      "adtApiVersion": "3"
     }
   }
 }
