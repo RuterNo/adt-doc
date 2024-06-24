@@ -55,7 +55,8 @@
         "chainId",
         "stopPlaceId",
         "appVersion",
-        "userId"
+        "userId",
+        "adtApiVersion"
       ],
       "additionalProperties": true,
       "properties": {
@@ -113,6 +114,11 @@
           "$id": "#/properties/context/properties/userId",
           "type": "string",
           "description": "The userId of the logged in user"
+        },
+        "adtApiVersion": {
+          "$id": "#/properties/context/properties/adtApiVersion",
+          "type": "string",
+          "description": "Version of ADT that the vehicle is using. The app determines this by consuming pe/vehicle/api"
         }
       }
     }
