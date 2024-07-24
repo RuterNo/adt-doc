@@ -142,6 +142,11 @@
           "type": "string",
           "description": "The tariff zone the vehicle is currently in"
         },
+        "trigger": {
+          "$id": "#/properties/context/properties/trigger",
+          "type": "string",
+          "description": "The event that triggered the diagnostics msg to be produced"
+        },
         "appVersion": {
           "$id": "#/properties/context/properties/appVersion",
           "type": "string",
