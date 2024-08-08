@@ -305,7 +305,7 @@ channels:
         bindings:
           mqtt:
             qos: 1
-            retain: false
+            retain: true
   operational/assignment/attempt/response:
     description:
       $ref: json-schemas/operational/assignment/attempt/response/assignment-attempt-response.md
