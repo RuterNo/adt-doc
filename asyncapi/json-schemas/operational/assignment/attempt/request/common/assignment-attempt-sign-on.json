@@ -20,7 +20,7 @@
     "journeys": {
       "type": "array",
       "items": {
-        "$ref": "../../../common/assignment-journey.json"
+        "$ref": "assignment-attempt-sign-on-journey.json"
       },
       "$id": "#/properties/journeys"
     },
