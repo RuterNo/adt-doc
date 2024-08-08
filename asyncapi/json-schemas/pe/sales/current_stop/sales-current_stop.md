@@ -3,8 +3,8 @@
 |---------------|-------------------------------------------------------------------------------------------------------------------|
 | Central Topic | {operatorId}/ruter/{vehicleId}/adt/v3/pe/sales/current_stop                                                       |
 | Schema        | [ sales-current_stop.json ](json-schemas/pe/sales/current_stop/sales-current_stop.json)                           |
-| Producer      | RuterSalg                                                                                                         |
-| Consumer      | RuterSalg                                                                                                         |
+| Producer      | Betjent salg                                                                                                      |
+| Consumer      | Betjent salg                                                                                                      |
 | Service Level | ⛔ Ruter internal API. No restrictions apply. Api may be removed or modified freely by Ruter within major version. | 
 
 Used to alert the RuterSalg app about the current stop. This message is triggered when the Progress entity determines that the bus is arriving
