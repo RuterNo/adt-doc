@@ -5,7 +5,7 @@
   "description": "Attempt to sign the vehicle on to a specified plan. Please provide either a list of journeys or the combination of vehicleTaskId and serviceWindow",
   "additionalProperties": true,
   "type": "object",
-  "required": [ ],
+  "required": [],
   "properties": {
     "code": {
       "$id": "#/properties/code",
@@ -21,7 +21,8 @@
       "type": "array",
       "items": {
         "$ref": "../../../common/assignment-journey.json"
-      }
+      },
+      "$id": "#/properties/journeys"
     },
     "vehicleTaskId": {
       "$id": "#/properties/vehicleTaskId",
