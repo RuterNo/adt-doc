@@ -29,6 +29,13 @@
         "NO_INTENTION"
       ]
     },
+    "journeys": {
+      "$id": "#/properties/journeys",
+      "type": "array",
+      "items": {
+        "$ref": "assignment-omit-journey.json"
+      },
+    },
     "vehicleTaskId": {
       "$id": "#/properties/vehicleTaskId",
       "description": "Reference to the vehicle task to apply the omission",
