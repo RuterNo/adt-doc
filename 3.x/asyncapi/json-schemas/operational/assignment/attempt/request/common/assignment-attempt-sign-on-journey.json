@@ -6,8 +6,7 @@
   "additionalProperties": true,
   "type": "object",
   "required": [
-    "journeyId",
-    "serviceWindow"
+    "journeyId"
   ],
   "properties": {
     "journeyId": {
@@ -17,7 +16,7 @@
     },
     "serviceWindow": {
       "$id": "#/properties/serviceWindow",
-      "description": "First departure and last arrival",
+      "description": "Optional. Use serviceWindow to limit what calls are included",
       "$ref": "../../../common/assignment-service-window.json"
     }
   }
