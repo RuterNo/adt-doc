@@ -39,6 +39,7 @@ channels:
         payload:
           $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request.json
         examples:
+          - $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request-signon-journey.example.json
           - $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request-signoff-finished.example.json
           - $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request-signon-planned.example.json
           - $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request-update-shortening.example.json
@@ -57,6 +58,7 @@ channels:
         payload:
           $ref: json-schemas/operational/assignment/omit/request/assignment-omit-request.json
         examples:
+          - $ref: json-schemas/operational/assignment/omit/request/assignment-omit-request-journey.example.json
           - $ref: json-schemas/operational/assignment/omit/request/assignment-omit-request-no-intention.example.json
         bindings:
           mqtt:
