@@ -14,11 +14,7 @@
           }
         },
         {
-          "journeyId": "1235",
-          "serviceWindow": {
-            "firstDepartureDateTime": "2023-04-27T13:40:00Z",
-            "lastArrivalDateTime": "2023-04-27T13:56:00Z"
-          }
+          "journeyId": "1235"
         }
       ]
     }
