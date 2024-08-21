@@ -7,14 +7,17 @@
       "code": "PLANNED",
       "journeys": [
         {
-          "journeyId": "1234",
+          "journeyId": "RUT:ServiceJourney:7c1f03be273b5baaeba55b8c35c19a3f",
           "serviceWindow": {
             "firstDepartureDateTime": "2023-04-27T13:23:00Z",
             "lastArrivalDateTime": "2023-04-27T13:37:00Z"
           }
         },
         {
-          "journeyId": "1235"
+          "journeyId": "RUT:DeadRun:db95eced6af6f0f394f4c9506b6fe095"
+        }
+        {
+          "journeyId": "RUT:ServiceJourney:fad12f60510017bb9b50479c3225840f"
         }
       ]
     }
