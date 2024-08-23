@@ -17,12 +17,12 @@
         "REPLACEMENT"
       ]
     },
-    "journeys": {
+    "datedServiceJourneys": {
+      "$id": "#/properties/datedServiceJourneys",
       "type": "array",
       "items": {
-        "$ref": "assignment-attempt-sign-on-journey.json"
-      },
-      "$id": "#/properties/journeys"
+        "$ref": "assignment-attempt-sign-on-dated-service-journey.json"
+      }
     },
     "vehicleTaskId": {
       "$id": "#/properties/vehicleTaskId",
