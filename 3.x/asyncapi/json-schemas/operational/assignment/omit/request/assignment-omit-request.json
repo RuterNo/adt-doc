@@ -33,7 +33,7 @@
       "$id": "#/properties/journeys",
       "type": "array",
       "items": {
-        "$ref": "assignment-omit-journey.json"
+        "$ref": "./common/assignment-omit-journey.json"
       }
     },
     "vehicleTaskId": {
