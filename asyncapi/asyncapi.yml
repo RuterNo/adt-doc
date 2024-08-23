@@ -58,6 +58,7 @@ channels:
         payload:
           $ref: json-schemas/operational/assignment/omit/request/assignment-omit-request.json
         examples:
+          - $ref: json-schemas/operational/assignment/omit/request/assignment-omit-request-journey-call.example.json
           - $ref: json-schemas/operational/assignment/omit/request/assignment-omit-request-journey.example.json
           - $ref: json-schemas/operational/assignment/omit/request/assignment-omit-request-no-intention.example.json
         bindings:
@@ -307,7 +308,7 @@ channels:
         bindings:
           mqtt:
             qos: 1
-            retain: false
+            retain: true
   operational/assignment/attempt/response:
     description:
       $ref: json-schemas/operational/assignment/attempt/response/assignment-attempt-response.md
