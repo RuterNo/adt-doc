@@ -1,22 +1,17 @@
 {
-  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/attempt/request/common/assignment-attempt-sign-on-journey.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/attempt/request/common/assignment-attempt-sign-on-dated-service-journey.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "AssignmentAttemptSignOnJourney",
+  "title": "AssignmentAttemptSignOnDatedServiceJourney",
   "description": "Assignment journey used in for SignOn",
   "additionalProperties": true,
   "type": "object",
   "required": [
-    "journeyId"
+    "datedServiceJourneyId"
   ],
   "properties": {
-    "journeyId": {
-      "$id": "#/properties/journeyId",
-      "description": "Id of the journey",
-      "type": "string"
-    },
-    "journeyDate": {
-      "$id": "#/properties/journeyDate",
-      "description": "Service Date for the journey",
+    "datedServiceJourneyId": {
+      "$id": "#/properties/datedServiceJourneyId",
+      "description": "DatedServiceJourneyId of the journey",
       "type": "string"
     },
     "serviceWindow": {

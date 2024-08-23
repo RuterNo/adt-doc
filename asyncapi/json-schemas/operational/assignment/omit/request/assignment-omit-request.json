@@ -29,11 +29,11 @@
         "NO_INTENTION"
       ]
     },
-    "journeys": {
-      "$id": "#/properties/journeys",
+    "datedServiceJourneys": {
+      "$id": "#/properties/datedServiceJourneys",
       "type": "array",
       "items": {
-        "$ref": "./common/assignment-omit-journey.json"
+        "$ref": "./common/assignment-omit-dated-service-journey.json"
       }
     },
     "vehicleTaskId": {

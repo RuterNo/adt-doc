@@ -1,7 +1,7 @@
 {
-  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/omit/request/common/assignment-omit-journey-call.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/omit/request/common/assignment-omit-dated-service-journey-call.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "AssignmentOmitJourneyCall",
+  "title": "AssignmentOmitDatedServiceJourneyCall",
   "description": "Assignment journey call used for Omits",
   "additionalProperties": true,
   "type": "object",
