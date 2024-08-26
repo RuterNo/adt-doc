@@ -2,14 +2,10 @@
   "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/attempt/request/common/assignment-attempt-sign-on.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "AssignmentAttemptSignOn",
-  "description": "Attempt to sign the vehicle on to a specified plan.",
+  "description": "Attempt to sign the vehicle on to a specified plan. Please provide either a list of journeys or the combination of vehicleTaskId and serviceWindow",
   "additionalProperties": true,
   "type": "object",
-  "required": [
-    "code",
-    "vehicleTaskId",
-    "serviceWindow"
-  ],
+  "required": [],
   "properties": {
     "code": {
       "$id": "#/properties/code",
@@ -20,6 +16,13 @@
         "EXTRA",
         "REPLACEMENT"
       ]
+    },
+    "datedServiceJourneys": {
+      "$id": "#/properties/datedServiceJourneys",
+      "type": "array",
+      "items": {
+        "$ref": "assignment-attempt-sign-on-dated-service-journey.json"
+      }
     },
     "vehicleTaskId": {
       "$id": "#/properties/vehicleTaskId",

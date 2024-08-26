@@ -25,7 +25,7 @@ An `AssignmentAttemptRequest` can be made for:
   3. update
 - Attempt request will get an attempt response under the [response topic](../response/assignment-attempt-response.md)
 - Any request leading to a change of existing assignment state is reflected under the [status topic](../../status/assignment-status.md)
-  - This topic will also be updated when Ruter has initiated any change to the existing assignment
+  - This topic will also be updated when Ruter has initiated changes to existing assignments
 - Please provide all fields marked as `reqired` in the schema specifications.
 
 
@@ -72,18 +72,53 @@ An `AssignmentAttemptRequest` can be made for:
 </VehicleScheduleFrame>
 ```
 
+##### Example of NeTEx definition to find DatedServiceJourney
+The DatedServiceJourneyId is `RUT:DatedServiceJourney:068153825c58c7d3e26a53ae2377f77a`
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PublicationDelivery xmlns="http://www.netex.org.uk/netex"
+                     version="1.14:NO-NeTEx-networktimetable:1.3">
+  <PublicationTimestamp>2024-08-23T08:54:10.968</PublicationTimestamp>
+  <ParticipantRef>RUT</ParticipantRef>
+  <dataObjects>
+    <CompositeFrame modification="new" version="..." id="RUT:CompositeFrame:3702">
+      <frames>
+        <TimetableFrame version="..." id="RUT:TimetableFrame:3702">
+          <vehicleJourneys>
+            <ServiceJourney version="..." id="RUT:ServiceJourney:00d827f7d2500a4dcc3cbb427247d8db">
+              ...
+            </ServiceJourney>
+            <DatedServiceJourney version="..." id="RUT:DatedServiceJourney:068153825c58c7d3e26a53ae2377f77a">
+              <ServiceJourneyRef ref="RUT:ServiceJourney:00d827f7d2500a4dcc3cbb427247d8db" version="..."/>
+              <OperatingDayRef ref="RUT:OperatingDay:2024-08-30"/>
+            </DatedServiceJourney>
+          </vehicleJourneys>
+        </TimetableFrame>
+      </frames>
+    </CompositeFrame>
+  </dataObjects>
+</PublicationDelivery>
+
+```
+
 #### Sign On
 - Any pre-existing assigned assignments will be signed off `AssignmentState.assigned=true`
 - If the attempt request succeeds, the vehicle will be assigned the new plan `AssignmentState.assigned=true`
 - If the attempt request fails, the state of the vehicle is `AssignmentState.assigned=false`
   - The reason for failing will be available under the [response topic](../response/assignment-attempt-response.md)
-- All signOn-attempts require the fields `vehicleTaskId` and `serviceWindow`.
-  - `vehicleTaskId`: Can be found in the common file in the NeTEx export under this path `VehicleScheduleFrame.blocks[].Block.PrivateCode`
-  - `serviceWindow`: Defines a time range for which journeys the vehicle should be signed on.
-    The vehicle will be signed on to all the journeys in the vehicle task between provided times.
-    Signed on journeys may be part of 1 or more `Block`s.
-    Times provided may belong to the same calendar date, or 2 consecutive dates.
-    Attempts not containing valid date times for `firstDepartureDateTime` and `lastArrivalDateTimes` will be rejected, resulting in `AssignmentState.assigned=false`
+- Contents of a signOn-attempt can now be based on vehicleTask, or a provided list of DatedServiceJourneys. 
+  - If a list of DatedServiceJourneys is provided, the provided vehicleTask is not included in the attempt 
+  - VehicleTask:
+    - Require the fields `vehicleTaskId` and `serviceWindow`.
+      - `vehicleTaskId`: Can be found in the common file in the NeTEx export under this path `VehicleScheduleFrame.blocks[].Block.PrivateCode`
+      - `serviceWindow`: Defines a time range for which journeys the vehicle should be signed on.
+        The vehicle will be signed on to all the journeys in the vehicle task between provided times.
+        Signed on journeys may be part of 1 or more `Block`s.
+        Times provided may belong to the same calendar date, or 2 consecutive dates.
+        Attempts not containing valid date times for `firstDepartureDateTime` and `lastArrivalDateTimes` will be rejected, resulting in `AssignmentState.assigned=false`
+  - A list of DatedServiceJourneys:
+    - `datedServiceJourneyId`: Can be found in the respective Journey file in the NeTEx export (See above example xml)
+    - `serviceWindow`: Optional: Defines a time range for which calls in the journey the vehicle should be signed on. If not provided, the entire journey is included 
 
 ##### Sign On - PLANNED
 The vehicle will be signed on to service the pre-existing plans for the specified `serviceWindow`
