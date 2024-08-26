@@ -4,16 +4,12 @@
     "eventTimestamp": "2023-04-27T12:40:13.631914Z",
     "traceId": "083b71c4-e417-11ed-b5ea-0242ac120005",
     "code": "NO_INTENTION",
-    "journeys": [
+    "datedServiceJourneys": [
       {
-        "journeyId": "1235",
-        "serviceWindow": {
-          "firstDepartureDateTime": "2023-04-27T13:40:00Z",
-          "lastArrivalDateTime": "2023-04-27T13:56:00Z"
-        }
+        "datedServiceJourneyId": "RUT:DatedServiceJourney:1235"
       },
       {
-        "journeyId": "1236",
+        "datedServiceJourneyId": "RUT:DatedServiceJourney:1236",
         "calls": [
           {
             "nsrQuayId": "NSR:Quay:1234",
