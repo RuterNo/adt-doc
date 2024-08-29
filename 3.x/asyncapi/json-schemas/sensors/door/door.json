@@ -4,9 +4,9 @@
   "title": "Door",
   "type": "object",
   "required": [
-    "doorOpen",
     "traceId",
-    "eventTimestamp"
+    "eventTimestamp",
+    "doorOpen"
   ],
   "description": "Describes if any door is open (if the door lock is released). Also see topic pe/doors_individually for status on individual doors.",
   "additionalProperties": true,
@@ -17,6 +17,17 @@
       "type": "string",
       "description": "A unique identifier to be able to trace this message. Also used to detect duplicate messages received."
     },
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io). Reflects the current UTC time."
+    },
+    "messageNumber": {
+      "$id": "#/properties/messageNumber",
+      "$comment": "Added in version 3.3",
+      "type": "number",
+      "description": "[Optional] - Sequence number that should generated on the vehicle and increased by one for each new message. Used to validate consistency in the data stream."
+    },
     "doorOpen": {
       "$id": "#/properties/doorOpen",
       "type": "boolean",
@@ -25,11 +36,6 @@
         "true",
         "false"
       ]
-    },
-    "eventTimestamp": {
-      "$id": "#/properties/eventTimestamp",
-      "type": "string",
-      "description": "As specified in the [ADT documentation.](https://adt.transhub.io). Reflects the UTC time when the state changed."
     }
   },
   "examples": [
