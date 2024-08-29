@@ -1,8 +1,9 @@
 {
   "name": "Door Sensor",
   "payload": {
-    "doorOpen": true,
     "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
-    "eventTimestamp": "2017-10-31T12:45:50.749Z"
+    "eventTimestamp": "2017-10-31T12:45:50.749Z",
+    "messageNumber": 123456,
+    "doorOpen": true
   }
 }
