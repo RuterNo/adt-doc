@@ -1,0 +1,33 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/omit/request/common/assignment-omit-journey.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignmentOmitJourney",
+  "description": "Assignment journey used in for SignOn",
+  "additionalProperties": true,
+  "type": "object",
+  "required": [
+    "lineId",
+    "direction",
+    "serviceWindow"
+  ],
+  "properties": {
+    "vehicleJourneyId": {
+      "$id": "#/properties/vehicleJourneyId",
+      "description": "Also known as 'turnummer'/trip number of the journey",
+      "type": "string"
+    },
+    "lineId": {
+      "$id": "#/properties/lineId",
+      "description": "Id for the line 'RUT:Line:32'",
+      "type": "string"
+    },
+    "direction": {
+      "$id": "#/properties/direction",
+      "description": "Direction the vehicle is traveling 1 or 2"
+    },
+    "noServiceWindow": {
+      "$id": "#/properties/serviceWindow",
+      "$ref": "../../../common/assignment-service-window.json"
+    }
+  }
+}
