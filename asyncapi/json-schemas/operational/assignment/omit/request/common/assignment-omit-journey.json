@@ -2,7 +2,7 @@
   "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/omit/request/common/assignment-omit-journey.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "AssignmentOmitJourney",
-  "description": "Assignment journey used in for SignOn",
+  "description": "Journey used in for Omit",
   "additionalProperties": true,
   "type": "object",
   "required": [
@@ -13,23 +13,31 @@
   "properties": {
     "vehicleJourneyId": {
       "$id": "#/properties/vehicleJourneyId",
-      "description": "Also known as 'turnummer'/trip number of the journey",
+      "description": "Required. Also known as 'turnummer'/trip number of the journey",
       "type": "string"
     },
     "lineId": {
       "$id": "#/properties/lineId",
-      "description": "Id for the line 'RUT:Line:32'",
+      "description": "Required. Id for the line, e.g.: 'RUT:Line:32'",
       "type": "string"
     },
     "firstDepartureDateTime": {
       "$id": "#/properties/firstDepartureDateTime",
-      "description": "The first planned departure the vehicle is NOT supposed to service.",
+      "description": "Required. Please provide an iso date time for when the journey departs. DateTime as specified in the [ADT documentation.](https://adt.transhub.io)",
       "type": "string"
     },
     "lastArrivalDateTime": {
       "$id": "#/properties/lastArrivalDateTime",
-      "description": "Optional. The last planned arrival the vehicle is NOT supposed to service.",
+      "description": "Optional. Use this field to limit the calls the vehicle plans to service. DateTime as specified in the [ADT documentation.](https://adt.transhub.io)",
       "type": "string"
+    },
+    "calls": {
+      "$id": "#/properties/calls",
+      "description": "Calls to omit, un-omit",
+      "type": "array",
+      "items": {
+        "$ref": "assignment-omit-journey-call.json"
+      }
     }
   }
 }
