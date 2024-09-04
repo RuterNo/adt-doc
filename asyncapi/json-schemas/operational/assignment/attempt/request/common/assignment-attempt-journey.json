@@ -13,23 +13,31 @@
   "properties": {
     "vehicleJourneyId": {
       "$id": "#/properties/vehicleJourneyId",
-      "description": "Also known as 'turnummer'/trip number of the journey",
+      "description": "Required. Also known as 'turnummer'/trip number of the journey",
       "type": "string"
     },
     "lineId": {
       "$id": "#/properties/lineId",
-      "description": "Id for the line 'RUT:Line:32'",
+      "description": "Required. Id for the line 'RUT:Line:32'",
       "type": "string"
     },
     "firstDepartureDateTime": {
       "$id": "#/properties/firstDepartureDateTime",
-      "description": "The first planned departure the vehicle is supposed to service.",
+      "description": "Required. Please provide an iso date time for when the journey departs",
       "type": "string"
     },
     "lastArrivalDateTime": {
       "$id": "#/properties/lastArrivalDateTime",
       "description": "Optional. Use this field to limit the calls the vehicle plans to service",
       "type": "string"
+    },
+    "calls": {
+      "$id": "#/properties/calls",
+      "description": "In case the journey is not known to all parties, provide the calls here. Please provide all calls the vehicle intends to service",
+      "type": "array",
+      "items": {
+        "$ref": "assignment-attempt-journey-call.json"
+      }
     }
   }
 }
