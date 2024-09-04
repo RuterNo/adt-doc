@@ -18,17 +18,17 @@
     },
     "lineId": {
       "$id": "#/properties/lineId",
-      "description": "Required. Id for the line 'RUT:Line:32'",
+      "description": "Required. Id for the line, e.g.: 'RUT:Line:32'",
       "type": "string"
     },
     "firstDepartureDateTime": {
       "$id": "#/properties/firstDepartureDateTime",
-      "description": "Required. Please provide an iso date time for when the journey departs",
+      "description": "Required. Please provide an iso date time for when the journey departs. DateTime as specified in the [ADT documentation.](https://adt.transhub.io)",
       "type": "string"
     },
     "lastArrivalDateTime": {
       "$id": "#/properties/lastArrivalDateTime",
-      "description": "Optional. Use this field to limit the calls the vehicle plans to service",
+      "description": "Optional. Use this field to limit the calls the vehicle plans to service. DateTime as specified in the [ADT documentation.](https://adt.transhub.io)",
       "type": "string"
     },
     "calls": {
