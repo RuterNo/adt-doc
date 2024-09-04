@@ -21,14 +21,14 @@
       "$id": "#/properties/datedServiceJourneys",
       "type": "array",
       "items": {
-        "$ref": "assignment-attempt-sign-on-dated-service-journey.json"
+        "$ref": "assignment-attempt-dated-service-journey.json"
       }
     },
     "journeys": {
       "$id": "#/properties/journeys",
       "type": "array",
       "items": {
-        "$ref": "assignment-attempt-sign-on-journey.json"
+        "$ref": "assignment-attempt-journey.json"
       }
     },
     "vehicleTaskId": {
