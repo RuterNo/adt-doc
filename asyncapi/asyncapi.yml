@@ -39,9 +39,10 @@ channels:
         payload:
           $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request.json
         examples:
-          - $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request-signon-journey.example.json
+          - $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request-signon-journeys.example.json
           - $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request-signoff-finished.example.json
           - $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request-signon-planned.example.json
+          - $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request-signon-dated-service-journeys.example.json
           - $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request-update-shortening.example.json
           - $ref: json-schemas/operational/assignment/attempt/request/assignment-attempt-request-signon-extra.example.json
         bindings:

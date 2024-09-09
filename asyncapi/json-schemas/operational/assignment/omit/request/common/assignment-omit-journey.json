@@ -7,8 +7,7 @@
   "type": "object",
   "required": [
     "lineId",
-    "vehicleJourneyId",
-    "firstDepartureDateTime"
+    "vehicleJourneyId"
   ],
   "properties": {
     "vehicleJourneyId": {
@@ -21,15 +20,9 @@
       "description": "Required. Id for the line, e.g.: 'RUT:Line:32'",
       "type": "string"
     },
-    "firstDepartureDateTime": {
-      "$id": "#/properties/firstDepartureDateTime",
-      "description": "Required. Please provide an iso date time for when the journey departs. DateTime as specified in the [ADT documentation.](https://adt.transhub.io)",
-      "type": "string"
-    },
-    "lastArrivalDateTime": {
-      "$id": "#/properties/lastArrivalDateTime",
-      "description": "Optional. Use this field to limit the calls the vehicle plans to service. DateTime as specified in the [ADT documentation.](https://adt.transhub.io)",
-      "type": "string"
+    "serviceWindow": {
+      "$id": "#/properties/serviceWindow",
+      "$ref": "../../../common/assignment-service-window.json"
     },
     "calls": {
       "$id": "#/properties/calls",

@@ -7,19 +7,19 @@
   "type": "object",
   "required": [],
   "properties": {
-    "nsrQuayId": {
-      "$id": "#/properties/nsrQuayId",
+    "quayId": {
+      "$id": "#/properties/quayId",
       "description": "Id found in NSR (NSR:Quay:xxxx)",
       "type": "string"
     },
-    "arrivalTime": {
-      "$id": "#/properties/arrivalTime",
-      "description": "Required for all calls except the fist call to be serviced. E.g.: 08:05",
+    "arrivalDateTime": {
+      "$id": "#/properties/arrivalDateTime",
+      "description": "Required for all calls except the fist call to be serviced. DateTime as specified in the [ADT documentation.](https://adt.transhub.io)",
       "type": "string"
     },
-    "departureTime": {
-      "$id": "#/properties/departureTime",
-      "description": "Required for all calls except the last call to be serviced. E.g.: 08:08 ",
+    "departureDateTime": {
+      "$id": "#/properties/departureDateTime",
+      "description": "Required for all calls except the last call to be serviced. DateTime as specified in the [ADT documentation.](https://adt.transhub.io)",
       "type": "string"
     }
   }
