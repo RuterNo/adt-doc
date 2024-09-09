@@ -14,12 +14,6 @@
       "description": "Id of the quay (NSR:Quay:xxx) to be serviced or the depot (RUT/NBU)",
       "type": "string"
     },
-    "deadRun": {
-      "$id": "#/properties/deadRun",
-      "default": true,
-      "description": "DeadRuns is the only supported type as of now",
-      "type": "boolean"
-    },
     "arrivalDateTime": {
       "$id": "#/properties/arrivalDateTime",
       "description": "Required for all calls except the fist call to be serviced. DateTime as specified in the [ADT documentation.](https://adt.transhub.io)",

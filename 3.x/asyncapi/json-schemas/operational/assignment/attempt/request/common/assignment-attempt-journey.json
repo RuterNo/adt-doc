@@ -24,12 +24,12 @@
     },
     "serviceWindow": {
       "$id": "#/properties/serviceWindow",
-      "description": "Can be used to limit the calls from this journey included in the resulting assignment",
+      "description": "If the vehicle will not service the entire planned journey, the service window can be used to limit the calls included in the resulting assignment.",
       "$ref": "../../../common/assignment-service-window.json"
     },
     "calls": {
       "$id": "#/properties/calls",
-      "description": "At the moment this structure will result in a DeadRun. Please provide a list of two or more calls.",
+      "description": "The call structure will result in a DeadRun. Please provide a list of two or more calls.",
       "type": "array",
       "items": {
         "$ref": "assignment-attempt-journey-call.json"
