@@ -7,7 +7,6 @@
       "code": "PLANNED",
       "journeys": [
         {
-          "deadRun": true,
           "calls": [
             {
               "quayId": "NBU:Quay:HomeGar",
@@ -29,7 +28,6 @@
           }
         },
         {
-          "deadRun": true,
           "calls": [
             {
               "quayId": "NSR:Quay:1335",
