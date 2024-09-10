@@ -39,67 +39,11 @@ There is no strict requirement as to what implementation you chose of the mqtt b
 
 There are multiple open-source solutions to choose from, i.e. [https://mosquitto.org](https://mosquitto.org/).  
 
-#### Example configuration file (Mosquitto v2.0.17)
+#### Example configuration files
 
-```
-
-user mosquitto
-log_type all
-connection_messages true
-log_timestamp true
-listener 1883
-listener 9883
-protocol websockets
-allow_anonymous true
-
-#
-# Ruter MQTT Bridge
-#
-connection ruter-central-mqtt-broker
-address {MQTT_BROKER}:8883
-bridge_cafile /etc/mosquitto/conf.d/amazon.ca.crt
-remote_username {MQTT_USERNAME}
-remote_password {MQTT_PASSWORD}
-remote_clientid {CLIENT_ID_BASED_ON_VIN}
-bridge_protocol_version mqttv50
-bridge_tls_version tlsv1.2
-notifications false
-cleansession true
-try_private true
-start_type automatic
-restart_timeout 10
-keepalive_interval 60
-
-# Subscribe for these topics
-# topic in/out qos shortroute longroute
-topic stop_button OUT 1 sensors/ ruter/{operator}/{vehicleid}/adt/v3/sensors/
-topic stop_button IN 1 pe/input/ {operator}/ruter/{vehicleid}/adt/v3/pe/input/
-topic door OUT 1 sensors/ ruter/{operator}/{vehicleid}/adt/v3/sensors/
-topic location OUT 0 sensors/ ruter/{operator}/{vehicleid}/adt/v3/sensors/gnss/
-topic odometer OUT 0 sensors/ ruter/{operator}/{vehicleid}/adt/v3/sensors/
-topic # OUT 1 sensors/apc/ ruter/{operator}/{vehicleid}/adt/v3/sensors/apc/
-topic # OUT 0 sensors/telemetry/ ruter/{operator}/{vehicleid}/adt/v3/sensors/telemetry/
-topic status IN 1 operational/assignment/ {operator}/ruter/{vehicleid}/adt/v3/operational/assignment/
-topic audio IN 1 pe/ {operator}/ruter/{vehicleid}/adt/v3/pe/
-topic request OUT 1 operational/assignment/attempt/ ruter/{operator}/{vehicleid}/adt/v3/operational/assignment/attempt/
-topic response IN 1 operational/assignment/attempt/ {operator}/ruter/{vehicleid}/adt/v3/operational/assignment/attempt/
-topic request OUT 1 operational/assignment/omit/ ruter/{operator}/back_office/adt/v3/operational/assignment/omit/
-topic response IN 1 operational/assignment/omit/ {operator}/ruter/back_office/adt/v3/operational/assignment/omit/
-topic destination_display OUT 1 di/override_attempt/ ruter/{operator}/{vehicleid}/adt/v3/di/override_attempt/
-topic available_destination_displays IN 1 di/ {operator}/ruter/{vehicleid}/adt/v3/di/
-topic operational_message_to_driver IN 1 di/ {operator}/ruter/{vehicleid}/adt/v3/di/
-topic diagnostics OUT 1 pe/sales/ ruter/{operator}/{vehicleid}/adt/v3/pe/sales/
-topic current_stop IN 1 pe/sales/ ruter/{operator}/{vehicleid}/adt/v3/pe/sales/
-topic # OUT 0 pe/cardreader_diagnostics/vix/ ruter/{operator}/{vehicleid}/adt/v3/pe/cardreader_diagnostics/vix/
-topic # IN 1 pe/dpi/ {operator}/ruter/{vehicleid}/adt/v3/pe/dpi/
-topic diagnostics OUT 1 pe/dpi/ ruter/{operator}/{vehicleid}/adt/v3/pe/dpi/
-topic ack OUT 1 pe/dpi/ ruter/{operator}/{vehicleid}/adt/v3/pe/dpi/
-topic doors_individually OUT 1 pe/ ruter/{operator}/{vehicleid}/adt/v3/pe/
-topic door_lock OUT 1 pe/ ruter/{operator}/{vehicleid}/adt/v3/pe/
-topic active_cab OUT 1 pe/ ruter/{operator}/{vehicleid}/adt/v3/pe/
-
-
-```
+* ADT 3 [prod](https://mqtt-api.transhub.io/v/adt3/example) / [stage](https://mqtt-api.stage.transhub.io/v/adt3/example)            
+* ADT 2 [prod](https://mqtt-api.transhub.io/v/adt2/example) / [stage](https://mqtt-api.stage.transhub.io/v/adt2/example)             
+* ADT 1 / OTA [prod](https://mqtt-api.transhub.io/v/adt1/example) / [stage](https://mqtt-api.stage.transhub.io/v/adt1/example)            
 
 ## Updating configurations and DPI content
 
@@ -126,4 +70,3 @@ It is expected that new bridge configurations should be available on all vehicle
 
 A description of the process can be found in the document below: 
 - [MQTT topic updates](https://ruterno.github.io/ota-schemas/mqtt-updates/index.html)
-
