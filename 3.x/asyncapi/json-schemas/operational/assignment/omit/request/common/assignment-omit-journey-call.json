@@ -1,0 +1,26 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/omit/request/common/assignment-omit-journey-call.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignmentOmitJourneyCall",
+  "description": "Call used defining calls in a journey",
+  "additionalProperties": true,
+  "type": "object",
+  "required": [],
+  "properties": {
+    "quayId": {
+      "$id": "#/properties/quayId",
+      "description": "Id found in NSR (NSR:Quay:xxxx)",
+      "type": "string"
+    },
+    "arrivalDateTime": {
+      "$id": "#/properties/arrivalDateTime",
+      "description": "Required for all calls except the fist call to be serviced. DateTime as specified in the [ADT documentation.](https://adt.transhub.io)",
+      "type": "string"
+    },
+    "departureDateTime": {
+      "$id": "#/properties/departureDateTime",
+      "description": "Required for all calls except the last call to be serviced. DateTime as specified in the [ADT documentation.](https://adt.transhub.io)",
+      "type": "string"
+    }
+  }
+}
