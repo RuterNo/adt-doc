@@ -40,13 +40,6 @@
         "$ref": "./common/assignment-omit-dated-service-journey.json"
       }
     },
-    "journeys": {
-      "$id": "#/properties/journeys",
-      "type": "array",
-      "items": {
-        "$ref": "common/assignment-omit-journey.json"
-      }
-    },
     "vehicleTaskId": {
       "$id": "#/properties/vehicleTaskId",
       "description": "Deprecated: Use datedServiceJourneys. Reference to the vehicle task to apply the omission",
