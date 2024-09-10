@@ -152,7 +152,7 @@ Remaining not serviced stops/journeys in the assignment will not be serviced (by
 Same as `CANCELLED`
 #### Additional Sign Off codes used by RUTER
 - `EXPIRED`
-  Given a successfull signOn, if the vehicle is not signed off before two hours after the last planned arrival. The vehicle will be automatically signed off with the code `EXPIRED`.
+  Given a successful signOn, if the vehicle is not signed off before two hours after the last planned arrival. The vehicle will be automatically signed off with the code `EXPIRED`.
 
 ### Update
 #### Update - SHORTENING
