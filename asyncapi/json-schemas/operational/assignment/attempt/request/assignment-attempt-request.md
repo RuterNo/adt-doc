@@ -72,25 +72,62 @@ An `AssignmentAttemptRequest` can be made for:
 </VehicleScheduleFrame>
 ```
 
-##### Example of NeTEx definition to find DatedServiceJourney
-The DatedServiceJourneyId is `RUT:DatedServiceJourney:068153825c58c7d3e26a53ae2377f77a`
+##### Example of NeTEx definition to find values for `assignment-attempt-request.signOn`
+- DatedServiceJourneyId: `RUT:DatedServiceJourney:a`
+  - path: `PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/DatedServiceJourney/@id` 
+- VehicleJourneyId: `505`
+  - path: `PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/PrivateCode` 
+- LineId: `RUT:Line:1337`
+  - path: `PublicationDelivery/dataObjects/CompositeFrame/frames/ServiceFrame/lines/Line/@id
+- DepartureDateTime: `2024-01-01T03:28:00+02:00`
+  - Use the date for when the journey is to be serviced and add the earliest `DepartureTime` found here:  
+  - `PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/passingTimes/TimetabledPassingTime/DepartureTime` 
+
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<PublicationDelivery xmlns="http://www.netex.org.uk/netex"
-                     version="1.14:NO-NeTEx-networktimetable:1.3">
-  <PublicationTimestamp>2024-08-23T08:54:10.968</PublicationTimestamp>
-  <ParticipantRef>RUT</ParticipantRef>
+<PublicationDelivery>
   <dataObjects>
-    <CompositeFrame modification="new" version="..." id="RUT:CompositeFrame:3702">
+    <CompositeFrame>
       <frames>
-        <TimetableFrame version="..." id="RUT:TimetableFrame:3702">
+        <ServiceFrame>
+          <routes>
+            <Route id="RUT:Route:007">
+              <LineRef ref="RUT:Line:1337"/>
+            </Route>
+          </routes>
+          <lines>
+            <Line id="RUT:Line:1337">
+            </Line>
+          </lines>
+          <journeyPatterns>
+            <JourneyPattern id="RUT:JourneyPattern:123456">
+              <RouteRef ref="RUT:Route:007"/>
+            </JourneyPattern>
+          </journeyPatterns>
+        </ServiceFrame>
+        <TimetableFrame>
           <vehicleJourneys>
-            <ServiceJourney version="..." id="RUT:ServiceJourney:00d827f7d2500a4dcc3cbb427247d8db">
-              ...
+            <ServiceJourney id="RUT:ServiceJourney:1">
+              <JourneyPatternRef ref="RUT:JourneyPattern:123456"/>
+              <PrivateCode>505</PrivateCode>
+              <passingTimes>
+                <TimetabledPassingTime>
+                  <StopPointInJourneyPatternRef/>
+                  <DepartureTime>03:28:00</DepartureTime>
+                </TimetabledPassingTime>
+                <TimetabledPassingTime>
+                  <StopPointInJourneyPatternRef/>
+                  <DepartureTime>03:31:00</DepartureTime>
+                </TimetabledPassingTime>
+                <TimetabledPassingTime>
+                  <StopPointInJourneyPatternRef/>
+                  <DepartureTime>03:33:00</DepartureTime>
+                </TimetabledPassingTime>
+              </passingTimes>
             </ServiceJourney>
-            <DatedServiceJourney version="..." id="RUT:DatedServiceJourney:068153825c58c7d3e26a53ae2377f77a">
-              <ServiceJourneyRef ref="RUT:ServiceJourney:00d827f7d2500a4dcc3cbb427247d8db" version="..."/>
-              <OperatingDayRef ref="RUT:OperatingDay:2024-08-30"/>
+            <DatedServiceJourney id="RUT:DatedServiceJourney:a">
+              <ServiceJourneyRef ref="RUT:ServiceJourney:1"/>
+              <OperatingDayRef ref="RUT:OperatingDay:2024-01-01"/>
             </DatedServiceJourney>
           </vehicleJourneys>
         </TimetableFrame>
@@ -98,8 +135,9 @@ The DatedServiceJourneyId is `RUT:DatedServiceJourney:068153825c58c7d3e26a53ae23
     </CompositeFrame>
   </dataObjects>
 </PublicationDelivery>
-
 ```
+
+#### Example of NeTEx definitions to find
 
 #### Sign On
 - Any pre-existing assigned assignments will be signed off `AssignmentState.assigned=true`
@@ -120,8 +158,8 @@ The DatedServiceJourneyId is `RUT:DatedServiceJourney:068153825c58c7d3e26a53ae23
   - A list of `DatedServiceJourneys`:
     - `datedServiceJourneyId`: Can be found in the respective Journey file in the NeTEx export (See above example xml)
     - `serviceWindow`: Optional: Defines a time range for which calls in the journey the vehicle should be signed on. If not provided, the entire journey is included 
-  - A list of `Journeys`:
-    - `vehicleJourneyId`: Required if calls are not provided. Also known as 'turnummer'/trip number of the journey.
+  - A list of `Journeys`. See above example on how to locate the fields in the NeTEx export:
+    - `vehicleJourneyId`: Required if calls are not provided. Also known as 'turnummer'/trip number/privateCode of the journey.
     - `lineId`: Required if calls are not provided. Id for the line, e.g.: 'RUT:Line:32'. RUT:Line:0 can be used for DeadRuns
     - `departureDateTime`: Departure date time for the first call in the journey. This field is used to pinpoint the exact dated journey to be serviced
     - `serviceWindow`: Optional: Defines a time range for which calls in the journey the vehicle should be signed on. If not provided, the entire journey is included
