@@ -20,7 +20,7 @@
     "departureDateTime": {
       "$id": "#/properties/departureDateTime",
       "type": "string",
-      "description": "Departure date time for the first call in the journey. This field is used to pinpoint the exact dated journey to be serviced. DateTime as specified in the [ADT documentation.](https://adt.transhub.io)"
+      "description": "Planned departure date time for the first call in the journey. This field is used to pinpoint the exact dated journey to be serviced. DateTime as specified in the [ADT documentation.](https://adt.transhub.io)"
     },
     "serviceWindow": {
       "$id": "#/properties/serviceWindow",

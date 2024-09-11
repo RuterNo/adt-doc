@@ -161,7 +161,7 @@ An `AssignmentAttemptRequest` can be made for:
   - A list of `Journeys`. See above example on how to locate the fields in the NeTEx export:
     - `vehicleJourneyId`: Required if calls are not provided. Also known as 'turnummer'/trip number/privateCode of the journey.
     - `lineId`: Required if calls are not provided. Id for the line, e.g.: 'RUT:Line:32'. RUT:Line:0 can be used for DeadRuns
-    - `departureDateTime`: Departure date time for the first call in the journey. This field is used to pinpoint the exact dated journey to be serviced
+    - `departureDateTime`: Planned departure date time for the first call in the journey. This field is used to pinpoint the exact dated journey to be serviced
     - `serviceWindow`: Optional: Defines a time range for which calls in the journey the vehicle should be signed on. If not provided, the entire journey is included
     - `calls`: Optional: Used to create `DeadRuns`. Please provide a list of two or more calls. 
       - `quayId`: Id of the quay (NSR:Quay:xxx) to be serviced or the depot (RUT/NBU)
