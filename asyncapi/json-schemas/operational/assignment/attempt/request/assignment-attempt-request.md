@@ -127,7 +127,7 @@ The DatedServiceJourneyId is `RUT:DatedServiceJourney:068153825c58c7d3e26a53ae23
     - `serviceWindow`: Optional: Defines a time range for which calls in the journey the vehicle should be signed on. If not provided, the entire journey is included
     - `calls`: Optional: Used to create `DeadRuns`. Please provide a list of two or more calls. 
       - `quayId`: Id of the quay (NSR:Quay:xxx) to be serviced or the depot (RUT/NBU)
-      - `arrivalDateTime`: Required for all calls except the fist call to be serviced
+      - `arrivalDateTime`: Required for all calls except the first call to be serviced
       - `departureDateTime`: Required for all calls except the last call to be serviced
 
 ##### Sign On - PLANNED
