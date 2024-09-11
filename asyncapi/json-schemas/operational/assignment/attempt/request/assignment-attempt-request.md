@@ -106,9 +106,10 @@ The DatedServiceJourneyId is `RUT:DatedServiceJourney:068153825c58c7d3e26a53ae23
 - If the attempt request succeeds, the vehicle will be assigned the new plan `AssignmentState.assigned=true`
 - If the attempt request fails, the state of the vehicle is `AssignmentState.assigned=false`
   - The reason for failing will be available under the [response topic](../response/assignment-attempt-response.md)
-- Contents of a signOn-attempt can now be based on vehicleTask, or a provided list of either DatedServiceJourneys or Journeys. 
-  - If a list of DatedServiceJourneys of Journeys is provided, the provided vehicleTask is not included in the attempt 
-  - VehicleTask:
+- Contents of a signOn-attempt can now be based on vehicleTask, or a provided list of either DatedServiceJourneys or Journeys. If a list of DatedServiceJourneys or Journeys is provided, the provided vehicleTask is not included in the attempt
+- Options for sign on:
+  - Deprecated `VehicleTask`:
+    - Please use a list of either `DatedServiceJourneys` or `Journeys`
     - Require the fields `vehicleTaskId` and `serviceWindow`.
       - `vehicleTaskId`: Can be found in the common file in the NeTEx export under this path `VehicleScheduleFrame.blocks[].Block.PrivateCode`
       - `serviceWindow`: Defines a time range for which journeys the vehicle should be signed on.
@@ -116,15 +117,15 @@ The DatedServiceJourneyId is `RUT:DatedServiceJourney:068153825c58c7d3e26a53ae23
         Signed on journeys may be part of 1 or more `Block`s.
         Times provided may belong to the same calendar date, or 2 consecutive dates.
         Attempts not containing valid date times for `firstDepartureDateTime` and `lastArrivalDateTimes` will be rejected, resulting in `AssignmentState.assigned=false`
-  - A list of DatedServiceJourneys:
+  - A list of `DatedServiceJourneys`:
     - `datedServiceJourneyId`: Can be found in the respective Journey file in the NeTEx export (See above example xml)
     - `serviceWindow`: Optional: Defines a time range for which calls in the journey the vehicle should be signed on. If not provided, the entire journey is included 
-  - A list of Journeys:
+  - A list of `Journeys`:
     - `vehicleJourneyId`: Required if calls are not provided. Also known as 'turnummer'/trip number of the journey.
     - `lineId`: Required if calls are not provided. Id for the line, e.g.: 'RUT:Line:32'. RUT:Line:0 can be used for DeadRuns
     - `departureDateTime`: Departure date time for the first call in the journey. This field is used to pinpoint the exact dated journey to be serviced
-    - `serviceWindow`: If the vehicle will not service the entire planned journey, the service window can be used to limit the calls included in the resulting assignment.
-    - `calls`: Used to create DeadRuns where the deadRun is not known. Please provide a list of two or more calls. 
+    - `serviceWindow`: Optional: Defines a time range for which calls in the journey the vehicle should be signed on. If not provided, the entire journey is included
+    - `calls`: Optional: Used to create `DeadRuns`. Please provide a list of two or more calls. 
       - `quayId`: Id of the quay (NSR:Quay:xxx) to be serviced or the depot (RUT/NBU)
       - `arrivalDateTime`: Required for all calls except the fist call to be serviced
       - `departureDateTime`: Required for all calls except the last call to be serviced
