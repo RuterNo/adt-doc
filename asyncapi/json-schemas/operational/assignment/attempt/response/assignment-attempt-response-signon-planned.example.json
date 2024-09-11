@@ -3,16 +3,39 @@
   "payload": {
     "eventTimestamp": "2023-04-27T12:40:12.731913Z",
     "traceId": "083b71c4-e417-11ed-b5ea-0242ac120003",
-    "result":{
-      "code": "OK",
+    "result": {
+      "code": "PLANNED",
       "reason": "OK",
-      "description": "The vehicle has been assigned"
+      "description": "Attempt processed without errors"
     },
     "state": {
       "assigned": true,
       "code": "PLANNED",
       "vehicleTaskId": "99991",
-      "operatingDate": "2023-04-27"
+      "operatingDate": "2023-04-27",
+      "firstJourneyId": "RUT:DeadRun:123234345",
+      "journeys": [
+        {
+          "journeyId": "RUT:DeadRun:123234345",
+          "lineId": "RUT:Line:0",
+          "datedServiceJourneyId": "RUT:DatedServiceJourney:54785478",
+          "vehicleJourneyId": "504",
+          "serviceWindow": {
+            "firstDepartureDateTime": "2024-09-11T12:34:00Z",
+            "lastArrivalDateTime": "2024-09-11T12:54:00Z"
+          }
+        },
+        {
+          "journeyId": "RUT:ServiceJourney:987654321",
+          "lineId": "RUT:Line:1337",
+          "datedServiceJourneyId": "RUT:DatedServiceJourney:12541554",
+          "vehicleJourneyId": "505",
+          "serviceWindow": {
+            "firstDepartureDateTime": "2024-09-11T12:57:00Z",
+            "lastArrivalDateTime": "2024-09-11T13:30:00Z"
+          }
+        }
+      ]
     }
   }
 }
