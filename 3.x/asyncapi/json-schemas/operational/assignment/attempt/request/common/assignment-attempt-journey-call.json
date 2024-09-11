@@ -16,7 +16,7 @@
     },
     "arrivalDateTime": {
       "$id": "#/properties/arrivalDateTime",
-      "description": "Required for all calls except the fist call to be serviced. DateTime as specified in the [ADT documentation.](https://adt.transhub.io)",
+      "description": "Required for all calls except the first call to be serviced. DateTime as specified in the [ADT documentation.](https://adt.transhub.io)",
       "type": "string"
     },
     "departureDateTime": {
