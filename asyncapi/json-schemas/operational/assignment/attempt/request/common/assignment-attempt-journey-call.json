@@ -2,7 +2,7 @@
   "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/attempt/request/common/assignment-attempt-journey-call.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "AssignmentAttemptJourneyCall",
-  "description": "Assignment journey call used defining calls in a journey",
+  "description": "A call defines when and where a vehicle will make a stop and when it will depart",
   "additionalProperties": true,
   "type": "object",
   "required": [
