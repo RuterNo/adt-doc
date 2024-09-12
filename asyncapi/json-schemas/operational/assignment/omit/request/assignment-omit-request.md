@@ -15,7 +15,7 @@ Follows the request/response pattern. When a `request` is made to this topic, a 
 - Note that there are no vehicles involved in this exchange.
 
 #### Omit - NO_INTENTION
-The field `code` is now deprecated. Please use the flag `omit` instead. Introducing the flag `omit` allows the operator to send `omit=false`
+Introducing the flag `omit` allows the operator to send `omit=false` to cancel an omit.
 
 Inform Ruter that the PTO has no intention of servicing the journeys and stops defined by the provided service window.
 - Contents of a omit can now be based on vehicleTask, or a provided list of DatedServiceJourneys.
