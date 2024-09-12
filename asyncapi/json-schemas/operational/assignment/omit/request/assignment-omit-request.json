@@ -23,7 +23,7 @@
     },
     "code": {
       "$id": "#/properties/code",
-      "description": "Deprecated: Use omit flag. Specification of why the PTO will omit the service",
+      "description": "Specification of why the PTO will omit the service",
       "type": "string",
       "examples": [
         "NO_INTENTION"
