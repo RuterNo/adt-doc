@@ -339,8 +339,8 @@ def validate_examples(schemas_):
 
 def main():
     schemas = resolve_schemas()
-    validate_examples(schemas)
     update_schema_content(schemas)
+    validate_examples(schemas)
     asyncapi_path = Path("asyncapi/asyncapi.yml")
     async_api = read_yaml(asyncapi_path)
 

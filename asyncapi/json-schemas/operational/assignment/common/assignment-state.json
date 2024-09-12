@@ -33,7 +33,7 @@
     },
     "vehicleTaskId": {
       "$id": "#/properties/vehicleTaskId",
-      "description": "The assigned vehicleTask if the vehicle is assigned",
+      "description": "The assigned vehicleTask if the vehicle is assigned. This field is populated if all journeys belong to only one vehicle task. Otherwise, this field will be blank",
       "type": "string"
     },
     "blockId": {
@@ -44,7 +44,7 @@
     },
     "operatingDate": {
       "$id": "#/properties/operatingDate",
-      "description": "The assigned operating date if the vehicle is assigned",
+      "description": "The assigned operating date if the vehicle is assigned. Operating date as registered by PTA",
       "type": "string"
     },
     "serviceWindow": {

@@ -1,0 +1,45 @@
+{
+  "name": "Assignment Attempt Request - SignOn - Journeys",
+  "payload": {
+    "eventTimestamp": "2023-04-27T12:40:12.631933Z",
+    "traceId": "083b71c4-e417-11ed-b5ea-0242ac120088",
+    "signOn": {
+      "code": "PLANNED",
+      "journeys": [
+        {
+          "calls": [
+            {
+              "quayId": "NBU:Quay:HomeGar",
+              "departureDateTime": "2023-04-27T13:12:00Z"
+            },
+            {
+              "quayId": "NSR:Quay:1221",
+              "arrivalDateTime": "2023-04-27T13:30:00Z"
+            }
+          ]
+        },
+        {
+          "vehicleJourneyId": "1337",
+          "lineId": "RUT:Line:88",
+          "departureDateTime": "2023-04-27T13:32:00Z",
+          "serviceWindow": {
+            "firstDepartureDateTime": "2023-04-27T13:35:00Z",
+            "lastArrivalDateTime": "2023-04-27T14:00:00Z"
+          }
+        },
+        {
+          "calls": [
+            {
+              "quayId": "NSR:Quay:1335",
+              "arrivalDateTime": "2023-04-27T14:00:00Z"
+            },
+            {
+              "quayId": "NBU:Quay:HomeGar",
+              "departureDateTime": "2023-04-27T14:12:00Z"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
