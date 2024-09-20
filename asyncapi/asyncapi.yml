@@ -192,12 +192,25 @@ channels:
           mqtt:
             qos: 1
             retain: false
-  sensors/telemetry/{sensorId}:
+  sensors/telemetry/{telemetryId}:
     description:
       $ref: json-schemas/sensors/telemetry/telemetry.md
     parameters:
-      sensorId:
-        $ref: '#/components/parameters/sensorId'
+      telemetryId:
+        $ref: '#/components/parameters/telemetryId'
+    publish:
+      message:
+        name: Telemetry
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/sensors/telemetry/telemetry.json
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
+  sensors/telemetry/0001FF25:
+    description:
+      $ref: json-schemas/sensors/telemetry/charger/charger.md
     publish:
       message:
         name: Telemetry
@@ -205,14 +218,159 @@ channels:
         payload:
           $ref: json-schemas/sensors/telemetry/telemetry.json
         examples:
-          - $ref: json-schemas/sensors/telemetry/telemetry-temperature-indoor-01.example.json
-          - $ref: json-schemas/sensors/telemetry/telemetry-soc-01.example.json
-          - $ref: json-schemas/sensors/telemetry/telemetry-windscreen-wiper-active-01.example.json
-          - $ref: json-schemas/sensors/telemetry/telemetry-charger-01.example.json
-          - $ref: json-schemas/sensors/telemetry/telemetry-accumulated-energy-consumption-01.example.json
-          - $ref: json-schemas/sensors/telemetry/telemetry-transmission-mode-01.example.json
-          - $ref: json-schemas/sensors/telemetry/telemetry-accelerometry-01.example.json
-          - $ref: json-schemas/sensors/telemetry/telemetry-temperature-outdoor-01.example.json
+          - $ref: json-schemas/sensors/telemetry/charger/charger-01.example.json
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
+  sensors/telemetry/01000002:
+    description:
+      $ref: json-schemas/sensors/telemetry/temperature-indoor/temperature-indoor.md
+    publish:
+      message:
+        name: Telemetry
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/sensors/telemetry/telemetry.json
+        examples:
+          - $ref: json-schemas/sensors/telemetry/temperature-indoor/temperature-indoor-01.example.json
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
+  sensors/telemetry/01000005:
+    description:
+      $ref: json-schemas/sensors/telemetry/state-of-charge/state-of-charge.md
+    publish:
+      message:
+        name: Telemetry
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/sensors/telemetry/telemetry.json
+        examples:
+          - $ref: json-schemas/sensors/telemetry/state-of-charge/state-of-charge-01.example.json
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
+  sensors/telemetry/01000006:
+    description:
+      $ref: json-schemas/sensors/telemetry/transmission-mode/transmission-mode.md
+    publish:
+      message:
+        name: Telemetry
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/sensors/telemetry/telemetry.json
+        examples:
+          - $ref: json-schemas/sensors/telemetry/transmission-mode/transmission-mode-01.example.json
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
+  sensors/telemetry/01000007:
+    description:
+      $ref: json-schemas/sensors/telemetry/windscreen-wiper-active/windscreen-wiper-active.md
+    publish:
+      message:
+        name: Telemetry
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/sensors/telemetry/telemetry.json
+        examples:
+          - $ref: json-schemas/sensors/telemetry/windscreen-wiper-active/windscreen-wiper-active-01.example.json
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
+  sensors/telemetry/01000008:
+    description:
+      $ref: json-schemas/sensors/telemetry/accelerometry/accelerometry.md
+    publish:
+      message:
+        name: Telemetry
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/sensors/telemetry/telemetry.json
+        examples:
+          - $ref: json-schemas/sensors/telemetry/accelerometry/accelerometry-01.example.json
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
+  sensors/telemetry/01000009:
+    description:
+      $ref: json-schemas/sensors/telemetry/temperature-outdoor/temperature-outdoor.md
+    publish:
+      message:
+        name: Telemetry
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/sensors/telemetry/telemetry.json
+        examples:
+          - $ref: json-schemas/sensors/telemetry/temperature-outdoor/temperature-outdoor-01.example.json
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
+  sensors/telemetry/0100000A:
+    description:
+      $ref: json-schemas/sensors/telemetry/accumulated-energy-consumption/accumulated-energy-consumption.md
+    publish:
+      message:
+        name: Telemetry
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/sensors/telemetry/telemetry.json
+        examples:
+          - $ref: json-schemas/sensors/telemetry/accumulated-energy-consumption/accumulated-energy-consumption-01.example.json
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
+  sensors/charging:
+    description:
+      $ref: json-schemas/sensors/charging/charging.md
+    publish:
+      message:
+        name: Charging
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/sensors/charging/charging.json
+        examples:
+          - $ref: json-schemas/sensors/charging/charging-01.example.json
+          - $ref: json-schemas/sensors/charging/charging-02.example.json
+          - $ref: json-schemas/sensors/charging/charging-03.example.json
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
+  sensors/temperature/water:
+    description:
+      $ref: json-schemas/sensors/temperature-water/temperature-water.md
+    publish:
+      message:
+        name: TemperatureWater
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/sensors/temperature-water/temperature-water.json
+        examples:
+          - $ref: json-schemas/sensors/temperature-water/temperature-water-01.example.json
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
+  sensors/wind:
+    description:
+      $ref: json-schemas/sensors/wind/wind.md
+    publish:
+      message:
+        name: Wind
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/sensors/wind/wind.json
+        examples:
+          - $ref: json-schemas/sensors/wind/wind-01.example.json
         bindings:
           mqtt:
             qos: 0
@@ -599,7 +757,11 @@ components:
       schema:
         type: string
     sensorId:
-      description: The sensor / telemetry Id.
+      description: The sensor ID
+      schema:
+        type: string
+    telemetryId:
+      description: An unique ID of the telemetry type.
       schema:
         type: string
     deviceRef:
