@@ -1,5 +1,23 @@
 # Troubleshooting client
 
+### Locating screen
+When setting up screen a `physicalId` may be passed to the application with querystring.
+For example: http://webserver.local/app/?physicalId=screen1#/display/1.
+This can be anything the operator feels helps them to locate the screen.
+
+The application will use the value in all diagnostic messages like this (simplified)
+```
+{
+  "clientId": "f72a138ffada1E41ccc8ad",
+  ...
+  "type": "STATUS",
+  "payload": {
+    "physicalId": "screen1",
+    ...
+  }
+}
+```
+
 ### Known situations and client fallbacks 
 Listed below are situations that may occur and how these situations are indicated in busmonitor application.
 #### Unable to establish connection to local mqtt-bridge
