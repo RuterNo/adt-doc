@@ -757,7 +757,7 @@ components:
       schema:
         type: string
     sensorId:
-      description: The sensor ID
+      description: Identification of the physical sensor, e.g. serial number
       schema:
         type: string
     telemetryId:
