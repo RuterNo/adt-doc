@@ -25,6 +25,6 @@ Properties:
   - Boolean value indicating if the vehicle is actively charging
 
 - chargingEffect:
-  - Unit: kilowatts (kW)
-  - Resolution: <0.1kW
+  - Unit: Kilowatts (kW)
+  - Resolution: Minimum one decimal (<=0.1kW)
   - Range: >=0.0kW
