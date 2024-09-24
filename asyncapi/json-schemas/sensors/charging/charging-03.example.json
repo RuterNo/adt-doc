@@ -7,6 +7,6 @@
     "messageNumber": 42,
     "isConnected": false,
     "isCharging": false,
-    "chargingEffect": 0
+    "chargingEffect": 0.0
   }
 }
