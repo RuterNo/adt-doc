@@ -13,7 +13,7 @@ vehicle is connected to a charging point, if it's actively charging, and the cur
 
 #### Data specification
 
-Frequency:
+Message frequency:
 - Messages should be sent on change, i.e., when there's a change in connection status, charging status, or a change in
 charging effect more or equal to 10kW.
 

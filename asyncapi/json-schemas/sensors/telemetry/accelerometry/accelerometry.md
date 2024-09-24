@@ -12,7 +12,7 @@ Describes the vehicle's acceleration in three dimensions.
 
 #### Data Specifications
 
-- **Frequency:** 6 times per minute (6/min)
+- **Message frequency:** 6 times per minute (6/min)
 - **Bandwidth:** ≥ 100 Hz
 - **Unit:** g (gravity)
 - **Resolution:** ≤ 0.01 g

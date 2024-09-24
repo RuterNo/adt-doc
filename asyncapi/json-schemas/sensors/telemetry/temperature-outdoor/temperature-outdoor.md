@@ -11,7 +11,7 @@ Measures the external temperature around the vehicle.
 
 #### Data specification
 
-- **Frequency:** Once per minute (1/min)
+- **Message frequency:** Once per minute (1/min)
 - **Unit:** Degrees Celsius (°C)
 - **Resolution:** <= 1°C
 

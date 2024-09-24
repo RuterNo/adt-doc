@@ -14,7 +14,7 @@ Describes the charging status and details of an electric vehicle.
 
 #### Data specification
 
-- **Frequency:** On change
+- **Message frequency:** On change
 
 #### Payload details
 

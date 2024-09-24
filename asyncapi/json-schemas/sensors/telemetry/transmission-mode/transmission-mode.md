@@ -12,7 +12,7 @@ Intended for hybrid vehicles. Describes the current transmission mode of the veh
 
 #### Data specification
 
-- **Frequency:** On change
+- **Message frequency:** On change
 - **Value:** `COMBUSTION` or `ELECTRIC`
 
 #### Payload details

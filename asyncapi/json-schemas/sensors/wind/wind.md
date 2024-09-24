@@ -14,7 +14,7 @@ north (0-359°) as an integer.
 
 #### Data specification
 
-Frequency:
+Message frequency:
 - 1 message per minute (1/min)
 
 Properties:

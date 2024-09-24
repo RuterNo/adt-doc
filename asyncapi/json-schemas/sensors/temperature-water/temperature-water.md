@@ -13,7 +13,7 @@ resolution of 1°C or better.
 
 #### Data specification
 
-- Frequency: 1 message per minute (1/min)
+- Message frequency: 1 message per minute (1/min)
 - Unit: Celsius
 - Resolution: <= 1°C
 - Measurement depth: 1 meter below the water surface

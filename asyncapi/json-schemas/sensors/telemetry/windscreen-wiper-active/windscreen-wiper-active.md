@@ -12,7 +12,7 @@ Describes the activity of the windscreen wipers.
 
 #### Data specification
 
-- **Frequency:** On change *(for every swipe)*
+- **Message frequency:** On change *(for every swipe)*
 
 #### Payload details
 

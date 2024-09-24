@@ -12,7 +12,7 @@ Describes the interior temperature of the vehicle.
 
 #### Data specification
 
-- **Frequency:** 6 times per minute (6/min)
+- **Message frequency:** 6 times per minute (6/min)
 - **Unit:** Degrees Celsius (°C)
 - **Resolution:** <= 1°C
 

@@ -14,7 +14,7 @@ Describes total energy consumption by the vehicle.
 
 Energy consumed including HVAC
 
-- **Frequency:** Once per minute (1/min)
+- **Message frequency:** Once per minute (1/min)
 - **Unit:** kWh
 
 #### Payload details
