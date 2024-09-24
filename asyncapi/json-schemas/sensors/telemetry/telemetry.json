@@ -38,7 +38,7 @@
             "description": "Optional name for the overall telemetry system or the main sensor. Added in version 3.3."
         },
         "sensorId": {
-            "$id": "#/properties/physicalSensorId",
+            "$id": "#/properties/sensorId",
             "type": "string",
             "description": "Unique identifier for the sensor. Typically the serial number (S/N) from the sensor. Added in version 3.3."
         },
