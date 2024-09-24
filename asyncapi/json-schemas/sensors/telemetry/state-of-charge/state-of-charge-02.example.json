@@ -7,9 +7,10 @@
     "id": "01000005",
     "payloads": [
       {
+        "subId": "1",
         "name": "State of charge",
-        "sensorId": "XB7F-9T2M-L4FC-3R8Q",
-        "value": 20.3
+        "sensorId": "XB7F-9T2M-L4FC-JK32",
+        "value": 30
       }
     ]
   }
