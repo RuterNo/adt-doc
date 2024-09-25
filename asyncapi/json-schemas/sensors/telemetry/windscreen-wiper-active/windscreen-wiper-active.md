@@ -12,13 +12,13 @@ Describes the activity of the windscreen wipers.
 
 #### Data specification
 
-- **Message frequency:** On change *(for every swipe)*
+- **Message frequency:** On change
 
 #### Payload details
 
 - **Name:** Windscreen wiper active
 - **Id:** 01000007
 
-| Sub ID | Name                    | Value Type | Description                                                     |
-|--------|-------------------------|------------|-----------------------------------------------------------------|
-| N/A    | Windscreen wiper active | boolean    | Should send a message with value true for every swipe performed |
+| Sub ID | Name                    | Value Type | Description |
+|--------|-------------------------|------------|-------------|
+| N/A    | Windscreen wiper active | boolean    |             |
