@@ -40,12 +40,12 @@
     "alightingCount": {
       "$id": "#/properties/alightingCount",
       "type": "number",
-      "description": "Total number of alighting passengers detected by this sensor since the last APC message was produced."
+      "description": "Total number of alighting passengers detected by this sensor since last reset."
     },
     "boardingCount": {
       "$id": "#/properties/boardingCount",
       "type": "number",
-      "description": "Total number of boarding passengers detected by this sensor since the last APC message was produced."
+      "description": "Total number of boarding passengers detected by this sensor since last reset."
     },
     "categoryActivities": {
       "$id": "#/properties/categoryActivities",
@@ -73,11 +73,11 @@
           },
           "alightingCount": {
             "type": "number",
-            "description": "Number of alighting of this category detected by this sensor since the last APC message was produced."
+            "description": "Number of alighting of this category detected by this sensor since last reset."
           },
           "boardingCount": {
             "type": "number",
-            "description": "Number of boarding of this category detected by this sensor since the last APC message was produced."
+            "description": "Number of boarding of this category detected by this sensor since last reset."
           }
         }
       }
