@@ -1,14 +1,15 @@
 {
-  "name": "Transmission mode",
+  "name": "Temperature outdoor",
   "payload": {
     "eventTimestamp": "2022-05-09T13:27:59.624Z",
     "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
     "messageNumber": 1,
-    "id": "01000006",
+    "id": "01000009",
     "payloads": [
       {
-        "name": "Transmission mode",
-        "value": "electric"
+        "name": "Temperature outdoor",
+        "sensorId": "XB7F-9T2M-L4FC-3R8Q",
+        "value": 20.7
       }
     ]
   }

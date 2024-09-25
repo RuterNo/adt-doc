@@ -1,14 +1,16 @@
 {
-  "name": "Windscreen wiper active",
+  "name": "State of charge",
   "payload": {
     "eventTimestamp": "2022-05-09T13:27:59.624Z",
     "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
     "messageNumber": 1,
-    "id": "01000007",
+    "id": "01000005",
     "payloads": [
       {
-        "name": "Windscreen wiper active",
-        "value": true
+        "subId": "1",
+        "name": "State of charge",
+        "sensorId": "XB7F-9T2M-L4FC-JK32",
+        "value": 30
       }
     ]
   }
