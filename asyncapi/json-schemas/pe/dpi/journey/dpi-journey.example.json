@@ -13,7 +13,7 @@
         "name": "Snarøya - Fornebu - Tonsenhagen - Grorud",
         "publicCode": "31"
       },
-      "journeyPatternRefV2": "RUT:JourneyPattern:011579",
+      "journeyPatternRef": "RUT:JourneyPattern:011579",
       "stopPlaces": [
         {
           "id": "RUT:StopPlace:02190017",
