@@ -454,6 +454,21 @@ channels:
           mqtt:
             qos: 0
             retain: false
+  pe/sales/sla:
+    description:
+      $ref: json-schemas/pe/sales/sla/sales-sla.md
+    publish:
+      message:
+        name: SalesSla
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/pe/sales/sla/sales-sla.json
+        examples:
+          - $ref: json-schemas/pe/sales/sla/sales-sla.example.json
+        bindings:
+          mqtt:
+            qos: 1
+            retain: true
   pe/sales/current_stop:
     description:
       $ref: json-schemas/pe/sales/current_stop/sales-current_stop.md
@@ -727,21 +742,6 @@ channels:
           $ref: json-schemas/pe/vehicle/api/api.json
         examples:
           - $ref: json-schemas/pe/vehicle/api/api.example.json
-        bindings:
-          mqtt:
-            qos: 1
-            retain: true
-  pe/sales/sla:
-    description:
-      $ref: json-schemas/pe/sales/sla/sales-sla.md
-    publish:
-      message:
-        name: SalesSla
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/pe/sales/sla/sales-sla.json
-        examples:
-          - $ref: json-schemas/pe/sales/sla/sales-sla.example.json
         bindings:
           mqtt:
             qos: 1
