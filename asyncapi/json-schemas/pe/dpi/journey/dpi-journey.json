@@ -88,6 +88,11 @@
             }
           }
         },
+        "journeyPatternRefV2": {
+          "$id": "#/properties/route/properties/journeyPatternRefV2",
+          "type": "string",
+          "description": "JourneyPatternRefV2 id"
+        },
         "stopPlaces": {
           "$id": "#/properties/route/properties/stopPlaces",
           "type": "array",
