@@ -46,6 +46,7 @@
         "id",
         "name",
         "line",
+        "journeyPatternRefV2",
         "stopPlaces"
       ],
       "additionalProperties": true,
