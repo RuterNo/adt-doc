@@ -1,0 +1,249 @@
+{
+  "name": "Vehicle Journey Details",
+  "payload": {
+    "operatingDayDate": "2017-04-27T00:00:00+02:00",
+    "vehicleJourneyRef": "9015001095045020",
+    "journeyNumber": "45020",
+    "journeyPatternRef": "4010000482522803",
+    "timedJourneyPatternRef": "4010000482522978",
+    "transportModeCode": "BUS",
+    "line": {
+      "ref": "9011001095000000",
+      "designation": "22",
+      "number": "950",
+      "name": "Ersätter Tvärbanan"
+    },
+    "directionOfLine": {
+      "code": "1",
+      "name": "Solna"
+    },
+    "transportAuthority": {
+      "ref": "9010001000000000",
+      "code": "SL",
+      "name": "Storstockholms Lokaltrafik",
+      "number": "1"
+    },
+    "contractor": {
+      "ref": "9013001001500000",
+      "code": "ARR",
+      "name": "Arriva",
+      "number": "15"
+    },
+    "plannedStartDateTime": "2017-04-27T05:51:00+02:00",
+    "plannedEndDateTime": "2017-04-27T06:39:00+02:00",
+    "origin": {
+      "name": "Sickla udde",
+      "shortName": "Sickla udde"
+    },
+    "calls": [
+      {
+        "sequenceNumber": 1,
+        "journeyPatternPoint": {
+          "ref": "9025001000010664",
+          "isTimingPoint": true,
+          "location": {
+            "latitude": 59.3071932996622,
+            "longitude": 18.1078200699196
+          },
+          "distanceFromPrevious": 0,
+          "detection": {
+            "enteringDistance": 20,
+            "exitingDistance": 10,
+            "passingDirection": null
+          }
+        },
+        "stopArea": {
+          "ref": "9021001010665000",
+          "name": "Sickla udde",
+          "shortName": "Sickla udde"
+        },
+        "stopPoint": {
+          "ref": "9022001010665005",
+          "name": "Sickla udde",
+          "shortName": "Sickla udde",
+          "designation": "",
+          "localNumber": 5,
+          "length": 20
+        },
+        "arrival": {
+          "latestDateTime": "2017-04-27T05:51:00+02:00",
+          "arrivalType": "STOP_NO_ALIGHTING"
+        },
+        "departure": {
+          "earliestDateTime": "2017-04-27T05:51:00+02:00",
+          "departureType": "STOP_IF_BOARDING"
+        },
+        "destinationDisplay": {
+          "productName": "",
+          "symbolName": "",
+          "lineDesignation": "22B",
+          "primaryDestination": "Thorildsplan",
+          "secondaryDestination": "Eriksbo värdshuset",
+          "displayKeys": [
+            {
+              "parameterData": "Destination=653",
+              "typeCode": "O_DESTIN",
+              "deviceName": "SIGN"
+            }
+          ]
+        }
+      },
+      {
+        "sequenceNumber": 2,
+        "journeyPatternPoint": {
+          "ref": "9025001000010667",
+          "isTimingPoint": true,
+          "location": {
+            "latitude": 59.97882,
+            "longitude": 18.21584
+          },
+          "distanceFromPrevious": 652,
+          "detection": {
+            "enteringDistance": 20,
+            "exitingDistance": 10,
+            "passingDirection": null
+          },
+          "pathFromPrevious": {
+            "coordinates": [
+              [
+                59.94525,
+                18.13365
+              ],
+              [
+                59.94562,
+                18.17644
+              ],
+              [
+                59.95361,
+                18.18034
+              ],
+              [
+                59.96939,
+                18.19872
+              ],
+              [
+                59.97882,
+                18.21584
+              ]
+            ]
+          }
+        },
+        "stopArea": {
+          "ref": "9021001010667000",
+          "name": "Eriksbo",
+          "shortName": "Eriksbo"
+        },
+        "stopPoint": {
+          "ref": "9022001010667001",
+          "name": "Eriksbo",
+          "shortName": "Eriksbo",
+          "designation": "",
+          "localNumber": 1,
+          "length": 22,
+          "stopPointKeys": [
+            {
+              "parameterData": "Värdshuset",
+              "typeCode": "ADDITIONAL_INFO",
+              "deviceName": "Alias"
+            }
+          ]
+        },
+        "replacedJourneyPatternPoint": {
+          "ref": "9025001000010688",
+          "isTimingPoint": true,
+          "location": {
+            "latitude": 59.94525,
+            "longitude": 18.13365
+          },
+          "distanceFromPrevious": 555,
+          "detection": {
+            "enteringDistance": 20,
+            "exitingDistance": 10,
+            "passingDirection": null
+          }
+        },
+        "replacedStopArea": {
+          "ref": "9021001010995000",
+          "name": "Sickla väg",
+          "shortName": "Sickla väg"
+        },
+        "replacedStopPoint": {
+          "ref": "9022001010995004",
+          "name": "Sickla väg",
+          "shortName": "Sickla väg",
+          "designation": "",
+          "localNumber": 4,
+          "length": 20
+        },
+        "detourEnroute": {
+          "startsAfterCallSequenceNumber": 1,
+          "path": {
+            "coordinates": [
+              [
+                59.94525,
+                18.13365
+              ],
+              [
+                59.94352,
+                18.14644
+              ],
+              [
+                59.95261,
+                18.14034
+              ],
+              [
+                59.96439,
+                18.16872
+              ],
+              [
+                59.97882,
+                18.21584
+              ]
+            ]
+          }
+        },
+        "arrival": {
+          "latestDateTime": "2017-04-27T05:53:00+02:00",
+          "arrivalType": "STOP_IF_ALIGHTING"
+        },
+        "departure": {
+          "earliestDateTime": "2017-04-27T05:53:00+02:00",
+          "departureType": "STOP_IF_BOARDING"
+        },
+        "destinationDisplay": {
+          "productName": "",
+          "symbolName": "",
+          "lineDesignation": "22B",
+          "primaryDestination": "Thorildsplan",
+          "displayKeys": [
+            {
+              "parameterData": "Destination=659",
+              "typeCode": "O_DESTIN",
+              "deviceName": "SIGN"
+            }
+          ]
+        },
+        "fetcherConnections": [
+          {
+            "connectionRef": "9014001002310000",
+            "transportModeCode": "BUS",
+            "lineAuthorityCode": "SL",
+            "lineDesignation": "23",
+            "directionName": "Mot Hötorget",
+            "minChangeDurationSeconds": 120,
+            "maxWaitingUntilTime": "2017-04-27T06:05:00+02:00"
+          },
+          {
+            "connectionRef": "9014001002410000",
+            "transportModeCode": "BUS",
+            "lineAuthorityCode": "SL",
+            "lineDesignation": "24",
+            "directionName": "Mot Rådhuset",
+            "minChangeDurationSeconds": 60,
+            "maxWaitingUntilTime": "2017-04-27T06:03:00+02:00"
+          }
+        ]
+      }
+    ]
+  }
+}

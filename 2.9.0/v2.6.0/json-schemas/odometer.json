@@ -1,0 +1,44 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v2.1/sensor/odometer.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Odometer",
+  "type": "object",
+  "required": [
+    "distance",
+    "atDateTime"
+  ],
+  "description": "Odometer data",
+  "additionalProperties": true,
+  "properties": {
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "$comment": "Added in version 2.5",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message. Also used to detect duplicate messages received."
+    },
+    "distance": {
+      "$id": "#/properties/distance",
+      "type": "number",
+      "description": "Describes absolute odometer value in metres."
+    },
+    "atDateTime": {
+      "$id": "#/properties/atDateTime",
+      "type": "string",
+      "description": "ISO 8601. Reflects the UTC time when the state changed."
+    },
+    "messageNumber": {
+      "$id": "#/properties/messageNumber",
+      "$comment": "Added in version 2.1",
+      "type": "number",
+      "description": "Optional. Sequence number, increased by one for each new message. Used to validate consistency in the data stream."
+    }
+  },
+  "examples": [
+    {
+      "distance": 23434556,
+      "atDateTime": "2017-11-30T23:45:52.006Z",
+      "traceId": "2d826a9a-2474-11ed-861d-0242ac120002",
+      "messageNumber": 12345
+    }
+  ]
+}

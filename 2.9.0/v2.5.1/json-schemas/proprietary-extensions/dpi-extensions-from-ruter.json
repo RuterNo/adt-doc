@@ -1,0 +1,14 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v2.1/proprietary-extensions/dpi-extensions-from-ruter.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DpiExtensionsFromRuter",
+  "description": "It is in Ruters interest to provide a rich and dynamic personal user experience onboard our vehicles. To provide flexibility these two topics and corresponding subtopics must be bridged between Ruter BO and the vehicle. Data will be produced and consumed only by Ruters systems.\n\nNo payload structure is defined.",
+  "type": "object",
+  "additionalProperties": true,
+  "additionalItems": true,
+  "examples": [
+    {
+      "arbitrary-key": "arbitraryValue"
+    }
+  ]
+}

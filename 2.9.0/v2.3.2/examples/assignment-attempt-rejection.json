@@ -1,0 +1,9 @@
+{
+  "name": "Assignment Attempt Rejection",
+  "payload": {
+    "fromDateTime": "2017-10-31T12:45:50Z",
+    "blockRef": "10023",
+    "result": "NOT_GRANTED",
+    "errorText": "Already signed on in another vehicle"
+  }
+}
