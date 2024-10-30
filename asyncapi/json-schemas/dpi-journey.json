@@ -99,7 +99,6 @@
             "required": [
               "id",
               "name",
-              "connections",
               "location"
             ],
             "additionalProperties": true,
