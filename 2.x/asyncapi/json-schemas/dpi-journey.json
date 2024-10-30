@@ -46,7 +46,6 @@
         "id",
         "name",
         "line",
-        "journeyPatternRef",
         "stopPlaces"
       ],
       "additionalProperties": true,
@@ -89,11 +88,6 @@
             }
           }
         },
-        "journeyPatternRef": {
-          "$id": "#/properties/route/properties/journeyPatternRef",
-          "type": "string",
-          "description": "Id identifying the journey pattern. Should be comparable to the JourneyPattern reference used by Entur."
-        },
         "stopPlaces": {
           "$id": "#/properties/route/properties/stopPlaces",
           "type": "array",
@@ -105,7 +99,6 @@
             "required": [
               "id",
               "name",
-              "connections",
               "location"
             ],
             "additionalProperties": true,
