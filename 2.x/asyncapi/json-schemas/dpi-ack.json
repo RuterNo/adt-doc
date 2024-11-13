@@ -28,6 +28,11 @@
       "type": "string",
       "description": "The mqtt clientId of the client receiving the message. Should be persistent and not change from day to day."
     },
+    "physicalId": {
+      "$id": "#/properties/physicalId",
+      "type": "string",
+      "description": "The given physical id to the screen. The property is provided by a querystring when configuring a screen"
+    },
     "messageReceived": {
       "$id": "#/properties/messageReceived",
       "type": "object",
