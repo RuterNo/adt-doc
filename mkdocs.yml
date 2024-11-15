@@ -107,5 +107,8 @@ nav:
       - PTO / PTA responsibilities:
         - DPI Services: pto-pta-responsibilities.md
         - Operator Portal: operator_portal.md
+      - Hardware requirements:
+        - Displays: display-requirements.md
+        - Speaker system: speaker-requirements.md
   - Contribute:
       - Report an issue: issue.md
