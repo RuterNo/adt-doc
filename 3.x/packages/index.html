@@ -653,6 +653,8 @@
       
         
       
+        
+      
     
     
       
@@ -833,6 +835,24 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-information-regarding-update-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      General information regarding update procedures
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#contents-of-manifest" class="md-nav__link">
@@ -1120,6 +1140,105 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Hardware requirements
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Hardware requirements
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../display-requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Displays
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../speaker-requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Speaker system
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1226,6 +1345,24 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#general-information-regarding-update-procedures" class="md-nav__link">
+    <span class="md-ellipsis">
+      General information regarding update procedures
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#contents-of-manifest" class="md-nav__link">
     <span class="md-ellipsis">
       Contents of Manifest
@@ -1284,6 +1421,7 @@
 
 
 <h1 id="packages">Packages<a class="headerlink" href="#packages" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p>Ruter publishes a packages manifest that provides a list of packages that should be installed on vehicles at the following locations.</p>
 <table>
 <thead>
@@ -1308,6 +1446,15 @@
 </table>
 <p>These locations should be checked once daily, at a minimum, after 16.00 CET, which is our cutoff for changes for the day, Monday to Friday.</p>
 <p>It is expected that new packages should be installed on all vehicles running in regular traffic after 05.00 CET the following day.</p>
+<h2 id="general-information-regarding-update-procedures">General information regarding update procedures<a class="headerlink" href="#general-information-regarding-update-procedures" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The DPI application must be kept up to date whenever the PTA publishes new versions of the application or the media files it depends on. These updates are made available as ZIP package files and described in a manifest file, which can be accessed at defined URLs for both the production and pre-production environments.</li>
+<li>The PTO is required to regularly check for new versions of the DPI downloadable packages in the PTA's production channel.</li>
+<li>When new packages are available, the PTO must download them and ensure that all vehicles have installed the updated content before they begin their routes the following morning.</li>
+<li>The PTO must validate that the package has been correctly downloaded and properly extracted.</li>
+<li>A minimum of 16 GB of storage must be available on the vehicle to store the PTA's content.</li>
+<li>The PTO should download new versions from a pre-production channel in a test environment and ensure the version is thoroughly tested before being deployed to production.</li>
+</ul>
 <h2 id="contents-of-manifest">Contents of Manifest<a class="headerlink" href="#contents-of-manifest" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2021-02-25T14:43:14Z&quot;</span><span class="p">,</span>
