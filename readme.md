@@ -169,14 +169,6 @@ To compare the changes between two releases, please visit:
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Create ADT 1.3 doc
-- [x] Create ADT 2.2 doc
-- [x] Create ADT 2.3 doc
-- [x] Create ADT 2.4 doc
-- [x] Create ADT 2.5 doc
-- [x] Create ADT 2.6 doc
-- [ ] Create ADT 3.0 doc
-
 See the [open issues](https://github.com/RuterNo/adt-doc/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
