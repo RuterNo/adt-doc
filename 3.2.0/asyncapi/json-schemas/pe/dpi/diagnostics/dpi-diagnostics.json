@@ -1,0 +1,53 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/pe/dpi/diagnostics/dpi-diagnostics.json",
+  "type": "object",
+  "title": "DpiDiagnostics",
+  "required": [
+    "eventTimestamp",
+    "traceId",
+    "clientId",
+    "type"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)",
+      "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier - UUID"
+    },
+    "clientId": {
+      "$id": "#/properties/clientId",
+      "type": "string",
+      "title": "Screen id",
+      "examples": [
+        "ad71dba8-c881-11e8-a8d5-f2801f1b9fd1"
+      ],
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "type": {
+      "$id": "#/properties/type",
+      "type": "string",
+      "description": "Diagnostics type",
+      "examples": [
+        "INFO",
+        "HEARTBEAT",
+        "ERROR",
+        "STATISTICS",
+        "SCREEN"
+      ]
+    },
+    "payload": {
+      "$id": "#/properties/payload",
+      "type": "object",
+      "description": "Diagnostics payload, a dictionary of key/values"
+    }
+  }
+}

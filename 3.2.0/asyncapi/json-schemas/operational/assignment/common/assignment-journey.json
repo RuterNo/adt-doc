@@ -1,0 +1,36 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/common/assignment-journey.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignmentJourney",
+  "description": "Assignment journey",
+  "additionalProperties": true,
+  "type": "object",
+  "required": [
+    "journeyId",
+    "serviceWindow"
+  ],
+  "properties": {
+    "journeyId": {
+      "$id": "#/properties/journeyId",
+      "description": "Id of the journey",
+      "type": "string"
+    },
+    "vehicleJourneyId": {
+      "$id": "#/properties/vehicleJourneyId",
+      "type": "string"
+    },
+    "lineId": {
+      "$id": "#/properties/lineId",
+      "type": "string"
+    },
+    "datedServiceJourneyId": {
+      "$id": "#/properties/datedServiceJourneyId",
+      "type": "string"
+    },
+    "serviceWindow": {
+      "$id": "#/properties/serviceWindow",
+      "description": "First departure and last arrival",
+      "$ref": "../common/assignment-service-window.json"
+    }
+  }
+}
