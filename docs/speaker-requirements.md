@@ -11,6 +11,13 @@ the _Materialbeskrivelse_ requirements take precedence.
 
 ## General requirements
 
+### Background
+
+The requirements outlined in this document are designed to ensure compliance with Section 4 of the 
+[Forskrift om universell utforming av motorvogn i løyvepliktig transport mv](https://lovdata.no/forskrift/2009-12-03-1438/§4), which 
+governs the universal design of ICT solutions. This regulation emphasizes the importance of providing accessible, reliable, 
+and timely information to all users, regardless of physical or cognitive abilities, to promote inclusivity and equality.
+
 ### Speaker Groups
 
 
