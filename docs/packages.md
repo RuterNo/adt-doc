@@ -1,5 +1,6 @@
 # Packages
 
+## Overview
 Ruter publishes a packages manifest that provides a list of packages that should be installed on vehicles at the following locations.
 
 | Environment | URL                                             | Purpose                                                        |
@@ -10,6 +11,15 @@ Ruter publishes a packages manifest that provides a list of packages that should
 These locations should be checked once daily, at a minimum, after 16.00 CET, which is our cutoff for changes for the day, Monday to Friday.
 
 It is expected that new packages should be installed on all vehicles running in regular traffic after 05.00 CET the following day.
+
+## General information regarding update procedures
+
+- The DPI application must be kept up to date whenever the PTA publishes new versions of the application or the media files it depends on. These updates are made available as ZIP package files and described in a manifest file, which can be accessed at defined URLs for both the production and pre-production environments.
+- The PTO is required to regularly check for new versions of the DPI downloadable packages in the PTA's production channel.
+- When new packages are available, the PTO must download them and ensure that all vehicles have installed the updated content before they begin their routes the following morning.
+- The PTO must validate that the package has been correctly downloaded and properly extracted.
+- A minimum of 16 GB of storage must be available on the vehicle to store the PTA's content.
+- The PTO should download new versions from a pre-production channel in a test environment and ensure the version is thoroughly tested before being deployed to production.
 
 ## Contents of Manifest
 

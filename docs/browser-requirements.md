@@ -1,22 +1,21 @@
-# Browser requirements
+# Browser Requirements
 
-The PTO is required to install and maintain one of the following browsers: 
+The PTO is required to install and maintain one of the following supported browsers:
 
-| Browser name | Additional resources                                  |
-|--------------|-------------------------------------------------------|
-| Firefox      | [mozilla.org](https://www.mozilla.org/en-US/firefox/) |
-| Chrome       | [google.com](https://www.google.com/chrome/)          |
-| Chromium     | [chromium.org](https://www.chromium.org/Home/)        |
+| **Browser Name** | **Additional Resources**                               |
+|------------------|--------------------------------------------------------|
+| Firefox          | [mozilla.org](https://www.mozilla.org/en-US/firefox/)  |
+| Chrome           | [google.com](https://www.google.com/chrome/)           |
+| Chromium         | [chromium.org](https://www.chromium.org/Home/)         |
 
+## Network Requirements
 
-## Network
+- The browser must have internet access, with port 443 open for secure communication.
+- The system must have access to a DNS service to resolve domain names.
 
-- The browser must have internet access (port 443)
+## Additional Requirements
 
-## Additional requirements
-
-- Only stable software versions are to be used. 
-- The browser needs to be periodically updated and must never be older than 12 months.
-- The browser must have persistent storage available. This includes, among other things, that it cannot run in incognito mode.
-- All feature flags set to default values, unless otherwise agreed upon with Ruter.
-
+- Only stable, officially released versions of the browsers are to be used.
+- The browser must be updated regularly and should not be older than 12 months.
+- Persistent storage must be available for the browser. It must not operate in incognito or private browsing modes.
+- All feature flags should be set to their default values, unless otherwise agreed upon with Ruter.
