@@ -18,6 +18,7 @@
         {
           "id": "RUT:StopPlace:02190017",
           "name": "Fornebu vest",
+          "cancelled": false,
           "connections": [],
           "location": {
             "latitude": 12.33345,
@@ -28,6 +29,7 @@
         {
           "id": "RUT:StopPlace:03010013",
           "name": "Jernbanetorget",
+          "cancelled": false,
           "connections": [
             {
               "line": {
