@@ -1,17 +1,18 @@
 {
   "name": "Arriving",
   "payload": {
-    "eventTimestamp": "2017-10-31T08:38:02.749Z",
-    "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
-    "expiryTimestamp": "2017-10-31T08:38:47.749Z",
-    "ref": "RUT:StopPlace:03012453",
-    "zoneId": "2b-vest",
-    "message": {
-      "no": {
-        "text": "Ankommer Jernbanetorget"
+    "eventTimestamp" : "2024-11-28T13:51:06.337903113Z",
+    "traceId" : "1acad49e-da9c-4ecc-8704-7b881d6cccc9",
+    "expiryTimestamp" : "2024-11-28T13:51:21.337909232Z",
+    "ref" : "NSR:StopPlace:6671",
+    "message" : {
+      "en" : {
+        "title" : "Arriving at",
+        "text" : "Kastellet"
       },
-      "en": {
-        "text": "Arriving at Jerbanetorget"
+      "no" : {
+        "title" : "Ankommer",
+        "text" : "Kastellet"
       }
     }
   }
