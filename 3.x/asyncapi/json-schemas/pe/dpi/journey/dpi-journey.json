@@ -120,6 +120,11 @@
                 "type": "string",
                 "description": "Public name of stop"
               },
+              "cancelled": {
+                "$id": "#/properties/route/properties/stopPlaces/items/properties/cancelled",
+                "type": "boolean",
+                "description": "Indicated if the stop has been cancelled according to the original plan for the journey"
+              },
               "location": {
                 "$id": "#/properties/route/properties/stopPlaces/items/properties/location",
                 "type": "object",
