@@ -6,7 +6,6 @@
   "required": [
     "eventTimestamp",
     "traceId",
-    "operatorRef",
     "vehicleId",
     "apiVersion"
   ],
@@ -23,11 +22,6 @@
       "$id": "#/properties/traceId",
       "type": "string",
       "description": "A unique identifier - UUID"
-    },
-    "operatorRef": {
-      "$id": "#/properties/operatorRef",
-      "type": "string",
-      "description": "A unique identifier of the PTO. This is the same as the operatorId in the topic"
     },
     "vehicleId": {
       "$id": "#/properties/vehicleId",

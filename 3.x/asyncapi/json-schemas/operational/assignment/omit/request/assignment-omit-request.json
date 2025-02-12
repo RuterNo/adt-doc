@@ -29,32 +29,14 @@
         "NO_INTENTION"
       ]
     },
-    "omit": {
-      "$id": "#/properties/omit",
-      "type": "boolean"
-    },
-    "datedServiceJourneys": {
-      "$id": "#/properties/datedServiceJourneys",
-      "type": "array",
-      "items": {
-        "$ref": "./common/assignment-omit-dated-service-journey.json"
-      }
-    },
-    "journeys": {
-      "$id": "#/properties/journeys",
-      "type": "array",
-      "items": {
-        "$ref": "common/assignment-omit-journey.json"
-      }
-    },
     "vehicleTaskId": {
       "$id": "#/properties/vehicleTaskId",
-      "description": "Deprecated: Use datedServiceJourneys. Reference to the vehicle task to apply the omission",
+      "description": "Reference to the vehicle task to apply the omission",
       "type": "string"
     },
     "serviceWindow": {
       "$id": "#/properties/serviceWindow",
-      "description": "Deprecated: Use datedServiceJourneys. First departure and last arrival",
+      "description": "First departure and last arrival",
       "$ref": "../../common/assignment-service-window.json"
     }
   }

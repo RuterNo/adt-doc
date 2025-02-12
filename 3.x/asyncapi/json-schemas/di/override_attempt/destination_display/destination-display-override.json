@@ -22,6 +22,11 @@
       "description": "As specified in the [ADT documentation.](https://adt.transhub.io)",
       "format": "date-time"
     },
+    "number": {
+      "$id": "#/properties/number",
+      "type": "number",
+      "description": "Numeric value representing the destination sign information to display."
+    },
     "publicCode": {
       "$id": "#/properties/publicCode",
       "type": "string",
