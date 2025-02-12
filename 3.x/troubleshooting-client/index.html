@@ -663,6 +663,8 @@
       
         
       
+        
+      
     
     
       
@@ -977,6 +979,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#locating-screen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Locating screen
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#known-situations-and-client-fallbacks" class="md-nav__link">
     <span class="md-ellipsis">
       Known situations and client fallbacks
@@ -1189,6 +1200,108 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Hardware requirements
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Hardware requirements
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../display-requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Displays
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../speaker-requirements/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Speaker system
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1297,6 +1410,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#locating-screen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Locating screen
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#known-situations-and-client-fallbacks" class="md-nav__link">
     <span class="md-ellipsis">
       Known situations and client fallbacks
@@ -1401,6 +1523,21 @@
 
 
 <h1 id="troubleshooting-client">Troubleshooting client<a class="headerlink" href="#troubleshooting-client" title="Permanent link">&para;</a></h1>
+<h3 id="locating-screen">Locating screen<a class="headerlink" href="#locating-screen" title="Permanent link">&para;</a></h3>
+<p>When setting up screen a <code>physicalId</code> may be passed to the application with querystring.
+ For example: <a href="http://webserver.local/app/?physicalId=screen1#/display/1">http://webserver.local/app/?physicalId=screen1#/display/1</a>.
+ This can be anything the operator feels helps them to locate the screen.</p>
+<p>The application will use the value in all diagnostic messages like this (simplified)
+ <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>{
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  &quot;clientId&quot;: &quot;f72a138ffada1E41ccc8ad&quot;,
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  ...
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  &quot;type&quot;: &quot;STATUS&quot;,
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>  &quot;payload&quot;: {
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    &quot;physicalId&quot;: &quot;screen1&quot;,
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    ...
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  }
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>}
+</code></pre></div></p>
 <h3 id="known-situations-and-client-fallbacks">Known situations and client fallbacks<a class="headerlink" href="#known-situations-and-client-fallbacks" title="Permanent link">&para;</a></h3>
 <p>Listed below are situations that may occur and how these situations are indicated in busmonitor application.</p>
 <h4 id="unable-to-establish-connection-to-local-mqtt-bridge">Unable to establish connection to local mqtt-bridge<a class="headerlink" href="#unable-to-establish-connection-to-local-mqtt-bridge" title="Permanent link">&para;</a></h4>

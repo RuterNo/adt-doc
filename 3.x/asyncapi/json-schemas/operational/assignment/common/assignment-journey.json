@@ -15,6 +15,18 @@
       "description": "Id of the journey",
       "type": "string"
     },
+    "vehicleJourneyId": {
+      "$id": "#/properties/vehicleJourneyId",
+      "type": "string"
+    },
+    "lineId": {
+      "$id": "#/properties/lineId",
+      "type": "string"
+    },
+    "datedServiceJourneyId": {
+      "$id": "#/properties/datedServiceJourneyId",
+      "type": "string"
+    },
     "serviceWindow": {
       "$id": "#/properties/serviceWindow",
       "description": "First departure and last arrival",

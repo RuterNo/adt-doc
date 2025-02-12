@@ -4,12 +4,12 @@
   "title": "Apc",
   "type": "object",
   "required": [
+    "traceId",
+    "eventTimestamp",
+    "messageNumber",
     "doorRef",
     "alightingCount",
     "boardingCount",
-    "traceId",
-    "messageNumber",
-    "eventTimestamp",
     "categoryActivities"
   ],
   "description": "Raw-data from door-sensor for later evaluation.",
@@ -21,21 +21,6 @@
       "type": "string",
       "description": "A unique identifier to be able to trace this message. Also used to detect duplicate messages received."
     },
-    "doorRef": {
-      "$id": "#/properties/doorRef",
-      "type": "string",
-      "description": "Stable alfa-numeric reference that is unique within scope of vehicle (vehicle element/train set). Could be a door-number or a combination of coach number and door number."
-    },
-    "alightingCount": {
-      "$id": "#/properties/alightingCount",
-      "type": "number",
-      "description": "Total number of alighting passengers detected by this sensor since last reset."
-    },
-    "boardingCount": {
-      "$id": "#/properties/boardingCount",
-      "type": "number",
-      "description": "Total number of boarding passengers detected by this sensor since last reset."
-    },
     "eventTimestamp": {
       "$id": "#/properties/eventTimestamp",
       "type": "string",
@@ -45,7 +30,22 @@
       "$id": "#/properties/messageNumber",
       "$comment": "Added in version 2.1",
       "type": "number",
-      "description": "Sequence number, increased by one for each new message. Used to validate consistency in the data stream."
+      "description": "Sequence number that should generated on the vehicle and increased by one for each new message. Used to validate consistency in the data stream."
+    },
+    "doorRef": {
+      "$id": "#/properties/doorRef",
+      "type": "string",
+      "description": "Stable alfa-numeric reference that is unique within scope of vehicle (vehicle element/train set). Could be a door-number or a combination of coach number and door number."
+    },
+    "alightingCount": {
+      "$id": "#/properties/alightingCount",
+      "type": "number",
+      "description": "Total number of alighting passengers detected by this sensor since the last APC message was produced."
+    },
+    "boardingCount": {
+      "$id": "#/properties/boardingCount",
+      "type": "number",
+      "description": "Total number of boarding passengers detected by this sensor since the last APC message was produced."
     },
     "categoryActivities": {
       "$id": "#/properties/categoryActivities",
@@ -73,11 +73,11 @@
           },
           "alightingCount": {
             "type": "number",
-            "description": "Number of alighting of this category detected by this sensor since last reset."
+            "description": "Number of alighting of this category detected by this sensor since the last APC message was produced."
           },
           "boardingCount": {
             "type": "number",
-            "description": "Number of boarding of this category detected by this sensor since last reset."
+            "description": "Number of boarding of this category detected by this sensor since the last APC message was produced."
           }
         }
       }

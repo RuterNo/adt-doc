@@ -46,6 +46,7 @@
         "id",
         "name",
         "line",
+        "journeyPatternRef",
         "stopPlaces"
       ],
       "additionalProperties": true,
@@ -88,6 +89,11 @@
             }
           }
         },
+        "journeyPatternRef": {
+          "$id": "#/properties/route/properties/journeyPatternRef",
+          "type": "string",
+          "description": "Id identifying the journey pattern. Should be comparable to the JourneyPattern reference used by Entur."
+        },
         "stopPlaces": {
           "$id": "#/properties/route/properties/stopPlaces",
           "type": "array",
@@ -113,6 +119,11 @@
                 "$id": "#/properties/route/properties/stopPlaces/items/properties/name",
                 "type": "string",
                 "description": "Public name of stop"
+              },
+              "cancelled": {
+                "$id": "#/properties/route/properties/stopPlaces/items/properties/cancelled",
+                "type": "boolean",
+                "description": "Indicated if the stop has been cancelled according to the original plan for the journey"
               },
               "location": {
                 "$id": "#/properties/route/properties/stopPlaces/items/properties/location",
