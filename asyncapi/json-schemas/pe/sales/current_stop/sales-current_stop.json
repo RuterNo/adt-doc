@@ -59,10 +59,15 @@
       "type": "string",
       "description": "The chainId for the operator that owns the vehicle"
     },
-    "lineId": {
-      "$id": "#/properties/lineId",
+    "lineRef": {
+      "$id": "#/properties/lineRef",
       "type": "string",
-      "description": "LineId the bus is operating currently, obtained from the Progress event"
+      "description": "LineRef the bus is operating currently, obtained from the Progress event"
+    },
+    "lineName": {
+      "$id": "#/properties/lineName",
+      "type": "string",
+      "description": "Name of the line the bus is operating currently"
     },
     "blockId": {
       "$id": "#/properties/blockId",

@@ -11,6 +11,7 @@
       "vehicleRef":"XNL404P500D041745",
       "lineRef":"RUT:Line:81",
       "progressRef": "3841a268-0c03-4588-b476-211be0f26a0d",
+      "currentStopTimestamp": "2020-04-28T13:49:50.814Z",
       "assignmentRef":"bdc4e54425fb418fa7ca5ea769d18416",
       "actualCallRef":"bd58550c-bd45-4047-adf5-a7f8cab3ff05",
       "chainId": "130",

@@ -14,7 +14,7 @@
     "eventTimestamp": {
       "$id": "#/properties/eventTimestamp",
       "type": "string",
-      "description": "Time of diagnostics generated",
+      "description": "Time of SLA-message generated",
       "format": "date-time"
     },
     "traceId": {
@@ -50,12 +50,12 @@
       "required": [
         "vehicleRef",
         "progressRef",
+        "currentStopTimestamp",
         "lineRef",
         "assignmentRef",
         "chainId",
         "stopPlaceId",
         "appVersion",
-        "userId",
         "adtApiVersion"
       ],
       "additionalProperties": true,
@@ -63,32 +63,38 @@
         "vehicleRef": {
           "$id": "#/properties/context/properties/vehicleRef",
           "type": "string",
-          "description": "A reference to the Progress event that triggered this message. Matches the traceId from the Progress event."
+          "description": "Unique identifier (VIN) of the vehicle."
         },
         "progressRef": {
           "$id": "#/properties/context/properties/progressRef",
           "type": "string",
           "description": "A reference to the Progress event that triggered this message. Matches the traceId from the Progress event."
         },
+        "currentStopTimestamp": {
+          "$id": "#/properties/context/properties/currentStopTimestamp",
+          "type": "string",
+          "description": "Timestamp from the current_stop message that triggered this message",
+          "format": "date-time"
+        },
         "lineRef": {
           "$id": "#/properties/context/properties/lineRef",
           "type": "string",
-          "description": "A reference to the Progress event that triggered this message. Matches the traceId from the Progress event."
+          "description": "The lineId the vehicle is currently serving."
         },
         "assignmentRef": {
           "$id": "#/properties/context/properties/assignmentRef",
           "type": "string",
-          "description": "A reference to the Progress event that triggered this message. Matches the traceId from the Progress event."
+          "description": "A reference to the assignment the vehicle is operating."
         },
         "actualCallRef": {
           "$id": "#/properties/context/properties/actualCallRef",
           "type": "string",
-          "description": "A reference to the Progress event that triggered this message. Matches the traceId from the Progress event."
+          "description": "A reference to the call (stop place on a specific journey) the message was created at."
         },
         "chainId": {
           "$id": "#/properties/context/properties/chainId",
           "type": "string",
-          "description": "A reference to the Progress event that triggered this message. Matches the traceId from the Progress event."
+          "description": "A reference to the operator (PTO) of the vehicle"
         },
         "journeyRef": {
           "$id": "#/properties/context/properties/journeyRef",
