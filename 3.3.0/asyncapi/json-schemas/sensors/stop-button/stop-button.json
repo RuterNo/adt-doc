@@ -1,0 +1,44 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/sensors/stop-button/stop-button.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "StopButton",
+  "type": "object",
+  "required": [
+    "eventTimestamp",
+    "traceId",
+    "stopPressed",
+    "accessibility"
+  ],
+  "description": "Describes if passengers have requested that the bus should stop (stop button pressed).",
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io). Reflects the UTC time when the state changed."
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier - UUID"
+    },
+    "stopPressed": {
+      "$id": "#/properties/stopPressed",
+      "type": "boolean",
+      "description": "True if stop request button pressed. False if stop request signal is cleared.",
+      "examples": [
+        "true",
+        "false"
+      ]
+    },
+    "accessibility": {
+      "$id": "#/properties/accessibility",
+      "type": "boolean",
+      "description": "True if stop request should lead to longer wait on stop. Used to indicate if the request is by someone with accessibility challenges.",
+      "examples": [
+        "true",
+        "false"
+      ]
+    }
+  }
+}
