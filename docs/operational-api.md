@@ -1,4 +1,5 @@
 # Operational API
+> This api is a draft until further notice
 
 [OpenAPI Specification Documentation](openapi/operational/index.html){target=_blank .md-button }
 
