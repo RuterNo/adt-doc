@@ -196,38 +196,41 @@ Example _PublicationDelivery_ section from NeTEx data file format:
 ```
 
 Resolved values from above example for use in journey specification:
-- _lineId_: `RUT:Line:1337` value from
+
+**lineId**: `RUT:Line:1337` value from
+```
+PublicationDelivery/dataObjects/CompositeFrame/frames/ServiceFrame/lines/Line/@id
+```
+
+**journeyId**: either of
+1. _vehicle journey id_ value `505` from
+   ```
+   PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/PrivateCode
+   ```
+2. _service journey Id_ value `RUT:ServiceJourney:1` from
+   ```
+   PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/@Id
+   ```
+3. _dated service journey id_ value `RUT:DatedServiceJourney:a` from
+   ```
+   PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/DatedServiceJourney/@id
+   ```
+
+**serviceWindow.start**: value `2024-01-01T03:28:00+01:00`, constructed by combining
+- date of service
+- departure time of earliest passing from
   ```
-  PublicationDelivery/dataObjects/CompositeFrame/frames/ServiceFrame/lines/Line/@id
+  PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/passingTimes/TimetabledPassingTime/DepartureTime
   ```
-- _journeyId_: either of
-  1. _vehicle journey id_ value `505` from
-     ```
-     PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/PrivateCode
-     ```
-  2. _service journey Id_ value `RUT:ServiceJourney:1` from
-     ```
-     PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/@Id
-     ```
-  3. _dated service journey id_ value `RUT:DatedServiceJourney:a` from
-     ```
-     PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/DatedServiceJourney/@id
-     ```
-- _serviceWindow_:
-   - _start_ value `2024-01-01T03:28:00+01:00`, constructed by combining
-     - date of service
-     - departure time of earliest passing from
-       ```
-       PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/passingTimes/TimetabledPassingTime/DepartureTime
-       ```
-     - current time-zone offset (CET).
-  - _end_ value `2024-01-01T03:33:00+01:00`, constructed by combining
-    - date of service
-    - arrival time of latest passing time from
-      ```
-      PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/passingTimes/TimetabledPassingTime/ArrivalTime
-      ```
-    - current time-zone offset (CET).
+- current time-zone offset (CET).
+
+**serviceWindow.end**: value `2024-01-01T03:33:00+01:00`, constructed by combining
+- date of service
+- arrival time of latest passing time from
+  ```
+  PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/passingTimes/TimetabledPassingTime/ArrivalTime
+  ```
+- current time-zone offset (CET).
 
 ##### Journey Call Specifications
 
