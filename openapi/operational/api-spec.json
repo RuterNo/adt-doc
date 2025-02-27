@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://example.dev.transhub.io/api/adt/v4/operational",
+      "url": "https://example.com/api/adt/v4/operational",
       "description": "Dev server"
     }
   ],
