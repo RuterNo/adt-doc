@@ -2724,33 +2724,32 @@ journey on a specific date:</p>
 <a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">  </span><span class="nt">&lt;/dataObjects&gt;</span>
 <a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="nt">&lt;/PublicationDelivery&gt;</span>
 </code></pre></div>
-<p>Resolved values from above example for use in journey specification:
-- <em>lineId</em>: <code>RUT:Line:1337</code> value from
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>PublicationDelivery/dataObjects/CompositeFrame/frames/ServiceFrame/lines/Line/@id
+<p>Resolved values from above example for use in journey specification:</p>
+<p><strong>lineId</strong>: <code>RUT:Line:1337</code> value from
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>PublicationDelivery/dataObjects/CompositeFrame/frames/ServiceFrame/lines/Line/@id
+</code></pre></div></p>
+<p><strong>journeyId</strong>: either of
+1. <em>vehicle journey id</em> value <code>505</code> from
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/PrivateCode
 </code></pre></div>
-- <em>journeyId</em>: either of
-  1. <em>vehicle journey id</em> value <code>505</code> from
-     <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/PrivateCode
+2. <em>service journey Id</em> value <code>RUT:ServiceJourney:1</code> from
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/@Id
 </code></pre></div>
-  2. <em>service journey Id</em> value <code>RUT:ServiceJourney:1</code> from
-     <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/@Id
+3. <em>dated service journey id</em> value <code>RUT:DatedServiceJourney:a</code> from
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/DatedServiceJourney/@id
+</code></pre></div></p>
+<p><strong>serviceWindow.start</strong>: value <code>2024-01-01T03:28:00+01:00</code>, constructed by combining
+- date of service
+- departure time of earliest passing from
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/passingTimes/TimetabledPassingTime/DepartureTime
 </code></pre></div>
-  3. <em>dated service journey id</em> value <code>RUT:DatedServiceJourney:a</code> from
-     <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/DatedServiceJourney/@id
+- current time-zone offset (CET).</p>
+<p><strong>serviceWindow.end</strong>: value <code>2024-01-01T03:33:00+01:00</code>, constructed by combining
+- date of service
+- arrival time of latest passing time from
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/passingTimes/TimetabledPassingTime/ArrivalTime
 </code></pre></div>
-- <em>serviceWindow</em>:
-   - <em>start</em> value <code>2024-01-01T03:28:00+01:00</code>, constructed by combining
-     - date of service
-     - departure time of earliest passing from
-       <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/passingTimes/TimetabledPassingTime/DepartureTime
-</code></pre></div>
-     - current time-zone offset (CET).
-  - <em>end</em> value <code>2024-01-01T03:33:00+01:00</code>, constructed by combining
-    - date of service
-    - arrival time of latest passing time from
-      <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/passingTimes/TimetabledPassingTime/ArrivalTime
-</code></pre></div>
-    - current time-zone offset (CET).</p>
+- current time-zone offset (CET).</p>
 <h5 id="journey-call-specifications">Journey Call Specifications<a class="headerlink" href="#journey-call-specifications" title="Permanent link">&para;</a></h5>
 <p>Certain API requests allow the client to provide a list of calls for a journey when signing on a vehicle or
 registering a service deviation. In such requests, a call must be uniquely specified within a journey, since a journey
