@@ -1,0 +1,1754 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Assignment Gateway Public API",
+    "description": "Definitions for Assignment Gateway Public API",
+    "version": "3.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://example.dev.transhub.io/api/adt/v4/operational",
+      "description": "Dev server"
+    }
+  ],
+  "paths": {
+    "/auth/.well-known/openid-configuration": {
+      "get": {
+        "summary": "OpenID Configuration",
+        "description": "Endpoint for discovering all OpenId Connect endpoints",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpenIdConfigurationResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/oauth2/token": {
+      "post": {
+        "summary": "Retrieve Token",
+        "description": "Endpoint for exchanging credentials for tokens (access token and ID token)",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/TokenFormParams"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful authentication",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Unsupported grant type"
+          },
+          "401": {
+            "description": "Unauthorized - Invalid credentials"
+          }
+        }
+      }
+    },
+    "/auth/.well-known/jwks": {
+      "get": {
+        "summary": "JWKS",
+        "description": "Endpoint for fetching JSON Web Key Set (JWKS) to verify the retrieved tokens",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JWKSResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/assignment/attempts": {
+      "post": {
+        "operationId": "postAssignmentAttempt",
+        "description": "Post an assignment attempt to sign on / sign off a vehicle.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Assignment attempt request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignmentAttemptRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "2xx": {
+            "description": "Assignment attempt response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssignmentAttemptResponse"
+                }
+              }
+            }
+          },
+          "4xx": {
+            "description": "Assignment attempt response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssignmentAttemptResponse"
+                }
+              }
+            }
+          },
+          "5xx": {
+            "description": "Assignment attempt response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssignmentAttemptResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/assignment/vehicles/{vehicleId}": {
+      "get": {
+        "operationId": "getAssignmentVehicleState",
+        "description": "Look up a vehicle's (assignment) state.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/VehicleIdPathParam"
+          },
+          {
+            "$ref": "#/components/parameters/IncludeCallsQueryParam"
+          }
+        ],
+        "responses": {
+          "2xx": {
+            "description": "Vehicle state response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VehicleStateResponse"
+                }
+              }
+            }
+          },
+          "4xx": {
+            "description": "Vehicle state response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VehicleStateResponse"
+                }
+              }
+            }
+          },
+          "5xx": {
+            "description": "Vehicle state response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VehicleStateResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/journey/journeys": {
+      "get": {
+        "operationId": "findJourneys",
+        "description": "Find journeys for a given set of search criteria.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "in": "query",
+            "name": "query",
+            "description": "Journey search query string.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/LatQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/LonQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/DirectionQueryParam"
+          },
+          {
+            "in": "query",
+            "name": "fromDateTime",
+            "description": "First arrival / departure date in ISO 8601 date-time format with time-zone offset. If not set, search result may be limited to current day.\n",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "toDateTime",
+            "description": "Last arrival / departure date in ISO 8601 date-time format with time-zone offset. If not set, search result may be limited to current day.\n",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/IncludeCallsQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/LimitQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/OffsetQueryParam"
+          }
+        ],
+        "responses": {
+          "2xx": {
+            "description": "Response containing a list of journey items matching search criteria.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JourneyListResponse"
+                }
+              }
+            }
+          },
+          "4xx": {
+            "description": "Response containing a list of journey items matching search criteria.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JourneyListResponse"
+                }
+              }
+            }
+          },
+          "5xx": {
+            "description": "Response containing a list of journey items matching search criteria.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JourneyListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/journey/lines": {
+      "get": {
+        "operationId": "findLines",
+        "description": "Return list of unique lines matching search criteria.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "in": "query",
+            "name": "query",
+            "description": "Lines search query string.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/LimitQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/OffsetQueryParam"
+          }
+        ],
+        "responses": {
+          "2xx": {
+            "description": "Response containing a list of line items.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JourneyLineListResponse"
+                }
+              }
+            }
+          },
+          "4xx": {
+            "description": "Response containing a list of line items.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JourneyLineListResponse"
+                }
+              }
+            }
+          },
+          "5xx": {
+            "description": "Response containing a list of line items.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JourneyLineListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/journey/stop-points": {
+      "get": {
+        "operationId": "findStopPoints",
+        "description": "Return list of unique stop points matching search criteria.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "in": "query",
+            "name": "query",
+            "description": "Stop point search query string.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/LimitQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/OffsetQueryParam"
+          }
+        ],
+        "responses": {
+          "2xx": {
+            "description": "Response containing a list of stop point items.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JourneyStopPointListResponse"
+                }
+              }
+            }
+          },
+          "4xx": {
+            "description": "Response containing a list of stop point items.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JourneyStopPointListResponse"
+                }
+              }
+            }
+          },
+          "5xx": {
+            "description": "Response containing a list of stop point items.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JourneyStopPointListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deviation/deviations": {
+      "get": {
+        "operationId": "findServiceDeviations",
+        "description": "Return a list of service deviations matching a given set of criteria.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/LimitQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/OffsetQueryParam"
+          }
+        ],
+        "responses": {
+          "2xx": {
+            "description": "Service deviation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceDeviationListResponse"
+                }
+              }
+            }
+          },
+          "4xx": {
+            "description": "Service deviation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceDeviationListResponse"
+                }
+              }
+            }
+          },
+          "5xx": {
+            "description": "Service deviation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceDeviationListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "postServiceDeviation",
+        "description": "Post a service deviation registration request",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Service deviation registration request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServiceDeviationPostRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "2xx": {
+            "description": "Service deviation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceDeviationPostResponse"
+                }
+              }
+            }
+          },
+          "4xx": {
+            "description": "Service deviation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceDeviationPostResponse"
+                }
+              }
+            }
+          },
+          "5xx": {
+            "description": "Service deviation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceDeviationPostResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deviation/deviations/{serviceDeviationId}": {
+      "get": {
+        "operationId": "getServiceDeviation",
+        "description": "Return a service deviation with a given id.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ServiceDeviationIdPathParam"
+          }
+        ],
+        "responses": {
+          "2xx": {
+            "description": "Service deviation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceDeviationGetResponse"
+                }
+              }
+            }
+          },
+          "4xx": {
+            "description": "Service deviation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceDeviationGetResponse"
+                }
+              }
+            }
+          },
+          "5xx": {
+            "description": "Service deviation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceDeviationGetResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "updateServiceDeviation",
+        "description": "Update a service deviation with a given id.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ServiceDeviationIdPathParam"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Service deviation update request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServiceDeviationPostRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "2xx": {
+            "description": "Service deviation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceDeviationPostResponse"
+                }
+              }
+            }
+          },
+          "4xx": {
+            "description": "Service deviation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceDeviationPostResponse"
+                }
+              }
+            }
+          },
+          "5xx": {
+            "description": "Service deviation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceDeviationPostResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteServiceDeviation",
+        "description": "Delete a service deviation, effectively making it inactive from now on.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ServiceDeviationIdPathParam"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Service deviation delete request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServiceDeviationDeleteRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "2xx": {
+            "description": "Service deviation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceDeviationDeleteResponse"
+                }
+              }
+            }
+          },
+          "4xx": {
+            "description": "Service deviation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceDeviationDeleteResponse"
+                }
+              }
+            }
+          },
+          "5xx": {
+            "description": "Service deviation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceDeviationDeleteResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/deviation/reason-codes": {
+      "get": {
+        "operationId": "getServiceDeviationReasonCodes",
+        "description": "Return a list of service deviation reason codes",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "in": "query",
+            "name": "serviceDeviationCode",
+            "schema": {
+              "$ref": "#/components/schemas/ServiceDeviationCode"
+            }
+          }
+        ],
+        "responses": {
+          "2xx": {
+            "description": "Service deviation reason codes response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceDeviationReasonCodeListResponse"
+                }
+              }
+            }
+          },
+          "4xx": {
+            "description": "Service deviation reason codes response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceDeviationReasonCodeListResponse"
+                }
+              }
+            }
+          },
+          "5xx": {
+            "description": "Service deviation reason codes response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceDeviationReasonCodeListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      },
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "parameters": {
+      "VehicleIdPathParam": {
+        "in": "path",
+        "name": "vehicleId",
+        "required": true,
+        "description": "Unique vehicle identifier",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "TraceIdHeader": {
+        "in": "header",
+        "name": "X-Trace-Id",
+        "description": "Optional trace id for request. May be used to trace multiple requests as part of the same \"operation\" or \"process\". If set, should be different from `X-Request-Id` header.\n",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "RequestIdHeader": {
+        "in": "header",
+        "name": "X-Request-Id",
+        "description": "Optional request id for request. Request id provided by client should be unique per request. For identifying multiple requests as belonging to the same group of requests when doing retries, parallel request processing or similar, see `X-Trace-Id` header.\n",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "OperatorIdHeader": {
+        "in": "header",
+        "name": "X-Operator-Id",
+        "description": "Operator ref which can be set by the authentication service",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "DirectionQueryParam": {
+        "name": "direction",
+        "in": "query",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "DatedServiceJourneyIdPathParam": {
+        "in": "path",
+        "name": "datedServiceJourneyId",
+        "required": true,
+        "description": "Unique identifier of a dated service journey.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "LatQueryParam": {
+        "in": "query",
+        "name": "lat",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "LonQueryParam": {
+        "in": "query",
+        "name": "lon",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "LimitQueryParam": {
+        "in": "query",
+        "name": "limit",
+        "description": "Maximum number of items to return in response.",
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "OffsetQueryParam": {
+        "in": "query",
+        "name": "offset",
+        "description": "Item offset for returned response.",
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "ServiceDeviationIdPathParam": {
+        "in": "path",
+        "name": "serviceDeviationId",
+        "required": true,
+        "description": "Unique identifier of service deviation.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "IncludeCallsQueryParam": {
+        "in": "query",
+        "name": "includeCalls",
+        "description": "Flag indicating if returned journeys should include call data or not (default: `false`).\n",
+        "schema": {
+          "type": "boolean"
+        }
+      }
+    },
+    "schemas": {
+      "AssignmentAttemptRequest": {
+        "type": "object",
+        "title": "AssignmentAttemptRequest",
+        "properties": {
+          "vehicleId": {
+            "type": "string"
+          },
+          "signOn": {
+            "$ref": "#/components/schemas/AssignmentAttemptRequestSignOn"
+          },
+          "signOff": {
+            "$ref": "#/components/schemas/AssignmentAttemptRequestSignOff"
+          }
+        }
+      },
+      "AssignmentAttemptRequestSignOff": {
+        "type": "object",
+        "title": "AssignmentAttemptRequestSignOff",
+        "description": "Request to sign the vehicle out from assigned journey. The result is effective immediately. It signals that the vehicle will no longer service journey.\n",
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/AssignmentAttemptSignOffCode"
+          }
+        }
+      },
+      "AssignmentAttemptRequestSignOn": {
+        "type": "object",
+        "title": "AssignmentAttemptRequestSignOn",
+        "description": "Attempt to sign the vehicle on to a specified vehicle task or one or more journey(s).",
+        "properties": {
+          "journeys": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JourneySpecOption"
+            }
+          }
+        }
+      },
+      "AssignmentAttemptResponse": {
+        "type": "object",
+        "title": "AssignmentAttemptResponse",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/StatusResponse"
+          },
+          "vehicleState": {
+            "$ref": "#/components/schemas/VehicleState"
+          }
+        }
+      },
+      "AssignmentAttemptSignOffCode": {
+        "type": "string",
+        "title": "AssignmentAttemptSignOffCode",
+        "description": "Sign-off attempt code",
+        "example": [
+          "CANCELLED",
+          "FINISHED"
+        ]
+      },
+      "DateTimeRange": {
+        "type": "object",
+        "title": "DateTimeRange",
+        "description": "A date-time range with a start date-time and an end date-time.",
+        "properties": {
+          "start": {
+            "type": "string",
+            "description": "Start of date-time range in ISO-8601 format, including time-zone offset (format: _YYYY-MM-DD_T_hh:mm:ssZ_).\n"
+          },
+          "end": {
+            "type": "string",
+            "description": "End of date-time range in ISO-8601 format, including time-zone offset (format: _YYYY-MM-DD_T_hh:mm:ssZ_).\n"
+          }
+        }
+      },
+      "JWKSResponse": {
+        "type": "object",
+        "title": "JWKSResponse",
+        "properties": {
+          "keys": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "kty": {
+                  "type": "string",
+                  "example": "RSA"
+                },
+                "kid": {
+                  "type": "string"
+                },
+                "e": {
+                  "type": "string"
+                },
+                "n": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Journey": {
+        "type": "object",
+        "title": "Journey",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "spec": {
+            "$ref": "#/components/schemas/JourneySpec"
+          },
+          "journeyIds": {
+            "$ref": "#/components/schemas/JourneyIdentifiers"
+          },
+          "line": {
+            "$ref": "#/components/schemas/JourneyLine"
+          },
+          "direction": {
+            "$ref": "#/components/schemas/JourneyDirectionCode"
+          },
+          "state": {
+            "$ref": "#/components/schemas/JourneyState"
+          },
+          "calls": {
+            "type": "array",
+            "description": "Calls serviced by this journey. Note that call list may be empty or non-present (`null`) if journey was retrieved without call details.\n",
+            "items": {
+              "$ref": "#/components/schemas/JourneyCall"
+            }
+          }
+        }
+      },
+      "JourneyCall": {
+        "type": "object",
+        "title": "JourneyCall",
+        "properties": {
+          "spec": {
+            "$ref": "#/components/schemas/JourneyCallSpec"
+          },
+          "behaviourType": {
+            "$ref": "#/components/schemas/JourneyCallBehaviourTypeCode"
+          },
+          "originalBehaviourType": {
+            "$ref": "#/components/schemas/JourneyCallBehaviourTypeCode"
+          },
+          "destinationDisplayText": {
+            "type": "string",
+            "description": "Destination display text to use at this call."
+          }
+        }
+      },
+      "JourneyCallBehaviourTypeCode": {
+        "type": "string",
+        "title": "JourneyCallBehaviourTypeCode",
+        "description": "Behaviour type code for a journey stop point call.",
+        "examples": [
+          "NO_SERVICE         # Stop point is not serviced",
+          "FULL_SERVICE       # Stop point is serviced (boarding and alighting)",
+          "FOR_BOARDING_ONLY  # Only boarding allowed at stop point",
+          "FOR_ALIGHTING_ONLY # Only alighting allowed at stop point"
+        ]
+      },
+      "JourneyCallSpec": {
+        "type": "object",
+        "title": "JourneyCallSpec",
+        "properties": {
+          "stopPoint": {
+            "$ref": "#/components/schemas/StopPointSpec"
+          },
+          "arrivalDateTime": {
+            "type": "string",
+            "description": "Planned arrival date and time of call in ISO-8601 datetime format (`YYYY-DD-MMThh:mm:ssZ`) with time-zone.\n"
+          },
+          "departureDateTime": {
+            "type": "string",
+            "description": "Planned departure date and time of call in ISO-8601 datetime format (`YYYY-DD-MMThh:mm:ssZ`) with time-zone.\n"
+          }
+        }
+      },
+      "JourneyDirectionCode": {
+        "type": "string",
+        "title": "JourneyDirectionCode",
+        "description": "Line direction code, indicating direction of line relative to city center.",
+        "example": [
+          "ANY      # Any direction.",
+          "INBOUND  # Inbound to city center.",
+          "OUTBOUND # Outbound from city center."
+        ]
+      },
+      "JourneyIdentifiers": {
+        "type": "object",
+        "title": "JourneyIdentifiers",
+        "description": "Identifiers for a (dated) journey",
+        "properties": {
+          "vehicleJourneyId": {
+            "type": "string",
+            "description": "Vehicle journey id assigned by PTA traffic planner. Reused across multiple operating dates."
+          },
+          "serviceJourneyId": {
+            "type": "string",
+            "description": "Service journey id assigned by PTA back-end system. Reused across multiple operating dates."
+          },
+          "datedServiceJourneyId": {
+            "type": "string",
+            "description": "Dated service journey id assigned by PTA back-end system. Unique for a specific service journey on a specific date.\n"
+          }
+        }
+      },
+      "JourneyLine": {
+        "type": "object",
+        "title": "JourneyLine",
+        "description": "A journey line with id, name and direction.",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "lineId": {
+            "type": "string"
+          },
+          "publicCode": {
+            "type": "string"
+          },
+          "textColor": {
+            "type": "string"
+          },
+          "backgroundColor": {
+            "type": "string"
+          }
+        }
+      },
+      "JourneyLineListResponse": {
+        "type": "object",
+        "title": "JourneyLineListResponse",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/StatusResponse"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JourneyLine"
+            }
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageInfo"
+          }
+        }
+      },
+      "JourneyLineSpec": {
+        "type": "object",
+        "title": "JourneyLineSpec",
+        "properties": {
+          "lineId": {
+            "type": "string"
+          },
+          "direction": {
+            "$ref": "#/components/schemas/JourneyDirectionCode"
+          }
+        }
+      },
+      "JourneyListResponse": {
+        "type": "object",
+        "title": "JourneyListResponse",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/StatusResponse"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Journey"
+            }
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageInfo"
+          }
+        }
+      },
+      "JourneyServiceDeviation": {
+        "type": "object",
+        "title": "JourneyServiceDeviation",
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/ServiceDeviationCode"
+          },
+          "reason": {
+            "$ref": "#/components/schemas/ServiceDeviationReason"
+          },
+          "lifecycle": {
+            "$ref": "#/components/schemas/ServiceDeviationLifeCycleInfo"
+          },
+          "references": {
+            "$ref": "#/components/schemas/ServiceDeviationReferences"
+          }
+        }
+      },
+      "JourneyServiceMitigations": {
+        "type": "object",
+        "title": "JourneyServiceMitigations",
+        "properties": {
+          "cancelled": {
+            "type": "boolean",
+            "description": "Flag indicating journey has been cancelled by traffic controller and communicated as cancelled to the public.\n"
+          },
+          "partiallyCancelled": {
+            "type": "boolean",
+            "description": "Flag indicating journey has been partially cancelled by traffic controller and communicated as partially cancelled to the public.\n"
+          },
+          "contingencyVehiclePlanned": {
+            "type": "boolean",
+            "description": "Flag indicating traffic controller has planned an alternative (contingency) vehicle on this journey.\n"
+          }
+        }
+      },
+      "JourneySpec": {
+        "type": "object",
+        "title": "JourneySpec",
+        "properties": {
+          "lineId": {
+            "type": "string"
+          },
+          "journeyId": {
+            "type": "string",
+            "description": "Identifier referencing journey, such as `serviceJourneyId`, `vehicleJourneyId` or `datedServiceJourneyId`.\n"
+          },
+          "serviceWindow": {
+            "$ref": "#/components/schemas/DateTimeRange"
+          }
+        }
+      },
+      "JourneySpecOption": {
+        "type": "object",
+        "title": "JourneySpecOption",
+        "properties": {
+          "calls": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JourneyCallSpec"
+            }
+          },
+          "journey": {
+            "$ref": "#/components/schemas/JourneySpec"
+          }
+        }
+      },
+      "JourneyState": {
+        "type": "object",
+        "title": "JourneyState",
+        "description": "Operational state of a journey.",
+        "properties": {
+          "assigned": {
+            "type": "boolean",
+            "description": "Flag indicating journey is currently assigned to one more vehicles, i.e. at least one vehicle is currently signed on this journey.\n"
+          },
+          "serviceDeviations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JourneyServiceDeviation"
+            }
+          },
+          "serviceMitigations": {
+            "$ref": "#/components/schemas/JourneyServiceMitigations"
+          }
+        }
+      },
+      "JourneyStopPoint": {
+        "type": "object",
+        "title": "JourneyStopPoint",
+        "properties": {
+          "spec": {
+            "$ref": "#/components/schemas/StopPointSpec"
+          },
+          "name": {
+            "type": "string"
+          },
+          "publicCode": {
+            "type": "string"
+          }
+        }
+      },
+      "JourneyStopPointListResponse": {
+        "type": "object",
+        "title": "JourneyStopPointListResponse",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/StatusResponse"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JourneyStopPoint"
+            }
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageInfo"
+          }
+        }
+      },
+      "OpenIdConfigurationResponse": {
+        "type": "object",
+        "title": "OpenIdConfigurationResponse",
+        "properties": {
+          "issuer": {
+            "type": "string"
+          },
+          "token_endpoint": {
+            "type": "string"
+          },
+          "jwks_uri": {
+            "type": "string"
+          },
+          "scopes_supported": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "response_types_supported": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "subject_types_supported": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "id_token_signing_alg_values_supported": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "PageInfo": {
+        "type": "object",
+        "title": "PageInfo",
+        "description": "Paging info of a returned find / search result.",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "description": "Limit value used for processing request."
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Offset value used for processing request."
+          },
+          "itemCount": {
+            "type": "integer",
+            "description": "Number of result items in `items` array."
+          }
+        }
+      },
+      "ServiceDeviation": {
+        "type": "object",
+        "title": "ServiceDeviation",
+        "properties": {
+          "spec": {
+            "$ref": "#/components/schemas/ServiceDeviationSpec"
+          },
+          "lifecycle": {
+            "$ref": "#/components/schemas/ServiceDeviationLifeCycleInfo"
+          }
+        }
+      },
+      "ServiceDeviationCode": {
+        "type": "string",
+        "title": "ServiceDeviationCode",
+        "description": "Service deviation code, indicating type of service deviation.",
+        "example": [
+          "DELAY            # Service will be delayed.",
+          "NO_SERVICE       # Journey(s), line(s) or call(s) will not be serviced by operator.",
+          "NO_SIGN_ON       # Planned journey(s), line(s) or call(s) will be serviced, but operator will not sign on."
+        ]
+      },
+      "ServiceDeviationDeleteRequest": {
+        "type": "object",
+        "title": "ServiceDeviationDeleteRequest",
+        "properties": {
+          "comment": {
+            "type": "string"
+          }
+        }
+      },
+      "ServiceDeviationDeleteResponse": {
+        "type": "object",
+        "title": "ServiceDeviationDeleteResponse",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/StatusResponse"
+          },
+          "deleted": {
+            "type": "boolean"
+          },
+          "serviceDeviationId": {
+            "type": "string"
+          }
+        }
+      },
+      "ServiceDeviationGetResponse": {
+        "type": "object",
+        "title": "ServiceDeviationGetResponse",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/StatusResponse"
+          },
+          "deviation": {
+            "$ref": "#/components/schemas/ServiceDeviation"
+          }
+        }
+      },
+      "ServiceDeviationImpact": {
+        "type": "object",
+        "title": "ServiceDeviationImpact",
+        "properties": {
+          "lines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JourneyLineSpec"
+            }
+          },
+          "journeys": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JourneySpecOption"
+            }
+          },
+          "stopPoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StopPointSpec"
+            }
+          },
+          "serviceWindows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DateTimeRange"
+            }
+          }
+        }
+      },
+      "ServiceDeviationLifeCycleInfo": {
+        "type": "object",
+        "title": "ServiceDeviationLifeCycleInfo",
+        "description": "Life-cycle information about a service deviation.",
+        "properties": {
+          "created": {
+            "type": "string",
+            "description": "Date and time when service deviation was initially created."
+          },
+          "modified": {
+            "type": "string",
+            "description": "Date and time when service deviation was last modified."
+          },
+          "serviceDeviationId": {
+            "type": "string",
+            "description": "Unique identifier of service deviation."
+          }
+        }
+      },
+      "ServiceDeviationListResponse": {
+        "type": "object",
+        "title": "ServiceDeviationListResponse",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/StatusResponse"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServiceDeviation"
+            }
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageInfo"
+          }
+        }
+      },
+      "ServiceDeviationParameters": {
+        "type": "object",
+        "title": "ServiceDeviationParameters",
+        "description": "Parameters of deviation.",
+        "properties": {
+          "vehicleId": {
+            "type": "string",
+            "description": "Optional identifier of vehicle to which the service deviation applies."
+          },
+          "delayMinutes": {
+            "type": "integer",
+            "description": "Number of minutes of expected delay, relative to planned arrival / departure time."
+          },
+          "operatorExempt": {
+            "type": "boolean",
+            "description": "Flag indicating that operator is exempt from consequences of reported service deviation."
+          }
+        }
+      },
+      "ServiceDeviationPostRequest": {
+        "type": "object",
+        "title": "ServiceDeviationPostRequest",
+        "properties": {
+          "spec": {
+            "$ref": "#/components/schemas/ServiceDeviationSpec"
+          }
+        }
+      },
+      "ServiceDeviationPostResponse": {
+        "type": "object",
+        "title": "ServiceDeviationPostResponse",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/StatusResponse"
+          },
+          "deviation": {
+            "$ref": "#/components/schemas/ServiceDeviation"
+          }
+        }
+      },
+      "ServiceDeviationReason": {
+        "type": "object",
+        "title": "ServiceDeviationReason",
+        "description": "Service deviation reason, indicating reason for service deviation.",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Service deviation reason code. Allowed values depends on deviation code, operator and active configuration. A list of available codes can be obtained via API look-up.\n"
+          },
+          "comment": {
+            "type": "string",
+            "description": "Optional, human-readable, reason comment, if applicable.\n"
+          }
+        }
+      },
+      "ServiceDeviationReasonCodeListResponse": {
+        "type": "object",
+        "title": "ServiceDeviationReasonCodeListResponse",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/StatusResponse"
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServiceDeviationReasonGroupSpec"
+            }
+          },
+          "reasons": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServiceDeviationReasonCodeSpec"
+            }
+          }
+        }
+      },
+      "ServiceDeviationReasonCodeSpec": {
+        "type": "object",
+        "title": "ServiceDeviationReasonCodeSpec",
+        "description": "Specification for a service deviation reason code.",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Service deviation reason code for in deviation registrations."
+          },
+          "title": {
+            "type": "string",
+            "description": "Display title of reason code."
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed description of reason code, if any."
+          },
+          "groupCode": {
+            "type": "string",
+            "description": "Code indicating service deviation reason group to which this reason code belongs."
+          },
+          "validDeviationCodes": {
+            "type": "array",
+            "description": "List of service deviation codes for which this reason code is valid.",
+            "item": {
+              "$ref": "#/components/schemas/ServiceDeviationCode"
+            }
+          }
+        }
+      },
+      "ServiceDeviationReasonGroupSpec": {
+        "type": "object",
+        "title": "ServiceDeviationReasonGroupSpec",
+        "description": "Specification for a service deviation reason code.",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Service deviation reason group code code."
+          },
+          "title": {
+            "type": "string",
+            "description": "Display title of reason code."
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed description of reason code, if any."
+          }
+        }
+      },
+      "ServiceDeviationReferences": {
+        "type": "object",
+        "title": "ServiceDeviationReferences",
+        "properties": {
+          "ptoCaseRef": {
+            "type": "string",
+            "description": "Reference to PTO (traffic) case / issue tracking system."
+          },
+          "ptaCaseRef": {
+            "type": "string",
+            "description": "Reference to PTA (traffic) case / issue tracking system."
+          }
+        }
+      },
+      "ServiceDeviationSpec": {
+        "type": "object",
+        "title": "ServiceDeviationSpec",
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/ServiceDeviationCode"
+          },
+          "reason": {
+            "$ref": "#/components/schemas/ServiceDeviationReason"
+          },
+          "impact": {
+            "$ref": "#/components/schemas/ServiceDeviationImpact"
+          },
+          "duration": {
+            "$ref": "#/components/schemas/DateTimeRange"
+          },
+          "parameters": {
+            "$ref": "#/components/schemas/ServiceDeviationParameters"
+          },
+          "references": {
+            "$ref": "#/components/schemas/ServiceDeviationReferences"
+          }
+        }
+      },
+      "StatusResponse": {
+        "type": "object",
+        "title": "StatusResponse",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/StatusResponseDetail"
+          },
+          "details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StatusResponseDetail"
+            }
+          }
+        }
+      },
+      "StatusResponseDetail": {
+        "type": "object",
+        "title": "StatusResponseDetail",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      },
+      "StopPointSpec": {
+        "type": "object",
+        "title": "StopPointSpec",
+        "properties": {
+          "quayId": {
+            "type": "string",
+            "description": "Unique identifier of (NSR) quay, if any. May also be an internal quay id not officially registered in NSR, such a garage or vehicle depot.\n",
+            "examples": [
+              "NSR:Quay:1337"
+            ]
+          },
+          "stopPointId": {
+            "type": "string",
+            "description": "Unique id of stop point. May be used as an alternative to quayId if stop point has no quay id or quay id is knot known.\n"
+          }
+        }
+      },
+      "TokenFormParams": {
+        "type": "object",
+        "title": "TokenFormParams",
+        "properties": {
+          "grant_type": {
+            "type": "string",
+            "example": "client_credentials"
+          },
+          "scope": {
+            "type": "string",
+            "example": "openid|read"
+          }
+        }
+      },
+      "TokenResponse": {
+        "type": "object",
+        "title": "TokenResponse",
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "description": "JWT for authentication"
+          },
+          "token_type": {
+            "type": "string",
+            "example": "Bearer"
+          },
+          "expires_in": {
+            "type": "integer",
+            "description": "Token validity period in seconds"
+          },
+          "scope": {
+            "type": "string",
+            "description": "Granted scopes"
+          },
+          "id_token": {
+            "type": "string",
+            "description": "OpenID Connect ID token"
+          }
+        }
+      },
+      "VehicleState": {
+        "type": "object",
+        "title": "VehicleState",
+        "properties": {
+          "vehicleId": {
+            "type": "string"
+          },
+          "adtVersion": {
+            "type": "string"
+          },
+          "assigned": {
+            "description": "Is the vehicle currently assigned",
+            "type": "boolean"
+          },
+          "journeys": {
+            "description": "List of dated service journeys assigned to the vehicle, if any.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Journey"
+            }
+          },
+          "description": {
+            "description": "Human readable description of the last action performed that changed the state of the vehicle assignment",
+            "type": "string"
+          }
+        }
+      },
+      "VehicleStateResponse": {
+        "type": "object",
+        "title": "VehicleStateResponse",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/StatusResponse"
+          },
+          "vehicleState": {
+            "$ref": "#/components/schemas/VehicleState"
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
