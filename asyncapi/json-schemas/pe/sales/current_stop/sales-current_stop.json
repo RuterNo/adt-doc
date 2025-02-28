@@ -6,9 +6,10 @@
   "required": [
     "eventTimestamp",
     "traceId",
+    "progressRef",
     "vehicleRef",
     "stopPlaceId",
-    "tariffZone"
+    "tariffZones"
   ],
   "additionalProperties": false,
   "properties": {
@@ -84,20 +85,85 @@
       "type": "string",
       "description": "StopPlaceId the Progress event was received for"
     },
-    "tariffZone": {
-      "$id": "#/properties/tariffZone",
-      "type": "string",
-      "description": "The tariff zone the vehicle is currently in"
-    },
-    "stopPlaceIdNextStop": {
-      "$id": "#/properties/stopPlaceIdNextStop",
-      "type": "string",
-      "description": "StopPlaceId for the next stop after the current stop (not by plan, but by actual progress, as these sometimes deviate)"
-    },
-    "tariffZoneNextStop": {
-      "$id": "#/properties/tariffZoneNextStop",
-      "type": "string",
-      "description": "The tariff zone of the next stop. This can be used to determine if the vehicle is leaving a zone."
+    "tariffZones": {
+      "$id": "#/properties/tariffZones",
+      "type": "object",
+      "description": "Tariff zone object for the current and next stops",
+      "required": [
+        "onCurrentStop",
+        "onNextStop"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "onCurrentStop": {
+          "$id": "#/properties/tariffZones/properties/onCurrentStop",
+          "type": "object",
+          "description": "Zone object for the current stop",
+          "required": [
+            "id",
+            "name",
+            "nodId",
+            "fareZoneId"
+          ],
+          "additionalProperties": true,
+          "properties": {
+            "id": {
+              "$id": "#/properties/tariffZones/properties/onCurrentStop/properties/id",
+              "type": "string",
+              "description": "The Ruter zone id, like RUT:TariffZone:228"
+            },
+            "name": {
+              "$id": "#/properties/tariffZones/properties/onCurrentStop/properties/name",
+              "type": "boolean",
+              "description": "Name of the zone, like 2S"
+            },
+            "nodId": {
+              "$id": "#/properties/tariffZones/properties/onCurrentStop/properties/nodId",
+              "type": "boolean",
+              "description": "The NOD zone id, like 228"
+            },
+            "fareZoneId": {
+              "$id": "#/properties/tariffZones/properties/onCurrentStop/properties/fareZoneId",
+              "type": "string",
+              "description": "The Entur zone id, like RUT:FareZone:10"
+            }
+          }
+        },
+        "onNextStop": {
+          "$id": "#/properties/metrics/properties/nfcStatus/properties/connected",
+          "type": "boolean",
+          "description": "Zone object for the current stop",
+          "required": [
+            "id",
+            "name",
+            "nodId",
+            "fareZoneId"
+          ],
+          "additionalProperties": true,
+          "properties": {
+            "id": {
+              "$id": "#/properties/tariffZones/properties/onCurrentStop/properties/id",
+              "type": "string",
+              "description": "The Ruter zone id, like RUT:TariffZone:228"
+            },
+            "name": {
+              "$id": "#/properties/tariffZones/properties/onCurrentStop/properties/name",
+              "type": "boolean",
+              "description": "Name of the zone, like 2S"
+            },
+            "nodId": {
+              "$id": "#/properties/tariffZones/properties/onCurrentStop/properties/nodId",
+              "type": "boolean",
+              "description": "The NOD zone id, like 228"
+            },
+            "fareZoneId": {
+              "$id": "#/properties/tariffZones/properties/onCurrentStop/properties/fareZoneId",
+              "type": "string",
+              "description": "The Entur zone id, like RUT:FareZone:10"
+            }
+          }
+        }
+      }
     }
   }
 }
