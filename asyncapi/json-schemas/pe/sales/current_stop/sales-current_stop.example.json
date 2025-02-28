@@ -1,22 +1,32 @@
 {
   "name": "SalesCurrentStop",
   "payload": {
-    "eventTimestamp": "2020-04-28T13:49:50.814Z",
-    "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
-    "spanId": "76867064-33bb-4c3a-b692-1b688253441a",
-    "progressRef": "3841a268-0c03-4588-b476-211be0f26a0d",
-    "actualCallRef": "3791a268-0c03-9876-b476-289be0f26ifj",
-    "assignmentRef": "b754a1858f984da1a829f3fe15979ae5",
-    "journeyRef": "42911-2020-05-25T16:42:00+02:00",
-    "vehicleRef": "VNE5248P50M039131",
-    "chainId": "140",
-    "lineRef": "RUT:Line:21",
-    "lineName": "Tjuvholmen - Helsfyr T",
-    "blockId": "44f45aeb-7e7a-456f-b326-0546e988ae00",
-    "quayId": "NSR:Quay:17023",
-    "stopPlaceId": "NSR:StopPlace:4000",
-    "tariffZone": "RUT:TariffZone:227",
-    "stopPlaceIdNextStop": "NSR:StopPlace:4001",
-    "tariffZoneNextStop": "RUT:TariffZone:227"
+    "eventTimestamp": "2025-02-14T12:21:10Z",
+    "traceId": "50168016-ee07-4943-bf79-2c11c175500f",
+    "progressRef": "6edad7a4-6ccc-4403-9157-5471aa4704e9",
+    "actualCallRef": "2abec1bf-c5b2-4671-85b7-b8e3111fb363",
+    "vehicleRef": "XNL404P500D041753",
+    "assignmentRef": "9c720d43bba44dcd89b22ce98b07f8af",
+    "chainId": "130",
+    "journeyRef": "8169-2025-02-14T12:51:00+01:00",
+    "lineRef": "RUT:Line:580",
+    "lineName": "Kolbotn - Ski",
+    "blockId": "a83fc5a7-1002-4f34-b778-ca5ec85751f4",
+    "quayId": "NSR:Quay:6220",
+    "stopPlaceId": "NSR:StopPlace:3503",
+    "tariffZones": {
+      "onCurrentStop": {
+        "id": "RUT:TariffZone:228",
+        "name": "2S",
+        "nodId": "228",
+        "fareZoneId": "RUT:FareZone:10"
+      },
+      "onNextStop": {
+        "id": "RUT:TariffZone:228",
+        "name": "2S",
+        "nodId": "228",
+        "fareZoneId": "RUT:FareZone:10"
+      }
+    }
   }
 }
