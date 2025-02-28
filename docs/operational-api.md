@@ -248,7 +248,7 @@ specified, which is typically the case for the first (departure only) and last (
 #### Journey Line Specifications
 
 Certain API requests allow the client to provide a list of journey lines. In such requests, a line must be uniquely
-identified using a _journey line specification_ consisting of two properties:
+identified using a _journey line specification_ consisting of two properties
 
 1. `lineId`, a line identifier, as returned by the [Journey API journey lines](#journey-lines) endpoint.
 2. `direction`, a line direction:
