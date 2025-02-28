@@ -1,4 +1,5 @@
 # Event Reporting API
+> DEPRECATED: Use Operational Api instead.
 
 Use this API to report cancellation and delay events, as well as other SLA breaches, directly to
 Ruter, along with a flag indicating whether you as an operator consider that the event was outside

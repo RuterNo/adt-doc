@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "Event Reporting API",
-    "description": "Use this API to report cancellation and delay events, as well as other SLA\nbreaches, directly to Ruter, along with a flag indicating whether you as an operator consider that\nthe event was outside your control, and that you should be exempt from being fined for\nincurred/reported SLA breach(es).\n",
+    "description": "DEPRECATED: Use Operational Api instead.\nUse this API to report cancellation and delay events, as well as other SLA\nbreaches, directly to Ruter, along with a flag indicating whether you as an operator consider that\nthe event was outside your control, and that you should be exempt from being fined for\nincurred/reported SLA breach(es).\n",
     "version": "1"
   },
   "servers": [
