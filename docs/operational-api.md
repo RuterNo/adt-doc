@@ -7,10 +7,9 @@
 
 The ADT Operational API consists of three separate, but related functional areas:
 
-1. [Journey API endpoints](#journey-api), for looking up lines, stop points and journeys.
+1. [Journey API endpoints](#journey-api), for looking up up-to-date lines, stop points and journeys.
 2. [Assignment API endpoints](#assignment-api), for signing vehicles on and off journeys as they are being operated.
-3. [Service Deviation API endpoints](#deviation-api), for notifying about deviations from planned operations.
-   delivery.
+3. [Service Deviation API endpoints](#deviation-api), for notifying about deviations from planned operations delivery.
 
 ### Data Model
 
@@ -78,7 +77,7 @@ When looking up journeys via the [Journey API](#journey-api), a set of three ide
 3. `datedServiceJourneyId`: Dated service journey id assigned by PTA back-end system. Unique for a specific service journey on a
     specific date.
 
-Of these, 1) and 2) may be reused across multiple operating days and are therefore not unique for a specific date.
+Of these, 1.) and 2.) may be reused across multiple operating days and are therefore not unique for a specific date.
 
 #### Journey Specification Options
 
@@ -196,41 +195,39 @@ Example _PublicationDelivery_ section from NeTEx data file format:
 ```
 
 Resolved values from above example for use in journey specification:
+-  **lineId**: `RUT:Line:1337` value from
+    ```
+    PublicationDelivery/dataObjects/CompositeFrame/frames/ServiceFrame/lines/Line/@id
+    ```
+- **journeyId**: either of
+    1. _vehicle journey id_ value `505` from
+        ```
+        PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/PrivateCode
+        ```
+    2. _service journey Id_ value `RUT:ServiceJourney:1` from
+        ```
+        PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/@Id
+        ```
+    3. _dated service journey id_ value `RUT:DatedServiceJourney:a` from
+        ```
+        PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/DatedServiceJourney/@id
+        ```
 
-**lineId**: `RUT:Line:1337` value from
-```
-PublicationDelivery/dataObjects/CompositeFrame/frames/ServiceFrame/lines/Line/@id
-```
+- **serviceWindow.start**: value `2024-01-01T03:28:00+01:00`, constructed by combining
+  - date of service
+  - departure time of earliest passing from
+    ```
+    PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/passingTimes/TimetabledPassingTime/DepartureTime
+    ```
+  - current time-zone offset (CET).
 
-**journeyId**: either of
-1. _vehicle journey id_ value `505` from
-   ```
-   PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/PrivateCode
-   ```
-2. _service journey Id_ value `RUT:ServiceJourney:1` from
-   ```
-   PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/@Id
-   ```
-3. _dated service journey id_ value `RUT:DatedServiceJourney:a` from
-   ```
-   PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/DatedServiceJourney/@id
-   ```
-
-**serviceWindow.start**: value `2024-01-01T03:28:00+01:00`, constructed by combining
-- date of service
-- departure time of earliest passing from
-  ```
-  PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/passingTimes/TimetabledPassingTime/DepartureTime
-  ```
-- current time-zone offset (CET).
-
-**serviceWindow.end**: value `2024-01-01T03:33:00+01:00`, constructed by combining
-- date of service
-- arrival time of latest passing time from
-  ```
-  PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/passingTimes/TimetabledPassingTime/ArrivalTime
-  ```
-- current time-zone offset (CET).
+- **serviceWindow.end**: value `2024-01-01T03:33:00+01:00`, constructed by combining
+  - date of service
+  - arrival time of latest passing time from
+    ```
+    PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/passingTimes/TimetabledPassingTime/ArrivalTime
+    ```
+  - current time-zone offset (CET).
 
 ##### Journey Call Specifications
 
@@ -255,13 +252,13 @@ identified using a _journey line specification_ consisting of two properties:
 
 1. `lineId`, a line identifier, as returned by the [Journey API journey lines](#journey-lines) endpoint.
 2. `direction`, a line direction:
-  - `ANY`, indicating any line direction.
-  - `INBOUND`, indicating an inbound line.
-  - `OUTBOUND`, indicating an outbound line.
+   - `ANY`, indicating any line direction.
+   - `INBOUND`, indicating an inbound line.
+   - `OUTBOUND`, indicating an outbound line.
 
 #### Journey Stop Point Specifications
 
-Since not all stop points in the operational journey database are required to have corresponding NSR quay ids,
+Since not all stop points in the operational journey database are required to have corresponding [NSR](https://developer.entur.org/pages-nsr-nsr) quay ids,
 for example, if they represent stop points which are not official NSR quays, each stop point also has an associated
 _API stop point id_, returned when looking up stop points via the
 [Journey API stop points endpoint](#journey-stop-points).
@@ -343,8 +340,8 @@ HTTP response:
 ""
 ```
 Common HTTP status codes when using the token:
-- 401 Unauthorized: Indicates an invalid, expired, or not permissioned enough token.
-- 403 Forbidden: Signifies a valid token lacking permission for the requested resource.
+  - **401 Unauthorized**: Indicates an invalid, expired, or not permissioned enough token.
+  - **403 Forbidden**: Signifies a valid token lacking permission for the requested resource.
 
 In case of these errors, get a new token or verify the granted scopes.
 
@@ -728,8 +725,6 @@ HTTP response:
   }
 }
 ```
-Thank you for providing the current structure. I'll revise the top section to include information about using the Journey API for looking up journeys and how its results can be used directly in the Sign-On API. Here's the updated version:
-
 ## Assignment API
 
 The vehicle assignment lifecycle in public transportation consists of four main stages:
@@ -1211,9 +1206,9 @@ Each service deviation request contains a _service deviation specification_ desc
 following properties:
 
 1. `code`, a service deviation code describing the type of deviation:
-   - `DELAY`, indicating a delayed journey start.
-   - `NO_SERVICE`, indicating a line, stop point or journey will not be serviced by the operator.
-   - `NO_SIGN_ON`, indicating a journey will be serviced by the operator, but the servicing vehicle will not be
+   1. `DELAY`, indicating a delayed journey start.
+   2. `NO_SERVICE`, indicating a line, stop point or journey will not be serviced by the operator.
+   3. `NO_SIGN_ON`, indicating a journey will be serviced by the operator, but the servicing vehicle will not be
       signing on.
 2. `reason`, a structure containing the [reason code](#service-deviation-reason-codes) for the deviation and an
    optional `comment` describing further details about the reason.

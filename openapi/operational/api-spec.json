@@ -16,6 +16,7 @@
       "get": {
         "summary": "OpenID Configuration",
         "description": "Endpoint for discovering all OpenId Connect endpoints",
+        "security": [],
         "responses": {
           "200": {
             "description": "Successful response",
@@ -73,6 +74,7 @@
       "get": {
         "summary": "JWKS",
         "description": "Endpoint for fetching JSON Web Key Set (JWKS) to verify the retrieved tokens",
+        "security": [],
         "responses": {
           "200": {
             "description": "Successful response",
