@@ -488,9 +488,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#validation-of-journeys" class="md-nav__link">
     <span class="md-ellipsis">
-      Validation
+      Validation of journeys
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation-of-vehicle-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation of vehicle tasks
     </span>
   </a>
   
@@ -1381,9 +1390,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validation" class="md-nav__link">
+  <a href="#validation-of-journeys" class="md-nav__link">
     <span class="md-ellipsis">
-      Validation
+      Validation of journeys
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validation-of-vehicle-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Validation of vehicle tasks
     </span>
   </a>
   
@@ -1438,7 +1456,32 @@ that may lead to sign-on failing.</p>
 <p>The traffic plans are exported in NeTEx format. Each export-file contains plans related to one contract within a time 
 period of 14 days. Each week new exports are generated and made available in the API. The exports have a version number 
 to differentiate between exports for the same contract.</p>
-<h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
+<h2 id="validation-of-journeys">Validation of journeys<a class="headerlink" href="#validation-of-journeys" title="Permanent link">&para;</a></h2>
+<p>The consistency of plan data can be done as follows:</p>
+<ol>
+<li>
+<p>Verify that the list of journeys are the same.</p>
+</li>
+<li>
+<p>A journey is identified by:</p>
+<ul>
+<li>Trip id (Norwegian: turnummer).
+  This is found in <code>ServiceJourney &gt; KeyValue</code> with <code>Key</code> 'hastusIds' or by using <code>ServiceJourney &gt; PrivateCode</code>.</li>
+<li>lineRef</li>
+<li>direction</li>
+</ul>
+</li>
+<li>
+<p>Verify that the journeys are correct:</p>
+<ul>
+<li>start time</li>
+<li>end time</li>
+<li>correct stop places in the correct order.
+  (This is important to be able to sign on/off parts of journeys.)</li>
+</ul>
+</li>
+</ol>
+<h2 id="validation-of-vehicle-tasks">Validation of vehicle tasks<a class="headerlink" href="#validation-of-vehicle-tasks" title="Permanent link">&para;</a></h2>
 <p>The consistency of plan data can be done as follows:</p>
 <ol>
 <li>
@@ -1450,8 +1493,7 @@ Vehicle tasks are found in the export by combining <code>Block</code> elements w
    A journey is identified by:</p>
 <ul>
 <li>Trip id (Norwegian: turnummer).
-  This is found in <code>ServiceJourney &gt; KeyValue</code> with <code>Key</code> 'hastusIds' and a list of trip ids in <code>Value</code>.
-  Each element in the list is a separate journey that is part of a separate vehicle task.</li>
+  This is found in <code>ServiceJourney &gt; KeyValue</code> with <code>Key</code> 'hastusIds' or by using <code>ServiceJourney &gt; PrivateCode</code>.</li>
 <li>lineRef</li>
 <li>direction</li>
 </ul>
