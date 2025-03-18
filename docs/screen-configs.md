@@ -12,12 +12,14 @@ These screens are accessible directly through a URL with following schema: `{Bas
 | 3        | Vertical journey                         | 16:9         | 1920x1080, 960x540                         | Bus            |
 | 4        | Vertical journey / Public Announcement   | 16:9         | 1920x1080, 960x540                         | Bus            |
 | 5        | Horizontal journey                       | 32:9         | 1920x540                                   | Bus            |
+| 6        | Vertical journey                         | 16:5         | 1920x600                                   | Bus            |
 | t2-left  | Horizontal journey                       | 1920:197     | 1920x197                                   | Tram (SL18)    |
 | t2-right | Horizontal journey (reverse)             | 1920:197     | 1920x197                                   | Tram (SL18)    |
 | t3       | Next stop / destination                  | 128:9        | 1920x285                                   | Tram (SL18)    |
 | b1       | Vertical journey                         | 16:9         | 1920x1080                                  | Ferry (Boreal) |
 | b2       | Next stop, sensors / Public Announcement | 16:9         | 1920x1080                                  | Ferry (Boreal) |
 | b3       | Next stop, Public Announcement           | 9:16         | 1080x1920                                  | Ferry (Norled) |
+| b4       | Boat primary                             | 16:9         | 1920x1080                                  | Ferry          |
 
 \* These are approx. values and subject to change.
 
@@ -86,6 +88,12 @@ Active public announcements will replace journey.
 This configuration is used to display a horizontal view of the line, on a 32:9 display.
 
 ![Running state](assets/images/client/config/config-5-1.png)
+
+### Screen config 6
+
+This configuration is used to display a vertical view of the line, on a 16:5 display.
+
+![Running state](assets/images/client/config/config-6.webp)
 
 ### Assignment of screen config id for screens
 
@@ -163,3 +171,9 @@ When there is no active media content playing, the screen will show information 
 Running state of config b3. Intended for screens in portrait mode showing journey on map, public announcements are shown.
 
 ![B3](assets/images/client/config/config-b3-1.png)
+
+### Screen config b4
+
+Running state of config b4
+
+![B4](assets/images/client/config/config-b4.webp)
