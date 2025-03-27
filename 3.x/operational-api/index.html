@@ -2550,7 +2550,106 @@
 <blockquote>
 <p>This api is a draft until further notice</p>
 </blockquote>
-<p><a class="md-button" href="../openapi/operational/" target="_blank">OpenAPI Specification Documentation</a></p>
+<div class="toc">
+<ul>
+<li><a href="#operational-api">Operational API</a><ul>
+<li><a href="#introduction">Introduction</a><ul>
+<li><a href="#data-model">Data Model</a><ul>
+<li><a href="#journey-identifiers">Journey Identifiers</a></li>
+<li><a href="#journey-specification-options">Journey Specification Options</a><ul>
+<li><a href="#journey-specifications">Journey Specifications</a><ul>
+<li><a href="#mapping-netex-data-to-journey-specifications">Mapping NeTEx Data to Journey Specifications</a></li>
+</ul>
+</li>
+<li><a href="#journey-call-specifications">Journey Call Specifications</a></li>
+</ul>
+</li>
+<li><a href="#journey-line-specifications">Journey Line Specifications</a></li>
+<li><a href="#journey-stop-point-specifications">Journey Stop Point Specifications</a></li>
+</ul>
+</li>
+<li><a href="#authentication">Authentication</a><ul>
+<li><a href="#access-tokens-retrieve">Access Tokens - Retrieve</a></li>
+<li><a href="#access-tokens-use">Access Tokens - Use</a></li>
+</ul>
+</li>
+<li><a href="#common-headers">Common Headers</a></li>
+</ul>
+</li>
+<li><a href="#journey-api">Journey API</a><ul>
+<li><a href="#journeys">Journeys</a><ul>
+<li><a href="#find-journeys-by-line-id">Find Journeys - by Line Id</a></li>
+<li><a href="#find-journeys-by-vehicle-task-id">Find Journeys - by Vehicle Task Id</a></li>
+<li><a href="#find-journeys-include-journey-calls">Find Journeys - include Journey Calls</a></li>
+</ul>
+</li>
+<li><a href="#journey-lines">Journey Lines</a><ul>
+<li><a href="#find-journey-lines-by-name">Find Journey Lines - by Name</a></li>
+</ul>
+</li>
+<li><a href="#journey-stop-points">Journey Stop Points</a><ul>
+<li><a href="#find-journey-stop-points-by-name">Find Journey Stop Points - by Name</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#assignment-api">Assignment API</a><ul>
+<li><a href="#assignment-vehicle-state">Assignment - Vehicle State</a><ul>
+<li><a href="#vehicle-state-signed-on">Vehicle State - Signed On</a></li>
+<li><a href="#vehicle-state-signed-off">Vehicle State - Signed Off</a></li>
+</ul>
+</li>
+<li><a href="#assignment-sign-on">Assignment - Sign-On</a><ul>
+<li><a href="#sign-on-single-journey">Sign-On - Single Journey</a></li>
+<li><a href="#sign-on-multiple-journeys-with-ad-hoc-dead-runs">Sign-On - Multiple Journeys with Ad-Hoc Dead-Runs</a></li>
+</ul>
+</li>
+<li><a href="#assignment-sign-off">Assignment - Sign-Off</a><ul>
+<li><a href="#sign-off-finished">Sign-Off - FINISHED</a></li>
+<li><a href="#sign-off-cancelled">Sign-Off - CANCELLED</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#deviation-api">Deviation API</a><ul>
+<li><a href="#service-deviation-requests">Service Deviation Requests</a><ul>
+<li><a href="#service-deviation-specifications">Service Deviation Specifications</a><ul>
+<li><a href="#service-deviation-impact">Service Deviation Impact</a></li>
+<li><a href="#service-deviation-parameters">Service Deviation Parameters</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#service-deviation-delay">Service Deviation - DELAY</a><ul>
+<li><a href="#delay-on-journey">Delay: on Journey</a></li>
+</ul>
+</li>
+<li><a href="#service-deviation-no_service">Service Deviation - NO_SERVICE</a><ul>
+<li><a href="#no-service-on-journey">No Service - on Journey</a></li>
+<li><a href="#no-service-on-journey-calls">No Service - on Journey Calls</a></li>
+<li><a href="#no-service-on-stop-point">No Service - on Stop Point</a></li>
+</ul>
+</li>
+<li><a href="#service-deviation-no_sign_on">Service Deviation - NO_SIGN_ON</a><ul>
+<li><a href="#no-sign-on-on-journey">No Sign-On - on Journey</a></li>
+</ul>
+</li>
+<li><a href="#service-deviation-reason-codes">Service Deviation Reason Codes</a><ul>
+<li><a href="#read-service-deviation-reason-codes">Read Service Deviation Reason Codes</a></li>
+</ul>
+</li>
+<li><a href="#additional-service-deviation-operations">Additional Service Deviation Operations</a><ul>
+<li><a href="#read-service-deviation-by-id">Read Service Deviation by Id</a></li>
+<li><a href="#delete-service-deviation-by-id">Delete Service Deviation by Id</a></li>
+<li><a href="#update-service-deviation-by-id">Update Service Deviation by Id</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>The ADT Operational API consists of three separate, but related functional areas:</p>
 <ol>
@@ -2769,7 +2868,7 @@ contains multiple calls and may also contain multiple calls at the same stop poi
 specified, which is typically the case for the first (departure only) and last (arrival only) call of a journey.</p>
 <h4 id="journey-line-specifications">Journey Line Specifications<a class="headerlink" href="#journey-line-specifications" title="Permanent link">&para;</a></h4>
 <p>Certain API requests allow the client to provide a list of journey lines. In such requests, a line must be uniquely
-identified using a <em>journey line specification</em> consisting of two properties</p>
+identified using a <em>journey line specification</em> consisting of two properties:</p>
 <ol>
 <li><code>lineId</code>, a line identifier, as returned by the <a href="#journey-lines">Journey API journey lines</a> endpoint.</li>
 <li><code>direction</code>, a line direction:</li>
@@ -3245,63 +3344,64 @@ database.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="m">200</span><span class="w"> </span>OK
 <a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="o">{</span>
 <a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">  </span><span class="s2">&quot;vehicleState&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">    </span><span class="s2">&quot;vehicleId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;VI00TEST001&quot;</span>,
-<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">    </span><span class="s2">&quot;assigned&quot;</span><span class="w"> </span>:<span class="w"> </span>true,
-<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">    </span><span class="s2">&quot;journeys&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Service Journey 0001&quot;</span>,
-<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="w">      </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="w">        </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
-<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="w">        </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>,
-<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="w">        </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="w">          </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
-<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="w">          </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
-<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="w">        </span><span class="o">}</span>
-<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="w">      </span><span class="o">}</span>,
-<a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="w">      </span><span class="s2">&quot;journeyIds&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a><span class="w">        </span><span class="s2">&quot;vehicleJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;vehicle-journey-0001&quot;</span>,
-<a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a><span class="w">        </span><span class="s2">&quot;serviceJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:ServiceJourney:0001&quot;</span>,
-<a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a><span class="w">        </span><span class="s2">&quot;datedServiceJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>
-<a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a><span class="w">      </span><span class="o">}</span>,
-<a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a><span class="w">      </span><span class="s2">&quot;line&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a><span class="w">        </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Testveien - Teststien&quot;</span>,
-<a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a><span class="w">        </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
-<a id="__codelineno-22-24" name="__codelineno-22-24" href="#__codelineno-22-24"></a><span class="w">        </span><span class="s2">&quot;publicCode&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;L01&quot;</span>,
-<a id="__codelineno-22-25" name="__codelineno-22-25" href="#__codelineno-22-25"></a><span class="w">        </span><span class="s2">&quot;textColor&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;FFFFFF&quot;</span>,
-<a id="__codelineno-22-26" name="__codelineno-22-26" href="#__codelineno-22-26"></a><span class="w">        </span><span class="s2">&quot;backgroundColor&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;1F1E1A&quot;</span>
-<a id="__codelineno-22-27" name="__codelineno-22-27" href="#__codelineno-22-27"></a><span class="w">      </span><span class="o">}</span>,
-<a id="__codelineno-22-28" name="__codelineno-22-28" href="#__codelineno-22-28"></a><span class="w">      </span><span class="s2">&quot;direction&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;INBOUND&quot;</span>,
-<a id="__codelineno-22-29" name="__codelineno-22-29" href="#__codelineno-22-29"></a><span class="w">      </span><span class="s2">&quot;calls&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-22-30" name="__codelineno-22-30" href="#__codelineno-22-30"></a><span class="w">        </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-22-31" name="__codelineno-22-31" href="#__codelineno-22-31"></a><span class="w">          </span><span class="s2">&quot;stopPoint&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-22-32" name="__codelineno-22-32" href="#__codelineno-22-32"></a><span class="w">            </span><span class="s2">&quot;quayId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;NSR:Quay:001A&quot;</span>,
-<a id="__codelineno-22-33" name="__codelineno-22-33" href="#__codelineno-22-33"></a><span class="w">            </span><span class="s2">&quot;stopPointId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;stop-point-001A&quot;</span>
-<a id="__codelineno-22-34" name="__codelineno-22-34" href="#__codelineno-22-34"></a><span class="w">          </span><span class="o">}</span>,
-<a id="__codelineno-22-35" name="__codelineno-22-35" href="#__codelineno-22-35"></a><span class="w">          </span><span class="s2">&quot;departureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>
-<a id="__codelineno-22-36" name="__codelineno-22-36" href="#__codelineno-22-36"></a><span class="w">        </span><span class="o">}</span>,
-<a id="__codelineno-22-37" name="__codelineno-22-37" href="#__codelineno-22-37"></a><span class="w">        </span><span class="s2">&quot;behaviourType&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;FULL_SERVICE&quot;</span>
-<a id="__codelineno-22-38" name="__codelineno-22-38" href="#__codelineno-22-38"></a><span class="w">      </span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-22-39" name="__codelineno-22-39" href="#__codelineno-22-39"></a><span class="w">        </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-22-40" name="__codelineno-22-40" href="#__codelineno-22-40"></a><span class="w">          </span><span class="s2">&quot;stopPoint&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-22-41" name="__codelineno-22-41" href="#__codelineno-22-41"></a><span class="w">            </span><span class="s2">&quot;quayId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;NSR:Quay:002A&quot;</span>,
-<a id="__codelineno-22-42" name="__codelineno-22-42" href="#__codelineno-22-42"></a><span class="w">            </span><span class="s2">&quot;stopPointId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;stop-point-002A&quot;</span>
-<a id="__codelineno-22-43" name="__codelineno-22-43" href="#__codelineno-22-43"></a><span class="w">          </span><span class="o">}</span>,
-<a id="__codelineno-22-44" name="__codelineno-22-44" href="#__codelineno-22-44"></a><span class="w">          </span><span class="s2">&quot;arrivalDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:10+01:00&quot;</span>,
-<a id="__codelineno-22-45" name="__codelineno-22-45" href="#__codelineno-22-45"></a><span class="w">          </span><span class="s2">&quot;departureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:10+01:00&quot;</span>
-<a id="__codelineno-22-46" name="__codelineno-22-46" href="#__codelineno-22-46"></a><span class="w">        </span><span class="o">}</span>,
-<a id="__codelineno-22-47" name="__codelineno-22-47" href="#__codelineno-22-47"></a><span class="w">        </span><span class="s2">&quot;behaviourType&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;FULL_SERVICE&quot;</span>
-<a id="__codelineno-22-48" name="__codelineno-22-48" href="#__codelineno-22-48"></a><span class="w">      </span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-22-49" name="__codelineno-22-49" href="#__codelineno-22-49"></a><span class="w">        </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-22-50" name="__codelineno-22-50" href="#__codelineno-22-50"></a><span class="w">          </span><span class="s2">&quot;stopPoint&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-22-51" name="__codelineno-22-51" href="#__codelineno-22-51"></a><span class="w">            </span><span class="s2">&quot;quayId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;NSR:Quay:003A&quot;</span>,
-<a id="__codelineno-22-52" name="__codelineno-22-52" href="#__codelineno-22-52"></a><span class="w">            </span><span class="s2">&quot;stopPointId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;stop-point-003A&quot;</span>
-<a id="__codelineno-22-53" name="__codelineno-22-53" href="#__codelineno-22-53"></a><span class="w">          </span><span class="o">}</span>,
-<a id="__codelineno-22-54" name="__codelineno-22-54" href="#__codelineno-22-54"></a><span class="w">          </span><span class="s2">&quot;arrivalDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
-<a id="__codelineno-22-55" name="__codelineno-22-55" href="#__codelineno-22-55"></a><span class="w">        </span><span class="o">}</span>,
-<a id="__codelineno-22-56" name="__codelineno-22-56" href="#__codelineno-22-56"></a><span class="w">        </span><span class="s2">&quot;behaviourType&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;FULL_SERVICE&quot;</span>
-<a id="__codelineno-22-57" name="__codelineno-22-57" href="#__codelineno-22-57"></a><span class="w">      </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
-<a id="__codelineno-22-58" name="__codelineno-22-58" href="#__codelineno-22-58"></a><span class="w">    </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
-<a id="__codelineno-22-59" name="__codelineno-22-59" href="#__codelineno-22-59"></a><span class="w">  </span><span class="o">}</span>
-<a id="__codelineno-22-60" name="__codelineno-22-60" href="#__codelineno-22-60"></a><span class="o">}</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">    </span><span class="s2">&quot;assigned&quot;</span><span class="w"> </span>:<span class="w"> </span>true,
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">    </span><span class="s2">&quot;vehicleId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;VI00TEST001&quot;</span>,
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">    </span><span class="s2">&quot;operatorId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;test-operator&quot;</span>,
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">    </span><span class="s2">&quot;journeys&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Service Journey 0001&quot;</span>,
+<a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="w">      </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="w">        </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="w">        </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>,
+<a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="w">        </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="w">          </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="w">          </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a><span class="w">      </span><span class="s2">&quot;journeyIds&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a><span class="w">        </span><span class="s2">&quot;vehicleJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;vehicle-journey-0001&quot;</span>,
+<a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a><span class="w">        </span><span class="s2">&quot;serviceJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:ServiceJourney:0001&quot;</span>,
+<a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a><span class="w">        </span><span class="s2">&quot;datedServiceJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>
+<a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a><span class="w">      </span><span class="s2">&quot;line&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a><span class="w">        </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Testveien - Teststien&quot;</span>,
+<a id="__codelineno-22-24" name="__codelineno-22-24" href="#__codelineno-22-24"></a><span class="w">        </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-22-25" name="__codelineno-22-25" href="#__codelineno-22-25"></a><span class="w">        </span><span class="s2">&quot;publicCode&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;L01&quot;</span>,
+<a id="__codelineno-22-26" name="__codelineno-22-26" href="#__codelineno-22-26"></a><span class="w">        </span><span class="s2">&quot;textColor&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;FFFFFF&quot;</span>,
+<a id="__codelineno-22-27" name="__codelineno-22-27" href="#__codelineno-22-27"></a><span class="w">        </span><span class="s2">&quot;backgroundColor&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;1F1E1A&quot;</span>
+<a id="__codelineno-22-28" name="__codelineno-22-28" href="#__codelineno-22-28"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-22-29" name="__codelineno-22-29" href="#__codelineno-22-29"></a><span class="w">      </span><span class="s2">&quot;direction&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;INBOUND&quot;</span>,
+<a id="__codelineno-22-30" name="__codelineno-22-30" href="#__codelineno-22-30"></a><span class="w">      </span><span class="s2">&quot;calls&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-22-31" name="__codelineno-22-31" href="#__codelineno-22-31"></a><span class="w">        </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-22-32" name="__codelineno-22-32" href="#__codelineno-22-32"></a><span class="w">          </span><span class="s2">&quot;stopPoint&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-22-33" name="__codelineno-22-33" href="#__codelineno-22-33"></a><span class="w">            </span><span class="s2">&quot;quayId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;NSR:Quay:001A&quot;</span>,
+<a id="__codelineno-22-34" name="__codelineno-22-34" href="#__codelineno-22-34"></a><span class="w">            </span><span class="s2">&quot;stopPointId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;stop-point-001A&quot;</span>
+<a id="__codelineno-22-35" name="__codelineno-22-35" href="#__codelineno-22-35"></a><span class="w">          </span><span class="o">}</span>,
+<a id="__codelineno-22-36" name="__codelineno-22-36" href="#__codelineno-22-36"></a><span class="w">          </span><span class="s2">&quot;departureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>
+<a id="__codelineno-22-37" name="__codelineno-22-37" href="#__codelineno-22-37"></a><span class="w">        </span><span class="o">}</span>,
+<a id="__codelineno-22-38" name="__codelineno-22-38" href="#__codelineno-22-38"></a><span class="w">        </span><span class="s2">&quot;behaviourType&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;FULL_SERVICE&quot;</span>
+<a id="__codelineno-22-39" name="__codelineno-22-39" href="#__codelineno-22-39"></a><span class="w">      </span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-22-40" name="__codelineno-22-40" href="#__codelineno-22-40"></a><span class="w">        </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-22-41" name="__codelineno-22-41" href="#__codelineno-22-41"></a><span class="w">          </span><span class="s2">&quot;stopPoint&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-22-42" name="__codelineno-22-42" href="#__codelineno-22-42"></a><span class="w">            </span><span class="s2">&quot;quayId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;NSR:Quay:002A&quot;</span>,
+<a id="__codelineno-22-43" name="__codelineno-22-43" href="#__codelineno-22-43"></a><span class="w">            </span><span class="s2">&quot;stopPointId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;stop-point-002A&quot;</span>
+<a id="__codelineno-22-44" name="__codelineno-22-44" href="#__codelineno-22-44"></a><span class="w">          </span><span class="o">}</span>,
+<a id="__codelineno-22-45" name="__codelineno-22-45" href="#__codelineno-22-45"></a><span class="w">          </span><span class="s2">&quot;arrivalDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:10+01:00&quot;</span>,
+<a id="__codelineno-22-46" name="__codelineno-22-46" href="#__codelineno-22-46"></a><span class="w">          </span><span class="s2">&quot;departureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:10+01:00&quot;</span>
+<a id="__codelineno-22-47" name="__codelineno-22-47" href="#__codelineno-22-47"></a><span class="w">        </span><span class="o">}</span>,
+<a id="__codelineno-22-48" name="__codelineno-22-48" href="#__codelineno-22-48"></a><span class="w">        </span><span class="s2">&quot;behaviourType&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;FULL_SERVICE&quot;</span>
+<a id="__codelineno-22-49" name="__codelineno-22-49" href="#__codelineno-22-49"></a><span class="w">      </span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-22-50" name="__codelineno-22-50" href="#__codelineno-22-50"></a><span class="w">        </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-22-51" name="__codelineno-22-51" href="#__codelineno-22-51"></a><span class="w">          </span><span class="s2">&quot;stopPoint&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-22-52" name="__codelineno-22-52" href="#__codelineno-22-52"></a><span class="w">            </span><span class="s2">&quot;quayId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;NSR:Quay:003A&quot;</span>,
+<a id="__codelineno-22-53" name="__codelineno-22-53" href="#__codelineno-22-53"></a><span class="w">            </span><span class="s2">&quot;stopPointId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;stop-point-003A&quot;</span>
+<a id="__codelineno-22-54" name="__codelineno-22-54" href="#__codelineno-22-54"></a><span class="w">          </span><span class="o">}</span>,
+<a id="__codelineno-22-55" name="__codelineno-22-55" href="#__codelineno-22-55"></a><span class="w">          </span><span class="s2">&quot;arrivalDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-22-56" name="__codelineno-22-56" href="#__codelineno-22-56"></a><span class="w">        </span><span class="o">}</span>,
+<a id="__codelineno-22-57" name="__codelineno-22-57" href="#__codelineno-22-57"></a><span class="w">        </span><span class="s2">&quot;behaviourType&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;FULL_SERVICE&quot;</span>
+<a id="__codelineno-22-58" name="__codelineno-22-58" href="#__codelineno-22-58"></a><span class="w">      </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-22-59" name="__codelineno-22-59" href="#__codelineno-22-59"></a><span class="w">    </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-22-60" name="__codelineno-22-60" href="#__codelineno-22-60"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-22-61" name="__codelineno-22-61" href="#__codelineno-22-61"></a><span class="o">}</span>
 </code></pre></div>
 <h4 id="vehicle-state-signed-off">Vehicle State - Signed Off<a class="headerlink" href="#vehicle-state-signed-off" title="Permanent link">&para;</a></h4>
 <p>Example illustrating retrieval of vehicle state for vehicle VI00TEST001 while is not signed on journeys.</p>
@@ -3312,10 +3412,11 @@ database.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="m">200</span><span class="w"> </span>OK
 <a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="o">{</span>
 <a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">  </span><span class="s2">&quot;vehicleState&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="w">    </span><span class="s2">&quot;vehicleId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;VI00TEST001&quot;</span>,
-<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="w">    </span><span class="s2">&quot;assigned&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="nb">false</span>
-<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="w">  </span><span class="o">}</span>
-<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="o">}</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="w">    </span><span class="s2">&quot;assigned&quot;</span><span class="w"> </span>:<span class="w"> </span>false,
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="w">    </span><span class="s2">&quot;vehicleId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;VI00TEST001&quot;</span>,
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="w">    </span><span class="s2">&quot;operatorId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;test-operator&quot;</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="o">}</span>
 </code></pre></div>
 <h3 id="assignment-sign-on">Assignment - Sign-On<a class="headerlink" href="#assignment-sign-on" title="Permanent link">&para;</a></h3>
 <ul>
@@ -3366,34 +3467,35 @@ database.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="m">200</span><span class="w"> </span>OK
 <a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="o">{</span>
 <a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">  </span><span class="s2">&quot;vehicleState&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="w">    </span><span class="s2">&quot;vehicleId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;VI00TEST001&quot;</span>,
-<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="w">    </span><span class="s2">&quot;assigned&quot;</span><span class="w"> </span>:<span class="w"> </span>true,
-<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="w">    </span><span class="s2">&quot;journeys&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Service Journey 0001&quot;</span>,
-<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="w">      </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="w">        </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
-<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a><span class="w">        </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>,
-<a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="w">        </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a><span class="w">          </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
-<a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a><span class="w">          </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
-<a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a><span class="w">        </span><span class="o">}</span>
-<a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a><span class="w">      </span><span class="o">}</span>,
-<a id="__codelineno-26-16" name="__codelineno-26-16" href="#__codelineno-26-16"></a><span class="w">      </span><span class="s2">&quot;journeyIds&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-26-17" name="__codelineno-26-17" href="#__codelineno-26-17"></a><span class="w">        </span><span class="s2">&quot;vehicleJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;vehicle-journey-0001&quot;</span>,
-<a id="__codelineno-26-18" name="__codelineno-26-18" href="#__codelineno-26-18"></a><span class="w">        </span><span class="s2">&quot;serviceJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:ServiceJourney:0001&quot;</span>,
-<a id="__codelineno-26-19" name="__codelineno-26-19" href="#__codelineno-26-19"></a><span class="w">        </span><span class="s2">&quot;datedServiceJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>
-<a id="__codelineno-26-20" name="__codelineno-26-20" href="#__codelineno-26-20"></a><span class="w">      </span><span class="o">}</span>,
-<a id="__codelineno-26-21" name="__codelineno-26-21" href="#__codelineno-26-21"></a><span class="w">      </span><span class="s2">&quot;line&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-26-22" name="__codelineno-26-22" href="#__codelineno-26-22"></a><span class="w">        </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Testveien - Teststien&quot;</span>,
-<a id="__codelineno-26-23" name="__codelineno-26-23" href="#__codelineno-26-23"></a><span class="w">        </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
-<a id="__codelineno-26-24" name="__codelineno-26-24" href="#__codelineno-26-24"></a><span class="w">        </span><span class="s2">&quot;publicCode&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;L01&quot;</span>,
-<a id="__codelineno-26-25" name="__codelineno-26-25" href="#__codelineno-26-25"></a><span class="w">        </span><span class="s2">&quot;textColor&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;FFFFFF&quot;</span>,
-<a id="__codelineno-26-26" name="__codelineno-26-26" href="#__codelineno-26-26"></a><span class="w">        </span><span class="s2">&quot;backgroundColor&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;1F1E1A&quot;</span>
-<a id="__codelineno-26-27" name="__codelineno-26-27" href="#__codelineno-26-27"></a><span class="w">      </span><span class="o">}</span>,
-<a id="__codelineno-26-28" name="__codelineno-26-28" href="#__codelineno-26-28"></a><span class="w">      </span><span class="s2">&quot;direction&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;INBOUND&quot;</span>
-<a id="__codelineno-26-29" name="__codelineno-26-29" href="#__codelineno-26-29"></a><span class="w">    </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
-<a id="__codelineno-26-30" name="__codelineno-26-30" href="#__codelineno-26-30"></a><span class="w">  </span><span class="o">}</span>
-<a id="__codelineno-26-31" name="__codelineno-26-31" href="#__codelineno-26-31"></a><span class="o">}</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="w">    </span><span class="s2">&quot;assigned&quot;</span><span class="w"> </span>:<span class="w"> </span>true,
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="w">    </span><span class="s2">&quot;vehicleId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;VI00TEST001&quot;</span>,
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="w">    </span><span class="s2">&quot;operatorId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;test-operator&quot;</span>,
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="w">    </span><span class="s2">&quot;journeys&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Service Journey 0001&quot;</span>,
+<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="w">      </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a><span class="w">        </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="w">        </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>,
+<a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a><span class="w">        </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a><span class="w">          </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a><span class="w">          </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-26-16" name="__codelineno-26-16" href="#__codelineno-26-16"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-26-17" name="__codelineno-26-17" href="#__codelineno-26-17"></a><span class="w">      </span><span class="s2">&quot;journeyIds&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-26-18" name="__codelineno-26-18" href="#__codelineno-26-18"></a><span class="w">        </span><span class="s2">&quot;vehicleJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;vehicle-journey-0001&quot;</span>,
+<a id="__codelineno-26-19" name="__codelineno-26-19" href="#__codelineno-26-19"></a><span class="w">        </span><span class="s2">&quot;serviceJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:ServiceJourney:0001&quot;</span>,
+<a id="__codelineno-26-20" name="__codelineno-26-20" href="#__codelineno-26-20"></a><span class="w">        </span><span class="s2">&quot;datedServiceJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>
+<a id="__codelineno-26-21" name="__codelineno-26-21" href="#__codelineno-26-21"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-26-22" name="__codelineno-26-22" href="#__codelineno-26-22"></a><span class="w">      </span><span class="s2">&quot;line&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-26-23" name="__codelineno-26-23" href="#__codelineno-26-23"></a><span class="w">        </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Testveien - Teststien&quot;</span>,
+<a id="__codelineno-26-24" name="__codelineno-26-24" href="#__codelineno-26-24"></a><span class="w">        </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-26-25" name="__codelineno-26-25" href="#__codelineno-26-25"></a><span class="w">        </span><span class="s2">&quot;publicCode&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;L01&quot;</span>,
+<a id="__codelineno-26-26" name="__codelineno-26-26" href="#__codelineno-26-26"></a><span class="w">        </span><span class="s2">&quot;textColor&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;FFFFFF&quot;</span>,
+<a id="__codelineno-26-27" name="__codelineno-26-27" href="#__codelineno-26-27"></a><span class="w">        </span><span class="s2">&quot;backgroundColor&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;1F1E1A&quot;</span>
+<a id="__codelineno-26-28" name="__codelineno-26-28" href="#__codelineno-26-28"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-26-29" name="__codelineno-26-29" href="#__codelineno-26-29"></a><span class="w">      </span><span class="s2">&quot;direction&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;INBOUND&quot;</span>
+<a id="__codelineno-26-30" name="__codelineno-26-30" href="#__codelineno-26-30"></a><span class="w">    </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-26-31" name="__codelineno-26-31" href="#__codelineno-26-31"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-26-32" name="__codelineno-26-32" href="#__codelineno-26-32"></a><span class="o">}</span>
 </code></pre></div>
 <h4 id="sign-on-multiple-journeys-with-ad-hoc-dead-runs">Sign-On - Multiple Journeys with Ad-Hoc Dead-Runs<a class="headerlink" href="#sign-on-multiple-journeys-with-ad-hoc-dead-runs" title="Permanent link">&para;</a></h4>
 <p>In addition to providing a list of journeys when signing on, a sign-on attempt may also include one ore more <em>ad-doc "dead run"</em>
@@ -3473,96 +3575,97 @@ to sign on to each of the three planned journeys, illustrating how the different
 <div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="m">200</span><span class="w"> </span>OK
 <a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="o">{</span>
 <a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">  </span><span class="s2">&quot;vehicleState&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">    </span><span class="s2">&quot;vehicleId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;VI00TEST001&quot;</span>,
-<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="w">    </span><span class="s2">&quot;assigned&quot;</span><span class="w"> </span>:<span class="w"> </span>true,
-<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="w">    </span><span class="s2">&quot;journeys&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Ad-Hoc Journey RUT:Quay:ga01 2025-03-03T08:45+01:00 - NSR:Quay:001A 2025-03-03T08:59+01:00&quot;</span>,
-<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="w">      </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="w">        </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="w">          </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T08:45+01:00&quot;</span>,
-<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a><span class="w">          </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T08:59+01:00&quot;</span>
-<a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a><span class="w">        </span><span class="o">}</span>
-<a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a><span class="w">      </span><span class="o">}</span>
-<a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a><span class="w">    </span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Service Journey 0001&quot;</span>,
-<a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a><span class="w">      </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a><span class="w">        </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
-<a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a><span class="w">        </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>,
-<a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a><span class="w">        </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a><span class="w">          </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
-<a id="__codelineno-28-21" name="__codelineno-28-21" href="#__codelineno-28-21"></a><span class="w">          </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
-<a id="__codelineno-28-22" name="__codelineno-28-22" href="#__codelineno-28-22"></a><span class="w">        </span><span class="o">}</span>
-<a id="__codelineno-28-23" name="__codelineno-28-23" href="#__codelineno-28-23"></a><span class="w">      </span><span class="o">}</span>,
-<a id="__codelineno-28-24" name="__codelineno-28-24" href="#__codelineno-28-24"></a><span class="w">      </span><span class="s2">&quot;journeyIds&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-28-25" name="__codelineno-28-25" href="#__codelineno-28-25"></a><span class="w">        </span><span class="s2">&quot;vehicleJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;vehicle-journey-0001&quot;</span>,
-<a id="__codelineno-28-26" name="__codelineno-28-26" href="#__codelineno-28-26"></a><span class="w">        </span><span class="s2">&quot;serviceJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:ServiceJourney:0001&quot;</span>,
-<a id="__codelineno-28-27" name="__codelineno-28-27" href="#__codelineno-28-27"></a><span class="w">        </span><span class="s2">&quot;datedServiceJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>
-<a id="__codelineno-28-28" name="__codelineno-28-28" href="#__codelineno-28-28"></a><span class="w">      </span><span class="o">}</span>,
-<a id="__codelineno-28-29" name="__codelineno-28-29" href="#__codelineno-28-29"></a><span class="w">      </span><span class="s2">&quot;line&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-28-30" name="__codelineno-28-30" href="#__codelineno-28-30"></a><span class="w">        </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Testveien - Teststien&quot;</span>,
-<a id="__codelineno-28-31" name="__codelineno-28-31" href="#__codelineno-28-31"></a><span class="w">        </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
-<a id="__codelineno-28-32" name="__codelineno-28-32" href="#__codelineno-28-32"></a><span class="w">        </span><span class="s2">&quot;publicCode&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;L01&quot;</span>,
-<a id="__codelineno-28-33" name="__codelineno-28-33" href="#__codelineno-28-33"></a><span class="w">        </span><span class="s2">&quot;textColor&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;FFFFFF&quot;</span>,
-<a id="__codelineno-28-34" name="__codelineno-28-34" href="#__codelineno-28-34"></a><span class="w">        </span><span class="s2">&quot;backgroundColor&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;1F1E1A&quot;</span>
-<a id="__codelineno-28-35" name="__codelineno-28-35" href="#__codelineno-28-35"></a><span class="w">      </span><span class="o">}</span>,
-<a id="__codelineno-28-36" name="__codelineno-28-36" href="#__codelineno-28-36"></a><span class="w">      </span><span class="s2">&quot;direction&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;INBOUND&quot;</span>
-<a id="__codelineno-28-37" name="__codelineno-28-37" href="#__codelineno-28-37"></a><span class="w">    </span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-28-38" name="__codelineno-28-38" href="#__codelineno-28-38"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Service Journey 0002&quot;</span>,
-<a id="__codelineno-28-39" name="__codelineno-28-39" href="#__codelineno-28-39"></a><span class="w">      </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-28-40" name="__codelineno-28-40" href="#__codelineno-28-40"></a><span class="w">        </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
-<a id="__codelineno-28-41" name="__codelineno-28-41" href="#__codelineno-28-41"></a><span class="w">        </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0002&quot;</span>,
-<a id="__codelineno-28-42" name="__codelineno-28-42" href="#__codelineno-28-42"></a><span class="w">        </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-28-43" name="__codelineno-28-43" href="#__codelineno-28-43"></a><span class="w">          </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:45+01:00&quot;</span>,
-<a id="__codelineno-28-44" name="__codelineno-28-44" href="#__codelineno-28-44"></a><span class="w">          </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T10:05+01:00&quot;</span>
-<a id="__codelineno-28-45" name="__codelineno-28-45" href="#__codelineno-28-45"></a><span class="w">        </span><span class="o">}</span>
-<a id="__codelineno-28-46" name="__codelineno-28-46" href="#__codelineno-28-46"></a><span class="w">      </span><span class="o">}</span>,
-<a id="__codelineno-28-47" name="__codelineno-28-47" href="#__codelineno-28-47"></a><span class="w">      </span><span class="s2">&quot;journeyIds&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-28-48" name="__codelineno-28-48" href="#__codelineno-28-48"></a><span class="w">        </span><span class="s2">&quot;vehicleJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;vehicle-journey-0002&quot;</span>,
-<a id="__codelineno-28-49" name="__codelineno-28-49" href="#__codelineno-28-49"></a><span class="w">        </span><span class="s2">&quot;serviceJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:ServiceJourney:0002&quot;</span>,
-<a id="__codelineno-28-50" name="__codelineno-28-50" href="#__codelineno-28-50"></a><span class="w">        </span><span class="s2">&quot;datedServiceJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0002&quot;</span>
-<a id="__codelineno-28-51" name="__codelineno-28-51" href="#__codelineno-28-51"></a><span class="w">      </span><span class="o">}</span>,
-<a id="__codelineno-28-52" name="__codelineno-28-52" href="#__codelineno-28-52"></a><span class="w">      </span><span class="s2">&quot;line&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-28-53" name="__codelineno-28-53" href="#__codelineno-28-53"></a><span class="w">        </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Testveien - Teststien&quot;</span>,
-<a id="__codelineno-28-54" name="__codelineno-28-54" href="#__codelineno-28-54"></a><span class="w">        </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
-<a id="__codelineno-28-55" name="__codelineno-28-55" href="#__codelineno-28-55"></a><span class="w">        </span><span class="s2">&quot;publicCode&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;L01&quot;</span>,
-<a id="__codelineno-28-56" name="__codelineno-28-56" href="#__codelineno-28-56"></a><span class="w">        </span><span class="s2">&quot;textColor&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;FFFFFF&quot;</span>,
-<a id="__codelineno-28-57" name="__codelineno-28-57" href="#__codelineno-28-57"></a><span class="w">        </span><span class="s2">&quot;backgroundColor&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;1F1E1A&quot;</span>
-<a id="__codelineno-28-58" name="__codelineno-28-58" href="#__codelineno-28-58"></a><span class="w">      </span><span class="o">}</span>,
-<a id="__codelineno-28-59" name="__codelineno-28-59" href="#__codelineno-28-59"></a><span class="w">      </span><span class="s2">&quot;direction&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;OUTBOUND&quot;</span>
-<a id="__codelineno-28-60" name="__codelineno-28-60" href="#__codelineno-28-60"></a><span class="w">    </span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-28-61" name="__codelineno-28-61" href="#__codelineno-28-61"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Service Journey 0003&quot;</span>,
-<a id="__codelineno-28-62" name="__codelineno-28-62" href="#__codelineno-28-62"></a><span class="w">      </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-28-63" name="__codelineno-28-63" href="#__codelineno-28-63"></a><span class="w">        </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
-<a id="__codelineno-28-64" name="__codelineno-28-64" href="#__codelineno-28-64"></a><span class="w">        </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0003&quot;</span>,
-<a id="__codelineno-28-65" name="__codelineno-28-65" href="#__codelineno-28-65"></a><span class="w">        </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-28-66" name="__codelineno-28-66" href="#__codelineno-28-66"></a><span class="w">          </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T10:30+01:00&quot;</span>,
-<a id="__codelineno-28-67" name="__codelineno-28-67" href="#__codelineno-28-67"></a><span class="w">          </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T10:50+01:00&quot;</span>
-<a id="__codelineno-28-68" name="__codelineno-28-68" href="#__codelineno-28-68"></a><span class="w">        </span><span class="o">}</span>
-<a id="__codelineno-28-69" name="__codelineno-28-69" href="#__codelineno-28-69"></a><span class="w">      </span><span class="o">}</span>,
-<a id="__codelineno-28-70" name="__codelineno-28-70" href="#__codelineno-28-70"></a><span class="w">      </span><span class="s2">&quot;journeyIds&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-28-71" name="__codelineno-28-71" href="#__codelineno-28-71"></a><span class="w">        </span><span class="s2">&quot;vehicleJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;vehicle-journey-0003&quot;</span>,
-<a id="__codelineno-28-72" name="__codelineno-28-72" href="#__codelineno-28-72"></a><span class="w">        </span><span class="s2">&quot;serviceJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:ServiceJourney:0003&quot;</span>,
-<a id="__codelineno-28-73" name="__codelineno-28-73" href="#__codelineno-28-73"></a><span class="w">        </span><span class="s2">&quot;datedServiceJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0003&quot;</span>
-<a id="__codelineno-28-74" name="__codelineno-28-74" href="#__codelineno-28-74"></a><span class="w">      </span><span class="o">}</span>,
-<a id="__codelineno-28-75" name="__codelineno-28-75" href="#__codelineno-28-75"></a><span class="w">      </span><span class="s2">&quot;line&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-28-76" name="__codelineno-28-76" href="#__codelineno-28-76"></a><span class="w">        </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Testveien - Teststien&quot;</span>,
-<a id="__codelineno-28-77" name="__codelineno-28-77" href="#__codelineno-28-77"></a><span class="w">        </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
-<a id="__codelineno-28-78" name="__codelineno-28-78" href="#__codelineno-28-78"></a><span class="w">        </span><span class="s2">&quot;publicCode&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;L01&quot;</span>,
-<a id="__codelineno-28-79" name="__codelineno-28-79" href="#__codelineno-28-79"></a><span class="w">        </span><span class="s2">&quot;textColor&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;FFFFFF&quot;</span>,
-<a id="__codelineno-28-80" name="__codelineno-28-80" href="#__codelineno-28-80"></a><span class="w">        </span><span class="s2">&quot;backgroundColor&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;1F1E1A&quot;</span>
-<a id="__codelineno-28-81" name="__codelineno-28-81" href="#__codelineno-28-81"></a><span class="w">      </span><span class="o">}</span>,
-<a id="__codelineno-28-82" name="__codelineno-28-82" href="#__codelineno-28-82"></a><span class="w">      </span><span class="s2">&quot;direction&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;INBOUND&quot;</span>
-<a id="__codelineno-28-83" name="__codelineno-28-83" href="#__codelineno-28-83"></a><span class="w">    </span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-28-84" name="__codelineno-28-84" href="#__codelineno-28-84"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Ad-Hoc Journey NSR:Quay:003A 2025-03-03T10:55+01:00 - RUT:Quay:ga02 2025-03-03T11:10+01:00&quot;</span>,
-<a id="__codelineno-28-85" name="__codelineno-28-85" href="#__codelineno-28-85"></a><span class="w">      </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-28-86" name="__codelineno-28-86" href="#__codelineno-28-86"></a><span class="w">        </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-28-87" name="__codelineno-28-87" href="#__codelineno-28-87"></a><span class="w">          </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T10:55+01:00&quot;</span>,
-<a id="__codelineno-28-88" name="__codelineno-28-88" href="#__codelineno-28-88"></a><span class="w">          </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T11:10+01:00&quot;</span>
-<a id="__codelineno-28-89" name="__codelineno-28-89" href="#__codelineno-28-89"></a><span class="w">        </span><span class="o">}</span>
-<a id="__codelineno-28-90" name="__codelineno-28-90" href="#__codelineno-28-90"></a><span class="w">      </span><span class="o">}</span>
-<a id="__codelineno-28-91" name="__codelineno-28-91" href="#__codelineno-28-91"></a><span class="w">    </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
-<a id="__codelineno-28-92" name="__codelineno-28-92" href="#__codelineno-28-92"></a><span class="w">  </span><span class="o">}</span>
-<a id="__codelineno-28-93" name="__codelineno-28-93" href="#__codelineno-28-93"></a><span class="o">}</span>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">    </span><span class="s2">&quot;assigned&quot;</span><span class="w"> </span>:<span class="w"> </span>true,
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="w">    </span><span class="s2">&quot;vehicleId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;VI00TEST001&quot;</span>,
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="w">    </span><span class="s2">&quot;operatorId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;test-operator&quot;</span>,
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="w">    </span><span class="s2">&quot;journeys&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Ad-Hoc Journey RUT:Quay:ga01 2025-03-03T08:45+01:00 - NSR:Quay:001A 2025-03-03T08:59+01:00&quot;</span>,
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="w">      </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="w">        </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a><span class="w">          </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T08:45+01:00&quot;</span>,
+<a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a><span class="w">          </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T08:59+01:00&quot;</span>
+<a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a><span class="w">      </span><span class="o">}</span>
+<a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a><span class="w">    </span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Service Journey 0001&quot;</span>,
+<a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a><span class="w">      </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a><span class="w">        </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a><span class="w">        </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>,
+<a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a><span class="w">        </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-28-21" name="__codelineno-28-21" href="#__codelineno-28-21"></a><span class="w">          </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-28-22" name="__codelineno-28-22" href="#__codelineno-28-22"></a><span class="w">          </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-28-23" name="__codelineno-28-23" href="#__codelineno-28-23"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-28-24" name="__codelineno-28-24" href="#__codelineno-28-24"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-28-25" name="__codelineno-28-25" href="#__codelineno-28-25"></a><span class="w">      </span><span class="s2">&quot;journeyIds&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-28-26" name="__codelineno-28-26" href="#__codelineno-28-26"></a><span class="w">        </span><span class="s2">&quot;vehicleJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;vehicle-journey-0001&quot;</span>,
+<a id="__codelineno-28-27" name="__codelineno-28-27" href="#__codelineno-28-27"></a><span class="w">        </span><span class="s2">&quot;serviceJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:ServiceJourney:0001&quot;</span>,
+<a id="__codelineno-28-28" name="__codelineno-28-28" href="#__codelineno-28-28"></a><span class="w">        </span><span class="s2">&quot;datedServiceJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>
+<a id="__codelineno-28-29" name="__codelineno-28-29" href="#__codelineno-28-29"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-28-30" name="__codelineno-28-30" href="#__codelineno-28-30"></a><span class="w">      </span><span class="s2">&quot;line&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-28-31" name="__codelineno-28-31" href="#__codelineno-28-31"></a><span class="w">        </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Testveien - Teststien&quot;</span>,
+<a id="__codelineno-28-32" name="__codelineno-28-32" href="#__codelineno-28-32"></a><span class="w">        </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-28-33" name="__codelineno-28-33" href="#__codelineno-28-33"></a><span class="w">        </span><span class="s2">&quot;publicCode&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;L01&quot;</span>,
+<a id="__codelineno-28-34" name="__codelineno-28-34" href="#__codelineno-28-34"></a><span class="w">        </span><span class="s2">&quot;textColor&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;FFFFFF&quot;</span>,
+<a id="__codelineno-28-35" name="__codelineno-28-35" href="#__codelineno-28-35"></a><span class="w">        </span><span class="s2">&quot;backgroundColor&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;1F1E1A&quot;</span>
+<a id="__codelineno-28-36" name="__codelineno-28-36" href="#__codelineno-28-36"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-28-37" name="__codelineno-28-37" href="#__codelineno-28-37"></a><span class="w">      </span><span class="s2">&quot;direction&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;INBOUND&quot;</span>
+<a id="__codelineno-28-38" name="__codelineno-28-38" href="#__codelineno-28-38"></a><span class="w">    </span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-28-39" name="__codelineno-28-39" href="#__codelineno-28-39"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Service Journey 0002&quot;</span>,
+<a id="__codelineno-28-40" name="__codelineno-28-40" href="#__codelineno-28-40"></a><span class="w">      </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-28-41" name="__codelineno-28-41" href="#__codelineno-28-41"></a><span class="w">        </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-28-42" name="__codelineno-28-42" href="#__codelineno-28-42"></a><span class="w">        </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0002&quot;</span>,
+<a id="__codelineno-28-43" name="__codelineno-28-43" href="#__codelineno-28-43"></a><span class="w">        </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-28-44" name="__codelineno-28-44" href="#__codelineno-28-44"></a><span class="w">          </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:45+01:00&quot;</span>,
+<a id="__codelineno-28-45" name="__codelineno-28-45" href="#__codelineno-28-45"></a><span class="w">          </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T10:05+01:00&quot;</span>
+<a id="__codelineno-28-46" name="__codelineno-28-46" href="#__codelineno-28-46"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-28-47" name="__codelineno-28-47" href="#__codelineno-28-47"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-28-48" name="__codelineno-28-48" href="#__codelineno-28-48"></a><span class="w">      </span><span class="s2">&quot;journeyIds&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-28-49" name="__codelineno-28-49" href="#__codelineno-28-49"></a><span class="w">        </span><span class="s2">&quot;vehicleJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;vehicle-journey-0002&quot;</span>,
+<a id="__codelineno-28-50" name="__codelineno-28-50" href="#__codelineno-28-50"></a><span class="w">        </span><span class="s2">&quot;serviceJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:ServiceJourney:0002&quot;</span>,
+<a id="__codelineno-28-51" name="__codelineno-28-51" href="#__codelineno-28-51"></a><span class="w">        </span><span class="s2">&quot;datedServiceJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0002&quot;</span>
+<a id="__codelineno-28-52" name="__codelineno-28-52" href="#__codelineno-28-52"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-28-53" name="__codelineno-28-53" href="#__codelineno-28-53"></a><span class="w">      </span><span class="s2">&quot;line&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-28-54" name="__codelineno-28-54" href="#__codelineno-28-54"></a><span class="w">        </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Testveien - Teststien&quot;</span>,
+<a id="__codelineno-28-55" name="__codelineno-28-55" href="#__codelineno-28-55"></a><span class="w">        </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-28-56" name="__codelineno-28-56" href="#__codelineno-28-56"></a><span class="w">        </span><span class="s2">&quot;publicCode&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;L01&quot;</span>,
+<a id="__codelineno-28-57" name="__codelineno-28-57" href="#__codelineno-28-57"></a><span class="w">        </span><span class="s2">&quot;textColor&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;FFFFFF&quot;</span>,
+<a id="__codelineno-28-58" name="__codelineno-28-58" href="#__codelineno-28-58"></a><span class="w">        </span><span class="s2">&quot;backgroundColor&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;1F1E1A&quot;</span>
+<a id="__codelineno-28-59" name="__codelineno-28-59" href="#__codelineno-28-59"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-28-60" name="__codelineno-28-60" href="#__codelineno-28-60"></a><span class="w">      </span><span class="s2">&quot;direction&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;OUTBOUND&quot;</span>
+<a id="__codelineno-28-61" name="__codelineno-28-61" href="#__codelineno-28-61"></a><span class="w">    </span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-28-62" name="__codelineno-28-62" href="#__codelineno-28-62"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Service Journey 0003&quot;</span>,
+<a id="__codelineno-28-63" name="__codelineno-28-63" href="#__codelineno-28-63"></a><span class="w">      </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-28-64" name="__codelineno-28-64" href="#__codelineno-28-64"></a><span class="w">        </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-28-65" name="__codelineno-28-65" href="#__codelineno-28-65"></a><span class="w">        </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0003&quot;</span>,
+<a id="__codelineno-28-66" name="__codelineno-28-66" href="#__codelineno-28-66"></a><span class="w">        </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-28-67" name="__codelineno-28-67" href="#__codelineno-28-67"></a><span class="w">          </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T10:30+01:00&quot;</span>,
+<a id="__codelineno-28-68" name="__codelineno-28-68" href="#__codelineno-28-68"></a><span class="w">          </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T10:50+01:00&quot;</span>
+<a id="__codelineno-28-69" name="__codelineno-28-69" href="#__codelineno-28-69"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-28-70" name="__codelineno-28-70" href="#__codelineno-28-70"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-28-71" name="__codelineno-28-71" href="#__codelineno-28-71"></a><span class="w">      </span><span class="s2">&quot;journeyIds&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-28-72" name="__codelineno-28-72" href="#__codelineno-28-72"></a><span class="w">        </span><span class="s2">&quot;vehicleJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;vehicle-journey-0003&quot;</span>,
+<a id="__codelineno-28-73" name="__codelineno-28-73" href="#__codelineno-28-73"></a><span class="w">        </span><span class="s2">&quot;serviceJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:ServiceJourney:0003&quot;</span>,
+<a id="__codelineno-28-74" name="__codelineno-28-74" href="#__codelineno-28-74"></a><span class="w">        </span><span class="s2">&quot;datedServiceJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0003&quot;</span>
+<a id="__codelineno-28-75" name="__codelineno-28-75" href="#__codelineno-28-75"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-28-76" name="__codelineno-28-76" href="#__codelineno-28-76"></a><span class="w">      </span><span class="s2">&quot;line&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-28-77" name="__codelineno-28-77" href="#__codelineno-28-77"></a><span class="w">        </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Testveien - Teststien&quot;</span>,
+<a id="__codelineno-28-78" name="__codelineno-28-78" href="#__codelineno-28-78"></a><span class="w">        </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-28-79" name="__codelineno-28-79" href="#__codelineno-28-79"></a><span class="w">        </span><span class="s2">&quot;publicCode&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;L01&quot;</span>,
+<a id="__codelineno-28-80" name="__codelineno-28-80" href="#__codelineno-28-80"></a><span class="w">        </span><span class="s2">&quot;textColor&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;FFFFFF&quot;</span>,
+<a id="__codelineno-28-81" name="__codelineno-28-81" href="#__codelineno-28-81"></a><span class="w">        </span><span class="s2">&quot;backgroundColor&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;1F1E1A&quot;</span>
+<a id="__codelineno-28-82" name="__codelineno-28-82" href="#__codelineno-28-82"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-28-83" name="__codelineno-28-83" href="#__codelineno-28-83"></a><span class="w">      </span><span class="s2">&quot;direction&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;INBOUND&quot;</span>
+<a id="__codelineno-28-84" name="__codelineno-28-84" href="#__codelineno-28-84"></a><span class="w">    </span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-28-85" name="__codelineno-28-85" href="#__codelineno-28-85"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Ad-Hoc Journey NSR:Quay:003A 2025-03-03T10:55+01:00 - RUT:Quay:ga02 2025-03-03T11:10+01:00&quot;</span>,
+<a id="__codelineno-28-86" name="__codelineno-28-86" href="#__codelineno-28-86"></a><span class="w">      </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-28-87" name="__codelineno-28-87" href="#__codelineno-28-87"></a><span class="w">        </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-28-88" name="__codelineno-28-88" href="#__codelineno-28-88"></a><span class="w">          </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T10:55+01:00&quot;</span>,
+<a id="__codelineno-28-89" name="__codelineno-28-89" href="#__codelineno-28-89"></a><span class="w">          </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T11:10+01:00&quot;</span>
+<a id="__codelineno-28-90" name="__codelineno-28-90" href="#__codelineno-28-90"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-28-91" name="__codelineno-28-91" href="#__codelineno-28-91"></a><span class="w">      </span><span class="o">}</span>
+<a id="__codelineno-28-92" name="__codelineno-28-92" href="#__codelineno-28-92"></a><span class="w">    </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-28-93" name="__codelineno-28-93" href="#__codelineno-28-93"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-28-94" name="__codelineno-28-94" href="#__codelineno-28-94"></a><span class="o">}</span>
 </code></pre></div>
 <h3 id="assignment-sign-off">Assignment - Sign-Off<a class="headerlink" href="#assignment-sign-off" title="Permanent link">&para;</a></h3>
 <ul>
@@ -3598,10 +3701,11 @@ to sign on to each of the three planned journeys, illustrating how the different
 <div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="m">200</span><span class="w"> </span>OK
 <a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="o">{</span>
 <a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="w">  </span><span class="s2">&quot;vehicleState&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="w">    </span><span class="s2">&quot;vehicleId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;VI00TEST001&quot;</span>,
-<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="w">    </span><span class="s2">&quot;assigned&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="nb">false</span>
-<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="w">  </span><span class="o">}</span>
-<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="o">}</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="w">    </span><span class="s2">&quot;assigned&quot;</span><span class="w"> </span>:<span class="w"> </span>false,
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="w">    </span><span class="s2">&quot;vehicleId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;VI00TEST001&quot;</span>,
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="w">    </span><span class="s2">&quot;operatorId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;test-operator&quot;</span>
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a><span class="o">}</span>
 </code></pre></div>
 <h4 id="sign-off-cancelled">Sign-Off - CANCELLED<a class="headerlink" href="#sign-off-cancelled" title="Permanent link">&para;</a></h4>
 <p>Remaining not serviced stops/journeys in the assignment will not be serviced (by the assigned vehicle).</p>
@@ -3618,10 +3722,11 @@ to sign on to each of the three planned journeys, illustrating how the different
 <p><div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="m">200</span><span class="w"> </span>OK
 <a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="o">{</span>
 <a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="w">  </span><span class="s2">&quot;vehicleState&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="w">    </span><span class="s2">&quot;vehicleId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;VI00TEST001&quot;</span>,
-<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="w">    </span><span class="s2">&quot;assigned&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="nb">false</span>
-<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="w">  </span><span class="o">}</span>
-<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="o">}</span>
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="w">    </span><span class="s2">&quot;assigned&quot;</span><span class="w"> </span>:<span class="w"> </span>false,
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="w">    </span><span class="s2">&quot;vehicleId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;VI00TEST001&quot;</span>,
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="w">    </span><span class="s2">&quot;operatorId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;test-operator&quot;</span>
+<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="o">}</span>
 </code></pre></div>
 This revised version now includes information about the Journey API integration and how its results can be used directly in the Sign-On API, providing a more comprehensive overview of the Assignment API lifecycle.</p>
 <h2 id="deviation-api">Deviation API<a class="headerlink" href="#deviation-api" title="Permanent link">&para;</a></h2>
