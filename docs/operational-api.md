@@ -1,7 +1,7 @@
 # Operational API
 > This api is a draft until further notice
 
-[OpenAPI Specification Documentation](openapi/operational/index.html){target=_blank .md-button }
+[TOC]
 
 ## Introduction
 
@@ -248,7 +248,7 @@ specified, which is typically the case for the first (departure only) and last (
 #### Journey Line Specifications
 
 Certain API requests allow the client to provide a list of journey lines. In such requests, a line must be uniquely
-identified using a _journey line specification_ consisting of two properties
+identified using a _journey line specification_ consisting of two properties:
 
 1. `lineId`, a line identifier, as returned by the [Journey API journey lines](#journey-lines) endpoint.
 2. `direction`, a line direction:
@@ -777,8 +777,9 @@ HTTP response:
 200 OK
 {
   "vehicleState" : {
-    "vehicleId" : "VI00TEST001",
     "assigned" : true,
+    "vehicleId" : "VI00TEST001",
+    "operatorId" : "test-operator",
     "journeys" : [ {
       "name" : "Service Journey 0001",
       "spec" : {
@@ -852,8 +853,9 @@ HTTP response:
 200 OK
 {
   "vehicleState" : {
+    "assigned" : false,
     "vehicleId" : "VI00TEST001",
-    "assigned" : false
+    "operatorId" : "test-operator"
   }
 }
 ```
@@ -906,8 +908,9 @@ HTTP response:
 200 OK
 {
   "vehicleState" : {
-    "vehicleId" : "VI00TEST001",
     "assigned" : true,
+    "vehicleId" : "VI00TEST001",
+    "operatorId" : "test-operator",
     "journeys" : [ {
       "name" : "Service Journey 0001",
       "spec" : {
@@ -1022,8 +1025,9 @@ HTTP response:
 200 OK
 {
   "vehicleState" : {
-    "vehicleId" : "VI00TEST001",
     "assigned" : true,
+    "vehicleId" : "VI00TEST001",
+    "operatorId" : "test-operator",
     "journeys" : [ {
       "name" : "Ad-Hoc Journey RUT:Quay:ga01 2025-03-03T08:45+01:00 - NSR:Quay:001A 2025-03-03T08:59+01:00",
       "spec" : {
@@ -1148,8 +1152,9 @@ HTTP response:
 200 OK
 {
   "vehicleState" : {
+    "assigned" : false,
     "vehicleId" : "VI00TEST001",
-    "assigned" : false
+    "operatorId" : "test-operator"
   }
 }
 ```
@@ -1176,8 +1181,9 @@ HTTP response:
 200 OK
 {
   "vehicleState" : {
+    "assigned" : false,
     "vehicleId" : "VI00TEST001",
-    "assigned" : false
+    "operatorId" : "test-operator"
   }
 }
 ```

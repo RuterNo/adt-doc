@@ -15,6 +15,7 @@
     "/auth/.well-known/openid-configuration": {
       "get": {
         "summary": "OpenID Configuration",
+        "operationId": "authGetWellKnownOpenIdConfiguration",
         "description": "Endpoint for discovering all OpenId Connect endpoints",
         "security": [],
         "responses": {
@@ -34,6 +35,7 @@
     "/auth/oauth2/token": {
       "post": {
         "summary": "Retrieve Token",
+        "operationId": "authOauth2PostTokenRequest",
         "description": "Endpoint for exchanging credentials for tokens (access token and ID token)",
         "requestBody": {
           "required": true,
@@ -73,6 +75,7 @@
     "/auth/.well-known/jwks": {
       "get": {
         "summary": "JWKS",
+        "operationId": "authGetWellKnownJWKS",
         "description": "Endpoint for fetching JSON Web Key Set (JWKS) to verify the retrieved tokens",
         "security": [],
         "responses": {
@@ -95,13 +98,13 @@
         "description": "Post an assignment attempt to sign on / sign off a vehicle.",
         "parameters": [
           {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
             "$ref": "#/components/parameters/TraceIdHeader"
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
-          },
-          {
-            "$ref": "#/components/parameters/OperatorIdHeader"
           }
         ],
         "requestBody": {
@@ -155,13 +158,13 @@
         "description": "Look up a vehicle's (assignment) state.",
         "parameters": [
           {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
             "$ref": "#/components/parameters/TraceIdHeader"
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
-          },
-          {
-            "$ref": "#/components/parameters/OperatorIdHeader"
           },
           {
             "$ref": "#/components/parameters/VehicleIdPathParam"
@@ -210,13 +213,13 @@
         "description": "Find journeys for a given set of search criteria.",
         "parameters": [
           {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
             "$ref": "#/components/parameters/TraceIdHeader"
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
-          },
-          {
-            "$ref": "#/components/parameters/OperatorIdHeader"
           },
           {
             "in": "query",
@@ -301,13 +304,13 @@
         "description": "Return list of unique lines matching search criteria.",
         "parameters": [
           {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
             "$ref": "#/components/parameters/TraceIdHeader"
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
-          },
-          {
-            "$ref": "#/components/parameters/OperatorIdHeader"
           },
           {
             "in": "query",
@@ -364,13 +367,13 @@
         "description": "Return list of unique stop points matching search criteria.",
         "parameters": [
           {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
             "$ref": "#/components/parameters/TraceIdHeader"
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
-          },
-          {
-            "$ref": "#/components/parameters/OperatorIdHeader"
           },
           {
             "in": "query",
@@ -427,13 +430,13 @@
         "description": "Return a list of service deviations matching a given set of criteria.",
         "parameters": [
           {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
             "$ref": "#/components/parameters/TraceIdHeader"
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
-          },
-          {
-            "$ref": "#/components/parameters/OperatorIdHeader"
           },
           {
             "$ref": "#/components/parameters/LimitQueryParam"
@@ -480,13 +483,13 @@
         "description": "Post a service deviation registration request",
         "parameters": [
           {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
             "$ref": "#/components/parameters/TraceIdHeader"
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
-          },
-          {
-            "$ref": "#/components/parameters/OperatorIdHeader"
           }
         ],
         "requestBody": {
@@ -540,13 +543,13 @@
         "description": "Return a service deviation with a given id.",
         "parameters": [
           {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
             "$ref": "#/components/parameters/TraceIdHeader"
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
-          },
-          {
-            "$ref": "#/components/parameters/OperatorIdHeader"
           },
           {
             "$ref": "#/components/parameters/ServiceDeviationIdPathParam"
@@ -590,13 +593,13 @@
         "description": "Update a service deviation with a given id.",
         "parameters": [
           {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
             "$ref": "#/components/parameters/TraceIdHeader"
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
-          },
-          {
-            "$ref": "#/components/parameters/OperatorIdHeader"
           },
           {
             "$ref": "#/components/parameters/ServiceDeviationIdPathParam"
@@ -651,13 +654,13 @@
         "description": "Delete a service deviation, effectively making it inactive from now on.",
         "parameters": [
           {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
             "$ref": "#/components/parameters/TraceIdHeader"
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
-          },
-          {
-            "$ref": "#/components/parameters/OperatorIdHeader"
           },
           {
             "$ref": "#/components/parameters/ServiceDeviationIdPathParam"
@@ -714,13 +717,13 @@
         "description": "Return a list of service deviation reason codes",
         "parameters": [
           {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
             "$ref": "#/components/parameters/TraceIdHeader"
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
-          },
-          {
-            "$ref": "#/components/parameters/OperatorIdHeader"
           },
           {
             "in": "query",
@@ -787,6 +790,14 @@
           "type": "string"
         }
       },
+      "ADTAuthHeader": {
+        "in": "header",
+        "name": "X-ADT-Auth",
+        "description": "Internal authentication metadata used by system implementation. Any value set here by a client will be ignored.\n",
+        "schema": {
+          "type": "string"
+        }
+      },
       "TraceIdHeader": {
         "in": "header",
         "name": "X-Trace-Id",
@@ -799,14 +810,6 @@
         "in": "header",
         "name": "X-Request-Id",
         "description": "Optional request id for request. Request id provided by client should be unique per request. For identifying multiple requests as belonging to the same group of requests when doing retries, parallel request processing or similar, see `X-Trace-Id` header.\n",
-        "schema": {
-          "type": "string"
-        }
-      },
-      "OperatorIdHeader": {
-        "in": "header",
-        "name": "X-Operator-Id",
-        "description": "Operator ref which can be set by the authentication service",
         "schema": {
           "type": "string"
         }
@@ -881,7 +884,12 @@
         "title": "AssignmentAttemptRequest",
         "properties": {
           "vehicleId": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique vehicle id, corresponding to `{vehicleId}` parameter of MQTT topic in earlier ADT versions.\n"
+          },
+          "operatorId": {
+            "type": "string",
+            "description": "Unique operator id as assigned to operator by PTA, corresponding to `{operatorId}` parameter of MQTT topic in earlier ADT versions.\n"
           },
           "signOn": {
             "$ref": "#/components/schemas/AssignmentAttemptRequestSignOn"
@@ -1586,13 +1594,19 @@
         "type": "object",
         "title": "ServiceDeviationReferences",
         "properties": {
-          "ptoCaseRef": {
-            "type": "string",
-            "description": "Reference to PTO (traffic) case / issue tracking system."
+          "ptoCaseRefs": {
+            "type": "array",
+            "item": {
+              "type": "string"
+            },
+            "description": "Reference(s) to PTO (traffic) case / issue tracking system."
           },
-          "ptaCaseRef": {
-            "type": "string",
-            "description": "Reference to PTA (traffic) case / issue tracking system."
+          "ptaCaseRefs": {
+            "type": "array",
+            "item": {
+              "type": "string"
+            },
+            "description": "Reference(s) to PTA (traffic) case / issue tracking system."
           }
         }
       },
@@ -1711,15 +1725,21 @@
         "type": "object",
         "title": "VehicleState",
         "properties": {
+          "assigned": {
+            "type": "boolean",
+            "description": "True if vehicle is currently assigned."
+          },
           "vehicleId": {
-            "type": "string"
+            "type": "string",
+            "description": "Vehicle id, as provided on last (successful) sign-on from this vehicle."
+          },
+          "operatorId": {
+            "type": "string",
+            "description": "Operator id, as provided on last (successful) sign-on from this vehicle."
           },
           "adtVersion": {
-            "type": "string"
-          },
-          "assigned": {
-            "description": "Is the vehicle currently assigned",
-            "type": "boolean"
+            "type": "string",
+            "description": "Current ADT version for vehicle, as determined by last (successful) sign-on from this vehicle."
           },
           "journeys": {
             "description": "List of dated service journeys assigned to the vehicle, if any.",
