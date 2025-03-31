@@ -1,0 +1,83 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.ruter.no/apc.json",
+  "type": "object",
+  "title": "APC MQTT Message",
+  "description": "Automatic Passaneger Count",
+  "required": [
+    "eventTimestamp",
+    "doorId",
+    "passengerCounting",
+    "doorCountQuality"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "EventTimestamp must be ISO 8601 UTC",
+      "format": "date-time"
+    },
+    "doorId": {
+      "$id": "#/properties/doorId",
+      "type": "integer",
+      "description": "Door id",
+      "minimum": 1,
+      "maximum": 10
+    },
+    "passengerCounting": {
+      "$id": "#/properties/passengerCounting",
+      "type": "array",
+      "description": "Passenger counts by Object Class",
+      "items": {
+        "$id": "#/properties/passengerCounting/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "objectClass",
+          "doorPassengerIn",
+          "doorPassengerOut"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "objectClass": {
+            "$id": "#/properties/passengerCounting/items/properties/objectClass",
+            "type": "string",
+            "description": "Class of object counted",
+            "enum": [
+              "ABSENT",
+              "ADULT",
+              "CHILD",
+              "PRAM",
+              "BIKE",
+              "WHEELCHAIR",
+              "OTHER"
+            ]
+          },
+          "doorPassengerIn": {
+            "$id": "#/properties/passengerCounting/items/properties/doorPassengerIn",
+            "type": "integer",
+            "description": "Passenger count in door"
+          },
+          "doorPassengerOut": {
+            "$id": "#/properties/passengerCounting/items/properties/doorPassengerOut",
+            "type": "integer",
+            "title": "Passenger count out door"
+          }
+        }
+      }
+    },
+    "doorCountQuality": {
+      "$id": "#/properties/doorCountQuality",
+      "type": "string",
+      "description": "Door count quality",
+      "enum": [
+        "ABSENT",
+        "REGULAR",
+        "DEFECT",
+        "OTHER"
+      ]
+    }
+  }
+}
