@@ -1,0 +1,8 @@
+{
+  "name": "Clock",
+  "payload": {
+    "localTimeZoneDate": "2017-12-01",
+    "localTimeZoneTime": "00:45:52",
+    "atDateTime": "2017-11-30T23:45:52.006Z"
+  }
+}

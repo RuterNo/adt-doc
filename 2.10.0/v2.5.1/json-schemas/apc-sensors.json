@@ -1,0 +1,84 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v2.1/sensor/apc-sensors.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ApcSensors",
+  "type": "object",
+  "required": [
+    "doorRef",
+    "alightingCount",
+    "boardingCount",
+    "atDateTime",
+    "categoryActivities"
+  ],
+  "description": "Raw-data from door-sensor for later evaluation.",
+  "additionalProperties": true,
+  "properties": {
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "$comment": "Added in version 2.5",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message. Also used to detect duplicate messages received."
+    },
+    "doorRef": {
+      "$id": "#/properties/doorRef",
+      "type": "string",
+      "description": "Stable alfa-numeric reference that is unique within scope of vehicle (vehicle element/train set). Could be a door-number or a combination of coach number and door number."
+    },
+    "alightingCount": {
+      "$id": "#/properties/alightingCount",
+      "type": "number",
+      "description": "Accumulated number of alighting passengers detected by this sensor since last reset."
+    },
+    "boardingCount": {
+      "$id": "#/properties/alightingCount",
+      "type": "number",
+      "description": "Accumulated number of boarding passengers detected by this sensor since last reset."
+    },
+    "atDateTime": {
+      "$id": "#/properties/atDateTime",
+      "type": "string",
+      "description": "ISO 8601. Reflects the current UTC time."
+    },
+    "messageNumber": {
+      "$id": "#/properties/messageNumber",
+      "$comment": "Added in version 2.1",
+      "type": "number",
+      "description": "Optional. Sequence number, increased by one for each new message. Used to validate consistency in the data stream."
+    },
+    "categoryActivities": {
+      "$id": "#/properties/categoryActivities",
+      "type": "array",
+      "description": "A list describing APC activity at each individual door divided per handled object category.",
+      "items": {
+        "type": "object",
+        "required": [
+          "categoryRef",
+          "alightingCount",
+          "boardingCount"
+        ],
+        "properties": {
+          "categoryRef": {
+            "type": "string",
+            "description": "Object class reference. Possible values given in examples.",
+            "examples": [
+              "ADULT",
+              "CHILD",
+              "PRAM",
+              "BIKE",
+              "WHEELCHAIR",
+              "OTHER"
+            ]
+          },
+          "alightingCount": {
+            "type": "number",
+            "description": "Accumulated number of alighting of this category detected by this sensor since last reset."
+          },
+          "boardingCount": {
+            "type": "number",
+            "description": "Accumulated number of boarding of this category detected by this sensor since last reset."
+          }
+        }
+      }
+    }
+  }
+}

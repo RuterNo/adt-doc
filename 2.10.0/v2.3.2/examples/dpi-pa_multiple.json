@@ -1,0 +1,19 @@
+{
+  "name": "Passenger Announcement - Multiple contents",
+  "payload": {
+    "eventTimestamp": "2022-05-09T13:27:59.624Z",
+    "ref": "757fd8b4-2e57-4ad3-9aee-76e793c514d9",
+    "content": [
+      {
+        "type": "IMAGE",
+        "duration": 5.0,
+        "src": "../media/logo.png"
+      },
+      {
+        "type": "HTML",
+        "duration": 10.0,
+        "src": "../media/kampanje.html"
+      }
+    ]
+  }
+}
