@@ -33,6 +33,16 @@
       "type": "string",
       "description": "Reference to stop place id"
     },
+    "order": {
+      "$id": "#/properties/order",
+      "type": "number",
+      "description": "Reference to the order of the stop (ref) on the journey"
+    },
+    "journeyRef": {
+      "$id": "#/properties/journeyRef",
+      "type": "string",
+      "description": "Reference to the journey"
+    },
     "message": {
       "$id": "#/properties/message",
       "type": "object",
