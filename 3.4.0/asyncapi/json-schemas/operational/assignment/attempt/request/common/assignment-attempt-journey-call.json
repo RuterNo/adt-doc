@@ -1,0 +1,28 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/attempt/request/common/assignment-attempt-journey-call.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignmentAttemptJourneyCall",
+  "description": "A call defines when and where a vehicle will make a stop and when it will depart",
+  "additionalProperties": true,
+  "type": "object",
+  "required": [
+    "quayId"
+  ],
+  "properties": {
+    "quayId": {
+      "$id": "#/properties/quayId",
+      "description": "Id of the quay (NSR:Quay:xxx) to be serviced or the depot (RUT/NBU)",
+      "type": "string"
+    },
+    "arrivalDateTime": {
+      "$id": "#/properties/arrivalDateTime",
+      "description": "Required for all calls except the first call to be serviced. DateTime as specified in the [ADT documentation.](https://adt.transhub.io)",
+      "type": "string"
+    },
+    "departureDateTime": {
+      "$id": "#/properties/departureDateTime",
+      "description": "Required for all calls except the last call to be serviced. DateTime as specified in the [ADT documentation.](https://adt.transhub.io)",
+      "type": "string"
+    }
+  }
+}
