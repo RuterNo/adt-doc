@@ -5,6 +5,8 @@
     "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
     "expiryTimestamp": "2017-10-31T08:38:47.749Z",
     "ref": "RUT:StopPlace:03012453",
+    "order": 29,
+    "journeyRef": "RUT:ServiceJourney:011578-018334-132500-31-2-Weekday-125",
     "zoneId": "2b-vest",
     "message": {
       "no": {
