@@ -105,6 +105,12 @@
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
           }
         ],
         "requestBody": {
@@ -167,6 +173,12 @@
             "$ref": "#/components/parameters/RequestIdHeader"
           },
           {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          },
+          {
             "$ref": "#/components/parameters/VehicleIdPathParam"
           },
           {
@@ -220,6 +232,12 @@
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
           },
           {
             "in": "query",
@@ -313,6 +331,12 @@
             "$ref": "#/components/parameters/RequestIdHeader"
           },
           {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          },
+          {
             "in": "query",
             "name": "query",
             "description": "Lines search query string.",
@@ -374,6 +398,12 @@
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
           },
           {
             "in": "query",
@@ -439,6 +469,12 @@
             "$ref": "#/components/parameters/RequestIdHeader"
           },
           {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          },
+          {
             "$ref": "#/components/parameters/LimitQueryParam"
           },
           {
@@ -490,6 +526,12 @@
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
           }
         ],
         "requestBody": {
@@ -552,6 +594,12 @@
             "$ref": "#/components/parameters/RequestIdHeader"
           },
           {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          },
+          {
             "$ref": "#/components/parameters/ServiceDeviationIdPathParam"
           }
         ],
@@ -600,6 +648,12 @@
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
           },
           {
             "$ref": "#/components/parameters/ServiceDeviationIdPathParam"
@@ -663,6 +717,12 @@
             "$ref": "#/components/parameters/RequestIdHeader"
           },
           {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          },
+          {
             "$ref": "#/components/parameters/ServiceDeviationIdPathParam"
           }
         ],
@@ -724,6 +784,12 @@
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
           },
           {
             "in": "query",
@@ -814,11 +880,27 @@
           "type": "string"
         }
       },
+      "OperatorIdHeader": {
+        "in": "header",
+        "name": "X-Operator-Id",
+        "description": "Optional operator id for request. Required by clients with access to more than one PTO.  Operator id on the form 'CodeSpace:Operator:number' Ref: https://enturas.atlassian.net/wiki/spaces/PUBLIC/pages/637370434/List+of+current+Codespaces\n",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "AuthorityIdHeader": {
+        "in": "header",
+        "name": "X-Authority-Id",
+        "description": "Optional authority id for request. Required by clients with access to more than one PTA. Ref: https://enturas.atlassian.net/wiki/spaces/PUBLIC/pages/637370434/List+of+current+Codespaces\n",
+        "schema": {
+          "type": "string"
+        }
+      },
       "DirectionQueryParam": {
         "name": "direction",
         "in": "query",
         "schema": {
-          "type": "string"
+          "$ref": "#/components/schemas/JourneyDirectionCode"
         }
       },
       "DatedServiceJourneyIdPathParam": {
@@ -885,11 +967,7 @@
         "properties": {
           "vehicleId": {
             "type": "string",
-            "description": "Unique vehicle id, corresponding to `{vehicleId}` parameter of MQTT topic in earlier ADT versions.\n"
-          },
-          "operatorId": {
-            "type": "string",
-            "description": "Unique operator id as assigned to operator by PTA, corresponding to `{operatorId}` parameter of MQTT topic in earlier ADT versions.\n"
+            "description": "Required unique vehicle id 17 characters.\n"
           },
           "signOn": {
             "$ref": "#/components/schemas/AssignmentAttemptRequestSignOn"
@@ -914,6 +992,9 @@
         "title": "AssignmentAttemptRequestSignOn",
         "description": "Attempt to sign the vehicle on to a specified vehicle task or one or more journey(s).",
         "properties": {
+          "mqttRouting": {
+            "$ref": "#/components/schemas/AssignmentMqttTopicParameters"
+          },
           "journeys": {
             "type": "array",
             "items": {
@@ -942,6 +1023,24 @@
           "CANCELLED",
           "FINISHED"
         ]
+      },
+      "AssignmentMqttTopicParameters": {
+        "type": "object",
+        "title": "AssignmentMqttTopicParameters",
+        "properties": {
+          "operatorId": {
+            "type": "string",
+            "description": "Unique operator id as assigned to operator by PTA, corresponding to `{operatorId}` parameter of MQTT topics.  This value will be used for any async call-back message sent from the PTA to the PTO\n"
+          },
+          "authorityId": {
+            "type": "string",
+            "description": "Unique authority id for the PTA, corresponding to the `{authorityId}` parameter of MQTT topics. This value will be used for any async call-back message sent from the PTA to the PTO. Example: 'ruter'\n"
+          },
+          "vehicleId": {
+            "type": "string",
+            "description": "Unique vehicle id, corresponding to `{vehicleId}` parameter of MQTT topics.  This id might be different from the vehicleId provided in the AssignmentAttemptRequest. Mostly the two would be the same. This value will be used for any async call-back message sent from the PTA to the PTO.\n"
+          }
+        }
       },
       "DateTimeRange": {
         "type": "object",
@@ -1095,7 +1194,7 @@
       "JourneyLine": {
         "type": "object",
         "title": "JourneyLine",
-        "description": "A journey line with id, name and direction.",
+        "description": "A journey line with id and name.",
         "properties": {
           "name": {
             "type": "string"
@@ -1649,20 +1748,56 @@
           }
         }
       },
+      "StatusResponseCode": {
+        "type": "string",
+        "title": "StatusResponseCode",
+        "description": "Machine readable specifications of the code supplied. The list of examples might not be complete.\n",
+        "example": [
+          "OK         # OK / No error",
+          "ERR_CLIENT # Client Error",
+          "ERR_SERVER # Server Error"
+        ]
+      },
       "StatusResponseDetail": {
         "type": "object",
         "title": "StatusResponseDetail",
         "properties": {
           "code": {
-            "type": "string"
+            "$ref": "#/components/schemas/StatusResponseCode"
           },
           "reason": {
-            "type": "string"
+            "$ref": "#/components/schemas/StatusResponseReasonCode"
           },
           "description": {
             "type": "string"
           }
         }
+      },
+      "StatusResponseReasonCode": {
+        "type": "string",
+        "title": "StatusResponseReasonCode",
+        "description": "Machine readable specifications of the code supplied. The list of examples might not be complete.\n",
+        "example": [
+          "OK                             # OK / No reason",
+          "INFO                           # Informational only. Description field(s) may contain additional details.",
+          "TIMEOUT                        # A timeout (error) occurred.",
+          "BAD_REQUEST                    # The provided request contained one or more error(s).",
+          "INTERNAL_ERROR                 # An internal error occurred.",
+          "CALL_SPEC_ERROR                # Missing or invalid call specification(s).",
+          "LINE_SPEC_ERROR                # Missing or invalid line specification(s).",
+          "JOURNEY_SPEC_ERROR             # Missing or invalid journey specification(s)",
+          "SERVICE_WINDOW_ERROR           # Missing or invalid service window(s) in specification(s).",
+          "CALL_NOT_FOUND                 # No call(s) matching provided specification(s).",
+          "LINE_NOT_FOUND                 # No line(s) matching provided specification(s).",
+          "JOURNEY_NOT_FOUND              # No journey(s) matching provided specification(s).",
+          "STOP_POINT_NOT_FOUND           # No stop point(s) matching provided specification(s).",
+          "VEHICLE_ID_ERROR               # Missing or invalid vehicle id in request.",
+          "OPERATOR_ID_ERROR              # Missing or invalid operator id in request.",
+          "DEVIATION_CODE_ERROR           # Missing or invalid service deviation code.",
+          "DEVIATION_REASON_CODE_ERROR    # Missing or invalid service deviation reason code.",
+          "ASSIGNMENT_ATTEMPT_EXPIRED     # Assignment attempt has expired (timeout error).",
+          "ASSIGNMENT_SIGN_OFF_CODE_ERROR # Missing or invalid assignment attempt sign-off code."
+        ]
       },
       "StopPointSpec": {
         "type": "object",

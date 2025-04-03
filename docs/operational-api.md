@@ -349,10 +349,12 @@ In case of these errors, get a new token or verify the granted scopes.
 
 All API requests may contain one or more optional headers for tracing and request identification purposes:
 
-| Header         | Description                                                                                           |
-|----------------|-------------------------------------------------------------------------------------------------------|
-| `X-Trace-Id`   | May be used to identify multiple requests as part of the same "operation" or "process".               |
-| `X-Request-Id` | May be used to identify a single request. Should be unique for each separate request made to the API. |
+| Header           | Description                                                                                           |
+|------------------|-------------------------------------------------------------------------------------------------------|
+| `X-Trace-Id`     | May be used to identify multiple requests as part of the same "operation" or "process".               |
+| `X-Request-Id`   | May be used to identify a single request. Should be unique for each separate request made to the API. |
+| `X-Operator-Id`  | Must be provided by clients with access to more than one PTO.                                         |
+| `X-Authority-Id` | Must be provided by clients with access to more than one PTA.                                         |
 
 ## Journey API
 
