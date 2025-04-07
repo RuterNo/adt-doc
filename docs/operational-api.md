@@ -781,7 +781,8 @@ HTTP response:
   "vehicleState" : {
     "assigned" : true,
     "vehicleId" : "VI00TEST001",
-    "operatorId" : "test-operator",
+    "operatorId" : "test-pto",
+    "authorityId" : "test-pta",
     "journeys" : [ {
       "name" : "Service Journey 0001",
       "spec" : {
@@ -857,7 +858,8 @@ HTTP response:
   "vehicleState" : {
     "assigned" : false,
     "vehicleId" : "VI00TEST001",
-    "operatorId" : "test-operator"
+    "operatorId" : "test-pto",
+    "authorityId" : "test-pta"
   }
 }
 ```
@@ -912,7 +914,8 @@ HTTP response:
   "vehicleState" : {
     "assigned" : true,
     "vehicleId" : "VI00TEST001",
-    "operatorId" : "test-operator",
+    "operatorId" : "test-pto",
+    "authorityId" : "test-pta",
     "journeys" : [ {
       "name" : "Service Journey 0001",
       "spec" : {
@@ -1029,7 +1032,8 @@ HTTP response:
   "vehicleState" : {
     "assigned" : true,
     "vehicleId" : "VI00TEST001",
-    "operatorId" : "test-operator",
+    "operatorId" : "test-pto",
+    "authorityId" : "test-pta",
     "journeys" : [ {
       "name" : "Ad-Hoc Journey RUT:Quay:ga01 2025-03-03T08:45+01:00 - NSR:Quay:001A 2025-03-03T08:59+01:00",
       "spec" : {
@@ -1156,7 +1160,8 @@ HTTP response:
   "vehicleState" : {
     "assigned" : false,
     "vehicleId" : "VI00TEST001",
-    "operatorId" : "test-operator"
+    "operatorId" : "test-pto",
+    "authorityId" : "test-pta"
   }
 }
 ```
@@ -1185,7 +1190,8 @@ HTTP response:
   "vehicleState" : {
     "assigned" : false,
     "vehicleId" : "VI00TEST001",
-    "operatorId" : "test-operator"
+    "operatorId" : "test-pto",
+    "authorityId" : "test-pta"
   }
 }
 ```

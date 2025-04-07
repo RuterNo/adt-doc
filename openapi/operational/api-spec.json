@@ -1872,6 +1872,10 @@
             "type": "string",
             "description": "Operator id, as provided on last (successful) sign-on from this vehicle."
           },
+          "authorityId": {
+            "type": "string",
+            "description": "Authority id, as provided on last (successful) sign-on from this vehicle."
+          },
           "adtVersion": {
             "type": "string",
             "description": "Current ADT version for vehicle, as determined by last (successful) sign-on from this vehicle."
