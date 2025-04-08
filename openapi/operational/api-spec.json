@@ -993,7 +993,7 @@
         "description": "Attempt to sign the vehicle on to a specified vehicle task or one or more journey(s).",
         "properties": {
           "mqttRouting": {
-            "$ref": "#/components/schemas/AssignmentMqttTopicParameters"
+            "$ref": "#/components/schemas/MqttRouting"
           },
           "journeys": {
             "type": "array",
@@ -1023,24 +1023,6 @@
           "CANCELLED",
           "FINISHED"
         ]
-      },
-      "AssignmentMqttTopicParameters": {
-        "type": "object",
-        "title": "AssignmentMqttTopicParameters",
-        "properties": {
-          "operatorId": {
-            "type": "string",
-            "description": "Unique operator id as assigned to operator by PTA, corresponding to `{operatorId}` parameter of MQTT topics.  This value will be used for any async call-back message sent from the PTA to the PTO\n"
-          },
-          "authorityId": {
-            "type": "string",
-            "description": "Unique authority id for the PTA, corresponding to the `{authorityId}` parameter of MQTT topics. This value will be used for any async call-back message sent from the PTA to the PTO. Example: 'ruter'\n"
-          },
-          "vehicleId": {
-            "type": "string",
-            "description": "Unique vehicle id, corresponding to `{vehicleId}` parameter of MQTT topics.  This id might be different from the vehicleId provided in the AssignmentAttemptRequest. Mostly the two would be the same. This value will be used for any async call-back message sent from the PTA to the PTO.\n"
-          }
-        }
       },
       "DateTimeRange": {
         "type": "object",
@@ -1378,6 +1360,24 @@
           },
           "page": {
             "$ref": "#/components/schemas/PageInfo"
+          }
+        }
+      },
+      "MqttRouting": {
+        "type": "object",
+        "title": "MqttRouting",
+        "properties": {
+          "operatorId": {
+            "type": "string",
+            "description": "Unique operator id as assigned to operator by PTA, corresponding to `{operatorId}` parameter of MQTT topics.  This value will be used for any async call-back message sent from the PTA to the PTO\n"
+          },
+          "authorityId": {
+            "type": "string",
+            "description": "Unique authority id for the PTA, corresponding to the `{authorityId}` parameter of MQTT topics. This value will be used for any async call-back message sent from the PTA to the PTO. Example: 'ruter'\n"
+          },
+          "vehicleId": {
+            "type": "string",
+            "description": "Unique vehicle id, corresponding to `{vehicleId}` parameter of MQTT topics.  This id might be different from the vehicleId provided in the AssignmentAttemptRequest. Mostly the two would be the same. This value will be used for any async call-back message sent from the PTA to the PTO.\n"
           }
         }
       },
@@ -1864,17 +1864,8 @@
             "type": "boolean",
             "description": "True if vehicle is currently assigned."
           },
-          "vehicleId": {
-            "type": "string",
-            "description": "Vehicle id, as provided on last (successful) sign-on from this vehicle."
-          },
-          "operatorId": {
-            "type": "string",
-            "description": "Operator id, as provided on last (successful) sign-on from this vehicle."
-          },
-          "authorityId": {
-            "type": "string",
-            "description": "Authority id, as provided on last (successful) sign-on from this vehicle."
+          "mqttRouting": {
+            "$ref": "#/components/schemas/MqttRouting"
           },
           "adtVersion": {
             "type": "string",
