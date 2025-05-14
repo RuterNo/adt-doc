@@ -1,7 +1,7 @@
 # Operational API
 > This api is a draft until further notice
 
-[TOC]
+[OpenAPI Specification Documentation](openapi/operational/index.html){target=_blank .md-button }
 
 ## Introduction
 
@@ -324,7 +324,9 @@ HTTP response:
 
 #### Access Tokens - Use
 
-Any request should carry a Bearer Token in the `Authorization` header of HTTP requests
+Any request should carry a Bearer Token in the `Authorization` header of HTTP requests.
+
+The value of the Bearer token is found in the field `access_token` from the above HTTP response.
 
 HTTP request:
 
@@ -394,7 +396,7 @@ HTTP request:
 
 ```bash
 GET /api/adt/v4/operational/journey/journeys?
->>> query=L01&
+>>> line=L01&
 >>> direction=INBOUND&
 >>> fromDateTime=2025-03-03T00:00+01:00&
 >>> toDateTime=2025-03-04T00:00+01:00
@@ -427,7 +429,8 @@ HTTP response:
       "textColor" : "FFFFFF",
       "backgroundColor" : "1F1E1A"
     },
-    "direction" : "INBOUND"
+    "direction" : "INBOUND",
+    "vehicleTaskId" : "VL1001"
   }, {
     "name" : "Service Journey 0003",
     "spec" : {
@@ -450,7 +453,8 @@ HTTP response:
       "textColor" : "FFFFFF",
       "backgroundColor" : "1F1E1A"
     },
-    "direction" : "INBOUND"
+    "direction" : "INBOUND",
+    "vehicleTaskId" : "VL1001"
   } ],
   "page" : {
     "limit" : 100,
@@ -470,7 +474,7 @@ service windows date range in our query, we only get journeys matching the given
 HTTP request:
 
 ```bash
-GET /api/adt/v4/operational/journey/journeys?query=1001
+GET /api/adt/v4/operational/journey/journeys?vehicleTask=VL1001
 ```
 
 HTTP response:
@@ -500,7 +504,8 @@ HTTP response:
       "textColor" : "FFFFFF",
       "backgroundColor" : "1F1E1A"
     },
-    "direction" : "INBOUND"
+    "direction" : "INBOUND",
+    "vehicleTaskId" : "VL1001"
   }, {
     "name" : "Service Journey 0002",
     "spec" : {
@@ -523,7 +528,8 @@ HTTP response:
       "textColor" : "FFFFFF",
       "backgroundColor" : "1F1E1A"
     },
-    "direction" : "OUTBOUND"
+    "direction" : "OUTBOUND",
+    "vehicleTaskId" : "VL1001"
   }, {
     "name" : "Service Journey 0003",
     "spec" : {
@@ -546,7 +552,8 @@ HTTP response:
       "textColor" : "FFFFFF",
       "backgroundColor" : "1F1E1A"
     },
-    "direction" : "INBOUND"
+    "direction" : "INBOUND",
+    "vehicleTaskId" : "VL1001"
   } ],
   "page" : {
     "limit" : 100,
@@ -598,6 +605,7 @@ HTTP response:
       "backgroundColor" : "1F1E1A"
     },
     "direction" : "INBOUND",
+    "vehicleTaskId" : "VL1001",
     "calls" : [ {
       "spec" : {
         "stopPoint" : {
@@ -632,6 +640,139 @@ HTTP response:
     "limit" : 100,
     "offset" : 0,
     "itemCount" : 1
+  }
+}
+```
+
+#### Find Journeys - by Stop Point Platform Code
+
+To find journeys servicing a specific stop point, a stop point identifier can be provided as `stopPoint` string.
+To see the stop points in the result, please include the param `includeCalls=true`
+
+HTTP request:
+
+```bash
+GET /api/adt/v4/operational/journey/journeys?
+>>> stopPoint=NSR:Quay:001A&
+>>> includeCalls=true
+```
+
+HTTP response:
+
+```bash
+200 OK
+{
+  "items" : [ {
+    "name" : "Service Journey 0001",
+    "spec" : {
+      "lineId" : "RUT:Line:001",
+      "journeyId" : "RUT:DatedServiceJourney:0001",
+      "serviceWindow" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
+      }
+    },
+    "journeyIds" : {
+      "vehicleJourneyId" : "vehicle-journey-0001",
+      "serviceJourneyId" : "RUT:ServiceJourney:0001",
+      "datedServiceJourneyId" : "RUT:DatedServiceJourney:0001"
+    },
+    "line" : {
+      "name" : "Testveien - Teststien",
+      "lineId" : "RUT:Line:001",
+      "publicCode" : "L01",
+      "textColor" : "FFFFFF",
+      "backgroundColor" : "1F1E1A"
+    },
+    "direction" : "INBOUND",
+    "vehicleTaskId" : "VL1001",
+    "calls" : [ {
+      "spec" : {
+        "stopPoint" : {
+          "quayId" : "NSR:Quay:001A",
+          "stopPointId" : "stop-point-001A"
+        },
+        "departureDateTime" : "2025-03-03T09:00+01:00"
+      },
+      "behaviourType" : "FULL_SERVICE"
+    }, {
+      "spec" : {
+        "stopPoint" : {
+          "quayId" : "NSR:Quay:002A",
+          "stopPointId" : "stop-point-002A"
+        },
+        "arrivalDateTime" : "2025-03-03T09:10+01:00",
+        "departureDateTime" : "2025-03-03T09:10+01:00"
+      },
+      "behaviourType" : "FULL_SERVICE"
+    }, {
+      "spec" : {
+        "stopPoint" : {
+          "quayId" : "NSR:Quay:003A",
+          "stopPointId" : "stop-point-003A"
+        },
+        "arrivalDateTime" : "2025-03-03T09:20+01:00"
+      },
+      "behaviourType" : "FULL_SERVICE"
+    } ]
+  }, {
+    "name" : "Service Journey 0003",
+    "spec" : {
+      "lineId" : "RUT:Line:001",
+      "journeyId" : "RUT:DatedServiceJourney:0003",
+      "serviceWindow" : {
+        "start" : "2025-03-03T10:30+01:00",
+        "end" : "2025-03-03T10:50+01:00"
+      }
+    },
+    "journeyIds" : {
+      "vehicleJourneyId" : "vehicle-journey-0003",
+      "serviceJourneyId" : "RUT:ServiceJourney:0003",
+      "datedServiceJourneyId" : "RUT:DatedServiceJourney:0003"
+    },
+    "line" : {
+      "name" : "Testveien - Teststien",
+      "lineId" : "RUT:Line:001",
+      "publicCode" : "L01",
+      "textColor" : "FFFFFF",
+      "backgroundColor" : "1F1E1A"
+    },
+    "direction" : "INBOUND",
+    "vehicleTaskId" : "VL1001",
+    "calls" : [ {
+      "spec" : {
+        "stopPoint" : {
+          "quayId" : "NSR:Quay:001A",
+          "stopPointId" : "stop-point-001A"
+        },
+        "departureDateTime" : "2025-03-03T10:30+01:00"
+      },
+      "behaviourType" : "FULL_SERVICE"
+    }, {
+      "spec" : {
+        "stopPoint" : {
+          "quayId" : "NSR:Quay:002A",
+          "stopPointId" : "stop-point-002A"
+        },
+        "arrivalDateTime" : "2025-03-03T10:40+01:00",
+        "departureDateTime" : "2025-03-03T10:40+01:00"
+      },
+      "behaviourType" : "FULL_SERVICE"
+    }, {
+      "spec" : {
+        "stopPoint" : {
+          "quayId" : "NSR:Quay:003A",
+          "stopPointId" : "stop-point-003A"
+        },
+        "arrivalDateTime" : "2025-03-03T10:50+01:00"
+      },
+      "behaviourType" : "FULL_SERVICE"
+    } ]
+  } ],
+  "page" : {
+    "limit" : 100,
+    "offset" : 0,
+    "itemCount" : 2
   }
 }
 ```
@@ -808,6 +949,7 @@ HTTP response:
         "backgroundColor" : "1F1E1A"
       },
       "direction" : "INBOUND",
+      "vehicleTaskId" : "VL1001",
       "calls" : [ {
         "spec" : {
           "stopPoint" : {
@@ -944,7 +1086,8 @@ HTTP response:
         "textColor" : "FFFFFF",
         "backgroundColor" : "1F1E1A"
       },
-      "direction" : "INBOUND"
+      "direction" : "INBOUND",
+      "vehicleTaskId" : "VL1001"
     } ]
   }
 }
@@ -1072,7 +1215,8 @@ HTTP response:
         "textColor" : "FFFFFF",
         "backgroundColor" : "1F1E1A"
       },
-      "direction" : "INBOUND"
+      "direction" : "INBOUND",
+      "vehicleTaskId" : "VL1001"
     }, {
       "name" : "Service Journey 0002",
       "spec" : {
@@ -1095,7 +1239,8 @@ HTTP response:
         "textColor" : "FFFFFF",
         "backgroundColor" : "1F1E1A"
       },
-      "direction" : "OUTBOUND"
+      "direction" : "OUTBOUND",
+      "vehicleTaskId" : "VL1001"
     }, {
       "name" : "Service Journey 0003",
       "spec" : {
@@ -1118,7 +1263,8 @@ HTTP response:
         "textColor" : "FFFFFF",
         "backgroundColor" : "1F1E1A"
       },
-      "direction" : "INBOUND"
+      "direction" : "INBOUND",
+      "vehicleTaskId" : "VL1001"
     }, {
       "name" : "Ad-Hoc Journey NSR:Quay:003A 2025-03-03T10:55+01:00 - RUT:Quay:ga02 2025-03-03T11:10+01:00",
       "spec" : {
@@ -1841,13 +1987,15 @@ HTTP response:
 
 #### Delete Service Deviation by Id
 
-A service deviation may be deleted by sending a `DELETE` request to `{baseURL}/deviation/deviations/{serviceDeviationId}`.
+A service deviation may be deleted by posting an update request with `action: "DELETE"` to
+`{baseURL}/deviation/deviations/{serviceDeviationId}`.
 
 HTTP request:
 
 ```bash
-DELETE /api/adt/v4/operational/deviation/deviations/1530bf5405624db1b6b449d0edbec8c0
+POST /api/adt/v4/operational/deviation/deviations/1530bf5405624db1b6b449d0edbec8c0
 {
+  "action" : "DELETE",
   "comment" : "All the snow melted, we are able to drive after all!"
 }
 ```
@@ -1857,14 +2005,20 @@ HTTP response:
 ```bash
 200 OK
 {
-  "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0"
+  "result" : {
+    "status" : {
+      "code" : "OK",
+      "reason" : "OK"
+    }
+  }
 }
 ```
 
 #### Update Service Deviation by Id
 
-Instead of deleting and re-creating a service deviation to functionally modify it, a client may send a `PUT` request to
-`{baseURL}/deviation/deviations/{serviceDeviationId}` to update an existing deviation.
+Instead of deleting and re-creating a service deviation to functionally modify it, a client may post an update request
+with `action: "UPDATE"` to
+`{baseURL}/deviation/deviations/{serviceDeviationId}` to modify an existing deviation.
 
 In this example, we show how to update an existing delay deviation with a new delay value and an additional comment about why the
 delay was updated.
@@ -1872,7 +2026,7 @@ delay was updated.
 HTTP request:
 
 ```bash
-PUT /api/adt/v4/operational/deviation/deviations/840660be96fd48c7967f90cc28ac4b34
+POST /api/adt/v4/operational/deviation/deviations/840660be96fd48c7967f90cc28ac4b34
 {
   "spec" : {
     "code" : "DELAY",
@@ -1899,7 +2053,8 @@ PUT /api/adt/v4/operational/deviation/deviations/840660be96fd48c7967f90cc28ac4b3
     "parameters" : {
       "delayMinutes" : 25
     }
-  }
+  },
+  "action" : "UPDATE"
 }
 ```
 

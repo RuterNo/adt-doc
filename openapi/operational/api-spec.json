@@ -242,10 +242,19 @@
           {
             "in": "query",
             "name": "query",
-            "description": "Journey search query string.",
+            "description": "General-purpose search parameter that can accept various identifiers like vehicle journey ID (e.g., \"86\"), journey references,  or pattern references to return matching journeys with their associated details including external IDs and pattern references.\n",
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "$ref": "#/components/parameters/StopPointQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/VehicleTaskQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/LineTaskQueryParam"
           },
           {
             "$ref": "#/components/parameters/LatQueryParam"
@@ -636,7 +645,7 @@
           }
         }
       },
-      "put": {
+      "post": {
         "operationId": "updateServiceDeviation",
         "description": "Update a service deviation with a given id.",
         "parameters": [
@@ -697,73 +706,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ServiceDeviationPostResponse"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "operationId": "deleteServiceDeviation",
-        "description": "Delete a service deviation, effectively making it inactive from now on.",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/ADTAuthHeader"
-          },
-          {
-            "$ref": "#/components/parameters/TraceIdHeader"
-          },
-          {
-            "$ref": "#/components/parameters/RequestIdHeader"
-          },
-          {
-            "$ref": "#/components/parameters/OperatorIdHeader"
-          },
-          {
-            "$ref": "#/components/parameters/AuthorityIdHeader"
-          },
-          {
-            "$ref": "#/components/parameters/ServiceDeviationIdPathParam"
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "description": "Service deviation delete request",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ServiceDeviationDeleteRequest"
-              }
-            }
-          }
-        },
-        "responses": {
-          "2xx": {
-            "description": "Service deviation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceDeviationDeleteResponse"
-                }
-              }
-            }
-          },
-          "4xx": {
-            "description": "Service deviation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceDeviationDeleteResponse"
-                }
-              }
-            }
-          },
-          "5xx": {
-            "description": "Service deviation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceDeviationDeleteResponse"
                 }
               }
             }
@@ -912,9 +854,34 @@
           "type": "string"
         }
       },
+      "StopPointQueryParam": {
+        "in": "query",
+        "name": "stopPoint",
+        "description": "Filters journeys by stop point identifier. Accepts various stop point identifiers such as NSR:Quay IDs (e.g., \"NSR:Quay:109233\") and returns journeys that serve the specified stop point, including details like stop name (e.g., \"Nationaltheatret\"), public code, and related stop area references.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "VehicleTaskQueryParam": {
+        "in": "query",
+        "name": "vehicleTask",
+        "description": "Filters journeys by vehicle task identifier. Accepts a numeric vehicle task ID (e.g., \"1702\") to return journeys associated with the specified vehicle task.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "LineTaskQueryParam": {
+        "in": "query",
+        "name": "line",
+        "description": "Filters journeys by line identifier. Accepts a line number or code (e.g., \"70\") and returns journeys operating on that line, including details like line reference (\"RUT:Line:70\"), public code, and transport mode information.",
+        "schema": {
+          "type": "string"
+        }
+      },
       "LatQueryParam": {
         "in": "query",
         "name": "lat",
+        "description": "Specifies the latitude coordinate for location-based journey queries. Used in combination with the 'lon' parameter to find journeys near a specific geographic location.",
         "schema": {
           "type": "string"
         }
@@ -922,6 +889,7 @@
       "LonQueryParam": {
         "in": "query",
         "name": "lon",
+        "description": "Specifies the longitude coordinate for location-based journey queries. Used in combination with the 'lat' parameter to find journeys near a specific geographic location.",
         "schema": {
           "type": "string"
         }
@@ -1085,6 +1053,10 @@
           "direction": {
             "$ref": "#/components/schemas/JourneyDirectionCode"
           },
+          "vehicleTaskId": {
+            "type": "string",
+            "description": "An id produced in planning to identify a collection of journeys\n"
+          },
           "state": {
             "$ref": "#/components/schemas/JourneyState"
           },
@@ -1144,12 +1116,59 @@
           }
         }
       },
+      "JourneyDeviation": {
+        "type": "object",
+        "title": "JourneyDeviation",
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/ServiceDeviationCode"
+          },
+          "reason": {
+            "$ref": "#/components/schemas/ServiceDeviationReason"
+          },
+          "metadata": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetadataEntry"
+            }
+          },
+          "lifecycle": {
+            "$ref": "#/components/schemas/ServiceDeviationLifeCycleInfo"
+          }
+        }
+      },
+      "JourneyDeviationState": {
+        "type": "object",
+        "title": "JourneyDeviationState",
+        "description": "Operational deviation state of a journey.",
+        "properties": {
+          "omitted": {
+            "type": "boolean",
+            "description": "Flag indicating the complete journey has been omitted by operator: a deviation with code `NO_SERVICE` is active\n"
+          },
+          "partiallyOmitted": {
+            "type": "boolean",
+            "description": "Flag indicating one or more calls in the journey has been omitted by operator: a deviation with code `NO_SERVICE` and a call list of omitted calls is active\n"
+          },
+          "operatingWithoutSignOn": {
+            "type": "boolean",
+            "description": "Flag indicating operator has notified that they will not be signing on to this journey: a deviation with code `NO_SIGN_ON` is active\n"
+          },
+          "serviceDeviations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JourneyDeviation"
+            }
+          }
+        }
+      },
       "JourneyDirectionCode": {
         "type": "string",
         "title": "JourneyDirectionCode",
         "description": "Line direction code, indicating direction of line relative to city center.",
         "example": [
           "ANY      # Any direction.",
+          "NONE     # No direction (dead-run journeys).",
           "INBOUND  # Inbound to city center.",
           "OUTBOUND # Outbound from city center."
         ]
@@ -1243,27 +1262,10 @@
           }
         }
       },
-      "JourneyServiceDeviation": {
+      "JourneyMitigationState": {
         "type": "object",
-        "title": "JourneyServiceDeviation",
-        "properties": {
-          "code": {
-            "$ref": "#/components/schemas/ServiceDeviationCode"
-          },
-          "reason": {
-            "$ref": "#/components/schemas/ServiceDeviationReason"
-          },
-          "lifecycle": {
-            "$ref": "#/components/schemas/ServiceDeviationLifeCycleInfo"
-          },
-          "references": {
-            "$ref": "#/components/schemas/ServiceDeviationReferences"
-          }
-        }
-      },
-      "JourneyServiceMitigations": {
-        "type": "object",
-        "title": "JourneyServiceMitigations",
+        "title": "JourneyMitigationState",
+        "description": "Operational mitigation state of a journey.",
         "properties": {
           "cancelled": {
             "type": "boolean",
@@ -1319,14 +1321,11 @@
             "type": "boolean",
             "description": "Flag indicating journey is currently assigned to one more vehicles, i.e. at least one vehicle is currently signed on this journey.\n"
           },
-          "serviceDeviations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/JourneyServiceDeviation"
-            }
+          "deviationState": {
+            "$ref": "#/components/schemas/JourneyDeviationState"
           },
-          "serviceMitigations": {
-            "$ref": "#/components/schemas/JourneyServiceMitigations"
+          "mitigationState": {
+            "$ref": "#/components/schemas/JourneyMitigationState"
           }
         }
       },
@@ -1362,6 +1361,30 @@
             "$ref": "#/components/schemas/PageInfo"
           }
         }
+      },
+      "MetadataEntry": {
+        "type": "object",
+        "title": "MetadataEntry",
+        "description": "A key/value pair describing a metadata entry about a service deviation.",
+        "properties": {
+          "key": {
+            "$ref": "#/components/schemas/MetadataKey"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "MetadataKey": {
+        "type": "string",
+        "title": "MetadataKey",
+        "description": "Metadata key",
+        "example": [
+          "PTO_CASE_REF           # A PTO case reference.",
+          "PTA_CASE_REF           # A PTA case reference.",
+          "SERVICE_DEVIATION_REF  # A service deviation reference.",
+          "SERVICE_MITIGATION_REF # A service mitigation reference."
+        ]
       },
       "MqttRouting": {
         "type": "object",
@@ -1460,30 +1483,6 @@
           "NO_SERVICE       # Journey(s), line(s) or call(s) will not be serviced by operator.",
           "NO_SIGN_ON       # Planned journey(s), line(s) or call(s) will be serviced, but operator will not sign on."
         ]
-      },
-      "ServiceDeviationDeleteRequest": {
-        "type": "object",
-        "title": "ServiceDeviationDeleteRequest",
-        "properties": {
-          "comment": {
-            "type": "string"
-          }
-        }
-      },
-      "ServiceDeviationDeleteResponse": {
-        "type": "object",
-        "title": "ServiceDeviationDeleteResponse",
-        "properties": {
-          "result": {
-            "$ref": "#/components/schemas/StatusResponse"
-          },
-          "deleted": {
-            "type": "boolean"
-          },
-          "serviceDeviationId": {
-            "type": "string"
-          }
-        }
       },
       "ServiceDeviationGetResponse": {
         "type": "object",
@@ -1589,8 +1588,24 @@
         "properties": {
           "spec": {
             "$ref": "#/components/schemas/ServiceDeviationSpec"
+          },
+          "action": {
+            "$ref": "#/components/schemas/ServiceDeviationPostRequestType"
+          },
+          "comment": {
+            "type": "string"
           }
         }
+      },
+      "ServiceDeviationPostRequestType": {
+        "type": "string",
+        "title": "ServiceDeviationPostRequestType",
+        "description": "Service Deviation Post Request Type",
+        "example": [
+          "CREATE",
+          "UPDATE",
+          "DELETE"
+        ]
       },
       "ServiceDeviationPostResponse": {
         "type": "object",
@@ -1689,26 +1704,6 @@
           }
         }
       },
-      "ServiceDeviationReferences": {
-        "type": "object",
-        "title": "ServiceDeviationReferences",
-        "properties": {
-          "ptoCaseRefs": {
-            "type": "array",
-            "item": {
-              "type": "string"
-            },
-            "description": "Reference(s) to PTO (traffic) case / issue tracking system."
-          },
-          "ptaCaseRefs": {
-            "type": "array",
-            "item": {
-              "type": "string"
-            },
-            "description": "Reference(s) to PTA (traffic) case / issue tracking system."
-          }
-        }
-      },
       "ServiceDeviationSpec": {
         "type": "object",
         "title": "ServiceDeviationSpec",
@@ -1725,11 +1720,14 @@
           "duration": {
             "$ref": "#/components/schemas/DateTimeRange"
           },
+          "metadata": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetadataEntry"
+            }
+          },
           "parameters": {
             "$ref": "#/components/schemas/ServiceDeviationParameters"
-          },
-          "references": {
-            "$ref": "#/components/schemas/ServiceDeviationReferences"
           }
         }
       },
