@@ -1,0 +1,11 @@
+{
+  "mode": "subscribe",
+  "service-level": "external",
+  "producer": "assignment",
+  "consumer": "pto",
+  "mqtt": {
+    "retain": false,
+    "qos": 1,
+    "topic": "{operatorId}/ruter/{vehicleId}/adt/v3/operational/assignment/attempt/response"
+  }
+}

@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/sensors/charging/charging.json",
+  "$id": "https://example.com/schemas/vehicle-charging.json",
   "type": "object",
-  "title": "Charging",
+  "title": "Vehicle Charging",
   "description": "Schema for vehicle charging data",
   "required": [
     "eventTimestamp",
@@ -17,38 +17,31 @@
     "eventTimestamp": {
       "type": "string",
       "format": "date-time",
-      "description": "ISO 8601 timestamp of when the measurement was taken",
-      "$id": "#/properties/eventTimestamp"
+      "description": "ISO 8601 timestamp of when the measurement was taken"
     },
     "traceId": {
       "type": "string",
-      "description": "Unique identifier for tracing this message",
-      "$id": "#/properties/traceId"
+      "description": "Unique identifier for tracing this message"
     },
     "sensorId": {
       "type": "string",
-      "description": "Unique identifier for the sensor. Typically the serial number (S/N) from the sensor.",
-      "$id": "#/properties/sensorId"
+      "description": "Unique identifier for the sensor. Typically the serial number (S/N) from the sensor."
     },
     "messageNumber": {
       "type": "integer",
-      "description": "Sequence number, increased by one for each new message.",
-      "$id": "#/properties/messageNumber"
+      "description": "Sequence number, increased by one for each new message."
     },
     "isConnected": {
       "type": "boolean",
-      "description": "Indicates whether the vehicle is connected to a charging point",
-      "$id": "#/properties/isConnected"
+      "description": "Indicates whether the vehicle is connected to a charging point"
     },
     "isCharging": {
       "type": "boolean",
-      "description": "Indicates whether the vehicle is currently charging",
-      "$id": "#/properties/isCharging"
+      "description": "Indicates whether the vehicle is currently charging"
     },
     "chargingEffect": {
       "type": "number",
-      "description": "The current charging effect in kilowatts (kW)",
-      "$id": "#/properties/chargingEffect"
+      "description": "The current charging effect in kilowatts (kW)"
     }
   },
   "additionalProperties": true
