@@ -9,7 +9,25 @@ The traffic plans are exported in NeTEx format. Each export-file contains plans 
 period of 14 days. Each week new exports are generated and made available in the API. The exports have a version number 
 to differentiate between exports for the same contract.
 
-## Validation
+## Validation of journeys
+
+The consistency of plan data can be done as follows:
+
+1. Verify that the list of journeys are the same.
+
+2. A journey is identified by:
+    - Trip id (Norwegian: turnummer).
+      This is found in `ServiceJourney > KeyValue` with `Key` 'hastusIds' or by using `ServiceJourney > PrivateCode`.
+    - lineRef
+    - direction
+
+3. Verify that the journeys are correct:
+    - start time
+    - end time
+    - correct stop places in the correct order.
+      (This is important to be able to sign on/off parts of journeys.)
+
+## Validation of vehicle tasks
 
 The consistency of plan data can be done as follows:
 
@@ -19,8 +37,7 @@ Vehicle tasks are found in the export by combining `Block` elements with the sam
 2. Verify that the vehicle tasks contains the same journeys.
    A journey is identified by:
     - Trip id (Norwegian: turnummer).
-      This is found in `ServiceJourney > KeyValue` with `Key` 'hastusIds' and a list of trip ids in `Value`.
-      Each element in the list is a separate journey that is part of a separate vehicle task.
+      This is found in `ServiceJourney > KeyValue` with `Key` 'hastusIds' or by using `ServiceJourney > PrivateCode`.
     - lineRef
     - direction
 
