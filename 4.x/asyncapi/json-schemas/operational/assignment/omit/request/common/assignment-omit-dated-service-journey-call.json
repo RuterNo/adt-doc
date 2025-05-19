@@ -1,0 +1,21 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/operational/assignment/omit/request/common/assignment-omit-dated-service-journey-call.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AssignmentOmitDatedServiceJourneyCall",
+  "description": "A call defines when and where a vehicle will make a stop and when it will depart. Used in omit to inform that this call will not be serviced by the PTO",
+  "additionalProperties": true,
+  "type": "object",
+  "required": [],
+  "properties": {
+    "nsrQuayId": {
+      "$id": "#/properties/nsrQuayId",
+      "description": "Id found in NSR (NSR:Quay:xxxx)",
+      "type": "string"
+    },
+    "time": {
+      "$id": "#/properties/time",
+      "description": "Optional. If the journey is planned to service a quay more than once, a time of service should be provided. Please either provide arrival or departure time for the call",
+      "type": "string"
+    }
+  }
+}

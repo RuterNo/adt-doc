@@ -1,0 +1,78 @@
+{
+    "$id": "https://schemas.ruter.no/adt/ota/api/v3.3/sensors/telemetry/telemetry.json",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Telemetry",
+    "type": "object",
+    "required": [
+        "eventTimestamp",
+        "traceId",
+        "id",
+        "payloads"
+    ],
+    "description": "Schema for telemetry data, supporting both single-sensor and multi-sensor payloads.",
+    "additionalProperties": true,
+    "properties": {
+        "traceId": {
+            "$id": "#/properties/traceId",
+            "type": "string",
+            "description": "A unique identifier to be able to trace this message. Also used to detect duplicate messages received. Added in version 2.5."
+        },
+        "eventTimestamp": {
+            "$id": "#/properties/eventTimestamp",
+            "type": "string",
+            "description": "As specified in the [ADT documentation.](https://adt.transhub.io)."
+        },
+        "messageNumber": {
+            "$id": "#/properties/messageNumber",
+            "type": "number",
+            "description": "Sequence number, increased by one for each new message. Used to validate consistency in the data stream. Added in version 2.1."
+        },
+        "id": {
+            "$id": "#/properties/id",
+            "type": "string",
+            "description": "Eight digit hex identifying the telemetry."
+        },
+        "name": {
+            "$id": "#/properties/name",
+            "type": "string",
+            "description": "Optional name for the overall telemetry system or the main sensor. Added in version 3.3."
+        },
+        "sensorId": {
+            "$id": "#/properties/sensorId",
+            "type": "string",
+            "description": "Unique identifier for the sensor. Typically the serial number (S/N) from the sensor. Added in version 3.3."
+        },
+        "payloads": {
+            "$id": "#/properties/payloads",
+            "type": "array",
+            "description": "Array of payload items, which can represent multiple values from a single sensor or values from different sensors.",
+            "items": {
+                "type": "object",
+                "required": [
+                    "value"
+                ],
+                "properties": {
+                    "subid": {
+                        "type": "string",
+                        "description": "Subid is used to identify the specific measurement type within a payload."
+                    },
+                    "sensorId": {
+                        "type": "string",
+                        "description": "Unique identifier for the sensor. Typically the serial number (S/N) from the sensor. Added in version 3.3."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Descriptive name of the payload item."
+                    },
+                    "unit": {
+                        "type": "string",
+                        "description": "Unit used by the sensor. Only used for number values."
+                    },
+                    "value": {
+                        "description": "The value is expected to be a number, boolean, or string."
+                    }
+                }
+            }
+        }
+    }
+}
