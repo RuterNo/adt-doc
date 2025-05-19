@@ -8,7 +8,7 @@ on:
       - '**'
 
 env:
-  RELEASE_NAME: 3.x
+  RELEASE_NAME: 4.x
 
 permissions:
   contents: write

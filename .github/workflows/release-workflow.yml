@@ -3,7 +3,7 @@ name: Release workflow
 on:
   push:
     tags:
-      - 3.**
+      - 4.**
 
 jobs:
   deploy:
