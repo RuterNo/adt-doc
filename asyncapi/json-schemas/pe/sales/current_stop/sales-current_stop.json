@@ -114,12 +114,12 @@
             },
             "name": {
               "$id": "#/properties/tariffZones/properties/onCurrentStop/properties/name",
-              "type": "boolean",
+              "type": "string",
               "description": "Name of the zone, like 2S"
             },
             "nodId": {
               "$id": "#/properties/tariffZones/properties/onCurrentStop/properties/nodId",
-              "type": "boolean",
+              "type": "string",
               "description": "The NOD zone id, like 228"
             },
             "fareZoneId": {
@@ -130,8 +130,8 @@
           }
         },
         "onNextStop": {
-          "$id": "#/properties/metrics/properties/nfcStatus/properties/connected",
-          "type": "boolean",
+          "$id": "#/properties/tariffZones/properties/onNextStop",
+          "type": "object",
           "description": "Zone object for the current stop",
           "required": [
             "id",
@@ -142,22 +142,22 @@
           "additionalProperties": true,
           "properties": {
             "id": {
-              "$id": "#/properties/tariffZones/properties/onCurrentStop/properties/id",
+              "$id": "#/properties/tariffZones/properties/onNextStop/properties/id",
               "type": "string",
               "description": "The Ruter zone id, like RUT:TariffZone:228"
             },
             "name": {
-              "$id": "#/properties/tariffZones/properties/onCurrentStop/properties/name",
-              "type": "boolean",
+              "$id": "#/properties/tariffZones/properties/onNextStop/properties/name",
+              "type": "string",
               "description": "Name of the zone, like 2S"
             },
             "nodId": {
-              "$id": "#/properties/tariffZones/properties/onCurrentStop/properties/nodId",
-              "type": "boolean",
+              "$id": "#/properties/tariffZones/properties/onNextStop/properties/nodId",
+              "type": "string",
               "description": "The NOD zone id, like 228"
             },
             "fareZoneId": {
-              "$id": "#/properties/tariffZones/properties/onCurrentStop/properties/fareZoneId",
+              "$id": "#/properties/tariffZones/properties/onNextStop/properties/fareZoneId",
               "type": "string",
               "description": "The Entur zone id, like RUT:FareZone:10"
             }
