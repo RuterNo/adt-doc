@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/dpi/connections/dpi-connections.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/pe/dpi/connections/dpi-connections.json",
   "type": "object",
   "title": "DpiConnections",
   "description": "This schema defines the connection message sent as an MQTT message to buses",
