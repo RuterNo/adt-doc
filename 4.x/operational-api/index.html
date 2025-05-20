@@ -931,6 +931,30 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#service-deviation-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Deviation Metadata
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Deviation Metadata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-deviation-metadata-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Deviation Metadata Keys
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#service-deviation-parameters" class="md-nav__link">
     <span class="md-ellipsis">
       Service Deviation Parameters
@@ -2374,6 +2398,30 @@
       Service Deviation Impact
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-deviation-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Deviation Metadata
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Deviation Metadata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-deviation-metadata-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Deviation Metadata Keys
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -3863,10 +3911,10 @@ following properties:</p>
 <li><code>impact</code>, a <a href="#service-deviation-impact">service deviation impact</a> structure, describing the lines, journeys, stop
    points and service windows impacted by the deviation.</li>
 <li><code>duration</code>, a date-time range with a <code>start</code> and <code>end</code>, describing the duration of the deviation.</li>
+<li><code>metadata</code>, a <a href="#service-deviation-metadata">list of key/value pairs</a> for associating client-specific metadata with
+   the deviation, such as connecting service deviations to internal / external systems.</li>
 <li><code>parameters</code>, a <a href="#service-deviation-parameters">service deviation parameters</a> structure, detailing the functional
    parameters of the deviation.</li>
-<li><code>references</code>, a reference structure for referencing PTO and PTA issue / case tracking systems. Usable for connecting
-   service deviations to internal / external systems.</li>
 </ol>
 <h5 id="service-deviation-impact">Service Deviation Impact<a class="headerlink" href="#service-deviation-impact" title="Permanent link">&para;</a></h5>
 <p>The service deviation impact structure describes one or more lines, journeys or stop points impacted by a service
@@ -3880,6 +3928,39 @@ deviation:</p>
 <li><code>serviceWindows</code>, a list of date-time ranges with a <code>start</code> and <code>end</code> date-time, optionally describing the impacted
    service window.</li>
 </ol>
+<h5 id="service-deviation-metadata">Service Deviation Metadata<a class="headerlink" href="#service-deviation-metadata" title="Permanent link">&para;</a></h5>
+<p>The service deviation metadata structure is a list of <code>key</code> / <code>value</code> pairs describing additional metadata about the service
+deviation.</p>
+<h6 id="service-deviation-metadata-keys">Service Deviation Metadata Keys<a class="headerlink" href="#service-deviation-metadata-keys" title="Permanent link">&para;</a></h6>
+<p>The API defines a set of well-known metadata keys that may be used by clients to associate certain metadata with a
+service deviation:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PTO_CASE_REF</code></td>
+<td>A PTO case reference.</td>
+</tr>
+<tr>
+<td><code>PTA_CASE_REF</code></td>
+<td>A PTA case reference.</td>
+</tr>
+<tr>
+<td><code>SERVICE_DEVIATION_REF</code></td>
+<td>A service deviation reference.</td>
+</tr>
+<tr>
+<td><code>SERVICE_MITIGATION_REF</code></td>
+<td>A service mitigation reference.</td>
+</tr>
+</tbody>
+</table>
+<p><em>Additional metadata keys may be added in the future.</em></p>
 <h5 id="service-deviation-parameters">Service Deviation Parameters<a class="headerlink" href="#service-deviation-parameters" title="Permanent link">&para;</a></h5>
 <p>The service deviation parameters structure describes the functional parameters of the service deviation:</p>
 <ol>
