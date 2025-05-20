@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/pe/active-cab/active-cab.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/active-cab/active-cab.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "ActiveCab",
   "type": "object",

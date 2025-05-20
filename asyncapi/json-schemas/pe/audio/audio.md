@@ -1,7 +1,7 @@
 ### Audio Message
 | Field         | Value                                                                                                     |
 |---------------|-----------------------------------------------------------------------------------------------------------|
-| Central Topic | {operatorId}/ruter/{vehicleId}/adt/v3/pe/audio                                                            |
+| Central Topic | {operatorId}/ruter/{vehicleId}/adt/v4/pe/audio                                                            |
 | Schema        | [ audio.json ](json-schemas/pe/audio/audio.json)                                                          |
 | Producer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                               |
 | Consumer      | PTO                                                                                                       |

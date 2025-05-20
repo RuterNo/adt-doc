@@ -1,7 +1,7 @@
 ### Arriving Message
 | Field         | Value                                                                                                             |
 |---------------|-------------------------------------------------------------------------------------------------------------------|
-| Central Topic | {operatorId}/ruter/{vehicleId}/adt/v3/pe/dpi/arriving                                                             |
+| Central Topic | {operatorId}/ruter/{vehicleId}/adt/v4/pe/dpi/arriving                                                             |
 | Schema        | [ dpi-arriving.json ](json-schemas/pe/dpi/arriving/dpi-arriving.json)                                             |
 | Producer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                       |
 | Consumer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                       |

@@ -18,8 +18,8 @@ ruamel_yaml.width = 4096
 
 WRITE_CHANGES_TO_ASYNC_API_YML = True
 
-API_VERSION_MAJOR = "3"
-API_VERSION_MINOR = "0"
+API_VERSION_MAJOR = "4"
+API_VERSION_MINOR = "x"
 SCHEMA_ID_PREFIX = f"https://schemas.ruter.no/adt/ota/api/v{API_VERSION_MAJOR}.{API_VERSION_MINOR}"
 JSON_SCHEMA_VERSION = "http://json-schema.org/draft-07/schema#"
 

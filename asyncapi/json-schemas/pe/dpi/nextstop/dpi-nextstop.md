@@ -1,7 +1,7 @@
 ### Nextstop Message
 | Field         | Value                                                                                                             |
 |---------------|-------------------------------------------------------------------------------------------------------------------|
-| Central Topic | {operatorId}/ruter/{vehicleId}/adt/v3/pe/dpi/nextstop                                                             |
+| Central Topic | {operatorId}/ruter/{vehicleId}/adt/v4/pe/dpi/nextstop                                                             |
 | Schema        | [ dpi-nextstop.json ](json-schemas/pe/dpi/nextstop/dpi-nextstop.json)                                             |
 | Producer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                       |
 | Consumer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                       |

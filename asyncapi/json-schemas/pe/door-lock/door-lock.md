@@ -1,7 +1,7 @@
 ### DoorLock Message
 | Field         | Value                                                                                                     |
 |---------------|-----------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/pe/door_lock                                                        |
+| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/pe/door_lock                                                        |
 | Schema        | [ door-lock.json ](json-schemas/pe/door-lock/door-lock.json)                                              |
 | Producer      | PTO                                                                                                       |
 | Consumer      | Ruter BO                                                                                                  |

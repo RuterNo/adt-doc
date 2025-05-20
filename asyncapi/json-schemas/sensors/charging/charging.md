@@ -2,7 +2,7 @@
 
 | Field         | Value                                                                                                     |
 |:--------------|:----------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/sensors/charging                                                    |
+| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/sensors/charging                                                    |
 | Schema        | [ charging.json ](json-schemas/sensors/charging/charging.json)                                            |
 | Producer      | PTO                                                                                                       |
 | Consumer      | Ruter BO                                                                                                  |

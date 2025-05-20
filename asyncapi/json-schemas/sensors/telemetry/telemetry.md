@@ -2,7 +2,7 @@
 
 | Field         | Value                                                                                                     |
 |---------------|-----------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/sensors/telemetry/{telemetryId}                                     |
+| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/sensors/telemetry/{telemetryId}                                     |
 | Schema        | [ telemetry.json ](json-schemas/sensors/telemetry/telemetry.json)                                         |
 | Producer      | PTO                                                                                                       |
 | Consumer      | Ruter BO                                                                                                  |

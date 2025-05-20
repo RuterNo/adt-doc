@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/di/operational_message_to_driver/operational-message-to-driver.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/di/operational_message_to_driver/operational-message-to-driver.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "OperationalMessageToDriver",
   "type": "object",

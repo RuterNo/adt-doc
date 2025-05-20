@@ -1,7 +1,7 @@
 ### Odometer Message
 | Field         | Value                                                                                                     |
 |---------------|-----------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/sensors/odometer                                                    |
+| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/sensors/odometer                                                    |
 | Schema        | [ odometer.json ](json-schemas/sensors/odometer/odometer.json)                                            |
 | Producer      | PTO                                                                                                       |
 | Consumer      | Ruter BO                                                                                                  |

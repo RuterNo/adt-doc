@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/pe/door-lock/door-lock.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/door-lock/door-lock.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "DoorLock",
   "type": "object",

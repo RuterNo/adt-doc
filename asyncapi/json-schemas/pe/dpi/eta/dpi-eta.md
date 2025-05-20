@@ -1,7 +1,7 @@
 ### Eta Message
 | Field         | Value                                                                                                             |
 |---------------|-------------------------------------------------------------------------------------------------------------------|
-| Central Topic | {operatorId}/ruter/{vehicleId}/adt/v3/pe/dpi/eta                                                                  |
+| Central Topic | {operatorId}/ruter/{vehicleId}/adt/v4/pe/dpi/eta                                                                  |
 | Schema        | [ dpi-eta.json ](json-schemas/pe/dpi/eta/dpi-eta.json)                                                            |
 | Producer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                       |
 | Consumer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                       |
