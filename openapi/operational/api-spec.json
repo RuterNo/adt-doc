@@ -7,8 +7,23 @@
   },
   "servers": [
     {
-      "url": "https://example.com/api/adt/v4/operational",
-      "description": "Dev server"
+      "url": "https://{host}/api/adt/{version}/operational",
+      "variables": {
+        "host": {
+          "enum": [
+            "tranop-api-gateway.transhub.io",
+            "tranop-api-gateway.stage.transhub.io"
+          ],
+          "default": "tranop-api-gateway.stage.transhub.io"
+        },
+        "version": {
+          "enum": [
+            "v3",
+            "v4"
+          ],
+          "default": "v4"
+        }
+      }
     }
   ],
   "paths": {
@@ -484,6 +499,12 @@
             "$ref": "#/components/parameters/AuthorityIdHeader"
           },
           {
+            "$ref": "#/components/parameters/FromDateTime"
+          },
+          {
+            "$ref": "#/components/parameters/ToDateTime"
+          },
+          {
             "$ref": "#/components/parameters/LimitQueryParam"
           },
           {
@@ -774,6 +795,262 @@
           }
         }
       }
+    },
+    "/mitigation/mitigations": {
+      "get": {
+        "operationId": "findServiceMitigations",
+        "description": "Return a list of service mitigations matching a given set of criteria.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/FromDateTime"
+          },
+          {
+            "$ref": "#/components/parameters/ToDateTime"
+          },
+          {
+            "$ref": "#/components/parameters/LimitQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/OffsetQueryParam"
+          }
+        ],
+        "responses": {
+          "2xx": {
+            "description": "Service mitigation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceMitigationListResponse"
+                }
+              }
+            }
+          },
+          "4xx": {
+            "description": "Service mitigation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceMitigationListResponse"
+                }
+              }
+            }
+          },
+          "5xx": {
+            "description": "Service mitigation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceMitigationListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "postServiceMitigation",
+        "description": "Post a service mitigation registration request",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Service mitigation registration request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServiceMitigationPostRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "2xx": {
+            "description": "Service mitigation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceMitigationPostResponse"
+                }
+              }
+            }
+          },
+          "4xx": {
+            "description": "Service mitigation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceMitigationPostResponse"
+                }
+              }
+            }
+          },
+          "5xx": {
+            "description": "Service mitigation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceMitigationPostResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/mitigation/mitigations/{serviceMitigationId}": {
+      "get": {
+        "operationId": "getServiceMitigation",
+        "description": "Return a service mitigation with a given id.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ServiceMitigationIdPathParam"
+          }
+        ],
+        "responses": {
+          "2xx": {
+            "description": "Service mitigation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceMitigationGetResponse"
+                }
+              }
+            }
+          },
+          "4xx": {
+            "description": "Service mitigation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceMitigationGetResponse"
+                }
+              }
+            }
+          },
+          "5xx": {
+            "description": "Service mitigation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceMitigationGetResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "updateServiceMitigation",
+        "description": "Update a service mitigation with a given id.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ServiceMitigationIdPathParam"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Service mitigation update request",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ServiceMitigationPostRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "2xx": {
+            "description": "Service mitigation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceMitigationPostResponse"
+                }
+              }
+            }
+          },
+          "4xx": {
+            "description": "Service mitigation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceMitigationPostResponse"
+                }
+              }
+            }
+          },
+          "5xx": {
+            "description": "Service mitigation registration response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServiceMitigationPostResponse"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -910,11 +1187,38 @@
           "type": "integer"
         }
       },
+      "FromDateTime": {
+        "in": "query",
+        "name": "fromDateTime",
+        "description": "Optional dateTime to filter out deviations before this point in time. ISO-8601 format,\nincluding time-zone offset (format: _YYYY-MM-DD_T_hh:mm:ssZ_)\n",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "ToDateTime": {
+        "in": "query",
+        "name": "toDateTime",
+        "description": "Optional dateTime to filter out deviations after this point in time. ISO-8601 format,\nincluding time-zone offset (format: _YYYY-MM-DD_T_hh:mm:ssZ_)\n",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
       "ServiceDeviationIdPathParam": {
         "in": "path",
         "name": "serviceDeviationId",
         "required": true,
         "description": "Unique identifier of service deviation.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "ServiceMitigationIdPathParam": {
+        "in": "path",
+        "name": "serviceMitigationId",
+        "required": true,
+        "description": "Unique identifier of service mitigation.",
         "schema": {
           "type": "string"
         }
@@ -1275,9 +1579,9 @@
             "type": "boolean",
             "description": "Flag indicating journey has been partially cancelled by traffic controller and communicated as partially cancelled to the public.\n"
           },
-          "contingencyVehiclePlanned": {
+          "standbyVehiclePlanned": {
             "type": "boolean",
-            "description": "Flag indicating traffic controller has planned an alternative (contingency) vehicle on this journey.\n"
+            "description": "Flag indicating traffic controller has planned an alternative (stand by) vehicle on this journey.\n"
           }
         }
       },
@@ -1365,7 +1669,7 @@
       "MetadataEntry": {
         "type": "object",
         "title": "MetadataEntry",
-        "description": "A key/value pair describing a metadata entry about a service deviation.",
+        "description": "A key/value pair describing arbitrary metadata for the given MetadataKey.",
         "properties": {
           "key": {
             "$ref": "#/components/schemas/MetadataKey"
@@ -1462,6 +1766,16 @@
           }
         }
       },
+      "PostRequestType": {
+        "type": "string",
+        "title": "PostRequestType",
+        "description": "Post Request Type",
+        "example": [
+          "CREATE",
+          "UPDATE",
+          "DELETE"
+        ]
+      },
       "ServiceDeviation": {
         "type": "object",
         "title": "ServiceDeviation",
@@ -1493,36 +1807,6 @@
           },
           "deviation": {
             "$ref": "#/components/schemas/ServiceDeviation"
-          }
-        }
-      },
-      "ServiceDeviationImpact": {
-        "type": "object",
-        "title": "ServiceDeviationImpact",
-        "properties": {
-          "lines": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/JourneyLineSpec"
-            }
-          },
-          "journeys": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/JourneySpecOption"
-            }
-          },
-          "stopPoints": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/StopPointSpec"
-            }
-          },
-          "serviceWindows": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DateTimeRange"
-            }
           }
         }
       },
@@ -1590,22 +1874,12 @@
             "$ref": "#/components/schemas/ServiceDeviationSpec"
           },
           "action": {
-            "$ref": "#/components/schemas/ServiceDeviationPostRequestType"
+            "$ref": "#/components/schemas/PostRequestType"
           },
           "comment": {
             "type": "string"
           }
         }
-      },
-      "ServiceDeviationPostRequestType": {
-        "type": "string",
-        "title": "ServiceDeviationPostRequestType",
-        "description": "Service Deviation Post Request Type",
-        "example": [
-          "CREATE",
-          "UPDATE",
-          "DELETE"
-        ]
       },
       "ServiceDeviationPostResponse": {
         "type": "object",
@@ -1715,7 +1989,7 @@
             "$ref": "#/components/schemas/ServiceDeviationReason"
           },
           "impact": {
-            "$ref": "#/components/schemas/ServiceDeviationImpact"
+            "$ref": "#/components/schemas/ServiceImpact"
           },
           "duration": {
             "$ref": "#/components/schemas/DateTimeRange"
@@ -1728,6 +2002,181 @@
           },
           "parameters": {
             "$ref": "#/components/schemas/ServiceDeviationParameters"
+          }
+        }
+      },
+      "ServiceImpact": {
+        "type": "object",
+        "title": "ServiceImpact",
+        "properties": {
+          "lines": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JourneyLineSpec"
+            }
+          },
+          "journeys": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JourneySpecOption"
+            }
+          },
+          "stopPoints": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/StopPointSpec"
+            }
+          },
+          "serviceWindows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DateTimeRange"
+            }
+          }
+        }
+      },
+      "ServiceMitigation": {
+        "type": "object",
+        "title": "ServiceMitigation",
+        "properties": {
+          "spec": {
+            "$ref": "#/components/schemas/ServiceMitigationSpec"
+          },
+          "lifecycle": {
+            "$ref": "#/components/schemas/ServiceMitigationLifeCycleInfo"
+          }
+        }
+      },
+      "ServiceMitigationCode": {
+        "type": "string",
+        "title": "ServiceMitigationCode",
+        "description": "Service mitigation code, indicating type of service mitigation.",
+        "example": [
+          "CANCELLATION",
+          "REPLACEMENT_SERVICE",
+          "STANDBY_VEHICLE_PLANNED"
+        ]
+      },
+      "ServiceMitigationGetResponse": {
+        "type": "object",
+        "title": "ServiceMitigationGetResponse",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/StatusResponse"
+          },
+          "deviation": {
+            "$ref": "#/components/schemas/ServiceMitigation"
+          }
+        }
+      },
+      "ServiceMitigationLifeCycleInfo": {
+        "type": "object",
+        "title": "ServiceMitigationLifeCycleInfo",
+        "description": "Life-cycle information about a service deviation.",
+        "properties": {
+          "created": {
+            "type": "string",
+            "description": "Date and time when service deviation was initially created."
+          },
+          "modified": {
+            "type": "string",
+            "description": "Date and time when service deviation was last modified."
+          },
+          "serviceMitigationId": {
+            "type": "string",
+            "description": "Unique identifier of service mitigation."
+          }
+        }
+      },
+      "ServiceMitigationListResponse": {
+        "type": "object",
+        "title": "ServiceMitigationListResponse",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/StatusResponse"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServiceMitigation"
+            }
+          },
+          "page": {
+            "$ref": "#/components/schemas/PageInfo"
+          }
+        }
+      },
+      "ServiceMitigationParameters": {
+        "type": "object",
+        "title": "ServiceMitigationParameters",
+        "description": "Parameters of mitigation.",
+        "properties": {
+          "vehicleId": {
+            "type": "string",
+            "description": "Optional identifier for a vehicle planned to take part of the mitigation"
+          },
+          "transportMode": {
+            "type": "string",
+            "description": "Transport mode of the replacement/new journey(s). Only BUS is supported",
+            "$ref": "#/components/schemas/TransportMode"
+          }
+        }
+      },
+      "ServiceMitigationPostRequest": {
+        "type": "object",
+        "title": "ServiceMitigationPostRequest",
+        "properties": {
+          "spec": {
+            "$ref": "#/components/schemas/ServiceMitigationSpec"
+          },
+          "action": {
+            "$ref": "#/components/schemas/PostRequestType"
+          },
+          "comment": {
+            "type": "string"
+          }
+        }
+      },
+      "ServiceMitigationPostResponse": {
+        "type": "object",
+        "title": "ServiceMitigationPostResponse",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/StatusResponse"
+          },
+          "mitigation": {
+            "$ref": "#/components/schemas/ServiceMitigation"
+          }
+        }
+      },
+      "ServiceMitigationSpec": {
+        "type": "object",
+        "title": "ServiceMitigationSpec",
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/ServiceMitigationCode"
+          },
+          "impact": {
+            "$ref": "#/components/schemas/ServiceImpact"
+          },
+          "duration": {
+            "$ref": "#/components/schemas/DateTimeRange"
+          },
+          "mitigates": {
+            "description": "A list of service",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "metadata": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetadataEntry"
+            }
+          },
+          "parameters": {
+            "$ref": "#/components/schemas/ServiceMitigationParameters"
           }
         }
       },
@@ -1853,6 +2302,14 @@
             "description": "OpenID Connect ID token"
           }
         }
+      },
+      "TransportMode": {
+        "type": "string",
+        "title": "TransportMode",
+        "description": "Modes of transportation",
+        "example": [
+          "BUS"
+        ]
       },
       "VehicleState": {
         "type": "object",

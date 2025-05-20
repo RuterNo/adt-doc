@@ -1387,10 +1387,10 @@ following properties:
 3. `impact`, a [service deviation impact](#service-deviation-impact) structure, describing the lines, journeys, stop
    points and service windows impacted by the deviation.
 4. `duration`, a date-time range with a `start` and `end`, describing the duration of the deviation.
-5. `parameters`, a [service deviation parameters](#service-deviation-parameters) structure, detailing the functional
+5. `metadata`, a [list of key/value pairs](#service-deviation-metadata) for associating client-specific metadata with
+   the deviation, such as connecting service deviations to internal / external systems.
+6. `parameters`, a [service deviation parameters](#service-deviation-parameters) structure, detailing the functional
    parameters of the deviation.
-6. `references`, a reference structure for referencing PTO and PTA issue / case tracking systems. Usable for connecting
-   service deviations to internal / external systems.
 
 ##### Service Deviation Impact
 
@@ -1404,6 +1404,25 @@ deviation:
     points.
 4. `serviceWindows`, a list of date-time ranges with a `start` and `end` date-time, optionally describing the impacted
    service window.
+
+##### Service Deviation Metadata
+
+The service deviation metadata structure is a list of `key` / `value` pairs describing additional metadata about the service
+deviation.
+
+###### Service Deviation Metadata Keys
+
+The API defines a set of well-known metadata keys that may be used by clients to associate certain metadata with a
+service deviation:
+
+| Key                      | Description                     |
+|--------------------------|---------------------------------|
+| `PTO_CASE_REF`           | A PTO case reference.           |
+| `PTA_CASE_REF`           | A PTA case reference.           |
+| `SERVICE_DEVIATION_REF`  | A service deviation reference.  |
+| `SERVICE_MITIGATION_REF` | A service mitigation reference. |
+
+_Additional metadata keys may be added in the future._
 
 ##### Service Deviation Parameters
 
