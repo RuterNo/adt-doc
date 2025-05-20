@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/pe/vehicle/api/api.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/vehicle/api/api.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Api",
   "type": "object",
