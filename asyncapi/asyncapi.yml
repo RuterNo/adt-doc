@@ -642,6 +642,21 @@ channels:
           mqtt:
             qos: 1
             retain: false
+  pe/dpi/feature_toggle:
+    description:
+      $ref: json-schemas/pe/dpi/feature_toggle/dpi-feature-toggle.md
+    subscribe:
+      message:
+        name: DpiFeatureToggle
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/pe/dpi/feature_toggle/dpi-feature-toggle.json
+        examples:
+          - $ref: json-schemas/pe/dpi/feature_toggle/dpi-feature-toggle.example.json
+        bindings:
+          mqtt:
+            qos: 1
+            retain: true
   pe/input/stop_button:
     description:
       $ref: markdown/stop-button-input.md
