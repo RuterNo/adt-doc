@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/pe/dpi/journey/dpi-journey.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/dpi/journey/dpi-journey.json",
   "type": "object",
   "title": "DpiJourney",
   "description": "List of stops for current journey in block",
@@ -139,15 +139,15 @@
                     "$id": "#/properties/route/properties/stopPlaces/items/properties/location/properties/latitude",
                     "type": "number",
                     "description": "Latitude",
-                    "minimum": -90.0000,
-                    "maximum": 90.0000
+                    "minimum": -90.0,
+                    "maximum": 90.0
                   },
                   "longitude": {
                     "$id": "#/properties/route/properties/stopPlaces/items/properties/location/properties/longitude",
                     "type": "number",
                     "description": "Longitude",
-                    "minimum": -180.0000,
-                    "maximum": 180.0000
+                    "minimum": -180.0,
+                    "maximum": 180.0
                   }
                 }
               },

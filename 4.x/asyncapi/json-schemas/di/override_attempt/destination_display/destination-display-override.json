@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/di/override_attempt/destination_display/destination-display-override.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/di/override_attempt/destination_display/destination-display-override.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "DestinationDisplayOverride",
   "type": "object",
