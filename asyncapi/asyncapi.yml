@@ -408,7 +408,7 @@ channels:
         bindings:
           mqtt:
             qos: 1
-            retain: true
+            retain: false
   pe/sales/diagnostics:
     description:
       $ref: json-schemas/pe/sales/diagnostics/sales-diagnostics.md

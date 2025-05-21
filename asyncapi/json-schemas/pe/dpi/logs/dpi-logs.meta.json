@@ -1,7 +1,7 @@
 {
   "mode": "publish",
   "mqtt": {
-    "retain": true,
+    "retain": false,
     "qos": 1,
     "topic": "{operatorId}/ruter/{vehicleId}/adt/v4/pe/dpi/logs"
   }
