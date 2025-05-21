@@ -34,17 +34,12 @@
       "$id": "#/properties/browser",
       "type": "object",
       "properties": {
-        "protocol": {
-          "type": "string",
-          "description": "Connection protocol"
-        },
         "userAgent": {
           "type": "string",
           "description": "Browser user agent string"
         }
       },
       "required": [
-        "protocol",
         "userAgent"
       ]
     },
