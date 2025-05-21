@@ -5,7 +5,13 @@
   "type": "object",
   "title": "DpiCommandResponse",
   "description": "Message sent from vehicle as response to DPI commands",
-  "required": ["eventTimestamp", "traceId", "command", "payload"],
+  "required": [
+    "eventTimestamp",
+    "traceId",
+    "correlationId",
+    "command",
+    "payload"
+  ],
   "additionalProperties": true,
   "properties": {
     "eventTimestamp": {
@@ -18,6 +24,11 @@
       "$id": "#/properties/traceId",
       "type": "string",
       "description": "A unique identifier - UUID"
+    },
+    "correlationId": {
+      "$id": "#/properties/correlationId",
+      "type": "string",
+      "description": "The traceId of the DPICommand message that this is a response to. This is used to correlate the command with the response."
     },
     "command": {
       "$id": "#/properties/command",
