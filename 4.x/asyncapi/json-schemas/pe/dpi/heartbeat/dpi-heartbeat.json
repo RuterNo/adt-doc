@@ -1,0 +1,97 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/dpi/heartbeat/dpi-heartbeat.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DpiHeartbeat",
+  "type": "object",
+  "required": [
+    "eventTimestamp",
+    "traceId",
+    "client",
+    "type",
+    "media",
+    "journey"
+  ],
+  "description": "DPI heartbeat",
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)",
+      "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier - UUID"
+    },
+    "type": {
+      "$id": "#/properties/type",
+      "type": "string",
+      "description": "Type of status message"
+    },
+    "client": {
+      "$id": "#/properties/client",
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Current url for screen"
+        },
+        "version": {
+          "type": "string",
+          "description": "Current dpi client version"
+        },
+        "clientId": {
+          "type": "string",
+          "description": "The mqtt clientId of the client receiving the message. Should be a stable UUID v4 and not change"
+        },
+        "physicalId": {
+          "type": "string",
+          "description": "The given physical id to the screen. The property is provided by a querystring when configuring a screen"
+        }
+      },
+      "required": [
+        "url",
+        "version",
+        "clientId"
+      ]
+    },
+    "media": {
+      "$id": "#/properties/media",
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "Current dpi media version"
+        }
+      },
+      "required": [
+        "version"
+      ]
+    },
+    "journey": {
+      "$id": "#/properties/journey",
+      "type": "object",
+      "properties": {
+        "traceId": {
+          "type": "string",
+          "description": "TraceId from the latest received journey message"
+        },
+        "journeyRef": {
+          "type": "string",
+          "description": "Journey ref from the latest received journey message"
+        },
+        "assignmentRef": {
+          "type": "string",
+          "description": "Assignment ref from the latest received journey message"
+        }
+      },
+      "required": [
+        "traceId",
+        "journeyRef",
+        "assignmentRef"
+      ]
+    }
+  }
+}
