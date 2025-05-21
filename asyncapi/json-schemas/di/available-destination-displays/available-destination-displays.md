@@ -1,7 +1,7 @@
 ### Available Destination Displays Message
 | Field         | Value                                                                                                                       |
 |---------------|-----------------------------------------------------------------------------------------------------------------------------|
-| Central Topic | {operatorId}/ruter/{vehicleId}/adt/v3/di/available_destination_displays                                                     |
+| Central Topic | {operatorId}/ruter/{vehicleId}/adt/v4/di/available_destination_displays                                                     |
 | Schema        | [ available-destination-displays.json ](json-schemas/di/available-destination-displays/available-destination-displays.json) |
 | Producer      | [Ruter Transportoppdrag](https://github.com/orgs/RuterNo/teams/transportoppdrag)                                            |
 | Consumer      | PTO                                                                                                                         |

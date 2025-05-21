@@ -2,7 +2,7 @@
 
 | Field         | Value                                                                                                     |
 |---------------|-----------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/sensors/location                                                    |
+| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/sensors/location                                                    |
 | Schema        | [ location.json ](json-schemas/sensors/location/location.json)                                            |
 | Producer      | PTO                                                                                                       |
 | Consumer      | Ruter BO                                                                                                  |

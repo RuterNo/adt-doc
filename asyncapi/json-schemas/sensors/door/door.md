@@ -1,7 +1,7 @@
 ### Door Message
 | Field         | Value                                                                                                     |
 |---------------|-----------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/sensors/door                                                        |
+| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/sensors/door                                                        |
 | Schema        | [ door.json ](json-schemas/sensors/door/door.json)                                                        |
 | Producer      | PTO                                                                                                       |
 | Consumer      | Ruter BO                                                                                                  |

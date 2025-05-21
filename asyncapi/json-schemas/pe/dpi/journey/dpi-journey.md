@@ -1,7 +1,7 @@
 ### Journey Message
 | Field         | Value                                                                                                             |
 |---------------|-------------------------------------------------------------------------------------------------------------------|
-| Central Topic | {operatorId}/ruter/{vehicleId}/adt/v3/pe/dpi/journey                                                              |
+| Central Topic | {operatorId}/ruter/{vehicleId}/adt/v4/pe/dpi/journey                                                              |
 | Schema        | [ dpi-journey.json ](json-schemas/pe/dpi/journey/dpi-journey.json)                                                |
 | Producer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                       |
 | Consumer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                       |

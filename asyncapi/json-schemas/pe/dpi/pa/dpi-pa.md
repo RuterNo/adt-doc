@@ -1,7 +1,7 @@
 ### Pa Message
 | Field         | Value                                                                                                             |
 |---------------|-------------------------------------------------------------------------------------------------------------------|
-| Central Topic | {operatorId}/ruter/{vehicleId}/adt/v3/pe/dpi/pa                                                                   |
+| Central Topic | {operatorId}/ruter/{vehicleId}/adt/v4/pe/dpi/pa                                                                   |
 | Schema        | [ dpi-pa.json ](json-schemas/pe/dpi/pa/dpi-pa.json)                                                               |
 | Producer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                       |
 | Consumer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                       |

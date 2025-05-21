@@ -1,5 +1,5 @@
 {
-  "$id": "https://schemas.ruter.no/adt/ota/api/v3.0/sensors/stop-button/stop-button.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/sensors/stop-button/stop-button.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "StopButton",
   "type": "object",

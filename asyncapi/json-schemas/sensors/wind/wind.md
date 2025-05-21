@@ -2,7 +2,7 @@
 
 | Field         | Value                                                                                                     |
 |:--------------|:----------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/sensors/wind                                                        |
+| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/sensors/wind                                                        |
 | Schema        | [ wind.json ](json-schemas/sensors/wind/wind.json)                                                        |
 | Producer      | PTO                                                                                                       |
 | Consumer      | Ruter BO                                                                                                  |

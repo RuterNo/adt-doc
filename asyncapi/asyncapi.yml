@@ -166,6 +166,17 @@ channels:
         schemaFormat: application/schema+json;version=draft-07
         payload:
           $ref: json-schemas/sensors/telemetry/telemetry.json
+        examples:
+          - $ref: json-schemas/sensors/telemetry/temperature-indoor/temperature-indoor-01.example.json
+          - $ref: json-schemas/sensors/telemetry/charger/charger-01.example.json
+          - $ref: json-schemas/sensors/telemetry/accumulated-energy-consumption/accumulated-energy-consumption-01.example.json
+          - $ref: json-schemas/sensors/telemetry/accelerometry/accelerometry-01.example.json
+          - $ref: json-schemas/sensors/telemetry/windscreen-wiper-active/windscreen-wiper-active-01.example.json
+          - $ref: json-schemas/sensors/telemetry/state-of-charge/state-of-charge-01.example.json
+          - $ref: json-schemas/sensors/telemetry/state-of-charge/state-of-charge-02.example.json
+          - $ref: json-schemas/sensors/telemetry/state-of-charge/state-of-charge-03.example.json
+          - $ref: json-schemas/sensors/telemetry/transmission-mode/transmission-mode-01.example.json
+          - $ref: json-schemas/sensors/telemetry/temperature-outdoor/temperature-outdoor-01.example.json
         bindings:
           mqtt:
             qos: 0
@@ -663,6 +674,21 @@ channels:
           mqtt:
             qos: 1
             retain: true
+  sensors/temperature_water:
+    description:
+      $ref: json-schemas/sensors/temperature-water/temperature-water.md
+    publish:
+      message:
+        name: TemperatureWater
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/sensors/temperature-water/temperature-water.json
+        examples:
+          - $ref: json-schemas/sensors/temperature-water/temperature-water-01.example.json
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
 components:
   parameters:
     operatorId:

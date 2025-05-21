@@ -3,6 +3,6 @@
   "mqtt": {
     "qos": 1,
     "retain": true,
-    "topic": "ruter/{operatorId}/{vehicleId}/adt/v3/sensors/door"
+    "topic": "ruter/{operatorId}/{vehicleId}/adt/v4/sensors/door"
   }
 }

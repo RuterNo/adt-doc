@@ -1,7 +1,7 @@
 ### VIX Card Reader Diagnostics MQTT Message
 | Field         | Value                                                                                                             |
 |---------------|-------------------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/pe/cardreader_diagnostics/vix/{deviceRef}                                   |
+| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/pe/cardreader_diagnostics/vix/{deviceRef}                                   |
 | Schema        | [ vix-cardreader_diagnostics.json ](json-schemas/pe/cardreader-diagnostics/vix/vix-cardreader_diagnostics.json)   |
 | Producer      | VIX                                                                                                               |
 | Consumer      | Ruter BackOffice                                                                                                  |
