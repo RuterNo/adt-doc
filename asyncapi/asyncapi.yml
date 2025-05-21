@@ -311,9 +311,9 @@ channels:
         payload:
           $ref: json-schemas/sensors/charging/charging.json
         examples:
-          - $ref: json-schemas/sensors/charging/charging-01.example.json
           - $ref: json-schemas/sensors/charging/charging-02.example.json
           - $ref: json-schemas/sensors/charging/charging-03.example.json
+          - $ref: json-schemas/sensors/charging/charging-01.example.json
         bindings:
           mqtt:
             qos: 0
@@ -374,6 +374,21 @@ channels:
           $ref: json-schemas/pe/dpi/journey_status/dpi-journey-status.json
         examples:
           - $ref: json-schemas/pe/dpi/journey_status/dpi-journey-status.example.json
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+  pe/dpi/heartbeat:
+    description:
+      $ref: json-schemas/pe/dpi/heartbeat/dpi-heartbeat.md
+    publish:
+      message:
+        name: DpiHeartbeat
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/pe/dpi/heartbeat/dpi-heartbeat.json
+        examples:
+          - $ref: json-schemas/pe/dpi/heartbeat/dpi-heartbeat.example.json
         bindings:
           mqtt:
             qos: 1

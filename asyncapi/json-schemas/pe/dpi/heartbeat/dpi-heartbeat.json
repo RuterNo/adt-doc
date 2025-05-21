@@ -1,17 +1,17 @@
 {
-  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/dpi/journey_status/dpi-journey-status.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/dpi/heartbeat/dpi-heartbeat.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "DpiJourneyStatus",
+  "title": "DpiHeartbeat",
   "type": "object",
   "required": [
     "eventTimestamp",
     "traceId",
-    "type",
-    "browser",
     "client",
+    "type",
+    "media",
     "journey"
   ],
-  "description": "DPI journey status topic",
+  "description": "DPI heartbeat",
   "additionalProperties": true,
   "properties": {
     "eventTimestamp": {
@@ -29,19 +29,6 @@
       "$id": "#/properties/type",
       "type": "string",
       "description": "Type of status message"
-    },
-    "browser": {
-      "$id": "#/properties/browser",
-      "type": "object",
-      "properties": {
-        "userAgent": {
-          "type": "string",
-          "description": "Browser user agent string"
-        }
-      },
-      "required": [
-        "userAgent"
-      ]
     },
     "client": {
       "$id": "#/properties/client",
@@ -62,22 +49,12 @@
         "physicalId": {
           "type": "string",
           "description": "The given physical id to the screen. The property is provided by a querystring when configuring a screen"
-        },
-        "connectivity": {
-          "type": "string",
-          "description": "If the browser has internet connection",
-          "values": [
-            "ONLINE",
-            "OFFLINE",
-            "UNKNOWN"
-          ]
         }
       },
       "required": [
         "url",
         "version",
-        "clientId",
-        "connectivity"
+        "clientId"
       ]
     },
     "media": {
@@ -103,7 +80,7 @@
         },
         "journeyRef": {
           "type": "string",
-          "description": "Journey r'ef from the latest received journey message"
+          "description": "Journey ref from the latest received journey message"
         },
         "assignmentRef": {
           "type": "string",
