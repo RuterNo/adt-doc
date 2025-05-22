@@ -1,17 +1,17 @@
 {
-  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/dpi/heartbeat/dpi-heartbeat.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/dpi/display_status/dpi-display-status.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "DpiHeartbeat",
+  "title": "DpiDisplayStatus",
   "type": "object",
   "required": [
     "eventTimestamp",
     "traceId",
-    "client",
     "type",
-    "media",
+    "browser",
+    "client",
     "journey"
   ],
-  "description": "DPI heartbeat",
+  "description": "DPI Display status topic",
   "additionalProperties": true,
   "properties": {
     "eventTimestamp": {
@@ -29,6 +29,19 @@
       "$id": "#/properties/type",
       "type": "string",
       "description": "Type of status message"
+    },
+    "browser": {
+      "$id": "#/properties/browser",
+      "type": "object",
+      "properties": {
+        "userAgent": {
+          "type": "string",
+          "description": "Browser user agent string"
+        }
+      },
+      "required": [
+        "userAgent"
+      ]
     },
     "client": {
       "$id": "#/properties/client",
@@ -49,12 +62,22 @@
         "physicalId": {
           "type": "string",
           "description": "The given physical id to the screen. The property is provided by a querystring when configuring a screen"
+        },
+        "connectivity": {
+          "type": "string",
+          "description": "If the browser has internet connection",
+          "values": [
+            "ONLINE",
+            "OFFLINE",
+            "UNKNOWN"
+          ]
         }
       },
       "required": [
         "url",
         "version",
-        "clientId"
+        "clientId",
+        "connectivity"
       ]
     },
     "media": {
