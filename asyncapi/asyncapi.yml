@@ -311,9 +311,9 @@ channels:
         payload:
           $ref: json-schemas/sensors/charging/charging.json
         examples:
+          - $ref: json-schemas/sensors/charging/charging-01.example.json
           - $ref: json-schemas/sensors/charging/charging-02.example.json
           - $ref: json-schemas/sensors/charging/charging-03.example.json
-          - $ref: json-schemas/sensors/charging/charging-01.example.json
         bindings:
           mqtt:
             qos: 0
