@@ -427,7 +427,7 @@ channels:
   pe/dpi/command_response:
     description:
       $ref: json-schemas/pe/dpi/command_response/dpi-command_response.md
-    publish:
+    subscribe:
       message:
         name: DpiCommandResponse
         schemaFormat: application/schema+json;version=draft-07
