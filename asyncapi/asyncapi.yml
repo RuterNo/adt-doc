@@ -424,6 +424,21 @@ channels:
           mqtt:
             qos: 1
             retain: false
+  pe/dpi/command_response:
+    description:
+      $ref: json-schemas/pe/dpi/command_response/dpi-command_response.md
+    publish:
+      message:
+        name: DpiCommandResponse
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/pe/dpi/command_response/dpi-command_response.json
+        examples:
+          - $ref: json-schemas/pe/dpi/command_response/dpi-command_response.example.json
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
   pe/sales/diagnostics:
     description:
       $ref: json-schemas/pe/sales/diagnostics/sales-diagnostics.md
