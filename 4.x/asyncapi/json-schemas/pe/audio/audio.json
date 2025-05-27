@@ -72,10 +72,6 @@
             "additionalProperties": {
               "type": "integer"
             }
-          },
-          "source": {
-            "type": "string",
-            "description": "Audio was produced by this source"
           }
         }
       }
