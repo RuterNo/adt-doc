@@ -12,7 +12,8 @@
         "content": "SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU3...",
         "speakers": {
           "INTERNAL": 70
-        }
+        },
+        "source": "campaign"
       },
       {
         "encoding": "MP3",
@@ -20,7 +21,8 @@
         "speakers": {
           "INTERNAL": 70,
           "EXTERNAL": 40
-        }
+        },
+        "source": "situation"
       }
     ]
   }

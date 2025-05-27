@@ -12,14 +12,16 @@
         "contentUrl": "http://webserver.local/resources/safety_long.opus",
         "speakers": {
           "INTERNAL": 70
-        }
+        },
+        "source": "campaign"
       },
       {
         "encoding": "MP3",
         "content": "SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU3...",
         "speakers": {
           "INTERNAL": 70
-        }
+        },
+        "source": "situation"
       }
     ]
   }
