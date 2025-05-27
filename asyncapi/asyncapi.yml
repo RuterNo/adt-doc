@@ -333,21 +333,6 @@ channels:
           mqtt:
             qos: 0
             retain: false
-  sensors/wind:
-    description:
-      $ref: json-schemas/sensors/wind/wind.md
-    publish:
-      message:
-        name: Wind
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/sensors/wind/wind.json
-        examples:
-          - $ref: json-schemas/sensors/wind/wind-01.example.json
-        bindings:
-          mqtt:
-            qos: 0
-            retain: false
   di/override_attempt/destination_display:
     description:
       $ref: json-schemas/di/override_attempt/destination_display/destination-display-override.md
