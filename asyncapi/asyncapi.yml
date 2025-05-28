@@ -419,7 +419,8 @@ channels:
         payload:
           $ref: json-schemas/pe/dpi/connection_status/dpi-connection-status.json
         examples:
-          - $ref: json-schemas/pe/dpi/connection_status/dpi-connection-status.example.json
+          - $ref: json-schemas/pe/dpi/connection_status/dpi-connection-status-false.example.json
+          - $ref: json-schemas/pe/dpi/connection_status/dpi-connection-status-true.example.json
         bindings:
           mqtt:
             qos: 1
