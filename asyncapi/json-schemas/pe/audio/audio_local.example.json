@@ -6,22 +6,21 @@
     "expiryDateTime": "2018-11-13T08:40:32.249Z",
     "preferredStartDateTime": "2018-11-13T08:39:32.749Z",
     "ref": "RUT:StopPlace:03012453",
+    "source": "situation",
     "audio": [
       {
         "encoding": "OPUS",
         "contentUrl": "http://webserver.local/resources/safety_long.opus",
         "speakers": {
           "INTERNAL": 70
-        },
-        "source": "campaign"
+        }
       },
       {
         "encoding": "MP3",
         "content": "SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU3...",
         "speakers": {
           "INTERNAL": 70
-        },
-        "source": "situation"
+        }
       }
     ]
   }
