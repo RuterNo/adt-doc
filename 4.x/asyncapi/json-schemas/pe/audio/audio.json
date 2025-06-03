@@ -11,7 +11,6 @@
     "expiryDateTime",
     "preferredStartDateTime",
     "ref",
-    "source",
     "audio"
   ],
   "properties": {
@@ -40,11 +39,6 @@
     },
     "ref": {
       "$id": "#/properties/ref"
-    },
-    "source": {
-      "$id": "#/properties/source",
-      "type": "string",
-      "description": "Audio was produced by this source"
     },
     "audio": {
       "$id": "#/properties/audio",
