@@ -5,10 +5,6 @@
          <lastmod>2025-06-03</lastmod>
     </url>
     <url>
-         <loc>https://adt.transhub.io/4.x/allowed-domains/</loc>
-         <lastmod>2025-06-03</lastmod>
-    </url>
-    <url>
          <loc>https://adt.transhub.io/4.x/browser-requirements/</loc>
          <lastmod>2025-06-03</lastmod>
     </url>
@@ -50,6 +46,10 @@
     </url>
     <url>
          <loc>https://adt.transhub.io/4.x/pto-pta-responsibilities/</loc>
+         <lastmod>2025-06-03</lastmod>
+    </url>
+    <url>
+         <loc>https://adt.transhub.io/4.x/rclone-setup/</loc>
          <lastmod>2025-06-03</lastmod>
     </url>
     <url>
