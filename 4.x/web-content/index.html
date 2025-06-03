@@ -1713,9 +1713,11 @@
 <li>Synchronization of web content is performed using <code>rclone</code> to download the latest content from Ruter's web server.</li>
 <li>Synchronization should occur periodically throughout the day to keep files up to date.</li>
 <li>At least <strong>16 GB</strong> of storage must be available on the vehicle to store the PTA's content.</li>
-<li><strong>SLA requirements:</strong></li>
+<li><strong>SLA requirements:</strong><ul>
 <li>Any content updated before 16:00 must be available in the vehicle before it starts its route the following morning.</li>
 <li>Ruter expects the PTO to update content at the frequency indicated in the installation instructions below. If not, SLA requirements may be adjusted in future releases.</li>
+</ul>
+</li>
 <li>The PTO should download new versions from a pre-production channel in a test environment and ensure the version is thoroughly tested before deploying to production.</li>
 </ul>
 <h2 id="installation-instructions">Installation Instructions<a class="headerlink" href="#installation-instructions" title="Permanent link">&para;</a></h2>
@@ -1802,10 +1804,12 @@
 <p>The root folder for web content is chosen by the operator (referred to as <code>$WEB_CONTENT_ROOT</code>). The recommended location is <code>/var/www/html</code>, but any suitable location for your web server is acceptable.</p>
 <p>Files should be deployed in a structure like:</p>
 <ul>
-<li>$WEB_CONTENT_ROOT</li>
+<li>$WEB_CONTENT_ROOT<ul>
 <li>app</li>
 <li>media</li>
 <li>resources</li>
+</ul>
+</li>
 </ul>
 <p>Example output of <code>tree</code> in <code>$WEB_CONTENT_ROOT</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>/var/www/html<span class="w"> </span><span class="c1"># tree</span>
@@ -1868,7 +1872,7 @@
 </table>
 <h3 id="verifying-the-setup">Verifying the setup<a class="headerlink" href="#verifying-the-setup" title="Permanent link">&para;</a></h3>
 <p>When the web server is set up, displays in a vehicle should be able to access the DPI application using an url like <code>http://webserver.local/app/index.html#display/1</code>.</p>
-<p>See <a href="../screen-configs">DPI Bus Monitor Screen Configuration</a> documentation for more details about setting up displays with the correct content.</p>
+<p>See <a href="../screen-configs/">DPI Bus Monitor Screen Configuration</a> documentation for more details about setting up displays with the correct content.</p>
 
 
 
