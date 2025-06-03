@@ -2,106 +2,105 @@
 
 ## Overview
 
-Ruter publishes content that is to be available on the web server on board the vehicle.
-This is to be done using `rclone` which is a command line program to manage files on cloud storage. It is a powerful tool that can be used to sync files between different storage systems, including local file systems and cloud storage providers.
+Ruter publishes content that is to be available on the web server on board the vehicle. This is done using `rclone`, a command line program to manage files on cloud storage. `rclone` can sync files between local file systems and cloud storage providers.
 
-Please refer to [`rclone` documentation](https://rclone.org) for more information on how to use it: https://rclone.org/docs/.
+For more information, see the [`rclone` documentation](https://rclone.org/docs/).
 
 ## General information regarding update procedures
 
-- Synchronization of web content is done using `rclone` to download the latest content from Ruter's web server.
-- The synchronization should happen periodically throughout the day to ensure that the files are always up to date.
-- A minimum of 16 GB of storage must be available on the vehicle to store the PTA's content.
-- The SLA-requirements are for the time being the same as it was for ADT 3:
-  - Any content updated before 16:00 must at minimum be available in the vehicle before it starts the route the following morning.
-  - Ruter do however expect that the PTO will update the content at the frequency that is indicated in the `rclone` installation instructions below. If the PTO does not update the content at the frequency indicated, Ruter will adjust the SLA-requirements accordingly in future releases.
-- The PTO should download new versions from a pre-production channel in a test environment and ensure the version is thoroughly tested before being deployed to production.
+- Synchronization of web content is performed using `rclone` to download the latest content from Ruter's web server.
+- Synchronization should occur periodically throughout the day to keep files up to date.
+- At least **16 GB** of storage must be available on the vehicle to store the PTA's content.
+- **SLA requirements:**
+  - Any content updated before 16:00 must be available in the vehicle before it starts its route the following morning.
+  - Ruter expects the PTO to update content at the frequency indicated in the installation instructions below. If not, SLA requirements may be adjusted in future releases.
+- The PTO should download new versions from a pre-production channel in a test environment and ensure the version is thoroughly tested before deploying to production.
 
-## Installation instructions
+## Installation Instructions
 
+Refer to the [`rclone` documentation](https://rclone.org) for installation steps.
 
-Please refer to [`rclone` documentation](https://rclone.org) on how to install.
+### Rclone Version Requirements
 
-### `rclone` version requirements
+The `rclone` version must be upgraded to the latest version within a year after a new release. This ensures access to the latest features and bug fixes.
 
-`rclone` version must be upgraded to latest version within a year after the release of a new version. This is to ensure that the latest features and bug fixes are available to users.
+## Rclone Configuration
 
-## Configuration of `rclone`
-### Create Rclone configuration file
+### 1. Create the Rclone Configuration File
 
-Create a new configuration file at the location: `/opt/rclone/rclone.conf`. If the directory does not exist, you can create it using the command:
+Create a configuration file at `/opt/rclone/rclone.conf`. If the directory does not exist, create it:
+
 ```bash
 mkdir -p /opt/rclone
 ```
 
-Add the following configuration to the file, replacing `<ENTER_VIN_HERE>` with the Vehicle Identification Number (VIN) of the vehicle you are configuring:
+Add the following configuration to the file. Replace `<ENTER_VIN_HERE>` with the Vehicle Identification Number (VIN) of the vehicle, and `<ENTER_URL_HERE>` with the appropriate URL (see table below):
 
-```text
+```ini
 [web-content]
 headers = Vehicle,<ENTER_VIN_HERE>
 type = http
 url = <ENTER_URL_HERE>
 ```
 
-**Note:** The `headers` field must be set to the VIN of the vehicle. This is used to identify the vehicle when syncing files.
-**Note2:** The `url` field must be set to the URL of the web server where the content is hosted. The URL should be one of the following, depending on the environment you are working in:
+> **Note:**
+> - The `headers` field must be set to the VIN of the vehicle. This identifies the vehicle when syncing files.
+> - The `url` field must be set to the URL of the web server where the content is hosted. Use the appropriate URL for your environment:
 
 | Environment | URL                                   | Purpose                                                        |
 |-------------|---------------------------------------|----------------------------------------------------------------|
 | Prod        | https://pto-api-v2.transhub.io/       | All vehicles running regular routes                            |
 | Stage       | https://pto-api-v2.stage.transhub.io/ | Test rigs, vehicles being tested before running regular routes |
 
-### Create folder to store logs from Rclone
+### 2. Create a Folder for Rclone Logs
 
 Create a folder to store the logfile from `rclone`:
 
 ```bash
 sudo mkdir -p /var/log/rclone
-sudo chown youruser:youruser /var/log/rclone
+sudo chown <youruser>:<youruser> /var/log/rclone
 ```
 
-**Note:** Replace `youruser` with the user that will run the `rclone` commands.
+> **Note:** Replace `<youruser>` with the user that will run the `rclone` commands.
 
-### Setup cron job to run rclone
+### 3. Set Up a Cron Job to Run Rclone
 
-Setup rclone to run periodically to ensure that the files are always up to date. Scheduling it with cron or another task scheduler.
+Set up `rclone` to run periodically to keep files up to date. Use `cron` or another scheduler.
 
 ```bash
 crontab -e
 ```
 
-Add the following lines:
+Add the following lines (adjust paths as necessary):
 
 ```bash
-
 RCLONE_CONFIG=/opt/rclone/rclone.conf
 */5 * * * * /usr/bin/rclone sync --create-empty-src-dirs web-content:. /var/www/html/ >> /var/log/rclone/rclone.log 2>&1
 
 # Optional:
-#
-# If you want to run `rclone` with more verbose output and statistics, you can modify the command as follows:
+# For more verbose output and statistics:
 # */5 * * * * /usr/bin/rclone sync -v --stats-one-line-date --create-empty-src-dirs web-content:. /var/www/html/ >> /var/log/rclone/rclone.log 2>&1
-``` 
+```
 
-Adjust the paths as necessary. The above command will sync the files every 5 minutes from the HTTP server to the local file system at `/var/www/html/`.
+This will sync files every 5 minutes from the HTTP server to `/var/www/html/`.
 
-### Setup log rotation for rclone logs
+### 4. Set Up Log Rotation for Rclone Logs
 
-To prevent the `rclone.log` file from growing indefinitely, it is recommended to set up log rotation. This can be done using `logrotate`, which is a system utility that manages the rotation and compression of log files.
+To prevent `rclone.log` from growing indefinitely, set up log rotation using `logrotate`.
 
-To verify that `logrotate` is installed, you can run the following command:
+Check if `logrotate` is installed:
 
 ```bash
 logrotate --version
 ```
 
-#### Setup logrotate configuration for rclone
 Create a logrotate configuration file for `rclone`:
 
 ```bash
 sudo nano /etc/logrotate.d/rclone
 ```
-Add the following content to the file:
+
+Add the following content:
 
 ```text
 /var/log/rclone/rclone.log {
@@ -114,20 +113,18 @@ Add the following content to the file:
 }
 ```
 
-
 ## Placement of Files
 
-The root folder where all the web content is stored, is a location chosen by the operator, which we can call $WEB_CONTENT_ROOT. Our recommendation is to use `/var/www/html` as the root folder, but it can be any location that is suitable for your web server configuration.
-The files should end up deployed in a structure like this:
+The root folder for web content is chosen by the operator (referred to as `$WEB_CONTENT_ROOT`). The recommended location is `/var/www/html`, but any suitable location for your web server is acceptable.
+
+Files should be deployed in a structure like:
 
 * $WEB_CONTENT_ROOT
   * app
   * media
   * resources
-    
-The directory application can actually be anything as long as it is the root of the website that is served.
 
-Example output of running the `tree` command in the `$WEB_CONTENT_ROOT` directory:
+Example output of `tree` in `$WEB_CONTENT_ROOT`:
 
 ```sh
 /var/www/html # tree
@@ -185,3 +182,4 @@ Using nginx or some other proxy/webserver, point the root of the site to `/var/w
 When the web server is set up, displays in a vehicle should be able to access the DPI application using an url like `http://webserver.local/app/index.html#display/1`.
 
 See [DPI Bus Monitor Screen Configuration](../screen-configs) documentation for more details about setting up displays with the correct content.
+
