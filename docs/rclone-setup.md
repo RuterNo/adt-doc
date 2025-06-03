@@ -16,67 +16,89 @@ Please refer to [`rclone` documentation](https://rclone.org) on how to install.
 
 `rclone` version must be upgraded to latest version within a year after the release of a new version. This is to ensure that the latest features and bug fixes are available to users.
 
-## Configuration
+## Configuration of `rclone`
 
-File sync must be configured in `rclone`.
+To configure `rclone`, you need to create a configuration file that specifies the HTTP server and the headers required for authentication. This configuration file is used to connect to the Ruter DPI service.
 
-Here is the config you should use:
+### Create Rclone configuration file
 
+Create a new configuration file at the location: `/opt/rclone/rclone.conf`. If the directory does not exist, you can create it using the command: 
 ```bash
-$ rclone config dump
-{
-    "ruter-dpi": {
-        "headers": "Vehicle,<ENTER_VIN_HERE>",
-        "type": "http",
-        "url": "http://pto-api.transhub.io/vdclient/"
-    }
-}
+mkdir -p /opt/rclone
 ```
 
-This can be entered manually using the `rclone config` command, or by creating a file called `rclone.conf` in your home directory with the above content.
+Add the following configuration to the file, replacing `<ENTER_VIN_HERE>` with the Vehicle Identification Number (VIN) of the vehicle you are configuring:
+
+```text
+[web-content]
+headers = Vehicle,<ENTER_VIN_HERE>
+type = http
+url = https://pto-api-v2.transhub.io/
+```
 
 **Note:** The `headers` field must be set to the VIN of the vehicle. This is used to identify the vehicle when syncing files.
 
-## Syncing files
+### Create folder to store logs from Rclone
 
-Run the following command to sync files from the HTTP server to your local file system:
-
-```bash
-rclone sync --create-empty-src-dirs ruter-dpi:. /www/root
-```
-
-If you want to only sync parts of the files, you can be more specific. See this example:
+Create a folder to store the logfile from `rclone`:
 
 ```bash
-# Syncing application (required)
-rclone sync --create-empty-src-dirs ruter-dpi:/app /www/root
-# Syncing manifest files (required)
-rclone sync --create-empty-src-dirs ruter-dpi:/media/manifest.json /www/root/manifest.json
-rclone sync --create-empty-src-dirs ruter-dpi:/media/manifest.js /www/root/manifest.js
-# Syncing media for specific screen type
-rclone sync --create-empty-src-dirs ruter-dpi:/media/1 /www/root/media/1
-rclone sync --create-empty-src-dirs ruter-dpi:/media/2 /www/root/media/2
+sudo mkdir -p /var/log/rclone
+sudo chown youruser:youruser /var/log/rclone
 ```
 
-If you are unsure exactly which files you should synchronize, please refer to person of contact in Ruter on what media files you should synchronize.
+**Note:** Replace `youruser` with the user that will run the `rclone` commands.
 
-Add all those lines into a script file called `sync.sh` and make it executable:
+### Setup cron job to run rclone
 
-```bash
-chmod +x sync.sh
-```
-
-You can register this as a cron job to run every 5 minutes. To do this, run the following command:
+Setup rclone to run periodically to ensure that the files are always up to date. Scheduling it with cron or another task scheduler.
 
 ```bash
 crontab -e
 ```
 
-Then add the following line to the file:
+Add the following lines:
 
 ```bash
-*/5 * * * * /usr/bin/sync.sh
+
+RCLONE_CONFIG=/opt/rclone/rclone.conf
+*/5 * * * * /usr/bin/rclone sync --create-empty-src-dirs web-content:. /var/www/html/ >> /var/log/rclone/rclone.log 2>&1
+
+# Notice: If you want to run `rclone` with more verbose output and statistics, you can modify the command as follows:
+# */5 * * * * /usr/bin/rclone sync -v --stats-one-line-date --create-empty-src-dirs web-content:. /var/www/html/ >> /var/log/rclone/rclone.log 2>&1
+``` 
+
+Adjust the paths as necessary. The above command will sync the files every 5 minutes from the HTTP server to the local file system at `/var/www/html/`.
+
+### Setup log rotation for rclone logs
+
+To prevent the `rclone.log` file from growing indefinitely, it is a good practice to set up log rotation. This can be done using `logrotate`, which is a system utility that manages the rotation and compression of log files.
+
+To verify that `logrotate` is installed, you can run the following command:
+
+```bash
+logrotate --version
 ```
+
+#### Setup logrotate configuration for rclone
+Create a logrotate configuration file for `rclone`:
+
+```bash
+sudo nano /etc/logrotate.d/rclone
+```
+Add the following content to the file:
+
+```text
+/var/log/rclone/rclone.log {
+    daily
+    rotate 7
+    compress
+    missingok
+    notifempty
+    copytruncate
+}
+```
+
 
 ## Hosting the files
 
