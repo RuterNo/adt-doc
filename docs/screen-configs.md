@@ -18,10 +18,14 @@ The `CLIENT_ID` and `SCREEN_TYPE_ID` are applied in the URL.
 - `CLIENT_ID` in the query string as `clientId=<INSERT_CLIENT_ID>`
 - `SCREEN_TYPE_ID` in the fragment as `#display/<INSERT_SCREEN_TYPE_ID>`
 
+A `PHYSICAL_ID` can also be specified, to easily identify screens on board
+
+- `PHYSICAL_ID` in the query string as `physicalId=<INSERT_PHYSICAL_ID>`
+
 The URL should be structured as follows:
 
 ```
-http://webserver.local/app/?clientId=<INSERT_CLIENT_ID>#display/<INSERT_SCREEN_TYPE_ID>
+http://webserver.local/app/?clientId=<INSERT_CLIENT_ID>&physicalId=<INSERT_PHYSICAL_ID>#display/<INSERT_SCREEN_TYPE_ID>
 ```
 
 ## Overview of screen types
@@ -55,7 +59,7 @@ If you want to hide the "short platform" notifications on the displays at the fr
 **Full example**
 
 ```
-http://webserver.local/app/?clientId=3d914034-f8c4-2573-19fe-49d41966d689&channels=short_platform[active_cab]=c1#display/t2-left
+http://webserver.local/app/?clientId=3d914034-f8c4-2573-19fe-49d41966d689&physicalId=10.0.0.4&channels=short_platform[active_cab]=c1#display/t2-left
 ```
 
 ## Screen configurations for bus (TaaS vehicles)
