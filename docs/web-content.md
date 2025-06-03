@@ -12,8 +12,8 @@ For more information, see the [`rclone` documentation](https://rclone.org/docs/)
 - Synchronization should occur periodically throughout the day to keep files up to date.
 - At least **16 GB** of storage must be available on the vehicle to store the PTA's content.
 - **SLA requirements:**
-  - Any content updated before 16:00 must be available in the vehicle before it starts its route the following morning.
-  - Ruter expects the PTO to update content at the frequency indicated in the installation instructions below. If not, SLA requirements may be adjusted in future releases.
+    - Any content updated before 16:00 must be available in the vehicle before it starts its route the following morning.
+    - Ruter expects the PTO to update content at the frequency indicated in the installation instructions below. If not, SLA requirements may be adjusted in future releases.
 - The PTO should download new versions from a pre-production channel in a test environment and ensure the version is thoroughly tested before deploying to production.
 
 ## Installation Instructions
@@ -120,9 +120,9 @@ The root folder for web content is chosen by the operator (referred to as `$WEB_
 Files should be deployed in a structure like:
 
 * $WEB_CONTENT_ROOT
-  * app
-  * media
-  * resources
+    * app
+    * media
+    * resources
 
 Example output of `tree` in `$WEB_CONTENT_ROOT`:
 
@@ -181,5 +181,5 @@ Using nginx or some other proxy/webserver, point the root of the site to `/var/w
 ### Verifying the setup
 When the web server is set up, displays in a vehicle should be able to access the DPI application using an url like `http://webserver.local/app/index.html#display/1`.
 
-See [DPI Bus Monitor Screen Configuration](../screen-configs) documentation for more details about setting up displays with the correct content.
+See [DPI Bus Monitor Screen Configuration](screen-configs.md) documentation for more details about setting up displays with the correct content.
 
