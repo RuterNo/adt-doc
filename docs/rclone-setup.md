@@ -17,9 +17,6 @@ Please refer to [`rclone` documentation](https://rclone.org) on how to install.
 `rclone` version must be upgraded to latest version within a year after the release of a new version. This is to ensure that the latest features and bug fixes are available to users.
 
 ## Configuration of `rclone`
-
-To configure `rclone`, you need to create a configuration file that specifies the HTTP server and the headers required for authentication. This configuration file is used to connect to the Ruter DPI service.
-
 ### Create Rclone configuration file
 
 Create a new configuration file at the location: `/opt/rclone/rclone.conf`. If the directory does not exist, you can create it using the command: 
@@ -64,7 +61,9 @@ Add the following lines:
 RCLONE_CONFIG=/opt/rclone/rclone.conf
 */5 * * * * /usr/bin/rclone sync --create-empty-src-dirs web-content:. /var/www/html/ >> /var/log/rclone/rclone.log 2>&1
 
-# Notice: If you want to run `rclone` with more verbose output and statistics, you can modify the command as follows:
+# Optional:
+#
+# If you want to run `rclone` with more verbose output and statistics, you can modify the command as follows:
 # */5 * * * * /usr/bin/rclone sync -v --stats-one-line-date --create-empty-src-dirs web-content:. /var/www/html/ >> /var/log/rclone/rclone.log 2>&1
 ``` 
 
@@ -72,7 +71,7 @@ Adjust the paths as necessary. The above command will sync the files every 5 min
 
 ### Setup log rotation for rclone logs
 
-To prevent the `rclone.log` file from growing indefinitely, it is a good practice to set up log rotation. This can be done using `logrotate`, which is a system utility that manages the rotation and compression of log files.
+To prevent the `rclone.log` file from growing indefinitely, it is recommended to set up log rotation. This can be done using `logrotate`, which is a system utility that manages the rotation and compression of log files.
 
 To verify that `logrotate` is installed, you can run the following command:
 

@@ -98,7 +98,8 @@ nav:
       - MQTT bridge config: mqtt.md
       - Browser requirements: browser-requirements.md
       - File Sync:
-        - Packages: packages.md
+        - Web content: web-content.md
+        - Rclone setup: rclone-setup.md
         - Resources: resources.md
       - Display setup:
         - Screen configuration: screen-configs.md

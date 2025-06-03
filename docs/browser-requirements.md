@@ -16,6 +16,6 @@ The PTO is required to install and maintain one of the following supported brows
 ## Additional Requirements
 
 - Only stable, officially released versions of the browsers are to be used.
-- The browser must be updated regularly and should not be older than 12 months.
+- The browser must be updated regularly and the major version should not be older than 12 months.
 - Persistent storage must be available for the browser. It must not operate in incognito or private browsing modes.
 - All feature flags should be set to their default values, unless otherwise agreed upon with Ruter.
