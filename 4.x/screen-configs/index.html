@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://adt.transhub.io/4.x/screen-configs/">
       
       
-        <link rel="prev" href="../resources/">
+        <link rel="prev" href="../allowed-domains/">
       
       
         <link rel="next" href="../troubleshooting-client/">
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#dpi-bus-monitor-screen-configuration" class="md-skip">
+        <a href="#dpi-vehicle-display-screen-configuration" class="md-skip">
           Skip to content
         </a>
       
@@ -787,6 +787,8 @@
       
         
       
+        
+      
     
     
     
@@ -862,6 +864,29 @@
   
   <span class="md-ellipsis">
     Resources
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../allowed-domains/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Allowed domains
     
   </span>
   
@@ -1002,26 +1027,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#distribution-channels" class="md-nav__link">
+  <a href="#handling-filtering-short-platform-notifications-for-trams" class="md-nav__link">
     <span class="md-ellipsis">
-      Distribution channels
+      Handling filtering short platform notifications for trams
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Distribution channels">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#short-platform" class="md-nav__link">
-    <span class="md-ellipsis">
-      Short platform
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1624,26 +1634,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#distribution-channels" class="md-nav__link">
+  <a href="#handling-filtering-short-platform-notifications-for-trams" class="md-nav__link">
     <span class="md-ellipsis">
-      Distribution channels
+      Handling filtering short platform notifications for trams
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Distribution channels">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#short-platform" class="md-nav__link">
-    <span class="md-ellipsis">
-      Short platform
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1883,14 +1878,30 @@
   
 
 
-<h1 id="dpi-bus-monitor-screen-configuration">DPI Bus Monitor Screen Configuration<a class="headerlink" href="#dpi-bus-monitor-screen-configuration" title="Permanent link">&para;</a></h1>
-<p>DPI Bus-monitor supports a range of pre-defined display types depending on size of the screen, screen location and functional needs.
-These screens are accessible directly through a URL with following schema: <code>{BaseURL}/app/#display/{type}</code>, eg. <code>http://webserver.local/app/#display/1</code>.</p>
+<h1 id="dpi-vehicle-display-screen-configuration">DPI Vehicle Display Screen Configuration<a class="headerlink" href="#dpi-vehicle-display-screen-configuration" title="Permanent link">&para;</a></h1>
+<p>DPI Vehicle Display needs to be set up with two config parameters:</p>
+<ul>
+<li><code>CLIENT_ID</code> - a unique identifier for the client, used to identify the vehicle. Must be a UUIDv4.</li>
+<li><code>SCREEN_TYPE_ID</code> - a unique identifier for the screen type, used to determine the layout and content of the display.</li>
+</ul>
+<p>You can safely generate a UUIDv4 for the <code>CLIENT_ID</code> using OpenSSL like this:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$<span class="w"> </span><span class="nv">uuid</span><span class="o">=</span><span class="k">$(</span>openssl<span class="w"> </span>rand<span class="w"> </span>-hex<span class="w"> </span><span class="m">16</span><span class="k">)</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">uuid</span><span class="p">:</span><span class="nv">0</span><span class="p">:</span><span class="nv">8</span><span class="si">}</span>-<span class="si">${</span><span class="nv">uuid</span><span class="p">:</span><span class="nv">8</span><span class="p">:</span><span class="nv">4</span><span class="si">}</span>-<span class="si">${</span><span class="nv">uuid</span><span class="p">:</span><span class="nv">12</span><span class="p">:</span><span class="nv">4</span><span class="si">}</span>-<span class="si">${</span><span class="nv">uuid</span><span class="p">:</span><span class="nv">16</span><span class="p">:</span><span class="nv">4</span><span class="si">}</span>-<span class="si">${</span><span class="nv">uuid</span><span class="p">:</span><span class="nv">20</span><span class="p">:</span><span class="nv">12</span><span class="si">}</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>3d914034-f8c4-2573-19fe-49d41966d689
+</code></pre></div>
+<p>The <code>CLIENT_ID</code> and <code>SCREEN_TYPE_ID</code> are applied in the URL.</p>
+<ul>
+<li><code>CLIENT_ID</code> in the query string as <code>clientId=&lt;INSERT_CLIENT_ID&gt;</code></li>
+<li><code>SCREEN_TYPE_ID</code> in the fragment as <code>#display/&lt;INSERT_SCREEN_TYPE_ID&gt;</code></li>
+</ul>
+<p>The URL should be structured as follows:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>http://webserver.local/app/?clientId=&lt;INSERT_CLIENT_ID&gt;#display/&lt;INSERT_SCREEN_TYPE_ID&gt;
+</code></pre></div>
 <h2 id="overview-of-screen-types">Overview of screen types<a class="headerlink" href="#overview-of-screen-types" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Id</th>
+<th>ID</th>
 <th>Content</th>
 <th>Aspect ratio</th>
 <th>Optimal screen resolution (width x height)</th>
@@ -1992,30 +2003,13 @@ These screens are accessible directly through a URL with following schema: <code
 </tbody>
 </table>
 <p>* These are approx. values and subject to change.</p>
-<h2 id="distribution-channels">Distribution channels<a class="headerlink" href="#distribution-channels" title="Permanent link">&para;</a></h2>
-<p>Additionally, for public announcements, it is possible to target specific screens by which channels they subscribe to. You define which channels to subscribe to in the URL with following schema:
-<code>{BaseURL}/app/#display/{type}?channels=channel_name[filter_key}=filter_value,additional_channel_name</code>.</p>
-<h3 id="short-platform">Short platform<a class="headerlink" href="#short-platform" title="Permanent link">&para;</a></h3>
-<ul>
-<li>t2-left: <code>{BaseURL}/app/#display/t2-left?channels=short_platform[active_cab]=c1</code></li>
-<li>t2-right: <code>{BaseURL}/app/#display/t2-right?channels=short_platform[active_cab]=c1</code></li>
-</ul>
-<p>Keep in mind that the keys and values are case-sensitive.</p>
-<p>Supported filters are:</p>
-<table>
-<thead>
-<tr>
-<th>Key</th>
-<th>Possible values</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>active_cab</td>
-<td>c1, c2, inactive</td>
-</tr>
-</tbody>
-</table>
+<h2 id="handling-filtering-short-platform-notifications-for-trams">Handling filtering short platform notifications for trams<a class="headerlink" href="#handling-filtering-short-platform-notifications-for-trams" title="Permanent link">&para;</a></h2>
+<p>If you want to hide the "short platform" notifications on the displays at the front of the tram, you can add the following part to the query string:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>&amp;channels=short_platform[active_cab]=c1
+</code></pre></div>
+<p><strong>Full example</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>http://webserver.local/app/?clientId=3d914034-f8c4-2573-19fe-49d41966d689&amp;channels=short_platform[active_cab]=c1#display/t2-left
+</code></pre></div>
 <h2 id="screen-configurations-for-bus-taas-vehicles">Screen configurations for bus (TaaS vehicles)<a class="headerlink" href="#screen-configurations-for-bus-taas-vehicles" title="Permanent link">&para;</a></h2>
 <h3 id="screen-config-1">Screen config 1<a class="headerlink" href="#screen-config-1" title="Permanent link">&para;</a></h3>
 <p><img alt="Running state" src="../assets/images/client/config/config-1-1.png" />
@@ -2131,7 +2125,7 @@ When there is no active media content playing, the screen will show information 
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../resources/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Resources">
+          <a href="../allowed-domains/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Allowed domains">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2141,7 +2135,7 @@ When there is no active media content playing, the screen will show information 
                 Previous
               </span>
               <div class="md-ellipsis">
-                Resources
+                Allowed domains
               </div>
             </div>
           </a>
