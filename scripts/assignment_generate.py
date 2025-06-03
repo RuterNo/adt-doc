@@ -228,7 +228,7 @@ def update_meta(paths, name):
         if vehicle_centric:
             routing_prefix = routing_prefix + "/{vehicleId}"
         else:
-            routing_prefix = routing_prefix + "/back_office"
+            routing_prefix = routing_prefix + "/backoffice"
         prefix = f'{routing_prefix}/adt/v{API_VERSION_MAJOR}'
         topic = f"{prefix}/{paths['channel']}"
         topic_params = mqtt['params'] if 'params' in mqtt else []

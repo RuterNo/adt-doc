@@ -1,5 +1,7 @@
 {
   "mode": "publish",
+  "producer": "pto",
+  "consumer": "assignment",
   "mqtt": {
     "retain": false,
     "qos": 1,
