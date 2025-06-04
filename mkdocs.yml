@@ -99,7 +99,6 @@ nav:
       - Browser requirements: browser-requirements.md
       - File Sync:
         - Web content: web-content.md
-        - Rclone setup (to be deleted): rclone-setup.md
         - Resources: resources.md
       - Display setup:
         - Screen configuration: screen-configs.md
