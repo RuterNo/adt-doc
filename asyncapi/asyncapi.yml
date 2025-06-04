@@ -26,7 +26,6 @@ servers:
           - '9883'
     security:
       - user-password: []
-
 defaultContentType: application/json
 channels:
   pe/active_cab:
@@ -318,7 +317,7 @@ channels:
           mqtt:
             qos: 0
             retain: false
-  sensors/temperature/water:
+  sensors/temperature_water:
     description:
       $ref: json-schemas/sensors/temperature-water/temperature-water.md
     publish:
@@ -735,21 +734,6 @@ channels:
           mqtt:
             qos: 1
             retain: true
-  sensors/temperature_water:
-    description:
-      $ref: json-schemas/sensors/temperature-water/temperature-water.md
-    publish:
-      message:
-        name: TemperatureWater
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/sensors/temperature-water/temperature-water.json
-        examples:
-          - $ref: json-schemas/sensors/temperature-water/temperature-water-01.example.json
-        bindings:
-          mqtt:
-            qos: 0
-            retain: false
 components:
   parameters:
     operatorId:
