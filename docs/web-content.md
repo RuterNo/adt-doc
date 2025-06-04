@@ -75,14 +75,14 @@ Add the following lines (adjust paths as necessary):
 
 ```bash
 RCLONE_CONFIG=/opt/rclone/rclone.conf
-*/5 * * * * /usr/bin/rclone sync --create-empty-src-dirs web-content:. /var/www/html/ >> /var/log/rclone/rclone.log 2>&1
+*/5 * * * * /usr/bin/rclone sync --create-empty-src-dirs --delete-before web-content:. /var/www/html/ >> /var/log/rclone/rclone.log 2>&1
 
 # Optional:
 # For more verbose output and statistics:
-# */5 * * * * /usr/bin/rclone sync -v --stats-one-line-date --create-empty-src-dirs web-content:. /var/www/html/ >> /var/log/rclone/rclone.log 2>&1
+# */5 * * * * /usr/bin/rclone sync -v --stats-one-line-date --create-empty-src-dirs --delete-before web-content:. /var/www/html/ >> /var/log/rclone/rclone.log 2>&1
 ```
 
-This will sync files every 5 minutes from the HTTP server to `/var/www/html/`.
+This will sync files every 5 minutes from the HTTP server to `/var/www/html/`, using the configuration file specified by the `RCLONE_CONFIG` environment variable.
 
 ### 4. Set Up Log Rotation for Rclone Logs
 
