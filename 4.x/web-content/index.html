@@ -1775,13 +1775,13 @@
 </code></pre></div>
 <p>Add the following lines (adjust paths as necessary):</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nv">RCLONE_CONFIG</span><span class="o">=</span>/opt/rclone/rclone.conf
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>*/5<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/usr/bin/rclone<span class="w"> </span>sync<span class="w"> </span>--create-empty-src-dirs<span class="w"> </span>web-content:.<span class="w"> </span>/var/www/html/<span class="w"> </span>&gt;&gt;<span class="w"> </span>/var/log/rclone/rclone.log<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>*/5<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>*<span class="w"> </span>/usr/bin/rclone<span class="w"> </span>sync<span class="w"> </span>--create-empty-src-dirs<span class="w"> </span>--delete-before<span class="w"> </span>web-content:.<span class="w"> </span>/var/www/html/<span class="w"> </span>&gt;&gt;<span class="w"> </span>/var/log/rclone/rclone.log<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Optional:</span>
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># For more verbose output and statistics:</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># */5 * * * * /usr/bin/rclone sync -v --stats-one-line-date --create-empty-src-dirs web-content:. /var/www/html/ &gt;&gt; /var/log/rclone/rclone.log 2&gt;&amp;1</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># */5 * * * * /usr/bin/rclone sync -v --stats-one-line-date --create-empty-src-dirs --delete-before web-content:. /var/www/html/ &gt;&gt; /var/log/rclone/rclone.log 2&gt;&amp;1</span>
 </code></pre></div>
-<p>This will sync files every 5 minutes from the HTTP server to <code>/var/www/html/</code>.</p>
+<p>This will sync files every 5 minutes from the HTTP server to <code>/var/www/html/</code>, using the configuration file specified by the <code>RCLONE_CONFIG</code> environment variable.</p>
 <h3 id="4-set-up-log-rotation-for-rclone-logs">4. Set Up Log Rotation for Rclone Logs<a class="headerlink" href="#4-set-up-log-rotation-for-rclone-logs" title="Permanent link">&para;</a></h3>
 <p>To prevent <code>rclone.log</code> from growing indefinitely, set up log rotation using <code>logrotate</code>.</p>
 <p>Check if <code>logrotate</code> is installed:</p>
