@@ -1,0 +1,117 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.0/sensors/accelerometer/accelerometer.json",
+  "type": "object",
+  "title": "Accelerometer",
+  "description": "Schema for accelerometer sensor data. Accelerations are measured along the sensor's axes: X points forward, Y points left, and Z points upward. 'Forward' is defined relative to the vehicle's front (as configured or physically marked). All acceleration values are in units of g (where 1g ≈ 9.81 m/s²). Any divergence from the standard must be specified using the optional axis orientation overrides (fields xOrientation, yOrientation, and zOrientation).",
+  "required": [
+    "eventTimestamp",
+    "traceId",
+    "messageNumber",
+    "sensorId",
+    "xMin",
+    "xMax",
+    "xAvg",
+    "yMin",
+    "yMax",
+    "yAvg",
+    "zMin",
+    "zMax",
+    "zAvg"
+  ],
+  "definitions": {
+    "axisOrientation": {
+      "type": "string",
+      "enum": [
+        "F",
+        "B",
+        "L",
+        "R",
+        "U",
+        "D"
+      ],
+      "description": "Override for an axis orientation: F=forward, B=backward, L=left, R=right, U=up, D=down."
+    }
+  },
+  "properties": {
+    "eventTimestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp in UTC (must end with 'Z'), indicating when the measurement was taken",
+      "example": "2025-05-13T12:00:00.000Z"
+    },
+    "traceId": {
+      "type": "string",
+      "description": "Unique identifier for tracing this message",
+      "example": "baf3d8ac-1234-4e0c-9e9e-abc123def456"
+    },
+    "messageNumber": {
+      "type": "integer",
+      "description": "Sequence number, increased by one for each new message",
+      "example": 27
+    },
+    "sensorId": {
+      "type": "string",
+      "description": "Unique identifier for the sensor. Typically the serial number (S/N) from the sensor.",
+      "example": "SN-456789"
+    },
+    "xMin": {
+      "type": "number",
+      "description": "Minimum X acceleration (in g)",
+      "example": -0.059570834
+    },
+    "xMax": {
+      "type": "number",
+      "description": "Maximum X acceleration (in g)",
+      "example": 0.108400127
+    },
+    "xAvg": {
+      "type": "number",
+      "description": "Average X acceleration (in g)",
+      "example": 0.027750913
+    },
+    "yMin": {
+      "type": "number",
+      "description": "Minimum Y acceleration (in g)",
+      "example": 0.023440518
+    },
+    "yMax": {
+      "type": "number",
+      "description": "Maximum Y acceleration (in g)",
+      "example": 0.129880276
+    },
+    "yAvg": {
+      "type": "number",
+      "description": "Average Y acceleration (in g)",
+      "example": 0.073010342
+    },
+    "zMin": {
+      "type": "number",
+      "description": "Minimum Z acceleration (in g)",
+      "example": 0.878910442
+    },
+    "zMax": {
+      "type": "number",
+      "description": "Maximum Z acceleration (in g)",
+      "example": 1.109380158
+    },
+    "zAvg": {
+      "type": "number",
+      "description": "Average Z acceleration (in g)",
+      "example": 0.993550981
+    },
+    "xOrientation": {
+      "$ref": "#/definitions/axisOrientation",
+      "description": "Optional override for the sensor's X-axis orientation. Specifies the direction that positive X values point. (If omitted, assumed to be `F` = forward.)"
+    },
+    "yOrientation": {
+      "$ref": "#/definitions/axisOrientation",
+      "description": "Optional override for the sensor's Y-axis orientation. Specifies the direction that positive Y values point. (If omitted, assumed to be `L` = left.)"
+    },
+    "zOrientation": {
+      "$ref": "#/definitions/axisOrientation",
+      "description": "Optional override for the sensor's Z-axis orientation. Specifies the direction that positive Z values point. (If omitted, assumed to be `U` = up.)"
+    }
+  },
+  "additionalProperties": true
+}
