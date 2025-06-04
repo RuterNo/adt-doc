@@ -5,20 +5,17 @@ Initially, the list will contain an audio file intended to be played when a stop
 on board the vehicle. It allows us to change the sound over time and ensure a uniform aural 
 experience for passengers.
 
-This manifest should be used in a similar way as with the packages and mqtt manifests. The 
-manifest should be checked at least once a day, after 16:00, and if there is a new version
-of a resources, download and start using it. The intention 
-is similar to the DPI application and MQTT: they should be in use by the next day. 
+The resources manifest should be checked at least once a day, after 16:00, and if there is a new version
+of a resources, start using it. The intention is that the resources updated should be in use by the next day. 
 
 ## Locations
 
-The manifest will be available at the following URLs:
+As long as the file synchronization is set up correctly (see: [Web content](web-content.md)), the resources manifest will be available on the local webserver of the vehicle.
+The resources manifest will be available at the following URLs:
 
-| Environment | URL |
-| --- | --- |
-| test | https://pto-api.test.transhub.io/resources.json |
-| stage | https://pto-api.stage.transhub.io/resources.json |
-| prod | https://pto-api.transhub.io/resources.json |
+| URL                                             |
+|-------------------------------------------------|
+| http://webserver.local/resources/resources.json |
 
 ## Resources Provided
 
@@ -26,13 +23,13 @@ This list will be updated over time, as new resources are included. The *Name* i
 corresponds to the name in the resource item in the JSON, which is illustrated in an example later on,
 and in the field documentation for the Resource type.
 
-| Name | Type | Description | Formats |
-|---|---|---|---|
+| Name               | Type  | Description                                                              | Formats                  |
+|--------------------|-------|--------------------------------------------------------------------------|--------------------------|
 | stopRequestedSound | audio | the sound that should be played when a passenger presses the stop button | either mp3 or opus files |
 
 ## Example
 
-An example of the contents of the maifest looks like:
+An example of the contents of the resources.json looks like:
 
 ```
 {
@@ -55,23 +52,23 @@ An example of the contents of the maifest looks like:
 ## Fields
 ### Root
 
-| Name | Values | Description |
-| --- | --- | --- |
-| timestamp | ISO date/time stamp | Time the new manifest is released |
-| environment | test/stage/prod | Which environment the manifest applies to |
-| resources | list of type Resource | a collection of one or more resources that Ruter shares |
+| Name        | Values                | Description                                             |
+|-------------|-----------------------|---------------------------------------------------------|
+| timestamp   | ISO date/time stamp   | Time the new manifest is released                       |
+| environment | test/stage/prod       | Which environment the manifest applies to               |
+| resources   | list of type Resource | a collection of one or more resources that Ruter shares |
 
 ### Resource
 
-| Name | Values | Description |
-|------|--------|-------------|
-| name | string | names that Ruter defines, only "stopRequestedSound" is currently defined |
-| type | string | types that Ruter supports, only "audio" is currently defined |
-| contentType | MIME type | a MIME type that corresponds to the type of the resource that is shared |
-| url | URL | the location of where the resource can be fetched, the file name has a time stamp part that corresponds to its version |
-| sha256 | string | A SHA 256 hash of the resource, which can be used to verify the validity of the downloaded file |
-| version | string | a version date in ISO date/time format |
-| description | string | description of the content of the resource, e.g. the original file name of the resource; the field is optional |
+| Name        | Values    | Description                                                                                                            |
+|-------------|-----------|------------------------------------------------------------------------------------------------------------------------|
+| name        | string    | names that Ruter defines, only "stopRequestedSound" is currently defined                                               |
+| type        | string    | types that Ruter supports, only "audio" is currently defined                                                           |
+| contentType | MIME type | a MIME type that corresponds to the type of the resource that is shared                                                |
+| url         | URL       | the location of where the resource can be fetched, the file name has a time stamp part that corresponds to its version |
+| sha256      | string    | A SHA 256 hash of the resource, which can be used to verify the validity of the downloaded file                        |
+| version     | string    | a version date in ISO date/time format                                                                                 |
+| description | string    | description of the content of the resource, e.g. the original file name of the resource; the field is optional         |
 
 ## Schema and Example
 

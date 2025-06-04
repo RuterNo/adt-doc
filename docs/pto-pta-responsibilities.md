@@ -50,7 +50,7 @@
         - In cases where there are errors in production, updates can come here without having gone through stage verification.
 
 #### See also
-- [Packages](packages.md)
+- [Web content](web-content.md)
 - [Resources](resources.md)
 
 ### Ruters responsibilities:
