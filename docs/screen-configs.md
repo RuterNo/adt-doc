@@ -1,11 +1,36 @@
-# DPI Bus Monitor Screen Configuration
+# DPI Vehicle Display Screen Configuration
 
-DPI Bus-monitor supports a range of pre-defined display types depending on size of the screen, screen location and functional needs.
-These screens are accessible directly through a URL with following schema: `{BaseURL}/app/#display/{type}`, eg. `http://webserver.local/app/#display/1`.
+DPI Vehicle Display needs to be set up with two config parameters:
+
+- `CLIENT_ID` - a unique identifier for the client, used to identify the vehicle. Must be a UUIDv4.
+- `SCREEN_TYPE_ID` - a unique identifier for the screen type, used to determine the layout and content of the display.
+
+You can safely generate a UUIDv4 for the `CLIENT_ID` using OpenSSL like this:
+
+```bash
+$ uuid=$(openssl rand -hex 16)
+$ echo ${uuid:0:8}-${uuid:8:4}-${uuid:12:4}-${uuid:16:4}-${uuid:20:12}
+3d914034-f8c4-2573-19fe-49d41966d689
+```
+
+The `CLIENT_ID` and `SCREEN_TYPE_ID` are applied in the URL.
+
+- `CLIENT_ID` in the query string as `clientId=<INSERT_CLIENT_ID>`
+- `SCREEN_TYPE_ID` in the fragment as `#display/<INSERT_SCREEN_TYPE_ID>`
+
+A `PHYSICAL_ID` can also be specified, to easily identify screens on board
+
+- `PHYSICAL_ID` in the query string as `physicalId=<INSERT_PHYSICAL_ID>`
+
+The URL should be structured as follows:
+
+```
+http://webserver.local/app/?clientId=<INSERT_CLIENT_ID>&physicalId=<INSERT_PHYSICAL_ID>#display/<INSERT_SCREEN_TYPE_ID>
+```
 
 ## Overview of screen types
 
-| Id       | Content                                  | Aspect ratio | Optimal screen resolution (width x height) | Vehicle type   |
+| ID       | Content                                  | Aspect ratio | Optimal screen resolution (width x height) | Vehicle type   |
 | -------- | ---------------------------------------- | ------------ | ------------------------------------------ | -------------- |
 | 1        | Vertical journey, Public Announcement    | 32:9         | 1920x540                                   | Bus            |
 | 2        | Horizontal journey                       | 48:9         | 1920x360                                   | Bus            |
@@ -23,23 +48,19 @@ These screens are accessible directly through a URL with following schema: `{Bas
 
 \* These are approx. values and subject to change.
 
-## Distribution channels
+## Handling filtering short platform notifications for trams
 
-Additionally, for public announcements, it is possible to target specific screens by which channels they subscribe to. You define which channels to subscribe to in the URL with following schema:
-`{BaseURL}/app/#display/{type}?channels=channel_name[filter_key}=filter_value,additional_channel_name`.
+If you want to hide the "short platform" notifications on the displays at the front of the tram, you can add the following part to the query string:
 
-### Short platform
+```
+&channels=short_platform[active_cab]=c1
+```
 
-- t2-left: `{BaseURL}/app/#display/t2-left?channels=short_platform[active_cab]=c1`
-- t2-right: `{BaseURL}/app/#display/t2-right?channels=short_platform[active_cab]=c1`
+**Full example**
 
-Keep in mind that the keys and values are case-sensitive.
-
-Supported filters are:
-
-| Key        | Possible values  |
-| ---------- | ---------------- |
-| active_cab | c1, c2, inactive |
+```
+http://webserver.local/app/?clientId=3d914034-f8c4-2573-19fe-49d41966d689&physicalId=10.0.0.4&channels=short_platform[active_cab]=c1#display/t2-left
+```
 
 ## Screen configurations for bus (TaaS vehicles)
 

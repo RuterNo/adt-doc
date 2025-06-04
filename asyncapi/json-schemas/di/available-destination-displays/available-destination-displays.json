@@ -33,7 +33,7 @@
           "publicCode": {
             "$id": "#/properties/publicCode",
             "type": "string",
-            "description": "Publically-known number of the line"
+            "description": "Publicly known number of the line"
           },
           "destination": {
             "$id": "#/properties/destination",

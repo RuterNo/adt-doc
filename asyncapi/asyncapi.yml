@@ -333,21 +333,6 @@ channels:
           mqtt:
             qos: 0
             retain: false
-  sensors/wind:
-    description:
-      $ref: json-schemas/sensors/wind/wind.md
-    publish:
-      message:
-        name: Wind
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/sensors/wind/wind.json
-        examples:
-          - $ref: json-schemas/sensors/wind/wind-01.example.json
-        bindings:
-          mqtt:
-            qos: 0
-            retain: false
   di/override_attempt/destination_display:
     description:
       $ref: json-schemas/di/override_attempt/destination_display/destination-display-override.md
@@ -409,6 +394,22 @@ channels:
           mqtt:
             qos: 1
             retain: false
+  pe/dpi/connection_status:
+    description:
+      $ref: json-schemas/pe/dpi/connection_status/dpi-connection-status.md
+    publish:
+      message:
+        name: DpiConnectionStatus
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/pe/dpi/connection_status/dpi-connection-status.json
+        examples:
+          - $ref: json-schemas/pe/dpi/connection_status/dpi-connection-status-false.example.json
+          - $ref: json-schemas/pe/dpi/connection_status/dpi-connection-status-true.example.json
+        bindings:
+          mqtt:
+            qos: 1
+            retain: true
   pe/dpi/logs:
     description:
       $ref: json-schemas/pe/dpi/logs/dpi-logs.md

@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://{host}/api/adt/{version}/operational",
+      "url": "https://{host}/api/adt/v4/operational",
       "variables": {
         "host": {
           "enum": [
@@ -15,13 +15,6 @@
             "tranop-api-gateway.stage.transhub.io"
           ],
           "default": "tranop-api-gateway.stage.transhub.io"
-        },
-        "version": {
-          "enum": [
-            "v3",
-            "v4"
-          ],
-          "default": "v4"
         }
       }
     }
@@ -1773,7 +1766,9 @@
         "example": [
           "CREATE",
           "UPDATE",
-          "DELETE"
+          "DELETE",
+          "APPROVE",
+          "METADATA"
         ]
       },
       "ServiceDeviation": {
@@ -2039,11 +2034,23 @@
         "type": "object",
         "title": "ServiceMitigation",
         "properties": {
+          "id": {
+            "type": "string"
+          },
           "spec": {
             "$ref": "#/components/schemas/ServiceMitigationSpec"
           },
+          "draft": {
+            "type": "boolean"
+          },
           "lifecycle": {
             "$ref": "#/components/schemas/ServiceMitigationLifeCycleInfo"
+          },
+          "replacements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ServiceReplacement"
+            }
           }
         }
       },
@@ -2064,7 +2071,7 @@
           "result": {
             "$ref": "#/components/schemas/StatusResponse"
           },
-          "deviation": {
+          "mitigation": {
             "$ref": "#/components/schemas/ServiceMitigation"
           }
         }
@@ -2132,6 +2139,9 @@
           "action": {
             "$ref": "#/components/schemas/PostRequestType"
           },
+          "draft": {
+            "type": "boolean"
+          },
           "comment": {
             "type": "string"
           }
@@ -2177,6 +2187,25 @@
           },
           "parameters": {
             "$ref": "#/components/schemas/ServiceMitigationParameters"
+          }
+        }
+      },
+      "ServiceReplacement": {
+        "type": "object",
+        "title": "ServiceReplacement",
+        "properties": {
+          "replaced": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Journey"
+            }
+          },
+          "replacements": {
+            "type": "array",
+            "description": "A list of the replacement journeys",
+            "items": {
+              "$ref": "#/components/schemas/Journey"
+            }
           }
         }
       },

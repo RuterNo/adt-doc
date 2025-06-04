@@ -10,6 +10,7 @@ The ADT Operational API consists of three separate, but related functional areas
 1. [Journey API endpoints](#journey-api), for looking up up-to-date lines, stop points and journeys.
 2. [Assignment API endpoints](#assignment-api), for signing vehicles on and off journeys as they are being operated.
 3. [Service Deviation API endpoints](#deviation-api), for notifying about deviations from planned operations delivery.
+4. [Service Mitigation API endpoints](#mitigation-api), for mitigating deviations.
 
 ### Data Model
 
@@ -270,7 +271,7 @@ This structure is modeled as a _stop point specification_ in the API, consisting
 properties:
 
 1. `nsrQuayId`, an NSR quay identifier, such as `NSR:Quay:xxx`.
-2. `stopPointId`, an stop point id provided by the API.
+2. `stopPointId`, a stop point id provided by the API.
 
 Either, or both, of these properties may be provided to specify a stop point in an API request, but if both are
 provided they must both reference the same stop point.
@@ -1364,7 +1365,7 @@ The following types of service deviations are supported by the API:
 
 - [`DELAY`](#service-deviation---delay), indicating a delayed start of a planned service journey.
 - [`NO_SERVICE`](#service-deviation---no_service), indicating inability to service a planned service journey.
-- [`NO_SIGN_ON`](#service-deviation---no_sign_on), indicating a' service journey will be serviced, but without
+- [`NO_SIGN_ON`](#service-deviation---no_sign_on), indicating a service journey will be serviced, but without
   signing on the vehicle.
 
 ### Service Deviation Requests
@@ -1424,6 +1425,45 @@ service deviation:
 
 _Additional metadata keys may be added in the future._
 
+#### Register Metadata - After creation
+
+After a deviation is created, metadata can be added to it.
+> The metadata is structured as a list, duplicate keys are allowed.
+
+HTTP request:
+
+```bash
+POST /api/adt/v4/operational/deviation/deviations/sd-001
+{
+  "spec" : {
+    "metadata" : [ {
+      "key" : "PTO_CASE_REF",
+      "value" : "PTO-1337"
+    }, {
+      "key" : "PTO_CASE_REF",
+      "value" : "PTO-7331"
+    }, {
+      "key" : "ARBITRARY",
+      "value" : "ArbVal"
+    } ]
+  },
+  "action" : "METADATA"
+}
+```
+
+HTTP response:
+
+```bash
+200 OK
+{
+  "result" : {
+    "status" : {
+      "code" : "OK",
+      "reason" : "OK"
+    }
+  }
+}
+```
 ##### Service Deviation Parameters
 
 The service deviation parameters structure describes the functional parameters of the service deviation:
@@ -2113,6 +2153,450 @@ HTTP response:
       "created" : "2025-03-03T05:00+01:00",
       "modified" : "2025-03-03T05:15+01:00",
       "serviceDeviationId" : "840660be96fd48c7967f90cc28ac4b34"
+    }
+  }
+}
+```
+## Mitigation API
+
+The service mitigation API endpoints under `{baseURL}/mitigation/*` allows for implementing solutions to service disruptions.
+
+Mitigations represent actions taken to address service disruptions or deviations from planned service delivery.
+
+The API supports the following types of service mitigations:
+
+- [`CANCELLATION`](#mitigation---cancellation), indicating that a journey will be canceled.
+- [`REPLACEMENT_SERVICE`](#mitigation---replacement_service), indicating that a replacement service will be provided.
+- [`STANDBY_VEHICLE_PLANNED`](#mitigation---standby_vehicle_planned), indicating that a standby vehicle will be used.
+
+### Mitigation Requests
+
+To implement a solution for a service deviation, the operator should post a service mitigation request to the `{baseURL}/mitigation/mitigations` endpoint.
+
+#### Mitigation Specifications
+
+Each service mitigation request contains a _service mitigation specification_ describing the mitigation with the following properties:
+
+1. `code`, a service mitigation code describing the type of mitigation:
+   1. `CANCELLATION`, indicating a journey will be canceled.
+   2. `REPLACEMENT_SERVICE`, indicating a replacement service will be provided.
+   3. `STANDBY_VEHICLE_PLANNED`, indicating a standby vehicle will be used.
+2. `impact`, a service impact structure, describing the journeys impacted by the mitigation.
+3. `duration`, a date-time range with a `start` and `end`, describing the duration of the mitigation.
+4. `mitigates`, a list of service deviation IDs that this mitigation addresses.
+5. `metadata`, a [list of key/value pairs](#service-mitigation-metadata) for associating client-specific metadata with the mitigation, such as connecting service mitigations to internal / external systems.
+6. `parameters`, a [service mitigation parameters](#service-mitigation-parameters) structure, detailing the functional parameters of the mitigation.
+
+##### Service Mitigation Metadata
+
+The service mitigation metadata structure is a list of `key` / `value` pairs describing additional metadata about the service mitigation.
+
+###### Service Mitigation Metadata Keys
+
+The API defines a set of well-known metadata keys that may be used by clients to associate certain metadata with a service mitigation:
+
+| Key                      | Description                     |
+|--------------------------|---------------------------------|
+| `PTO_CASE_REF`           | A PTO case reference.           |
+| `PTA_CASE_REF`           | A PTA case reference.           |
+| `SERVICE_DEVIATION_REF`  | A service deviation reference.  |
+| `SERVICE_MITIGATION_REF` | A service mitigation reference. |
+
+_Additional metadata keys may be added in the future._
+
+#### Register Metadata - After creation
+
+After a mitigation is created, metadata can be added to it.
+> The metadata is structured as a list, duplicate keys are allowed.
+
+HTTP request:
+
+```bash
+POST /api/adt/v4/operational/mitigation/mitigations/service-mitigation-id-001
+{
+  "spec" : {
+    "metadata" : [ {
+      "key" : "PTO_CASE_REF",
+      "value" : "PTO-1337"
+    }, {
+      "key" : "PTO_CASE_REF",
+      "value" : "PTO-7331"
+    }, {
+      "key" : "ARBITRARY",
+      "value" : "ArbVal"
+    } ]
+  },
+  "action" : "METADATA"
+}
+```
+
+HTTP response:
+
+```bash
+200 OK
+{
+  "result" : {
+    "status" : {
+      "code" : "OK",
+      "reason" : "OK"
+    }
+  }
+}
+```
+##### Service Mitigation Parameters
+
+The service mitigation parameters structure describes the functional parameters of the service mitigation:
+
+1. `vehicleId`, optional identifier of vehicle planned to take part of the mitigation.
+2. `transportMode`, transport mode of the replacement/new journey(s). Currently, only `BUS` is supported.
+
+#### Draft Mode and Approval Process
+
+> Only applicable for `REPLACEMENT_SERVICE`
+
+Service mitigations can be created in draft mode to preview the effects before they are applied:
+
+1. `draft`, a boolean flag indicating whether the mitigation is in draft mode:
+   - When `true`, the mitigation is created but not applied, allowing for review.
+   - When `false` or not provided, the mitigation is applied immediately.
+
+For `REPLACEMENT_SERVICE` mitigations that are created as drafts, an approval process is available:
+
+1. Create the mitigation with `draft: true` to see what replacement journeys would be created without applying them.
+2. Review the proposed replacements in the response.
+3. Approve the draft mitigation by sending a request to `{baseURL}/mitigation/mitigations/{serviceMitigationId}` with `action: "APPROVE"`.
+
+Once a mitigation is created with `draft: false`, it is immediately applied and cannot be changed back to draft mode. The approval action is only applicable to mitigations that were initially created as drafts.
+
+#### Mitigation Response
+
+When a service mitigation is created or approved, the response includes:
+
+1. The mitigation specification as provided in the request.
+2. A lifecycle object with creation and modification timestamps.
+3. For `REPLACEMENT_SERVICE` mitigations, a `replacements` array containing:
+   - `replaced`: The original journeys that are being replaced.
+   - `replacements`: The new journeys that will replace the original ones.
+
+### Mitigation - CANCELLATION
+
+To signal that the impacted journey will not be serviced, a cancellation mitigation can be created.
+
+#### Cancellation - on Journey
+
+To signal that the impacted journey will not be serviced
+- a list of impacted journeys
+- a list of mitigated deviations
+
+In this example, we send a _cancellation_ mitigation request with a single journey.
+In addition, filling an optional list of ids for mitigated deviations.
+
+HTTP request:
+
+```bash
+POST /api/adt/v4/operational/mitigation/mitigations
+{
+  "spec" : {
+    "code" : "CANCELLATION",
+    "impact" : {
+      "journeys" : [ {
+        "journey" : {
+          "lineId" : "RUT:Line:001",
+          "journeyId" : "RUT:DatedServiceJourney:0001",
+          "serviceWindow" : {
+            "start" : "2025-03-03T09:00+01:00",
+            "end" : "2025-03-03T09:20+01:00"
+          }
+        }
+      } ]
+    },
+    "duration" : {
+      "start" : "2025-03-03T09:00+01:00",
+      "end" : "2025-03-03T09:20+01:00"
+    },
+    "mitigates" : [ "service-deviation-id-001" ]
+  }
+}
+```
+
+HTTP response:
+
+```bash
+201 CREATED
+{
+  "result" : {
+    "status" : {
+      "code" : "OK",
+      "reason" : "OK"
+    }
+  },
+  "mitigation" : {
+    "spec" : {
+      "code" : "CANCELLATION",
+      "impact" : {
+        "journeys" : [ {
+          "journey" : {
+            "lineId" : "RUT:Line:001",
+            "journeyId" : "RUT:DatedServiceJourney:0001",
+            "serviceWindow" : {
+              "start" : "2025-03-03T09:00+01:00",
+              "end" : "2025-03-03T09:20+01:00"
+            }
+          }
+        } ]
+      },
+      "duration" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
+      },
+      "mitigates" : [ "service-deviation-id-001" ]
+    },
+    "lifecycle" : {
+      "created" : "2025-03-03T05:05+01:00",
+      "modified" : "2025-03-03T05:05+01:00",
+      "serviceMitigationId" : "service-mitigation-unique-id"
+    }
+  }
+}
+```
+### Mitigation - REPLACEMENT_SERVICE
+
+When a service deviation occurs, a replacement service can be provided as a mitigation. This involves creating a new journey to replace the affected one.
+
+The replacement service can be created directly or through a two-step approval process:
+
+1. **Direct Creation**: Submit a mitigation with `draft: false` to immediately create and apply the replacement service.
+2. **Draft and Approval**:
+   - Submit a mitigation with `draft: true` to preview the replacement journeys.
+   - Approve the draft by submitting a request to `{baseURL}/mitigation/mitigations/{serviceMitigationId}` with `action: "APPROVE"`.
+
+#### Replacement Service - on Journey
+
+Start the process of replacing service
+
+In this example, we send a _replacement service_ mitigation request for a single journey.
+With action CREATE
+
+> Note: `draft` can be used to check what implications a mitigation might have before they are effectuated.
+
+* `draft = true`
+  * the results of the mitigation are only returned in the response. The mitigation will then have to be Approved in a separate request
+* `draft = [false | null]`
+  * the results of the mitigation are effectuated immediately and also returned in the response.
+
+ Journeys in the below HTTP response are minified to reduce vertical space in this documentation.
+
+HTTP request:
+
+```bash
+POST /api/adt/v4/operational/mitigation/mitigations
+{
+  "spec" : {
+    "code" : "REPLACEMENT_SERVICE",
+    "impact" : {
+      "journeys" : [ {
+        "journey" : {
+          "lineId" : "RUT:Line:001",
+          "journeyId" : "RUT:DatedServiceJourney:0001",
+          "serviceWindow" : {
+            "start" : "2025-03-03T09:00+01:00",
+            "end" : "2025-03-03T09:20+01:00"
+          }
+        }
+      } ]
+    },
+    "duration" : {
+      "start" : "2025-03-03T09:00+01:00",
+      "end" : "2025-03-03T09:20+01:00"
+    },
+    "mitigates" : [ "service-deviation-id-001", "service-deviation-id-002" ],
+    "parameters" : {
+      "vehicleId" : "STANDBYVEHICLE001",
+      "transportMode" : "BUS"
+    }
+  },
+  "action" : "CREATE",
+  "draft" : false
+}
+```
+
+HTTP response:
+
+```bash
+200 OK
+{
+  "result" : {
+    "status" : {
+      "code" : "OK",
+      "reason" : "OK"
+    }
+  },
+  "mitigation" : {
+    "spec" : {
+      "code" : "REPLACEMENT_SERVICE",
+      "impact" : {
+        "journeys" : [ {
+          "journey" : {
+            "lineId" : "RUT:Line:001",
+            "journeyId" : "RUT:DatedServiceJourney:0001",
+            "serviceWindow" : {
+              "start" : "2025-03-03T09:00+01:00",
+              "end" : "2025-03-03T09:20+01:00"
+            }
+          }
+        } ]
+      },
+      "duration" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
+      },
+      "mitigates" : [ "service-deviation-id-001", "service-deviation-id-002" ],
+      "parameters" : {
+        "vehicleId" : "STANDBYVEHICLE001",
+        "transportMode" : "BUS"
+      }
+    },
+    "lifecycle" : {
+      "created" : "2025-03-03T05:05+01:00",
+      "modified" : "2025-03-03T05:05+01:00",
+      "serviceMitigationId" : "service-mitigation-id-001"
+    },
+    "replacements" : [ {
+      "replaced" : [ {
+        "spec" : {
+          "lineId" : "RUT:Line:001",
+          "journeyId" : "RUT:DatedServiceJourney:0001"
+        },
+        "vehicleTaskId" : "VL1001"
+      } ],
+      "replacements" : [ {
+        "spec" : {
+          "lineId" : "RUT:Line:001",
+          "journeyId" : "RUT:DatedServiceJourney:0003"
+        },
+        "vehicleTaskId" : "VL1001"
+      } ]
+    } ]
+  }
+}
+```
+
+#### Replacement Service - Approval
+
+When a `REPLACEMENT_SERVICE` is `CREATED` as a draft it needs to be APPROVED to be effectuated
+
+In this example, we send a _replacement service_
+mitigation request with action APPROVE for a given mitigation id.
+
+The following process will be initiated:
+  * A replacement journey with transport mode `BUS` will be created
+  * The existing journey will be mitigated with `CANCELLATION`
+  * The replacement journey will be mitigated with `STANDBY_VEHICLE_PLANNED` for the supplied vehicleId
+
+HTTP request:
+
+```bash
+POST /api/adt/v4/operational/mitigation/mitigations/service-mitigation-id-001
+{
+  "action" : "APPROVE"
+}
+```
+
+HTTP response:
+
+```bash
+201 CREATED
+{
+  "result" : {
+    "status" : {
+      "code" : "OK",
+      "reason" : "OK"
+    }
+  }
+}
+```
+### Mitigation - STANDBY_VEHICLE_PLANNED
+
+When a vehicle becomes unavailable, a standby vehicle can be assigned to take over the planned journeys.
+
+#### Standby Vehicle Planned - on Journey
+
+To signal that a journey will be serviced by a stand by vehicle:
+- code `STANDBY_VEHICLE_PLANNED`
+- a list of impacted journeys
+- a list of mitigated deviations
+- a VIN for a vehicle to be used as the replacement service
+
+HTTP request:
+
+```bash
+POST /api/adt/v4/operational/mitigation/mitigations
+{
+  "spec" : {
+    "code" : "STANDBY_VEHICLE_PLANNED",
+    "impact" : {
+      "journeys" : [ {
+        "journey" : {
+          "lineId" : "RUT:Line:001",
+          "journeyId" : "RUT:DatedServiceJourney:0001",
+          "serviceWindow" : {
+            "start" : "2025-03-03T09:00+01:00",
+            "end" : "2025-03-03T09:20+01:00"
+          }
+        }
+      } ]
+    },
+    "duration" : {
+      "start" : "2025-03-03T09:00+01:00",
+      "end" : "2025-03-03T09:20+01:00"
+    },
+    "mitigates" : [ "service-deviation-id-001", "service-deviation-id-002" ],
+    "parameters" : {
+      "vehicleId" : "STANDBYVEHICLE001"
+    }
+  }
+}
+```
+
+HTTP response:
+
+```bash
+201 CREATED
+{
+  "result" : {
+    "status" : {
+      "code" : "OK",
+      "reason" : "OK"
+    }
+  },
+  "mitigation" : {
+    "spec" : {
+      "code" : "STANDBY_VEHICLE_PLANNED",
+      "impact" : {
+        "journeys" : [ {
+          "journey" : {
+            "lineId" : "RUT:Line:001",
+            "journeyId" : "RUT:DatedServiceJourney:0001",
+            "serviceWindow" : {
+              "start" : "2025-03-03T09:00+01:00",
+              "end" : "2025-03-03T09:20+01:00"
+            }
+          }
+        } ]
+      },
+      "duration" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
+      },
+      "mitigates" : [ "service-deviation-id-001", "service-deviation-id-002" ],
+      "parameters" : {
+        "vehicleId" : "STANDBYVEHICLE001"
+      }
+    },
+    "lifecycle" : {
+      "created" : "2025-03-03T05:05+01:00",
+      "modified" : "2025-03-03T05:05+01:00",
+      "serviceMitigationId" : "service-mitigation-unique-id"
     }
   }
 }
