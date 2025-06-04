@@ -2071,7 +2071,7 @@
           "result": {
             "$ref": "#/components/schemas/StatusResponse"
           },
-          "deviation": {
+          "mitigation": {
             "$ref": "#/components/schemas/ServiceMitigation"
           }
         }
