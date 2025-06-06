@@ -1,25 +1,16 @@
 ### Temperature Outdoor Message
 | Field         | Value                                                                                                     |
 |---------------|-----------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/sensors/telemetry/01000009                                       |
-| Schema        | [ telemetry.json ](json-schemas/sensors/telemetry/telemetry.json)                                         |
+| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/sensors/temperature_outdoor                                         |
+| Schema        | [ temperature-outdoor.json ](json-schemas/sensors/temperature-outdoor/temperature-outdoor.json)           |
 | Producer      | PTO                                                                                                       |
 | Consumer      | Ruter BO                                                                                                  |
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. | 
 
-Measures the external temperature around the vehicle.
+Measurement of the external temperature around the vehicle.
 
-#### Data specification
+#### Message Specifications
 
-- **Message frequency:** Once per minute (1/min)
+- **Message frequency:** Once per minute (one every 60 seconds)
 - **Unit:** Degrees Celsius (°C)
 - **Resolution:** <= 1°C
-
-#### Payload details
-
-- **Name:** Temperature outdoor
-- **ID:** 01000009
-
-| Sub ID | Name                | Value Type | Description                      |
-|:-------|:--------------------|:-----------|:---------------------------------|
-| N/A    | Temperature outdoor | float      | External temperature measurement |
