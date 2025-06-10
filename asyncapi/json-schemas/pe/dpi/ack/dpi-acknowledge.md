@@ -1,7 +1,7 @@
 ### Acknowledge Message
 | Field         | Value                                                                                                     |
 |---------------|-----------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/pe/dpi/ack                                                          |
+| Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/dpi/ack                                                  |
 | Schema        | [ dpi-acknowledge.json ](json-schemas/pe/dpi/ack/dpi-acknowledge.json)                                    |
 | Producer      | PTO, [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                          |
 | Consumer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                               |

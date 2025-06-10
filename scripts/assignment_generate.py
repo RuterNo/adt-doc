@@ -223,7 +223,7 @@ def update_meta(paths, name):
         if 'retain' not in mqtt:
             mqtt['retain'] = 'TODO'
 
-        routing_prefix = '{operatorId}/ruter' if 'publish' != meta['mode'] else 'ruter/{operatorId}'
+        routing_prefix = '{operatorId}/{authorityId}' if 'publish' != meta['mode'] else '{authorityId}/{operatorId}'
         vehicle_centric = 'vehicleCentric' not in meta or meta['vehicleCentric']
         if vehicle_centric:
             routing_prefix = routing_prefix + "/{vehicleId}"

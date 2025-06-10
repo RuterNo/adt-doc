@@ -1,7 +1,7 @@
 ### Vehicle API
 | Field         | Value                                                                                                             |
 |---------------|-------------------------------------------------------------------------------------------------------------------|
-| Central Topic | {operatorId}/ruter/{vehicleId}/adt/v4/pe/vehicle/api                                                              |
+| Central Topic | {operatorId}/{authorityId}/{vehicleId}/adt/v4/pe/vehicle/api                                                      |
 | Schema        | [ api.json ](json-schemas/pe/vehicle/api/api.json)                                                                |
 | Producer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                       |
 | Consumer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                       |

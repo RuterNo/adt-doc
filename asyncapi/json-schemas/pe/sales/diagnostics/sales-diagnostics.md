@@ -1,7 +1,7 @@
 ### RuterSalg diagnostics
 | Field         | Value                                                                                                             |
 |---------------|-------------------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/pe/sales/diagnostics                                                        |
+| Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/sales/diagnostics                                                |
 | Schema        | [ sales-diagnostics.json ](json-schemas/pe/sales/diagnostics/sales-diagnostics.json)                              |
 | Producer      | Betjent salg                                                                                                      |
 | Consumer      | Betjent salg                                                                                                      |

@@ -1,7 +1,7 @@
 ### Command Message
 | Field         | Value                                                                                                             |
 |---------------|-------------------------------------------------------------------------------------------------------------------|
-| Central Topic | {operatorId}/ruter/{vehicleId}/adt/v4/pe/dpi/command                                                              |
+| Central Topic | {operatorId}/{authorityId}/{vehicleId}/adt/v4/pe/dpi/command                                                      |
 | Schema        | [ dpi-command.json ](json-schemas/pe/dpi/command/dpi-command.json)                                                |
 | Producer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                       |
 | Consumer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                       |
