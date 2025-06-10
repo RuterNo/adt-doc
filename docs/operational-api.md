@@ -1027,6 +1027,9 @@ HTTP response:
     5. The vehicle system updates its information based on the response.
     6. The vehicle is now in an assigned state and ready for operation.
 
+For all sign-ons the structure `mqttRouting` is functionally required.
+Info provided in this structure will define how the traffic authority will communicate back to the operator via the mqtt protocol.
+
 #### Sign-On - Single Journey
 
 To sign a vehicle on a single journey, an attempt request with a single
@@ -1039,6 +1042,11 @@ POST /api/adt/v4/operational/assignment/attempts
 {
   "vehicleId" : "VI00TEST001",
   "signOn" : {
+    "mqttRouting" : {
+      "operatorId" : "PTO",
+      "authorityId" : "PTA",
+      "vehicleId" : "VI00TEST001"
+    },
     "journeys" : [ {
       "journey" : {
         "lineId" : "RUT:Line:001",
@@ -1114,6 +1122,11 @@ POST /api/adt/v4/operational/assignment/attempts
 {
   "vehicleId" : "VI00TEST001",
   "signOn" : {
+    "mqttRouting" : {
+      "operatorId" : "PTO",
+      "authorityId" : "PTA",
+      "vehicleId" : "VI00TEST001"
+    },
     "journeys" : [ {
       "calls" : [ {
         "stopPoint" : {
