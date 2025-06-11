@@ -168,7 +168,6 @@ channels:
         examples:
           - $ref: json-schemas/sensors/telemetry/temperature-indoor/temperature-indoor-01.example.json
           - $ref: json-schemas/sensors/telemetry/charger/charger-01.example.json
-          - $ref: json-schemas/sensors/telemetry/windscreen-wiper-active/windscreen-wiper-active-01.example.json
           - $ref: json-schemas/sensors/telemetry/state-of-charge/state-of-charge-01.example.json
           - $ref: json-schemas/sensors/telemetry/state-of-charge/state-of-charge-02.example.json
           - $ref: json-schemas/sensors/telemetry/state-of-charge/state-of-charge-03.example.json
@@ -221,20 +220,20 @@ channels:
           mqtt:
             qos: 0
             retain: false
-  sensors/telemetry/01000007:
+  sensors/windscreen_wiper:
     description:
-      $ref: json-schemas/sensors/telemetry/windscreen-wiper-active/windscreen-wiper-active.md
+      $ref: json-schemas/sensors/windscreen-wiper/windscreen-wiper.md
     publish:
       message:
         name: Telemetry
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/sensors/telemetry/telemetry.json
+          $ref: json-schemas/sensors/windscreen-wiper/windscreen-wiper.json
         examples:
-          - $ref: json-schemas/sensors/telemetry/windscreen-wiper-active/windscreen-wiper-active-01.example.json
+          - $ref: json-schemas/sensors/windscreen-wiper/windscreen-wiper-01.example.json
         bindings:
           mqtt:
-            qos: 0
+            qos: 1
             retain: false
   sensors/temperature_outdoor:
     description:
