@@ -10,6 +10,6 @@
 
 Describes the activity of the windscreen wipers.
 
-#### Data specification
+#### Message Specifications
 
 - **Message frequency:** On change
