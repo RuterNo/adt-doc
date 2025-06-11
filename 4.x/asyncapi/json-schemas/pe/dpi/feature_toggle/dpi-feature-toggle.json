@@ -27,8 +27,11 @@
       "$id": "#/properties/features",
       "type": "object",
       "description": "Active and inactive features",
-      "additionalProperties": {
-        "type": "boolean"
+      "additionalProperties": true,
+      "properties": {
+        "additionalProperties": {
+          "type": "boolean"
+        }
       }
     }
   }
