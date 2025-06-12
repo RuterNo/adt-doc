@@ -1398,6 +1398,7 @@ following properties:
       signing on.
 2. `reason`, a structure containing the [reason code](#service-deviation-reason-codes) for the deviation and an
    optional `comment` describing further details about the reason.
+   The comment is for internal use by PTO and PTA and is not used for travel information.
 3. `impact`, a [service deviation impact](#service-deviation-impact) structure, describing the lines, journeys, stop
    points and service windows impacted by the deviation.
 4. `duration`, a date-time range with a `start` and `end`, describing the duration of the deviation.
@@ -1484,6 +1485,7 @@ The service deviation parameters structure describes the functional parameters o
 1. `vehicleId`, optional identifier of vehicle to which the service deviation applies.
 2. `delayMinutes`, number of minutes of expected delay, relative to planned arrival / departure time.
 3. `operatorExempt`,  flag indicating that operator is exempt from consequences of reported service deviation.
+    This is for internal use by PTO and PTA and is not used for travel information.
 
 ### Service Deviation - DELAY
 
