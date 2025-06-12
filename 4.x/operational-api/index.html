@@ -4359,7 +4359,8 @@ following properties:</p>
 <li><code>NO_SIGN_ON</code>, indicating a journey will be serviced by the operator, but the servicing vehicle will not be
       signing on.</li>
 <li><code>reason</code>, a structure containing the <a href="#service-deviation-reason-codes">reason code</a> for the deviation and an
-   optional <code>comment</code> describing further details about the reason.</li>
+   optional <code>comment</code> describing further details about the reason.
+   The comment is for internal use by PTO and PTA and is not used for travel information.</li>
 <li><code>impact</code>, a <a href="#service-deviation-impact">service deviation impact</a> structure, describing the lines, journeys, stop
    points and service windows impacted by the deviation.</li>
 <li><code>duration</code>, a date-time range with a <code>start</code> and <code>end</code>, describing the duration of the deviation.</li>
@@ -4452,7 +4453,8 @@ service deviation:</p>
 <ol>
 <li><code>vehicleId</code>, optional identifier of vehicle to which the service deviation applies.</li>
 <li><code>delayMinutes</code>, number of minutes of expected delay, relative to planned arrival / departure time.</li>
-<li><code>operatorExempt</code>,  flag indicating that operator is exempt from consequences of reported service deviation.</li>
+<li><code>operatorExempt</code>,  flag indicating that operator is exempt from consequences of reported service deviation.
+    This is for internal use by PTO and PTA and is not used for travel information.</li>
 </ol>
 <h3 id="service-deviation-delay">Service Deviation - DELAY<a class="headerlink" href="#service-deviation-delay" title="Permanent link">&para;</a></h3>
 <h4 id="delay-on-journey">Delay: on Journey<a class="headerlink" href="#delay-on-journey" title="Permanent link">&para;</a></h4>
