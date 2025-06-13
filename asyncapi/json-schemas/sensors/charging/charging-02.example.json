@@ -6,7 +6,6 @@
     "sensorId": "XB7F-9T2M-L4FC-3R8Q",
     "messageNumber": 42,
     "isConnected": true,
-    "isCharging": false,
-    "chargingEffect": 0.0
+    "isCharging": false
   }
 }

@@ -167,22 +167,6 @@ channels:
           $ref: json-schemas/sensors/telemetry/telemetry.json
         examples:
           - $ref: json-schemas/sensors/telemetry/temperature-indoor/temperature-indoor-01.example.json
-          - $ref: json-schemas/sensors/telemetry/charger/charger-01.example.json
-        bindings:
-          mqtt:
-            qos: 0
-            retain: false
-  sensors/telemetry/0001FF25:
-    description:
-      $ref: json-schemas/sensors/telemetry/charger/charger.md
-    publish:
-      message:
-        name: Telemetry
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/sensors/telemetry/telemetry.json
-        examples:
-          - $ref: json-schemas/sensors/telemetry/charger/charger-01.example.json
         bindings:
           mqtt:
             qos: 0
