@@ -1,0 +1,8 @@
+{
+  "mode": "publish",
+  "mqtt": {
+    "qos": 0,
+    "retain": false,
+    "topic": "ruter/{operatorId}/{vehicleId}/adt/v4/sensors/state_of_charge"
+  }
+}

@@ -168,9 +168,6 @@ channels:
         examples:
           - $ref: json-schemas/sensors/telemetry/temperature-indoor/temperature-indoor-01.example.json
           - $ref: json-schemas/sensors/telemetry/charger/charger-01.example.json
-          - $ref: json-schemas/sensors/telemetry/state-of-charge/state-of-charge-01.example.json
-          - $ref: json-schemas/sensors/telemetry/state-of-charge/state-of-charge-02.example.json
-          - $ref: json-schemas/sensors/telemetry/state-of-charge/state-of-charge-03.example.json
         bindings:
           mqtt:
             qos: 0
@@ -205,17 +202,17 @@ channels:
           mqtt:
             qos: 0
             retain: false
-  sensors/telemetry/01000005:
+  sensors/telemetry/state_of_charge:
     description:
-      $ref: json-schemas/sensors/telemetry/state-of-charge/state-of-charge.md
+      $ref: json-schemas/sensors/state-of-charge/state-of-charge.md
     publish:
       message:
-        name: Telemetry
+        name: StateOfCharge
         schemaFormat: application/schema+json;version=draft-07
         payload:
-          $ref: json-schemas/sensors/telemetry/telemetry.json
+          $ref: json-schemas/sensors/state-of-charge/state-of-charge.json
         examples:
-          - $ref: json-schemas/sensors/telemetry/state-of-charge/state-of-charge-01.example.json
+          - $ref: json-schemas/sensors/state-of-charge/state-of-charge-01.example.json
         bindings:
           mqtt:
             qos: 0
