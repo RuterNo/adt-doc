@@ -202,7 +202,7 @@ channels:
           mqtt:
             qos: 0
             retain: false
-  sensors/telemetry/state_of_charge:
+  sensors/state_of_charge:
     description:
       $ref: json-schemas/sensors/state-of-charge/state-of-charge.md
     publish:
