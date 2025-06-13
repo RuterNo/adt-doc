@@ -22,9 +22,9 @@ temperature zones along the vehicle’s length and its vertical level if applica
 
 To support consistent interpretation across vehicle types, each temperature message includes:
 
-| Field   | Type  | Description                                                                                                                                 |
-|---------|-------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| Field   | Type  | Description                                                                                                                                   |
+|---------|-------|-----------------------------------------------------------------------------------------------------------------------------------------------|
 | `zone`  | `Int` | Position along the vehicle’s length. Divided into zones (starting from front = `1`). Zone `0` is reserved exclusively for the driver's cabin. |
-| `level` | `Int` | Vertical level of the sensor. Only applicable for multi-level vehicles. If not provided, it will be interpreted as `1` (platform level).    |
+| `level` | `Int` | Vertical level of the sensor. Only applicable for multi-level vehicles. If not provided, it will be interpreted as `1` (platform level).      |
 
 ![Temperature Zones](json-schemas/sensors/temperature-indoor/temperature-zones.excalidraw.png)
