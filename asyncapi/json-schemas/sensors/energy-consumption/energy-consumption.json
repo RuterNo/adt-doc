@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://schemas.ruter.no/adt/ota/api/v4.0/sensors/telemetry/energy-consumption.json",
   "type": "object",
-  "title": "Energy Consumption",
+  "title": "EnergyConsumption",
   "description": "Schema for energy consumption sensor data. The value represents accumulated energy consumption in kilowatt-hours (kWh), including all onboard systems such as HVAC. The value should always accumulate over time.",
   "required": [
     "eventTimestamp",
