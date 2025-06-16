@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://schemas.ruter.no/adt/ota/api/v4.0/sensors/temperature-outdoor/temperature-outdoor.json",
   "type": "object",
-  "title": "Temperature Outdoor",
+  "title": "TemperatureOutdoor",
   "description": "Schema for outdoor temperature sensor data",
   "required": [
     "eventTimestamp",
@@ -13,27 +13,32 @@
   ],
   "properties": {
     "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
       "type": "string",
       "format": "date-time",
       "description": "ISO 8601 timestamp in UTC (must end with 'Z'), indicating when the measurement was taken",
       "example": "2025-05-13T12:00:00.000Z"
     },
     "traceId": {
+      "$id": "#/properties/traceId",
       "type": "string",
       "description": "Unique identifier for tracing this message",
       "example": "baf3d8ac-1234-4e0c-9e9e-abc123def456"
     },
     "messageNumber": {
+      "$id": "#/properties/messageNumber",
       "type": "integer",
       "description": "Sequence number, increased by one for each new message",
       "example": 27
     },
     "sensorId": {
+      "$id": "#/properties/sensorId",
       "type": "string",
       "description": "Unique identifier for the sensor. Typically the serial number (S/N) from the sensor.",
       "example": "SN-456789"
     },
     "value": {
+      "$id": "#/properties/value",
       "type": "number",
       "description": "Outdoor temperature in degrees Celsius (°C), with a resolution better or equal to 1°C",
       "example": 15.4
