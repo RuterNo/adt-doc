@@ -12,7 +12,7 @@ Describes the current charge level of the vehicle's battery.
 
 #### Message Specifications
 
-- **Message frequency:** Once per minute (1/min)
+- **Message frequency:** Once per minute (every 60 seconds)
 - **Unit:** Percentage (%)
 - **Resolution:** <= 1%
 - **Range:** 0% - 100%
