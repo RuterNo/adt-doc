@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.ruter.no/adt/ota/api/v4.0/sensors/telemetry/temperature-indoor.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/sensors/temperature-indoor/temperature-indoor.json",
   "type": "object",
   "title": "TemperatureIndoor",
   "description": "Schema for indoor temperature sensor data. The value represents the measured air temperature in degrees Celsius (°C) at a specific location within the vehicle. Location is defined by the car, zone (front, middle, rear, driver cabin), and level (e.g. below platform, platform, or upper level).",

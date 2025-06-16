@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.ruter.no/adt/ota/api/v4.0/sensors/accelerometer/accelerometer.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/sensors/accelerometer/accelerometer.json",
   "type": "object",
   "title": "Accelerometer",
   "description": "Schema for accelerometer sensor data. Accelerations are measured along the sensor's axes: X points forward, Y points left, and Z points upward. 'Forward' is defined relative to the vehicle's front (as configured or physically marked). All acceleration values are in units of g (where 1g ≈ 9.81 m/s²). Any divergence from the standard must be specified using the optional axis orientation overrides (fields xOrientation, yOrientation, and zOrientation).",
