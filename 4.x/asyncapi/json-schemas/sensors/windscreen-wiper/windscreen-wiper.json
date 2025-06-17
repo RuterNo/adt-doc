@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/sensors/windscreen-wiper.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/sensors/windscreen-wiper/windscreen-wiper.json",
   "type": "object",
   "title": "WindscreenWiper",
   "description": "Schema for windscreen wiper sensor data. The value represents the the active status of the windscreen wipers",
