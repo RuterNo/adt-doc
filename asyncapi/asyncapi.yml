@@ -261,7 +261,7 @@ channels:
           - $ref: json-schemas/sensors/charging/charging-03.example.json
         bindings:
           mqtt:
-            qos: 0
+            qos: 1
             retain: false
   sensors/temperature_water:
     description:
