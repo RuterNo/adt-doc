@@ -32,8 +32,8 @@
       "type": "string",
       "description": "Ruter's internal journey reference"
     },
-    "assignmentRef": {
-      "$id": "#/properties/assignmentRef",
+    "assignmentId": {
+      "$id": "#/properties/assignmentId",
       "type": "string",
       "description": "Ruter's internal assignment reference"
     },
