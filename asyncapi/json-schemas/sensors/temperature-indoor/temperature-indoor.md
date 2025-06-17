@@ -28,7 +28,7 @@ To support consistent interpretation across vehicle types, each temperature mess
 | `level` | `Int` | Vertical level of the sensor. Only applicable for multi-level vehicles. If not provided, it will be interpreted as `1` (platform level).      |
 
 > **Note:** All zones are approximate and not intended to represent exact physical locations. They serve to provide a
-> general understanding of where a sensor is situated within the vehicle.
+> general understanding of where a sensor is located within the vehicle.
 
 
 ![Temperature Zones](json-schemas/sensors/temperature-indoor/temperature-zones.excalidraw.png)
