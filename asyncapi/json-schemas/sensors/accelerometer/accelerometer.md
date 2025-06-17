@@ -6,7 +6,7 @@
 | Schema        | [ accelerometer.json ](json-schemas/sensors/accelerometer/accelerometer.json)                             |
 | Producer      | PTO                                                                                                       |
 | Consumer      | PTA Backoffice                                                                                            |
-| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. | 
+| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.  |
 
 Expects a message that provides aggregated acceleration measurements over a 10-second interval. Each payload must
 include the **minimum**, **maximum**, and **average** acceleration values along the X, Y, and Z axes.

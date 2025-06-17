@@ -9,5 +9,6 @@
     "params": [
       "deviceRef"
     ]
-  }
+  },
+  "service-level": "internal"
 }

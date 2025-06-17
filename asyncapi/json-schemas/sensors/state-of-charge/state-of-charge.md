@@ -6,7 +6,7 @@
 | Schema        | [ state-of-charge.json ](json-schemas/sensors/state-of-charge/state-of-charge.json)                       |
 | Producer      | PTO                                                                                                       |
 | Consumer      | PTA Backoffice                                                                                            |
-| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. | 
+| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.  |
 
 Describes the current charge level of the vehicle's battery.
 

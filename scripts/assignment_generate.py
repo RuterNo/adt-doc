@@ -216,6 +216,8 @@ def update_meta(paths, name):
     meta_path = paths['meta']
     if meta_path:
         meta = read_json(meta_path)
+        if 'service-level' not in meta:
+            meta['service-level'] = 'external'
         if 'mqtt' not in meta:
             meta['mqtt'] = {
                 'qos': 'TODO',

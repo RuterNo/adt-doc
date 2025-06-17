@@ -6,5 +6,6 @@
     "retain": false,
     "qos": 1,
     "topic": "{operatorId}/{authorityId}/{vehicleId}/adt/v4/pe/audio"
-  }
+  },
+  "service-level": "external"
 }

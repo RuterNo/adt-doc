@@ -5,7 +5,7 @@
 | Schema        | [ odometer.json ](json-schemas/sensors/odometer/odometer.json)                                            |
 | Producer      | PTO                                                                                                       |
 | Consumer      | PTA Backoffice                                                                                            |
-| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. | 
+| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.  |
 
 Describes an odometer value in meters based on total vehicle distance or similar. Absolute value of less importance but
 should be increasing within the scope of a journey.

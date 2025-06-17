@@ -4,5 +4,6 @@
     "retain": true,
     "qos": 1,
     "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/sales/diagnostics"
-  }
+  },
+  "service-level": "internal"
 }

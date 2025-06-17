@@ -6,7 +6,7 @@
 | Schema        | [ windscreen-wiper.json ](json-schemas/sensors/windscreen-wiper/windscreen-wiper.json)                    |
 | Producer      | PTO                                                                                                       |
 | Consumer      | PTA Backoffice                                                                                            |
-| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. | 
+| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.  |
 
 Describes the activity of the windscreen wipers.
 

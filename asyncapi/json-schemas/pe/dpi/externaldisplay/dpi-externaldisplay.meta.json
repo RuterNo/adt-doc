@@ -4,5 +4,6 @@
     "retain": true,
     "qos": 1,
     "topic": "{operatorId}/{authorityId}/{vehicleId}/adt/v4/pe/dpi/externaldisplay"
-  }
+  },
+  "service-level": "external"
 }

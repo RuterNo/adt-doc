@@ -5,6 +5,6 @@
 | Schema        | [ vix-cardreader_diagnostics.json ](json-schemas/pe/cardreader-diagnostics/vix/vix-cardreader_diagnostics.json)   |
 | Producer      | VIX                                                                                                               |
 | Consumer      | PTA Backoffice                                                                                                    |
-| Service Level | ⛔ Ruter internal API. No restrictions apply. Api may be removed or modified freely by Ruter within major version. | 
+| Service Level | ⛔ Ruter internal API. No restrictions apply. Api may be removed or modified freely by Ruter within major version.  |
 
 Diagnostics message sent from any Vix-validator running Ruter-firmware in the vehicle. Can be used by both PTA and PTO to monitor the operational status of these units.

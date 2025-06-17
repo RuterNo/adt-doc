@@ -9,5 +9,6 @@
     "params": [
       "sensorId"
     ]
-  }
+  },
+  "service-level": "external"
 }

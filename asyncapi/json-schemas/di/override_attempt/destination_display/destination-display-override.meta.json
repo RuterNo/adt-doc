@@ -6,5 +6,6 @@
     "retain": false,
     "qos": 1,
     "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v4/di/override_attempt/destination_display"
-  }
+  },
+  "service-level": "external"
 }

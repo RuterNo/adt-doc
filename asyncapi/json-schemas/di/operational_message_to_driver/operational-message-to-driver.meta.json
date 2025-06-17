@@ -4,5 +4,6 @@
     "retain": false,
     "qos": 1,
     "topic": "{operatorId}/{authorityId}/{vehicleId}/adt/v4/di/operational_message_to_driver"
-  }
+  },
+  "service-level": "external"
 }

@@ -6,5 +6,6 @@
     "qos": 1,
     "retain": false,
     "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/door_lock"
-  }
+  },
+  "service-level": "external"
 }

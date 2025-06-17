@@ -6,7 +6,7 @@
 | Schema        | [ temperature-indoor.json ](json-schemas/sensors/temperature-indoor/temperature-indoor.json)              |
 | Producer      | PTO                                                                                                       |
 | Consumer      | PTA Backoffice                                                                                            |
-| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. | 
+| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.  |
 
 Describes the measured air temperature inside a vehicle. Each message corresponds to one
 physical sensor and includes contextual information that indicates its approximate location, based on defined

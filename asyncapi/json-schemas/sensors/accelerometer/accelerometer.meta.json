@@ -6,5 +6,6 @@
     "qos": 0,
     "retain": false,
     "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/accelerometer"
-  }
+  },
+  "service-level": "external"
 }

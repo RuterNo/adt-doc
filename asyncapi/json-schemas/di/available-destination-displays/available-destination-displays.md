@@ -6,7 +6,7 @@
 | Schema        | [ available-destination-displays.json ](json-schemas/di/available-destination-displays/available-destination-displays.json) |
 | Producer      | [Ruter Assignment](https://github.com/orgs/RuterNo/teams/assignment)                                                        |
 | Consumer      | PTO                                                                                                                         |
-| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.                   | 
+| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.                    |
 
 Provides a list of available destination displays. The list should be used for external displays, in case
 the vehicle has lost connection to the backoffice.
