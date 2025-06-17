@@ -32,6 +32,11 @@
       "type": "string",
       "description": "Ruter's internal journey reference"
     },
+    "assignmentId": {
+      "$id": "#/properties/assignmentId",
+      "type": "string",
+      "description": "Ruter's internal assignment reference"
+    },
     "routeChangeTimestamp": {
       "$id": "#/properties/routeChangeTimestamp",
       "type": "string",
