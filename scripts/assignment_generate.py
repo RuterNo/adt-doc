@@ -297,7 +297,7 @@ def update_async_api(async_api, meta, paths):
                 "payload": {
                     "$ref": project_relative(paths['schema_path'])
                 },
-                "examples": [{"$ref": project_relative(p)} for p in paths['examples']],
+                "examples": [{"$ref": project_relative(p)} for p in sorted(paths['examples'])],
                 "bindings": {
                     "mqtt": {
                         "qos": meta['mqtt']['qos'] if meta else None,
