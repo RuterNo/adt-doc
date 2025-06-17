@@ -94,8 +94,8 @@ def resolve_schemas():
         examples = [str(p) for p in schema_path.parent.rglob(f"*example.json") if schema_path.stem in str(p)]
         examples.extend([str(p) for p in PROJECT_ROOT.rglob(f"*{schema_path.name}*") if 'examples' in str(p)])
         examples.extend([str(p) for p in PROJECT_ROOT.rglob(f"*{schema_path.stem}_*.json") if 'examples' in str(p)])
-        meta = [str(p) for p in PROJECT_ROOT.rglob(f"*{schema_path.stem}.meta.json")]
-        doc = [str(p) for p in PROJECT_ROOT.rglob(f"*{schema_path.stem}.md")]
+        meta = [str(p) for p in PROJECT_ROOT.rglob(f"*/{schema_path.stem}.meta.json")]
+        doc = [str(p) for p in PROJECT_ROOT.rglob(f"*/{schema_path.stem}.md")]
 
         if not meta:
             if CREATE_META_IF_MISSING:
