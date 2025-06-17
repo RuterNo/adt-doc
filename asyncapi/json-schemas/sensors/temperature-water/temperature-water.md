@@ -2,7 +2,7 @@
 
 | Field         | Value                                                                                                     |
 |---------------|-----------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/sensors/temperature/water                                           |
+| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/sensors/temperature_water                                           |
 | Schema        | [ temperature-water.json ](json-schemas/sensors/temperature-water/temperature-water.json)                 |
 | Producer      | PTO                                                                                                       |
 | Consumer      | Ruter BO                                                                                                  |

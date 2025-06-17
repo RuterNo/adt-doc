@@ -3,6 +3,6 @@
   "mqtt": {
     "qos": 0,
     "retain": false,
-    "topic": "ruter/{operatorId}/{vehicleId}/adt/v3/sensors/telemetry/0100000A"
+    "topic": "ruter/{operatorId}/{vehicleId}/adt/v4/sensors/energy_consumption"
   }
 }

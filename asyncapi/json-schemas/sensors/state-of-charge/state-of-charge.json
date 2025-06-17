@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.ruter.no/adt/ota/api/v4.0/sensors/state-of-charge/state-of-charge.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/sensors/state-of-charge/state-of-charge.json",
   "type": "object",
   "title": "StateOfCharge",
   "description": "Schema for state of charge sensor data. The value represents the battery's charge level as a percentage (%), typically ranging from 0 to 100. The value should generally increase while charging and decrease during operation.",

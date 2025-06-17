@@ -153,28 +153,12 @@ channels:
           mqtt:
             qos: 1
             retain: false
-  sensors/telemetry/{telemetryId}:
-    description:
-      $ref: json-schemas/sensors/telemetry/telemetry.md
-    parameters:
-      telemetryId:
-        $ref: '#/components/parameters/telemetryId'
-    publish:
-      message:
-        name: Telemetry
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/sensors/telemetry/telemetry.json
-        bindings:
-          mqtt:
-            qos: 0
-            retain: false
   sensors/temperature_indoor:
     description:
       $ref: json-schemas/sensors/temperature-indoor/temperature-indoor.md
     publish:
       message:
-        name: Telemetry
+        name: TemperatureIndoor
         schemaFormat: application/schema+json;version=draft-07
         payload:
           $ref: json-schemas/sensors/temperature-indoor/temperature-indoor.json
@@ -205,7 +189,7 @@ channels:
       $ref: json-schemas/sensors/windscreen-wiper/windscreen-wiper.md
     publish:
       message:
-        name: Telemetry
+        name: WindscreenWiper
         schemaFormat: application/schema+json;version=draft-07
         payload:
           $ref: json-schemas/sensors/windscreen-wiper/windscreen-wiper.json
@@ -245,7 +229,7 @@ channels:
           mqtt:
             qos: 0
             retain: false
-  sensors/telemetry/accelerometer:
+  sensors/accelerometer:
     description:
       $ref: json-schemas/sensors/accelerometer/accelerometer.md
     publish:
@@ -708,10 +692,6 @@ components:
         type: string
     sensorId:
       description: Identification of the physical sensor, e.g. serial number
-      schema:
-        type: string
-    telemetryId:
-      description: An unique ID of the telemetry type.
       schema:
         type: string
     deviceRef:

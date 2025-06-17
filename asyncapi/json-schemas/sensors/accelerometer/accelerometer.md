@@ -13,7 +13,7 @@ include the **minimum**, **maximum**, and **average** acceleration values along 
 
 #### Message Specifications
 
-- **Message Frequency:** 6 messages per minute (one every 10 seconds)
+- **Message Frequency:** 6 messages per minute (every 10 seconds)
 - **Unit:** All acceleration values are reported in **g** (1 g ≈ 9.81 m/s²)
 - **Sampling Bandwidth:** ≥ 100 Hz
 - **Resolution:** ≤ 0.01 g
