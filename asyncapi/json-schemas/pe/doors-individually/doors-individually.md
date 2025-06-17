@@ -1,7 +1,7 @@
 ### DoorsIndividually Message
 | Field         | Value                                                                                                       |
 |---------------|-------------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/pe/doors_individually                                                 |
+| Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/doors_individually                                         |
 | Schema        | [ doors-individually.json ](json-schemas/pe/doors-individually/doors-individually.json)                     |
 | Producer      | PTO                                                                                                         |
 | Consumer      | Ruter BO                                                                                                    |

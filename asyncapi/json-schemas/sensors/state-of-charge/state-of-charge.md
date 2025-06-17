@@ -2,7 +2,7 @@
 
 | Field         | Value                                                                                                     |
 |---------------|-----------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/sensors/state_of_charge                                             |
+| Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/state_of_charge                                     |
 | Schema        | [ state-of-charge.json ](json-schemas/sensors/state-of-charge/state-of-charge.json)                       |
 | Producer      | PTO                                                                                                       |
 | Consumer      | Ruter BO                                                                                                  |

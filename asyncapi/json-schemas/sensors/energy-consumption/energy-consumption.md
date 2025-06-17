@@ -2,7 +2,7 @@
 
 | Field         | Value                                                                                                     |
 |---------------|-----------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/sensors/energy_consumption                                          |
+| Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/energy_consumption                                  |
 | Schema        | [ energy-consumption.json ](json-schemas/sensors/energy-consumption/energy-consumption.json)              |
 | Producer      | PTO                                                                                                       |
 | Consumer      | Ruter BO                                                                                                  |

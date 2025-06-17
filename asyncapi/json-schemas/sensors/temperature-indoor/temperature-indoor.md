@@ -2,7 +2,7 @@
 
 | Field         | Value                                                                                                     |
 |---------------|-----------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/sensors/temperature_indoor                                          |
+| Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/temperature_indoor                                  |
 | Schema        | [ temperature-indoor.json ](json-schemas/sensors/temperature-indoor/temperature-indoor.json)              |
 | Producer      | PTO                                                                                                       |
 | Consumer      | Ruter BO                                                                                                  |

@@ -682,8 +682,12 @@ channels:
             retain: true
 components:
   parameters:
+    authorityId:
+      description: The ID of the Public Transport Authority / PTA
+      schema:
+        type: string
     operatorId:
-      description: The ID of the operator
+      description: The ID of the Public Transport Operator / PTO
       schema:
         type: string
     vehicleId:

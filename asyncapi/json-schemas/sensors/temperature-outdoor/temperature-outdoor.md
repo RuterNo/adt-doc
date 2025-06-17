@@ -2,7 +2,7 @@
 
 | Field         | Value                                                                                                     |
 |---------------|-----------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/sensors/temperature_outdoor                                         |
+| Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/temperature_outdoor                                 |
 | Schema        | [ temperature-outdoor.json ](json-schemas/sensors/temperature-outdoor/temperature-outdoor.json)           |
 | Producer      | PTO                                                                                                       |
 | Consumer      | Ruter BO                                                                                                  |

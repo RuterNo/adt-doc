@@ -2,7 +2,7 @@
 
 | Field         | Value                                                                                                     |
 |---------------|-----------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/sensors/accelerometer                                               |
+| Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/accelerometer                                       |
 | Schema        | [ accelerometer.json ](json-schemas/sensors/accelerometer/accelerometer.json)                             |
 | Producer      | PTO                                                                                                       |
 | Consumer      | Ruter BO                                                                                                  |

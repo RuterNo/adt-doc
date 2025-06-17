@@ -4,7 +4,7 @@
 ### Operator responsibilities:
 - Make MQTT bridge available for each screen over Websockets
 - Listen and publish on local MQTT topics
-- NOTE: All data to be sent to Ruter Backoffice must be made available on MQTT (for example: AVL/GPS position)
+- NOTE: All data to be sent to the PTA Backoffice must be made available on MQTT (for example: AVL/GPS position)
 
 ### Ruters responsibilities:
 - Send messages to the MQTT bridge for real-time information
@@ -129,5 +129,3 @@
 
 ### Ruters responsibilities:
 - Answer and investigate error messages that are reported
-
-

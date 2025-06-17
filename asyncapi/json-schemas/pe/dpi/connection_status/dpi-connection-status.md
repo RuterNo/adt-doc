@@ -1,7 +1,7 @@
 ### Connection Status Message
 | Field         | Value                                                                                                             |
 |---------------|-------------------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/pe/dpi/connection_status                                                    |
+| Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/dpi/connection_status                                            |
 | Schema        | [ dpi-connection-status.json ](json-schemas/pe/dpi/connection_status/dpi-connection-status.json)                  |
 | Producer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                       |
 | Consumer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                       |

@@ -1,7 +1,7 @@
 {
   "mode": "publish",
   "mqtt": {
-    "topic": "ruter/{operatorId}/{vehicleId}/adt/v4/sensors/location",
+    "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/location",
     "qos": 0,
     "retain": false
   }
