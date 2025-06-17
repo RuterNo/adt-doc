@@ -1,6 +1,7 @@
 {
   "mode": "publish",
   "consumer": "pta",
+  "producer": "VIX",
   "mqtt": {
     "retain": false,
     "qos": 0,

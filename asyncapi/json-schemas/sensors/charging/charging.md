@@ -5,7 +5,7 @@
 | Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/charging                                            |
 | Schema        | [ charging.json ](json-schemas/sensors/charging/charging.json)                                            |
 | Producer      | PTO                                                                                                       |
-| Consumer      | Ruter BO                                                                                                  |
+| Consumer      | PTA Backoffice                                                                                            |
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. |
 
 Describes the charging status and details of an electric vehicle. The message includes information about whether the
