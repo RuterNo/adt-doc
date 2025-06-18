@@ -154,7 +154,7 @@
                     "id": {
                       "$id": "#/properties/calls/items/properties/connections/items/properties/line/properties/id",
                       "type": "string",
-                      "description": "Ruter's id for the line",
+                      "description": "PTA's id for the line",
                       "examples": [
                         "RUT:Line:31"
                       ]
