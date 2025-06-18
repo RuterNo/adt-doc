@@ -110,7 +110,7 @@
             "id": {
               "$id": "#/properties/tariffZones/properties/onCurrentStop/properties/id",
               "type": "string",
-              "description": "The Ruter zone id, like RUT:TariffZone:228"
+              "description": "The PTA zone id, like RUT:TariffZone:228"
             },
             "name": {
               "$id": "#/properties/tariffZones/properties/onCurrentStop/properties/name",
@@ -144,7 +144,7 @@
             "id": {
               "$id": "#/properties/tariffZones/properties/onNextStop/properties/id",
               "type": "string",
-              "description": "The Ruter zone id, like RUT:TariffZone:228"
+              "description": "The PTA zone id, like RUT:TariffZone:228"
             },
             "name": {
               "$id": "#/properties/tariffZones/properties/onNextStop/properties/name",

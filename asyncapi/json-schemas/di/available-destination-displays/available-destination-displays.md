@@ -4,7 +4,7 @@
 |---------------|-----------------------------------------------------------------------------------------------------------------------------|
 | Central Topic | {operatorId}/{authorityId}/backoffice/adt/v4/di/available_destination_displays                                              |
 | Schema        | [ available-destination-displays.json ](json-schemas/di/available-destination-displays/available-destination-displays.json) |
-| Producer      | [Ruter Assignment](https://github.com/orgs/RuterNo/teams/assignment)                                                        |
+| Producer      | [PTA Assignment](https://github.com/orgs/RuterNo/teams/assignment)                                                          |
 | Consumer      | PTO                                                                                                                         |
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.                    |
 
