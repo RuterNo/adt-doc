@@ -3,6 +3,7 @@
 |---------------|-------------------------------------------------------------------------------------------------------------------|
 | Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/cardreader_diagnostics/vix/{deviceRef}                           |
 | Schema        | [ vix-cardreader_diagnostics.json ](json-schemas/pe/cardreader-diagnostics/vix/vix-cardreader_diagnostics.json)   |
+| Maintainer    | PTA Backoffice                                                                                                    |
 | Producer      | VIX                                                                                                               |
 | Consumer      | PTA Backoffice                                                                                                    |
 | Service Level | ⛔ PTA internal API. No restrictions apply. May be removed or modified freely by the PTA                            |

@@ -4,6 +4,7 @@
 |---------------|-----------------------------------------------------------------------------------------------------------|
 | Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/location                                            |
 | Schema        | [ location.json ](json-schemas/sensors/location/location.json)                                            |
+| Maintainer    | PTA Backoffice                                                                                            |
 | Producer      | PTO                                                                                                       |
 | Consumer      | PTA Backoffice                                                                                            |
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. |

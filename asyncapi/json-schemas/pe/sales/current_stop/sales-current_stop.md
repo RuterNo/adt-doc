@@ -3,6 +3,7 @@
 |---------------|-------------------------------------------------------------------------------------------------------------------|
 | Central Topic | {operatorId}/{authorityId}/{vehicleId}/adt/v4/pe/sales/current_stop                                               |
 | Schema        | [ sales-current_stop.json ](json-schemas/pe/sales/current_stop/sales-current_stop.json)                           |
+| Maintainer    | PTA Backoffice                                                                                                    |
 | Producer      | [Betjent Salg](https://github.com/orgs/RuterNo/teams/rutersalg)                                                   |
 | Consumer      | [Betjent Salg](https://github.com/orgs/RuterNo/teams/rutersalg)                                                   |
 | Service Level | ⛔ PTA internal API. No restrictions apply. May be removed or modified freely by the PTA                            |

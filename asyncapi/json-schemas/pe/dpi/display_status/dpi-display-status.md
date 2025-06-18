@@ -3,6 +3,7 @@
 |---------------|-----------------------------------------------------------------------------------------------------------|
 | Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/dpi/display_status                                       |
 | Schema        | [ dpi-display-status.json ](json-schemas/pe/dpi/display_status/dpi-display-status.json)                   |
+| Maintainer    | [PTA DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                 |
 | Producer      | [PTA DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                 |
 | Consumer      | PTO, [PTA DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                            |
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. |

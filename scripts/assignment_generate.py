@@ -189,6 +189,7 @@ def update_doc(paths, meta):
     if doc_path:
         lines = read_file(doc_path)
         res = []
+        maintainer = '| Maintainer'
         central_topic = '| Central Topic'
         schema = '| Schema'
         producer = '| Producer'
@@ -208,6 +209,7 @@ def update_doc(paths, meta):
             res_line = resolve_doc_line(line, service_level, meta, "service-level", SERVICE_LEVELS) if not res_line else res_line
             res_line = resolve_doc_line(line, producer, meta, "producers", TEAMS) if not res_line else res_line
             res_line = resolve_doc_line(line, consumer, meta, "consumers", TEAMS) if not res_line else res_line
+            res_line = resolve_doc_line(line, maintainer, meta, "maintainers", TEAMS) if not res_line else res_line
 
             if res_line:
                 res.append(res_line)
@@ -226,12 +228,14 @@ def update_meta(paths, name):
         if 'service-level' not in meta:
             meta['service-level'] = 'external'
 
+        if 'maintainers' not in meta:
+            meta['maintainers'] = ['pta']
+
         if 'producers' not in meta:
-            meta['producers'] = list('pto')
+            meta['producers'] = ['pto']
 
         if 'consumers' not in meta:
-            meta['consumers'] = list('pta')
-
+            meta['consumers'] = ['pta']
 
         if 'mqtt' not in meta:
             meta['mqtt'] = {

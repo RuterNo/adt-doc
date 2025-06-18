@@ -4,6 +4,7 @@
 |---------------|-----------------------------------------------------------------------------------------------------------|
 | Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/state_of_charge                                     |
 | Schema        | [ state-of-charge.json ](json-schemas/sensors/state-of-charge/state-of-charge.json)                       |
+| Maintainer    | PTA Backoffice                                                                                            |
 | Producer      | PTO                                                                                                       |
 | Consumer      | PTA Backoffice                                                                                            |
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.  |

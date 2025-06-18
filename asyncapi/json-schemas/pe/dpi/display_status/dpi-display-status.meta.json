@@ -12,5 +12,8 @@
   "consumers": [
     "pto",
     "dpi"
+  ],
+  "maintainers": [
+    "dpi"
   ]
 }

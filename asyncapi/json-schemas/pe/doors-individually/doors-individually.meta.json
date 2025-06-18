@@ -11,5 +11,8 @@
   ],
   "consumers": [
     "pta"
+  ],
+  "maintainers": [
+    "pta"
   ]
 }
