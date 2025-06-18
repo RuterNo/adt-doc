@@ -3,6 +3,7 @@
   "mqtt": {
     "qos": 1,
     "retain": false,
-    "topic": "ruter/{operatorId}/{vehicleId}/adt/v4/sensors/stop_button"
-  }
+    "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/stop_button"
+  },
+  "service-level": "external"
 }

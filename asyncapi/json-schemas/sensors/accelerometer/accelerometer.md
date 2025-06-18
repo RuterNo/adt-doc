@@ -2,11 +2,11 @@
 
 | Field         | Value                                                                                                     |
 |---------------|-----------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/sensors/accelerometer                                               |
+| Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/accelerometer                                       |
 | Schema        | [ accelerometer.json ](json-schemas/sensors/accelerometer/accelerometer.json)                             |
 | Producer      | PTO                                                                                                       |
-| Consumer      | Ruter BO                                                                                                  |
-| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. | 
+| Consumer      | PTA Backoffice                                                                                            |
+| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.  |
 
 Expects a message that provides aggregated acceleration measurements over a 10-second interval. Each payload must
 include the **minimum**, **maximum**, and **average** acceleration values along the X, Y, and Z axes.

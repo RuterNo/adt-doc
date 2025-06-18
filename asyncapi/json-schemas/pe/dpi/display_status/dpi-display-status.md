@@ -1,7 +1,7 @@
 ### DPI Display Status
 | Field         | Value                                                                                                     |
 |---------------|-----------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/pe/dpi/display_status                                               |
+| Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/dpi/display_status                                       |
 | Schema        | [ dpi-display-status.json ](json-schemas/pe/dpi/display_status/dpi-display-status.json)                   |
 | Producer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                               |
 | Consumer      | PTO, [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                          |

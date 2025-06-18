@@ -3,6 +3,7 @@
   "mqtt": {
     "retain": true,
     "qos": 1,
-    "topic": "ruter/{operatorId}/{vehicleId}/adt/v4/pe/dpi/connection_status"
-  }
+    "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/dpi/connection_status"
+  },
+  "service-level": "internal"
 }

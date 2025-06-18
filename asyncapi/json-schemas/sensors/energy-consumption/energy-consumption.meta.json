@@ -1,8 +1,11 @@
 {
   "mode": "publish",
+  "producer": "pto",
+  "consumer": "pta",
   "mqtt": {
     "qos": 0,
     "retain": false,
-    "topic": "ruter/{operatorId}/{vehicleId}/adt/v4/sensors/energy_consumption"
-  }
+    "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/energy_consumption"
+  },
+  "service-level": "external"
 }

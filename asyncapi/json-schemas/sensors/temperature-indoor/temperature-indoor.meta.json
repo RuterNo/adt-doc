@@ -1,8 +1,11 @@
 {
   "mode": "publish",
+  "producer": "pto",
+  "consumer": "pta",
   "mqtt": {
     "qos": 0,
     "retain": false,
-    "topic": "ruter/{operatorId}/{vehicleId}/adt/v4/sensors/temperature_indoor"
-  }
+    "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/temperature_indoor"
+  },
+  "service-level": "external"
 }

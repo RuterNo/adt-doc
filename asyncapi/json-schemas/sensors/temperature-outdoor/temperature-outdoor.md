@@ -2,11 +2,11 @@
 
 | Field         | Value                                                                                                     |
 |---------------|-----------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/sensors/temperature_outdoor                                         |
+| Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/temperature_outdoor                                 |
 | Schema        | [ temperature-outdoor.json ](json-schemas/sensors/temperature-outdoor/temperature-outdoor.json)           |
 | Producer      | PTO                                                                                                       |
-| Consumer      | Ruter BO                                                                                                  |
-| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. | 
+| Consumer      | PTA Backoffice                                                                                            |
+| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.  |
 
 Measurement of the external temperature around the vehicle.
 

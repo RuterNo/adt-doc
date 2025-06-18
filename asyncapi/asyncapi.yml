@@ -488,8 +488,8 @@ channels:
         payload:
           $ref: json-schemas/pe/audio/audio.json
         examples:
-          - $ref: json-schemas/pe/audio/audio_local.example.json
           - $ref: json-schemas/pe/audio/audio.example.json
+          - $ref: json-schemas/pe/audio/audio_local.example.json
         bindings:
           mqtt:
             qos: 1
@@ -549,8 +549,8 @@ channels:
         payload:
           $ref: json-schemas/pe/dpi/externaldisplay/dpi-externaldisplay.json
         examples:
-          - $ref: json-schemas/pe/dpi/externaldisplay/dpi-externaldisplay_deadrun.example.json
           - $ref: json-schemas/pe/dpi/externaldisplay/dpi-externaldisplay.example.json
+          - $ref: json-schemas/pe/dpi/externaldisplay/dpi-externaldisplay_deadrun.example.json
         bindings:
           mqtt:
             qos: 1
@@ -565,9 +565,9 @@ channels:
         payload:
           $ref: json-schemas/pe/dpi/pa/dpi-pa.json
         examples:
+          - $ref: json-schemas/pe/dpi/pa/dpi-pa_clear.example.json
           - $ref: json-schemas/pe/dpi/pa/dpi-pa_multiple.example.json
           - $ref: json-schemas/pe/dpi/pa/dpi-pa_text.example.json
-          - $ref: json-schemas/pe/dpi/pa/dpi-pa_clear.example.json
           - $ref: json-schemas/pe/dpi/pa/dpi-pa_video.example.json
         bindings:
           mqtt:
@@ -682,8 +682,12 @@ channels:
             retain: true
 components:
   parameters:
+    authorityId:
+      description: The ID of the Public Transport Authority / PTA
+      schema:
+        type: string
     operatorId:
-      description: The ID of the operator
+      description: The ID of the Public Transport Operator / PTO
       schema:
         type: string
     vehicleId:

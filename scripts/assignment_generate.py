@@ -23,6 +23,11 @@ API_VERSION_MINOR = "x"
 SCHEMA_ID_PREFIX = f"https://schemas.ruter.no/adt/ota/api/v{API_VERSION_MAJOR}.{API_VERSION_MINOR}"
 JSON_SCHEMA_VERSION = "http://json-schema.org/draft-07/schema#"
 
+PTO = "{operatorId}"
+PTA = "{authorityId}"
+VEHICLE = "{vehicleId}"
+BACKOFFICE = "backoffice"
+
 SCHEMA_ROOT = Path("asyncapi/json-schemas")
 PROJECT_ROOT = SCHEMA_ROOT.parent
 
@@ -37,7 +42,7 @@ SERVICE_LEVELS = {
 TEAMS = {
     'sales': 'Ruter Sales',
     'pto': 'PTO',
-    'ruter': 'Ruter BO',
+    'pta': 'PTA Backoffice',
     'dpi': '[Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)',
     'assignment': '[Ruter Assignment](https://github.com/orgs/RuterNo/teams/assignment)'
 }
@@ -89,8 +94,8 @@ def resolve_schemas():
         examples = [str(p) for p in schema_path.parent.rglob(f"*example.json") if schema_path.stem in str(p)]
         examples.extend([str(p) for p in PROJECT_ROOT.rglob(f"*{schema_path.name}*") if 'examples' in str(p)])
         examples.extend([str(p) for p in PROJECT_ROOT.rglob(f"*{schema_path.stem}_*.json") if 'examples' in str(p)])
-        meta = [str(p) for p in PROJECT_ROOT.rglob(f"*{schema_path.stem}.meta.json")]
-        doc = [str(p) for p in PROJECT_ROOT.rglob(f"*{schema_path.stem}.md")]
+        meta = [str(p) for p in PROJECT_ROOT.rglob(f"*/{schema_path.stem}.meta.json")]
+        doc = [str(p) for p in PROJECT_ROOT.rglob(f"*/{schema_path.stem}.md")]
 
         if not meta:
             if CREATE_META_IF_MISSING:
@@ -211,6 +216,8 @@ def update_meta(paths, name):
     meta_path = paths['meta']
     if meta_path:
         meta = read_json(meta_path)
+        if 'service-level' not in meta:
+            meta['service-level'] = 'external'
         if 'mqtt' not in meta:
             meta['mqtt'] = {
                 'qos': 'TODO',
@@ -223,12 +230,12 @@ def update_meta(paths, name):
         if 'retain' not in mqtt:
             mqtt['retain'] = 'TODO'
 
-        routing_prefix = '{operatorId}/ruter' if 'publish' != meta['mode'] else 'ruter/{operatorId}'
+        routing_prefix = f'{PTO}/{PTA}' if 'publish' != meta['mode'] else f'{PTA}/{PTO}'
         vehicle_centric = 'vehicleCentric' not in meta or meta['vehicleCentric']
         if vehicle_centric:
-            routing_prefix = routing_prefix + "/{vehicleId}"
+            routing_prefix = routing_prefix + f"/{VEHICLE}"
         else:
-            routing_prefix = routing_prefix + "/backoffice"
+            routing_prefix = routing_prefix + f"/{BACKOFFICE}"
         prefix = f'{routing_prefix}/adt/v{API_VERSION_MAJOR}'
         topic = f"{prefix}/{paths['channel']}"
         topic_params = mqtt['params'] if 'params' in mqtt else []
@@ -292,7 +299,7 @@ def update_async_api(async_api, meta, paths):
                 "payload": {
                     "$ref": project_relative(paths['schema_path'])
                 },
-                "examples": [{"$ref": project_relative(p)} for p in paths['examples']],
+                "examples": [{"$ref": project_relative(p)} for p in sorted(paths['examples'])],
                 "bindings": {
                     "mqtt": {
                         "qos": meta['mqtt']['qos'] if meta else None,

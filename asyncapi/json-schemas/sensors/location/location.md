@@ -2,10 +2,10 @@
 
 | Field         | Value                                                                                                     |
 |---------------|-----------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/sensors/location                                                    |
+| Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/location                                            |
 | Schema        | [ location.json ](json-schemas/sensors/location/location.json)                                            |
 | Producer      | PTO                                                                                                       |
-| Consumer      | Ruter BO                                                                                                  |
+| Consumer      | PTA Backoffice                                                                                            |
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. |
 
 Describes the GNSS navigation receiver feedback in metric format.
