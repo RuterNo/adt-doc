@@ -105,15 +105,15 @@
           "type": "string",
           "description": "Journey ref from the latest received journey message"
         },
-        "assignmentId": {
+        "assignmentRef": {
           "type": "string",
-          "description": "Assignment id from the latest received journey message"
+          "description": "Assignment ref from the latest received journey message"
         }
       },
       "required": [
         "traceId",
         "journeyRef",
-        "assignmentId"
+        "assignmentRef"
       ]
     }
   }
