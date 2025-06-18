@@ -35,7 +35,7 @@ CREATE_META_IF_MISSING = False
 META_FILE_TEMPLATE = {'mode': 'TODO', 'mqtt': {'qos': 'TODO', 'retain': 'TODO'}, "topic": "TODO"}
 
 SERVICE_LEVELS = {
-    'internal': '⛔ Ruter internal API. No restrictions apply. Api may be removed or modified freely by Ruter within major version.',
+    'internal': '⛔ PTA internal API. No restrictions apply. May be removed or modified freely by the PTA',
     'external': '✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.'
 }
 
@@ -43,8 +43,8 @@ TEAMS = {
     'sales': '[Betjent Salg](https://github.com/orgs/RuterNo/teams/rutersalg)',
     'pto': 'PTO',
     'pta': 'PTA Backoffice',
-    'dpi': '[Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)',
-    'assignment': '[Ruter Assignment](https://github.com/orgs/RuterNo/teams/assignment)'
+    'dpi': '[PTA DPI](https://github.com/orgs/RuterNo/teams/dpi-team)',
+    'assignment': '[PTA Assignment](https://github.com/orgs/RuterNo/teams/assignment)'
 }
 
 

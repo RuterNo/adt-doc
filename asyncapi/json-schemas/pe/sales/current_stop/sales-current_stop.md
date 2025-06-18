@@ -5,7 +5,7 @@
 | Schema        | [ sales-current_stop.json ](json-schemas/pe/sales/current_stop/sales-current_stop.json)                           |
 | Producer      | [Betjent Salg](https://github.com/orgs/RuterNo/teams/rutersalg)                                                   |
 | Consumer      | [Betjent Salg](https://github.com/orgs/RuterNo/teams/rutersalg)                                                   |
-| Service Level | ⛔ Ruter internal API. No restrictions apply. Api may be removed or modified freely by Ruter within major version.  |
+| Service Level | ⛔ PTA internal API. No restrictions apply. May be removed or modified freely by the PTA                            |
 
 Used to alert the RuterSalg app about the current stop. This message is triggered when the Progress entity determines that the bus is arriving
 at the quay, meaning it is maximum 35 meters from the quay, approaching it. Contains information about the zone the current stop belongs to.

@@ -1,4 +1,4 @@
-### RuterSalg diagnostics
+### Betjent Salg diagnostics
 | Field         | Value                                                                                                     |
 |---------------|-----------------------------------------------------------------------------------------------------------|
 | Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/sales/sla                                                |
