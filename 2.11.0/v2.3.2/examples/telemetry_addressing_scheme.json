@@ -1,0 +1,52 @@
+[
+    {
+        "id": "01000001",
+        "payloads": 
+        [
+            {
+                "name": "All doors closed",
+                "value": "true/false"
+            }
+        ]
+    },
+    {
+        "id": "01000002",
+        "payloads": 
+        [
+            {
+                "name": "Temperature inside front",
+                "value": "float"
+            }
+        ]
+    },   
+    {
+        "id": "01000003",
+        "payloads": 
+        [
+            {
+                "name": "Temperature inside middle",
+                "value": "float"
+            }
+        ]
+    },
+    {
+        "id": "01000004",
+        "payloads": 
+        [
+            {
+                "name": "Temperature inside back",
+                "value": "float"
+            }
+        ]
+    },
+    {
+        "id": "01000005",
+        "payloads":
+        [
+            {
+                "name": "SOC",
+                "value": "float"
+            }
+        ]
+    }
+]

@@ -1,0 +1,23 @@
+{
+  "name": "Audio MP3",
+  "payload": {
+    "eventDateTime": "2018-11-13T11:40:02.749Z",
+    "expiryDateTime": "2018-11-13T08:40:32.249Z",
+    "preferredStartDateTime": "2018-11-13T08:39:32.749Z",
+    "ref": "RUT:StopPlace:03012453",
+    "audio": [
+      {
+        "encoding": "MP3",
+        "content": "SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU3...",
+        "speaker": "INTERNAL",
+        "volume": 70
+      },
+      {
+        "encoding": "MP3",
+        "content": "SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU3...",
+        "speaker": "INTERNAL",
+        "volume": 70
+      }
+    ]
+  }
+}
