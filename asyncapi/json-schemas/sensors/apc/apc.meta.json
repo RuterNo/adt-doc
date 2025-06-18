@@ -1,7 +1,5 @@
 {
   "mode": "publish",
-  "producer": "pto",
-  "consumer": "pta",
   "mqtt": {
     "qos": 1,
     "retain": false,
@@ -10,5 +8,11 @@
       "sensorId"
     ]
   },
-  "service-level": "external"
+  "service-level": "external",
+  "producers": [
+    "pto"
+  ],
+  "consumers": [
+    "pta"
+  ]
 }

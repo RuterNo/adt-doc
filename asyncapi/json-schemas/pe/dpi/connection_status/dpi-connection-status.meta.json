@@ -5,5 +5,11 @@
     "qos": 1,
     "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/dpi/connection_status"
   },
-  "service-level": "internal"
+  "service-level": "internal",
+  "producers": [
+    "dpi"
+  ],
+  "consumers": [
+    "dpi"
+  ]
 }

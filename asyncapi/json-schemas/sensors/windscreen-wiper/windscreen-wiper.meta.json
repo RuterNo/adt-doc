@@ -1,11 +1,15 @@
 {
   "mode": "publish",
-  "producer": "pto",
-  "consumer": "pta",
   "mqtt": {
     "qos": 1,
     "retain": false,
     "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/windscreen_wiper"
   },
-  "service-level": "external"
+  "service-level": "external",
+  "producers": [
+    "pto"
+  ],
+  "consumers": [
+    "pta"
+  ]
 }

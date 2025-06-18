@@ -40,7 +40,7 @@ SERVICE_LEVELS = {
 }
 
 TEAMS = {
-    'sales': 'Ruter Sales',
+    'sales': '[Betjent Salg](https://github.com/orgs/RuterNo/teams/rutersalg)',
     'pto': 'PTO',
     'pta': 'PTA Backoffice',
     'dpi': '[Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)',
@@ -169,7 +169,14 @@ def validate_required_fields(file_path, schema):
 def resolve_doc_line(line, anchor, meta, key, definitions):
     if anchor in line:
         res_key = meta[key] if key in meta else None
-        res_desc = definitions[res_key] if res_key in definitions else None
+        tmp_content = []
+        if isinstance(res_key, list):
+            for key in res_key:
+                content = definitions[key] if key in definitions else key
+                tmp_content.append(content)
+        else:
+            tmp_content.append(definitions[res_key] if res_key in definitions else res_key)
+        res_desc = ", ".join(tmp_content)
         res_line = f'{anchor: <16}| {res_desc}'
         if res_key and res_desc:
             return f"{res_line: <{len(line) - 1}}|"
@@ -199,8 +206,8 @@ def update_doc(paths, meta):
                 res_line = f"{schema_content: <{len(line) - 1}}|"
 
             res_line = resolve_doc_line(line, service_level, meta, "service-level", SERVICE_LEVELS) if not res_line else res_line
-            res_line = resolve_doc_line(line, producer, meta, "producer", TEAMS) if not res_line else res_line
-            res_line = resolve_doc_line(line, consumer, meta, "consumer", TEAMS) if not res_line else res_line
+            res_line = resolve_doc_line(line, producer, meta, "producers", TEAMS) if not res_line else res_line
+            res_line = resolve_doc_line(line, consumer, meta, "consumers", TEAMS) if not res_line else res_line
 
             if res_line:
                 res.append(res_line)
@@ -218,6 +225,14 @@ def update_meta(paths, name):
         meta = read_json(meta_path)
         if 'service-level' not in meta:
             meta['service-level'] = 'external'
+
+        if 'producers' not in meta:
+            meta['producers'] = list('pto')
+
+        if 'consumers' not in meta:
+            meta['consumers'] = list('pta')
+
+
         if 'mqtt' not in meta:
             meta['mqtt'] = {
                 'qos': 'TODO',
@@ -260,8 +275,8 @@ def project_relative(path):
 
 def validate_meta(meta, name):
     fields = [
-        'consumer',
-        'producer',
+        'consumers',
+        'producers',
         'service-level'
     ]
 

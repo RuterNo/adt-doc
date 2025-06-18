@@ -5,5 +5,12 @@
     "qos": 1,
     "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/dpi/display_status"
   },
-  "service-level": "external"
+  "service-level": "external",
+  "producers": [
+    "dpi"
+  ],
+  "consumers": [
+    "pto",
+    "dpi"
+  ]
 }

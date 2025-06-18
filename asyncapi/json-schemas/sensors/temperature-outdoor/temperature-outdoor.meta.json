@@ -1,11 +1,15 @@
 {
   "mode": "publish",
-  "producer": "pto",
-  "consumer": "pta",
   "mqtt": {
     "qos": 0,
     "retain": false,
     "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/temperature_outdoor"
   },
-  "service-level": "external"
+  "service-level": "external",
+  "producers": [
+    "pto"
+  ],
+  "consumers": [
+    "pta"
+  ]
 }

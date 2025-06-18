@@ -5,5 +5,11 @@
     "retain": false,
     "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/stop_button"
   },
-  "service-level": "external"
+  "service-level": "external",
+  "producers": [
+    "pto"
+  ],
+  "consumers": [
+    "dpi"
+  ]
 }

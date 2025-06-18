@@ -1,7 +1,5 @@
 {
   "mode": "publish",
-  "consumer": "pta",
-  "producer": "VIX",
   "mqtt": {
     "retain": false,
     "qos": 0,
@@ -10,5 +8,11 @@
       "deviceRef"
     ]
   },
-  "service-level": "internal"
+  "service-level": "internal",
+  "producers": [
+    "VIX"
+  ],
+  "consumers": [
+    "pta"
+  ]
 }
