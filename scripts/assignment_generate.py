@@ -40,7 +40,7 @@ SERVICE_LEVELS = {
 }
 
 TEAMS = {
-    'sales': '[Betjent Salg](https://github.com/orgs/RuterNo/teams/rutersalg)',
+    'sales': '[Betjent salg](https://github.com/orgs/RuterNo/teams/rutersalg)',
     'pto': 'PTO',
     'pta': 'PTA Backoffice',
     'dpi': '[PTA DPI](https://github.com/orgs/RuterNo/teams/dpi-team)',
