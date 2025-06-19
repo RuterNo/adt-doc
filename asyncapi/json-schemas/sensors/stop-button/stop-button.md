@@ -3,6 +3,7 @@
 |---------------|-----------------------------------------------------------------------------------------------------------|
 | Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/stop_button                                         |
 | Schema        | [ stop-button.json ](json-schemas/sensors/stop-button/stop-button.json)                                   |
+| Maintainer    | PTA Backoffice                                                                                            |
 | Producer      | PTO                                                                                                       |
 | Consumer      | [PTA DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                 |
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.  |

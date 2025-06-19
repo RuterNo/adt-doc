@@ -3,8 +3,9 @@
 |---------------|-------------------------------------------------------------------------------------------------------------------|
 | Central Topic | {operatorId}/{authorityId}/{vehicleId}/adt/v4/pe/sales/current_stop                                               |
 | Schema        | [ sales-current_stop.json ](json-schemas/pe/sales/current_stop/sales-current_stop.json)                           |
-| Producer      | [Betjent Salg](https://github.com/orgs/RuterNo/teams/rutersalg)                                                   |
-| Consumer      | [Betjent Salg](https://github.com/orgs/RuterNo/teams/rutersalg)                                                   |
+| Maintainer    | PTA Backoffice                                                                                                    |
+| Producer      | [Betjent salg](https://github.com/orgs/RuterNo/teams/rutersalg)                                                   |
+| Consumer      | [Betjent salg](https://github.com/orgs/RuterNo/teams/rutersalg)                                                   |
 | Service Level | ⛔ PTA internal API. No restrictions apply. May be removed or modified freely by the PTA                            |
 
 Used to alert the RuterSalg app about the current stop. This message is triggered when the Progress entity determines that the bus is arriving
