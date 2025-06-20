@@ -42,7 +42,7 @@ SERVICE_LEVELS = {
 
 TEAMS = {
     'pto': 'PTO',
-    'pta': 'PTA Backoffice',
+    'pta': 'PTA',
     'dpi': '[DPI](https://github.com/orgs/RuterNo/teams/dpi-team)',
     'apc': '[Passasjertelling](https://github.com/orgs/RuterNo/teams/passasjertelling)',
     'assignment': '[Assignment](https://github.com/orgs/RuterNo/teams/assignment)',
