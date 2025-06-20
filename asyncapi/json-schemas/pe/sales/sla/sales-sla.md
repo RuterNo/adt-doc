@@ -3,7 +3,7 @@
 |---------------|-----------------------------------------------------------------------------------------------------------|
 | Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/sales/sla                                                |
 | Schema        | [ sales-sla.json ](json-schemas/pe/sales/sla/sales-sla.json)                                              |
-| Maintainer    | PTA Backoffice                                                                                            |
+| Maintainer    | [Betjent salg](https://github.com/orgs/RuterNo/teams/rutersalg)                                           |
 | Producer      | [Betjent salg](https://github.com/orgs/RuterNo/teams/rutersalg)                                           |
 | Consumer      | [Betjent salg](https://github.com/orgs/RuterNo/teams/rutersalg)                                           |
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.  |

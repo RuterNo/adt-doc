@@ -3,8 +3,8 @@
 |---------------|--------------------------------------------------------------------------------------------------------------------------|
 | Central Topic | {operatorId}/{authorityId}/{vehicleId}/adt/v4/di/operational_message_to_driver                                           |
 | Schema        | [ operational-message-to-driver.json ](json-schemas/di/operational_message_to_driver/operational-message-to-driver.json) |
-| Maintainer    | PTA Backoffice                                                                                                           |
-| Producer      | PTA Backoffice                                                                                                           |
+| Maintainer    | PTA                                                                                                                      |
+| Producer      | PTA                                                                                                                      |
 | Consumer      | PTO                                                                                                                      |
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.                 |
 

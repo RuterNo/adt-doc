@@ -4,9 +4,9 @@
 |---------------|-----------------------------------------------------------------------------------------------------------|
 | Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/accelerometer                                       |
 | Schema        | [ accelerometer.json ](json-schemas/sensors/accelerometer/accelerometer.json)                             |
-| Maintainer    | PTA Backoffice                                                                                            |
+| Maintainer    | [Miljødata](https://github.com/orgs/RuterNo/teams/miljodata))                                             |
 | Producer      | PTO                                                                                                       |
-| Consumer      | PTA Backoffice                                                                                            |
+| Consumer      | PTA                                                                                                       |
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.  |
 
 Expects a message that provides aggregated acceleration measurements over a 10-second interval. Each payload must

@@ -3,9 +3,9 @@
 |---------------|-----------------------------------------------------------------------------------------------------------|
 | Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/odometer                                            |
 | Schema        | [ odometer.json ](json-schemas/sensors/odometer/odometer.json)                                            |
-| Maintainer    | PTA Backoffice                                                                                            |
+| Maintainer    | [Progress](https://github.com/orgs/RuterNo/teams/progress)                                                |
 | Producer      | PTO                                                                                                       |
-| Consumer      | PTA Backoffice                                                                                            |
+| Consumer      | PTA                                                                                                       |
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.  |
 
 Describes an odometer value in meters based on total vehicle distance or similar. Absolute value of less importance but
