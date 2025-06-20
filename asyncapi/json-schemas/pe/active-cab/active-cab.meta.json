@@ -10,9 +10,9 @@
     "pto"
   ],
   "consumers": [
-    "pta"
+    "dpi, progress"
   ],
   "maintainers": [
-    "pta"
+    "dpi"
   ]
 }
