@@ -3,9 +3,9 @@
 |---------------|-----------------------------------------------------------------------------------------------------------|
 | Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/dpi/ack                                                  |
 | Schema        | [ dpi-acknowledge.json ](json-schemas/pe/dpi/ack/dpi-acknowledge.json)                                    |
-| Maintainer    | [PTA DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                 |
-| Producer      | PTO, [PTA DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                            |
-| Consumer      | [PTA DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                 |
+| Maintainer    | [DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                     |
+| Producer      | PTO, [DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                |
+| Consumer      | [DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                     |
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. |
 
 The DPI Ack topic is used to inform the `PTA Backoffice` about the correct transfer and interpretation of messages to the vehicle.

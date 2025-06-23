@@ -29,8 +29,8 @@ VEHICLE = "{vehicleId}"
 BACKOFFICE = "backoffice"
 
 CWD = Path.cwd()
-PROJECT_ROOT = CWD.parent if CWD.name == "scripts" else CWD
-SCHEMA_ROOT = PROJECT_ROOT / "asyncapi" / "json-schemas"
+PROJECT_ROOT = (CWD.parent if CWD.name == "scripts" else CWD) / "asyncapi"
+SCHEMA_ROOT = PROJECT_ROOT / "json-schemas"
 
 CREATE_META_IF_MISSING = False
 META_FILE_TEMPLATE = {'mode': 'TODO', 'mqtt': {'qos': 'TODO', 'retain': 'TODO'}, "topic": "TODO"}
@@ -42,7 +42,7 @@ SERVICE_LEVELS = {
 
 TEAMS = {
     'pto': 'PTO',
-    'pta': 'PTA Backoffice',
+    'pta': 'PTA',
     'dpi': '[DPI](https://github.com/orgs/RuterNo/teams/dpi-team)',
     'apc': '[Passasjertelling](https://github.com/orgs/RuterNo/teams/passasjertelling)',
     'assignment': '[Assignment](https://github.com/orgs/RuterNo/teams/assignment)',
@@ -371,7 +371,7 @@ def main():
     schemas = resolve_schemas()
     update_schema_content(schemas)
     validate_examples(schemas)
-    asyncapi_path = PROJECT_ROOT / "asyncapi" / "asyncapi.yml"
+    asyncapi_path = PROJECT_ROOT / "asyncapi.yml"
     async_api = read_yaml(asyncapi_path)
 
     for name, paths in schemas.items():
