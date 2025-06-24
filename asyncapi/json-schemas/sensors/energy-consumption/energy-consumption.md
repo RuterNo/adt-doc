@@ -4,7 +4,7 @@
 |---------------|-----------------------------------------------------------------------------------------------------------|
 | Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/energy_consumption                                  |
 | Schema        | [ energy-consumption.json ](json-schemas/sensors/energy-consumption/energy-consumption.json)              |
-| Maintainer    | [Miljødata](https://github.com/orgs/RuterNo/teams/miljodata))                                             |
+| Maintainer    | [Miljødata](https://github.com/orgs/RuterNo/teams/miljodata)                                              |
 | Producer      | PTO                                                                                                       |
 | Consumer      | PTA                                                                                                       |
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. |

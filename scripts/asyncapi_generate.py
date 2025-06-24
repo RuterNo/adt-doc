@@ -47,7 +47,7 @@ TEAMS = {
     'apc': '[Passasjertelling](https://github.com/orgs/RuterNo/teams/passasjertelling)',
     'assignment': '[Assignment](https://github.com/orgs/RuterNo/teams/assignment)',
     'progress': '[Progress](https://github.com/orgs/RuterNo/teams/progress)',
-    'telemetry': '[Miljødata](https://github.com/orgs/RuterNo/teams/miljodata))',
+    'telemetry': '[Miljødata](https://github.com/orgs/RuterNo/teams/miljodata)',
     'sales': '[Betjent salg](https://github.com/orgs/RuterNo/teams/rutersalg)'
 }
 
