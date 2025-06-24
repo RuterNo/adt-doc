@@ -4,7 +4,7 @@
 |---------------|-----------------------------------------------------------------------------------------------------------|
 | Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/accelerometer                                       |
 | Schema        | [ accelerometer.json ](json-schemas/sensors/accelerometer/accelerometer.json)                             |
-| Maintainer    | [Miljødata](https://github.com/orgs/RuterNo/teams/miljodata))                                             |
+| Maintainer    | [Miljødata](https://github.com/orgs/RuterNo/teams/miljodata)                                              |
 | Producer      | PTO                                                                                                       |
 | Consumer      | PTA                                                                                                       |
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.  |
