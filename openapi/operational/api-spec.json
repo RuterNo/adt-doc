@@ -1263,7 +1263,7 @@
           "journeys": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/JourneySpecOption"
+              "$ref": "#/components/schemas/WindowedJourneySpecOption"
             }
           }
         }
@@ -1343,6 +1343,9 @@
           },
           "journeyIds": {
             "$ref": "#/components/schemas/JourneyIdentifiers"
+          },
+          "serviceWindow": {
+            "$ref": "#/components/schemas/DateTimeRange"
           },
           "line": {
             "$ref": "#/components/schemas/JourneyLine"
@@ -1589,23 +1592,9 @@
             "type": "string",
             "description": "Identifier referencing journey, such as `serviceJourneyId`, `vehicleJourneyId` or `datedServiceJourneyId`.\n"
           },
-          "serviceWindow": {
-            "$ref": "#/components/schemas/DateTimeRange"
-          }
-        }
-      },
-      "JourneySpecOption": {
-        "type": "object",
-        "title": "JourneySpecOption",
-        "properties": {
-          "calls": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/JourneyCallSpec"
-            }
-          },
-          "journey": {
-            "$ref": "#/components/schemas/JourneySpec"
+          "firstDepartureDateTime": {
+            "description": "Planned Departure Time from the Initial Call",
+            "type": "string"
           }
         }
       },
@@ -1775,6 +1764,9 @@
         "type": "object",
         "title": "ServiceDeviation",
         "properties": {
+          "id": {
+            "type": "string"
+          },
           "spec": {
             "$ref": "#/components/schemas/ServiceDeviationSpec"
           },
@@ -1858,6 +1850,10 @@
           "operatorExempt": {
             "type": "boolean",
             "description": "Flag indicating that operator is exempt from consequences of reported service deviation."
+          },
+          "updateAssignedVehicles": {
+            "type": "boolean",
+            "description": "Update vehicle state for assigned vehicles impacted by this deviation."
           }
         }
       },
@@ -2007,25 +2003,19 @@
           "lines": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/JourneyLineSpec"
+              "$ref": "#/components/schemas/WindowedJourneyLineSpec"
             }
           },
           "journeys": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/JourneySpecOption"
+              "$ref": "#/components/schemas/WindowedJourneySpecOption"
             }
           },
           "stopPoints": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/StopPointSpec"
-            }
-          },
-          "serviceWindows": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DateTimeRange"
+              "$ref": "#/components/schemas/WindowedStopPointSpec"
             }
           }
         }
@@ -2120,12 +2110,20 @@
         "properties": {
           "vehicleId": {
             "type": "string",
-            "description": "Optional identifier for a vehicle planned to take part of the mitigation"
+            "description": "Optional identifier of participating vehicle."
+          },
+          "operatorId": {
+            "type": "string",
+            "description": "Optional identifier of participating operator."
           },
           "transportMode": {
             "type": "string",
-            "description": "Transport mode of the replacement/new journey(s). Only BUS is supported",
+            "description": "Transport mode of the replacement/new journey(s). Only BUS is supported.",
             "$ref": "#/components/schemas/TransportMode"
+          },
+          "updateAssignedVehicles": {
+            "type": "boolean",
+            "description": "Update vehicle state for assigned vehicles impacted by this mitigation."
           }
         }
       },
@@ -2377,6 +2375,57 @@
           },
           "vehicleState": {
             "$ref": "#/components/schemas/VehicleState"
+          }
+        }
+      },
+      "WindowedJourneyLineSpec": {
+        "type": "object",
+        "title": "WindowedJourneyLineSpec",
+        "properties": {
+          "spec": {
+            "$ref": "#/components/schemas/JourneyLineSpec"
+          },
+          "serviceWindow": {
+            "$ref": "#/components/schemas/DateTimeRange"
+          }
+        }
+      },
+      "WindowedJourneySpec": {
+        "type": "object",
+        "title": "WindowedJourneySpec",
+        "properties": {
+          "spec": {
+            "$ref": "#/components/schemas/JourneySpec"
+          },
+          "serviceWindow": {
+            "$ref": "#/components/schemas/DateTimeRange"
+          }
+        }
+      },
+      "WindowedJourneySpecOption": {
+        "type": "object",
+        "title": "WindowedJourneySpecOption",
+        "properties": {
+          "calls": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JourneyCallSpec"
+            }
+          },
+          "journey": {
+            "$ref": "#/components/schemas/WindowedJourneySpec"
+          }
+        }
+      },
+      "WindowedStopPointSpec": {
+        "type": "object",
+        "title": "WindowedStopPointSpec",
+        "properties": {
+          "spec": {
+            "$ref": "#/components/schemas/StopPointSpec"
+          },
+          "serviceWindow": {
+            "$ref": "#/components/schemas/DateTimeRange"
           }
         }
       }
