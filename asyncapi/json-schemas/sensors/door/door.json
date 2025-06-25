@@ -25,8 +25,8 @@
     "messageNumber": {
       "$id": "#/properties/messageNumber",
       "$comment": "Added in version 3.3",
-      "type": "number",
-      "description": "[Optional] - Sequence number that should generated on the vehicle and increased by one for each new message. Used to validate consistency in the data stream."
+      "type": "integer",
+      "description": "Sequence number that should be generated on the vehicle and increased by one for each new message. Used to validate consistency in the data stream."
     },
     "doorOpen": {
       "$id": "#/properties/doorOpen",
