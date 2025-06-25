@@ -26,13 +26,13 @@
     "messageNumber": {
       "$id": "#/properties/messageNumber",
       "$comment": "Added in version 3.3",
-      "type": "number",
-      "description": "[Optional] - Sequence number that should generated on the vehicle and increased by one for each new message. Used to validate consistency in the data stream."
+      "type": "integer",
+      "description": "The sequence number is generated per vehicle and per sensor category on the vehicle. For example, three door sensors on a vehicle would share the same messageNumber"
     },
     "doorRef": {
       "$id": "#/properties/doorRef",
       "type": "string",
-      "description": "Has to be the same reference as is used in the topic sensors/apc_sensors."
+      "description": "A stable alpha-numeric reference unique within the vehicle scope (vehicle element/train set). When using Door Number as DoorRef, numbering must start at 1 (front of the vehicle)."
     },
     "isOpen": {
       "$id": "#/properties/isOpen",

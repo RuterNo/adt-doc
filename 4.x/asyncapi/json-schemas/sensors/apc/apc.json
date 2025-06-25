@@ -29,22 +29,22 @@
     "messageNumber": {
       "$id": "#/properties/messageNumber",
       "$comment": "Added in version 2.1",
-      "type": "number",
-      "description": "Sequence number that should generated on the vehicle and increased by one for each new message. Used to validate consistency in the data stream."
+      "type": "integer",
+      "description": "The sequence number is generated per vehicle and per sensor category on the vehicle. For example, three apc sensors on a vehicle would share the same messageNumber"
     },
     "doorRef": {
       "$id": "#/properties/doorRef",
       "type": "string",
-      "description": "Stable alfa-numeric reference that is unique within scope of vehicle (vehicle element/train set). Could be a door-number or a combination of coach number and door number."
+      "description": "Stable alfa-numeric reference that is unique within scope of vehicle (vehicle element/train set). If Door Number is used as DoorRef, Door Number should start at 1 (The front of the vehicle)"
     },
     "alightingCount": {
       "$id": "#/properties/alightingCount",
-      "type": "number",
+      "type": "integer",
       "description": "Total number of alighting passengers detected by this sensor since the last APC message was produced."
     },
     "boardingCount": {
       "$id": "#/properties/boardingCount",
-      "type": "number",
+      "type": "integer",
       "description": "Total number of boarding passengers detected by this sensor since the last APC message was produced."
     },
     "categoryActivities": {
@@ -72,11 +72,11 @@
             ]
           },
           "alightingCount": {
-            "type": "number",
+            "type": "integer",
             "description": "Number of alighting of this category detected by this sensor since the last APC message was produced."
           },
           "boardingCount": {
-            "type": "number",
+            "type": "integer",
             "description": "Number of boarding of this category detected by this sensor since the last APC message was produced."
           }
         }
