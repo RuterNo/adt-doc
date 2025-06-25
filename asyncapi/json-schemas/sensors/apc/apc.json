@@ -73,7 +73,7 @@
           },
           "alightingCount": {
             "type": "integer",
-            "description": "Number of alighting of this category detected by this sensor since the last APC message was produced."
+            "description": "Number of alighting in this category detected by this sensor since the last APC message was produced."
           },
           "boardingCount": {
             "type": "integer",
