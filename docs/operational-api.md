@@ -413,15 +413,16 @@ HTTP response:
     "spec" : {
       "lineId" : "RUT:Line:001",
       "journeyId" : "RUT:DatedServiceJourney:0001",
-      "serviceWindow" : {
-        "start" : "2025-03-03T09:00+01:00",
-        "end" : "2025-03-03T09:20+01:00"
-      }
+      "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
     },
     "journeyIds" : {
       "vehicleJourneyId" : "vehicle-journey-0001",
       "serviceJourneyId" : "RUT:ServiceJourney:0001",
       "datedServiceJourneyId" : "RUT:DatedServiceJourney:0001"
+    },
+    "serviceWindow" : {
+      "start" : "2025-03-03T09:00+01:00",
+      "end" : "2025-03-03T09:20+01:00"
     },
     "line" : {
       "name" : "Testveien - Teststien",
@@ -437,15 +438,16 @@ HTTP response:
     "spec" : {
       "lineId" : "RUT:Line:001",
       "journeyId" : "RUT:DatedServiceJourney:0003",
-      "serviceWindow" : {
-        "start" : "2025-03-03T10:30+01:00",
-        "end" : "2025-03-03T10:50+01:00"
-      }
+      "firstDepartureDateTime" : "2025-03-03T10:30+01:00"
     },
     "journeyIds" : {
       "vehicleJourneyId" : "vehicle-journey-0003",
       "serviceJourneyId" : "RUT:ServiceJourney:0003",
       "datedServiceJourneyId" : "RUT:DatedServiceJourney:0003"
+    },
+    "serviceWindow" : {
+      "start" : "2025-03-03T10:30+01:00",
+      "end" : "2025-03-03T10:50+01:00"
     },
     "line" : {
       "name" : "Testveien - Teststien",
@@ -488,15 +490,16 @@ HTTP response:
     "spec" : {
       "lineId" : "RUT:Line:001",
       "journeyId" : "RUT:DatedServiceJourney:0001",
-      "serviceWindow" : {
-        "start" : "2025-03-03T09:00+01:00",
-        "end" : "2025-03-03T09:20+01:00"
-      }
+      "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
     },
     "journeyIds" : {
       "vehicleJourneyId" : "vehicle-journey-0001",
       "serviceJourneyId" : "RUT:ServiceJourney:0001",
       "datedServiceJourneyId" : "RUT:DatedServiceJourney:0001"
+    },
+    "serviceWindow" : {
+      "start" : "2025-03-03T09:00+01:00",
+      "end" : "2025-03-03T09:20+01:00"
     },
     "line" : {
       "name" : "Testveien - Teststien",
@@ -512,15 +515,16 @@ HTTP response:
     "spec" : {
       "lineId" : "RUT:Line:001",
       "journeyId" : "RUT:DatedServiceJourney:0002",
-      "serviceWindow" : {
-        "start" : "2025-03-03T09:45+01:00",
-        "end" : "2025-03-03T10:05+01:00"
-      }
+      "firstDepartureDateTime" : "2025-03-03T09:45+01:00"
     },
     "journeyIds" : {
       "vehicleJourneyId" : "vehicle-journey-0002",
       "serviceJourneyId" : "RUT:ServiceJourney:0002",
       "datedServiceJourneyId" : "RUT:DatedServiceJourney:0002"
+    },
+    "serviceWindow" : {
+      "start" : "2025-03-03T09:45+01:00",
+      "end" : "2025-03-03T10:05+01:00"
     },
     "line" : {
       "name" : "Testveien - Teststien",
@@ -536,15 +540,16 @@ HTTP response:
     "spec" : {
       "lineId" : "RUT:Line:001",
       "journeyId" : "RUT:DatedServiceJourney:0003",
-      "serviceWindow" : {
-        "start" : "2025-03-03T10:30+01:00",
-        "end" : "2025-03-03T10:50+01:00"
-      }
+      "firstDepartureDateTime" : "2025-03-03T10:30+01:00"
     },
     "journeyIds" : {
       "vehicleJourneyId" : "vehicle-journey-0003",
       "serviceJourneyId" : "RUT:ServiceJourney:0003",
       "datedServiceJourneyId" : "RUT:DatedServiceJourney:0003"
+    },
+    "serviceWindow" : {
+      "start" : "2025-03-03T10:30+01:00",
+      "end" : "2025-03-03T10:50+01:00"
     },
     "line" : {
       "name" : "Testveien - Teststien",
@@ -588,15 +593,16 @@ HTTP response:
     "spec" : {
       "lineId" : "RUT:Line:001",
       "journeyId" : "RUT:DatedServiceJourney:0001",
-      "serviceWindow" : {
-        "start" : "2025-03-03T09:00+01:00",
-        "end" : "2025-03-03T09:20+01:00"
-      }
+      "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
     },
     "journeyIds" : {
       "vehicleJourneyId" : "vehicle-journey-0001",
       "serviceJourneyId" : "RUT:ServiceJourney:0001",
       "datedServiceJourneyId" : "RUT:DatedServiceJourney:0001"
+    },
+    "serviceWindow" : {
+      "start" : "2025-03-03T09:00+01:00",
+      "end" : "2025-03-03T09:20+01:00"
     },
     "line" : {
       "name" : "Testveien - Teststien",
@@ -668,15 +674,16 @@ HTTP response:
     "spec" : {
       "lineId" : "RUT:Line:001",
       "journeyId" : "RUT:DatedServiceJourney:0001",
-      "serviceWindow" : {
-        "start" : "2025-03-03T09:00+01:00",
-        "end" : "2025-03-03T09:20+01:00"
-      }
+      "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
     },
     "journeyIds" : {
       "vehicleJourneyId" : "vehicle-journey-0001",
       "serviceJourneyId" : "RUT:ServiceJourney:0001",
       "datedServiceJourneyId" : "RUT:DatedServiceJourney:0001"
+    },
+    "serviceWindow" : {
+      "start" : "2025-03-03T09:00+01:00",
+      "end" : "2025-03-03T09:20+01:00"
     },
     "line" : {
       "name" : "Testveien - Teststien",
@@ -721,15 +728,16 @@ HTTP response:
     "spec" : {
       "lineId" : "RUT:Line:001",
       "journeyId" : "RUT:DatedServiceJourney:0003",
-      "serviceWindow" : {
-        "start" : "2025-03-03T10:30+01:00",
-        "end" : "2025-03-03T10:50+01:00"
-      }
+      "firstDepartureDateTime" : "2025-03-03T10:30+01:00"
     },
     "journeyIds" : {
       "vehicleJourneyId" : "vehicle-journey-0003",
       "serviceJourneyId" : "RUT:ServiceJourney:0003",
       "datedServiceJourneyId" : "RUT:DatedServiceJourney:0003"
+    },
+    "serviceWindow" : {
+      "start" : "2025-03-03T10:30+01:00",
+      "end" : "2025-03-03T10:50+01:00"
     },
     "line" : {
       "name" : "Testveien - Teststien",
@@ -932,15 +940,16 @@ HTTP response:
       "spec" : {
         "lineId" : "RUT:Line:001",
         "journeyId" : "RUT:DatedServiceJourney:0001",
-        "serviceWindow" : {
-          "start" : "2025-03-03T09:00+01:00",
-          "end" : "2025-03-03T09:20+01:00"
-        }
+        "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
       },
       "journeyIds" : {
         "vehicleJourneyId" : "vehicle-journey-0001",
         "serviceJourneyId" : "RUT:ServiceJourney:0001",
         "datedServiceJourneyId" : "RUT:DatedServiceJourney:0001"
+      },
+      "serviceWindow" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
       },
       "line" : {
         "name" : "Testveien - Teststien",
@@ -1049,8 +1058,11 @@ POST /api/adt/v4/operational/assignment/attempts
     },
     "journeys" : [ {
       "journey" : {
-        "lineId" : "RUT:Line:001",
-        "journeyId" : "vehicle-journey-0001",
+        "spec" : {
+          "lineId" : "RUT:Line:001",
+          "journeyId" : "vehicle-journey-0001",
+          "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+        },
         "serviceWindow" : {
           "start" : "2025-03-03T09:00+01:00",
           "end" : "2025-03-03T09:20+01:00"
@@ -1078,15 +1090,16 @@ HTTP response:
       "spec" : {
         "lineId" : "RUT:Line:001",
         "journeyId" : "RUT:DatedServiceJourney:0001",
-        "serviceWindow" : {
-          "start" : "2025-03-03T09:00+01:00",
-          "end" : "2025-03-03T09:20+01:00"
-        }
+        "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
       },
       "journeyIds" : {
         "vehicleJourneyId" : "vehicle-journey-0001",
         "serviceJourneyId" : "RUT:ServiceJourney:0001",
         "datedServiceJourneyId" : "RUT:DatedServiceJourney:0001"
+      },
+      "serviceWindow" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
       },
       "line" : {
         "name" : "Testveien - Teststien",
@@ -1143,8 +1156,11 @@ POST /api/adt/v4/operational/assignment/attempts
       } ]
     }, {
       "journey" : {
-        "lineId" : "RUT:Line:001",
-        "journeyId" : "RUT:ServiceJourney:0001",
+        "spec" : {
+          "lineId" : "RUT:Line:001",
+          "journeyId" : "RUT:ServiceJourney:0001",
+          "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+        },
         "serviceWindow" : {
           "start" : "2025-03-03T09:00+01:00",
           "end" : "2025-03-03T09:20+01:00"
@@ -1152,8 +1168,11 @@ POST /api/adt/v4/operational/assignment/attempts
       }
     }, {
       "journey" : {
-        "lineId" : "RUT:Line:001",
-        "journeyId" : "vehicle-journey-0002",
+        "spec" : {
+          "lineId" : "RUT:Line:001",
+          "journeyId" : "vehicle-journey-0002",
+          "firstDepartureDateTime" : "2025-03-03T09:45+01:00"
+        },
         "serviceWindow" : {
           "start" : "2025-03-03T09:45+01:00",
           "end" : "2025-03-03T10:05+01:00"
@@ -1161,8 +1180,11 @@ POST /api/adt/v4/operational/assignment/attempts
       }
     }, {
       "journey" : {
-        "lineId" : "RUT:Line:001",
-        "journeyId" : "RUT:DatedServiceJourney:0003",
+        "spec" : {
+          "lineId" : "RUT:Line:001",
+          "journeyId" : "RUT:DatedServiceJourney:0003",
+          "firstDepartureDateTime" : "2025-03-03T10:30+01:00"
+        },
         "serviceWindow" : {
           "start" : "2025-03-03T10:30+01:00",
           "end" : "2025-03-03T10:50+01:00"
@@ -1202,25 +1224,27 @@ HTTP response:
     "journeys" : [ {
       "name" : "Ad-Hoc Journey RUT:Quay:ga01 2025-03-03T08:45+01:00 - NSR:Quay:001A 2025-03-03T08:59+01:00",
       "spec" : {
-        "serviceWindow" : {
-          "start" : "2025-03-03T08:45+01:00",
-          "end" : "2025-03-03T08:59+01:00"
-        }
+        "firstDepartureDateTime" : "2025-03-03T08:45+01:00"
+      },
+      "serviceWindow" : {
+        "start" : "2025-03-03T08:45+01:00",
+        "end" : "2025-03-03T08:59+01:00"
       }
     }, {
       "name" : "Service Journey 0001",
       "spec" : {
         "lineId" : "RUT:Line:001",
         "journeyId" : "RUT:DatedServiceJourney:0001",
-        "serviceWindow" : {
-          "start" : "2025-03-03T09:00+01:00",
-          "end" : "2025-03-03T09:20+01:00"
-        }
+        "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
       },
       "journeyIds" : {
         "vehicleJourneyId" : "vehicle-journey-0001",
         "serviceJourneyId" : "RUT:ServiceJourney:0001",
         "datedServiceJourneyId" : "RUT:DatedServiceJourney:0001"
+      },
+      "serviceWindow" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
       },
       "line" : {
         "name" : "Testveien - Teststien",
@@ -1236,15 +1260,16 @@ HTTP response:
       "spec" : {
         "lineId" : "RUT:Line:001",
         "journeyId" : "RUT:DatedServiceJourney:0002",
-        "serviceWindow" : {
-          "start" : "2025-03-03T09:45+01:00",
-          "end" : "2025-03-03T10:05+01:00"
-        }
+        "firstDepartureDateTime" : "2025-03-03T09:45+01:00"
       },
       "journeyIds" : {
         "vehicleJourneyId" : "vehicle-journey-0002",
         "serviceJourneyId" : "RUT:ServiceJourney:0002",
         "datedServiceJourneyId" : "RUT:DatedServiceJourney:0002"
+      },
+      "serviceWindow" : {
+        "start" : "2025-03-03T09:45+01:00",
+        "end" : "2025-03-03T10:05+01:00"
       },
       "line" : {
         "name" : "Testveien - Teststien",
@@ -1260,15 +1285,16 @@ HTTP response:
       "spec" : {
         "lineId" : "RUT:Line:001",
         "journeyId" : "RUT:DatedServiceJourney:0003",
-        "serviceWindow" : {
-          "start" : "2025-03-03T10:30+01:00",
-          "end" : "2025-03-03T10:50+01:00"
-        }
+        "firstDepartureDateTime" : "2025-03-03T10:30+01:00"
       },
       "journeyIds" : {
         "vehicleJourneyId" : "vehicle-journey-0003",
         "serviceJourneyId" : "RUT:ServiceJourney:0003",
         "datedServiceJourneyId" : "RUT:DatedServiceJourney:0003"
+      },
+      "serviceWindow" : {
+        "start" : "2025-03-03T10:30+01:00",
+        "end" : "2025-03-03T10:50+01:00"
       },
       "line" : {
         "name" : "Testveien - Teststien",
@@ -1282,10 +1308,11 @@ HTTP response:
     }, {
       "name" : "Ad-Hoc Journey NSR:Quay:003A 2025-03-03T10:55+01:00 - RUT:Quay:ga02 2025-03-03T11:10+01:00",
       "spec" : {
-        "serviceWindow" : {
-          "start" : "2025-03-03T10:55+01:00",
-          "end" : "2025-03-03T11:10+01:00"
-        }
+        "firstDepartureDateTime" : "2025-03-03T10:55+01:00"
+      },
+      "serviceWindow" : {
+        "start" : "2025-03-03T10:55+01:00",
+        "end" : "2025-03-03T11:10+01:00"
       }
     } ]
   }
@@ -1512,8 +1539,11 @@ POST /api/adt/v4/operational/deviation/deviations
     "impact" : {
       "journeys" : [ {
         "journey" : {
-          "lineId" : "RUT:Line:001",
-          "journeyId" : "RUT:DatedServiceJourney:0003",
+          "spec" : {
+            "lineId" : "RUT:Line:001",
+            "journeyId" : "RUT:DatedServiceJourney:0003",
+            "firstDepartureDateTime" : "2025-03-03T10:30+01:00"
+          },
           "serviceWindow" : {
             "start" : "2025-03-03T10:30+01:00",
             "end" : "2025-03-03T10:50+01:00"
@@ -1538,6 +1568,7 @@ HTTP response:
 201 CREATED
 {
   "deviation" : {
+    "id" : "840660be96fd48c7967f90cc28ac4b34",
     "spec" : {
       "code" : "DELAY",
       "reason" : {
@@ -1546,8 +1577,11 @@ HTTP response:
       "impact" : {
         "journeys" : [ {
           "journey" : {
-            "lineId" : "RUT:Line:001",
-            "journeyId" : "RUT:DatedServiceJourney:0003",
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0003",
+              "firstDepartureDateTime" : "2025-03-03T10:30+01:00"
+            },
             "serviceWindow" : {
               "start" : "2025-03-03T10:30+01:00",
               "end" : "2025-03-03T10:50+01:00"
@@ -1597,8 +1631,11 @@ POST /api/adt/v4/operational/deviation/deviations
     "impact" : {
       "journeys" : [ {
         "journey" : {
-          "lineId" : "RUT:Line:001",
-          "journeyId" : "RUT:DatedServiceJourney:0001",
+          "spec" : {
+            "lineId" : "RUT:Line:001",
+            "journeyId" : "RUT:DatedServiceJourney:0001",
+            "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+          },
           "serviceWindow" : {
             "start" : "2025-03-03T09:00+01:00",
             "end" : "2025-03-03T09:20+01:00"
@@ -1631,8 +1668,11 @@ HTTP response:
       "impact" : {
         "journeys" : [ {
           "journey" : {
-            "lineId" : "RUT:Line:001",
-            "journeyId" : "RUT:DatedServiceJourney:0001",
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0001",
+              "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+            },
             "serviceWindow" : {
               "start" : "2025-03-03T09:00+01:00",
               "end" : "2025-03-03T09:20+01:00"
@@ -1690,8 +1730,11 @@ POST /api/adt/v4/operational/deviation/deviations
           "departureDateTime" : "2025-03-03T09:00+01:00"
         } ],
         "journey" : {
-          "lineId" : "RUT:Line:001",
-          "journeyId" : "RUT:DatedServiceJourney:0001",
+          "spec" : {
+            "lineId" : "RUT:Line:001",
+            "journeyId" : "RUT:DatedServiceJourney:0001",
+            "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+          },
           "serviceWindow" : {
             "start" : "2025-03-03T09:00+01:00",
             "end" : "2025-03-03T09:20+01:00"
@@ -1706,8 +1749,11 @@ POST /api/adt/v4/operational/deviation/deviations
           "departureDateTime" : "2025-03-03T10:30+01:00"
         } ],
         "journey" : {
-          "lineId" : "RUT:Line:001",
-          "journeyId" : "RUT:DatedServiceJourney:0003",
+          "spec" : {
+            "lineId" : "RUT:Line:001",
+            "journeyId" : "RUT:DatedServiceJourney:0003",
+            "firstDepartureDateTime" : "2025-03-03T10:30+01:00"
+          },
           "serviceWindow" : {
             "start" : "2025-03-03T10:30+01:00",
             "end" : "2025-03-03T10:50+01:00"
@@ -1748,8 +1794,11 @@ HTTP response:
             "departureDateTime" : "2025-03-03T09:00+01:00"
           } ],
           "journey" : {
-            "lineId" : "RUT:Line:001",
-            "journeyId" : "RUT:DatedServiceJourney:0001",
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0001",
+              "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+            },
             "serviceWindow" : {
               "start" : "2025-03-03T09:00+01:00",
               "end" : "2025-03-03T09:20+01:00"
@@ -1764,8 +1813,11 @@ HTTP response:
             "departureDateTime" : "2025-03-03T10:30+01:00"
           } ],
           "journey" : {
-            "lineId" : "RUT:Line:001",
-            "journeyId" : "RUT:DatedServiceJourney:0003",
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0003",
+              "firstDepartureDateTime" : "2025-03-03T10:30+01:00"
+            },
             "serviceWindow" : {
               "start" : "2025-03-03T10:30+01:00",
               "end" : "2025-03-03T10:50+01:00"
@@ -1790,7 +1842,7 @@ HTTP response:
 }
 ```
 
-#### No Service - on Stop Point
+#### No Service - on Stop Point - using Duration
 
 To notify the transport authority that one or more stop points will not be serviced by the operator in a given time period, a service
 deviation request should be sent with:
@@ -1815,9 +1867,13 @@ POST /api/adt/v4/operational/deviation/deviations
     },
     "impact" : {
       "stopPoints" : [ {
-        "quayId" : "NSR:Quay:001A"
+        "spec" : {
+          "quayId" : "NSR:Quay:001A"
+        }
       }, {
-        "quayId" : "NSR:Quay:001B"
+        "spec" : {
+          "quayId" : "NSR:Quay:001B"
+        }
       } ]
     },
     "duration" : {
@@ -1845,14 +1901,127 @@ HTTP response:
       },
       "impact" : {
         "stopPoints" : [ {
-          "quayId" : "NSR:Quay:001A"
+          "spec" : {
+            "quayId" : "NSR:Quay:001A"
+          }
         }, {
-          "quayId" : "NSR:Quay:001B"
+          "spec" : {
+            "quayId" : "NSR:Quay:001B"
+          }
         } ]
       },
       "duration" : {
         "start" : "2025-03-03T09:00+01:00",
         "end" : "2025-03-03T13:00+01:00"
+      },
+      "parameters" : {
+        "operatorExempt" : true
+      }
+    },
+    "lifecycle" : {
+      "created" : "2025-03-03T05:43+01:00",
+      "modified" : "2025-03-03T05:43+01:00",
+      "serviceDeviationId" : "7d6ea6e1f1264fe2858668e671786aa9"
+    }
+  }
+}
+```
+
+#### No Service - on Stop Point - using Service Windows
+
+To notify the transport authority that one or more stop points will not be serviced by the operator in a given time period, a service
+deviation request should be sent with:
+- code `NO_SERVICE`
+- a list of affected stop points
+- a suitable [reason code](#service-deviation-reason-codes)
+- a `duration` covering the desired time period.
+
+In this example, we send a _no service_ deviation request with a list of two stop points (one for each quay of a stop place) and a
+service windows indicating at what time ranges the stop point will not be serviced.
+
+HTTP request:
+
+```bash
+POST /api/adt/v4/operational/deviation/deviations
+{
+  "spec" : {
+    "code" : "NO_SERVICE",
+    "reason" : {
+      "code" : "EVENT",
+      "comment" : "Stop point temporarily closed due to running event."
+    },
+    "impact" : {
+      "stopPoints" : [ {
+        "spec" : {
+          "quayId" : "NSR:Quay:001A"
+        },
+        "serviceWindow" : {
+          "start" : "2025-03-03T09:00+01:00",
+          "end" : "2025-03-03T09:20+01:00"
+        }
+      }, {
+        "spec" : {
+          "quayId" : "NSR:Quay:001A"
+        },
+        "serviceWindow" : {
+          "start" : "2025-03-03T10:30+01:00",
+          "end" : "2025-03-03T10:50+01:00"
+        }
+      }, {
+        "spec" : {
+          "quayId" : "NSR:Quay:001B"
+        },
+        "serviceWindow" : {
+          "start" : "2025-03-03T09:45+01:00",
+          "end" : "2025-03-03T10:05+01:00"
+        }
+      } ]
+    },
+    "parameters" : {
+      "operatorExempt" : true
+    }
+  }
+}
+```
+
+HTTP response:
+
+```bash
+201 CREATED
+{
+  "deviation" : {
+    "spec" : {
+      "code" : "NO_SERVICE",
+      "reason" : {
+        "code" : "EVENT",
+        "comment" : "Stop point temporarily closed due to running event."
+      },
+      "impact" : {
+        "stopPoints" : [ {
+          "spec" : {
+            "quayId" : "NSR:Quay:001A"
+          },
+          "serviceWindow" : {
+            "start" : "2025-03-03T09:00+01:00",
+            "end" : "2025-03-03T09:20+01:00"
+          }
+        }, {
+          "spec" : {
+            "quayId" : "NSR:Quay:001A"
+          },
+          "serviceWindow" : {
+            "start" : "2025-03-03T10:30+01:00",
+            "end" : "2025-03-03T10:50+01:00"
+          }
+        }, {
+          "spec" : {
+            "quayId" : "NSR:Quay:001B"
+          },
+          "serviceWindow" : {
+            "start" : "2025-03-03T09:45+01:00",
+            "end" : "2025-03-03T10:05+01:00"
+          }
+        } ]
       },
       "parameters" : {
         "operatorExempt" : true
@@ -1893,8 +2062,11 @@ POST /api/adt/v4/operational/deviation/deviations
     "impact" : {
       "journeys" : [ {
         "journey" : {
-          "lineId" : "RUT:Line:001",
-          "journeyId" : "RUT:DatedServiceJourney:0002",
+          "spec" : {
+            "lineId" : "RUT:Line:001",
+            "journeyId" : "RUT:DatedServiceJourney:0002",
+            "firstDepartureDateTime" : "2025-03-03T09:45+01:00"
+          },
           "serviceWindow" : {
             "start" : "2025-03-03T09:45+01:00",
             "end" : "2025-03-03T10:05+01:00"
@@ -1925,8 +2097,11 @@ HTTP response:
       "impact" : {
         "journeys" : [ {
           "journey" : {
-            "lineId" : "RUT:Line:001",
-            "journeyId" : "RUT:DatedServiceJourney:0002",
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0002",
+              "firstDepartureDateTime" : "2025-03-03T09:45+01:00"
+            },
             "serviceWindow" : {
               "start" : "2025-03-03T09:45+01:00",
               "end" : "2025-03-03T10:05+01:00"
@@ -2033,8 +2208,11 @@ HTTP response:
       "impact" : {
         "journeys" : [ {
           "journey" : {
-            "lineId" : "RUT:Line:001",
-            "journeyId" : "RUT:DatedServiceJourney:0001",
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0001",
+              "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+            },
             "serviceWindow" : {
               "start" : "2025-03-03T09:00+01:00",
               "end" : "2025-03-03T09:20+01:00"
@@ -2111,8 +2289,11 @@ POST /api/adt/v4/operational/deviation/deviations/840660be96fd48c7967f90cc28ac4b
     "impact" : {
       "journeys" : [ {
         "journey" : {
-          "lineId" : "RUT:Line:001",
-          "journeyId" : "RUT:DatedServiceJourney:0003",
+          "spec" : {
+            "lineId" : "RUT:Line:001",
+            "journeyId" : "RUT:DatedServiceJourney:0003",
+            "firstDepartureDateTime" : "2025-03-03T10:30+01:00"
+          },
           "serviceWindow" : {
             "start" : "2025-03-03T10:30+01:00",
             "end" : "2025-03-03T10:50+01:00"
@@ -2147,8 +2328,11 @@ HTTP response:
       "impact" : {
         "journeys" : [ {
           "journey" : {
-            "lineId" : "RUT:Line:001",
-            "journeyId" : "RUT:DatedServiceJourney:0003",
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0003",
+              "firstDepartureDateTime" : "2025-03-03T10:30+01:00"
+            },
             "serviceWindow" : {
               "start" : "2025-03-03T10:30+01:00",
               "end" : "2025-03-03T10:50+01:00"
@@ -2316,8 +2500,11 @@ POST /api/adt/v4/operational/mitigation/mitigations
     "impact" : {
       "journeys" : [ {
         "journey" : {
-          "lineId" : "RUT:Line:001",
-          "journeyId" : "RUT:DatedServiceJourney:0001",
+          "spec" : {
+            "lineId" : "RUT:Line:001",
+            "journeyId" : "RUT:DatedServiceJourney:0001",
+            "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+          },
           "serviceWindow" : {
             "start" : "2025-03-03T09:00+01:00",
             "end" : "2025-03-03T09:20+01:00"
@@ -2351,8 +2538,11 @@ HTTP response:
       "impact" : {
         "journeys" : [ {
           "journey" : {
-            "lineId" : "RUT:Line:001",
-            "journeyId" : "RUT:DatedServiceJourney:0001",
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0001",
+              "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+            },
             "serviceWindow" : {
               "start" : "2025-03-03T09:00+01:00",
               "end" : "2025-03-03T09:20+01:00"
@@ -2411,8 +2601,11 @@ POST /api/adt/v4/operational/mitigation/mitigations
     "impact" : {
       "journeys" : [ {
         "journey" : {
-          "lineId" : "RUT:Line:001",
-          "journeyId" : "RUT:DatedServiceJourney:0001",
+          "spec" : {
+            "lineId" : "RUT:Line:001",
+            "journeyId" : "RUT:DatedServiceJourney:0001",
+            "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+          },
           "serviceWindow" : {
             "start" : "2025-03-03T09:00+01:00",
             "end" : "2025-03-03T09:20+01:00"
@@ -2452,8 +2645,11 @@ HTTP response:
       "impact" : {
         "journeys" : [ {
           "journey" : {
-            "lineId" : "RUT:Line:001",
-            "journeyId" : "RUT:DatedServiceJourney:0001",
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0001",
+              "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+            },
             "serviceWindow" : {
               "start" : "2025-03-03T09:00+01:00",
               "end" : "2025-03-03T09:20+01:00"
@@ -2552,8 +2748,11 @@ POST /api/adt/v4/operational/mitigation/mitigations
     "impact" : {
       "journeys" : [ {
         "journey" : {
-          "lineId" : "RUT:Line:001",
-          "journeyId" : "RUT:DatedServiceJourney:0001",
+          "spec" : {
+            "lineId" : "RUT:Line:001",
+            "journeyId" : "RUT:DatedServiceJourney:0001",
+            "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+          },
           "serviceWindow" : {
             "start" : "2025-03-03T09:00+01:00",
             "end" : "2025-03-03T09:20+01:00"
@@ -2590,8 +2789,11 @@ HTTP response:
       "impact" : {
         "journeys" : [ {
           "journey" : {
-            "lineId" : "RUT:Line:001",
-            "journeyId" : "RUT:DatedServiceJourney:0001",
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0001",
+              "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+            },
             "serviceWindow" : {
               "start" : "2025-03-03T09:00+01:00",
               "end" : "2025-03-03T09:20+01:00"
