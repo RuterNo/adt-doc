@@ -77,7 +77,7 @@
           },
           "boardingCount": {
             "type": "integer",
-            "description": "Number of boarding of this category detected by this sensor since the last APC message was produced."
+            "description": "Number of boarding in this category detected by this sensor since the last APC message was produced."
           }
         }
       }
