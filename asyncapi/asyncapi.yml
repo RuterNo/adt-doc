@@ -43,21 +43,6 @@ channels:
           mqtt:
             qos: 1
             retain: true
-  di/operational_message_to_driver:
-    description:
-      $ref: json-schemas/di/operational_message_to_driver/operational-message-to-driver.md
-    subscribe:
-      message:
-        name: OperationalMessageToDriver
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/di/operational_message_to_driver/operational-message-to-driver.json
-        examples:
-          - $ref: json-schemas/di/operational_message_to_driver/operational-message-to-driver.example.json
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
   di/override_attempt/destination_display:
     description:
       $ref: json-schemas/di/override_attempt/destination_display/destination-display-override.md
