@@ -45,6 +45,7 @@
     "traceId": {
       "$id": "#/properties/traceId",
       "type": "string",
+      "format": "uuid",
       "description": "Unique identifier for tracing this message",
       "example": "baf3d8ac-1234-4e0c-9e9e-abc123def456"
     },

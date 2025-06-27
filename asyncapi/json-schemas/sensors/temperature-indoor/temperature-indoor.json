@@ -23,6 +23,7 @@
     "traceId": {
       "$id": "#/properties/traceId",
       "type": "string",
+      "format": "uuid",
       "description": "Unique identifier for tracing the message.",
       "example": "baf3d8ac-1234-4e0c-9e9e-abc123def456"
     },
@@ -48,13 +49,16 @@
     "level": {
       "$id": "#/properties/level",
       "type": "integer",
+      "minimum": 0,
+      "maximum": 2,
       "description": "Vertical level of the sensor. If not provided, the default is 1 (platform level).",
-      "enum": [0, 1, 2],
-      "example": 1
+      "example": 2
     },
     "value": {
       "$id": "#/properties/value",
       "type": "number",
+      "minimum": -40.0,
+      "maximum": 50.0,
       "description": "Indoor temperature in degrees Celsius (°C), with a resolution better or equal to 1°C",
       "example": 21.5
     }
