@@ -47,10 +47,10 @@ url = <ENTER_URL_HERE>
 > - The `headers` field must be set to the VIN of the vehicle. This identifies the vehicle when syncing files.
 > - The `url` field must be set to the URL of the web server where the content is hosted. Use the appropriate URL for your environment:
 
-| Environment | URL                                   | Purpose                                                        |
-|-------------|---------------------------------------|----------------------------------------------------------------|
-| Prod        | https://pto-api-v2.transhub.io/       | All vehicles running regular routes                            |
-| Stage       | https://pto-api-v2.stage.transhub.io/ | Test rigs, vehicles being tested before running regular routes |
+| Environment | URL                                               | Purpose                                                        |
+| ----------- | ------------------------------------------------- | -------------------------------------------------------------- |
+| Prod        | https://pto-api-v2.transhub.io/web-content/       | All vehicles running regular routes                            |
+| Stage       | https://pto-api-v2.stage.transhub.io/web-content/ | Test rigs, vehicles being tested before running regular routes |
 
 ### 2. Create a Folder for Rclone Logs
 
