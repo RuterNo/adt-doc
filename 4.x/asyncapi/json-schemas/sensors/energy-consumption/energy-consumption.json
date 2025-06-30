@@ -15,14 +15,12 @@
     "eventTimestamp": {
       "$id": "#/properties/eventTimestamp",
       "type": "string",
-      "format": "date-time",
       "description": "ISO 8601 timestamp in UTC (must end with 'Z'), indicating when the measurement was taken",
       "example": "2025-05-13T12:00:00.000Z"
     },
     "traceId": {
       "$id": "#/properties/traceId",
       "type": "string",
-      "format": "uuid",
       "description": "Unique identifier for tracing this message",
       "example": "baf3d8ac-1234-4e0c-9e9e-abc123def456"
     },
