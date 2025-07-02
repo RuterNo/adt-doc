@@ -173,19 +173,16 @@ This should be used for on the left screen in pair with config b2.
 
 ### Screen config b2
 
-Running state of config b1. Intended for screens dedicated to showing journey, i.e. public announcements (such as safety instructions etc) are ignored.
-This should be used for on the left screen in pair with config b2.
-
-![B2](assets/images/client/config/config-b2-1.png)
-
-![Show public announcement](assets/images/client/config/config-b2-2.png)
-
 Secondary information, intended for displaying safety announcements, deviations and other media content types.
 When there is no active media content playing, the screen will show information about next stop, destination and sensor information from the ferry as fallback. The sensor data is derived from following topics:
 
 - telemetry/01001016 - water temperature
 - telemetry/01001011 - temperature outside (ambient)
 - weather - wind data
+
+![B2](assets/images/client/config/config-b2-1.png)
+
+![Show public announcement](assets/images/client/config/config-b2-2.png)
 
 ### Screen config b3
 
