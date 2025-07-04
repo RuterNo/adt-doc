@@ -1,10 +1,11 @@
 ### Destination Display Override Message
 | Field         | Value                                                                                                                         |
 |---------------|-------------------------------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v4/di/override_attempt/destination_display                                                 |
+| Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/di/override_attempt/destination_display                                         |
 | Schema        | [ destination-display-override.json ](json-schemas/di/override_attempt/destination_display/destination-display-override.json) |
+| Maintainer    | [Assignment](https://github.com/orgs/RuterNo/teams/assignment)                                                                |
 | Producer      | PTO                                                                                                                           |
-| Consumer      | [Ruter Assignment](https://github.com/orgs/RuterNo/teams/assignment)                                                          |
+| Consumer      | [Assignment](https://github.com/orgs/RuterNo/teams/assignment)                                                                |
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.                     |
 
 To construct a message, refer to the Available Destination Displays Message list and ensure that all fields provided in 

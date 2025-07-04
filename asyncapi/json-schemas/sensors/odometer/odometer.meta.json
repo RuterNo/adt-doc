@@ -3,6 +3,16 @@
   "mqtt": {
     "qos": 0,
     "retain": false,
-    "topic": "ruter/{operatorId}/{vehicleId}/adt/v4/sensors/odometer"
-  }
+    "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/odometer"
+  },
+  "service-level": "external",
+  "producers": [
+    "pto"
+  ],
+  "consumers": [
+    "pta"
+  ],
+  "maintainers": [
+    "progress"
+  ]
 }

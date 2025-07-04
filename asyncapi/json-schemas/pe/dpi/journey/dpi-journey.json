@@ -25,12 +25,17 @@
     "journeyId": {
       "$id": "#/properties/journeyId",
       "type": "string",
-      "description": "Ruter's external journey id"
+      "description": "PTA's external journey id"
     },
     "journeyRef": {
       "$id": "#/properties/journeyRef",
       "type": "string",
-      "description": "Ruter's internal journey reference"
+      "description": "PTA's internal journey reference"
+    },
+    "assignmentId": {
+      "$id": "#/properties/assignmentId",
+      "type": "string",
+      "description": "PTA's internal assignment reference"
     },
     "routeChangeTimestamp": {
       "$id": "#/properties/routeChangeTimestamp",

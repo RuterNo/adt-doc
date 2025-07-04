@@ -1,9 +1,19 @@
 {
   "mode": "publish",
   "mqtt": {
-    "qos": 0,
+    "qos": 1,
     "retain": false,
-    "topic": "ruter/{operatorId}/{vehicleId}/adt/v4/sensors/charging",
+    "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v4/sensors/charging",
     "params": []
-  }
+  },
+  "service-level": "external",
+  "producers": [
+    "pto"
+  ],
+  "consumers": [
+    "pta"
+  ],
+  "maintainers": [
+    "telemetry"
+  ]
 }

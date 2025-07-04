@@ -32,4 +32,3 @@ It is expected that new domains should be reachable on all vehicle screens runni
 ```
 
 When a new version of the packages is published the timestamp will increment.
-

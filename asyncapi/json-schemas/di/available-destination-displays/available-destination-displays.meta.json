@@ -1,11 +1,19 @@
 {
   "mode": "subscribe",
-  "producer": "assignment",
-  "consumer": "pto",
   "vehicleCentric": false,
   "mqtt": {
     "retain": true,
     "qos": 1,
-    "topic": "{operatorId}/ruter/backoffice/adt/v4/di/available_destination_displays"
-  }
+    "topic": "{operatorId}/{authorityId}/backoffice/adt/v4/di/available_destination_displays"
+  },
+  "service-level": "external",
+  "producers": [
+    "assignment"
+  ],
+  "consumers": [
+    "pto"
+  ],
+  "maintainers": [
+    "assignment"
+  ]
 }

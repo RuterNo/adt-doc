@@ -3,6 +3,17 @@
   "mqtt": {
     "retain": true,
     "qos": 1,
-    "topic": "{operatorId}/ruter/{vehicleId}/adt/v4/pe/vehicle/api"
-  }
+    "topic": "{operatorId}/{authorityId}/{vehicleId}/adt/v4/pe/vehicle/api"
+  },
+  "service-level": "internal",
+  "producers": [
+    "dpi"
+  ],
+  "consumers": [
+    "dpi",
+    "sales"
+  ],
+  "maintainers": [
+    "dpi"
+  ]
 }

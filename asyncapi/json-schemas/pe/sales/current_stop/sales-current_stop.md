@@ -1,11 +1,12 @@
 ### RuterSalg current_stop
 | Field         | Value                                                                                                             |
 |---------------|-------------------------------------------------------------------------------------------------------------------|
-| Central Topic | {operatorId}/ruter/{vehicleId}/adt/v4/pe/sales/current_stop                                                       |
+| Central Topic | {operatorId}/{authorityId}/{vehicleId}/adt/v4/pe/sales/current_stop                                               |
 | Schema        | [ sales-current_stop.json ](json-schemas/pe/sales/current_stop/sales-current_stop.json)                           |
-| Producer      | Betjent salg                                                                                                      |
-| Consumer      | Betjent salg                                                                                                      |
-| Service Level | ⛔ Ruter internal API. No restrictions apply. Api may be removed or modified freely by Ruter within major version. | 
+| Maintainer    | [Betjent salg](https://github.com/orgs/RuterNo/teams/rutersalg)                                                   |
+| Producer      | [Betjent salg](https://github.com/orgs/RuterNo/teams/rutersalg)                                                   |
+| Consumer      | [Betjent salg](https://github.com/orgs/RuterNo/teams/rutersalg)                                                   |
+| Service Level | ⛔ PTA internal API. No restrictions apply. May be removed or modified freely by the PTA                            |
 
 Used to alert the RuterSalg app about the current stop. This message is triggered when the Progress entity determines that the bus is arriving
 at the quay, meaning it is maximum 35 meters from the quay, approaching it. Contains information about the zone the current stop belongs to.

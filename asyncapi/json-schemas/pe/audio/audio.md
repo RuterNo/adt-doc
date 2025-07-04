@@ -1,9 +1,10 @@
 ### Audio Message
 | Field         | Value                                                                                                     |
 |---------------|-----------------------------------------------------------------------------------------------------------|
-| Central Topic | {operatorId}/ruter/{vehicleId}/adt/v4/pe/audio                                                            |
+| Central Topic | {operatorId}/{authorityId}/{vehicleId}/adt/v4/pe/audio                                                    |
 | Schema        | [ audio.json ](json-schemas/pe/audio/audio.json)                                                          |
-| Producer      | [Ruter DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                               |
+| Maintainer    | [DPI](https://github.com/orgs/RuterNo/teams/dpi-team)      |
+| Producer      | [DPI](https://github.com/orgs/RuterNo/teams/dpi-team)      |
 | Consumer      | PTO                                                                                                       |
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. |
 
@@ -17,4 +18,3 @@ In some cases, multiple speaker groups may be targeted by the same audio message
 - If the message defines an expiration timestamp that has passed, the audio content must not be played.
 - If a message contains multiple audio files, these must be played in the order in which they appear in the message.
 - MQTT messages with audio content must be processed synchronously, ensuring that new messages are only played after the previous one has finished.
-

@@ -2,11 +2,12 @@
 
 | Field         | Value                                                                                                                       |
 |---------------|-----------------------------------------------------------------------------------------------------------------------------|
-| Central Topic | {operatorId}/ruter/backoffice/adt/v4/di/available_destination_displays                                                      |
+| Central Topic | {operatorId}/{authorityId}/backoffice/adt/v4/di/available_destination_displays                                              |
 | Schema        | [ available-destination-displays.json ](json-schemas/di/available-destination-displays/available-destination-displays.json) |
-| Producer      | [Ruter Assignment](https://github.com/orgs/RuterNo/teams/assignment)                                                        |
+| Maintainer    | [Assignment](https://github.com/orgs/RuterNo/teams/assignment)                                                              |
+| Producer      | [Assignment](https://github.com/orgs/RuterNo/teams/assignment)                                                              |
 | Consumer      | PTO                                                                                                                         |
-| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.                   | 
+| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.                    |
 
 Provides a list of available destination displays. The list should be used for external displays, in case
 the vehicle has lost connection to the backoffice.

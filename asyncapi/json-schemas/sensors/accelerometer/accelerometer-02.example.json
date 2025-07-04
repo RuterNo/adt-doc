@@ -1,0 +1,20 @@
+{
+  "name": "Accelerometer with x and Y orientation override",
+  "payload": {
+    "eventTimestamp": "2025-05-13T12:00:00.000Z",
+    "traceId": "baf3d8ac-1234-4e0c-9e9e-abc123def456",
+    "messageNumber": 27,
+    "sensorId": "SN-456789",
+    "xMin": 0.023440518,
+    "xMax": 0.129880276,
+    "xAvg": 0.073010342,
+    "yMin": 0.059570834,
+    "yMax": -0.108400127,
+    "yAvg": -0.027750913,
+    "zMin": 0.878910442,
+    "zMax": 1.109380158,
+    "zAvg": 0.993550981,
+    "xOrientation": "L",
+    "yOrientation": "B"
+  }
+}

@@ -3,6 +3,17 @@
   "mqtt": {
     "qos": "1",
     "retain": true,
-    "topic": "ruter/{operatorId}/{vehicleId}/adt/v4/pe/active_cab"
-  }
+    "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/active_cab"
+  },
+  "service-level": "external",
+  "producers": [
+    "pto"
+  ],
+  "consumers": [
+    "dpi",
+    "progress"
+  ],
+  "maintainers": [
+    "dpi"
+  ]
 }
