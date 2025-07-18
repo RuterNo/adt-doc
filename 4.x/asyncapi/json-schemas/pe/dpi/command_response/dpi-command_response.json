@@ -30,13 +30,6 @@
       "type": "string",
       "description": "The traceId of the DPICommand message that this is a response to. This is used to correlate the command with the response."
     },
-    "clientId": {
-      "$id": "#/properties/clientId",
-      "type": "string",
-      "description": "clientId used in client that produced this message",
-      "examples": ["53f93598-8e82-4a38-9def-10075d07bb33"],
-      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
-    },
     "command": {
       "$id": "#/properties/command",
       "command": "string",
