@@ -1,16 +1,9 @@
 {
   "name": "DPI Command",
   "payload": {
-    "eventTimestamp": "2017-10-31T12:45:50.749Z",
-    "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
-    "type": "DEBUG",
-    "payload": {
-      "command": "LOG_TRANSFER",
-      "args": {
-        "level": "ERROR",
-        "limit": 10,
-        "page": 0
-      }
-    }
+    "eventTimestamp": "2025-04-03T13:18:26.337178538Z",
+    "traceId": "2fccd221-f879-43e8-9e45-62abf54a9688",
+    "clientId": "*",
+    "command": "GET_STATUS"
   }
 }
