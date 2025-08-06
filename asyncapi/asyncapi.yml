@@ -107,21 +107,6 @@ channels:
           mqtt:
             qos: 0
             retain: false
-  pe/door_lock:
-    description:
-      $ref: json-schemas/pe/door-lock/door-lock.md
-    publish:
-      message:
-        name: DoorLock
-        schemaFormat: application/schema+json;version=draft-07
-        payload:
-          $ref: json-schemas/pe/door-lock/door-lock.json
-        examples:
-          - $ref: json-schemas/pe/door-lock/door-lock.example.json
-        bindings:
-          mqtt:
-            qos: 1
-            retain: false
   pe/doors_individually:
     description:
       $ref: json-schemas/pe/doors-individually/doors-individually.md
