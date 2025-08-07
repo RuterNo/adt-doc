@@ -492,6 +492,14 @@
             "$ref": "#/components/parameters/AuthorityIdHeader"
           },
           {
+            "in": "query",
+            "name": "query",
+            "description": "General-purpose search parameter that can accept various identifiers.\n",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "$ref": "#/components/parameters/FromDateTime"
           },
           {
@@ -1260,10 +1268,13 @@
           "mqttRouting": {
             "$ref": "#/components/schemas/MqttRouting"
           },
+          "featureLevel": {
+            "$ref": "#/components/schemas/FeatureLevel"
+          },
           "journeys": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/WindowedJourneySpecOption"
+              "$ref": "#/components/schemas/JourneySpecWindowOption"
             }
           }
         }
@@ -1303,6 +1314,16 @@
             "description": "End of date-time range in ISO-8601 format, including time-zone offset (format: _YYYY-MM-DD_T_hh:mm:ssZ_).\n"
           }
         }
+      },
+      "FeatureLevel": {
+        "type": "string",
+        "title": "FeatureLevel",
+        "description": "Feature level as defined by https://avtaleomdigitaletjenester.atlassian.net/wiki/spaces/DS/pages/2523824129/KUNNGJORT+Avtale+om+Digitale+Tjenester+v.+4.0#Funksjonsniv%C3%A5er If the Feature level is not specified, Feature Level COMPLETE is assumed.\n",
+        "example": [
+          "COMPLETE # Complete feature level, the vehicle meets all requirements in the given ADT version",
+          "LEGACY   # Legacy feature level, as defined by ADT 4.0 Funksjonsniv\u00e5er",
+          "LIGHT    # Light feature level, as defined by ADT 4.0 Funksjonsniv\u00e5er"
+        ]
       },
       "JWKSResponse": {
         "type": "object",
@@ -1416,27 +1437,6 @@
           }
         }
       },
-      "JourneyDeviation": {
-        "type": "object",
-        "title": "JourneyDeviation",
-        "properties": {
-          "code": {
-            "$ref": "#/components/schemas/ServiceDeviationCode"
-          },
-          "reason": {
-            "$ref": "#/components/schemas/ServiceDeviationReason"
-          },
-          "metadata": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MetadataEntry"
-            }
-          },
-          "lifecycle": {
-            "$ref": "#/components/schemas/ServiceDeviationLifeCycleInfo"
-          }
-        }
-      },
       "JourneyDeviationState": {
         "type": "object",
         "title": "JourneyDeviationState",
@@ -1456,8 +1456,9 @@
           },
           "serviceDeviations": {
             "type": "array",
+            "description": "List of references to service deviations currently active on this journey.",
             "items": {
-              "$ref": "#/components/schemas/JourneyDeviation"
+              "$ref": "#/components/schemas/JourneyServiceVarianceReference"
             }
           }
         }
@@ -1544,6 +1545,18 @@
           }
         }
       },
+      "JourneyLineSpecWindow": {
+        "type": "object",
+        "title": "JourneyLineSpecWindow",
+        "properties": {
+          "spec": {
+            "$ref": "#/components/schemas/JourneyLineSpec"
+          },
+          "serviceWindow": {
+            "$ref": "#/components/schemas/DateTimeRange"
+          }
+        }
+      },
       "JourneyListResponse": {
         "type": "object",
         "title": "JourneyListResponse",
@@ -1578,6 +1591,31 @@
           "standbyVehiclePlanned": {
             "type": "boolean",
             "description": "Flag indicating traffic controller has planned an alternative (stand by) vehicle on this journey.\n"
+          },
+          "serviceMitigations": {
+            "type": "array",
+            "description": "List of references to service mitigations currently active on this journey.",
+            "items": {
+              "$ref": "#/components/schemas/JourneyServiceVarianceReference"
+            }
+          }
+        }
+      },
+      "JourneyServiceVarianceReference": {
+        "type": "object",
+        "title": "JourneyServiceVarianceReference",
+        "description": "A reference to a service variance such as a service deviation or a service mitigation.",
+        "required": [
+          "ref"
+        ],
+        "properties": {
+          "ref": {
+            "type": "string",
+            "description": "Reference to a service deviation or service mitigation."
+          },
+          "code": {
+            "type": "string",
+            "description": "A service deviation code or service mitigation code."
           }
         }
       },
@@ -1595,6 +1633,33 @@
           "firstDepartureDateTime": {
             "description": "Planned Departure Time from the Initial Call",
             "type": "string"
+          }
+        }
+      },
+      "JourneySpecWindow": {
+        "type": "object",
+        "title": "JourneySpecWindow",
+        "properties": {
+          "spec": {
+            "$ref": "#/components/schemas/JourneySpec"
+          },
+          "serviceWindow": {
+            "$ref": "#/components/schemas/DateTimeRange"
+          }
+        }
+      },
+      "JourneySpecWindowOption": {
+        "type": "object",
+        "title": "JourneySpecWindowOption",
+        "properties": {
+          "calls": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JourneyCallSpec"
+            }
+          },
+          "journey": {
+            "$ref": "#/components/schemas/JourneySpecWindow"
           }
         }
       },
@@ -1781,6 +1846,7 @@
         "description": "Service deviation code, indicating type of service deviation.",
         "example": [
           "DELAY            # Service will be delayed.",
+          "BYPASS           # A call is not serviced, but bypassed due to lack of waiting passengers or other reason.",
           "NO_SERVICE       # Journey(s), line(s) or call(s) will not be serviced by operator.",
           "NO_SIGN_ON       # Planned journey(s), line(s) or call(s) will be serviced, but operator will not sign on."
         ]
@@ -2003,19 +2069,19 @@
           "lines": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/WindowedJourneyLineSpec"
+              "$ref": "#/components/schemas/JourneyLineSpecWindow"
             }
           },
           "journeys": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/WindowedJourneySpecOption"
+              "$ref": "#/components/schemas/JourneySpecWindowOption"
             }
           },
           "stopPoints": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/WindowedStopPointSpec"
+              "$ref": "#/components/schemas/StopPointSpecWindow"
             }
           }
         }
@@ -2254,6 +2320,7 @@
         "example": [
           "OK                             # OK / No reason",
           "INFO                           # Informational only. Description field(s) may contain additional details.",
+          "WARNING                        # Warning only. Description fields may contain additional details.",
           "TIMEOUT                        # A timeout (error) occurred.",
           "BAD_REQUEST                    # The provided request contained one or more error(s).",
           "INTERNAL_ERROR                 # An internal error occurred.",
@@ -2261,6 +2328,7 @@
           "LINE_SPEC_ERROR                # Missing or invalid line specification(s).",
           "JOURNEY_SPEC_ERROR             # Missing or invalid journey specification(s)",
           "SERVICE_WINDOW_ERROR           # Missing or invalid service window(s) in specification(s).",
+          "STOP_POINT_SPEC_ERROR          # Missing or invalid stop point specification(s)",
           "CALL_NOT_FOUND                 # No call(s) matching provided specification(s).",
           "LINE_NOT_FOUND                 # No line(s) matching provided specification(s).",
           "JOURNEY_NOT_FOUND              # No journey(s) matching provided specification(s).",
@@ -2269,6 +2337,7 @@
           "OPERATOR_ID_ERROR              # Missing or invalid operator id in request.",
           "DEVIATION_CODE_ERROR           # Missing or invalid service deviation code.",
           "DEVIATION_REASON_CODE_ERROR    # Missing or invalid service deviation reason code.",
+          "MITIGATION_CODE_ERROR          # Missing or invalid service mitigation code.",
           "ASSIGNMENT_ATTEMPT_EXPIRED     # Assignment attempt has expired (timeout error).",
           "ASSIGNMENT_SIGN_OFF_CODE_ERROR # Missing or invalid assignment attempt sign-off code."
         ]
@@ -2287,6 +2356,18 @@
           "stopPointId": {
             "type": "string",
             "description": "Unique id of stop point. May be used as an alternative to quayId if stop point has no quay id or quay id is knot known.\n"
+          }
+        }
+      },
+      "StopPointSpecWindow": {
+        "type": "object",
+        "title": "StopPointSpecWindow",
+        "properties": {
+          "spec": {
+            "$ref": "#/components/schemas/StopPointSpec"
+          },
+          "serviceWindow": {
+            "$ref": "#/components/schemas/DateTimeRange"
           }
         }
       },
@@ -2375,57 +2456,6 @@
           },
           "vehicleState": {
             "$ref": "#/components/schemas/VehicleState"
-          }
-        }
-      },
-      "WindowedJourneyLineSpec": {
-        "type": "object",
-        "title": "WindowedJourneyLineSpec",
-        "properties": {
-          "spec": {
-            "$ref": "#/components/schemas/JourneyLineSpec"
-          },
-          "serviceWindow": {
-            "$ref": "#/components/schemas/DateTimeRange"
-          }
-        }
-      },
-      "WindowedJourneySpec": {
-        "type": "object",
-        "title": "WindowedJourneySpec",
-        "properties": {
-          "spec": {
-            "$ref": "#/components/schemas/JourneySpec"
-          },
-          "serviceWindow": {
-            "$ref": "#/components/schemas/DateTimeRange"
-          }
-        }
-      },
-      "WindowedJourneySpecOption": {
-        "type": "object",
-        "title": "WindowedJourneySpecOption",
-        "properties": {
-          "calls": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/JourneyCallSpec"
-            }
-          },
-          "journey": {
-            "$ref": "#/components/schemas/WindowedJourneySpec"
-          }
-        }
-      },
-      "WindowedStopPointSpec": {
-        "type": "object",
-        "title": "WindowedStopPointSpec",
-        "properties": {
-          "spec": {
-            "$ref": "#/components/schemas/StopPointSpec"
-          },
-          "serviceWindow": {
-            "$ref": "#/components/schemas/DateTimeRange"
           }
         }
       }
