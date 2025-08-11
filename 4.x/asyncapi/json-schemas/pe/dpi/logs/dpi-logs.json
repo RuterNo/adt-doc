@@ -8,6 +8,7 @@
   "required": [
     "eventTimestamp",
     "traceId",
+    "clientId", 
     "payload"
   ],
   "additionalProperties": true,
@@ -22,6 +23,13 @@
       "$id": "#/properties/traceId",
       "type": "string",
       "description": "A unique identifier - UUID"
+    },
+    "clientId": {
+      "$id": "#/properties/clientId",
+      "type": "string",
+      "description": "clientId used in client that produced this message",
+      "examples": ["53f93598-8e82-4a38-9def-10075d07bb33"],
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
     },
     "payload": {
       "$id": "#/properties/payload",
