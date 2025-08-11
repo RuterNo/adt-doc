@@ -35,6 +35,13 @@
       "type": "string",
       "description": "A unique identifier for the client. If you sent a command targeting \"*\" (all clients), this will be the clientId of the client that sent the command response."
     },
+    "clientId": {
+      "$id": "#/properties/clientId",
+      "type": "string",
+      "description": "clientId used in client that produced this message",
+      "examples": ["53f93598-8e82-4a38-9def-10075d07bb33"],
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
     "command": {
       "$id": "#/properties/command",
       "type": "string",
