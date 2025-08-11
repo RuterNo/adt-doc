@@ -1056,6 +1056,7 @@ POST /api/adt/v4/operational/assignment/attempts
       "authorityId" : "PTA",
       "vehicleId" : "VI00TEST001"
     },
+    "featureLevel" : "COMPLETE",
     "journeys" : [ {
       "journey" : {
         "spec" : {
@@ -1140,6 +1141,7 @@ POST /api/adt/v4/operational/assignment/attempts
       "authorityId" : "PTA",
       "vehicleId" : "VI00TEST001"
     },
+    "featureLevel" : "LIGHT",
     "journeys" : [ {
       "calls" : [ {
         "stopPoint" : {
@@ -1407,6 +1409,7 @@ The following types of service deviations are supported by the API:
 - [`NO_SERVICE`](#service-deviation---no_service), indicating inability to service a planned service journey.
 - [`NO_SIGN_ON`](#service-deviation---no_sign_on), indicating a service journey will be serviced, but without
   signing on the vehicle.
+- [`BYPASS`](#service-deviation---bypass), indicating a delayed start of a planned service journey.
 
 ### Service Deviation Requests
 
@@ -2118,6 +2121,107 @@ HTTP response:
       "created" : "2025-03-03T05:05+01:00",
       "modified" : "2025-03-03T05:05+01:00",
       "serviceDeviationId" : "16e70a9992d04ac8b4a0d598b5560606"
+    }
+  }
+}
+```
+### Service Deviation - BYPASS
+
+#### Bypass - on Journey Calls
+
+To notify the transport authority that certain calls in one or more journeys will not be bypassed by the operator, a service deviation
+request should be sent with:
+- code `BYPASS`
+- a list of affected calls per journey
+- a suitable [reason code](#service-deviation-reason-codes)
+
+In this example, we send a _bypass_ deviation request with a single call, indicating the call will be bypassed due
+to a lack of passengers.
+
+HTTP request:
+
+```bash
+POST /api/adt/v4/operational/deviation/deviations
+{
+  "spec" : {
+    "code" : "BYPASS",
+    "reason" : {
+      "code" : "NO_PASSENGERS",
+      "comment" : "Bypassing stop point due to lack of passengers"
+    },
+    "impact" : {
+      "journeys" : [ {
+        "calls" : [ {
+          "stopPoint" : {
+            "quayId" : "NSR:Quay:002A",
+            "stopPointId" : "stop-point-002A"
+          },
+          "arrivalDateTime" : "2025-03-03T09:10+01:00",
+          "departureDateTime" : "2025-03-03T09:10+01:00"
+        } ],
+        "journey" : {
+          "spec" : {
+            "lineId" : "RUT:Line:001",
+            "journeyId" : "RUT:DatedServiceJourney:0001",
+            "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+          }
+        }
+      } ]
+    },
+    "duration" : {
+      "start" : "2025-03-03T09:00+01:00",
+      "end" : "2025-03-03T09:20+01:00"
+    },
+    "parameters" : {
+      "operatorExempt" : true
+    }
+  }
+}
+```
+
+HTTP response:
+
+```bash
+201 CREATED
+{
+  "deviation" : {
+    "spec" : {
+      "code" : "BYPASS",
+      "reason" : {
+        "code" : "NO_PASSENGERS",
+        "comment" : "Bypassing stop point due to lack of passengers"
+      },
+      "impact" : {
+        "journeys" : [ {
+          "calls" : [ {
+            "stopPoint" : {
+              "quayId" : "NSR:Quay:002A",
+              "stopPointId" : "stop-point-002A"
+            },
+            "arrivalDateTime" : "2025-03-03T09:10+01:00",
+            "departureDateTime" : "2025-03-03T09:10+01:00"
+          } ],
+          "journey" : {
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0001",
+              "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+            }
+          }
+        } ]
+      },
+      "duration" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
+      },
+      "parameters" : {
+        "operatorExempt" : true
+      }
+    },
+    "lifecycle" : {
+      "created" : "2025-03-03T05:17+01:00",
+      "modified" : "2025-03-03T05:17+01:00",
+      "serviceDeviationId" : "69c6x21a838245cb568cb0a5d1548fd2"
     }
   }
 }
