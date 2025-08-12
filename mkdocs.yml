@@ -94,6 +94,8 @@ nav:
       - Additional messages:
           - TSP: tsp.md
           - SLA insight: insight.md
+      - Test specifications:
+            - Backoffice test: backoffice-test.md
   - Vehicle setup:
       - MQTT bridge config: mqtt.md
       - Browser requirements: browser-requirements.md
