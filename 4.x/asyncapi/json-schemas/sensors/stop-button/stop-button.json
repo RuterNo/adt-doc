@@ -25,9 +25,10 @@
     "stopPressed": {
       "$id": "#/properties/stopPressed",
       "type": "boolean",
-      "description": "True if stop request button pressed.",
+      "description": "True if stop request button pressed. False if stop request signal is cleared.",
       "examples": [
-        "true"
+        "true",
+        "false"
       ]
     },
     "accessibility": {
