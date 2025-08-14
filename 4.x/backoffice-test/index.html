@@ -800,9 +800,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#predefined-data" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      Predefined data
+      Prerequisites
     </span>
   </a>
   
@@ -1541,9 +1541,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#predefined-data" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      Predefined data
+      Prerequisites
     </span>
   </a>
   
@@ -1599,38 +1599,79 @@
 <h2 id="abstract">Abstract<a class="headerlink" href="#abstract" title="Permanent link">&para;</a></h2>
 <p>The purpose of these tests is to verify that the operator has implemented the <a href="https://adt.transhub.io/4.x/operational-api/">Operational API</a> so that it is ready for use by their traffic leaders.</p>
 <h2 id="test-procedure">Test procedure<a class="headerlink" href="#test-procedure" title="Permanent link">&para;</a></h2>
+<p>To run a formal test, PTO schedules a time with TET digital that will validate the results. </p>
 <ol>
 <li>PTO runs the tests below from their backoffice in PTA’s test environment.</li>
 <li>TET Digital verifies the  results and reports to PTA</li>
 <li>PTA approves</li>
 </ol>
-<h3 id="predefined-data"><strong>Predefined data</strong><a class="headerlink" href="#predefined-data" title="Permanent link">&para;</a></h3>
+<h3 id="prerequisites"><strong>Prerequisites</strong><a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Credentials for the operator</li>
-<li>An operator and a contract</li>
+<li>The operator has credentials</li>
+<li>The operator and a contract is defined</li>
 <li>A planned vehicle task with a number of journeys (both service journeys and deadruns if applicable.)</li>
 </ul>
 <h3 id="tests"><strong>Tests</strong><a class="headerlink" href="#tests" title="Permanent link">&para;</a></h3>
 <p>From your backoffice perform the following tests:</p>
-<ol>
-<li>Register a deviation with code=NO_SERVICE for a journey</li>
-<li>Register a deviation with code=NO_SERVICE for a call on a journey</li>
-<li>Register a deviation with code=NO_SIGNON for a journey</li>
-<li>Register a deviation with code=DELAY and delayMinutes=10 for a journey</li>
-<li>Register a deviation with code=DELAY and delayMinutes=10 for a call on a journey</li>
-<li>Get the deviations. Verify that all deviations are returned.</li>
-<li>Update the DELAY deviation from step 4 to delayMinutes=15</li>
-<li>Update the DELAY deviation from step 4 to code=NO_SERVICE</li>
-<li>Delete the deviation from step 4</li>
-<li>Get journeys by the vehicle task id.</li>
-<li>
-<p>Sign on with all the journeys that are returned.</p>
-<p>It is up to the operator to decide which type of journey specification to use.</p>
-</li>
-<li>
-<p>Sign off with the same vehicle id that was used in Sign on.</p>
-</li>
-</ol>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Expected result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Register a deviation with code=NO_SERVICE for a journey</td>
+<td>Response OK</td>
+</tr>
+<tr>
+<td>2. Register a deviation with code=NO_SERVICE for a call on a journey</td>
+<td>Response OK</td>
+</tr>
+<tr>
+<td>3. Register a deviation with code=NO_SIGNON for a journey</td>
+<td>Response OK</td>
+</tr>
+<tr>
+<td>4. Register a deviation with code=DELAY and delayMinutes=10 for a journey</td>
+<td>Response OK</td>
+</tr>
+<tr>
+<td>5. Register a deviation with code=DELAY and delayMinutes=10 for a call on a journey</td>
+<td>Response OK</td>
+</tr>
+<tr>
+<td>6. Get the deviations. Verify that all deviations are returned.</td>
+<td>Response OK</td>
+</tr>
+<tr>
+<td>7. Update the DELAY deviation from step 4 to delayMinutes=15</td>
+<td>Response OK</td>
+</tr>
+<tr>
+<td>8. Update the DELAY deviation from step 4 to code=NO_SERVICE</td>
+<td>Response OK</td>
+</tr>
+<tr>
+<td>9. Delete the deviation from step 4</td>
+<td>Response OK</td>
+</tr>
+<tr>
+<td>10. Get journeys by the vehicle task id.</td>
+<td>Response OK with a list of journeys.</td>
+</tr>
+<tr>
+<td>11. Sign on with all the journeys that are returned. It is up to the operator to decide which type of journey specification to use.</td>
+<td>Response OK</td>
+</tr>
+<tr>
+<td>12. Sign off with the same vehicle id that was used in Sign on.</td>
+<td>Response OK</td>
+</tr>
+</tbody>
+</table>
+<p>See examples in the <a href="https://adt.transhub.io/4.x/operational-api/">Operational API</a></p>
 
 
 
