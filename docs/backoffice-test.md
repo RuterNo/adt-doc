@@ -14,9 +14,9 @@ To run a formal test, PTO schedules a time with TET digital that will validate t
 
 ### **Prerequisites**
 
-- The operator has credentials
+- The operator has MQTT credentials to the test environment. The same credentials will be used for the Operational API.
 - The operator and a contract is defined
-- A planned vehicle task with a number of journeys (both service journeys and deadruns if applicable.)
+- A planned vehicle task is defined with a number of journeys (both service journeys and deadruns if applicable.)
 
 ### **Tests**
 
