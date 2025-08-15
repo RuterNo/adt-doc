@@ -1,0 +1,18 @@
+{
+  "mode": "publish",
+  "mqtt": {
+    "retain": false,
+    "qos": 1,
+    "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v3/pe/dpi/command_response"
+  },
+  "service-level": "internal",
+  "producers": [
+    "dpi"
+  ],
+  "consumers": [
+    "dpi"
+  ],
+  "maintainers": [
+    "dpi"
+  ]
+}
