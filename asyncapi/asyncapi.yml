@@ -467,6 +467,21 @@ channels:
           mqtt:
             qos: 1
             retain: false
+  pe/dpi/logs:
+    description:
+      $ref: json-schemas/pe/dpi/logs/dpi-logs.md
+    publish:
+      message:
+        name: DpiLogs
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/pe/dpi/logs/dpi-logs.json
+        examples:
+          - $ref: json-schemas/pe/dpi/logs/dpi-logs.example.json
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
   pe/sales/diagnostics:
     description:
       $ref: json-schemas/pe/sales/diagnostics/sales-diagnostics.md
