@@ -1,0 +1,11 @@
+{
+  "name": "DPI Feature Toggle",
+  "payload": {
+    "eventTimestamp": "2025-05-20T09:07:39.927Z",
+    "traceId": "f59a4ade-1e65-4b02-8def-edd3641852e8",
+    "features": {
+      "qr_feedback": true,
+      "other_feedback": false
+    }
+  }
+}

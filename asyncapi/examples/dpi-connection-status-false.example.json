@@ -1,0 +1,9 @@
+{
+  "name": "Connection Status disconnected",
+  "payload": {
+    "eventTimestamp": "2018-10-31T12:45:45Z",
+    "traceId": "2de04b7c-321a-4ad2-b545-b8cb971e0550",
+    "clientId": "ad71dba8-c881-11e8-a8d5-f2801f1b9fd1",
+    "connected": false
+  }
+}
