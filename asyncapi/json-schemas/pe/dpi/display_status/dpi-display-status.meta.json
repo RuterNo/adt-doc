@@ -1,0 +1,19 @@
+{
+  "mode": "publish",
+  "mqtt": {
+    "retain": false,
+    "qos": 1,
+    "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v3/pe/dpi/display_status"
+  },
+  "service-level": "external",
+  "producers": [
+    "dpi"
+  ],
+  "consumers": [
+    "pto",
+    "dpi"
+  ],
+  "maintainers": [
+    "dpi"
+  ]
+}

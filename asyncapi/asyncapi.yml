@@ -452,6 +452,21 @@ channels:
           mqtt:
             qos: 1
             retain: false
+  pe/dpi/display_status:
+    description:
+      $ref: json-schemas/pe/dpi/display_status/dpi-display-status.md
+    publish:
+      message:
+        name: DpiDisplayStatus
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/pe/dpi/display_status/dpi-display-status.json
+        examples:
+          - $ref: json-schemas/pe/dpi/display_status/dpi-display-status.example.json
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
   pe/sales/diagnostics:
     description:
       $ref: json-schemas/pe/sales/diagnostics/sales-diagnostics.md
