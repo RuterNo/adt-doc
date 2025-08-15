@@ -1,0 +1,44 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.x/pe/dpi/connection_status/dpi-connection-status.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DpiConnectionStatus",
+  "type": "object",
+  "required": [
+    "eventTimestamp",
+    "clientId",
+    "connected"
+  ],
+  "description": "DPI Connection status topic",
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "Timestamp indicating when the client was last loaded (not when this message was sent)",
+      "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier (UUIDv4) for this message"
+    },
+    "clientId": {
+      "$id": "#/properties/clientId",
+      "type": "string",
+      "title": "Screen id",
+      "examples": [
+        "ad71dba8-c881-11e8-a8d5-f2801f1b9fd1"
+      ],
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "connected": {
+      "$id": "#/properties/connected",
+      "type": "boolean",
+      "description": "Whether the screen is connected or disconnected",
+      "examples": [
+        "true",
+        "false"
+      ]
+    }
+  }
+}
