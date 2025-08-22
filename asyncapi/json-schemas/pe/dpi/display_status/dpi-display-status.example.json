@@ -10,7 +10,7 @@
     "client": {
       "url": "http://webserver.local/app?clientId=bdfc2922-38e6-4dec-9421-da902277e645&physicalId=127.0.0.1#/display/1",
       "version": "2025-05-12T08-21-51Z",
-      "clientId": "49dc634e-a3f0-4b04-8492-c8ee558e8e3f",
+      "clientId": "bdfc2922-38e6-4dec-9421-da902277e645",
       "physicalId": "127.0.0.1",
       "connectivity": "ONLINE"
     },
