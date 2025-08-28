@@ -36,7 +36,8 @@ http://webserver.local/app/?clientId=<INSERT_CLIENT_ID>&physicalId=<INSERT_PHYSI
 | 2        | Horizontal journey                       | 48:9         | 1920x360                                   | Bus            |
 | 3        | Vertical journey                         | 16:9         | 1920x1080, 960x540                         | Bus            |
 | 4        | Vertical journey / Public Announcement   | 16:9         | 1920x1080, 960x540                         | Bus            |
-| 5        | Horizontal journey                       | 32:9         | 1920x540                                   | Bus            |
+| 5-left   | Horizontal journey                       | 32:9         | 1920x540                                   | Bus            |
+| 5-right  | Horizontal journey                       | 32:9         | 1920x540                                   | Bus            |
 | 6        | Vertical journey                         | 16:5         | 1920x600                                   | Bus            |
 | t2-left  | Horizontal journey                       | 1920:197     | 1920x197                                   | Tram (SL18)    |
 | t2-right | Horizontal journey (reverse)             | 1920:197     | 1920x197                                   | Tram (SL18)    |
