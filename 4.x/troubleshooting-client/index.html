@@ -1201,6 +1201,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#error-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Codes
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1644,6 +1653,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#error-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Error Codes
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1716,6 +1734,16 @@ It may or have not received data on other topics. </p>
 <h4 id="dead-run">Dead run<a class="headerlink" href="#dead-run" title="Permanent link">&para;</a></h4>
 <p>The journey qualifies as a dead-run when the public code of the line equals <code>0</code>, route id is <code>RUT:Route:0</code>, or journey id includes a substring of <code>RUT:DeadRun:0</code>.</p>
 <p><img alt="Unable to establish connection" src="../assets/images/client/dead-run.png" /></p>
+<h3 id="error-codes">Error Codes<a class="headerlink" href="#error-codes" title="Permanent link">&para;</a></h3>
+<p>We want to reduce technical jargon to passengers onboard the vehicle. We still need some technical info when debugging issues however.</p>
+<p>Here is a list of the possible error codes we show in the bottom right corner of the screen:</p>
+<ul>
+<li><code>NOC</code> – Client lost connection to MQTT broker (ws://mqtt-broker:9883)</li>
+<li><code>NOJ</code> – Client has not received any journey message</li>
+<li><code>EDO</code> – Client received an external display override message (driver decided to show something else on external displays)</li>
+<li><code>DER</code> – Client received a journey message indicating this vehicle should not be transporting passengers (commonly referred to as a deadrun)</li>
+<li><code>OFR</code> – The client received an eta-message with information indicating the vehicle has deviated from its planned route.</li>
+</ul>
 
 
 
