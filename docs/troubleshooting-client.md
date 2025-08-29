@@ -47,3 +47,15 @@ The journey qualifies as a dead-run when the public code of the line equals `0`,
 
 ![Unable to establish connection](assets/images/client/dead-run.png)
 
+
+### Error Codes
+
+We want to reduce technical jargon to passengers onboard the vehicle. We still need some technical info when debugging issues however.
+
+Here is a list of the possible error codes we show in the bottom right corner of the screen:
+
+* `NOC` – Client lost connection to MQTT broker (ws://mqtt-broker:9883)
+* `NOJ` – Client has not received any journey message
+* `EDO` – Client received an external display override message (driver decided to show something else on external displays)
+* `DER` – Client received a journey message indicating this vehicle should not be transporting passengers (commonly referred to as a deadrun)
+* `OFR` – The client received an eta-message with information indicating the vehicle has deviated from its planned route.
