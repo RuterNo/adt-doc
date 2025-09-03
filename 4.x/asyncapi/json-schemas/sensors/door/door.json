@@ -8,7 +8,7 @@
     "eventTimestamp",
     "doorOpen"
   ],
-  "description": "Describes if any door is open (if the door lock is released). Also see topic pe/doors_individually for status on individual doors.",
+  "description": "Door status - indicates if passengers are able to open (the door lock is released) the doors. When false, doors are locked and cannot be opened by passengers.",
   "additionalProperties": true,
   "properties": {
     "traceId": {
