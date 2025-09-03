@@ -8,7 +8,7 @@
     "eventTimestamp",
     "doorOpen"
   ],
-  "description": "Door status - indicates if passengers are able to open (the door lock is released) the doors. When false, doors are locked and cannot be opened by passengers.",
+  "description": "Door status - indicates if passengers are able to open the doors (the door lock is released). When false, doors are locked and cannot be opened by passengers.",
   "additionalProperties": true,
   "properties": {
     "traceId": {
@@ -31,7 +31,7 @@
     "doorOpen": {
       "$id": "#/properties/doorOpen",
       "type": "boolean",
-      "description": "True if any door is open (door lock is released). False if door lock is activated.",
+      "description": "True if passengers are able to open (the door lock is released). When false, doors are locked and cannot be opened by passengers.",
       "examples": [
         "true",
         "false"
