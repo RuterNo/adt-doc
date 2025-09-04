@@ -55,6 +55,10 @@
           "type": "string",
           "description": "Current dpi client version"
         },
+        "screenTypeId": {
+          "type": "string",
+          "description": "The screen type being used on the client that sent this message"
+        },
         "clientId": {
           "type": "string",
           "description": "The mqtt clientId of the client receiving the message. Should be a stable UUID v4 and not change"
@@ -76,6 +80,7 @@
       "required": [
         "url",
         "version",
+        "screenTypeId",
         "clientId",
         "connectivity"
       ]
