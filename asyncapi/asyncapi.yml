@@ -421,6 +421,67 @@ channels:
           mqtt:
             qos: 1
             retain: false
+  pe/dpi/connection_status:
+    description:
+      $ref: json-schemas/pe/dpi/connection_status/dpi-connection-status.md
+    publish:
+      message:
+        name: DpiConnectionStatus
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/pe/dpi/connection_status/dpi-connection-status.json
+        examples:
+          - $ref: json-schemas/pe/dpi/connection_status/dpi-connection-status-false.example.json
+          - $ref: json-schemas/pe/dpi/connection_status/dpi-connection-status-true.example.json
+        bindings:
+          mqtt:
+            qos: 1
+            retain: true
+  pe/dpi/command_response:
+    description:
+      $ref: json-schemas/pe/dpi/command_response/dpi-command_response.md
+    publish:
+      message:
+        name: DpiCommandResponse
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/pe/dpi/command_response/dpi-command_response.json
+        examples:
+          - $ref: json-schemas/pe/dpi/command_response/dpi-command_response.example.json
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+  pe/dpi/display_status:
+    description:
+      $ref: json-schemas/pe/dpi/display_status/dpi-display-status.md
+    publish:
+      message:
+        name: DpiDisplayStatus
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/pe/dpi/display_status/dpi-display-status.json
+        examples:
+          - $ref: json-schemas/pe/dpi/display_status/dpi-display-status.example.json
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
+  pe/dpi/logs:
+    description:
+      $ref: json-schemas/pe/dpi/logs/dpi-logs.md
+    publish:
+      message:
+        name: DpiLogs
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/pe/dpi/logs/dpi-logs.json
+        examples:
+          - $ref: json-schemas/pe/dpi/logs/dpi-logs.example.json
+        bindings:
+          mqtt:
+            qos: 1
+            retain: false
   pe/sales/diagnostics:
     description:
       $ref: json-schemas/pe/sales/diagnostics/sales-diagnostics.md
@@ -714,6 +775,21 @@ channels:
           mqtt:
             qos: 1
             retain: false
+  pe/dpi/feature_toggle:
+    description:
+      $ref: json-schemas/pe/dpi/feature_toggle/dpi-feature-toggle.md
+    subscribe:
+      message:
+        name: DpiFeatureToggle
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/pe/dpi/feature_toggle/dpi-feature-toggle.json
+        examples:
+          - $ref: json-schemas/pe/dpi/feature_toggle/dpi-feature-toggle.example.json
+        bindings:
+          mqtt:
+            qos: 1
+            retain: true
   pe/input/stop_button:
     description:
       $ref: markdown/stop-button-input.md

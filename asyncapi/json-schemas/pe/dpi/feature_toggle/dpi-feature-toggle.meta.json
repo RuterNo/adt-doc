@@ -1,0 +1,18 @@
+{
+  "mode": "subscribe",
+  "mqtt": {
+    "retain": true,
+    "qos": 1,
+    "topic": "{operatorId}/{authorityId}/{vehicleId}/adt/v3/pe/dpi/feature_toggle"
+  },
+  "service-level": "internal",
+  "producers": [
+    "dpi"
+  ],
+  "consumers": [
+    "dpi"
+  ],
+  "maintainers": [
+    "dpi"
+  ]
+}
