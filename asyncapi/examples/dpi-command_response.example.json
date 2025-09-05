@@ -1,0 +1,14 @@
+{
+  "name": "DPI Command response",
+  "payload": {
+    "eventTimestamp": "2025-04-03T13:18:26.337178538Z",
+    "traceId": "2fccd221-f879-43e8-9e45-62abf54a9688",
+    "correlationId": "aeaa339e-cbd0-43d9-a4a8-7053d12e1a64",
+    "clientId": "866f85ac-ab5a-48e2-b2db-5e9813e58a71",
+    "command": "GET_FEATURES",
+    "payload": {
+      "feature_1": false,
+      "feature_2": true
+    }
+  }
+}
