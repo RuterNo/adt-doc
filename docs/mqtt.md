@@ -55,9 +55,11 @@ While the PTO is responsible for setting up the mqtt bridge configuration correc
     
     | Environment | API version | Topic list                                                                             | Example config - Mosquitto 2.0                                                                         |
     |-------------|-------------|----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+    | PROD        | ADT4        | [https://mqtt-api.transhub.io/v/adt4](https://mqtt-api.transhub.io/v/adt4)             | [https://mqtt-api.transhub.io/v/adt4/example](https://mqtt-api.transhub.io/v/adt4/example)             | 
     | PROD        | ADT3        | [https://mqtt-api.transhub.io/v/adt3](https://mqtt-api.transhub.io/v/adt3)             | [https://mqtt-api.transhub.io/v/adt3/example](https://mqtt-api.transhub.io/v/adt3/example)             | 
     | PROD        | ADT2        | [https://mqtt-api.transhub.io/v/adt2](https://mqtt-api.transhub.io/v/adt2)             | [https://mqtt-api.transhub.io/v/adt2/example](https://mqtt-api.transhub.io/v/adt2/example)             |
     | PROD        | ADT1 / OTA  | [https://mqtt-api.transhub.io/v/adt1](https://mqtt-api.transhub.io/v/adt1)             | [https://mqtt-api.transhub.io/v/adt1/example](https://mqtt-api.transhub.io/v/adt1/example)             |
+    | STAGE       | ADT4        | [https://mqtt-api.stage.transhub.io/v/adt4](https://mqtt-api.stage.transhub.io/v/adt4) | [https://mqtt-api.stage.transhub.io/v/adt4/example](https://mqtt-api.stage.transhub.io/v/adt4/example) | 
     | STAGE       | ADT3        | [https://mqtt-api.stage.transhub.io/v/adt3](https://mqtt-api.stage.transhub.io/v/adt3) | [https://mqtt-api.stage.transhub.io/v/adt3/example](https://mqtt-api.stage.transhub.io/v/adt3/example) | 
     | STAGE       | ADT2        | [https://mqtt-api.stage.transhub.io/v/adt2](https://mqtt-api.stage.transhub.io/v/adt2) | [https://mqtt-api.stage.transhub.io/v/adt2/example](https://mqtt-api.stage.transhub.io/v/adt2/example) |
     | STAGE       | ADT1 / OTA  | [https://mqtt-api.stage.transhub.io/v/adt1](https://mqtt-api.stage.transhub.io/v/adt1) | [https://mqtt-api.stage.transhub.io/v/adt1/example](https://mqtt-api.stage.transhub.io/v/adt1/example) |
