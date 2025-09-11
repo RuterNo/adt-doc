@@ -658,6 +658,57 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Common Headers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#x-trace-id-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      X-Trace-Id Header
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-client-id-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      X-Client-Id Header
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-request-id-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      X-Request-Id Header
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-operator-id-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      X-Operator-Id Header
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-authority-id-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      X-Authority-Id Header
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2475,6 +2526,57 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Common Headers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#x-trace-id-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      X-Trace-Id Header
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-client-id-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      X-Client-Id Header
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-request-id-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      X-Request-Id Header
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-operator-id-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      X-Operator-Id Header
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-authority-id-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      X-Authority-Id Header
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -3546,29 +3648,60 @@ Common HTTP status codes when using the token:
 <table>
 <thead>
 <tr>
-<th>Header</th>
-<th>Description</th>
+<th style="text-align: left;">Header</th>
+<th style="text-align: left;">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>X-Trace-Id</code></td>
-<td>May be used to identify multiple requests as part of the same "operation" or "process".</td>
+<td style="text-align: left;"><a href="#x-trace-id-header"><code>X-Trace-Id</code></a></td>
+<td style="text-align: left;">May be used to identify multiple requests as part of the same "operation" or "process".</td>
 </tr>
 <tr>
-<td><code>X-Request-Id</code></td>
-<td>May be used to identify a single request. Should be unique for each separate request made to the API.</td>
+<td style="text-align: left;"><a href="#x-client-id-header"><code>X-Client-Id</code></a></td>
+<td style="text-align: left;">Optional client id indicating the logical name of the client making the API request.</td>
 </tr>
 <tr>
-<td><code>X-Operator-Id</code></td>
-<td>Must be provided by clients with access to more than one PTO.</td>
+<td style="text-align: left;"><a href="#x-request-id-header"><code>X-Request-Id</code></a></td>
+<td style="text-align: left;">May be used to identify a single request. Should be unique for each separate request made to the API.</td>
 </tr>
 <tr>
-<td><code>X-Authority-Id</code></td>
-<td>Must be provided by clients with access to more than one PTA.</td>
+<td style="text-align: left;"><a href="#x-operator-id-header"><code>X-Operator-Id</code></a></td>
+<td style="text-align: left;">Must be provided by clients with access to more than one PTO.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#x-authority-id-header"><code>X-Authority-Id</code></a></td>
+<td style="text-align: left;">Must be provided by clients with access to more than one PTA.</td>
 </tr>
 </tbody>
 </table>
+<h4 id="x-trace-id-header"><code>X-Trace-Id</code> Header<a class="headerlink" href="#x-trace-id-header" title="Permanent link">&para;</a></h4>
+<p>Optional trace id for request. May be used to trace multiple requests as part of the same "operation" or
+"process". If set, should be different from <a href="#x-request-id-header"><em>request id header</em></a>.</p>
+<h4 id="x-client-id-header"><code>X-Client-Id</code> Header<a class="headerlink" href="#x-client-id-header" title="Permanent link">&para;</a></h4>
+<p>Optional client id for request. May be used to identify client system by name or other identifier. Note that
+this is only treated as additional process metadata and not connected to authorization in any way.</p>
+<h4 id="x-request-id-header"><code>X-Request-Id</code> Header<a class="headerlink" href="#x-request-id-header" title="Permanent link">&para;</a></h4>
+<p>Optional unique identifier of request. Should be unique for every request made by the client, even if the request is a
+retry of a previous request with same <a href="#x-trace-id-header"><em>trace id</em></a>.</p>
+<h4 id="x-operator-id-header"><code>X-Operator-Id</code> Header<a class="headerlink" href="#x-operator-id-header" title="Permanent link">&para;</a></h4>
+<p>Optional operator id for request. Required by clients with access to more than one PTO.</p>
+<p>Operator id on the form:</p>
+<p><code>&lt;Codespace&gt;:&lt;Operator&gt;:&lt;Number&gt;</code></p>
+<blockquote>
+<p>See
+<a href="https://enturas.atlassian.net/wiki/spaces/PUBLIC/pages/637370434/List+of+current+Codespaces">Entur list of NeTEx / SIRI codespaces</a>
+list of valid codespace prefixes.</p>
+</blockquote>
+<h4 id="x-authority-id-header"><code>X-Authority-Id</code> Header<a class="headerlink" href="#x-authority-id-header" title="Permanent link">&para;</a></h4>
+<p>Optional authority id for request. Required by clients with access to more than one PTA.</p>
+<p>Operator id on the form:</p>
+<p><code>&lt;Codespace&gt;</code></p>
+<blockquote>
+<p>See
+<a href="https://enturas.atlassian.net/wiki/spaces/PUBLIC/pages/637370434/List+of+current+Codespaces">Entur list of NeTEx / SIRI codespaces</a>
+list of valid codespace prefixes.</p>
+</blockquote>
 <h2 id="journey-api">Journey API<a class="headerlink" href="#journey-api" title="Permanent link">&para;</a></h2>
 <p>The journey API endpoints, available under <code>{baseURL}/journey/*</code>, give clients access to
 look up
@@ -4523,7 +4656,8 @@ authorities about upcoming service deviations when planned journeys can not be s
 <li><a href="#service-deviation---no_service"><code>NO_SERVICE</code></a>, indicating inability to service a planned service journey.</li>
 <li><a href="#service-deviation---no_sign_on"><code>NO_SIGN_ON</code></a>, indicating a service journey will be serviced, but without
   signing on the vehicle.</li>
-<li><a href="#service-deviation---bypass"><code>BYPASS</code></a>, indicating a delayed start of a planned service journey.</li>
+<li><a href="#service-deviation---bypass"><code>BYPASS</code></a>, indicating that certain calls in a journey will be bypassed by the
+  operator.</li>
 </ul>
 <h3 id="service-deviation-requests">Service Deviation Requests<a class="headerlink" href="#service-deviation-requests" title="Permanent link">&para;</a></h3>
 <p>To notify a transport authority about an upcoming deviation in a service delivery, the operator should
@@ -4537,6 +4671,7 @@ following properties:</p>
 <li><code>NO_SERVICE</code>, indicating a line, stop point or journey will not be serviced by the operator.</li>
 <li><code>NO_SIGN_ON</code>, indicating a journey will be serviced by the operator, but the servicing vehicle will not be
       signing on.</li>
+<li><code>BYPASS</code>, indicating that certain calls in a journey will be bypassed by the operator.</li>
 <li><code>reason</code>, a structure containing the <a href="#service-deviation-reason-codes">reason code</a> for the deviation and an
    optional <code>comment</code> describing further details about the reason.
    The comment is for internal use by PTO and PTA and is not used for travel information.</li>
@@ -5120,6 +5255,7 @@ deviation request should be sent with:
 - code <code>NO_SIGN_ON</code>
 - a list of affected journeys
 - a suitable <a href="#service-deviation-reason-codes">reason code</a></p>
+<p>It is recommended to set the <code>vehicleId</code> parameter to indicate which vehicle will be used to service the journey.</p>
 <p>In this example, we send a <em>no sign-on</em> deviation request with a single journey, a reason code and a comment describing why the
 vehicle is unable to sign on.</p>
 <p>HTTP request:</p>
@@ -5149,9 +5285,12 @@ vehicle is unable to sign on.</p>
 <a id="__codelineno-47-24" name="__codelineno-47-24" href="#__codelineno-47-24"></a><span class="w">    </span><span class="s2">&quot;duration&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
 <a id="__codelineno-47-25" name="__codelineno-47-25" href="#__codelineno-47-25"></a><span class="w">      </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:45+01:00&quot;</span>,
 <a id="__codelineno-47-26" name="__codelineno-47-26" href="#__codelineno-47-26"></a><span class="w">      </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T10:05+01:00&quot;</span>
-<a id="__codelineno-47-27" name="__codelineno-47-27" href="#__codelineno-47-27"></a><span class="w">    </span><span class="o">}</span>
-<a id="__codelineno-47-28" name="__codelineno-47-28" href="#__codelineno-47-28"></a><span class="w">  </span><span class="o">}</span>
-<a id="__codelineno-47-29" name="__codelineno-47-29" href="#__codelineno-47-29"></a><span class="o">}</span>
+<a id="__codelineno-47-27" name="__codelineno-47-27" href="#__codelineno-47-27"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-47-28" name="__codelineno-47-28" href="#__codelineno-47-28"></a><span class="w">    </span><span class="s2">&quot;parameters&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-47-29" name="__codelineno-47-29" href="#__codelineno-47-29"></a><span class="w">      </span><span class="s2">&quot;vehicleId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;VEHICLEID01234567&quot;</span>
+<a id="__codelineno-47-30" name="__codelineno-47-30" href="#__codelineno-47-30"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-47-31" name="__codelineno-47-31" href="#__codelineno-47-31"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-47-32" name="__codelineno-47-32" href="#__codelineno-47-32"></a><span class="o">}</span>
 </code></pre></div>
 <p>HTTP response:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="m">201</span><span class="w"> </span>CREATED
@@ -5181,15 +5320,18 @@ vehicle is unable to sign on.</p>
 <a id="__codelineno-48-25" name="__codelineno-48-25" href="#__codelineno-48-25"></a><span class="w">      </span><span class="s2">&quot;duration&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
 <a id="__codelineno-48-26" name="__codelineno-48-26" href="#__codelineno-48-26"></a><span class="w">        </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:45+01:00&quot;</span>,
 <a id="__codelineno-48-27" name="__codelineno-48-27" href="#__codelineno-48-27"></a><span class="w">        </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T10:05+01:00&quot;</span>
-<a id="__codelineno-48-28" name="__codelineno-48-28" href="#__codelineno-48-28"></a><span class="w">      </span><span class="o">}</span>
-<a id="__codelineno-48-29" name="__codelineno-48-29" href="#__codelineno-48-29"></a><span class="w">    </span><span class="o">}</span>,
-<a id="__codelineno-48-30" name="__codelineno-48-30" href="#__codelineno-48-30"></a><span class="w">    </span><span class="s2">&quot;lifecycle&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-48-31" name="__codelineno-48-31" href="#__codelineno-48-31"></a><span class="w">      </span><span class="s2">&quot;created&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T05:05+01:00&quot;</span>,
-<a id="__codelineno-48-32" name="__codelineno-48-32" href="#__codelineno-48-32"></a><span class="w">      </span><span class="s2">&quot;modified&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T05:05+01:00&quot;</span>,
-<a id="__codelineno-48-33" name="__codelineno-48-33" href="#__codelineno-48-33"></a><span class="w">      </span><span class="s2">&quot;serviceDeviationId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;16e70a9992d04ac8b4a0d598b5560606&quot;</span>
-<a id="__codelineno-48-34" name="__codelineno-48-34" href="#__codelineno-48-34"></a><span class="w">    </span><span class="o">}</span>
-<a id="__codelineno-48-35" name="__codelineno-48-35" href="#__codelineno-48-35"></a><span class="w">  </span><span class="o">}</span>
-<a id="__codelineno-48-36" name="__codelineno-48-36" href="#__codelineno-48-36"></a><span class="o">}</span>
+<a id="__codelineno-48-28" name="__codelineno-48-28" href="#__codelineno-48-28"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-48-29" name="__codelineno-48-29" href="#__codelineno-48-29"></a><span class="w">      </span><span class="s2">&quot;parameters&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-48-30" name="__codelineno-48-30" href="#__codelineno-48-30"></a><span class="w">        </span><span class="s2">&quot;vehicleId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;VEHICLEID01234567&quot;</span>
+<a id="__codelineno-48-31" name="__codelineno-48-31" href="#__codelineno-48-31"></a><span class="w">      </span><span class="o">}</span>
+<a id="__codelineno-48-32" name="__codelineno-48-32" href="#__codelineno-48-32"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-48-33" name="__codelineno-48-33" href="#__codelineno-48-33"></a><span class="w">    </span><span class="s2">&quot;lifecycle&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-48-34" name="__codelineno-48-34" href="#__codelineno-48-34"></a><span class="w">      </span><span class="s2">&quot;created&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T05:05+01:00&quot;</span>,
+<a id="__codelineno-48-35" name="__codelineno-48-35" href="#__codelineno-48-35"></a><span class="w">      </span><span class="s2">&quot;modified&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T05:05+01:00&quot;</span>,
+<a id="__codelineno-48-36" name="__codelineno-48-36" href="#__codelineno-48-36"></a><span class="w">      </span><span class="s2">&quot;serviceDeviationId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;16e70a9992d04ac8b4a0d598b5560606&quot;</span>
+<a id="__codelineno-48-37" name="__codelineno-48-37" href="#__codelineno-48-37"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-48-38" name="__codelineno-48-38" href="#__codelineno-48-38"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-48-39" name="__codelineno-48-39" href="#__codelineno-48-39"></a><span class="o">}</span>
 </code></pre></div>
 <h3 id="service-deviation-bypass">Service Deviation - BYPASS<a class="headerlink" href="#service-deviation-bypass" title="Permanent link">&para;</a></h3>
 <h4 id="bypass-on-journey-calls">Bypass - on Journey Calls<a class="headerlink" href="#bypass-on-journey-calls" title="Permanent link">&para;</a></h4>
