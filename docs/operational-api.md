@@ -352,12 +352,52 @@ In case of these errors, get a new token or verify the granted scopes.
 
 All API requests may contain one or more optional headers for tracing and request identification purposes:
 
-| Header           | Description                                                                                           |
-|------------------|-------------------------------------------------------------------------------------------------------|
-| `X-Trace-Id`     | May be used to identify multiple requests as part of the same "operation" or "process".               |
-| `X-Request-Id`   | May be used to identify a single request. Should be unique for each separate request made to the API. |
-| `X-Operator-Id`  | Must be provided by clients with access to more than one PTO.                                         |
-| `X-Authority-Id` | Must be provided by clients with access to more than one PTA.                                         |
+| Header                                     | Description                                                                                           |
+|:-------------------------------------------|:------------------------------------------------------------------------------------------------------|
+| [`X-Trace-Id`](#x-trace-id-header)         | May be used to identify multiple requests as part of the same "operation" or "process".               |
+| [`X-Client-Id`](#x-client-id-header)       | Optional client id indicating the logical name of the client making the API request.                  |
+| [`X-Request-Id`](#x-request-id-header)     | May be used to identify a single request. Should be unique for each separate request made to the API. |
+| [`X-Operator-Id`](#x-operator-id-header)   | Must be provided by clients with access to more than one PTO.                                         |
+| [`X-Authority-Id`](#x-authority-id-header) | Must be provided by clients with access to more than one PTA.                                         |
+
+#### `X-Trace-Id` Header
+
+Optional trace id for request. May be used to trace multiple requests as part of the same "operation" or
+"process". If set, should be different from [_request id header_](#x-request-id-header).
+
+#### `X-Client-Id` Header
+
+Optional client id for request. May be used to identify client system by name or other identifier. Note that
+this is only treated as additional process metadata and not connected to authorization in any way.
+
+#### `X-Request-Id` Header
+
+Optional unique identifier of request. Should be unique for every request made by the client, even if the request is a
+retry of a previous request with same [_trace id_](#x-trace-id-header).
+
+#### `X-Operator-Id` Header
+
+Optional operator id for request. Required by clients with access to more than one PTO.
+
+Operator id on the form:
+
+`<Codespace>:<Operator>:<Number>`
+
+> See
+> [Entur list of NeTEx / SIRI codespaces](https://enturas.atlassian.net/wiki/spaces/PUBLIC/pages/637370434/List+of+current+Codespaces)
+> list of valid codespace prefixes.
+
+#### `X-Authority-Id` Header
+
+Optional authority id for request. Required by clients with access to more than one PTA.
+
+Operator id on the form:
+
+`<Codespace>`
+
+> See
+> [Entur list of NeTEx / SIRI codespaces](https://enturas.atlassian.net/wiki/spaces/PUBLIC/pages/637370434/List+of+current+Codespaces)
+> list of valid codespace prefixes.
 
 ## Journey API
 
@@ -1409,7 +1449,8 @@ The following types of service deviations are supported by the API:
 - [`NO_SERVICE`](#service-deviation---no_service), indicating inability to service a planned service journey.
 - [`NO_SIGN_ON`](#service-deviation---no_sign_on), indicating a service journey will be serviced, but without
   signing on the vehicle.
-- [`BYPASS`](#service-deviation---bypass), indicating a delayed start of a planned service journey.
+- [`BYPASS`](#service-deviation---bypass), indicating that certain calls in a journey will be bypassed by the
+  operator.
 
 ### Service Deviation Requests
 
@@ -1422,10 +1463,11 @@ Each service deviation request contains a _service deviation specification_ desc
 following properties:
 
 1. `code`, a service deviation code describing the type of deviation:
-   1. `DELAY`, indicating a delayed journey start.
-   2. `NO_SERVICE`, indicating a line, stop point or journey will not be serviced by the operator.
-   3. `NO_SIGN_ON`, indicating a journey will be serviced by the operator, but the servicing vehicle will not be
+   * `DELAY`, indicating a delayed journey start.
+   * `NO_SERVICE`, indicating a line, stop point or journey will not be serviced by the operator.
+   * `NO_SIGN_ON`, indicating a journey will be serviced by the operator, but the servicing vehicle will not be
       signing on.
+   * `BYPASS`, indicating that certain calls in a journey will be bypassed by the operator.
 2. `reason`, a structure containing the [reason code](#service-deviation-reason-codes) for the deviation and an
    optional `comment` describing further details about the reason.
    The comment is for internal use by PTO and PTA and is not used for travel information.
@@ -2048,6 +2090,8 @@ deviation request should be sent with:
 - a list of affected journeys
 - a suitable [reason code](#service-deviation-reason-codes)
 
+It is recommended to set the `vehicleId` parameter to indicate which vehicle will be used to service the journey.
+
 In this example, we send a _no sign-on_ deviation request with a single journey, a reason code and a comment describing why the
 vehicle is unable to sign on.
 
@@ -2080,6 +2124,9 @@ POST /api/adt/v4/operational/deviation/deviations
     "duration" : {
       "start" : "2025-03-03T09:45+01:00",
       "end" : "2025-03-03T10:05+01:00"
+    },
+    "parameters" : {
+      "vehicleId" : "VEHICLEID01234567"
     }
   }
 }
@@ -2115,6 +2162,9 @@ HTTP response:
       "duration" : {
         "start" : "2025-03-03T09:45+01:00",
         "end" : "2025-03-03T10:05+01:00"
+      },
+      "parameters" : {
+        "vehicleId" : "VEHICLEID01234567"
       }
     },
     "lifecycle" : {

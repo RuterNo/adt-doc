@@ -112,6 +112,9 @@
             "$ref": "#/components/parameters/TraceIdHeader"
           },
           {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
             "$ref": "#/components/parameters/RequestIdHeader"
           },
           {
@@ -178,6 +181,9 @@
             "$ref": "#/components/parameters/TraceIdHeader"
           },
           {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
             "$ref": "#/components/parameters/RequestIdHeader"
           },
           {
@@ -237,6 +243,9 @@
           },
           {
             "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
@@ -345,6 +354,9 @@
             "$ref": "#/components/parameters/TraceIdHeader"
           },
           {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
             "$ref": "#/components/parameters/RequestIdHeader"
           },
           {
@@ -414,6 +426,9 @@
             "$ref": "#/components/parameters/TraceIdHeader"
           },
           {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
             "$ref": "#/components/parameters/RequestIdHeader"
           },
           {
@@ -481,6 +496,9 @@
           },
           {
             "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
@@ -556,6 +574,9 @@
             "$ref": "#/components/parameters/TraceIdHeader"
           },
           {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
             "$ref": "#/components/parameters/RequestIdHeader"
           },
           {
@@ -622,6 +643,9 @@
             "$ref": "#/components/parameters/TraceIdHeader"
           },
           {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
             "$ref": "#/components/parameters/RequestIdHeader"
           },
           {
@@ -676,6 +700,9 @@
           },
           {
             "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
@@ -747,6 +774,9 @@
             "$ref": "#/components/parameters/TraceIdHeader"
           },
           {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
             "$ref": "#/components/parameters/RequestIdHeader"
           },
           {
@@ -807,6 +837,9 @@
           },
           {
             "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
@@ -872,6 +905,9 @@
           },
           {
             "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
@@ -940,6 +976,9 @@
             "$ref": "#/components/parameters/TraceIdHeader"
           },
           {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
             "$ref": "#/components/parameters/RequestIdHeader"
           },
           {
@@ -994,6 +1033,9 @@
           },
           {
             "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
           },
           {
             "$ref": "#/components/parameters/RequestIdHeader"
@@ -1088,6 +1130,14 @@
         "in": "header",
         "name": "X-Trace-Id",
         "description": "Optional trace id for request. May be used to trace multiple requests as part of the same \"operation\" or \"process\". If set, should be different from `X-Request-Id` header.\n",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "ClientIdHeader": {
+        "in": "header",
+        "name": "X-Client-Id",
+        "description": "Optional client id for request. May be used to identify client system by name or other identifier. Note that this is only treated as additional process metadata and not connected to authorization in any way.\n",
         "schema": {
           "type": "string"
         }
