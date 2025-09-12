@@ -6,6 +6,7 @@
     "expiryDateTime": "2018-11-13T08:40:32.249Z",
     "preferredStartDateTime": "2018-11-13T08:39:32.749Z",
     "ref": "RUT:StopPlace:03012453",
+    "source": "campaign",
     "audio": [
       {
         "encoding": "MP3",
