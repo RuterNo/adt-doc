@@ -105,7 +105,7 @@ Default state for config 4 is showing journey.
 
 Active public announcements will replace journey.
 
-### Screen config 5
+### Screen config 5-left and 5-right
 
 This configuration is used to display a horizontal view of the line, on a 32:9 display.
 
