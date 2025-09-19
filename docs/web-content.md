@@ -38,7 +38,7 @@ Add the following configuration to the file. Replace `<ENTER_VIN_HERE>` with the
 
 ```ini
 [web-content]
-headers = Vehicle,<ENTER_VIN_HERE>
+headers = X-Vehicle-Id,<ENTER_VIN_HERE>
 type = http
 url = <ENTER_URL_HERE>
 ```
