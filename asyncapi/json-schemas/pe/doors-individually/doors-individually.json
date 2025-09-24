@@ -6,6 +6,7 @@
   "required": [
     "traceId",
     "eventTimestamp",
+    "messageNumber",
     "doorRef",
     "isOpen"
   ],

@@ -6,6 +6,7 @@
   "required": [
     "traceId",
     "eventTimestamp",
+    "messageNumber",
     "doorOpen"
   ],
   "description": "Door status - indicates if passengers are able to open the doors (the door lock is released). When false, doors are locked and cannot be opened by passengers.",
@@ -37,12 +38,5 @@
         "false"
       ]
     }
-  },
-  "examples": [
-    {
-      "doorOpen": true,
-      "atDateTime": "2021-11-30T23:45:52.006Z",
-      "traceId": "2d826a9a-2474-11ed-861d-0242ac120002"
-    }
-  ]
+  }
 }
