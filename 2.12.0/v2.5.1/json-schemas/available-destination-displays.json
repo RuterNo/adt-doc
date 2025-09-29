@@ -1,0 +1,48 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v2.1/driver-interaction/available-destination-displays.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AvailableDestinationDisplays",
+  "type": "object",
+  "required": [
+    "availableDestinationDisplays"
+  ],
+  "description": "",
+  "additionalProperties": true,
+  "properties": {
+    "atDateTime": {
+      "$id": "#/properties/atDateTime",
+      "type": "string",
+      "description": "ISO 8601, UTC",
+      "format": "date-time"
+    },
+    "availableDestinationDisplays": {
+      "$id": "#/properties/availableDestinationDisplays",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "number",
+          "name"
+        ],
+        "properties": {
+          "number": {
+            "type": "number",
+            "description": "Numeric value representing a destination display text."
+          },
+          "lineDesignation": {
+            "type": "string",
+            "description": "Displayed public line number or line code."
+          },
+          "name": {
+            "type": "string",
+            "description": "A destination display text"
+          },
+          "alternativeText": {
+            "type": "string",
+            "description": "The name of the secondary destination or an alternative (free) text.\n\nShall be placed on the second line of the display if present."
+          }
+        }
+      }
+    }
+  }
+}

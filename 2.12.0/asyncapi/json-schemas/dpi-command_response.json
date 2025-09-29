@@ -1,0 +1,52 @@
+{
+  "definitions": {},
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.x/pe/dpi/command_response/dpi-command_response.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "DpiCommandResponse",
+  "description": "Message sent from vehicle as response to DPI commands",
+  "required": [
+    "eventTimestamp",
+    "traceId",
+    "correlationId",
+    "command",
+    "payload"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "The timestamp when the message was created/sent",
+      "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier (UUIDv4) for this message"
+    },
+    "correlationId": {
+      "$id": "#/properties/correlationId",
+      "type": "string",
+      "description": "The traceId in the command message that this message is responding to"
+    },
+    "clientId": {
+      "$id": "#/properties/clientId",
+      "type": "string",
+      "description": "A unique identifier for the client. If you sent a command targeting \"*\" (all clients), this will be the clientId of the client that sent the command response.",
+      "examples": ["53f93598-8e82-4a38-9def-10075d07bb33"],
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "command": {
+      "$id": "#/properties/command",
+      "type": "string",
+      "description": "The command that was executed"
+    },
+    "payload": {
+      "$id": "#/properties/payload",
+      "type": "object",
+      "description": "Command response body",
+      "additionalProperties": true
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "Assignment Attempt",
+  "payload": {
+    "fromDateTime": "2017-10-31T12:45:00Z",
+    "vehicleRef": "1HGCM82633A004352",
+    "blockRef": "10023",
+    "apiVersion": "v2",
+    "assignmentType": "SIGNON",
+    "assignmentCode": "PLANNED"
+  }
+}

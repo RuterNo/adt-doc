@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.ruter.no/eta.json",
+  "type": "object",
+  "title": "ETA MQTT Message",
+  "description": "Estimated time of arrival for future stops on a journey",
+  "required": [
+    "eventTimestamp",
+    "estimatedCalls"
+  ],
+  "additionalItems": false,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "Event timestamp must be ISO 8601 UTC",
+      "format": "date-time"
+    },
+    "estimatedCalls": {
+      "$id": "#/properties/estimatedCalls",
+      "type": "array",
+      "description": "List of ETAs for remaining stops on route",
+      "items": {
+        "$id": "#/properties/estimatedCalls/items",
+        "type": "object",
+        "title": "Estimated call for a future stop",
+        "required": [
+          "eta",
+          "stopPlaceId",
+          "text"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "eta": {
+            "$id": "#/properties/estimatedCalls/items/properties/eta",
+            "type": "string",
+            "description": "EventTimestamp must be ISO 8601 UTC",
+            "format": "date-time"
+          },
+          "stopPlaceId": {
+            "$id": "#/properties/estimatedCalls/items/properties/stopPlaceId",
+            "type": "string",
+            "description": "Stop Place Id"
+          },
+          "text": {
+            "$id": "#/properties/estimatedCalls/items/properties/text",
+            "type": "string",
+            "description": "Display text for arrival time"
+          }
+        }
+      }
+    }
+  }
+}

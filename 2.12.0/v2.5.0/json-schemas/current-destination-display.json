@@ -1,0 +1,52 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v2.1/operational-information/current-destination-display.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CurrentDestinationDisplay",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "description": "",
+  "additionalProperties": true,
+  "properties": {
+    "number": {
+      "$id": "#/properties/number",
+      "type": "number",
+      "description": "Optional. Numeric value representing the destination display text."
+    },
+    "name": {
+      "$id": "#/properties/name",
+      "type": "string",
+      "description": "The name of the (primary) destination or a free text."
+    },
+    "alternativeText": {
+      "$id": "#/properties/alternativeText",
+      "type": "string",
+      "description": "Optional. The name of the secondary destination or an alternative (free) text."
+    },
+    "lineDesignation": {
+      "$id": "#/properties/lineDesignation",
+      "type": "string",
+      "description": "Optional. Displayed public line number or line code."
+    },
+    "typeOfAlternativeText": {
+      "$id": "#/properties/typeOfAlternativeText",
+      "type": "string",
+      "description": "Optional. The purpose of the alternative text. Possible values in examples.",
+      "examples": [
+        "COUNT_DOWN_TO_DEPARTURE",
+        "MESSAGE",
+        "VIA",
+        "END_STATION",
+        "TRANSFER_AT_THIS_STOP",
+        "CONTINUE_TO"
+      ]
+    }
+  },
+  "examples": [
+    {
+      "name": "Tonsenhagen",
+      "lineDesignation": "60"
+    }
+  ]
+}

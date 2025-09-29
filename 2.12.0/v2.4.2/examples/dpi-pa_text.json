@@ -1,0 +1,25 @@
+{
+  "name": "Passenger Announcement - Text",
+  "payload": {
+    "eventTimestamp": "2022-05-09T13:27:59.624Z",
+    "ref": "757fd8b4-2e57-4ad3-9aee-76e793c514d9",
+    "content": [
+      {
+        "type": "TEXT",
+        "duration": 10.0,
+        "colorScheme": "INFO",
+        "icon": "ARROW_UP",
+        "iconAnchor": "LEFT",
+        "message": {
+          "no": {
+            "title": "Tittel på melding",
+            "paragraphs": [
+              "En tekst",
+              "En annen tekst"
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

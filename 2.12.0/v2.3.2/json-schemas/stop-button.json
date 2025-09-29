@@ -1,0 +1,41 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v2.1/sensor/stop-button.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "StopButton",
+  "type": "object",
+  "required": [
+    "stopPressed",
+    "atDateTime"
+  ],
+  "description": "Describes if passengers have requested that the bus should stop (stop button pressed).",
+  "additionalProperties": true,
+  "properties": {
+    "stopPressed": {
+      "$id": "#/properties/stopPressed",
+      "type": "boolean",
+      "description": "True if stop request button pressed. False if stop request signal is cleared.",
+      "examples": [
+        "true",
+        "false"
+      ]
+    },
+    "atDateTime": {
+      "$id": "#/properties/atDateTime",
+      "type": "string",
+      "description": "ISO 8601. Reflects the UTC time when the state changed."
+    },
+    "messageNumber": {
+      "$id": "#/properties/messageNumber",
+      "$comment": "Added in version 2.1",
+      "type": "number",
+      "description": "Optional. Sequence number, increased by one for each new message. Used to validate consistency in the data stream."
+    }
+  },
+  "examples": [
+    {
+      "stopPressed": true,
+      "atDateTime": "2021-11-30T23:45:52.006Z",
+      "messageNumber": 1
+    }
+  ]
+}
