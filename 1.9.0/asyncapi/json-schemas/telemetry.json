@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://schema.ruter.no/fmstoip.json",
+  "type": "object",
+  "title": "FMS-to-IP data",
+  "description": "Translation of FMS data to MQTT messages",
+  "required": [
+    "eventTimestamp",
+    "id",
+    "payloads"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "Event timestamp must be ISO 8601 UTC",
+      "format": "date-time"
+    },
+    "id": {
+      "$id": "#/properties/id",
+      "type": "string",
+      "Description": "Id of reported value (PGN in FMS standard)",
+      "examples": [
+        "0000FE4E",
+        "0000FDA5",
+        "0000FEC1"
+      ],
+      "pattern": "^[0-9A-F]{8}$"
+    },
+    "payloads": {
+      "$id": "#/properties/payloads",
+      "type": "array",
+      "description": "Array of data (one or more SPNs in FMS standard)",
+      "items": {
+        "$id": "#/properties/payloads/items",
+        "type": "object",
+        "description": "Data for a single Suspect Parameter Number (SPN)",
+        "required": [
+          "value"
+        ],
+        "additionalItems": false,
+        "properties": {
+          "subid": {
+            "$id": "#/properties/payloads/items/properties/subid",
+            "type": "integer",
+            "title": "Optional sub id. Typically for Suspect Parameter Number (SPN)"
+          },
+          "name": {
+            "$id": "#/properties/payloads/items/properties/name",
+            "type": "string",
+            "description": "Optional name for value"
+          },
+          "unit": {
+            "$id": "#/properties/payloads/items/properties/unit",
+            "type": "string",
+            "description": "Optional units for value"
+          },
+          "value": {
+            "$id": "#/properties/payloads/items/properties/value",
+            "type": [
+                "string",
+                "number",
+                "boolean"
+            ],
+            "description": "The value of the telemetry"
+          }
+        }
+      }
+    }
+  }
+}
