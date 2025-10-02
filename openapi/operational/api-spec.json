@@ -271,6 +271,9 @@
             "$ref": "#/components/parameters/VehicleTaskQueryParam"
           },
           {
+            "$ref": "#/components/parameters/VehicleIdQueryParam"
+          },
+          {
             "$ref": "#/components/parameters/LineTaskQueryParam"
           },
           {
@@ -1194,6 +1197,14 @@
         "in": "query",
         "name": "vehicleTask",
         "description": "Filters journeys by vehicle task identifier. Accepts a numeric vehicle task ID (e.g., \"1702\") to return journeys associated with the specified vehicle task.",
+        "schema": {
+          "type": "string"
+        }
+      },
+      "VehicleIdQueryParam": {
+        "in": "query",
+        "name": "vehicleId",
+        "description": "Filters journeys by vehicle id identifier. Accepts a string to return journeys associated with the specified vehicle id.",
         "schema": {
           "type": "string"
         }

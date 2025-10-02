@@ -1,5 +1,4 @@
 # Operational API
-> This api is a draft until further notice
 
 [OpenAPI Specification Documentation](openapi/operational/index.html){target=_blank .md-button }
 
@@ -418,8 +417,11 @@ journeys or use the [Deviation API](#deviation-api) to register service deviatio
 
 **Search Parameters**
 
-- `query`: General-purpose search string. May be used to find journeys via various identifiers such as _line id_,
-  _vehicle journey id_, _service journey id_ and _dated service journey id_.
+- `query`: General-purpose search string. May be used to find journeys via various identifiers such as _vehicle journey id_, _service journey id_ and _dated service journey id_.
+- `stopPointId`: Filters journeys by stop point identifier. Accepts various stop point identifiers such as NSR:Quay IDs (e.g., "NSR:Quay:109233") and returns journeys that serve the specified stop point, including details like stop name (e.g., "Nationaltheatret"), public code, and related stop area references.
+- `vehicleTask`: Filters journeys by vehicle task identifier. Accepts a numeric vehicle task ID (e.g., "1702") to return journeys associated with the specified vehicle task.
+- `vehicleId`: If provided, only journeys assigned to the specified vehicle will be returned.'
+- `line`: Filters journeys by line identifier. Accepts a line number or code (e.g., "70") and returns journeys operating on that line, including details like line reference ("RUT:Line:70"), public code, and transport mode information.
 - `lat` and `lon`: Location parameters. May be used to find journeys starting from nearby stop points.
 - `direction`: Direction of the journey. May be used to find journeys in a specific direction.
 - `fromDateTime` and `toDateTime`: Timestamps for narrowing service window of matched journeys. If not provided,
@@ -428,7 +430,7 @@ journeys or use the [Deviation API](#deviation-api) to register service deviatio
 
 #### Find Journeys - by Line Id
 
-To find journeys servicing a specific line, a line identifier can be provided as `query` string.
+To find journeys servicing a specific line, a line identifier can be provided as `lineId` string.
 
 In this example, we also limit the returned journeys to a line in a given direction (`INBOUND`) and within a specific service windows
 (`fromDateTime` and `toDateTime`).
@@ -509,7 +511,7 @@ HTTP response:
 
 #### Find Journeys - by Vehicle Task Id
 
-To find journeys servicing a specific vehicle task, a vehicle task identifier can be provided as `query` string.
+To find journeys servicing a specific vehicle task, a vehicle task identifier can be provided as `vehicleTask` string.
 
 In this example, we use this mechanism to look up all journeys included in a vehicle task. Since we do not include any
 service windows date range in our query, we only get journeys matching the given vehicle task on the current date.
@@ -518,6 +520,108 @@ HTTP request:
 
 ```bash
 GET /api/adt/v4/operational/journey/journeys?vehicleTask=VL1001
+```
+
+HTTP response:
+
+```bash
+200 OK
+{
+  "items" : [ {
+    "name" : "Service Journey 0001",
+    "spec" : {
+      "lineId" : "RUT:Line:001",
+      "journeyId" : "RUT:DatedServiceJourney:0001",
+      "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+    },
+    "journeyIds" : {
+      "vehicleJourneyId" : "vehicle-journey-0001",
+      "serviceJourneyId" : "RUT:ServiceJourney:0001",
+      "datedServiceJourneyId" : "RUT:DatedServiceJourney:0001"
+    },
+    "serviceWindow" : {
+      "start" : "2025-03-03T09:00+01:00",
+      "end" : "2025-03-03T09:20+01:00"
+    },
+    "line" : {
+      "name" : "Testveien - Teststien",
+      "lineId" : "RUT:Line:001",
+      "publicCode" : "L01",
+      "textColor" : "FFFFFF",
+      "backgroundColor" : "1F1E1A"
+    },
+    "direction" : "INBOUND",
+    "vehicleTaskId" : "VL1001"
+  }, {
+    "name" : "Service Journey 0002",
+    "spec" : {
+      "lineId" : "RUT:Line:001",
+      "journeyId" : "RUT:DatedServiceJourney:0002",
+      "firstDepartureDateTime" : "2025-03-03T09:45+01:00"
+    },
+    "journeyIds" : {
+      "vehicleJourneyId" : "vehicle-journey-0002",
+      "serviceJourneyId" : "RUT:ServiceJourney:0002",
+      "datedServiceJourneyId" : "RUT:DatedServiceJourney:0002"
+    },
+    "serviceWindow" : {
+      "start" : "2025-03-03T09:45+01:00",
+      "end" : "2025-03-03T10:05+01:00"
+    },
+    "line" : {
+      "name" : "Testveien - Teststien",
+      "lineId" : "RUT:Line:001",
+      "publicCode" : "L01",
+      "textColor" : "FFFFFF",
+      "backgroundColor" : "1F1E1A"
+    },
+    "direction" : "OUTBOUND",
+    "vehicleTaskId" : "VL1001"
+  }, {
+    "name" : "Service Journey 0003",
+    "spec" : {
+      "lineId" : "RUT:Line:001",
+      "journeyId" : "RUT:DatedServiceJourney:0003",
+      "firstDepartureDateTime" : "2025-03-03T10:30+01:00"
+    },
+    "journeyIds" : {
+      "vehicleJourneyId" : "vehicle-journey-0003",
+      "serviceJourneyId" : "RUT:ServiceJourney:0003",
+      "datedServiceJourneyId" : "RUT:DatedServiceJourney:0003"
+    },
+    "serviceWindow" : {
+      "start" : "2025-03-03T10:30+01:00",
+      "end" : "2025-03-03T10:50+01:00"
+    },
+    "line" : {
+      "name" : "Testveien - Teststien",
+      "lineId" : "RUT:Line:001",
+      "publicCode" : "L01",
+      "textColor" : "FFFFFF",
+      "backgroundColor" : "1F1E1A"
+    },
+    "direction" : "INBOUND",
+    "vehicleTaskId" : "VL1001"
+  } ],
+  "page" : {
+    "limit" : 100,
+    "offset" : 0,
+    "itemCount" : 3
+  }
+}
+```
+
+#### Find Journeys - by Vehicle Id
+
+To find journeys servicing a specific vehicle id, a vehicle id identifier can be provided as `vehicleId` string.
+
+In this example, we use this mechanism to look up all journeys for a vehicle id. Since we do not include any
+service windows date range in our query, we only get journeys matching the given vehicle id on the current date.
+
+HTTP request:
+
+```bash
+GET /api/adt/v4/operational/journey/journeys?vehicleId=VI00TEST001
 ```
 
 HTTP response:
