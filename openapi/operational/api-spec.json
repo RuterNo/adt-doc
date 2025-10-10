@@ -1326,6 +1326,9 @@
         "title": "AssignmentAttemptRequestSignOn",
         "description": "Attempt to sign the vehicle on to a specified vehicle task or one or more journey(s).",
         "properties": {
+          "vehicle": {
+            "$ref": "#/components/schemas/VehicleProperties"
+          },
           "mqttRouting": {
             "$ref": "#/components/schemas/MqttRouting"
           },
@@ -2479,6 +2482,16 @@
         "example": [
           "BUS"
         ]
+      },
+      "VehicleProperties": {
+        "type": "object",
+        "title": "VehicleProperties",
+        "properties": {
+          "segmentCount": {
+            "type": "integer",
+            "description": "Optional segment count indicating number of logical segments for multi-segment vehicles. This may be used for vehicles such as articulated buses, multi-segment trams or metro trains consisting of multiple carriages or multiple carriage sets.\n"
+          }
+        }
       },
       "VehicleState": {
         "type": "object",
