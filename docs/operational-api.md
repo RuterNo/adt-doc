@@ -380,7 +380,7 @@ Optional operator id for request. Required by clients with access to more than o
 
 Operator id on the form:
 
-`<Codespace>:<Operator>:<Number>`
+`<codespace>:Operator:<operator-number>`
 
 > See
 > [Entur list of NeTEx / SIRI codespaces](https://enturas.atlassian.net/wiki/spaces/PUBLIC/pages/637370434/List+of+current+Codespaces)
@@ -390,13 +390,9 @@ Operator id on the form:
 
 Optional authority id for request. Required by clients with access to more than one PTA.
 
-Operator id on the form:
+Authority id on the form:
 
-`<Codespace>`
-
-> See
-> [Entur list of NeTEx / SIRI codespaces](https://enturas.atlassian.net/wiki/spaces/PUBLIC/pages/637370434/List+of+current+Codespaces)
-> list of valid codespace prefixes.
+`<authority-id>`
 
 ## Journey API
 
@@ -1170,8 +1166,8 @@ HTTP response:
     - After system restart or reboot
     - Reconnection after lost connectivity
 - Process:
-    1. Perform a Vehicle State Check (as described above).
-    2. If changes to the current state are needed, perform a Sign-Off first.
+    1. Perform a [Vehicle State Check](#assignment---vehicle-state).
+    2. If changes to the current state are needed, perform a [Sign-Off](#assignment---sign-off) first.
     3. Send a sign-on request
     4. The backend verifies the journeys and responds with:
         - Confirmations
@@ -1180,8 +1176,29 @@ HTTP response:
     5. The vehicle system updates its information based on the response.
     6. The vehicle is now in an assigned state and ready for operation.
 
-For all sign-ons the structure `mqttRouting` is functionally required.
-Info provided in this structure will define how the traffic authority will communicate back to the operator via the mqtt protocol.
+#### Sign-On - Additional Details
+
+**MQTT Routing Details**
+
+For all sign-on requests, the structure `mqttRouting` is functionally required.
+
+Info provided in this structure will define how the traffic authority will communicate back to the operator via the
+MQTT protocol. This communication is vehicle-specific and requires routing information for the specific vehicle to
+be provided in the request.
+
+**Vehicle Properties**
+
+As part of the sign-on request, additional optional vehicle properties may be provided to give further information
+about the physical properties of the vehicle for passenger information purposes:
+
+```json
+{
+    ...
+    "vehicle": {
+        "segmentCount": 2  // Optional segment count, indicating a metro train consisting of two carriage sets.
+    }
+}
+```
 
 #### Sign-On - Single Journey
 
@@ -1195,6 +1212,9 @@ POST /api/adt/v4/operational/assignment/attempts
 {
   "vehicleId" : "VI00TEST001",
   "signOn" : {
+    "vehicle" : {
+      "segmentCount" : 1
+    },
     "mqttRouting" : {
       "operatorId" : "PTO",
       "authorityId" : "PTA",
@@ -1473,9 +1493,13 @@ HTTP response:
     1. Send a sign-off request
     2. The system immediately processes the sign-off.
     3. The vehicle's state changes to not signed on.
-    4. The vehicle is now ready to re-enter the cycle, typically starting with a Vehicle State Check when it's next needed for service.
+    4. The vehicle is now ready to re-enter the cycle, typically starting with a Vehicle State Check when it's next
+       needed for service.
 
->Note: If a vehicle is not manually signed off within two hours after the last signed-on journey was scheduled to finish, the backend system will automatically perform a sign-off for that vehicle.
+> **Note:**
+>
+> If a vehicle is not manually signed off within two hours after the last signed-on journey was scheduled to finish,
+> the backend system will automatically perform a sign-off for that vehicle.
 
 #### Sign-Off - FINISHED
 
@@ -1540,7 +1564,8 @@ HTTP response:
   }
 }
 ```
-This revised version now includes information about the Journey API integration and how its results can be used directly in the Sign-On API, providing a more comprehensive overview of the Assignment API lifecycle.
+This revised version now includes information about the Journey API integration and how its results can be used directly
+in the Sign-On API, providing a more comprehensive overview of the Assignment API lifecycle.
 
 ## Deviation API
 
