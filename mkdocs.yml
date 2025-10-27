@@ -93,7 +93,6 @@ nav:
           - Time and Date: timestamps.md
       - Additional messages:
           - TSP: tsp.md
-          - SLA insight: insight.md
   - Vehicle setup:
       - MQTT bridge config: mqtt.md
       - Browser requirements: browser-requirements.md
@@ -103,7 +102,6 @@ nav:
       - Display setup:
         - Screen configuration: screen-configs.md
         - Troubleshooting client: troubleshooting-client.md
-        - Vehicle Status (Live): live-status.md
       - PTO / PTA responsibilities:
         - DPI Services: pto-pta-responsibilities.md
         - Operator Portal: operator_portal.md
