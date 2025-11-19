@@ -89,7 +89,6 @@ nav:
       - MQTT Api: mqtt-api.md
       - Additional messages:
           - TSP: tsp.md
-          - SLA insight: insight.md
   - Vehicle setup:
       - MQTT bridge config: mqtt.md
       - File Sync:
@@ -98,7 +97,6 @@ nav:
       - Display setup:
         - Screen configuration: screen-configs.md
         - Troubleshooting client: troubleshooting-client.md
-        - Vehicle Status (Live): live-status.md
   - Contribute:
       - Report an issue: issue.md
 
