@@ -93,7 +93,6 @@ nav:
           - Time and Date: timestamps.md
       - Additional messages:
           - TSP: tsp.md
-          - SLA insight: insight.md
       - Test specifications:
             - Backoffice test: backoffice-test.md
   - Vehicle setup:
@@ -106,7 +105,6 @@ nav:
       - Display setup:
         - Screen configuration: screen-configs.md
         - Troubleshooting client: troubleshooting-client.md
-        - Vehicle Status (Live): live-status.md
       - PTO / PTA responsibilities:
         - DPI Services: pto-pta-responsibilities.md
         - Operator Portal: operator_portal.md
