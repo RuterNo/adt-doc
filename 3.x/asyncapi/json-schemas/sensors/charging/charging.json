@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://example.com/schemas/sensors/charging/charging.json",
+  "$id": "https://example.com/schemas/vehicle-charging.json",
   "type": "object",
   "title": "Vehicle Charging",
   "description": "Schema for vehicle charging data",
@@ -10,7 +10,8 @@
     "sensorId",
     "messageNumber",
     "isConnected",
-    "isCharging"
+    "isCharging",
+    "chargingEffect"
   ],
   "properties": {
     "eventTimestamp": {
@@ -41,10 +42,6 @@
     "chargingEffect": {
       "type": "number",
       "description": "The current charging effect in kilowatts (kW)"
-    },
-    "chargingEnergy": {
-      "type": "number",
-      "description": "The current charging energy in kilowatt-hour (kWh)"
     }
   },
   "additionalProperties": true
