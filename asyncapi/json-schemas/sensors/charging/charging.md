@@ -28,3 +28,8 @@ Properties:
   - Unit: Kilowatts (kW)
   - Resolution: Minimum one decimal (<=0.1kW)
   - Range: >=0.0kW
+
+- chargingEnergy
+  - Unit: Kilowatt-hour (kWh)
+  - Resolution Minimum one decimal (<=0.1kWh)
+  - Range: >=0.0kWh

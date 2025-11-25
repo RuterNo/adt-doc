@@ -341,6 +341,7 @@ channels:
           - $ref: json-schemas/sensors/charging/charging-01.example.json
           - $ref: json-schemas/sensors/charging/charging-02.example.json
           - $ref: json-schemas/sensors/charging/charging-03.example.json
+          - $ref: json-schemas/sensors/charging/charging-04.example.json
         bindings:
           mqtt:
             qos: 0
@@ -356,6 +357,51 @@ channels:
           $ref: json-schemas/sensors/temperature-water/temperature-water.json
         examples:
           - $ref: json-schemas/sensors/temperature-water/temperature-water-01.example.json
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
+  sensors/generator-fuel-consumption:
+    description:
+      $ref: json-schemas/sensors/generator-fuel-consumption/generator-fuel-consumption.md
+    publish:
+      message:
+        name: GeneratorFuelConsumption
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/sensors/generator-fuel-consumption/generator-fuel-consumption.json
+        examples:
+          - $ref: json-schemas/sensors/generator-fuel-consumption/generator-fuel-consumption-01.example.json
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
+  sensors/sailed-distance:
+    description:
+      $ref: json-schemas/sensors/sailed-distance/sailed-distance.md
+    publish:
+      message:
+        name: SailedDistance
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/sensors/sailed-distance/sailed-distance.json
+        examples:
+          - $ref: json-schemas/sensors/sailed-distance/sailed-distance-01.example.json
+        bindings:
+          mqtt:
+            qos: 0
+            retain: false
+  sensors/shore-power:
+    description:
+      $ref: json-schemas/sensors/shore-power/shore-power.md
+    publish:
+      message:
+        name: SailedDistance
+        schemaFormat: application/schema+json;version=draft-07
+        payload:
+          $ref: json-schemas/sensors/shore-power/shore-power.json
+        examples:
+          - $ref: json-schemas/sensors/shore-power/shore-power-01.example.json
         bindings:
           mqtt:
             qos: 0
