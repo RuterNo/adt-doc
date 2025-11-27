@@ -62,7 +62,7 @@
           "categoryRef": {
             "type": "string",
             "description": "Object class reference. Any of the following object categories.",
-            "values": [
+            "enum": [
               "ADULT",
               "CHILD",
               "PRAM",
