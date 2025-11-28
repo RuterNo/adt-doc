@@ -24,13 +24,6 @@ flowchart TB
         vehicle-state("Vehicle State")
         attempt-request("<em>Attempt Request</em>")
     end
-    subgraph deviation-model ["Deviation API"]
-        deviation-request("<em>Service Deviation Request</em>")
-        deviation("Service Deviation")
-        impact("impact")
-
-        deviation-request -->|creates| deviation
-    end
     subgraph journey-model ["Journey API"]
         line("Line")
         journey("Journey")
@@ -38,8 +31,16 @@ flowchart TB
         journey-state("Journey State")
         stop-point("Stop Point")
     end
+    subgraph mitigation-model ["Mitigation API"]
+        mitigation("Service Mitigation")
+    end
+    subgraph deviation-model ["Deviation API"]
+        deviation-request("<em>Service Deviation Request</em>")
+        deviation("Service Deviation")
+        impact("impact")
 
-    mitigation("Service Mitigation")
+        deviation-request -->|creates| deviation
+    end
 
     vehicle .->|has| vehicle-state
     vehicle -->|sends| attempt-request
