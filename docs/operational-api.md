@@ -4,12 +4,13 @@
 
 ## Introduction
 
-The ADT Operational API consists of three separate, but related functional areas:
+The ADT Operational API consists of these functional areas:
 
 1. [Journey API endpoints](#journey-api), for looking up up-to-date lines, stop points and journeys.
 2. [Assignment API endpoints](#assignment-api), for signing vehicles on and off journeys as they are being operated.
 3. [Service Deviation API endpoints](#deviation-api), for notifying about deviations from planned operations delivery.
 4. [Service Mitigation API endpoints](#mitigation-api), for mitigating deviations.
+**NOTE: This is for internal use and not available to PTOs.**
 
 ### Data Model
 
@@ -2643,6 +2644,8 @@ HTTP response:
 The service mitigation API endpoints under `{baseURL}/mitigation/*` allows for implementing solutions to service disruptions.
 
 Mitigations represent actions taken to address service disruptions or deviations from planned service delivery.
+
+**NOTE: This is for internal use and not available to PTOs.**
 
 The API supports the following types of service mitigations:
 
