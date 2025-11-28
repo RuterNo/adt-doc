@@ -3889,12 +3889,13 @@
 <h1 id="operational-api">Operational API<a class="headerlink" href="#operational-api" title="Permanent link">&para;</a></h1>
 <p><a class="md-button" href="../openapi/operational/" target="_blank">OpenAPI Specification Documentation</a></p>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>The ADT Operational API consists of three separate, but related functional areas:</p>
+<p>The ADT Operational API consists of these functional areas:</p>
 <ol>
 <li><a href="#journey-api">Journey API endpoints</a>, for looking up up-to-date lines, stop points and journeys.</li>
 <li><a href="#assignment-api">Assignment API endpoints</a>, for signing vehicles on and off journeys as they are being operated.</li>
 <li><a href="#deviation-api">Service Deviation API endpoints</a>, for notifying about deviations from planned operations delivery.</li>
-<li><a href="#mitigation-api">Service Mitigation API endpoints</a>, for mitigating deviations.</li>
+<li><a href="#mitigation-api">Service Mitigation API endpoints</a>, for mitigating deviations.
+<strong>NOTE: This is for internal use and not available to PTOs.</strong></li>
 </ol>
 <h3 id="data-model">Data Model<a class="headerlink" href="#data-model" title="Permanent link">&para;</a></h3>
 <pre class="mermaid"><code>flowchart TB
@@ -6295,6 +6296,7 @@ delay was updated.</p>
 <h2 id="mitigation-api">Mitigation API<a class="headerlink" href="#mitigation-api" title="Permanent link">&para;</a></h2>
 <p>The service mitigation API endpoints under <code>{baseURL}/mitigation/*</code> allows for implementing solutions to service disruptions.</p>
 <p>Mitigations represent actions taken to address service disruptions or deviations from planned service delivery.</p>
+<p><strong>NOTE: This is for internal use and not available to PTOs.</strong></p>
 <p>The API supports the following types of service mitigations:</p>
 <ul>
 <li><a href="#mitigation---cancellation"><code>CANCELLATION</code></a>, indicating that a journey will be canceled.</li>
