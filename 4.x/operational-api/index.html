@@ -3907,13 +3907,6 @@
         vehicle-state("Vehicle State")
         attempt-request("&lt;em&gt;Attempt Request&lt;/em&gt;")
     end
-    subgraph deviation-model ["Deviation API"]
-        deviation-request("&lt;em&gt;Service Deviation Request&lt;/em&gt;")
-        deviation("Service Deviation")
-        impact("impact")
-
-        deviation-request --&gt;|creates| deviation
-    end
     subgraph journey-model ["Journey API"]
         line("Line")
         journey("Journey")
@@ -3921,8 +3914,16 @@
         journey-state("Journey State")
         stop-point("Stop Point")
     end
+    subgraph mitigation-model ["Mitigation API"]
+        mitigation("Service Mitigation")
+    end
+    subgraph deviation-model ["Deviation API"]
+        deviation-request("&lt;em&gt;Service Deviation Request&lt;/em&gt;")
+        deviation("Service Deviation")
+        impact("impact")
 
-    mitigation("Service Mitigation")
+        deviation-request --&gt;|creates| deviation
+    end
 
     vehicle .-&gt;|has| vehicle-state
     vehicle --&gt;|sends| attempt-request
