@@ -1742,7 +1742,6 @@ HTTP response:
 201 CREATED
 {
   "deviation" : {
-    "id" : "840660be96fd48c7967f90cc28ac4b34",
     "spec" : {
       "code" : "DELAY",
       "reason" : {
@@ -2650,6 +2649,7 @@ The API supports the following types of service mitigations:
 - [`CANCELLATION`](#mitigation---cancellation), indicating that a journey will be canceled.
 - [`REPLACEMENT_SERVICE`](#mitigation---replacement_service), indicating that a replacement service will be provided.
 - [`STANDBY_VEHICLE_PLANNED`](#mitigation---standby_vehicle_planned), indicating that a standby vehicle will be used.
+- [`REPLACEMENT_QUAY`](#mitigation---replacement_quay), indicating that a replacement quay will be used for specific journey calls.
 
 ### Mitigation Requests
 
@@ -2663,6 +2663,7 @@ Each service mitigation request contains a _service mitigation specification_ de
    1. `CANCELLATION`, indicating a journey will be canceled.
    2. `REPLACEMENT_SERVICE`, indicating a replacement service will be provided.
    3. `STANDBY_VEHICLE_PLANNED`, indicating a standby vehicle will be used.
+   4. `REPLACEMENT_QUAY`, indicating a replacement quay will be used for specific journey calls.
 2. `impact`, a service impact structure, describing the journeys impacted by the mitigation.
 3. `duration`, a date-time range with a `start` and `end`, describing the duration of the mitigation.
 4. `mitigates`, a list of service deviation IDs that this mitigation addresses.
@@ -2731,6 +2732,7 @@ The service mitigation parameters structure describes the functional parameters 
 
 1. `vehicleId`, optional identifier of vehicle planned to take part of the mitigation.
 2. `transportMode`, transport mode of the replacement/new journey(s). Currently, only `BUS` is supported.
+3. `stopPoint`, stop point specification for the replacement quay (used with `REPLACEMENT_QUAY` mitigation type).
 
 #### Draft Mode and Approval Process
 
@@ -3091,6 +3093,122 @@ HTTP response:
       "mitigates" : [ "service-deviation-id-001", "service-deviation-id-002" ],
       "parameters" : {
         "vehicleId" : "STANDBYVEHICLE001"
+      }
+    },
+    "lifecycle" : {
+      "created" : "2025-03-03T05:05+01:00",
+      "modified" : "2025-03-03T05:05+01:00",
+      "serviceMitigationId" : "service-mitigation-unique-id"
+    }
+  }
+}
+```
+### Mitigation - REPLACEMENT_QUAY
+
+When a journey needs to use a different quay/stop point than originally planned, a replacement quay mitigation can be created. This allows specific journey calls to be redirected to an alternative stop point.
+
+The mitigation requires both `impact.journeys[]` and `impact.journeys[].calls[]` to be specified:
+- `impact.journeys[].journey.spec` identifies the journey containing the affected call(s)
+- `impact.journeys[].calls[]` specifies which call(s) within that journey are affected (identified by their original stop point and time). The call must reference an actual call that exists in the specified journey.
+- `parameters.stopPoint` specifies the replacement quay to use instead of the original stop point
+
+#### Replacement Quay - on Journey Calls
+
+To signal that specific journey calls should use a replacement quay/stop point:
+- code `REPLACEMENT_QUAY`
+- a list of impacted journeys with their affected calls (the call must reference an actual call in the specified journey)
+- a replacement stop point in the parameters
+
+In this example, we specify a journey and one of its calls that should use a replacement quay.
+
+HTTP request:
+
+```bash
+POST /api/adt/v4/operational/mitigation/mitigations
+{
+  "spec" : {
+    "code" : "REPLACEMENT_QUAY",
+    "impact" : {
+      "journeys" : [ {
+        "calls" : [ {
+          "stopPoint" : {
+            "quayId" : "NSR:Quay:001A",
+            "stopPointId" : "stop-point-001A"
+          },
+          "departureDateTime" : "2025-03-03T09:00+01:00"
+        } ],
+        "journey" : {
+          "spec" : {
+            "lineId" : "RUT:Line:001",
+            "journeyId" : "RUT:DatedServiceJourney:0001",
+            "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+          },
+          "serviceWindow" : {
+            "start" : "2025-03-03T09:00+01:00",
+            "end" : "2025-03-03T09:20+01:00"
+          }
+        }
+      } ]
+    },
+    "duration" : {
+      "start" : "2025-03-03T09:00+01:00",
+      "end" : "2025-03-03T09:20+01:00"
+    },
+    "mitigates" : [ "service-deviation-id-001" ],
+    "parameters" : {
+      "stopPoint" : {
+        "quayId" : "RUT:Quay:002"
+      }
+    }
+  }
+}
+```
+
+HTTP response:
+
+```bash
+201 CREATED
+{
+  "result" : {
+    "status" : {
+      "code" : "OK",
+      "reason" : "OK"
+    }
+  },
+  "mitigation" : {
+    "spec" : {
+      "code" : "REPLACEMENT_QUAY",
+      "impact" : {
+        "journeys" : [ {
+          "calls" : [ {
+            "stopPoint" : {
+              "quayId" : "NSR:Quay:001A",
+              "stopPointId" : "stop-point-001A"
+            },
+            "departureDateTime" : "2025-03-03T09:00+01:00"
+          } ],
+          "journey" : {
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0001",
+              "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+            },
+            "serviceWindow" : {
+              "start" : "2025-03-03T09:00+01:00",
+              "end" : "2025-03-03T09:20+01:00"
+            }
+          }
+        } ]
+      },
+      "duration" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
+      },
+      "mitigates" : [ "service-deviation-id-001" ],
+      "parameters" : {
+        "stopPoint" : {
+          "quayId" : "RUT:Quay:002"
+        }
       }
     },
     "lifecycle" : {

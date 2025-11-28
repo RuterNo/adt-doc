@@ -1329,6 +1329,10 @@
           "vehicle": {
             "$ref": "#/components/schemas/VehicleProperties"
           },
+          "dataSource": {
+            "type": "string",
+            "description": "Optional string describing data source or system from which sign-on attempt request is sent. May be used by clients who send sign-on attempt requests form multiple sources or multiple systems to distinguish them, such as when gradually migrating from one system or data source to another or when multiple client systems or data sources are used continuously.\n"
+          },
           "mqttRouting": {
             "$ref": "#/components/schemas/MqttRouting"
           },
@@ -1893,9 +1897,6 @@
         "type": "object",
         "title": "ServiceDeviation",
         "properties": {
-          "id": {
-            "type": "string"
-          },
           "spec": {
             "$ref": "#/components/schemas/ServiceDeviationSpec"
           },
@@ -2154,9 +2155,6 @@
         "type": "object",
         "title": "ServiceMitigation",
         "properties": {
-          "id": {
-            "type": "string"
-          },
           "spec": {
             "$ref": "#/components/schemas/ServiceMitigationSpec"
           },
@@ -2181,7 +2179,8 @@
         "example": [
           "CANCELLATION",
           "REPLACEMENT_SERVICE",
-          "STANDBY_VEHICLE_PLANNED"
+          "STANDBY_VEHICLE_PLANNED",
+          "REPLACEMENT_QUAY"
         ]
       },
       "ServiceMitigationGetResponse": {
@@ -2254,6 +2253,9 @@
           "updateAssignedVehicles": {
             "type": "boolean",
             "description": "Update vehicle state for assigned vehicles impacted by this mitigation."
+          },
+          "stopPoint": {
+            "$ref": "#/components/schemas/StopPointSpec"
           }
         }
       },

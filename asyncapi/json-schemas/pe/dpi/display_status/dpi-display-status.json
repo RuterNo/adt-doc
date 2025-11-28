@@ -70,7 +70,7 @@
         "connectivity": {
           "type": "string",
           "description": "If the browser has internet connection",
-          "values": [
+          "enum": [
             "ONLINE",
             "OFFLINE",
             "UNKNOWN"
