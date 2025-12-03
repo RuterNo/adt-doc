@@ -2258,10 +2258,6 @@
             "description": "Transport mode of the replacement/new journey(s). Only BUS is supported.",
             "$ref": "#/components/schemas/TransportMode"
           },
-          "updateAssignedVehicles": {
-            "type": "boolean",
-            "description": "Update vehicle state for assigned vehicles impacted by this mitigation."
-          },
           "stopPoint": {
             "$ref": "#/components/schemas/StopPointSpec"
           }
