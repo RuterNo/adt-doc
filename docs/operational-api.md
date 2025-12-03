@@ -3112,6 +3112,8 @@ HTTP response:
 When a journey needs to use a different quay/stop point than originally planned, a replacement quay mitigation can be created. This allows specific journey calls to be redirected to an alternative stop point.
 
 The mitigation requires both `impact.journeys[]` and `impact.journeys[].calls[]` to be specified:
+
+>NOTE: Because key changes only support one journey and one call at a time, `impact.journeys[]` and `impact.journeys[].calls[]` can only contain one element each.
 - `impact.journeys[].journey.spec` identifies the journey containing the affected call(s)
 - `impact.journeys[].calls[]` specifies which call(s) within that journey are affected (identified by their original stop point and time). The call must reference an actual call that exists in the specified journey.
 - `parameters.stopPoint` specifies the replacement quay to use instead of the original stop point

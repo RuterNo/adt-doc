@@ -302,6 +302,14 @@
             }
           },
           {
+            "in": "query",
+            "name": "strictServiceWindowIntersection",
+            "description": "if fromDateTime and toDateTime should be matched by strict intersection rules, false if not assigned\n",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "$ref": "#/components/parameters/IncludeCallsQueryParam"
           },
           {
