@@ -6724,10 +6724,13 @@ mitigation request with action APPROVE for a given mitigation id.</p>
 </code></pre></div>
 <h3 id="mitigation-replacement_quay">Mitigation - REPLACEMENT_QUAY<a class="headerlink" href="#mitigation-replacement_quay" title="Permanent link">&para;</a></h3>
 <p>When a journey needs to use a different quay/stop point than originally planned, a replacement quay mitigation can be created. This allows specific journey calls to be redirected to an alternative stop point.</p>
-<p>The mitigation requires both <code>impact.journeys[]</code> and <code>impact.journeys[].calls[]</code> to be specified:
+<p>The mitigation requires both <code>impact.journeys[]</code> and <code>impact.journeys[].calls[]</code> to be specified:</p>
+<blockquote>
+<p>NOTE: Because key changes only support one journey and one call at a time, <code>impact.journeys[]</code> and <code>impact.journeys[].calls[]</code> can only contain one element each.
 - <code>impact.journeys[].journey.spec</code> identifies the journey containing the affected call(s)
 - <code>impact.journeys[].calls[]</code> specifies which call(s) within that journey are affected (identified by their original stop point and time). The call must reference an actual call that exists in the specified journey.
 - <code>parameters.stopPoint</code> specifies the replacement quay to use instead of the original stop point</p>
+</blockquote>
 <h4 id="replacement-quay-on-journey-calls">Replacement Quay - on Journey Calls<a class="headerlink" href="#replacement-quay-on-journey-calls" title="Permanent link">&para;</a></h4>
 <p>To signal that specific journey calls should use a replacement quay/stop point:
 - code <code>REPLACEMENT_QUAY</code>
