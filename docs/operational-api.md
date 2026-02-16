@@ -3225,3 +3225,178 @@ HTTP response:
   }
 }
 ```
+### Additional Service Mitigation Operations
+
+In addition to creating service mitigations, a client may also look up and delete
+
+#### Read Service Mitigation by Id
+
+A service mitigation may be retrieved up by sending a `GET` request to `{baseURL}/mitigation/mitigations/{serviceMitigationId}`.
+
+HTTP request:
+
+```bash
+GET /api/adt/v4/operational/mitigation/mitigations/1530bf5405624db1b6b449d0edbec8c0
+```
+
+HTTP response:
+
+```bash
+200 OK
+POST /api/adt/v4/operational/mitigation/mitigations
+{
+  "spec" : {
+    "code" : "CANCELLATION",
+    "impact" : {
+      "journeys" : [ {
+        "journey" : {
+          "spec" : {
+            "lineId" : "RUT:Line:001",
+            "journeyId" : "RUT:DatedServiceJourney:0001",
+            "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+          },
+          "serviceWindow" : {
+            "start" : "2025-03-03T09:00+01:00",
+            "end" : "2025-03-03T09:20+01:00"
+          }
+        }
+      } ]
+    },
+    "duration" : {
+      "start" : "2025-03-03T09:00+01:00",
+      "end" : "2025-03-03T09:20+01:00"
+    },
+    "mitigates" : [ "service-deviation-id-001" ]
+  }
+}
+```
+
+#### Delete Service Mitigation by Id
+
+A service mitigation may be deleted by posting an update request with `action: "DELETE"` to
+`{baseURL}/mitigation/mitigations/{serviceMitigationId}`.
+
+HTTP request:
+
+```bash
+POST /api/adt/v4/operational/mitigation/mitigations/1530bf5405624db1b6b449d0edbec8c0
+{
+  "action" : "DELETE",
+  "comment" : "All the snow melted, we are able to drive after all!"
+}
+```
+
+HTTP response:
+
+```bash
+200 OK
+{
+  "result" : {
+    "status" : {
+      "code" : "OK",
+      "reason" : "OK"
+    }
+  }
+}
+```
+
+#### Update Service Mitigation by Id
+
+Instead of deleting and re-creating a service mitigation to functionally modify it, a client may post an update request
+with `action: "UPDATE"` to
+`{baseURL}/mitigation/mitigations/{serviceMitigationId}` to modify an existing mitigation.
+
+In this example, we show how to update an existing quay replacement mitigation with a new quay.
+
+HTTP request:
+
+```bash
+POST /api/adt/v4/operational/mitigation/mitigations/840660be96fd48c7967f90cc28ac4b34
+{
+    "action": "UPDATE",
+    "spec" : {
+        "code" : "REPLACEMENT_QUAY",
+        "impact" : {
+            "journeys" : [ {
+                "calls" : [ {
+                    "stopPoint" : {
+                        "quayId" : "NSR:Quay:001A",
+                        "stopPointId" : "stop-point-001A"
+                    },
+                    "departureDateTime" : "2025-03-03T09:00+01:00"
+                } ],
+                "journey" : {
+                    "spec" : {
+                        "lineId" : "RUT:Line:001",
+                        "journeyId" : "RUT:DatedServiceJourney:0001",
+                        "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+                    },
+                    "serviceWindow" : {
+                        "start" : "2025-03-03T09:00+01:00",
+                        "end" : "2025-03-03T09:20+01:00"
+                    }
+                }
+            } ]
+        },
+        "duration" : {
+            "start" : "2025-03-03T09:00+01:00",
+            "end" : "2025-03-03T09:20+01:00"
+        },
+        "mitigates" : [ "service-deviation-id-001" ],
+        "parameters" : {
+            "stopPoint" : {
+                "quayId" : "RUT:Quay:003"
+            }
+        }
+    }
+}```
+
+HTTP response:
+
+```bash
+200 OK
+{
+  "mitigation" : {
+    "spec" : {
+        "code" : "REPLACEMENT_QUAY",
+        "impact" : {
+            "journeys" : [ {
+                "calls" : [ {
+                    "stopPoint" : {
+                        "quayId" : "NSR:Quay:001A",
+                        "stopPointId" : "stop-point-001A"
+                    },
+                    "departureDateTime" : "2025-03-03T09:00+01:00"
+                } ],
+                "journey" : {
+                    "spec" : {
+                        "lineId" : "RUT:Line:001",
+                        "journeyId" : "RUT:DatedServiceJourney:0001",
+                        "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+                    },
+                    "serviceWindow" : {
+                        "start" : "2025-03-03T09:00+01:00",
+                        "end" : "2025-03-03T09:20+01:00"
+                    }
+                }
+            } ]
+        },
+        "duration" : {
+            "start" : "2025-03-03T09:00+01:00",
+            "end" : "2025-03-03T09:20+01:00"
+        },
+        "mitigates" : [ "service-deviation-id-001" ],
+        "parameters" : {
+            "stopPoint" : {
+                "quayId" : "RUT:Quay:003"
+            }
+        }
+    },
+    "lifecycle" : {
+      "created" : "2025-03-03T05:00+01:00",
+      "modified" : "2025-03-03T05:15+01:00",
+      "serviceMitigationId" : "840660be96fd48c7967f90cc28ac4b34"
+    }
+  }
+}
+```

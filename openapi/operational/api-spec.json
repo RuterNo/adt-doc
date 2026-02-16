@@ -862,6 +862,14 @@
             "$ref": "#/components/parameters/AuthorityIdHeader"
           },
           {
+            "in": "query",
+            "name": "query",
+            "description": "General-purpose search parameter that can accept various identifiers.\n",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "$ref": "#/components/parameters/FromDateTime"
           },
           {
