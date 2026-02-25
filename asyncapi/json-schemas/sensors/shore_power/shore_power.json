@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.ruter.no/adt/ota/api/v3.3/sensors/shore-power/shore-power.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.3/sensors/shore_power/shore_power.json",
   "type": "object",
   "title": "ShorePower",
   "description": "Schema for shore power sensor data",

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://schemas.ruter.no/adt/ota/api/v3.3/sensors/generator-fuel-consumption/generator-fuel-consumption.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v3.3/sensors/generator_fuel_consumption/generator_fuel_consumption.json",
   "type": "object",
   "title": "GeneratorFuelConsumption",
   "description": "Schema for generator fuel consumption sensor data",

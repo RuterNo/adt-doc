@@ -1,17 +1,18 @@
-### Shore Power Message
+### Sailed Distance Message
 
 | Field         | Value                                                                                                     |
 |:--------------|:----------------------------------------------------------------------------------------------------------|
-| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/sensors/shore_power                                                 |
-| Schema        | [ shore-power.json ](json-schemas/sensors/shore-power/shore-power.json)                                   |
+| Central Topic | ruter/{operatorId}/{vehicleId}/adt/v3/sensors/sailed_distance                                             |
+| Schema        | [ sailed_distance.json ](json-schemas/sensors/sailed_distance/sailed_distance.json)                       |
 | Producer      | PTO                                                                                                       |
 | Consumer      | Ruter BO                                                                                                  |
 | Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. |
 
-Describes the total accumulated energy consumed from shore power in kilowatt-hours (kWh).
+Describes the accumulated distance sailed by the vessel.
+
 
 #### Data specification
 
 - Message frequency: 1 message per minute (1/min)
-- Unit: Kilowatt-hours (kWh)
-- Resolution: <= 0.1 kWh
+- Unit: Nautical Miles (NM)
+- Resolution: <= 0.1 NM
