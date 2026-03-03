@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../assets/favicon-32x32.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
     
     
       
@@ -33,7 +33,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -905,10 +905,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#handling-filtering-short-platform-notifications-for-trams" class="md-nav__link">
+  <a href="#handling-filtering-short-platform-notifications-for-sl18-trams" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Handling filtering short platform notifications for trams
+        Handling filtering short platform notifications for SL18 trams
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#annotating-precise-location-on-board-sl18-trams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Annotating precise location on board SL18 trams
       
     </span>
   </a>
@@ -1340,10 +1351,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#handling-filtering-short-platform-notifications-for-trams" class="md-nav__link">
+  <a href="#handling-filtering-short-platform-notifications-for-sl18-trams" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Handling filtering short platform notifications for trams
+        Handling filtering short platform notifications for SL18 trams
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#annotating-precise-location-on-board-sl18-trams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Annotating precise location on board SL18 trams
       
     </span>
   </a>
@@ -1762,12 +1784,18 @@
 </tbody>
 </table>
 <p>* These are approx. values and subject to change.</p>
-<h2 id="handling-filtering-short-platform-notifications-for-trams">Handling filtering short platform notifications for trams<a class="headerlink" href="#handling-filtering-short-platform-notifications-for-trams" title="Permanent link">&para;</a></h2>
-<p>If you want to hide the "short platform" notifications on the displays at the front of the tram, you can add the following part to the query string:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>&amp;channels=short_platform[active_cab]=c1
-</code></pre></div>
+<h2 id="handling-filtering-short-platform-notifications-for-sl18-trams">Handling filtering short platform notifications for SL18 trams<a class="headerlink" href="#handling-filtering-short-platform-notifications-for-sl18-trams" title="Permanent link">&para;</a></h2>
+<p>If you want to hide the "short platform" notifications on the displays at the front half of the tram, you can add the following part to the query string:</p>
+<p><code>?sl18Half=c1</code> or <code>?sl18Half=c2</code></p>
+<p>This will make "short platform" notifications hidden if the active cab is the same as this query parameter (meaning the screen is in the "front half" of the tram).</p>
+<h2 id="annotating-precise-location-on-board-sl18-trams">Annotating precise location on board SL18 trams<a class="headerlink" href="#annotating-precise-location-on-board-sl18-trams" title="Permanent link">&para;</a></h2>
+<p>Screens on SL18 trams should also note their location within the tram using <code>?sl18Placement=</code> query parameter.</p>
+<p><code>t2-left</code> and <code>t2-right</code> screens should have their respective door number as their <code>sl18Placement</code>, e.g <code>sl18Placement=2-3</code>.</p>
+<p><code>t3</code> screens should have their <code>sl18Placement</code> as a number counting from 1 - 10, where <code>sl18Placement=1</code> is the screen closes to the driver seat in C1. Counting upwards through the tram to <code>sl18Placement=10</code> on the screen closest to the driver seat in C2.</p>
+<p>See illustration of SL18 screens and their expected <code>sl18Placement=</code> parameter:</p>
+<p><img alt="Sl18 screen placement" src="../assets/images/sl18_screen_placement.png" /></p>
 <p><strong>Full example</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>http://webserver.local/app/?clientId=3d914034-f8c4-2573-19fe-49d41966d689&amp;physicalId=10.0.0.4&amp;channels=short_platform[active_cab]=c1#display/t2-left
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>http://webserver.local/app/?clientId=3d914034-f8c4-2573-19fe-49d41966d689&amp;physicalId=10.0.0.4&amp;sl18Half=c2&amp;sl18Placement=2-3#display/t2-left
 </code></pre></div>
 <h2 id="screen-configurations-for-bus-taas-vehicles">Screen configurations for bus (TaaS vehicles)<a class="headerlink" href="#screen-configurations-for-bus-taas-vehicles" title="Permanent link">&para;</a></h2>
 <h3 id="screen-config-1">Screen config 1<a class="headerlink" href="#screen-config-1" title="Permanent link">&para;</a></h3>
@@ -1957,10 +1985,10 @@ When there is no active media content playing, the screen will show information 
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
       
     
   </body>
