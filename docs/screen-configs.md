@@ -48,18 +48,30 @@ http://webserver.local/app/?clientId=<INSERT_CLIENT_ID>&physicalId=<INSERT_PHYSI
 
 \* These are approx. values and subject to change.
 
-## Handling filtering short platform notifications for trams
+## Handling filtering short platform notifications for SL18 trams
 
-If you want to hide the "short platform" notifications on the displays at the front of the tram, you can add the following part to the query string:
+If you want to hide the "short platform" notifications on the displays at the front half of the tram, you can add the following part to the query string:
 
-```
-&channels=short_platform[active_cab]=c1
-```
+`?sl18Half=c1` or `?sl18Half=c2`
+
+This will make "short platform" notifications hidden if the active cab is the same as this query parameter (meaning the screen is in the "front half" of the tram).
+
+## Annotating precise location on board SL18 trams
+
+Screens on SL18 trams should also note their location within the tram using `?sl18Placement=` query parameter.
+
+`t2-left` and `t2-right` screens should have their respective door number as their `sl18Placement`, e.g `sl18Placement=2-3`.
+
+`t3` screens should have their `sl18Placement` as a number counting from 1 - 10, where `sl18Placement=1` is the screen closes to the driver seat in C1. Counting upwards through the tram to `sl18Placement=10` on the screen closest to the driver seat in C2.
+
+See illustration of SL18 screens and their expected `sl18Placement=` parameter:
+
+![Sl18 screen placement](assets/images/sl18_screen_placement.png)
 
 **Full example**
 
 ```
-http://webserver.local/app/?clientId=3d914034-f8c4-2573-19fe-49d41966d689&physicalId=10.0.0.4&channels=short_platform[active_cab]=c1#display/t2-left
+http://webserver.local/app/?clientId=3d914034-f8c4-2573-19fe-49d41966d689&physicalId=10.0.0.4&sl18Half=c2&sl18Placement=2-3#display/t2-left
 ```
 
 ## Screen configurations for bus (TaaS vehicles)
