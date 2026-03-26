@@ -24,6 +24,11 @@
       "type": "string",
       "description": "A unique identifier - UUID"
     },
+    "authorityId": {
+      "$id": "#/properties/authorityId",
+      "type": "string",
+      "description": "A unique identifier of the PTA. This is the same as the authorityId in the topic"
+    },
     "operatorRef": {
       "$id": "#/properties/operatorRef",
       "type": "string",
