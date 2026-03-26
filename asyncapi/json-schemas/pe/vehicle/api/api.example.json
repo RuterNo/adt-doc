@@ -3,7 +3,8 @@
   "payload": {
     "eventTimestamp": "2021-03-04T15:08:07.519Z",
     "traceId": "2ccf77aa-463f-4b98-ad19-61ec5d213e36",
-    "operatorRef" : "nobina",
+    "authorityId": "ruter",
+    "operatorRef": "nobina",
     "vehicleId": "VNE5046N40M039404",
     "apiVersion": "3"
   }
