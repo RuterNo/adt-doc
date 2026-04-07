@@ -1645,26 +1645,17 @@ _Additional metadata keys may be added in the future._
 #### Register Metadata - After creation
 
 After a deviation is created, metadata can be added to it.
-> The metadata is structured as a list, duplicate keys are allowed.
 
 HTTP request:
 
 ```bash
-POST /api/adt/v4/operational/deviation/deviations/sd-001
+POST /api/adt/v4/operational/deviation/deviations/sd-001/metadata
 {
-  "spec" : {
-    "metadata" : [ {
-      "key" : "PTO_CASE_REF",
-      "value" : "PTO-1337"
-    }, {
-      "key" : "PTO_CASE_REF",
-      "value" : "PTO-7331"
-    }, {
-      "key" : "ARBITRARY",
-      "value" : "ArbVal"
-    } ]
-  },
-  "action" : "METADATA"
+  "action" : "CREATE",
+  "metadata" : [ {
+    "key" : "PTO_CASE_REF",
+    "value" : "PTO-1337"
+  } ]
 }
 ```
 
@@ -1772,10 +1763,14 @@ HTTP response:
         "delayMinutes" : 10
       }
     },
-    "lifecycle" : {
-      "created" : "2025-03-03T05:10+01:00",
-      "modified" : "2025-03-03T05:10+01:00",
-      "serviceDeviationId" : "840660be96fd48c7967f90cc28ac4b34"
+    "record" : {
+      "serviceDeviationId" : "840660be96fd48c7967f90cc28ac4b34",
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:10:00+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:10:00+01:00",
+        "modifiedBy" : "system"
+      }
     }
   }
 }
@@ -1863,10 +1858,14 @@ HTTP response:
         "operatorExempt" : true
       }
     },
-    "lifecycle" : {
-      "created" : "2025-03-03T05:05+01:00",
-      "modified" : "2025-03-03T05:05+01:00",
-      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0"
+    "record" : {
+      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0",
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedBy" : "system"
+      }
     }
   }
 }
@@ -2008,10 +2007,14 @@ HTTP response:
         "operatorExempt" : true
       }
     },
-    "lifecycle" : {
-      "created" : "2025-03-03T05:17+01:00",
-      "modified" : "2025-03-03T05:17+01:00",
-      "serviceDeviationId" : "69c6821a838245cb968cb0a5d1548fd2"
+    "record" : {
+      "serviceDeviationId" : "69c6821a838245cb968cb0a5d1548fd2",
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:17:00+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:17:00+01:00",
+        "modifiedBy" : "system"
+      }
     }
   }
 }
@@ -2093,10 +2096,14 @@ HTTP response:
         "operatorExempt" : true
       }
     },
-    "lifecycle" : {
-      "created" : "2025-03-03T05:43+01:00",
-      "modified" : "2025-03-03T05:43+01:00",
-      "serviceDeviationId" : "7d6ea6e1f1264fe2858668e671786aa9"
+    "record" : {
+      "serviceDeviationId" : "7d6ea6e1f1264fe2858668e671786aa9",
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:43:00+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:43:00+01:00",
+        "modifiedBy" : "system"
+      }
     }
   }
 }
@@ -2202,10 +2209,14 @@ HTTP response:
         "operatorExempt" : true
       }
     },
-    "lifecycle" : {
-      "created" : "2025-03-03T05:43+01:00",
-      "modified" : "2025-03-03T05:43+01:00",
-      "serviceDeviationId" : "7d6ea6e1f1264fe2858668e671786aa9"
+    "record" : {
+      "serviceDeviationId" : "7d6ea6e1f1264fe2858668e671786aa9",
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:43:00+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:43:00+01:00",
+        "modifiedBy" : "system"
+      }
     }
   }
 }
@@ -2297,10 +2308,14 @@ HTTP response:
         "vehicleId" : "VEHICLEID01234567"
       }
     },
-    "lifecycle" : {
-      "created" : "2025-03-03T05:05+01:00",
-      "modified" : "2025-03-03T05:05+01:00",
-      "serviceDeviationId" : "16e70a9992d04ac8b4a0d598b5560606"
+    "record" : {
+      "serviceDeviationId" : "16e70a9992d04ac8b4a0d598b5560606",
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedBy" : "system"
+      }
     }
   }
 }
@@ -2398,10 +2413,14 @@ HTTP response:
         "operatorExempt" : true
       }
     },
-    "lifecycle" : {
-      "created" : "2025-03-03T05:17+01:00",
-      "modified" : "2025-03-03T05:17+01:00",
-      "serviceDeviationId" : "69c6x21a838245cb568cb0a5d1548fd2"
+    "record" : {
+      "serviceDeviationId" : "69c6x21a838245cb568cb0a5d1548fd2",
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:17:00+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:17:00+01:00",
+        "modifiedBy" : "system"
+      }
     }
   }
 }
@@ -2464,9 +2483,238 @@ HTTP response:
   } ]
 }
 ```
+### Service Deviation Search
+
+Service deviations can be searched by sending a `GET` request to the `{baseURL}/deviation/deviations` endpoint.
+
+**Search Parameters**
+
+- `query`: Exact-match identifier lookup. Supported identifiers include:
+  - _Dated service journey ID_ — finds all deviations affecting a specific journey (e.g. `RUT:DatedServiceJourney:0001`).
+  - _PTO case reference_ — finds deviations tagged with a given PTO case ref via the `PTO_CASE_REF` metadata key.
+  - _PTA case reference_ — finds deviations tagged with a given PTA case ref via the `PTA_CASE_REF` metadata key.
+- `fromDateTime` and `toDateTime`: Timestamps for filtering deviations by their creation time. If not provided,
+  no time range filter is applied.
+- `clientMetadataKey` and `clientMetadataValue`: Filter deviations by client metadata. When `clientMetadataKey` is
+  provided, only deviations with a matching, searchable entry for that key are returned. `clientMetadataValue` is
+  optional and further narrows the match to a specific value.
+- `limit` and `offset`: Pagination parameters. Default limit is 20, maximum is 200.
+
+#### Find Service Deviations - by Journey Id
+
+To find all service deviations affecting a specific journey, the dated service journey ID can be provided as the `query` parameter.
+
+Note: journey ID indexing happens asynchronously after the deviation is created, so newly created deviations may not be
+immediately available via this search.
+
+HTTP request:
+
+```bash
+GET /api/adt/v4/operational/deviation/deviations?query=RUT:DatedServiceJourney:0001
+```
+
+HTTP response:
+
+```bash
+200 OK
+{
+  "items" : [ {
+    "spec" : {
+      "code" : "NO_SERVICE",
+      "reason" : {
+        "code" : "WEATHER_SNOW_HEAVY"
+      },
+      "impact" : {
+        "journeys" : [ {
+          "journey" : {
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0001",
+              "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+            },
+            "serviceWindow" : {
+              "start" : "2025-03-03T09:00+01:00",
+              "end" : "2025-03-03T09:20+01:00"
+            }
+          }
+        } ]
+      },
+      "duration" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
+      },
+      "parameters" : {
+        "operatorExempt" : true
+      }
+    },
+    "record" : {
+      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0",
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedBy" : "system"
+      }
+    }
+  } ],
+  "page" : {
+    "limit" : 20,
+    "offset" : 0,
+    "itemCount" : 1,
+    "totalItemCount" : 1
+  }
+}
+```
+
+#### Find Service Deviations - by Date Range
+
+To find service deviations within a specific time range, `fromDateTime` and `toDateTime` query parameters can be provided.
+
+In this example, we search for all deviations created on a specific day.
+
+HTTP request:
+
+```bash
+GET /api/adt/v4/operational/deviation/deviations?
+>>> fromDateTime=2025-03-03T00:00+01:00&
+>>> toDateTime=2025-03-04T00:00+01:00
+```
+
+HTTP response:
+
+```bash
+200 OK
+{
+  "items" : [ {
+    "spec" : {
+      "code" : "NO_SERVICE",
+      "reason" : {
+        "code" : "WEATHER_SNOW_HEAVY"
+      },
+      "impact" : {
+        "journeys" : [ {
+          "journey" : {
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0001",
+              "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+            },
+            "serviceWindow" : {
+              "start" : "2025-03-03T09:00+01:00",
+              "end" : "2025-03-03T09:20+01:00"
+            }
+          }
+        } ]
+      },
+      "duration" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
+      },
+      "parameters" : {
+        "operatorExempt" : true
+      }
+    },
+    "record" : {
+      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0",
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedBy" : "system"
+      }
+    }
+  } ],
+  "page" : {
+    "limit" : 20,
+    "offset" : 0,
+    "itemCount" : 1,
+    "totalItemCount" : 1
+  }
+}
+```
+
+#### Find Service Deviations - by Client Metadata
+
+To find service deviations associated with a specific client metadata entry, the `clientMetadataKey` and `clientMetadataValue`
+query parameters can be combined.
+
+In this example, we search for all deviations tagged with a client-defined tracking reference.
+
+Note: client metadata is stored separately from the deviation and is not included in the deviation response body.
+Use the `{baseURL}/deviation/deviations/{serviceDeviationId}/client-metadata` endpoint to read client metadata for a deviation.
+
+HTTP request:
+
+```bash
+GET /api/adt/v4/operational/deviation/deviations?
+>>> clientMetadataKey=TRACKING_REF&
+>>> clientMetadataValue=TRK-2025-001
+```
+
+HTTP response:
+
+```bash
+200 OK
+{
+  "items" : [ {
+    "spec" : {
+      "code" : "NO_SERVICE",
+      "reason" : {
+        "code" : "WEATHER_SNOW_HEAVY"
+      },
+      "impact" : {
+        "journeys" : [ {
+          "journey" : {
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0001",
+              "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+            },
+            "serviceWindow" : {
+              "start" : "2025-03-03T09:00+01:00",
+              "end" : "2025-03-03T09:20+01:00"
+            }
+          }
+        } ]
+      },
+      "duration" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
+      },
+      "parameters" : {
+        "operatorExempt" : true
+      }
+    },
+    "record" : {
+      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0",
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedBy" : "system"
+      }
+    }
+  } ],
+  "page" : {
+    "limit" : 20,
+    "offset" : 0,
+    "itemCount" : 1,
+    "totalItemCount" : 1
+  }
+}
+```
 ### Additional Service Deviation Operations
 
-In addition to creating service deviations, a client may also look up and delete
+In addition to creating service deviations, a client may also look up, update, and delete existing deviations using the
+`{baseURL}/deviation/deviations/{serviceDeviationId}` endpoint.
+
+#### Resolved Journey Targets
+
+When reading a service deviation, the optional `includeTargets=true` query parameter can be used to include the
+_resolved journey targets_ in the response. Resolved journey targets are the concrete dated journeys that have been
+resolved from the deviation's impact spec, as determined at the time of the last background processing run.
+
+This is useful for inspecting exactly which journeys are affected without having to resolve the impact spec manually.
 
 #### Read Service Deviation by Id
 
@@ -2512,10 +2760,133 @@ HTTP response:
         "operatorExempt" : true
       }
     },
-    "lifecycle" : {
-      "created" : "2025-03-03T05:05+01:00",
-      "modified" : "2025-03-03T05:05+01:00",
-      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0"
+    "record" : {
+      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0",
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedBy" : "system"
+      }
+    }
+  }
+}
+```
+
+#### Read Service Deviation with Resolved Journey Targets
+
+Passing `includeTargets=true` when reading a service deviation will include resolved journey targets in the response.
+Resolved journey targets represent the concrete dated journeys affected by the variance, as resolved from the impact spec
+at the time of the last background processing run.
+
+HTTP request:
+
+```bash
+GET /api/adt/v4/operational/deviation/deviations/1530bf5405624db1b6b449d0edbec8c0?includeTargets=true
+```
+
+HTTP response:
+
+```bash
+200 OK
+{
+  "deviation" : {
+    "spec" : {
+      "code" : "NO_SERVICE",
+      "reason" : {
+        "code" : "WEATHER_SNOW_HEAVY"
+      },
+      "impact" : {
+        "journeys" : [ {
+          "journey" : {
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0001",
+              "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+            },
+            "serviceWindow" : {
+              "start" : "2025-03-03T09:00+01:00",
+              "end" : "2025-03-03T09:20+01:00"
+            }
+          }
+        } ]
+      },
+      "duration" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
+      },
+      "parameters" : {
+        "operatorExempt" : true
+      }
+    },
+    "record" : {
+      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0",
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedBy" : "system"
+      }
+    },
+    "journeyTargets" : {
+      "journeys" : [ {
+        "partial" : false,
+        "journey" : {
+          "name" : "Service Journey 0001",
+          "spec" : {
+            "lineId" : "RUT:Line:001",
+            "journeyId" : "RUT:DatedServiceJourney:0001",
+            "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+          },
+          "journeyIds" : {
+            "vehicleJourneyId" : "vehicle-journey-0001",
+            "serviceJourneyId" : "RUT:ServiceJourney:0001",
+            "datedServiceJourneyId" : "RUT:DatedServiceJourney:0001"
+          },
+          "serviceWindow" : {
+            "start" : "2025-03-03T09:00+01:00",
+            "end" : "2025-03-03T09:20+01:00"
+          },
+          "line" : {
+            "name" : "Testveien - Teststien",
+            "lineId" : "RUT:Line:001",
+            "publicCode" : "L01",
+            "textColor" : "FFFFFF",
+            "backgroundColor" : "1F1E1A"
+          },
+          "direction" : "INBOUND",
+          "vehicleTaskId" : "VL1001",
+          "calls" : [ {
+            "spec" : {
+              "stopPoint" : {
+                "quayId" : "NSR:Quay:001A",
+                "stopPointId" : "stop-point-001A"
+              },
+              "departureDateTime" : "2025-03-03T09:00+01:00"
+            },
+            "behaviourType" : "FULL_SERVICE"
+          }, {
+            "spec" : {
+              "stopPoint" : {
+                "quayId" : "NSR:Quay:002A",
+                "stopPointId" : "stop-point-002A"
+              },
+              "arrivalDateTime" : "2025-03-03T09:10+01:00",
+              "departureDateTime" : "2025-03-03T09:10+01:00"
+            },
+            "behaviourType" : "FULL_SERVICE"
+          }, {
+            "spec" : {
+              "stopPoint" : {
+                "quayId" : "NSR:Quay:003A",
+                "stopPointId" : "stop-point-003A"
+              },
+              "arrivalDateTime" : "2025-03-03T09:20+01:00"
+            },
+            "behaviourType" : "FULL_SERVICE"
+          } ]
+        }
+      } ]
     }
   }
 }
@@ -2632,10 +3003,14 @@ HTTP response:
         "delayMinutes" : 25
       }
     },
-    "lifecycle" : {
-      "created" : "2025-03-03T05:00+01:00",
-      "modified" : "2025-03-03T05:15+01:00",
-      "serviceDeviationId" : "840660be96fd48c7967f90cc28ac4b34"
+    "record" : {
+      "serviceDeviationId" : "840660be96fd48c7967f90cc28ac4b34",
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:00:00+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:15:00+01:00",
+        "modifiedBy" : "system"
+      }
     }
   }
 }
@@ -2694,26 +3069,17 @@ _Additional metadata keys may be added in the future._
 #### Register Metadata - After creation
 
 After a mitigation is created, metadata can be added to it.
-> The metadata is structured as a list, duplicate keys are allowed.
 
 HTTP request:
 
 ```bash
-POST /api/adt/v4/operational/mitigation/mitigations/service-mitigation-id-001
+POST /api/adt/v4/operational/mitigation/mitigations/service-mitigation-id-001/metadata
 {
-  "spec" : {
-    "metadata" : [ {
-      "key" : "PTO_CASE_REF",
-      "value" : "PTO-1337"
-    }, {
-      "key" : "PTO_CASE_REF",
-      "value" : "PTO-7331"
-    }, {
-      "key" : "ARBITRARY",
-      "value" : "ArbVal"
-    } ]
-  },
-  "action" : "METADATA"
+  "action" : "CREATE",
+  "metadata" : [ {
+    "key" : "PTO_CASE_REF",
+    "value" : "PTO-1337"
+  } ]
 }
 ```
 
@@ -2845,10 +3211,14 @@ HTTP response:
       },
       "mitigates" : [ "service-deviation-id-001" ]
     },
-    "lifecycle" : {
-      "created" : "2025-03-03T05:05+01:00",
-      "modified" : "2025-03-03T05:05+01:00",
-      "serviceMitigationId" : "service-mitigation-unique-id"
+    "record" : {
+      "serviceMitigationId" : "service-mitigation-unique-id",
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedBy" : "system"
+      }
     }
   }
 }
@@ -2956,10 +3326,14 @@ HTTP response:
         "transportMode" : "BUS"
       }
     },
-    "lifecycle" : {
-      "created" : "2025-03-03T05:05+01:00",
-      "modified" : "2025-03-03T05:05+01:00",
-      "serviceMitigationId" : "service-mitigation-id-001"
+    "record" : {
+      "serviceMitigationId" : "service-mitigation-id-001",
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedBy" : "system"
+      }
     },
     "replacements" : [ {
       "replaced" : [ {
@@ -3099,10 +3473,14 @@ HTTP response:
         "vehicleId" : "STANDBYVEHICLE001"
       }
     },
-    "lifecycle" : {
-      "created" : "2025-03-03T05:05+01:00",
-      "modified" : "2025-03-03T05:05+01:00",
-      "serviceMitigationId" : "service-mitigation-unique-id"
+    "record" : {
+      "serviceMitigationId" : "service-mitigation-unique-id",
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedBy" : "system"
+      }
     }
   }
 }
@@ -3217,10 +3595,310 @@ HTTP response:
         }
       }
     },
+    "record" : {
+      "serviceMitigationId" : "service-mitigation-unique-id",
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedBy" : "system"
+      }
+    }
+  }
+}
+```
+### Additional Service Mitigation Operations
+
+In addition to creating service mitigations, a client may also look up, update, and delete existing mitigations using the
+`{baseURL}/mitigation/mitigations/{serviceMitigationId}` endpoint.
+
+#### Resolved Journey Targets
+
+When reading a service mitigation, the optional `includeTargets=true` query parameter can be used to include the
+_resolved journey targets_ in the response. Resolved journey targets are the concrete dated journeys that have been
+resolved from the mitigation's impact spec, as determined at the time of the last background processing run.
+
+#### Read Service Mitigation with Resolved Journey Targets
+
+Passing `includeTargets=true` when reading a service mitigation will include resolved journey targets in the response.
+Resolved journey targets represent the concrete dated journeys affected by the variance, as resolved from the impact spec
+at the time of the last background processing run.
+
+HTTP request:
+
+```bash
+GET /api/adt/v4/operational/mitigation/mitigations/service-mitigation-unique-id?includeTargets=true
+```
+
+HTTP response:
+
+```bash
+200 OK
+{
+  "mitigation" : {
+    "spec" : {
+      "code" : "CANCELLATION",
+      "impact" : {
+        "journeys" : [ {
+          "journey" : {
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0001",
+              "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+            },
+            "serviceWindow" : {
+              "start" : "2025-03-03T09:00+01:00",
+              "end" : "2025-03-03T09:20+01:00"
+            }
+          }
+        } ]
+      },
+      "duration" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
+      },
+      "mitigates" : [ "service-deviation-id-001" ]
+    },
+    "record" : {
+      "serviceMitigationId" : "service-mitigation-unique-id",
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedBy" : "system"
+      }
+    },
+    "journeyTargets" : {
+      "journeys" : [ {
+        "partial" : false,
+        "journey" : {
+          "name" : "Service Journey 0001",
+          "spec" : {
+            "lineId" : "RUT:Line:001",
+            "journeyId" : "RUT:DatedServiceJourney:0001",
+            "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+          },
+          "journeyIds" : {
+            "vehicleJourneyId" : "vehicle-journey-0001",
+            "serviceJourneyId" : "RUT:ServiceJourney:0001",
+            "datedServiceJourneyId" : "RUT:DatedServiceJourney:0001"
+          },
+          "serviceWindow" : {
+            "start" : "2025-03-03T09:00+01:00",
+            "end" : "2025-03-03T09:20+01:00"
+          },
+          "line" : {
+            "name" : "Testveien - Teststien",
+            "lineId" : "RUT:Line:001",
+            "publicCode" : "L01",
+            "textColor" : "FFFFFF",
+            "backgroundColor" : "1F1E1A"
+          },
+          "direction" : "INBOUND",
+          "vehicleTaskId" : "VL1001",
+          "calls" : [ {
+            "spec" : {
+              "stopPoint" : {
+                "quayId" : "NSR:Quay:001A",
+                "stopPointId" : "stop-point-001A"
+              },
+              "departureDateTime" : "2025-03-03T09:00+01:00"
+            },
+            "behaviourType" : "FULL_SERVICE"
+          }, {
+            "spec" : {
+              "stopPoint" : {
+                "quayId" : "NSR:Quay:002A",
+                "stopPointId" : "stop-point-002A"
+              },
+              "arrivalDateTime" : "2025-03-03T09:10+01:00",
+              "departureDateTime" : "2025-03-03T09:10+01:00"
+            },
+            "behaviourType" : "FULL_SERVICE"
+          }, {
+            "spec" : {
+              "stopPoint" : {
+                "quayId" : "NSR:Quay:003A",
+                "stopPointId" : "stop-point-003A"
+              },
+              "arrivalDateTime" : "2025-03-03T09:20+01:00"
+            },
+            "behaviourType" : "FULL_SERVICE"
+          } ]
+        }
+      } ]
+    }
+  }
+}
+```
+#### Read Service Mitigation by Id
+
+A service mitigation may be retrieved up by sending a `GET` request to `{baseURL}/mitigation/mitigations/{serviceMitigationId}`.
+
+HTTP request:
+
+```bash
+GET /api/adt/v4/operational/mitigation/mitigations/1530bf5405624db1b6b449d0edbec8c0
+```
+
+HTTP response:
+
+```bash
+200 OK
+POST /api/adt/v4/operational/mitigation/mitigations
+{
+  "spec" : {
+    "code" : "CANCELLATION",
+    "impact" : {
+      "journeys" : [ {
+        "journey" : {
+          "spec" : {
+            "lineId" : "RUT:Line:001",
+            "journeyId" : "RUT:DatedServiceJourney:0001",
+            "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+          },
+          "serviceWindow" : {
+            "start" : "2025-03-03T09:00+01:00",
+            "end" : "2025-03-03T09:20+01:00"
+          }
+        }
+      } ]
+    },
+    "duration" : {
+      "start" : "2025-03-03T09:00+01:00",
+      "end" : "2025-03-03T09:20+01:00"
+    },
+    "mitigates" : [ "service-deviation-id-001" ]
+  }
+}
+```
+
+#### Delete Service Mitigation by Id
+
+A service mitigation may be deleted by posting an update request with `action: "DELETE"` to
+`{baseURL}/mitigation/mitigations/{serviceMitigationId}`.
+
+HTTP request:
+
+```bash
+POST /api/adt/v4/operational/mitigation/mitigations/1530bf5405624db1b6b449d0edbec8c0
+{
+  "action" : "DELETE",
+  "comment" : "All the snow melted, we are able to drive after all!"
+}
+```
+
+HTTP response:
+
+```bash
+200 OK
+{
+  "result" : {
+    "status" : {
+      "code" : "OK",
+      "reason" : "OK"
+    }
+  }
+}
+```
+
+#### Update Service Mitigation by Id
+
+Instead of deleting and re-creating a service mitigation to functionally modify it, a client may post an update request
+with `action: "UPDATE"` to
+`{baseURL}/mitigation/mitigations/{serviceMitigationId}` to modify an existing mitigation.
+
+In this example, we show how to update an existing quay replacement mitigation with a new quay.
+
+HTTP request:
+
+```bash
+POST /api/adt/v4/operational/mitigation/mitigations/840660be96fd48c7967f90cc28ac4b34
+{
+    "action": "UPDATE",
+    "spec" : {
+        "code" : "REPLACEMENT_QUAY",
+        "impact" : {
+            "journeys" : [ {
+                "calls" : [ {
+                    "stopPoint" : {
+                        "quayId" : "NSR:Quay:001A",
+                        "stopPointId" : "stop-point-001A"
+                    },
+                    "departureDateTime" : "2025-03-03T09:00+01:00"
+                } ],
+                "journey" : {
+                    "spec" : {
+                        "lineId" : "RUT:Line:001",
+                        "journeyId" : "RUT:DatedServiceJourney:0001",
+                        "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+                    },
+                    "serviceWindow" : {
+                        "start" : "2025-03-03T09:00+01:00",
+                        "end" : "2025-03-03T09:20+01:00"
+                    }
+                }
+            } ]
+        },
+        "duration" : {
+            "start" : "2025-03-03T09:00+01:00",
+            "end" : "2025-03-03T09:20+01:00"
+        },
+        "mitigates" : [ "service-deviation-id-001" ],
+        "parameters" : {
+            "stopPoint" : {
+                "quayId" : "RUT:Quay:003"
+            }
+        }
+    }
+}
+```
+
+HTTP response:
+
+```bash
+200 OK
+{
+  "mitigation" : {
+    "spec" : {
+        "code" : "REPLACEMENT_QUAY",
+        "impact" : {
+            "journeys" : [ {
+                "calls" : [ {
+                    "stopPoint" : {
+                        "quayId" : "NSR:Quay:001A",
+                        "stopPointId" : "stop-point-001A"
+                    },
+                    "departureDateTime" : "2025-03-03T09:00+01:00"
+                } ],
+                "journey" : {
+                    "spec" : {
+                        "lineId" : "RUT:Line:001",
+                        "journeyId" : "RUT:DatedServiceJourney:0001",
+                        "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+                    },
+                    "serviceWindow" : {
+                        "start" : "2025-03-03T09:00+01:00",
+                        "end" : "2025-03-03T09:20+01:00"
+                    }
+                }
+            } ]
+        },
+        "duration" : {
+            "start" : "2025-03-03T09:00+01:00",
+            "end" : "2025-03-03T09:20+01:00"
+        },
+        "mitigates" : [ "service-deviation-id-001" ],
+        "parameters" : {
+            "stopPoint" : {
+                "quayId" : "RUT:Quay:003"
+            }
+        }
+    },
     "lifecycle" : {
-      "created" : "2025-03-03T05:05+01:00",
-      "modified" : "2025-03-03T05:05+01:00",
-      "serviceMitigationId" : "service-mitigation-unique-id"
+      "created" : "2025-03-03T05:00+01:00",
+      "modified" : "2025-03-03T05:15+01:00",
+      "serviceMitigationId" : "840660be96fd48c7967f90cc28ac4b34"
     }
   }
 }
