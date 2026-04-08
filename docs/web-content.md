@@ -12,8 +12,8 @@ For more information, see the [`rclone` documentation](https://rclone.org/docs/)
 - Synchronization should occur periodically throughout the day to keep files up to date.
 - At least **16 GB** of storage must be available on the vehicle to store the PTA's content.
 - **SLA requirements:**
-    - Any content updated before 16:00 must be available in the vehicle before it starts its route the following morning.
-    - Ruter expects the PTO to update content at the frequency indicated in the installation instructions below. If not, SLA requirements may be adjusted in future releases.
+  - Any content updated before 16:00 must be available in the vehicle before it starts its route the following morning.
+  - Ruter expects the PTO to update content at the frequency indicated in the installation instructions below. If not, SLA requirements may be adjusted in future releases.
 - The PTO should download new versions from a pre-production channel in a test environment and ensure the version is thoroughly tested before deploying to production.
 
 ## Installation Instructions
@@ -23,6 +23,14 @@ Refer to the [`rclone` documentation](https://rclone.org) for installation steps
 ### Rclone Version Requirements
 
 The `rclone` version must be upgraded to the latest version within a year after a new release. This ensures access to the latest features and bug fixes.
+
+## Architectural overview
+
+The recommended setup is to sync directly from TET to vehicles. This means installing `rclone` on the vehicle computer and giving it access to `https://pto-api-v2.transhub.io` (see more details in _Rclone Configuration_).
+
+We understand this can be a major architectural change for some PTO setups. In some cases, synchronization has previously been handled in a PTO back office, and the final transfer from back office to vehicle has been handled by custom solutions.
+
+Because of this, we provide an interim solution where PTOs can still synchronize to the back office, as long as they also implement additional features for targeted deployments. See the _Interim PTO backoffice setup_ section later in this article.
 
 ## Rclone Configuration
 
@@ -44,6 +52,7 @@ url = <ENTER_URL_HERE>
 ```
 
 > **Note:**
+>
 > - The `headers` field must be set to the VIN of the vehicle. This identifies the vehicle when syncing files.
 > - The `url` field must be set to the URL of the web server where the content is hosted. Use the appropriate URL for your environment:
 
@@ -119,10 +128,10 @@ The root folder for web content is chosen by the operator (referred to as `$WEB_
 
 Files should be deployed in a structure like:
 
-* $WEB_CONTENT_ROOT
-    * app
-    * media
-    * resources
+- $WEB_CONTENT_ROOT
+  - app
+  - media
+  - resources
 
 Example output of `tree` in `$WEB_CONTENT_ROOT`:
 
@@ -173,13 +182,43 @@ Using nginx or some other proxy/webserver, point the root of the site to `/var/w
 ### Important functionality for the web server
 
 | Functionality                | Description                                                                                                                                                                                                                                          |
-|------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Disable caching of content   | It is important to disable all caches (HTTP `Cache-Control` header), as this can cause issues during updates.                                                                                                                                        |
 | Setting correct Content-Type | It is important to include the correct HTTP `Content-Type` header in the response. This is to ensure that the files are served correctly to the client. If this is incorrectly configured, some illustraions might fail to load correctly in client. |
 
-
 ### Verifying the setup
+
 When the web server is set up, displays in a vehicle should be able to access the DPI application using an url like `http://webserver.local/app/index.html#display/1`.
 
 See [DPI Bus Monitor Screen Configuration](screen-configs.md) documentation for more details about setting up displays with the correct content.
 
+## Interim PTO backoffice setup
+
+This section describes a scenario where a PTO cannot easily synchronize directly to vehicles and needs to do this centrally first.
+
+In these cases, the PTO should synchronize three packages: `test`, `stage`, and `prod`. This is done by providing `X-Client-Env` instead of `X-Vehicle-Id`, as described in _Rclone Configuration_ earlier in this article.
+
+- prod package using `X-Client-Env: prod`
+- stage package using `X-Client-Env: stage`
+- test package using `X-Client-Env: test`
+
+This should result in three copies of the web content in the PTO back office: `./stage`, `./prod`, and `./test`.
+
+The next step is to determine which version each vehicle should receive. Do this by fetching these resources:
+
+- `https://pto-api-v2.transhub.io/test-vehicles.json` <- These vehicles should receive test web content
+- `https://pto-api-v2.transhub.io/stage-vehicles.json` <- These vehicles should receive stage web content
+- All other vehicles should receive prod web content
+
+Example content of `test-vehicles.json`:
+
+```json
+[
+  "SL180000000000444",
+  "0000000IMO9910000",
+  "YS2K6X20001919191",
+  "SUU33333EPB025255"
+]
+```
+
+If `test-vehicles.json` contains the content above, the PTO must synchronize test web content from `./test` to these vehicles instead of from `./prod`.
