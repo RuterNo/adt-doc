@@ -1103,6 +1103,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#architectural-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architectural overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#rclone-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1210,6 +1221,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interim-pto-backoffice-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interim PTO backoffice setup
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1836,6 +1858,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#architectural-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architectural overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#rclone-configuration" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1946,6 +1979,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#interim-pto-backoffice-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interim PTO backoffice setup
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1988,17 +2032,19 @@
 <li>Synchronization of web content is performed using <code>rclone</code> to download the latest content from Ruter's web server.</li>
 <li>Synchronization should occur periodically throughout the day to keep files up to date.</li>
 <li>At least <strong>16 GB</strong> of storage must be available on the vehicle to store the PTA's content.</li>
-<li><strong>SLA requirements:</strong><ul>
+<li><strong>SLA requirements:</strong></li>
 <li>Any content updated before 16:00 must be available in the vehicle before it starts its route the following morning.</li>
 <li>Ruter expects the PTO to update content at the frequency indicated in the installation instructions below. If not, SLA requirements may be adjusted in future releases.</li>
-</ul>
-</li>
 <li>The PTO should download new versions from a pre-production channel in a test environment and ensure the version is thoroughly tested before deploying to production.</li>
 </ul>
 <h2 id="installation-instructions">Installation Instructions<a class="headerlink" href="#installation-instructions" title="Permanent link">&para;</a></h2>
 <p>Refer to the <a href="https://rclone.org"><code>rclone</code> documentation</a> for installation steps.</p>
 <h3 id="rclone-version-requirements">Rclone Version Requirements<a class="headerlink" href="#rclone-version-requirements" title="Permanent link">&para;</a></h3>
 <p>The <code>rclone</code> version must be upgraded to the latest version within a year after a new release. This ensures access to the latest features and bug fixes.</p>
+<h2 id="architectural-overview">Architectural overview<a class="headerlink" href="#architectural-overview" title="Permanent link">&para;</a></h2>
+<p>The recommended setup is to sync directly from TET to vehicles. This means installing <code>rclone</code> on the vehicle computer and giving it access to <code>https://pto-api-v2.transhub.io</code> (see more details in <em>Rclone Configuration</em>).</p>
+<p>We understand this can be a major architectural change for some PTO setups. In some cases, synchronization has previously been handled in a PTO back office, and the final transfer from back office to vehicle has been handled by custom solutions.</p>
+<p>Because of this, we provide an interim solution where PTOs can still synchronize to the back office, as long as they also implement additional features for targeted deployments. See the <em>Interim PTO backoffice setup</em> section later in this article.</p>
 <h2 id="rclone-configuration">Rclone Configuration<a class="headerlink" href="#rclone-configuration" title="Permanent link">&para;</a></h2>
 <h3 id="1-create-the-rclone-configuration-file">1. Create the Rclone Configuration File<a class="headerlink" href="#1-create-the-rclone-configuration-file" title="Permanent link">&para;</a></h3>
 <p>Create a configuration file at <code>/opt/rclone/rclone.conf</code>. If the directory does not exist, create it:</p>
@@ -2011,9 +2057,11 @@
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="na">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&lt;ENTER_URL_HERE&gt;</span>
 </code></pre></div>
 <blockquote>
-<p><strong>Note:</strong>
-- The <code>headers</code> field must be set to the VIN of the vehicle. This identifies the vehicle when syncing files.
-- The <code>url</code> field must be set to the URL of the web server where the content is hosted. Use the appropriate URL for your environment:</p>
+<p><strong>Note:</strong></p>
+<ul>
+<li>The <code>headers</code> field must be set to the VIN of the vehicle. This identifies the vehicle when syncing files.</li>
+<li>The <code>url</code> field must be set to the URL of the web server where the content is hosted. Use the appropriate URL for your environment:</li>
+</ul>
 </blockquote>
 <table>
 <thead>
@@ -2079,12 +2127,10 @@
 <p>The root folder for web content is chosen by the operator (referred to as <code>$WEB_CONTENT_ROOT</code>). The recommended location is <code>/var/www/html</code>, but any suitable location for your web server is acceptable.</p>
 <p>Files should be deployed in a structure like:</p>
 <ul>
-<li>$WEB_CONTENT_ROOT<ul>
+<li>$WEB_CONTENT_ROOT</li>
 <li>app</li>
 <li>media</li>
 <li>resources</li>
-</ul>
-</li>
 </ul>
 <p>Example output of <code>tree</code> in <code>$WEB_CONTENT_ROOT</code>:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>/var/www/html<span class="w"> </span><span class="c1"># tree</span>
@@ -2148,6 +2194,30 @@
 <h3 id="verifying-the-setup">Verifying the setup<a class="headerlink" href="#verifying-the-setup" title="Permanent link">&para;</a></h3>
 <p>When the web server is set up, displays in a vehicle should be able to access the DPI application using an url like <code>http://webserver.local/app/index.html#display/1</code>.</p>
 <p>See <a href="../screen-configs/">DPI Bus Monitor Screen Configuration</a> documentation for more details about setting up displays with the correct content.</p>
+<h2 id="interim-pto-backoffice-setup">Interim PTO backoffice setup<a class="headerlink" href="#interim-pto-backoffice-setup" title="Permanent link">&para;</a></h2>
+<p>This section describes a scenario where a PTO cannot easily synchronize directly to vehicles and needs to do this centrally first.</p>
+<p>In these cases, the PTO should synchronize three packages: <code>test</code>, <code>stage</code>, and <code>prod</code>. This is done by providing <code>X-Client-Env</code> instead of <code>X-Vehicle-Id</code>, as described in <em>Rclone Configuration</em> earlier in this article.</p>
+<ul>
+<li>prod package using <code>X-Client-Env: prod</code></li>
+<li>stage package using <code>X-Client-Env: stage</code></li>
+<li>test package using <code>X-Client-Env: test</code></li>
+</ul>
+<p>This should result in three copies of the web content in the PTO back office: <code>./stage</code>, <code>./prod</code>, and <code>./test</code>.</p>
+<p>The next step is to determine which version each vehicle should receive. Do this by fetching these resources:</p>
+<ul>
+<li><code>https://pto-api-v2.transhub.io/test-vehicles.json</code> &lt;- These vehicles should receive test web content</li>
+<li><code>https://pto-api-v2.transhub.io/stage-vehicles.json</code> &lt;- These vehicles should receive stage web content</li>
+<li>All other vehicles should receive prod web content</li>
+</ul>
+<p>Example content of <code>test-vehicles.json</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p">[</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="s2">&quot;SL180000000000444&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="s2">&quot;0000000IMO9910000&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">  </span><span class="s2">&quot;YS2K6X20001919191&quot;</span><span class="p">,</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span><span class="s2">&quot;SUU33333EPB025255&quot;</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="p">]</span>
+</code></pre></div>
+<p>If <code>test-vehicles.json</code> contains the content above, the PTO must synchronize test web content from <code>./test</code> to these vehicles instead of from <code>./prod</code>.</p>
 
 
 
