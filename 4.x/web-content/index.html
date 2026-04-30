@@ -1233,6 +1233,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Interim PTO backoffice setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-http-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required HTTP headers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -1988,6 +2005,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Interim PTO backoffice setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-http-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required HTTP headers
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -2196,7 +2230,7 @@
 <p>See <a href="../screen-configs/">DPI Bus Monitor Screen Configuration</a> documentation for more details about setting up displays with the correct content.</p>
 <h2 id="interim-pto-backoffice-setup">Interim PTO backoffice setup<a class="headerlink" href="#interim-pto-backoffice-setup" title="Permanent link">&para;</a></h2>
 <p>This section describes a scenario where a PTO cannot easily synchronize directly to vehicles and needs to do this centrally first.</p>
-<p>In these cases, the PTO should synchronize three packages: <code>test</code>, <code>stage</code>, and <code>prod</code>. This is done by providing <code>X-Client-Env</code> instead of <code>X-Vehicle-Id</code>, as described in <em>Rclone Configuration</em> earlier in this article.</p>
+<p>In these cases, the PTO should synchronize three packages: <code>test</code>, <code>stage</code>, and <code>prod</code>. This is done by providing <code>X-Client-Env</code> instead of <code>X-Vehicle-Id</code>, as described in <em>Rclone Configuration</em> earlier in this article (see also <em>Required HTTP headers</em> below).</p>
 <ul>
 <li>prod package using <code>X-Client-Env: prod</code></li>
 <li>stage package using <code>X-Client-Env: stage</code></li>
@@ -2218,6 +2252,14 @@
 <a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="p">]</span>
 </code></pre></div>
 <p>If <code>test-vehicles.json</code> contains the content above, the PTO must synchronize test web content from <code>./test</code> to these vehicles instead of from <code>./prod</code>.</p>
+<h3 id="required-http-headers">Required HTTP headers<a class="headerlink" href="#required-http-headers" title="Permanent link">&para;</a></h3>
+<p>For this solution there are three required http headers that needs to be set </p>
+<ul>
+<li><code>X-Client-Env</code></li>
+<li><code>X-Pto-Name</code></li>
+<li><code>X-Pta-Name</code></li>
+</ul>
+<p><code>X-Pto-Name</code> and <code>X-Pta-Name</code> are required so we can serve different PTA's and PTO's with different packages and static files.  </p>
 
 
 
