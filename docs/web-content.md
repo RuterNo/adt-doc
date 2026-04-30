@@ -196,7 +196,7 @@ See [DPI Bus Monitor Screen Configuration](screen-configs.md) documentation for 
 
 This section describes a scenario where a PTO cannot easily synchronize directly to vehicles and needs to do this centrally first.
 
-In these cases, the PTO should synchronize three packages: `test`, `stage`, and `prod`. This is done by providing `X-Client-Env` instead of `X-Vehicle-Id`, as described in _Rclone Configuration_ earlier in this article.
+In these cases, the PTO should synchronize three packages: `test`, `stage`, and `prod`. This is done by providing `X-Client-Env` instead of `X-Vehicle-Id`, as described in _Rclone Configuration_ earlier in this article (see also _Required HTTP headers_ below).
 
 - prod package using `X-Client-Env: prod`
 - stage package using `X-Client-Env: stage`
@@ -222,3 +222,13 @@ Example content of `test-vehicles.json`:
 ```
 
 If `test-vehicles.json` contains the content above, the PTO must synchronize test web content from `./test` to these vehicles instead of from `./prod`.
+
+### Required HTTP headers
+
+For this solution there are three required http headers that needs to be set 
+
+- `X-Client-Env`
+- `X-Pto-Name`
+- `X-Pta-Name`
+
+`X-Pto-Name` and `X-Pta-Name` are required so we can serve different PTA's and PTO's with different packages and static files.  
