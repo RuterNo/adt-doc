@@ -19,9 +19,34 @@
       }
     }
   ],
+  "tags": [
+    {
+      "name": "auth",
+      "description": "Authentication and token management"
+    },
+    {
+      "name": "assignment",
+      "description": "Vehicle assignment operations"
+    },
+    {
+      "name": "journey",
+      "description": "Journey, line and stop point queries"
+    },
+    {
+      "name": "deviation",
+      "description": "Service deviation management"
+    },
+    {
+      "name": "mitigation",
+      "description": "Service mitigation management"
+    }
+  ],
   "paths": {
     "/auth/.well-known/openid-configuration": {
       "get": {
+        "tags": [
+          "auth"
+        ],
         "summary": "OpenID Configuration",
         "operationId": "authGetWellKnownOpenIdConfiguration",
         "description": "Endpoint for discovering all OpenId Connect endpoints",
@@ -42,6 +67,9 @@
     },
     "/auth/oauth2/token": {
       "post": {
+        "tags": [
+          "auth"
+        ],
         "summary": "Retrieve Token",
         "operationId": "authOauth2PostTokenRequest",
         "description": "Endpoint for exchanging credentials for tokens (access token and ID token)",
@@ -82,6 +110,9 @@
     },
     "/auth/.well-known/jwks": {
       "get": {
+        "tags": [
+          "auth"
+        ],
         "summary": "JWKS",
         "operationId": "authGetWellKnownJWKS",
         "description": "Endpoint for fetching JSON Web Key Set (JWKS) to verify the retrieved tokens",
@@ -102,6 +133,9 @@
     },
     "/assignment/attempts": {
       "post": {
+        "tags": [
+          "assignment"
+        ],
         "operationId": "postAssignmentAttempt",
         "description": "Post an assignment attempt to sign on / sign off a vehicle.",
         "parameters": [
@@ -137,40 +171,22 @@
         },
         "responses": {
           "2xx": {
-            "description": "Assignment attempt response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AssignmentAttemptResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/AssignmentAttemptResponse"
           },
           "4xx": {
-            "description": "Assignment attempt response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AssignmentAttemptResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/AssignmentAttemptResponse"
           },
           "5xx": {
-            "description": "Assignment attempt response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AssignmentAttemptResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/AssignmentAttemptResponse"
           }
         }
       }
     },
     "/assignment/vehicles/{vehicleId}": {
       "get": {
+        "tags": [
+          "assignment"
+        ],
         "operationId": "getAssignmentVehicleState",
         "description": "Look up a vehicle's (assignment) state.",
         "parameters": [
@@ -201,40 +217,22 @@
         ],
         "responses": {
           "2xx": {
-            "description": "Vehicle state response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/VehicleStateResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/VehicleStateResponse"
           },
           "4xx": {
-            "description": "Vehicle state response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/VehicleStateResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/VehicleStateResponse"
           },
           "5xx": {
-            "description": "Vehicle state response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/VehicleStateResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/VehicleStateResponse"
           }
         }
       }
     },
     "/journey/journeys": {
       "get": {
+        "tags": [
+          "journey"
+        ],
         "operationId": "findJourneys",
         "description": "Find journeys for a given set of search criteria.",
         "parameters": [
@@ -259,7 +257,7 @@
           {
             "in": "query",
             "name": "query",
-            "description": "General-purpose search parameter that can accept various identifiers like vehicle journey ID (e.g., \"86\"), journey references,  or pattern references to return matching journeys with their associated details including external IDs and pattern references.\n",
+            "description": "General-purpose search parameter that can accept various identifiers like vehicle journey ID (e.g., \"86\"), journey references, or pattern references to return matching journeys with their associated details including external IDs and pattern references.\n",
             "schema": {
               "type": "string"
             }
@@ -321,40 +319,22 @@
         ],
         "responses": {
           "2xx": {
-            "description": "Response containing a list of journey items matching search criteria.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JourneyListResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/JourneyListResponse"
           },
           "4xx": {
-            "description": "Response containing a list of journey items matching search criteria.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JourneyListResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/JourneyListResponse"
           },
           "5xx": {
-            "description": "Response containing a list of journey items matching search criteria.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JourneyListResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/JourneyListResponse"
           }
         }
       }
     },
     "/journey/lines": {
       "get": {
+        "tags": [
+          "journey"
+        ],
         "operationId": "findLines",
         "description": "Return list of unique lines matching search criteria.",
         "parameters": [
@@ -393,40 +373,22 @@
         ],
         "responses": {
           "2xx": {
-            "description": "Response containing a list of line items.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JourneyLineListResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/JourneyLineListResponse"
           },
           "4xx": {
-            "description": "Response containing a list of line items.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JourneyLineListResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/JourneyLineListResponse"
           },
           "5xx": {
-            "description": "Response containing a list of line items.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JourneyLineListResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/JourneyLineListResponse"
           }
         }
       }
     },
     "/journey/stop-points": {
       "get": {
+        "tags": [
+          "journey"
+        ],
         "operationId": "findStopPoints",
         "description": "Return list of unique stop points matching search criteria.",
         "parameters": [
@@ -465,40 +427,22 @@
         ],
         "responses": {
           "2xx": {
-            "description": "Response containing a list of stop point items.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JourneyStopPointListResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/JourneyStopPointListResponse"
           },
           "4xx": {
-            "description": "Response containing a list of stop point items.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JourneyStopPointListResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/JourneyStopPointListResponse"
           },
           "5xx": {
-            "description": "Response containing a list of stop point items.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/JourneyStopPointListResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/JourneyStopPointListResponse"
           }
         }
       }
     },
     "/deviation/deviations": {
       "get": {
+        "tags": [
+          "deviation"
+        ],
         "operationId": "findServiceDeviations",
         "description": "Return a list of service deviations matching a given set of criteria.",
         "parameters": [
@@ -535,6 +479,18 @@
             "$ref": "#/components/parameters/ToDateTime"
           },
           {
+            "$ref": "#/components/parameters/IncludeCallsQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/IncludeTargetsQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/ClientMetadataKeyQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/ClientMetadataValueQueryParam"
+          },
+          {
             "$ref": "#/components/parameters/LimitQueryParam"
           },
           {
@@ -543,38 +499,20 @@
         ],
         "responses": {
           "2xx": {
-            "description": "Service deviation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceDeviationListResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceDeviationListResponse"
           },
           "4xx": {
-            "description": "Service deviation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceDeviationListResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceDeviationListResponse"
           },
           "5xx": {
-            "description": "Service deviation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceDeviationListResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceDeviationListResponse"
           }
         }
       },
       "post": {
+        "tags": [
+          "deviation"
+        ],
         "operationId": "postServiceDeviation",
         "description": "Post a service deviation registration request",
         "parameters": [
@@ -610,40 +548,22 @@
         },
         "responses": {
           "2xx": {
-            "description": "Service deviation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceDeviationPostResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceDeviationPostResponse"
           },
           "4xx": {
-            "description": "Service deviation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceDeviationPostResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceDeviationPostResponse"
           },
           "5xx": {
-            "description": "Service deviation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceDeviationPostResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceDeviationPostResponse"
           }
         }
       }
     },
     "/deviation/deviations/{serviceDeviationId}": {
       "get": {
+        "tags": [
+          "deviation"
+        ],
         "operationId": "getServiceDeviation",
         "description": "Return a service deviation with a given id.",
         "parameters": [
@@ -667,42 +587,30 @@
           },
           {
             "$ref": "#/components/parameters/ServiceDeviationIdPathParam"
+          },
+          {
+            "$ref": "#/components/parameters/IncludeCallsQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/IncludeTargetsQueryParam"
           }
         ],
         "responses": {
           "2xx": {
-            "description": "Service deviation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceDeviationGetResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceDeviationGetResponse"
           },
           "4xx": {
-            "description": "Service deviation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceDeviationGetResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceDeviationGetResponse"
           },
           "5xx": {
-            "description": "Service deviation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceDeviationGetResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceDeviationGetResponse"
           }
         }
       },
       "post": {
+        "tags": [
+          "deviation"
+        ],
         "operationId": "updateServiceDeviation",
         "description": "Update a service deviation with a given id.",
         "parameters": [
@@ -741,40 +649,304 @@
         },
         "responses": {
           "2xx": {
-            "description": "Service deviation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceDeviationPostResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceDeviationPostResponse"
           },
           "4xx": {
-            "description": "Service deviation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceDeviationPostResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceDeviationPostResponse"
           },
           "5xx": {
-            "description": "Service deviation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceDeviationPostResponse"
-                }
+            "$ref": "#/components/responses/ServiceDeviationPostResponse"
+          }
+        }
+      }
+    },
+    "/deviation/deviations/{serviceDeviationId}/metadata": {
+      "get": {
+        "tags": [
+          "deviation"
+        ],
+        "operationId": "listDeviationMetadata",
+        "description": "Return all metadata entries",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ServiceDeviationIdPathParam"
+          }
+        ],
+        "responses": {
+          "2xx": {
+            "$ref": "#/components/responses/MetadataListResponse"
+          },
+          "4xx": {
+            "$ref": "#/components/responses/MetadataListResponse"
+          },
+          "5xx": {
+            "$ref": "#/components/responses/MetadataListResponse"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "deviation"
+        ],
+        "operationId": "postDeviationMetadata",
+        "description": "Create, update or delete metadata entries",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ServiceDeviationIdPathParam"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Array of metadata keys and values to set",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetadataPostRequest"
               }
             }
+          }
+        },
+        "responses": {
+          "2xx": {
+            "$ref": "#/components/responses/MetadataPostResponse"
+          },
+          "4xx": {
+            "$ref": "#/components/responses/MetadataPostResponse"
+          },
+          "5xx": {
+            "$ref": "#/components/responses/MetadataPostResponse"
+          }
+        }
+      }
+    },
+    "/deviation/deviations/{serviceDeviationId}/metadata/{key}": {
+      "get": {
+        "tags": [
+          "deviation"
+        ],
+        "operationId": "getDeviationMetadata",
+        "description": "Return a specific metadata entry by key",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ServiceDeviationIdPathParam"
+          },
+          {
+            "$ref": "#/components/parameters/MetadataKeyPathParam"
+          }
+        ],
+        "responses": {
+          "2xx": {
+            "$ref": "#/components/responses/MetadataGetResponse"
+          },
+          "4xx": {
+            "$ref": "#/components/responses/MetadataGetResponse"
+          },
+          "5xx": {
+            "$ref": "#/components/responses/MetadataGetResponse"
+          }
+        }
+      }
+    },
+    "/deviation/deviations/{serviceDeviationId}/client-metadata": {
+      "get": {
+        "tags": [
+          "deviation"
+        ],
+        "operationId": "listDeviationClientMetadata",
+        "description": "Return all client metadata entries for the authenticated client on this deviation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ServiceDeviationIdPathParam"
+          }
+        ],
+        "responses": {
+          "2xx": {
+            "$ref": "#/components/responses/ClientMetadataListResponse"
+          },
+          "4xx": {
+            "$ref": "#/components/responses/ClientMetadataListResponse"
+          },
+          "5xx": {
+            "$ref": "#/components/responses/ClientMetadataListResponse"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "deviation"
+        ],
+        "operationId": "postDeviationClientMetadata",
+        "description": "Create, update or delete a client metadata entry (upsert)",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ServiceDeviationIdPathParam"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Client metadata keys and values to set",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientMetadataPostRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "2xx": {
+            "$ref": "#/components/responses/ClientMetadataPostResponse"
+          },
+          "4xx": {
+            "$ref": "#/components/responses/ClientMetadataPostResponse"
+          },
+          "5xx": {
+            "$ref": "#/components/responses/ClientMetadataPostResponse"
+          }
+        }
+      }
+    },
+    "/deviation/deviations/{serviceDeviationId}/client-metadata/{key}": {
+      "get": {
+        "tags": [
+          "deviation"
+        ],
+        "operationId": "getDeviationClientMetadata",
+        "description": "Return a specific client metadata entry by key",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ServiceDeviationIdPathParam"
+          },
+          {
+            "$ref": "#/components/parameters/ClientMetadataKeyPathParam"
+          }
+        ],
+        "responses": {
+          "2xx": {
+            "$ref": "#/components/responses/ClientMetadataGetResponse"
+          },
+          "4xx": {
+            "$ref": "#/components/responses/ClientMetadataGetResponse"
+          },
+          "5xx": {
+            "$ref": "#/components/responses/ClientMetadataGetResponse"
           }
         }
       }
     },
     "/deviation/reason-codes": {
       "get": {
+        "tags": [
+          "deviation"
+        ],
         "operationId": "getServiceDeviationReasonCodes",
         "description": "Return a list of service deviation reason codes",
         "parameters": [
@@ -806,40 +978,22 @@
         ],
         "responses": {
           "2xx": {
-            "description": "Service deviation reason codes response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceDeviationReasonCodeListResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceDeviationReasonCodeListResponse"
           },
           "4xx": {
-            "description": "Service deviation reason codes response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceDeviationReasonCodeListResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceDeviationReasonCodeListResponse"
           },
           "5xx": {
-            "description": "Service deviation reason codes response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceDeviationReasonCodeListResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceDeviationReasonCodeListResponse"
           }
         }
       }
     },
     "/mitigation/mitigations": {
       "get": {
+        "tags": [
+          "mitigation"
+        ],
         "operationId": "findServiceMitigations",
         "description": "Return a list of service mitigations matching a given set of criteria.",
         "parameters": [
@@ -876,6 +1030,18 @@
             "$ref": "#/components/parameters/ToDateTime"
           },
           {
+            "$ref": "#/components/parameters/IncludeCallsQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/IncludeTargetsQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/ClientMetadataKeyQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/ClientMetadataValueQueryParam"
+          },
+          {
             "$ref": "#/components/parameters/LimitQueryParam"
           },
           {
@@ -884,38 +1050,20 @@
         ],
         "responses": {
           "2xx": {
-            "description": "Service mitigation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceMitigationListResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceMitigationListResponse"
           },
           "4xx": {
-            "description": "Service mitigation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceMitigationListResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceMitigationListResponse"
           },
           "5xx": {
-            "description": "Service mitigation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceMitigationListResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceMitigationListResponse"
           }
         }
       },
       "post": {
+        "tags": [
+          "mitigation"
+        ],
         "operationId": "postServiceMitigation",
         "description": "Post a service mitigation registration request",
         "parameters": [
@@ -951,40 +1099,22 @@
         },
         "responses": {
           "2xx": {
-            "description": "Service mitigation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceMitigationPostResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceMitigationPostResponse"
           },
           "4xx": {
-            "description": "Service mitigation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceMitigationPostResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceMitigationPostResponse"
           },
           "5xx": {
-            "description": "Service mitigation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceMitigationPostResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceMitigationPostResponse"
           }
         }
       }
     },
     "/mitigation/mitigations/{serviceMitigationId}": {
       "get": {
+        "tags": [
+          "mitigation"
+        ],
         "operationId": "getServiceMitigation",
         "description": "Return a service mitigation with a given id.",
         "parameters": [
@@ -1008,42 +1138,30 @@
           },
           {
             "$ref": "#/components/parameters/ServiceMitigationIdPathParam"
+          },
+          {
+            "$ref": "#/components/parameters/IncludeCallsQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/IncludeTargetsQueryParam"
           }
         ],
         "responses": {
           "2xx": {
-            "description": "Service mitigation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceMitigationGetResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceMitigationGetResponse"
           },
           "4xx": {
-            "description": "Service mitigation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceMitigationGetResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceMitigationGetResponse"
           },
           "5xx": {
-            "description": "Service mitigation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceMitigationGetResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceMitigationGetResponse"
           }
         }
       },
       "post": {
+        "tags": [
+          "mitigation"
+        ],
         "operationId": "updateServiceMitigation",
         "description": "Update a service mitigation with a given id.",
         "parameters": [
@@ -1082,34 +1200,295 @@
         },
         "responses": {
           "2xx": {
-            "description": "Service mitigation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceMitigationPostResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceMitigationPostResponse"
           },
           "4xx": {
-            "description": "Service mitigation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceMitigationPostResponse"
-                }
-              }
-            }
+            "$ref": "#/components/responses/ServiceMitigationPostResponse"
           },
           "5xx": {
-            "description": "Service mitigation registration response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ServiceMitigationPostResponse"
-                }
+            "$ref": "#/components/responses/ServiceMitigationPostResponse"
+          }
+        }
+      }
+    },
+    "/mitigation/mitigations/{serviceMitigationId}/metadata": {
+      "get": {
+        "tags": [
+          "mitigation"
+        ],
+        "operationId": "listMitigationMetadata",
+        "description": "Return all metadata entries on this mitigation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ServiceMitigationIdPathParam"
+          }
+        ],
+        "responses": {
+          "2xx": {
+            "$ref": "#/components/responses/MetadataListResponse"
+          },
+          "4xx": {
+            "$ref": "#/components/responses/MetadataListResponse"
+          },
+          "5xx": {
+            "$ref": "#/components/responses/MetadataListResponse"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "mitigation"
+        ],
+        "operationId": "postMitigationMetadata",
+        "description": "Create, update or delete metadata entries",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ServiceMitigationIdPathParam"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Metadata key and value to set",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MetadataPostRequest"
               }
             }
+          }
+        },
+        "responses": {
+          "2xx": {
+            "$ref": "#/components/responses/MetadataPostResponse"
+          },
+          "4xx": {
+            "$ref": "#/components/responses/MetadataPostResponse"
+          },
+          "5xx": {
+            "$ref": "#/components/responses/MetadataPostResponse"
+          }
+        }
+      }
+    },
+    "/mitigation/mitigations/{serviceMitigationId}/metadata/{key}": {
+      "get": {
+        "tags": [
+          "mitigation"
+        ],
+        "operationId": "getMitigationMetadata",
+        "description": "Return a specific metadata entry by key",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ServiceMitigationIdPathParam"
+          },
+          {
+            "$ref": "#/components/parameters/MetadataKeyPathParam"
+          }
+        ],
+        "responses": {
+          "2xx": {
+            "$ref": "#/components/responses/MetadataGetResponse"
+          },
+          "4xx": {
+            "$ref": "#/components/responses/MetadataGetResponse"
+          },
+          "5xx": {
+            "$ref": "#/components/responses/MetadataGetResponse"
+          }
+        }
+      }
+    },
+    "/mitigation/mitigations/{serviceMitigationId}/client-metadata": {
+      "get": {
+        "tags": [
+          "mitigation"
+        ],
+        "operationId": "listMitigationClientMetadata",
+        "description": "Return all client metadata entries for the authenticated client",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ServiceMitigationIdPathParam"
+          }
+        ],
+        "responses": {
+          "2xx": {
+            "$ref": "#/components/responses/ClientMetadataListResponse"
+          },
+          "4xx": {
+            "$ref": "#/components/responses/ClientMetadataListResponse"
+          },
+          "5xx": {
+            "$ref": "#/components/responses/ClientMetadataListResponse"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "mitigation"
+        ],
+        "operationId": "postMitigationClientMetadata",
+        "description": "Create or update client metadata entries",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ServiceMitigationIdPathParam"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "description": "Client metadata keys and values to set",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClientMetadataPostRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "2xx": {
+            "$ref": "#/components/responses/ClientMetadataPostResponse"
+          },
+          "4xx": {
+            "$ref": "#/components/responses/ClientMetadataPostResponse"
+          },
+          "5xx": {
+            "$ref": "#/components/responses/ClientMetadataPostResponse"
+          }
+        }
+      }
+    },
+    "/mitigation/mitigations/{serviceMitigationId}/client-metadata/{key}": {
+      "get": {
+        "tags": [
+          "mitigation"
+        ],
+        "operationId": "getMitigationClientMetadata",
+        "description": "Return a specific client metadata entry by key",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ServiceMitigationIdPathParam"
+          },
+          {
+            "$ref": "#/components/parameters/ClientMetadataKeyPathParam"
+          }
+        ],
+        "responses": {
+          "2xx": {
+            "$ref": "#/components/responses/ClientMetadataGetResponse"
+          },
+          "4xx": {
+            "$ref": "#/components/responses/ClientMetadataGetResponse"
+          },
+          "5xx": {
+            "$ref": "#/components/responses/ClientMetadataGetResponse"
           }
         }
       }
@@ -1172,7 +1551,7 @@
       "OperatorIdHeader": {
         "in": "header",
         "name": "X-Operator-Id",
-        "description": "Optional operator id for request. Required by clients with access to more than one PTO.  Operator id on the form 'CodeSpace:Operator:number' Ref: https://enturas.atlassian.net/wiki/spaces/PUBLIC/pages/637370434/List+of+current+Codespaces\n",
+        "description": "Optional operator id for request. Required by clients with access to more than one PTO. Operator id on the form 'CodeSpace:Operator:number' Ref: https://enturas.atlassian.net/wiki/spaces/PUBLIC/pages/637370434/List+of+current+Codespaces\n",
         "schema": {
           "type": "string"
         }
@@ -1252,7 +1631,7 @@
       "LimitQueryParam": {
         "in": "query",
         "name": "limit",
-        "description": "Maximum number of items to return in response.",
+        "description": "Maximum number of items to return in response. Default limit is 20 and maximum allowed value is 200.",
         "schema": {
           "type": "integer"
         }
@@ -1307,6 +1686,236 @@
         "description": "Flag indicating if returned journeys should include call data or not (default: `false`).\n",
         "schema": {
           "type": "boolean"
+        }
+      },
+      "IncludeTargetsQueryParam": {
+        "in": "query",
+        "name": "includeTargets",
+        "description": "Flag indicating if returned deviations / mitigations should include resolved journey target data or not (default: `false`). Resolved journey targets represent the concrete dated journeys affected by the deviation or mitigation, as resolved from the provided impact spec of the request.\n",
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      "ClientMetadataKeyQueryParam": {
+        "in": "query",
+        "name": "clientMetadataKey",
+        "required": false,
+        "description": "Filter by client metadata key. When combined with clientMetadataValue, returns only items that have a matching client metadata entry.",
+        "schema": {
+          "type": "string",
+          "maxLength": 255
+        }
+      },
+      "ClientMetadataValueQueryParam": {
+        "in": "query",
+        "name": "clientMetadataValue",
+        "required": false,
+        "description": "Filter by client metadata value. Only applied when clientMetadataKey is also provided.",
+        "schema": {
+          "type": "string",
+          "maxLength": 10240
+        }
+      },
+      "MetadataKeyPathParam": {
+        "in": "path",
+        "name": "key",
+        "required": true,
+        "description": "Metadata key identifier",
+        "schema": {
+          "type": "string",
+          "maxLength": 255
+        }
+      },
+      "ClientMetadataKeyPathParam": {
+        "in": "path",
+        "name": "key",
+        "required": true,
+        "description": "Client metadata key identifier",
+        "schema": {
+          "type": "string",
+          "maxLength": 255
+        }
+      }
+    },
+    "responses": {
+      "AssignmentAttemptResponse": {
+        "description": "Assignment attempt response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AssignmentAttemptResponse"
+            }
+          }
+        }
+      },
+      "VehicleStateResponse": {
+        "description": "Vehicle state response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/VehicleStateResponse"
+            }
+          }
+        }
+      },
+      "JourneyListResponse": {
+        "description": "Response containing a list of journey items matching search criteria.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/JourneyListResponse"
+            }
+          }
+        }
+      },
+      "JourneyLineListResponse": {
+        "description": "Response containing a list of line items.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/JourneyLineListResponse"
+            }
+          }
+        }
+      },
+      "JourneyStopPointListResponse": {
+        "description": "Response containing a list of stop point items.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/JourneyStopPointListResponse"
+            }
+          }
+        }
+      },
+      "ServiceDeviationListResponse": {
+        "description": "Service deviation registration response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ServiceDeviationListResponse"
+            }
+          }
+        }
+      },
+      "ServiceDeviationPostResponse": {
+        "description": "Service deviation registration response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ServiceDeviationPostResponse"
+            }
+          }
+        }
+      },
+      "ServiceDeviationGetResponse": {
+        "description": "Service deviation registration response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ServiceDeviationGetResponse"
+            }
+          }
+        }
+      },
+      "ServiceDeviationReasonCodeListResponse": {
+        "description": "Service deviation reason codes response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ServiceDeviationReasonCodeListResponse"
+            }
+          }
+        }
+      },
+      "MetadataListResponse": {
+        "description": "Metadata list response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/MetadataListResponse"
+            }
+          }
+        }
+      },
+      "MetadataPostResponse": {
+        "description": "Metadata operation response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/MetadataPostResponse"
+            }
+          }
+        }
+      },
+      "MetadataGetResponse": {
+        "description": "Metadata entry response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/MetadataGetResponse"
+            }
+          }
+        }
+      },
+      "ClientMetadataListResponse": {
+        "description": "Client metadata list response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ClientMetadataListResponse"
+            }
+          }
+        }
+      },
+      "ClientMetadataPostResponse": {
+        "description": "Client metadata operation response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ClientMetadataPostResponse"
+            }
+          }
+        }
+      },
+      "ClientMetadataGetResponse": {
+        "description": "Client metadata entry response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ClientMetadataGetResponse"
+            }
+          }
+        }
+      },
+      "ServiceMitigationListResponse": {
+        "description": "Service mitigation registration response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ServiceMitigationListResponse"
+            }
+          }
+        }
+      },
+      "ServiceMitigationPostResponse": {
+        "description": "Service mitigation registration response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ServiceMitigationPostResponse"
+            }
+          }
+        }
+      },
+      "ServiceMitigationGetResponse": {
+        "description": "Service mitigation registration response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ServiceMitigationGetResponse"
+            }
+          }
         }
       }
     },
@@ -1382,6 +1991,132 @@
         "example": [
           "CANCELLED",
           "FINISHED"
+        ]
+      },
+      "ClientMetadataEntry": {
+        "type": "object",
+        "title": "ClientMetadataEntry",
+        "description": "A single client metadata entry",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Metadata key",
+            "maxLength": 255
+          },
+          "value": {
+            "type": "string",
+            "description": "Metadata value (arbitrary string content, can be plain text or JSON as string)",
+            "maxLength": 10240
+          },
+          "searchable": {
+            "type": "boolean",
+            "description": "Whether this metadata entry is indexed for search"
+          },
+          "lifecycle": {
+            "$ref": "#/components/schemas/LifeCycleInfo"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ]
+      },
+      "ClientMetadataGetResponse": {
+        "type": "object",
+        "title": "ClientMetadataGetResponse",
+        "description": "Response containing a single client metadata entry",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/StatusResponse"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/ClientMetadataEntry"
+          }
+        },
+        "required": [
+          "result"
+        ]
+      },
+      "ClientMetadataListResponse": {
+        "type": "object",
+        "title": "ClientMetadataListResponse",
+        "description": "Response containing list of client metadata entries",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/StatusResponse"
+          },
+          "metadata": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClientMetadataEntry"
+            },
+            "description": "List of metadata entries for this client"
+          }
+        },
+        "required": [
+          "result"
+        ]
+      },
+      "ClientMetadataPostRequest": {
+        "type": "object",
+        "title": "ClientMetadataPostRequest",
+        "description": "Request to set client metadata entries",
+        "properties": {
+          "action": {
+            "$ref": "#/components/schemas/PostRequestType"
+          },
+          "metadata": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClientMetadataPostRequestItem"
+            }
+          },
+          "comment": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "action",
+          "metadata"
+        ]
+      },
+      "ClientMetadataPostRequestItem": {
+        "type": "object",
+        "title": "ClientMetadataPostRequestItem",
+        "description": "A single client metadata entry to create or update",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Metadata key to store (arbitrary string, e.g. \"clientVersion\", \"clientRegion\", etc.)",
+            "maxLength": 255
+          },
+          "value": {
+            "type": "string",
+            "description": "Metadata value to store (arbitrary string, can be plain text or JSON as string)",
+            "maxLength": 10240
+          },
+          "searchable": {
+            "type": "boolean",
+            "description": "Whether this metadata entry should be indexed for search",
+            "default": false
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ]
+      },
+      "ClientMetadataPostResponse": {
+        "type": "object",
+        "title": "ClientMetadataPostResponse",
+        "description": "Response for client metadata operations",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/StatusResponse"
+          }
+        },
+        "required": [
+          "result"
         ]
       },
       "DateTimeRange": {
@@ -1797,6 +2532,37 @@
           }
         }
       },
+      "LifeCycleInfo": {
+        "type": "object",
+        "title": "LifeCycleInfo",
+        "description": "Information about the lifecycle of an entity, including creation and modification details.",
+        "properties": {
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 timestamp when entity was created"
+          },
+          "createdBy": {
+            "type": "string",
+            "description": "Identifier of the user or system that created the entity"
+          },
+          "modifiedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 timestamp when entity was last modified"
+          },
+          "modifiedBy": {
+            "type": "string",
+            "description": "Identifier of the user or system that last modified the entity"
+          }
+        },
+        "required": [
+          "createdAt",
+          "createdBy",
+          "modifiedAt",
+          "modifiedBy"
+        ]
+      },
       "MetadataEntry": {
         "type": "object",
         "title": "MetadataEntry",
@@ -1808,7 +2574,27 @@
           "value": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "key",
+          "value"
+        ]
+      },
+      "MetadataGetResponse": {
+        "type": "object",
+        "title": "MetadataGetResponse",
+        "description": "Response containing a single metadata entry",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/StatusResponse"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/MetadataEntry"
+          }
+        },
+        "required": [
+          "result"
+        ]
       },
       "MetadataKey": {
         "type": "string",
@@ -1819,6 +2605,62 @@
           "PTA_CASE_REF           # A PTA case reference.",
           "SERVICE_DEVIATION_REF  # A service deviation reference.",
           "SERVICE_MITIGATION_REF # A service mitigation reference."
+        ]
+      },
+      "MetadataListResponse": {
+        "type": "object",
+        "title": "MetadataListResponse",
+        "description": "Response containing list of metadata entries",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/StatusResponse"
+          },
+          "metadata": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetadataEntry"
+            },
+            "description": "List of metadata entries"
+          }
+        },
+        "required": [
+          "result"
+        ]
+      },
+      "MetadataPostRequest": {
+        "type": "object",
+        "title": "MetadataPostRequest",
+        "description": "Request to set metadata entries",
+        "properties": {
+          "action": {
+            "$ref": "#/components/schemas/PostRequestType"
+          },
+          "metadata": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetadataEntry"
+            }
+          },
+          "comment": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "action",
+          "metadata"
+        ]
+      },
+      "MetadataPostResponse": {
+        "type": "object",
+        "title": "MetadataPostResponse",
+        "description": "Response for metadata operations",
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/StatusResponse"
+          }
+        },
+        "required": [
+          "result"
         ]
       },
       "MqttRouting": {
@@ -1894,6 +2736,10 @@
           "itemCount": {
             "type": "integer",
             "description": "Number of result items in `items` array."
+          },
+          "totalItemCount": {
+            "type": "integer",
+            "description": "Total number of items available for the given query, regardless of paging parameters."
           }
         }
       },
@@ -1905,9 +2751,35 @@
           "CREATE",
           "UPDATE",
           "DELETE",
-          "APPROVE",
-          "METADATA"
+          "APPROVE"
         ]
+      },
+      "ResolvedJourneyTarget": {
+        "type": "object",
+        "title": "ResolvedJourneyTarget",
+        "description": "A concrete dated journey resolved from a service deviation / mitigation impact spec. Represents one actual journey affected by the deviation or mitigation impact spec provided in the request.\n",
+        "properties": {
+          "partial": {
+            "type": "boolean",
+            "description": "True if the variance only partially affects this journey (i.e. the impact spec targets a subset of calls).\n"
+          },
+          "journey": {
+            "$ref": "#/components/schemas/Journey"
+          }
+        }
+      },
+      "ResolvedJourneyTargets": {
+        "type": "object",
+        "title": "ResolvedJourneyTargets",
+        "description": "The concrete journey targets resolved from the deviation / mitigation impact spec provided in the request.\n",
+        "properties": {
+          "journeys": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ResolvedJourneyTarget"
+            }
+          }
+        }
       },
       "ServiceDeviation": {
         "type": "object",
@@ -1916,8 +2788,17 @@
           "spec": {
             "$ref": "#/components/schemas/ServiceDeviationSpec"
           },
-          "lifecycle": {
-            "$ref": "#/components/schemas/ServiceDeviationLifeCycleInfo"
+          "record": {
+            "$ref": "#/components/schemas/ServiceDeviationRecordDetails"
+          },
+          "metadata": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetadataEntry"
+            }
+          },
+          "journeyTargets": {
+            "$ref": "#/components/schemas/ResolvedJourneyTargets"
           }
         }
       },
@@ -1941,25 +2822,6 @@
           },
           "deviation": {
             "$ref": "#/components/schemas/ServiceDeviation"
-          }
-        }
-      },
-      "ServiceDeviationLifeCycleInfo": {
-        "type": "object",
-        "title": "ServiceDeviationLifeCycleInfo",
-        "description": "Life-cycle information about a service deviation.",
-        "properties": {
-          "created": {
-            "type": "string",
-            "description": "Date and time when service deviation was initially created."
-          },
-          "modified": {
-            "type": "string",
-            "description": "Date and time when service deviation was last modified."
-          },
-          "serviceDeviationId": {
-            "type": "string",
-            "description": "Unique identifier of service deviation."
           }
         }
       },
@@ -2013,6 +2875,12 @@
           },
           "action": {
             "$ref": "#/components/schemas/PostRequestType"
+          },
+          "metadata": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetadataEntry"
+            }
           },
           "comment": {
             "type": "string"
@@ -2091,7 +2959,7 @@
           "validDeviationCodes": {
             "type": "array",
             "description": "List of service deviation codes for which this reason code is valid.",
-            "item": {
+            "items": {
               "$ref": "#/components/schemas/ServiceDeviationCode"
             }
           }
@@ -2116,6 +2984,23 @@
           }
         }
       },
+      "ServiceDeviationRecordDetails": {
+        "type": "object",
+        "title": "ServiceDeviationRecordDetails",
+        "description": "Details about a service deviation.",
+        "properties": {
+          "lifecycle": {
+            "$ref": "#/components/schemas/LifeCycleInfo"
+          },
+          "serviceDeviationId": {
+            "type": "string",
+            "description": "Unique identifier of service deviation."
+          }
+        },
+        "required": [
+          "serviceDeviationId"
+        ]
+      },
       "ServiceDeviationSpec": {
         "type": "object",
         "title": "ServiceDeviationSpec",
@@ -2131,12 +3016,6 @@
           },
           "duration": {
             "$ref": "#/components/schemas/DateTimeRange"
-          },
-          "metadata": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MetadataEntry"
-            }
           },
           "parameters": {
             "$ref": "#/components/schemas/ServiceDeviationParameters"
@@ -2177,14 +3056,23 @@
           "draft": {
             "type": "boolean"
           },
-          "lifecycle": {
-            "$ref": "#/components/schemas/ServiceMitigationLifeCycleInfo"
+          "record": {
+            "$ref": "#/components/schemas/ServiceMitigationRecordDetails"
+          },
+          "metadata": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetadataEntry"
+            }
           },
           "replacements": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/ServiceReplacement"
             }
+          },
+          "journeyTargets": {
+            "$ref": "#/components/schemas/ResolvedJourneyTargets"
           }
         }
       },
@@ -2208,25 +3096,6 @@
           },
           "mitigation": {
             "$ref": "#/components/schemas/ServiceMitigation"
-          }
-        }
-      },
-      "ServiceMitigationLifeCycleInfo": {
-        "type": "object",
-        "title": "ServiceMitigationLifeCycleInfo",
-        "description": "Life-cycle information about a service deviation.",
-        "properties": {
-          "created": {
-            "type": "string",
-            "description": "Date and time when service deviation was initially created."
-          },
-          "modified": {
-            "type": "string",
-            "description": "Date and time when service deviation was last modified."
-          },
-          "serviceMitigationId": {
-            "type": "string",
-            "description": "Unique identifier of service mitigation."
           }
         }
       },
@@ -2281,6 +3150,12 @@
           "action": {
             "$ref": "#/components/schemas/PostRequestType"
           },
+          "metadata": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MetadataEntry"
+            }
+          },
           "draft": {
             "type": "boolean"
           },
@@ -2301,6 +3176,23 @@
           }
         }
       },
+      "ServiceMitigationRecordDetails": {
+        "type": "object",
+        "title": "ServiceMitigationRecordDetails",
+        "description": "Details about a service mitigation.",
+        "properties": {
+          "lifecycle": {
+            "$ref": "#/components/schemas/LifeCycleInfo"
+          },
+          "serviceMitigationId": {
+            "type": "string",
+            "description": "Unique identifier of service mitigation."
+          }
+        },
+        "required": [
+          "serviceMitigationId"
+        ]
+      },
       "ServiceMitigationSpec": {
         "type": "object",
         "title": "ServiceMitigationSpec",
@@ -2319,12 +3211,6 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
-          },
-          "metadata": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/MetadataEntry"
             }
           },
           "parameters": {
