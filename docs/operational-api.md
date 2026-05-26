@@ -10,7 +10,7 @@ The ADT Operational API consists of these functional areas:
 2. [Assignment API endpoints](#assignment-api), for signing vehicles on and off journeys as they are being operated.
 3. [Service Deviation API endpoints](#deviation-api), for notifying about deviations from planned operations delivery.
 4. [Service Mitigation API endpoints](#mitigation-api), for mitigating deviations.
-**NOTE: This is for internal use and not available to PTOs.**
+   **NOTE: This is for internal use and not available to PTOs.**
 
 ### Data Model
 
@@ -136,7 +136,7 @@ journey on a specific date:
 1. `lineId`, a line identifier, such as `RUT:Line:xxx`.
 2. `journeyId`, one of `vehicleJourneyId`, `serviceJourneyId` or `datedServiceJourneyId`.
 3. `serviceWindow`, a date-time range with a `start` and `end` timestamp, describing the complete or partial service
-   window of the journey.
+   window of the journey. See [Duration and Service Windows](#duration-and-service-windows) for details.
 
 ###### Mapping NeTEx Data to Journey Specifications
 
@@ -258,6 +258,17 @@ identified using a _journey line specification_ consisting of two properties:
    - `INBOUND`, indicating an inbound line.
    - `OUTBOUND`, indicating an outbound line.
 
+#### Journey Pattern Specifications
+
+Certain API requests allow the client to target all dated journeys that run a specific journey pattern (turmønster).
+In such requests, the _journey pattern specification_ structure identifies the pattern by a single property:
+
+1. `journeyPatternId`, a NeTEx journey pattern reference, such as `RUT:JourneyPattern:008499`.
+
+Journey pattern specifications are wrapped in a _journey pattern spec window_ that adds an optional `serviceWindow`.
+See [Duration and Service Windows](#duration-and-service-windows) for how `serviceWindow` and `duration` interact to
+determine which journeys are included.
+
 #### Journey Stop Point Specifications
 
 Since not all stop points in the operational journey database are required to have corresponding [NSR](https://developer.entur.org/pages-nsr-nsr) quay ids,
@@ -276,6 +287,58 @@ properties:
 
 Either, or both, of these properties may be provided to specify a stop point in an API request, but if both are
 provided they must both reference the same stop point.
+
+#### Duration and Service Windows
+
+Every service deviation and service mitigation has two mechanisms for controlling which dated journeys are included in
+its impact: a top-level `duration` and optional per-entry `serviceWindow` values.
+
+##### Duration
+
+`duration` is a date-time range at the top level of the deviation or mitigation specification. It describes the overall
+active period of the event:
+
+- `start` — when the deviation or mitigation begins. May be omitted to indicate it has already started.
+- `end` — when the deviation or mitigation ends. May be omitted to indicate an open-ended event.
+
+When `duration` is provided it acts as the default temporal constraint for every impact entry that does not have its
+own `serviceWindow`. It is required unless every impact entry carries its own `serviceWindow`.
+
+##### Service Windows
+
+`serviceWindow` is an optional date-time range attached to individual impact entries — `lines[]`, `stopPoints[]`,
+`journeyPatterns[]`, and `journeys[]`. It refines the temporal scope of that specific entry independently of the
+top-level `duration`.
+
+Unlike `duration`, a `serviceWindow` on an impact entry must have both a `start` and an `end`; open-ended service
+windows are not permitted at the entry level.
+
+##### How Duration and Service Windows Are Combined
+
+When resolving which dated journeys are targeted by an impact entry, the effective time window is computed as the
+**intersection** of the entry's `serviceWindow` and the top-level `duration`:
+
+- The effective start is the **later** of the two starts (or the one present if only one is set).
+- The effective end is the **earlier** of the two ends (or the one present if only one is set).
+
+A journey is included in the impact if its operating window falls within the effective time window — specifically,
+its first departure must be on or after the effective start, and its last arrival must be on or before the effective
+end.
+
+| `duration` | `serviceWindow` | Effective window used for journey matching |
+|---|---|---|
+| present | absent | `duration` |
+| absent | present | `serviceWindow` |
+| present | present | Intersection: `max(starts)` to `min(ends)` |
+| absent | absent | No temporal constraint — all matching journeys are included |
+
+**Example:** If `duration` spans `08:00–22:00` and a line entry has `serviceWindow` of `10:00–14:00`, only
+journeys on that line departing from `10:00` and arriving by `14:00` are included. Journeys outside `10:00–14:00`
+are excluded even though they fall within the `duration`.
+
+This design allows a single deviation or mitigation to cover different time ranges for different impact entries — for
+example, cancelling all journeys on line A for the full day while only cancelling journeys on line B during the
+morning peak.
 
 ### Authentication
 
@@ -1195,12 +1258,14 @@ about the physical properties of the vehicle for passenger information purposes:
 
 ```json
 {
-    ...
     "vehicle": {
-        "segmentCount": 2  // Optional segment count, indicating a metro train consisting of two carriage sets.
+        "segmentCount": 2
     }
 }
 ```
+
+The `segmentCount` field is optional and indicates the number of carriages in a multi-segment vehicle (e.g., a metro
+train consisting of two carriage sets).
 
 #### Sign-On - Single Journey
 
@@ -1566,8 +1631,6 @@ HTTP response:
   }
 }
 ```
-This revised version now includes information about the Journey API integration and how its results can be used directly
-in the Sign-On API, providing a more comprehensive overview of the Assignment API lifecycle.
 
 ## Deviation API
 
@@ -1594,34 +1657,39 @@ Each service deviation request contains a _service deviation specification_ desc
 following properties:
 
 1. `code`, a service deviation code describing the type of deviation:
-   * `DELAY`, indicating a delayed journey start.
-   * `NO_SERVICE`, indicating a line, stop point or journey will not be serviced by the operator.
-   * `NO_SIGN_ON`, indicating a journey will be serviced by the operator, but the servicing vehicle will not be
-      signing on.
-   * `BYPASS`, indicating that certain calls in a journey will be bypassed by the operator.
+   - `DELAY`, indicating a delayed journey start.
+   - `NO_SERVICE`, indicating a line, stop point or journey will not be serviced by the operator.
+   - `NO_SIGN_ON`, indicating a journey will be serviced by the operator, but the servicing vehicle will not be
+     signing on.
+   - `BYPASS`, indicating that certain calls in a journey will be bypassed by the operator.
 2. `reason`, a structure containing the [reason code](#service-deviation-reason-codes) for the deviation and an
    optional `comment` describing further details about the reason.
    The comment is for internal use by PTO and PTA and is not used for travel information.
-3. `impact`, a [service deviation impact](#service-deviation-impact) structure, describing the lines, journeys, stop
-   points and service windows impacted by the deviation.
-4. `duration`, a date-time range with a `start` and `end`, describing the duration of the deviation.
+3. `impact`, a [service deviation impact](#service-deviation-impact) structure describing the lines, journeys, stop
+   points and journey patterns impacted by the deviation.
+4. `duration`, a date-time range with a `start` and `end` describing the active period of the deviation. Together with
+   the optional per-entry `serviceWindow` values on impact entries, it controls which dated journeys are targeted.
+   See [Duration and Service Windows](#duration-and-service-windows) for details.
 5. `metadata`, a [list of key/value pairs](#service-deviation-metadata) for associating client-specific metadata with
    the deviation, such as connecting service deviations to internal / external systems.
-6. `parameters`, a [service deviation parameters](#service-deviation-parameters) structure, detailing the functional
+6. `parameters`, a [service deviation parameters](#service-deviation-parameters) structure detailing the functional
    parameters of the deviation.
 
 ##### Service Deviation Impact
 
-The service deviation impact structure describes one or more lines, journeys or stop points impacted by a service
-deviation:
+The service deviation impact structure describes one or more lines, journeys, stop points or journey patterns impacted
+by a service deviation. Each entry type accepts an optional `serviceWindow` that refines which journeys within that
+entry are targeted. See [Duration and Service Windows](#duration-and-service-windows) for how `serviceWindow` and
+`duration` interact.
 
 1. `lines`, a list of [line specifications](#journey-line-specifications) describing the impacted lines.
+   Each entry may carry an optional `serviceWindow` and an optional `stopPoints` filter for partial line cancellations.
 2. `journeys`, a list of [journey specification options](#journey-specification-options) describing the impacted
-    journeys and / or journey calls.
-3. `stopPoints`, a list of [stop point specifications](#journey-stop-point-specifications) describing the impacted stop
-    points.
-4. `serviceWindows`, a list of date-time ranges with a `start` and `end` date-time, optionally describing the impacted
-   service window.
+   journeys and / or journey calls.
+3. `stopPoints`, a list of [stop point specifications](#journey-stop-point-specifications) describing the impacted
+   stop points. Each entry may carry an optional `serviceWindow`.
+4. `journeyPatterns`, a list of [journey pattern specifications](#journey-pattern-specifications) describing the
+   impacted journey patterns (turmønster). Each entry may carry an optional `serviceWindow`.
 
 ##### Service Deviation Metadata
 
@@ -1764,13 +1832,14 @@ HTTP response:
       }
     },
     "record" : {
-      "serviceDeviationId" : "840660be96fd48c7967f90cc28ac4b34",
       "lifecycle" : {
-        "createdAt" : "2025-03-03T05:10:00+01:00",
+        "createdAt" : "2025-03-03T05:10+01:00",
         "createdBy" : "system",
-        "modifiedAt" : "2025-03-03T05:10:00+01:00",
+        "modifiedAt" : "2025-03-03T05:10+01:00",
         "modifiedBy" : "system"
-      }
+      },
+      "serviceDeviationId" : "840660be96fd48c7967f90cc28ac4b34",
+      "name" : "SD-2026-1"
     }
   }
 }
@@ -1859,13 +1928,14 @@ HTTP response:
       }
     },
     "record" : {
-      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0",
       "lifecycle" : {
-        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdAt" : "2025-03-03T05:05+01:00",
         "createdBy" : "system",
-        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedAt" : "2025-03-03T05:05+01:00",
         "modifiedBy" : "system"
-      }
+      },
+      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0",
+      "name" : "SD-2026-1"
     }
   }
 }
@@ -2008,13 +2078,14 @@ HTTP response:
       }
     },
     "record" : {
-      "serviceDeviationId" : "69c6821a838245cb968cb0a5d1548fd2",
       "lifecycle" : {
-        "createdAt" : "2025-03-03T05:17:00+01:00",
+        "createdAt" : "2025-03-03T05:17+01:00",
         "createdBy" : "system",
-        "modifiedAt" : "2025-03-03T05:17:00+01:00",
+        "modifiedAt" : "2025-03-03T05:17+01:00",
         "modifiedBy" : "system"
-      }
+      },
+      "serviceDeviationId" : "69c6821a838245cb968cb0a5d1548fd2",
+      "name" : "SD-2026-1"
     }
   }
 }
@@ -2097,13 +2168,14 @@ HTTP response:
       }
     },
     "record" : {
-      "serviceDeviationId" : "7d6ea6e1f1264fe2858668e671786aa9",
       "lifecycle" : {
-        "createdAt" : "2025-03-03T05:43:00+01:00",
+        "createdAt" : "2025-03-03T05:43+01:00",
         "createdBy" : "system",
-        "modifiedAt" : "2025-03-03T05:43:00+01:00",
+        "modifiedAt" : "2025-03-03T05:43+01:00",
         "modifiedBy" : "system"
-      }
+      },
+      "serviceDeviationId" : "7d6ea6e1f1264fe2858668e671786aa9",
+      "name" : "SD-2026-1"
     }
   }
 }
@@ -2210,13 +2282,99 @@ HTTP response:
       }
     },
     "record" : {
-      "serviceDeviationId" : "7d6ea6e1f1264fe2858668e671786aa9",
       "lifecycle" : {
-        "createdAt" : "2025-03-03T05:43:00+01:00",
+        "createdAt" : "2025-03-03T05:43+01:00",
         "createdBy" : "system",
-        "modifiedAt" : "2025-03-03T05:43:00+01:00",
+        "modifiedAt" : "2025-03-03T05:43+01:00",
         "modifiedBy" : "system"
+      },
+      "serviceDeviationId" : "7d6ea6e1f1264fe2858668e671786aa9",
+      "name" : "SD-2026-1"
+    }
+  }
+}
+```
+
+#### No Service - on Journey Pattern
+
+To notify the transport authority that all journeys running a specific journey pattern (turmønster) will not be serviced,
+a service deviation request should be sent with:
+- code `NO_SERVICE`
+- a list of affected journey pattern specs under `impact.journeyPatterns`
+- a suitable [reason code](#service-deviation-reason-codes)
+
+A _journey pattern spec_ identifies a journey pattern by its NeTEx `journeyPatternId` (e.g. `RUT:JourneyPattern:008499`).
+All dated journeys whose `journeyPatternRef` matches the given id are included in the impact.
+
+An optional `serviceWindow` can be added to each entry to restrict the impact to journeys whose operating window overlaps
+the given time range. When omitted, all matching journeys within the deviation duration are targeted.
+
+In this example, we send a _no service_ deviation request targeting a single journey pattern, with the `operatorExempt`
+parameter set to `true` to indicate that the inability to service the journeys is outside operator control.
+
+HTTP request:
+
+```bash
+POST /api/adt/v4/operational/deviation/deviations
+{
+  "spec" : {
+    "code" : "NO_SERVICE",
+    "reason" : {
+      "code" : "WEATHER_SNOW_HEAVY"
+    },
+    "impact" : {
+      "journeyPatterns" : [ {
+        "spec" : {
+          "journeyPatternId" : "RUT:JourneyPattern:008499"
+        }
+      } ]
+    },
+    "duration" : {
+      "start" : "2025-03-03T09:00+01:00",
+      "end" : "2025-03-03T09:20+01:00"
+    },
+    "parameters" : {
+      "operatorExempt" : true
+    }
+  }
+}
+```
+
+HTTP response:
+
+```bash
+201 CREATED
+{
+  "deviation" : {
+    "spec" : {
+      "code" : "NO_SERVICE",
+      "reason" : {
+        "code" : "WEATHER_SNOW_HEAVY"
+      },
+      "impact" : {
+        "journeyPatterns" : [ {
+          "spec" : {
+            "journeyPatternId" : "RUT:JourneyPattern:008499"
+          }
+        } ]
+      },
+      "duration" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
+      },
+      "parameters" : {
+        "operatorExempt" : true
       }
+    },
+    "record" : {
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:05+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:05+01:00",
+        "modifiedBy" : "system"
+      },
+      "serviceDeviationId" : "c2f3a1b045e84c2d9a7e6d8f3b0c1a2e",
+      "name" : "SD-2026-1"
     }
   }
 }
@@ -2309,13 +2467,14 @@ HTTP response:
       }
     },
     "record" : {
-      "serviceDeviationId" : "16e70a9992d04ac8b4a0d598b5560606",
       "lifecycle" : {
-        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdAt" : "2025-03-03T05:05+01:00",
         "createdBy" : "system",
-        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedAt" : "2025-03-03T05:05+01:00",
         "modifiedBy" : "system"
-      }
+      },
+      "serviceDeviationId" : "16e70a9992d04ac8b4a0d598b5560606",
+      "name" : "SD-2026-1"
     }
   }
 }
@@ -2414,13 +2573,14 @@ HTTP response:
       }
     },
     "record" : {
-      "serviceDeviationId" : "69c6x21a838245cb568cb0a5d1548fd2",
       "lifecycle" : {
-        "createdAt" : "2025-03-03T05:17:00+01:00",
+        "createdAt" : "2025-03-03T05:17+01:00",
         "createdBy" : "system",
-        "modifiedAt" : "2025-03-03T05:17:00+01:00",
+        "modifiedAt" : "2025-03-03T05:17+01:00",
         "modifiedBy" : "system"
-      }
+      },
+      "serviceDeviationId" : "69c6x21a838245cb568cb0a5d1548fd2",
+      "name" : "SD-2026-1"
     }
   }
 }
@@ -2548,13 +2708,14 @@ HTTP response:
       }
     },
     "record" : {
-      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0",
       "lifecycle" : {
-        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdAt" : "2025-03-03T05:05+01:00",
         "createdBy" : "system",
-        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedAt" : "2025-03-03T05:05+01:00",
         "modifiedBy" : "system"
-      }
+      },
+      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0",
+      "name" : "SD-2026-1"
     }
   } ],
   "page" : {
@@ -2615,13 +2776,14 @@ HTTP response:
       }
     },
     "record" : {
-      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0",
       "lifecycle" : {
-        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdAt" : "2025-03-03T05:05+01:00",
         "createdBy" : "system",
-        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedAt" : "2025-03-03T05:05+01:00",
         "modifiedBy" : "system"
-      }
+      },
+      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0",
+      "name" : "SD-2026-1"
     }
   } ],
   "page" : {
@@ -2686,13 +2848,14 @@ HTTP response:
       }
     },
     "record" : {
-      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0",
       "lifecycle" : {
-        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdAt" : "2025-03-03T05:05+01:00",
         "createdBy" : "system",
-        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedAt" : "2025-03-03T05:05+01:00",
         "modifiedBy" : "system"
-      }
+      },
+      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0",
+      "name" : "SD-2026-1"
     }
   } ],
   "page" : {
@@ -2761,13 +2924,14 @@ HTTP response:
       }
     },
     "record" : {
-      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0",
       "lifecycle" : {
-        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdAt" : "2025-03-03T05:05+01:00",
         "createdBy" : "system",
-        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedAt" : "2025-03-03T05:05+01:00",
         "modifiedBy" : "system"
-      }
+      },
+      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0",
+      "name" : "SD-2026-1"
     }
   }
 }
@@ -2820,13 +2984,14 @@ HTTP response:
       }
     },
     "record" : {
-      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0",
       "lifecycle" : {
-        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdAt" : "2025-03-03T05:05+01:00",
         "createdBy" : "system",
-        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedAt" : "2025-03-03T05:05+01:00",
         "modifiedBy" : "system"
-      }
+      },
+      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0",
+      "name" : "SD-2026-1"
     },
     "journeyTargets" : {
       "journeys" : [ {
@@ -3004,20 +3169,21 @@ HTTP response:
       }
     },
     "record" : {
-      "serviceDeviationId" : "840660be96fd48c7967f90cc28ac4b34",
       "lifecycle" : {
-        "createdAt" : "2025-03-03T05:00:00+01:00",
+        "createdAt" : "2025-03-03T05:00+01:00",
         "createdBy" : "system",
-        "modifiedAt" : "2025-03-03T05:15:00+01:00",
+        "modifiedAt" : "2025-03-03T05:15+01:00",
         "modifiedBy" : "system"
-      }
+      },
+      "serviceDeviationId" : "840660be96fd48c7967f90cc28ac4b34",
+      "name" : "SD-2026-1"
     }
   }
 }
 ```
 ## Mitigation API
 
-The service mitigation API endpoints under `{baseURL}/mitigation/*` allows for implementing solutions to service disruptions.
+The service mitigation API endpoints under `{baseURL}/mitigation/*` allow implementing solutions to service disruptions.
 
 Mitigations represent actions taken to address service disruptions or deviations from planned service delivery.
 
@@ -3025,29 +3191,51 @@ Mitigations represent actions taken to address service disruptions or deviations
 
 The API supports the following types of service mitigations:
 
-- [`CANCELLATION`](#mitigation---cancellation), indicating that a journey will be canceled.
-- [`REPLACEMENT_SERVICE`](#mitigation---replacement_service), indicating that a replacement service will be provided.
-- [`STANDBY_VEHICLE_PLANNED`](#mitigation---standby_vehicle_planned), indicating that a standby vehicle will be used.
-- [`REPLACEMENT_QUAY`](#mitigation---replacement_quay), indicating that a replacement quay will be used for specific journey calls.
+- [`CANCELLATION`](#service-mitigation---cancellation), indicating that a journey will be canceled.
+- [`REPLACEMENT_SERVICE`](#service-mitigation---replacement_service), indicating that a replacement service will be provided.
+- [`STANDBY_VEHICLE_PLANNED`](#service-mitigation---standby_vehicle_planned), indicating that a standby vehicle will be used.
+- [`REPLACEMENT_QUAY`](#service-mitigation---replacement_quay), indicating that a replacement quay will be used for specific journey calls.
 
-### Mitigation Requests
+### Service Mitigation Requests
 
 To implement a solution for a service deviation, the operator should post a service mitigation request to the `{baseURL}/mitigation/mitigations` endpoint.
 
-#### Mitigation Specifications
+#### Service Mitigation Specifications
 
-Each service mitigation request contains a _service mitigation specification_ describing the mitigation with the following properties:
+Each service mitigation request contains a _service mitigation specification_ describing the mitigation with the
+following properties:
 
 1. `code`, a service mitigation code describing the type of mitigation:
-   1. `CANCELLATION`, indicating a journey will be canceled.
-   2. `REPLACEMENT_SERVICE`, indicating a replacement service will be provided.
-   3. `STANDBY_VEHICLE_PLANNED`, indicating a standby vehicle will be used.
-   4. `REPLACEMENT_QUAY`, indicating a replacement quay will be used for specific journey calls.
-2. `impact`, a service impact structure, describing the journeys impacted by the mitigation.
-3. `duration`, a date-time range with a `start` and `end`, describing the duration of the mitigation.
+   - `CANCELLATION`, indicating a journey will be canceled.
+   - `REPLACEMENT_SERVICE`, indicating a replacement service will be provided.
+   - `STANDBY_VEHICLE_PLANNED`, indicating a standby vehicle will be used.
+   - `REPLACEMENT_QUAY`, indicating a replacement quay will be used for specific journey calls.
+2. `impact`, a [service mitigation impact](#service-mitigation-impact) structure describing the lines, journeys, stop
+   points and journey patterns impacted by the mitigation.
+3. `duration`, a date-time range with a `start` and `end` describing the active period of the mitigation. Together with
+   the optional per-entry `serviceWindow` values on impact entries, it controls which dated journeys are targeted.
+   See [Duration and Service Windows](#duration-and-service-windows) for details.
 4. `mitigates`, a list of service deviation IDs that this mitigation addresses.
-5. `metadata`, a [list of key/value pairs](#service-mitigation-metadata) for associating client-specific metadata with the mitigation, such as connecting service mitigations to internal / external systems.
-6. `parameters`, a [service mitigation parameters](#service-mitigation-parameters) structure, detailing the functional parameters of the mitigation.
+5. `metadata`, a [list of key/value pairs](#service-mitigation-metadata) for associating client-specific metadata with
+   the mitigation, such as connecting service mitigations to internal / external systems.
+6. `parameters`, a [service mitigation parameters](#service-mitigation-parameters) structure detailing the functional
+   parameters of the mitigation.
+
+##### Service Mitigation Impact
+
+The service mitigation impact structure describes one or more lines, journeys, stop points or journey patterns impacted
+by a service mitigation. Each entry type accepts an optional `serviceWindow` that refines which journeys within that
+entry are targeted. See [Duration and Service Windows](#duration-and-service-windows) for how `serviceWindow` and
+`duration` interact.
+
+1. `lines`, a list of [line specifications](#journey-line-specifications) describing the impacted lines.
+   Each entry may carry an optional `serviceWindow` and an optional `stopPoints` filter for partial line cancellations.
+2. `journeys`, a list of [journey specification options](#journey-specification-options) describing the impacted
+   journeys and / or journey calls.
+3. `stopPoints`, a list of [stop point specifications](#journey-stop-point-specifications) describing the impacted
+   stop points. Each entry may carry an optional `serviceWindow`.
+4. `journeyPatterns`, a list of [journey pattern specifications](#journey-pattern-specifications) describing the
+   impacted journey patterns (turmønster). Each entry may carry an optional `serviceWindow`.
 
 ##### Service Mitigation Metadata
 
@@ -3104,7 +3292,7 @@ The service mitigation parameters structure describes the functional parameters 
 2. `transportMode`, transport mode of the replacement/new journey(s). Currently, only `BUS` is supported.
 3. `stopPoint`, stop point specification for the replacement quay (used with `REPLACEMENT_QUAY` mitigation type).
 
-#### Draft Mode and Approval Process
+#### Service Mitigation Draft Mode and Approval Process
 
 > Only applicable for `REPLACEMENT_SERVICE`
 
@@ -3122,7 +3310,7 @@ For `REPLACEMENT_SERVICE` mitigations that are created as drafts, an approval pr
 
 Once a mitigation is created with `draft: false`, it is immediately applied and cannot be changed back to draft mode. The approval action is only applicable to mitigations that were initially created as drafts.
 
-#### Mitigation Response
+#### Service Mitigation Response
 
 When a service mitigation is created or approved, the response includes:
 
@@ -3132,7 +3320,7 @@ When a service mitigation is created or approved, the response includes:
    - `replaced`: The original journeys that are being replaced.
    - `replacements`: The new journeys that will replace the original ones.
 
-### Mitigation - CANCELLATION
+### Service Mitigation - CANCELLATION
 
 To signal that the impacted journey will not be serviced, a cancellation mitigation can be created.
 
@@ -3212,18 +3400,19 @@ HTTP response:
       "mitigates" : [ "service-deviation-id-001" ]
     },
     "record" : {
-      "serviceMitigationId" : "service-mitigation-unique-id",
       "lifecycle" : {
-        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdAt" : "2025-03-03T05:05+01:00",
         "createdBy" : "system",
-        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedAt" : "2025-03-03T05:05+01:00",
         "modifiedBy" : "system"
-      }
+      },
+      "serviceMitigationId" : "service-mitigation-unique-id",
+      "name" : "SM-2026-1"
     }
   }
 }
 ```
-### Mitigation - REPLACEMENT_SERVICE
+### Service Mitigation - REPLACEMENT_SERVICE
 
 When a service deviation occurs, a replacement service can be provided as a mitigation. This involves creating a new journey to replace the affected one.
 
@@ -3327,13 +3516,14 @@ HTTP response:
       }
     },
     "record" : {
-      "serviceMitigationId" : "service-mitigation-id-001",
       "lifecycle" : {
-        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdAt" : "2025-03-03T05:05+01:00",
         "createdBy" : "system",
-        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedAt" : "2025-03-03T05:05+01:00",
         "modifiedBy" : "system"
-      }
+      },
+      "serviceMitigationId" : "service-mitigation-id-001",
+      "name" : "SM-2026-1"
     },
     "replacements" : [ {
       "replaced" : [ {
@@ -3389,7 +3579,7 @@ HTTP response:
   }
 }
 ```
-### Mitigation - STANDBY_VEHICLE_PLANNED
+### Service Mitigation - STANDBY_VEHICLE_PLANNED
 
 When a vehicle becomes unavailable, a standby vehicle can be assigned to take over the planned journeys.
 
@@ -3474,18 +3664,19 @@ HTTP response:
       }
     },
     "record" : {
-      "serviceMitigationId" : "service-mitigation-unique-id",
       "lifecycle" : {
-        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdAt" : "2025-03-03T05:05+01:00",
         "createdBy" : "system",
-        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedAt" : "2025-03-03T05:05+01:00",
         "modifiedBy" : "system"
-      }
+      },
+      "serviceMitigationId" : "service-mitigation-unique-id",
+      "name" : "SM-2026-1"
     }
   }
 }
 ```
-### Mitigation - REPLACEMENT_QUAY
+### Service Mitigation - REPLACEMENT_QUAY
 
 When a journey needs to use a different quay/stop point than originally planned, a replacement quay mitigation can be created. This allows specific journey calls to be redirected to an alternative stop point.
 
@@ -3596,21 +3787,22 @@ HTTP response:
       }
     },
     "record" : {
-      "serviceMitigationId" : "service-mitigation-unique-id",
       "lifecycle" : {
-        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdAt" : "2025-03-03T05:05+01:00",
         "createdBy" : "system",
-        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedAt" : "2025-03-03T05:05+01:00",
         "modifiedBy" : "system"
-      }
+      },
+      "serviceMitigationId" : "service-mitigation-unique-id",
+      "name" : "SM-2026-1"
     }
   }
 }
 ```
 ### Additional Service Mitigation Operations
 
-In addition to creating service mitigations, a client may also look up, update, and delete existing mitigations using the
-`{baseURL}/mitigation/mitigations/{serviceMitigationId}` endpoint.
+In addition to creating service mitigations, a client may also look up, update, and delete existing service mitigations
+using the `{baseURL}/mitigation/mitigations/{serviceMitigationId}` endpoint.
 
 #### Resolved Journey Targets
 
@@ -3660,13 +3852,14 @@ HTTP response:
       "mitigates" : [ "service-deviation-id-001" ]
     },
     "record" : {
-      "serviceMitigationId" : "service-mitigation-unique-id",
       "lifecycle" : {
-        "createdAt" : "2025-03-03T05:05:00+01:00",
+        "createdAt" : "2025-03-03T05:05+01:00",
         "createdBy" : "system",
-        "modifiedAt" : "2025-03-03T05:05:00+01:00",
+        "modifiedAt" : "2025-03-03T05:05+01:00",
         "modifiedBy" : "system"
-      }
+      },
+      "serviceMitigationId" : "service-mitigation-unique-id",
+      "name" : "SM-2026-1"
     },
     "journeyTargets" : {
       "journeys" : [ {
@@ -3853,181 +4046,6 @@ POST /api/adt/v4/operational/mitigation/mitigations/840660be96fd48c7967f90cc28ac
     }
 }
 ```
-
-HTTP response:
-
-```bash
-200 OK
-{
-  "mitigation" : {
-    "spec" : {
-        "code" : "REPLACEMENT_QUAY",
-        "impact" : {
-            "journeys" : [ {
-                "calls" : [ {
-                    "stopPoint" : {
-                        "quayId" : "NSR:Quay:001A",
-                        "stopPointId" : "stop-point-001A"
-                    },
-                    "departureDateTime" : "2025-03-03T09:00+01:00"
-                } ],
-                "journey" : {
-                    "spec" : {
-                        "lineId" : "RUT:Line:001",
-                        "journeyId" : "RUT:DatedServiceJourney:0001",
-                        "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
-                    },
-                    "serviceWindow" : {
-                        "start" : "2025-03-03T09:00+01:00",
-                        "end" : "2025-03-03T09:20+01:00"
-                    }
-                }
-            } ]
-        },
-        "duration" : {
-            "start" : "2025-03-03T09:00+01:00",
-            "end" : "2025-03-03T09:20+01:00"
-        },
-        "mitigates" : [ "service-deviation-id-001" ],
-        "parameters" : {
-            "stopPoint" : {
-                "quayId" : "RUT:Quay:003"
-            }
-        }
-    },
-    "lifecycle" : {
-      "created" : "2025-03-03T05:00+01:00",
-      "modified" : "2025-03-03T05:15+01:00",
-      "serviceMitigationId" : "840660be96fd48c7967f90cc28ac4b34"
-    }
-  }
-}
-```
-### Additional Service Mitigation Operations
-
-In addition to creating service mitigations, a client may also look up and delete
-
-#### Read Service Mitigation by Id
-
-A service mitigation may be retrieved up by sending a `GET` request to `{baseURL}/mitigation/mitigations/{serviceMitigationId}`.
-
-HTTP request:
-
-```bash
-GET /api/adt/v4/operational/mitigation/mitigations/1530bf5405624db1b6b449d0edbec8c0
-```
-
-HTTP response:
-
-```bash
-200 OK
-POST /api/adt/v4/operational/mitigation/mitigations
-{
-  "spec" : {
-    "code" : "CANCELLATION",
-    "impact" : {
-      "journeys" : [ {
-        "journey" : {
-          "spec" : {
-            "lineId" : "RUT:Line:001",
-            "journeyId" : "RUT:DatedServiceJourney:0001",
-            "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
-          },
-          "serviceWindow" : {
-            "start" : "2025-03-03T09:00+01:00",
-            "end" : "2025-03-03T09:20+01:00"
-          }
-        }
-      } ]
-    },
-    "duration" : {
-      "start" : "2025-03-03T09:00+01:00",
-      "end" : "2025-03-03T09:20+01:00"
-    },
-    "mitigates" : [ "service-deviation-id-001" ]
-  }
-}
-```
-
-#### Delete Service Mitigation by Id
-
-A service mitigation may be deleted by posting an update request with `action: "DELETE"` to
-`{baseURL}/mitigation/mitigations/{serviceMitigationId}`.
-
-HTTP request:
-
-```bash
-POST /api/adt/v4/operational/mitigation/mitigations/1530bf5405624db1b6b449d0edbec8c0
-{
-  "action" : "DELETE",
-  "comment" : "All the snow melted, we are able to drive after all!"
-}
-```
-
-HTTP response:
-
-```bash
-200 OK
-{
-  "result" : {
-    "status" : {
-      "code" : "OK",
-      "reason" : "OK"
-    }
-  }
-}
-```
-
-#### Update Service Mitigation by Id
-
-Instead of deleting and re-creating a service mitigation to functionally modify it, a client may post an update request
-with `action: "UPDATE"` to
-`{baseURL}/mitigation/mitigations/{serviceMitigationId}` to modify an existing mitigation.
-
-In this example, we show how to update an existing quay replacement mitigation with a new quay.
-
-HTTP request:
-
-```bash
-POST /api/adt/v4/operational/mitigation/mitigations/840660be96fd48c7967f90cc28ac4b34
-{
-    "action": "UPDATE",
-    "spec" : {
-        "code" : "REPLACEMENT_QUAY",
-        "impact" : {
-            "journeys" : [ {
-                "calls" : [ {
-                    "stopPoint" : {
-                        "quayId" : "NSR:Quay:001A",
-                        "stopPointId" : "stop-point-001A"
-                    },
-                    "departureDateTime" : "2025-03-03T09:00+01:00"
-                } ],
-                "journey" : {
-                    "spec" : {
-                        "lineId" : "RUT:Line:001",
-                        "journeyId" : "RUT:DatedServiceJourney:0001",
-                        "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
-                    },
-                    "serviceWindow" : {
-                        "start" : "2025-03-03T09:00+01:00",
-                        "end" : "2025-03-03T09:20+01:00"
-                    }
-                }
-            } ]
-        },
-        "duration" : {
-            "start" : "2025-03-03T09:00+01:00",
-            "end" : "2025-03-03T09:20+01:00"
-        },
-        "mitigates" : [ "service-deviation-id-001" ],
-        "parameters" : {
-            "stopPoint" : {
-                "quayId" : "RUT:Quay:003"
-            }
-        }
-    }
-}```
 
 HTTP response:
 

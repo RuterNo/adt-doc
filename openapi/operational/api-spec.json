@@ -1492,6 +1492,104 @@
           }
         }
       }
+    },
+    "/deviation/deviations/{serviceDeviationId}/mitigations": {
+      "get": {
+        "tags": [
+          "deviation"
+        ],
+        "operationId": "getDeviationMitigations",
+        "description": "Returns all service mitigations whose `spec.mitigates` list includes the given deviation. The list is derived from the `SERVICE_MITIGATION_REF` cross-reference links maintained on the deviation. Results may be empty if no mitigation currently references this deviation.\n",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ServiceDeviationIdPathParam"
+          },
+          {
+            "$ref": "#/components/parameters/IncludeCallsQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/IncludeTargetsQueryParam"
+          }
+        ],
+        "responses": {
+          "2xx": {
+            "$ref": "#/components/responses/ServiceMitigationListResponse"
+          },
+          "4xx": {
+            "$ref": "#/components/responses/ServiceMitigationListResponse"
+          },
+          "5xx": {
+            "$ref": "#/components/responses/ServiceMitigationListResponse"
+          }
+        }
+      }
+    },
+    "/mitigation/mitigations/{serviceMitigationId}/deviations": {
+      "get": {
+        "tags": [
+          "mitigation"
+        ],
+        "operationId": "getMitigationDeviations",
+        "description": "Returns the service deviations listed in this mitigation's `spec.mitigates` field. Deviations that have been deleted or are otherwise unreachable are omitted from the result.\n",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/ADTAuthHeader"
+          },
+          {
+            "$ref": "#/components/parameters/TraceIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ClientIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/RequestIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/OperatorIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/AuthorityIdHeader"
+          },
+          {
+            "$ref": "#/components/parameters/ServiceMitigationIdPathParam"
+          },
+          {
+            "$ref": "#/components/parameters/IncludeCallsQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/IncludeTargetsQueryParam"
+          }
+        ],
+        "responses": {
+          "2xx": {
+            "$ref": "#/components/responses/ServiceDeviationListResponse"
+          },
+          "4xx": {
+            "$ref": "#/components/responses/ServiceDeviationListResponse"
+          },
+          "5xx": {
+            "$ref": "#/components/responses/ServiceDeviationListResponse"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -2015,11 +2113,7 @@
           "lifecycle": {
             "$ref": "#/components/schemas/LifeCycleInfo"
           }
-        },
-        "required": [
-          "key",
-          "value"
-        ]
+        }
       },
       "ClientMetadataGetResponse": {
         "type": "object",
@@ -2032,10 +2126,7 @@
           "metadata": {
             "$ref": "#/components/schemas/ClientMetadataEntry"
           }
-        },
-        "required": [
-          "result"
-        ]
+        }
       },
       "ClientMetadataListResponse": {
         "type": "object",
@@ -2052,10 +2143,7 @@
             },
             "description": "List of metadata entries for this client"
           }
-        },
-        "required": [
-          "result"
-        ]
+        }
       },
       "ClientMetadataPostRequest": {
         "type": "object",
@@ -2074,11 +2162,7 @@
           "comment": {
             "type": "string"
           }
-        },
-        "required": [
-          "action",
-          "metadata"
-        ]
+        }
       },
       "ClientMetadataPostRequestItem": {
         "type": "object",
@@ -2100,11 +2184,7 @@
             "description": "Whether this metadata entry should be indexed for search",
             "default": false
           }
-        },
-        "required": [
-          "key",
-          "value"
-        ]
+        }
       },
       "ClientMetadataPostResponse": {
         "type": "object",
@@ -2114,10 +2194,7 @@
           "result": {
             "$ref": "#/components/schemas/StatusResponse"
           }
-        },
-        "required": [
-          "result"
-        ]
+        }
       },
       "DateTimeRange": {
         "type": "object",
@@ -2193,6 +2270,14 @@
           "direction": {
             "$ref": "#/components/schemas/JourneyDirectionCode"
           },
+          "ownerId": {
+            "type": "string",
+            "description": "The authority owning this journey."
+          },
+          "operatorId": {
+            "type": "string",
+            "description": "The operator operating this journey."
+          },
           "vehicleTaskId": {
             "type": "string",
             "description": "An id produced in planning to identify a collection of journeys\n"
@@ -2242,6 +2327,7 @@
       "JourneyCallSpec": {
         "type": "object",
         "title": "JourneyCallSpec",
+        "description": "Identifies a service call in a (dated) journey.",
         "properties": {
           "stopPoint": {
             "$ref": "#/components/schemas/StopPointSpec"
@@ -2302,6 +2388,10 @@
             "type": "string",
             "description": "Vehicle journey id assigned by PTA traffic planner. Reused across multiple operating dates."
           },
+          "vehicleTaskId": {
+            "type": "string",
+            "description": "Vehicle task id assigned by PTA traffic planner."
+          },
           "serviceJourneyId": {
             "type": "string",
             "description": "Service journey id assigned by PTA back-end system. Reused across multiple operating dates."
@@ -2355,6 +2445,7 @@
       "JourneyLineSpec": {
         "type": "object",
         "title": "JourneyLineSpec",
+        "description": "Identifies a journey line by line id and diraction.",
         "properties": {
           "lineId": {
             "type": "string"
@@ -2367,9 +2458,17 @@
       "JourneyLineSpecWindow": {
         "type": "object",
         "title": "JourneyLineSpecWindow",
+        "description": "Target dated journeys on a specific journey line within an optional service window.",
         "properties": {
           "spec": {
             "$ref": "#/components/schemas/JourneyLineSpec"
+          },
+          "stopPoints": {
+            "type": "array",
+            "description": "Optional filter: when present, the journey pattern impact applies only to journeys on this line that serve at least one of the listed stop points. Each entry identifies a stop point by NSR quay id or internal stop point ref. When absent, the impact applies to all journeys on the line within the service window.\n",
+            "items": {
+              "$ref": "#/components/schemas/StopPointSpec"
+            }
           },
           "serviceWindow": {
             "$ref": "#/components/schemas/DateTimeRange"
@@ -2420,17 +2519,52 @@
           }
         }
       },
+      "JourneyPatternSpec": {
+        "type": "object",
+        "title": "JourneyPatternSpec",
+        "description": "Identifies a journey pattern by its journey pattern reference.",
+        "properties": {
+          "journeyPatternId": {
+            "type": "string",
+            "description": "Journey pattern reference identifying the journey pattern whose dated journeys are targeted by this impact spec.\n",
+            "examples": [
+              "RUT:JourneyPattern:008499"
+            ]
+          }
+        }
+      },
+      "JourneyPatternSpecWindow": {
+        "type": "object",
+        "title": "JourneyPatternSpecWindow",
+        "description": "Target dated journeys running a specific journey pattern within an optional service window.",
+        "properties": {
+          "spec": {
+            "$ref": "#/components/schemas/JourneyPatternSpec"
+          },
+          "stopPoints": {
+            "type": "array",
+            "description": "Optional filter: when present, the journey pattern impact applies only to journeys with this pattern that serve at least one of the listed stop points. Each entry identifies a stop point by NSR quay id or internal stop point ref. When absent, the impact applies to all journeys with the pattern within the service window.\n",
+            "items": {
+              "$ref": "#/components/schemas/StopPointSpec"
+            }
+          },
+          "serviceWindow": {
+            "$ref": "#/components/schemas/DateTimeRange"
+          }
+        }
+      },
       "JourneyServiceVarianceReference": {
         "type": "object",
         "title": "JourneyServiceVarianceReference",
         "description": "A reference to a service variance such as a service deviation or a service mitigation.",
-        "required": [
-          "ref"
-        ],
         "properties": {
           "ref": {
             "type": "string",
             "description": "Reference to a service deviation or service mitigation."
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable identifier for the service deviation or service mitigation. Example: SD-2026-1."
           },
           "code": {
             "type": "string",
@@ -2441,6 +2575,7 @@
       "JourneySpec": {
         "type": "object",
         "title": "JourneySpec",
+        "description": "Identifies a dated journey pattern by its main identifiers.",
         "properties": {
           "lineId": {
             "type": "string"
@@ -2458,6 +2593,7 @@
       "JourneySpecWindow": {
         "type": "object",
         "title": "JourneySpecWindow",
+        "description": "Target dated journeys by reference within an optional service window.",
         "properties": {
           "spec": {
             "$ref": "#/components/schemas/JourneySpec"
@@ -2470,6 +2606,7 @@
       "JourneySpecWindowOption": {
         "type": "object",
         "title": "JourneySpecWindowOption",
+        "description": "Target existing dated journeys by reference, an ad-hoc call list or specific calls in an existing journey.",
         "properties": {
           "calls": {
             "type": "array",
@@ -2539,7 +2676,6 @@
         "properties": {
           "createdAt": {
             "type": "string",
-            "format": "date-time",
             "description": "ISO 8601 timestamp when entity was created"
           },
           "createdBy": {
@@ -2548,20 +2684,13 @@
           },
           "modifiedAt": {
             "type": "string",
-            "format": "date-time",
             "description": "ISO 8601 timestamp when entity was last modified"
           },
           "modifiedBy": {
             "type": "string",
             "description": "Identifier of the user or system that last modified the entity"
           }
-        },
-        "required": [
-          "createdAt",
-          "createdBy",
-          "modifiedAt",
-          "modifiedBy"
-        ]
+        }
       },
       "MetadataEntry": {
         "type": "object",
@@ -2574,11 +2703,7 @@
           "value": {
             "type": "string"
           }
-        },
-        "required": [
-          "key",
-          "value"
-        ]
+        }
       },
       "MetadataGetResponse": {
         "type": "object",
@@ -2591,10 +2716,7 @@
           "metadata": {
             "$ref": "#/components/schemas/MetadataEntry"
           }
-        },
-        "required": [
-          "result"
-        ]
+        }
       },
       "MetadataKey": {
         "type": "string",
@@ -2622,10 +2744,7 @@
             },
             "description": "List of metadata entries"
           }
-        },
-        "required": [
-          "result"
-        ]
+        }
       },
       "MetadataPostRequest": {
         "type": "object",
@@ -2644,11 +2763,7 @@
           "comment": {
             "type": "string"
           }
-        },
-        "required": [
-          "action",
-          "metadata"
-        ]
+        }
       },
       "MetadataPostResponse": {
         "type": "object",
@@ -2658,10 +2773,7 @@
           "result": {
             "$ref": "#/components/schemas/StatusResponse"
           }
-        },
-        "required": [
-          "result"
-        ]
+        }
       },
       "MqttRouting": {
         "type": "object",
@@ -2795,6 +2907,14 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/MetadataEntry"
+            }
+          },
+          "mitigatedBy": {
+            "type": "array",
+            "readOnly": true,
+            "description": "Refs of service mitigations that currently mitigate this deviation. This is a computed property maintained by the server; it is not part of the deviation spec and cannot be set by clients. Populated from cross-reference links written when a mitigation declaring this deviation in its `spec.mitigates` list is created or updated.\n",
+            "items": {
+              "type": "string"
             }
           },
           "journeyTargets": {
@@ -2995,11 +3115,12 @@
           "serviceDeviationId": {
             "type": "string",
             "description": "Unique identifier of service deviation."
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable identifier for the service deviation. Example: SD-2026-1."
           }
-        },
-        "required": [
-          "serviceDeviationId"
-        ]
+        }
       },
       "ServiceDeviationSpec": {
         "type": "object",
@@ -3042,6 +3163,12 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/StopPointSpecWindow"
+            }
+          },
+          "journeyPatterns": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JourneyPatternSpecWindow"
             }
           }
         }
@@ -3131,7 +3258,6 @@
             "description": "Optional identifier of participating operator."
           },
           "transportMode": {
-            "type": "string",
             "description": "Transport mode of the replacement/new journey(s). Only BUS is supported.",
             "$ref": "#/components/schemas/TransportMode"
           },
@@ -3187,11 +3313,12 @@
           "serviceMitigationId": {
             "type": "string",
             "description": "Unique identifier of service mitigation."
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable identifier for the service mitigation. Example: SM-2026-1."
           }
-        },
-        "required": [
-          "serviceMitigationId"
-        ]
+        }
       },
       "ServiceMitigationSpec": {
         "type": "object",
@@ -3293,6 +3420,7 @@
           "JOURNEY_SPEC_ERROR             # Missing or invalid journey specification(s)",
           "SERVICE_WINDOW_ERROR           # Missing or invalid service window(s) in specification(s).",
           "STOP_POINT_SPEC_ERROR          # Missing or invalid stop point specification(s)",
+          "JOURNEY_PATTERN_SPEC_ERROR     # Missing or invalid journey pattern specification(s)",
           "CALL_NOT_FOUND                 # No call(s) matching provided specification(s).",
           "LINE_NOT_FOUND                 # No line(s) matching provided specification(s).",
           "JOURNEY_NOT_FOUND              # No journey(s) matching provided specification(s).",
@@ -3309,6 +3437,7 @@
       "StopPointSpec": {
         "type": "object",
         "title": "StopPointSpec",
+        "description": "Identifies a stop point referenced by a (dated) journey.",
         "properties": {
           "quayId": {
             "type": "string",
@@ -3326,6 +3455,7 @@
       "StopPointSpecWindow": {
         "type": "object",
         "title": "StopPointSpecWindow",
+        "description": "Target stop point by reference within an optional service window.",
         "properties": {
           "spec": {
             "$ref": "#/components/schemas/StopPointSpec"
