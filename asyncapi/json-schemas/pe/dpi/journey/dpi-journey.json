@@ -91,6 +91,49 @@
               "$id": "#/properties/route/properties/line/properties/publicCode",
               "type": "string",
               "description": "Public code of line"
+            },
+            "color": {
+              "$id": "#/properties/route/properties/line/properties/color",
+              "type": "object",
+              "description": "Color theme for the line. Omitted when no color data is available.",
+              "required": ["default", "dark"],
+              "additionalProperties": true,
+              "properties": {
+                "default": {
+                  "$id": "#/properties/route/properties/line/properties/color/properties/default",
+                  "type": "object",
+                  "description": "Default (light) color scheme",
+                  "required": ["background", "text"],
+                  "additionalProperties": true,
+                  "properties": {
+                    "background": {
+                      "type": "string",
+                      "description": "Background color in HEX format, e.g. '#76A300'"
+                    },
+                    "text": {
+                      "type": "string",
+                      "description": "Text color in HEX format, e.g. '#FFFFFF'"
+                    }
+                  }
+                },
+                "dark": {
+                  "$id": "#/properties/route/properties/line/properties/color/properties/dark",
+                  "type": "object",
+                  "description": "Dark mode color scheme",
+                  "required": ["background", "text"],
+                  "additionalProperties": true,
+                  "properties": {
+                    "background": {
+                      "type": "string",
+                      "description": "Background color in HEX format, e.g. '#76A300'"
+                    },
+                    "text": {
+                      "type": "string",
+                      "description": "Text color in HEX format, e.g. '#FFFFFF'"
+                    }
+                  }
+                }
+              }
             }
           }
         },
