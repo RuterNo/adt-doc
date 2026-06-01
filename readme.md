@@ -22,7 +22,7 @@
 <br />
 <div align="center">
   <a href="https://ruterno.github.io/adt-doc/">
-    <img src="docs/assets/ruter_logo_red.svg" alt="Logo" width="300" height="80">
+    <img src="docs/assets/tet_logo_purple.svg" alt="Logo" width="300" height="80">
   </a>
 
 <h3 align="center">API Documentation - Avtale om digitale tjenester (ADT)</h3>
@@ -75,7 +75,7 @@
 [![ADT-DOC][product-screenshot]][ADT-DOC-url]
 
 This project contains documentation of the API interfaces between Public Transport Operators (PTO) 
-and the Public Transport Authority (PTA) of the Oslo and Viken region. 
+and the Public Transport Authority (PTA) serviced by Tet Digital AS. 
 
 The documentation describes the purpose of our over-the-air messages, as well as how the messages are to be constructed. 
 You will find example messages, json-schemas and tips on how to setup your test environments.
@@ -138,7 +138,7 @@ ag asyncapi/asyncapi.yml @asyncapi/html-template@0.28.4 -o docs/asyncapi --force
 #### Install 
 
 ```
-pip install mkdocs-material
+pipx install mkdocs-material --include-deps
 ```
 
 #### Run

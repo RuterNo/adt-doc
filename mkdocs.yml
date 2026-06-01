@@ -1,19 +1,19 @@
-site_name: Ruters Digitale Plattform
+site_name: Tet Digital - API documentation
 site_url: https://adt.transhub.io
-site_author: Ruter AS
+site_author: Tet Digital AS
 site_description: >-
   API documentation intended for public transport operators (PTO) who needs to communicate with the 
-  public transport authority (PTA) Ruter AS.
+  public transport authority (PTA) served by Tet Digital AS.
 repo_name: RuterNo/adt-doc
 repo_url: https://github.com/RuterNo/adt-doc
-copyright: Copyright &copy; 2023 Ruter AS
+copyright: Copyright &copy; 2026 Tet Digital AS
 theme:
   name: material
   custom_dir: .overrides
-  logo: assets/ruter_logo.svg
+  logo: assets/tet_logo.svg
   favicon: assets/favicon-32x32.png
   palette:
-    scheme: ruter
+    scheme: tet
   features:
     - content.action.edit
     - content.action.view

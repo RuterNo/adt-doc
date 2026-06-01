@@ -1,6 +1,6 @@
 # Standard for date and timestamps in ADT
 
-> This page specifies date and time standards between Ruter and PTO's.
+> This page specifies date and time standards between Tet Digital and PTO's.
 >
 > The date and time standards are based on the intersection of [RFC 3339](https://datatracker.ietf.org/doc/html/rfc3339)
 > and [ISO 8601-1:2019](https://www.iso.org/obp/ui#iso:std:iso:8601:-1:ed-1:v1:en).

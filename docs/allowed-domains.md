@@ -2,7 +2,7 @@
 
 ## Overview
 
-Ruter publishes a allowed domain list, this list of domains should be accessible from the screens on board the vehicle.  
+Tet Digital publishes a allowed domain list, this list of domains should be accessible from the screens on board the vehicle.  
 
 | Environment | URL                                                    | Purpose                                                        |
 |-------------|--------------------------------------------------------|----------------------------------------------------------------|
