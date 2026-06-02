@@ -1,0 +1,39 @@
+{
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/dpi/command/dpi-command.json",
+  "type": "object",
+  "title": "DpiCommand",
+  "description": "Message sent to bus to control DPI functions",
+  "required": ["eventTimestamp", "traceId", "clientId", "command"],
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "The timestamp when the message was created/sent",
+      "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier (UUIDv4) for this message"
+    },
+    "clientId": {
+      "$id": "#/properties/clientId",
+      "type": "string",
+      "description": "Set this to \"*\" to send the command to all clients on the vehicle. If you want to target a specific client, put its clientId here."
+    },
+    "command": {
+      "$id": "#/properties/command",
+      "type": "string",
+      "description": "The command you want to send"
+    },
+    "args": {
+      "$id": "#/properties/args",
+      "type": "object",
+      "description": "Command arguments (if any)",
+      "additionalProperties": true
+    }
+  }
+}

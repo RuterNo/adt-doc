@@ -1,0 +1,42 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/sensors/door/door.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Door",
+  "type": "object",
+  "required": [
+    "traceId",
+    "eventTimestamp",
+    "messageNumber",
+    "doorOpen"
+  ],
+  "description": "Door status - indicates if passengers are able to open the doors (the door lock is released). When false, doors are locked and cannot be opened by passengers.",
+  "additionalProperties": true,
+  "properties": {
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "$comment": "Added in version 2.5",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message. Also used to detect duplicate messages received."
+    },
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io). Reflects the current UTC time."
+    },
+    "messageNumber": {
+      "$id": "#/properties/messageNumber",
+      "$comment": "Added in version 3.3",
+      "type": "integer",
+      "description": "Sequence number that should be generated on the vehicle and increased by one for each new message. Used to validate consistency in the data stream."
+    },
+    "doorOpen": {
+      "$id": "#/properties/doorOpen",
+      "type": "boolean",
+      "description": "True if passengers are able to open (the door lock is released). When false, doors are locked and cannot be opened by passengers.",
+      "examples": [
+        "true",
+        "false"
+      ]
+    }
+  }
+}
