@@ -2,7 +2,7 @@
 
 DPI Vehicle Display needs to be set up with two config parameters:
 
-- `CLIENT_ID` - a unique identifier for the client, used to identify the vehicle. Must be a UUIDv4.
+- `CLIENT_ID` - a unique identifier for the client, used to identify each individual screen on board the vehicle. Must be a UUIDv4.
 - `SCREEN_TYPE_ID` - a unique identifier for the screen type, used to determine the layout and content of the display.
 
 You can safely generate a UUIDv4 for the `CLIENT_ID` using uuidgen:
