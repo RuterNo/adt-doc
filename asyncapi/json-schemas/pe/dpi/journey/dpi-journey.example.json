@@ -12,7 +12,17 @@
       "line": {
         "id": "RUT:Line:31",
         "name": "Snarøya - Fornebu - Tonsenhagen - Grorud",
-        "publicCode": "31"
+        "publicCode": "31",
+        "color": {
+          "default": {
+            "background": "#E60000",
+            "text": "#FFFFFF"
+          },
+          "dark": {
+            "background": "#E60000",
+            "text": "#FFFFFF"
+          }
+        }
       },
       "journeyPatternRef": "RUT:JourneyPattern:011579",
       "stopPlaces": [
