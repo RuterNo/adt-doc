@@ -1,0 +1,3433 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="API documentation intended for public transport operators (PTO) who needs to communicate with the  public transport authority (PTA) Ruter AS.">
+      
+      
+        <meta name="author" content="Ruter AS">
+      
+      
+        <link rel="canonical" href="https://adt.transhub.io/4.x/operational-api/mitigation/">
+      
+      
+        <link rel="prev" href="../deviation/">
+      
+      
+        <link rel="next" href="../../timestamps/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon-32x32.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Mitigation API - Ruters Digitale Plattform</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="ruter" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#service-mitigation-requests" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Ruters Digitale Plattform" class="md-header__button md-logo" aria-label="Ruters Digitale Plattform" data-md-component="logo">
+      
+  <img src="../../assets/ruter_logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ruters Digitale Plattform
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Mitigation API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/RuterNo/adt-doc" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    RuterNo/adt-doc
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../mqtt-api/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  API
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../mqtt/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vehicle setup
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../issue/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Contribute
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Ruters Digitale Plattform" class="md-nav__button md-logo" aria-label="Ruters Digitale Plattform" data-md-component="logo">
+      
+  <img src="../../assets/ruter_logo.svg" alt="logo">
+
+    </a>
+    Ruters Digitale Plattform
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/RuterNo/adt-doc" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    RuterNo/adt-doc
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mqtt-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MQTT Api
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../traffic-plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Traffic plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operational Api
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operational Api
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../journey/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Journey API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assignment API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deviation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deviation API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mitigation API
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mitigation API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#service-mitigation-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation Requests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Mitigation Requests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-mitigation-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation Specifications
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Mitigation Specifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-mitigation-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation Impact
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-mitigation-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation Metadata
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Mitigation Metadata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-mitigation-metadata-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation Metadata Keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register-metadata-after-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register Metadata - After creation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Register Metadata - After creation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-mitigation-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-mitigation-draft-mode-and-approval-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation Draft Mode and Approval Process
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-mitigation-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-mitigation-cancellation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation: CANCELLATION
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Mitigation: CANCELLATION">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cancellation-on-journey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cancellation - on Journey
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-mitigation-replacement_service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation: REPLACEMENT_SERVICE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Mitigation: REPLACEMENT_SERVICE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#replacement-service-on-journey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Replacement Service - on Journey
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replacement-service-approval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Replacement Service - Approval
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-mitigation-standby_vehicle_planned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation: STANDBY_VEHICLE_PLANNED
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Mitigation: STANDBY_VEHICLE_PLANNED">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standby-vehicle-planned-on-journey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standby Vehicle Planned - on Journey
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-mitigation-replacement_quay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation: REPLACEMENT_QUAY
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Mitigation: REPLACEMENT_QUAY">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#replacement-quay-on-journey-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Replacement Quay - on Journey Calls
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-service-mitigation-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Service Mitigation Operations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional Service Mitigation Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resolved-journey-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resolved Journey Targets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-service-mitigation-with-resolved-journey-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read Service Mitigation with Resolved Journey Targets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-service-mitigation-by-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read Service Mitigation by Id
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-service-mitigation-by-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delete Service Mitigation by Id
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-service-mitigation-by-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update Service Mitigation by Id
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data formats
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data formats
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestamps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time and Date
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Additional messages
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Additional messages
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tsp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Test specifications
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Test specifications
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../backoffice-test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backoffice test
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vehicle setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Vehicle setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mqtt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MQTT bridge config
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browser-requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browser requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sync
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    File Sync
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../web-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../allowed-domains/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Allowed domains
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Display setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Display setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../screen-configs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Screen configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PTO / PTA responsibilities
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PTO / PTA responsibilities
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pto-pta-responsibilities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DPI Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operator_portal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operator Portal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hardware requirements
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hardware requirements
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../display-requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Displays
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../speaker-requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Speaker system
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contribute
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Contribute
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../issue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Report an issue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#service-mitigation-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation Requests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Mitigation Requests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-mitigation-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation Specifications
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Mitigation Specifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-mitigation-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation Impact
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-mitigation-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation Metadata
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Mitigation Metadata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-mitigation-metadata-keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation Metadata Keys
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#register-metadata-after-creation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Register Metadata - After creation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Register Metadata - After creation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#service-mitigation-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-mitigation-draft-mode-and-approval-process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation Draft Mode and Approval Process
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-mitigation-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-mitigation-cancellation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation: CANCELLATION
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Mitigation: CANCELLATION">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cancellation-on-journey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cancellation - on Journey
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-mitigation-replacement_service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation: REPLACEMENT_SERVICE
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Mitigation: REPLACEMENT_SERVICE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#replacement-service-on-journey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Replacement Service - on Journey
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replacement-service-approval" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Replacement Service - Approval
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-mitigation-standby_vehicle_planned" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation: STANDBY_VEHICLE_PLANNED
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Mitigation: STANDBY_VEHICLE_PLANNED">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#standby-vehicle-planned-on-journey" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standby Vehicle Planned - on Journey
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-mitigation-replacement_quay" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Mitigation: REPLACEMENT_QUAY
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Service Mitigation: REPLACEMENT_QUAY">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#replacement-quay-on-journey-calls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Replacement Quay - on Journey Calls
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#additional-service-mitigation-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional Service Mitigation Operations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Additional Service Mitigation Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#resolved-journey-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resolved Journey Targets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-service-mitigation-with-resolved-journey-targets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read Service Mitigation with Resolved Journey Targets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-service-mitigation-by-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Read Service Mitigation by Id
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-service-mitigation-by-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delete Service Mitigation by Id
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-service-mitigation-by-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Update Service Mitigation by Id
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/RuterNo/adt-doc/edit/master/docs/operational-api/mitigation.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/RuterNo/adt-doc/raw/master/docs/operational-api/mitigation.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+  <h1>Mitigation API</h1>
+
+<p>The service mitigation API endpoints under <code>{baseURL}/mitigation/*</code> allow implementing solutions to service disruptions.</p>
+<p>Mitigations represent actions taken to address service disruptions or deviations from planned service delivery.</p>
+<p><strong>NOTE: This is for internal use and not available to PTOs.</strong></p>
+<p>The API supports the following types of service mitigations:</p>
+<ul>
+<li><a href="#service-mitigation-cancellation"><code>CANCELLATION</code></a>, indicating that a journey will be canceled.</li>
+<li><a href="#service-mitigation-replacement_service"><code>REPLACEMENT_SERVICE</code></a>, indicating that a replacement service will be provided.</li>
+<li><a href="#service-mitigation-standby_vehicle_planned"><code>STANDBY_VEHICLE_PLANNED</code></a>, indicating that a standby vehicle will be used.</li>
+<li><a href="#service-mitigation-replacement_quay"><code>REPLACEMENT_QUAY</code></a>, indicating that a replacement quay will be used for specific journey calls.</li>
+</ul>
+<h3 id="service-mitigation-requests">Service Mitigation Requests<a class="headerlink" href="#service-mitigation-requests" title="Permanent link">&para;</a></h3>
+<p>To implement a solution for a service deviation, the operator should post a service mitigation request to the <code>{baseURL}/mitigation/mitigations</code> endpoint.</p>
+<h4 id="service-mitigation-specifications">Service Mitigation Specifications<a class="headerlink" href="#service-mitigation-specifications" title="Permanent link">&para;</a></h4>
+<p>Each service mitigation request contains a <em>service mitigation specification</em> describing the mitigation with the
+following properties:</p>
+<ol>
+<li><code>code</code>, a service mitigation code describing the type of mitigation:</li>
+<li><code>CANCELLATION</code>, indicating a journey will be canceled.</li>
+<li><code>REPLACEMENT_SERVICE</code>, indicating a replacement service will be provided.</li>
+<li><code>STANDBY_VEHICLE_PLANNED</code>, indicating a standby vehicle will be used.</li>
+<li><code>REPLACEMENT_QUAY</code>, indicating a replacement quay will be used for specific journey calls.</li>
+<li><code>impact</code>, a <a href="#service-mitigation-impact">service mitigation impact</a> structure describing the lines, journeys, stop
+   points and journey patterns impacted by the mitigation.</li>
+<li><code>duration</code>, a date-time range with a <code>start</code> and <code>end</code> describing the active period of the mitigation. Together with
+   the optional per-entry <code>serviceWindow</code> values on impact entries, it controls which dated journeys are targeted.
+   See <a href="../intro/#duration-and-service-windows">Duration and Service Windows</a> for details.</li>
+<li><code>mitigates</code>, a list of service deviation IDs that this mitigation addresses.</li>
+<li><code>metadata</code>, a <a href="#service-mitigation-metadata">list of key/value pairs</a> for associating client-specific metadata with
+   the mitigation, such as connecting service mitigations to internal / external systems.</li>
+<li><code>parameters</code>, a <a href="#service-mitigation-parameters">service mitigation parameters</a> structure detailing the functional
+   parameters of the mitigation.</li>
+</ol>
+<h5 id="service-mitigation-impact">Service Mitigation Impact<a class="headerlink" href="#service-mitigation-impact" title="Permanent link">&para;</a></h5>
+<p>The service mitigation impact structure describes one or more lines, journeys, stop points or journey patterns impacted
+by a service mitigation. Each entry type accepts an optional <code>serviceWindow</code> that refines which journeys within that
+entry are targeted. See <a href="../intro/#duration-and-service-windows">Duration and Service Windows</a> for how <code>serviceWindow</code> and
+<code>duration</code> interact.</p>
+<ol>
+<li><code>lines</code>, a list of <a href="../intro/#journey-line-specifications">line specifications</a> describing the impacted lines.
+   Each entry may carry an optional <code>serviceWindow</code> and an optional <code>stopPoints</code> filter for partial line cancellations.</li>
+<li><code>journeys</code>, a list of <a href="../intro/#journey-specification-options">journey specification options</a> describing the impacted
+   journeys and / or journey calls.</li>
+<li><code>stopPoints</code>, a list of <a href="../intro/#journey-stop-point-specifications">stop point specifications</a> describing the impacted
+   stop points. Each entry may carry an optional <code>serviceWindow</code>.</li>
+<li><code>journeyPatterns</code>, a list of <a href="../intro/#journey-pattern-specifications">journey pattern specifications</a> describing the
+   impacted journey patterns (turmønster). Each entry may carry an optional <code>serviceWindow</code>.</li>
+</ol>
+<h5 id="service-mitigation-metadata">Service Mitigation Metadata<a class="headerlink" href="#service-mitigation-metadata" title="Permanent link">&para;</a></h5>
+<p>The service mitigation metadata structure is a list of <code>key</code> / <code>value</code> pairs describing additional metadata about the service mitigation.</p>
+<h6 id="service-mitigation-metadata-keys">Service Mitigation Metadata Keys<a class="headerlink" href="#service-mitigation-metadata-keys" title="Permanent link">&para;</a></h6>
+<p>The API defines a set of well-known metadata keys that may be used by clients to associate certain metadata with a service mitigation:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PTO_CASE_REF</code></td>
+<td>A PTO case reference.</td>
+</tr>
+<tr>
+<td><code>PTA_CASE_REF</code></td>
+<td>A PTA case reference.</td>
+</tr>
+<tr>
+<td><code>SERVICE_DEVIATION_REF</code></td>
+<td>A service deviation reference.</td>
+</tr>
+<tr>
+<td><code>SERVICE_MITIGATION_REF</code></td>
+<td>A service mitigation reference.</td>
+</tr>
+</tbody>
+</table>
+<p><em>Additional metadata keys may be added in the future.</em></p>
+<h4 id="register-metadata-after-creation">Register Metadata - After creation<a class="headerlink" href="#register-metadata-after-creation" title="Permanent link">&para;</a></h4>
+<p>After a mitigation is created, metadata can be added to it.</p>
+<p>HTTP request:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>POST<span class="w"> </span>/api/adt/v4/operational/mitigation/mitigations/service-mitigation-id-001/metadata
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="o">{</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="s2">&quot;action&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;CREATE&quot;</span>,
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="s2">&quot;metadata&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="s2">&quot;key&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;PTO_CASE_REF&quot;</span>,
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="s2">&quot;value&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;PTO-1337&quot;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="o">}</span>
+</code></pre></div>
+<p>HTTP response:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="m">200</span><span class="w"> </span>OK
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="o">{</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="s2">&quot;result&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="s2">&quot;status&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">      </span><span class="s2">&quot;code&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;OK&quot;</span>,
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="s2">&quot;reason&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;OK&quot;</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="o">}</span>
+</code></pre></div>
+<h5 id="service-mitigation-parameters">Service Mitigation Parameters<a class="headerlink" href="#service-mitigation-parameters" title="Permanent link">&para;</a></h5>
+<p>The service mitigation parameters structure describes the functional parameters of the service mitigation:</p>
+<ol>
+<li><code>vehicleId</code>, optional identifier of vehicle planned to take part of the mitigation.</li>
+<li><code>transportMode</code>, transport mode of the replacement/new journey(s). Currently, only <code>BUS</code> is supported.</li>
+<li><code>stopPoint</code>, stop point specification for the replacement quay (used with <code>REPLACEMENT_QUAY</code> mitigation type).</li>
+</ol>
+<h4 id="service-mitigation-draft-mode-and-approval-process">Service Mitigation Draft Mode and Approval Process<a class="headerlink" href="#service-mitigation-draft-mode-and-approval-process" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>Only applicable for <code>REPLACEMENT_SERVICE</code></p>
+</blockquote>
+<p>Service mitigations can be created in draft mode to preview the effects before they are applied:</p>
+<ol>
+<li><code>draft</code>, a boolean flag indicating whether the mitigation is in draft mode:</li>
+<li>When <code>true</code>, the mitigation is created but not applied, allowing for review.</li>
+<li>When <code>false</code> or not provided, the mitigation is applied immediately.</li>
+</ol>
+<p>For <code>REPLACEMENT_SERVICE</code> mitigations that are created as drafts, an approval process is available:</p>
+<ol>
+<li>Create the mitigation with <code>draft: true</code> to see what replacement journeys would be created without applying them.</li>
+<li>Review the proposed replacements in the response.</li>
+<li>Approve the draft mitigation by sending a request to <code>{baseURL}/mitigation/mitigations/{serviceMitigationId}</code> with <code>action: "APPROVE"</code>.</li>
+</ol>
+<p>Once a mitigation is created with <code>draft: false</code>, it is immediately applied and cannot be changed back to draft mode. The approval action is only applicable to mitigations that were initially created as drafts.</p>
+<h4 id="service-mitigation-response">Service Mitigation Response<a class="headerlink" href="#service-mitigation-response" title="Permanent link">&para;</a></h4>
+<p>When a service mitigation is created or approved, the response includes:</p>
+<ol>
+<li>The mitigation specification as provided in the request.</li>
+<li>A lifecycle object with creation and modification timestamps.</li>
+<li>For <code>REPLACEMENT_SERVICE</code> mitigations, a <code>replacements</code> array containing:</li>
+<li><code>replaced</code>: The original journeys that are being replaced.</li>
+<li><code>replacements</code>: The new journeys that will replace the original ones.</li>
+</ol>
+<h3 id="service-mitigation-cancellation">Service Mitigation: CANCELLATION<a class="headerlink" href="#service-mitigation-cancellation" title="Permanent link">&para;</a></h3>
+<p>To signal that the impacted journey will not be serviced, a cancellation mitigation can be created.</p>
+<h4 id="cancellation-on-journey">Cancellation - on Journey<a class="headerlink" href="#cancellation-on-journey" title="Permanent link">&para;</a></h4>
+<p>To signal that the impacted journey will not be serviced
+- a list of impacted journeys
+- a list of mitigated deviations</p>
+<p>In this example, we send a <em>cancellation</em> mitigation request with a single journey.
+In addition, filling an optional list of ids for mitigated deviations.</p>
+<p>HTTP request:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>POST<span class="w"> </span>/api/adt/v4/operational/mitigation/mitigations
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="o">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="s2">&quot;code&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;CANCELLATION&quot;</span>,
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="s2">&quot;impact&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">      </span><span class="s2">&quot;journeys&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">        </span><span class="s2">&quot;journey&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">          </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">            </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">            </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>,
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">            </span><span class="s2">&quot;firstDepartureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">          </span><span class="o">}</span>,
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">          </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">            </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">            </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">          </span><span class="o">}</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">      </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">    </span><span class="s2">&quot;duration&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">      </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">      </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">    </span><span class="s2">&quot;mitigates&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;service-deviation-id-001&quot;</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="o">}</span>
+</code></pre></div>
+<p>HTTP response:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="m">201</span><span class="w"> </span>CREATED
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="o">{</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="s2">&quot;result&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="s2">&quot;status&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">      </span><span class="s2">&quot;code&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;OK&quot;</span>,
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">      </span><span class="s2">&quot;reason&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;OK&quot;</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="o">}</span>,
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="s2">&quot;mitigation&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">      </span><span class="s2">&quot;code&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;CANCELLATION&quot;</span>,
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">      </span><span class="s2">&quot;impact&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">        </span><span class="s2">&quot;journeys&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">          </span><span class="s2">&quot;journey&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">            </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">              </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">              </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>,
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">              </span><span class="s2">&quot;firstDepartureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">            </span><span class="o">}</span>,
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">            </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">              </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">              </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">            </span><span class="o">}</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">          </span><span class="o">}</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="w">        </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">      </span><span class="s2">&quot;duration&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">        </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="w">        </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="w">      </span><span class="s2">&quot;mitigates&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;service-deviation-id-001&quot;</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="w">    </span><span class="s2">&quot;record&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="w">      </span><span class="s2">&quot;lifecycle&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="w">        </span><span class="s2">&quot;createdAt&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T05:05+01:00&quot;</span>,
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="w">        </span><span class="s2">&quot;createdBy&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;system&quot;</span>,
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="w">        </span><span class="s2">&quot;modifiedAt&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T05:05+01:00&quot;</span>,
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="w">        </span><span class="s2">&quot;modifiedBy&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;system&quot;</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="w">      </span><span class="s2">&quot;serviceMitigationId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;service-mitigation-unique-id&quot;</span>,
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;SM-2026-1&quot;</span>
+<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a><span class="o">}</span>
+</code></pre></div>
+<h3 id="service-mitigation-replacement_service">Service Mitigation: REPLACEMENT_SERVICE<a class="headerlink" href="#service-mitigation-replacement_service" title="Permanent link">&para;</a></h3>
+<p>When a service deviation occurs, a replacement service can be provided as a mitigation. This involves creating a new journey to replace the affected one.</p>
+<p>The replacement service can be created directly or through a two-step approval process:</p>
+<ol>
+<li><strong>Direct Creation</strong>: Submit a mitigation with <code>draft: false</code> to immediately create and apply the replacement service.</li>
+<li><strong>Draft and Approval</strong>:</li>
+<li>Submit a mitigation with <code>draft: true</code> to preview the replacement journeys.</li>
+<li>Approve the draft by submitting a request to <code>{baseURL}/mitigation/mitigations/{serviceMitigationId}</code> with <code>action: "APPROVE"</code>.</li>
+</ol>
+<h4 id="replacement-service-on-journey">Replacement Service - on Journey<a class="headerlink" href="#replacement-service-on-journey" title="Permanent link">&para;</a></h4>
+<p>Start the process of replacing service</p>
+<p>In this example, we send a <em>replacement service</em> mitigation request for a single journey.
+With action CREATE</p>
+<blockquote>
+<p>Note: <code>draft</code> can be used to check what implications a mitigation might have before they are effectuated.</p>
+</blockquote>
+<ul>
+<li><code>draft = true</code></li>
+<li>the results of the mitigation are only returned in the response. The mitigation will then have to be Approved in a separate request</li>
+<li><code>draft = [false | null]</code></li>
+<li>the results of the mitigation are effectuated immediately and also returned in the response.</li>
+</ul>
+<p>Journeys in the below HTTP response are minified to reduce vertical space in this documentation.</p>
+<p>HTTP request:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>POST<span class="w"> </span>/api/adt/v4/operational/mitigation/mitigations
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="o">{</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="s2">&quot;code&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;REPLACEMENT_SERVICE&quot;</span>,
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="s2">&quot;impact&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">      </span><span class="s2">&quot;journeys&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">        </span><span class="s2">&quot;journey&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">          </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">            </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">            </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>,
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">            </span><span class="s2">&quot;firstDepartureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">          </span><span class="o">}</span>,
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">          </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">            </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">            </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="w">          </span><span class="o">}</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="w">      </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="w">    </span><span class="s2">&quot;duration&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="w">      </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="w">      </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="w">    </span><span class="s2">&quot;mitigates&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;service-deviation-id-001&quot;</span>,<span class="w"> </span><span class="s2">&quot;service-deviation-id-002&quot;</span><span class="w"> </span><span class="o">]</span>,
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="w">    </span><span class="s2">&quot;parameters&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a><span class="w">      </span><span class="s2">&quot;vehicleId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;STANDBYVEHICLE001&quot;</span>,
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="w">      </span><span class="s2">&quot;transportMode&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;BUS&quot;</span>
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="w">  </span><span class="o">}</span>,
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="w">  </span><span class="s2">&quot;action&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;CREATE&quot;</span>,
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="w">  </span><span class="s2">&quot;draft&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="nb">false</span>
+<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="o">}</span>
+</code></pre></div>
+<p>HTTP response:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="m">200</span><span class="w"> </span>OK
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="o">{</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="s2">&quot;result&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="s2">&quot;status&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">      </span><span class="s2">&quot;code&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;OK&quot;</span>,
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">      </span><span class="s2">&quot;reason&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;OK&quot;</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">  </span><span class="o">}</span>,
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">  </span><span class="s2">&quot;mitigation&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">      </span><span class="s2">&quot;code&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;REPLACEMENT_SERVICE&quot;</span>,
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">      </span><span class="s2">&quot;impact&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">        </span><span class="s2">&quot;journeys&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">          </span><span class="s2">&quot;journey&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">            </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">              </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">              </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>,
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">              </span><span class="s2">&quot;firstDepartureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">            </span><span class="o">}</span>,
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">            </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">              </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">              </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">            </span><span class="o">}</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="w">          </span><span class="o">}</span>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="w">        </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="w">      </span><span class="s2">&quot;duration&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="w">        </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="w">        </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="w">      </span><span class="s2">&quot;mitigates&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;service-deviation-id-001&quot;</span>,<span class="w"> </span><span class="s2">&quot;service-deviation-id-002&quot;</span><span class="w"> </span><span class="o">]</span>,
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a><span class="w">      </span><span class="s2">&quot;parameters&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="w">        </span><span class="s2">&quot;vehicleId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;STANDBYVEHICLE001&quot;</span>,
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a><span class="w">        </span><span class="s2">&quot;transportMode&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;BUS&quot;</span>
+<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a><span class="w">      </span><span class="o">}</span>
+<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a><span class="w">    </span><span class="s2">&quot;record&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a><span class="w">      </span><span class="s2">&quot;lifecycle&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a><span class="w">        </span><span class="s2">&quot;createdAt&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T05:05+01:00&quot;</span>,
+<a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a><span class="w">        </span><span class="s2">&quot;createdBy&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;system&quot;</span>,
+<a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a><span class="w">        </span><span class="s2">&quot;modifiedAt&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T05:05+01:00&quot;</span>,
+<a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a><span class="w">        </span><span class="s2">&quot;modifiedBy&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;system&quot;</span>
+<a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a><span class="w">      </span><span class="s2">&quot;serviceMitigationId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;service-mitigation-id-001&quot;</span>,
+<a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;SM-2026-1&quot;</span>
+<a id="__codelineno-5-46" name="__codelineno-5-46" href="#__codelineno-5-46"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-5-47" name="__codelineno-5-47" href="#__codelineno-5-47"></a><span class="w">    </span><span class="s2">&quot;replacements&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-5-48" name="__codelineno-5-48" href="#__codelineno-5-48"></a><span class="w">      </span><span class="s2">&quot;replaced&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-5-49" name="__codelineno-5-49" href="#__codelineno-5-49"></a><span class="w">        </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-5-50" name="__codelineno-5-50" href="#__codelineno-5-50"></a><span class="w">          </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-5-51" name="__codelineno-5-51" href="#__codelineno-5-51"></a><span class="w">          </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>
+<a id="__codelineno-5-52" name="__codelineno-5-52" href="#__codelineno-5-52"></a><span class="w">        </span><span class="o">}</span>,
+<a id="__codelineno-5-53" name="__codelineno-5-53" href="#__codelineno-5-53"></a><span class="w">        </span><span class="s2">&quot;vehicleTaskId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;VL1001&quot;</span>
+<a id="__codelineno-5-54" name="__codelineno-5-54" href="#__codelineno-5-54"></a><span class="w">      </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>,
+<a id="__codelineno-5-55" name="__codelineno-5-55" href="#__codelineno-5-55"></a><span class="w">      </span><span class="s2">&quot;replacements&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-5-56" name="__codelineno-5-56" href="#__codelineno-5-56"></a><span class="w">        </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-5-57" name="__codelineno-5-57" href="#__codelineno-5-57"></a><span class="w">          </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-5-58" name="__codelineno-5-58" href="#__codelineno-5-58"></a><span class="w">          </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0003&quot;</span>
+<a id="__codelineno-5-59" name="__codelineno-5-59" href="#__codelineno-5-59"></a><span class="w">        </span><span class="o">}</span>,
+<a id="__codelineno-5-60" name="__codelineno-5-60" href="#__codelineno-5-60"></a><span class="w">        </span><span class="s2">&quot;vehicleTaskId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;VL1001&quot;</span>
+<a id="__codelineno-5-61" name="__codelineno-5-61" href="#__codelineno-5-61"></a><span class="w">      </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-5-62" name="__codelineno-5-62" href="#__codelineno-5-62"></a><span class="w">    </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-5-63" name="__codelineno-5-63" href="#__codelineno-5-63"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-5-64" name="__codelineno-5-64" href="#__codelineno-5-64"></a><span class="o">}</span>
+</code></pre></div>
+<h4 id="replacement-service-approval">Replacement Service - Approval<a class="headerlink" href="#replacement-service-approval" title="Permanent link">&para;</a></h4>
+<p>When a <code>REPLACEMENT_SERVICE</code> is <code>CREATED</code> as a draft it needs to be APPROVED to be effectuated</p>
+<p>In this example, we send a <em>replacement service</em>
+mitigation request with action APPROVE for a given mitigation id.</p>
+<p>The following process will be initiated:
+  * A replacement journey with transport mode <code>BUS</code> will be created
+  * The existing journey will be mitigated with <code>CANCELLATION</code>
+  * The replacement journey will be mitigated with <code>STANDBY_VEHICLE_PLANNED</code> for the supplied vehicleId</p>
+<p>HTTP request:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>POST<span class="w"> </span>/api/adt/v4/operational/mitigation/mitigations/service-mitigation-id-001
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="o">{</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="s2">&quot;action&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;APPROVE&quot;</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="o">}</span>
+</code></pre></div>
+<p>HTTP response:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="m">201</span><span class="w"> </span>CREATED
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="o">{</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="s2">&quot;result&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="s2">&quot;status&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">      </span><span class="s2">&quot;code&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;OK&quot;</span>,
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">      </span><span class="s2">&quot;reason&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;OK&quot;</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="o">}</span>
+</code></pre></div>
+<h3 id="service-mitigation-standby_vehicle_planned">Service Mitigation: STANDBY_VEHICLE_PLANNED<a class="headerlink" href="#service-mitigation-standby_vehicle_planned" title="Permanent link">&para;</a></h3>
+<p>When a vehicle becomes unavailable, a standby vehicle can be assigned to take over the planned journeys.</p>
+<h4 id="standby-vehicle-planned-on-journey">Standby Vehicle Planned - on Journey<a class="headerlink" href="#standby-vehicle-planned-on-journey" title="Permanent link">&para;</a></h4>
+<p>To signal that a journey will be serviced by a stand by vehicle:
+- code <code>STANDBY_VEHICLE_PLANNED</code>
+- a list of impacted journeys
+- a list of mitigated deviations
+- a VIN for a vehicle to be used as the replacement service</p>
+<p>HTTP request:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>POST<span class="w"> </span>/api/adt/v4/operational/mitigation/mitigations
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="o">{</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span><span class="s2">&quot;code&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;STANDBY_VEHICLE_PLANNED&quot;</span>,
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="s2">&quot;impact&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">      </span><span class="s2">&quot;journeys&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">        </span><span class="s2">&quot;journey&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">          </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">            </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">            </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>,
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">            </span><span class="s2">&quot;firstDepartureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">          </span><span class="o">}</span>,
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="w">          </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">            </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">            </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">          </span><span class="o">}</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">      </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">    </span><span class="s2">&quot;duration&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w">      </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="w">      </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">    </span><span class="s2">&quot;mitigates&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;service-deviation-id-001&quot;</span>,<span class="w"> </span><span class="s2">&quot;service-deviation-id-002&quot;</span><span class="w"> </span><span class="o">]</span>,
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="w">    </span><span class="s2">&quot;parameters&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="w">      </span><span class="s2">&quot;vehicleId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;STANDBYVEHICLE001&quot;</span>
+<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a><span class="o">}</span>
+</code></pre></div>
+<p>HTTP response:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="m">201</span><span class="w"> </span>CREATED
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="o">{</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span><span class="s2">&quot;result&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="s2">&quot;status&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">      </span><span class="s2">&quot;code&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;OK&quot;</span>,
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">      </span><span class="s2">&quot;reason&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;OK&quot;</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">  </span><span class="o">}</span>,
+<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">  </span><span class="s2">&quot;mitigation&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">    </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">      </span><span class="s2">&quot;code&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;STANDBY_VEHICLE_PLANNED&quot;</span>,
+<a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">      </span><span class="s2">&quot;impact&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">        </span><span class="s2">&quot;journeys&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">          </span><span class="s2">&quot;journey&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">            </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">              </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="w">              </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>,
+<a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="w">              </span><span class="s2">&quot;firstDepartureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="w">            </span><span class="o">}</span>,
+<a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="w">            </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="w">              </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a><span class="w">              </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="w">            </span><span class="o">}</span>
+<a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="w">          </span><span class="o">}</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="w">        </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a><span class="w">      </span><span class="s2">&quot;duration&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a><span class="w">        </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a><span class="w">        </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a><span class="w">      </span><span class="s2">&quot;mitigates&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;service-deviation-id-001&quot;</span>,<span class="w"> </span><span class="s2">&quot;service-deviation-id-002&quot;</span><span class="w"> </span><span class="o">]</span>,
+<a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a><span class="w">      </span><span class="s2">&quot;parameters&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a><span class="w">        </span><span class="s2">&quot;vehicleId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;STANDBYVEHICLE001&quot;</span>
+<a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a><span class="w">      </span><span class="o">}</span>
+<a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a><span class="w">    </span><span class="s2">&quot;record&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a><span class="w">      </span><span class="s2">&quot;lifecycle&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a><span class="w">        </span><span class="s2">&quot;createdAt&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T05:05+01:00&quot;</span>,
+<a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a><span class="w">        </span><span class="s2">&quot;createdBy&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;system&quot;</span>,
+<a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a><span class="w">        </span><span class="s2">&quot;modifiedAt&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T05:05+01:00&quot;</span>,
+<a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a><span class="w">        </span><span class="s2">&quot;modifiedBy&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;system&quot;</span>
+<a id="__codelineno-9-42" name="__codelineno-9-42" href="#__codelineno-9-42"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-9-43" name="__codelineno-9-43" href="#__codelineno-9-43"></a><span class="w">      </span><span class="s2">&quot;serviceMitigationId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;service-mitigation-unique-id&quot;</span>,
+<a id="__codelineno-9-44" name="__codelineno-9-44" href="#__codelineno-9-44"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;SM-2026-1&quot;</span>
+<a id="__codelineno-9-45" name="__codelineno-9-45" href="#__codelineno-9-45"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-9-46" name="__codelineno-9-46" href="#__codelineno-9-46"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-9-47" name="__codelineno-9-47" href="#__codelineno-9-47"></a><span class="o">}</span>
+</code></pre></div>
+<h3 id="service-mitigation-replacement_quay">Service Mitigation: REPLACEMENT_QUAY<a class="headerlink" href="#service-mitigation-replacement_quay" title="Permanent link">&para;</a></h3>
+<p>When a journey needs to use a different quay/stop point than originally planned, a replacement quay mitigation can be created. This allows specific journey calls to be redirected to an alternative stop point.</p>
+<p>The mitigation requires both <code>impact.journeys[]</code> and <code>impact.journeys[].calls[]</code> to be specified:</p>
+<blockquote>
+<p>NOTE: Because key changes only support one journey and one call at a time, <code>impact.journeys[]</code> and <code>impact.journeys[].calls[]</code> can only contain one element each.
+- <code>impact.journeys[].journey.spec</code> identifies the journey containing the affected call(s)
+- <code>impact.journeys[].calls[]</code> specifies which call(s) within that journey are affected (identified by their original stop point and time). The call must reference an actual call that exists in the specified journey.
+- <code>parameters.stopPoint</code> specifies the replacement quay to use instead of the original stop point</p>
+</blockquote>
+<h4 id="replacement-quay-on-journey-calls">Replacement Quay - on Journey Calls<a class="headerlink" href="#replacement-quay-on-journey-calls" title="Permanent link">&para;</a></h4>
+<p>To signal that specific journey calls should use a replacement quay/stop point:
+- code <code>REPLACEMENT_QUAY</code>
+- a list of impacted journeys with their affected calls (the call must reference an actual call in the specified journey)
+- a replacement stop point in the parameters</p>
+<p>In this example, we specify a journey and one of its calls that should use a replacement quay.</p>
+<p>HTTP request:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>POST<span class="w"> </span>/api/adt/v4/operational/mitigation/mitigations
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="o">{</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="s2">&quot;code&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;REPLACEMENT_QUAY&quot;</span>,
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="s2">&quot;impact&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">      </span><span class="s2">&quot;journeys&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">        </span><span class="s2">&quot;calls&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">          </span><span class="s2">&quot;stopPoint&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">            </span><span class="s2">&quot;quayId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;NSR:Quay:001A&quot;</span>,
+<a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="w">            </span><span class="s2">&quot;stopPointId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;stop-point-001A&quot;</span>
+<a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">          </span><span class="o">}</span>,
+<a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">          </span><span class="s2">&quot;departureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>
+<a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">        </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>,
+<a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">        </span><span class="s2">&quot;journey&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="w">          </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="w">            </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="w">            </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>,
+<a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="w">            </span><span class="s2">&quot;firstDepartureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>
+<a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="w">          </span><span class="o">}</span>,
+<a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="w">          </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="w">            </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="w">            </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a><span class="w">          </span><span class="o">}</span>
+<a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="w">      </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a><span class="w">    </span><span class="s2">&quot;duration&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a><span class="w">      </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a><span class="w">      </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a><span class="w">    </span><span class="s2">&quot;mitigates&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;service-deviation-id-001&quot;</span><span class="w"> </span><span class="o">]</span>,
+<a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a><span class="w">    </span><span class="s2">&quot;parameters&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a><span class="w">      </span><span class="s2">&quot;stopPoint&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a><span class="w">        </span><span class="s2">&quot;quayId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Quay:002&quot;</span>
+<a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a><span class="w">      </span><span class="o">}</span>
+<a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-10-37" name="__codelineno-10-37" href="#__codelineno-10-37"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-10-38" name="__codelineno-10-38" href="#__codelineno-10-38"></a><span class="o">}</span>
+</code></pre></div>
+<p>HTTP response:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="m">201</span><span class="w"> </span>CREATED
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="o">{</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">  </span><span class="s2">&quot;result&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="s2">&quot;status&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">      </span><span class="s2">&quot;code&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;OK&quot;</span>,
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">      </span><span class="s2">&quot;reason&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;OK&quot;</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">  </span><span class="o">}</span>,
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="w">  </span><span class="s2">&quot;mitigation&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="w">    </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a><span class="w">      </span><span class="s2">&quot;code&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;REPLACEMENT_QUAY&quot;</span>,
+<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a><span class="w">      </span><span class="s2">&quot;impact&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a><span class="w">        </span><span class="s2">&quot;journeys&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a><span class="w">          </span><span class="s2">&quot;calls&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a><span class="w">            </span><span class="s2">&quot;stopPoint&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a><span class="w">              </span><span class="s2">&quot;quayId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;NSR:Quay:001A&quot;</span>,
+<a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a><span class="w">              </span><span class="s2">&quot;stopPointId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;stop-point-001A&quot;</span>
+<a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a><span class="w">            </span><span class="o">}</span>,
+<a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="w">            </span><span class="s2">&quot;departureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>
+<a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a><span class="w">          </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>,
+<a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a><span class="w">          </span><span class="s2">&quot;journey&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="w">            </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="w">              </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="w">              </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>,
+<a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a><span class="w">              </span><span class="s2">&quot;firstDepartureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>
+<a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a><span class="w">            </span><span class="o">}</span>,
+<a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a><span class="w">            </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a><span class="w">              </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a><span class="w">              </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a><span class="w">            </span><span class="o">}</span>
+<a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a><span class="w">          </span><span class="o">}</span>
+<a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a><span class="w">        </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-11-33" name="__codelineno-11-33" href="#__codelineno-11-33"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-11-34" name="__codelineno-11-34" href="#__codelineno-11-34"></a><span class="w">      </span><span class="s2">&quot;duration&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-11-35" name="__codelineno-11-35" href="#__codelineno-11-35"></a><span class="w">        </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-11-36" name="__codelineno-11-36" href="#__codelineno-11-36"></a><span class="w">        </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-11-37" name="__codelineno-11-37" href="#__codelineno-11-37"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-11-38" name="__codelineno-11-38" href="#__codelineno-11-38"></a><span class="w">      </span><span class="s2">&quot;mitigates&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;service-deviation-id-001&quot;</span><span class="w"> </span><span class="o">]</span>,
+<a id="__codelineno-11-39" name="__codelineno-11-39" href="#__codelineno-11-39"></a><span class="w">      </span><span class="s2">&quot;parameters&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-11-40" name="__codelineno-11-40" href="#__codelineno-11-40"></a><span class="w">        </span><span class="s2">&quot;stopPoint&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-11-41" name="__codelineno-11-41" href="#__codelineno-11-41"></a><span class="w">          </span><span class="s2">&quot;quayId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Quay:002&quot;</span>
+<a id="__codelineno-11-42" name="__codelineno-11-42" href="#__codelineno-11-42"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-11-43" name="__codelineno-11-43" href="#__codelineno-11-43"></a><span class="w">      </span><span class="o">}</span>
+<a id="__codelineno-11-44" name="__codelineno-11-44" href="#__codelineno-11-44"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-11-45" name="__codelineno-11-45" href="#__codelineno-11-45"></a><span class="w">    </span><span class="s2">&quot;record&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-11-46" name="__codelineno-11-46" href="#__codelineno-11-46"></a><span class="w">      </span><span class="s2">&quot;lifecycle&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-11-47" name="__codelineno-11-47" href="#__codelineno-11-47"></a><span class="w">        </span><span class="s2">&quot;createdAt&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T05:05+01:00&quot;</span>,
+<a id="__codelineno-11-48" name="__codelineno-11-48" href="#__codelineno-11-48"></a><span class="w">        </span><span class="s2">&quot;createdBy&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;system&quot;</span>,
+<a id="__codelineno-11-49" name="__codelineno-11-49" href="#__codelineno-11-49"></a><span class="w">        </span><span class="s2">&quot;modifiedAt&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T05:05+01:00&quot;</span>,
+<a id="__codelineno-11-50" name="__codelineno-11-50" href="#__codelineno-11-50"></a><span class="w">        </span><span class="s2">&quot;modifiedBy&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;system&quot;</span>
+<a id="__codelineno-11-51" name="__codelineno-11-51" href="#__codelineno-11-51"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-11-52" name="__codelineno-11-52" href="#__codelineno-11-52"></a><span class="w">      </span><span class="s2">&quot;serviceMitigationId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;service-mitigation-unique-id&quot;</span>,
+<a id="__codelineno-11-53" name="__codelineno-11-53" href="#__codelineno-11-53"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;SM-2026-1&quot;</span>
+<a id="__codelineno-11-54" name="__codelineno-11-54" href="#__codelineno-11-54"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-11-55" name="__codelineno-11-55" href="#__codelineno-11-55"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-11-56" name="__codelineno-11-56" href="#__codelineno-11-56"></a><span class="o">}</span>
+</code></pre></div>
+<h3 id="additional-service-mitigation-operations">Additional Service Mitigation Operations<a class="headerlink" href="#additional-service-mitigation-operations" title="Permanent link">&para;</a></h3>
+<p>In addition to creating service mitigations, a client may also look up, update, and delete existing service mitigations
+using the <code>{baseURL}/mitigation/mitigations/{serviceMitigationId}</code> endpoint.</p>
+<h4 id="resolved-journey-targets">Resolved Journey Targets<a class="headerlink" href="#resolved-journey-targets" title="Permanent link">&para;</a></h4>
+<p>When reading a service mitigation, the optional <code>includeTargets=true</code> query parameter can be used to include the
+<em>resolved journey targets</em> in the response. Resolved journey targets are the concrete dated journeys that have been
+resolved from the mitigation's impact spec, as determined at the time of the last background processing run.</p>
+<h4 id="read-service-mitigation-with-resolved-journey-targets">Read Service Mitigation with Resolved Journey Targets<a class="headerlink" href="#read-service-mitigation-with-resolved-journey-targets" title="Permanent link">&para;</a></h4>
+<p>Passing <code>includeTargets=true</code> when reading a service mitigation will include resolved journey targets in the response.
+Resolved journey targets represent the concrete dated journeys affected by the variance, as resolved from the impact spec
+at the time of the last background processing run.</p>
+<p>HTTP request:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>GET<span class="w"> </span>/api/adt/v4/operational/mitigation/mitigations/service-mitigation-unique-id?includeTargets<span class="o">=</span><span class="nb">true</span>
+</code></pre></div>
+<p>HTTP response:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="m">200</span><span class="w"> </span>OK
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="o">{</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="w">  </span><span class="s2">&quot;mitigation&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="w">    </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="w">      </span><span class="s2">&quot;code&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;CANCELLATION&quot;</span>,
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="w">      </span><span class="s2">&quot;impact&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">        </span><span class="s2">&quot;journeys&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">          </span><span class="s2">&quot;journey&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="w">            </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="w">              </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="w">              </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>,
+<a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="w">              </span><span class="s2">&quot;firstDepartureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>
+<a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="w">            </span><span class="o">}</span>,
+<a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="w">            </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="w">              </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="w">              </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="w">            </span><span class="o">}</span>
+<a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="w">          </span><span class="o">}</span>
+<a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="w">        </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="w">      </span><span class="s2">&quot;duration&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="w">        </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="w">        </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a><span class="w">      </span><span class="s2">&quot;mitigates&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;service-deviation-id-001&quot;</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a><span class="w">    </span><span class="s2">&quot;record&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a><span class="w">      </span><span class="s2">&quot;lifecycle&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-29" name="__codelineno-13-29" href="#__codelineno-13-29"></a><span class="w">        </span><span class="s2">&quot;createdAt&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T05:05+01:00&quot;</span>,
+<a id="__codelineno-13-30" name="__codelineno-13-30" href="#__codelineno-13-30"></a><span class="w">        </span><span class="s2">&quot;createdBy&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;system&quot;</span>,
+<a id="__codelineno-13-31" name="__codelineno-13-31" href="#__codelineno-13-31"></a><span class="w">        </span><span class="s2">&quot;modifiedAt&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T05:05+01:00&quot;</span>,
+<a id="__codelineno-13-32" name="__codelineno-13-32" href="#__codelineno-13-32"></a><span class="w">        </span><span class="s2">&quot;modifiedBy&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;system&quot;</span>
+<a id="__codelineno-13-33" name="__codelineno-13-33" href="#__codelineno-13-33"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-13-34" name="__codelineno-13-34" href="#__codelineno-13-34"></a><span class="w">      </span><span class="s2">&quot;serviceMitigationId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;service-mitigation-unique-id&quot;</span>,
+<a id="__codelineno-13-35" name="__codelineno-13-35" href="#__codelineno-13-35"></a><span class="w">      </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;SM-2026-1&quot;</span>
+<a id="__codelineno-13-36" name="__codelineno-13-36" href="#__codelineno-13-36"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-13-37" name="__codelineno-13-37" href="#__codelineno-13-37"></a><span class="w">    </span><span class="s2">&quot;journeyTargets&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-38" name="__codelineno-13-38" href="#__codelineno-13-38"></a><span class="w">      </span><span class="s2">&quot;journeys&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-39" name="__codelineno-13-39" href="#__codelineno-13-39"></a><span class="w">        </span><span class="s2">&quot;partial&quot;</span><span class="w"> </span>:<span class="w"> </span>false,
+<a id="__codelineno-13-40" name="__codelineno-13-40" href="#__codelineno-13-40"></a><span class="w">        </span><span class="s2">&quot;journey&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-41" name="__codelineno-13-41" href="#__codelineno-13-41"></a><span class="w">          </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Service Journey 0001&quot;</span>,
+<a id="__codelineno-13-42" name="__codelineno-13-42" href="#__codelineno-13-42"></a><span class="w">          </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-43" name="__codelineno-13-43" href="#__codelineno-13-43"></a><span class="w">            </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-13-44" name="__codelineno-13-44" href="#__codelineno-13-44"></a><span class="w">            </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>,
+<a id="__codelineno-13-45" name="__codelineno-13-45" href="#__codelineno-13-45"></a><span class="w">            </span><span class="s2">&quot;firstDepartureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>
+<a id="__codelineno-13-46" name="__codelineno-13-46" href="#__codelineno-13-46"></a><span class="w">          </span><span class="o">}</span>,
+<a id="__codelineno-13-47" name="__codelineno-13-47" href="#__codelineno-13-47"></a><span class="w">          </span><span class="s2">&quot;journeyIds&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-48" name="__codelineno-13-48" href="#__codelineno-13-48"></a><span class="w">            </span><span class="s2">&quot;vehicleJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;vehicle-journey-0001&quot;</span>,
+<a id="__codelineno-13-49" name="__codelineno-13-49" href="#__codelineno-13-49"></a><span class="w">            </span><span class="s2">&quot;serviceJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:ServiceJourney:0001&quot;</span>,
+<a id="__codelineno-13-50" name="__codelineno-13-50" href="#__codelineno-13-50"></a><span class="w">            </span><span class="s2">&quot;datedServiceJourneyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>
+<a id="__codelineno-13-51" name="__codelineno-13-51" href="#__codelineno-13-51"></a><span class="w">          </span><span class="o">}</span>,
+<a id="__codelineno-13-52" name="__codelineno-13-52" href="#__codelineno-13-52"></a><span class="w">          </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-53" name="__codelineno-13-53" href="#__codelineno-13-53"></a><span class="w">            </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-13-54" name="__codelineno-13-54" href="#__codelineno-13-54"></a><span class="w">            </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-13-55" name="__codelineno-13-55" href="#__codelineno-13-55"></a><span class="w">          </span><span class="o">}</span>,
+<a id="__codelineno-13-56" name="__codelineno-13-56" href="#__codelineno-13-56"></a><span class="w">          </span><span class="s2">&quot;line&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-57" name="__codelineno-13-57" href="#__codelineno-13-57"></a><span class="w">            </span><span class="s2">&quot;name&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Testveien - Teststien&quot;</span>,
+<a id="__codelineno-13-58" name="__codelineno-13-58" href="#__codelineno-13-58"></a><span class="w">            </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-13-59" name="__codelineno-13-59" href="#__codelineno-13-59"></a><span class="w">            </span><span class="s2">&quot;publicCode&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;L01&quot;</span>,
+<a id="__codelineno-13-60" name="__codelineno-13-60" href="#__codelineno-13-60"></a><span class="w">            </span><span class="s2">&quot;textColor&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;FFFFFF&quot;</span>,
+<a id="__codelineno-13-61" name="__codelineno-13-61" href="#__codelineno-13-61"></a><span class="w">            </span><span class="s2">&quot;backgroundColor&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;1F1E1A&quot;</span>
+<a id="__codelineno-13-62" name="__codelineno-13-62" href="#__codelineno-13-62"></a><span class="w">          </span><span class="o">}</span>,
+<a id="__codelineno-13-63" name="__codelineno-13-63" href="#__codelineno-13-63"></a><span class="w">          </span><span class="s2">&quot;direction&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;INBOUND&quot;</span>,
+<a id="__codelineno-13-64" name="__codelineno-13-64" href="#__codelineno-13-64"></a><span class="w">          </span><span class="s2">&quot;vehicleTaskId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;VL1001&quot;</span>,
+<a id="__codelineno-13-65" name="__codelineno-13-65" href="#__codelineno-13-65"></a><span class="w">          </span><span class="s2">&quot;calls&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-66" name="__codelineno-13-66" href="#__codelineno-13-66"></a><span class="w">            </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-67" name="__codelineno-13-67" href="#__codelineno-13-67"></a><span class="w">              </span><span class="s2">&quot;stopPoint&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-68" name="__codelineno-13-68" href="#__codelineno-13-68"></a><span class="w">                </span><span class="s2">&quot;quayId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;NSR:Quay:001A&quot;</span>,
+<a id="__codelineno-13-69" name="__codelineno-13-69" href="#__codelineno-13-69"></a><span class="w">                </span><span class="s2">&quot;stopPointId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;stop-point-001A&quot;</span>
+<a id="__codelineno-13-70" name="__codelineno-13-70" href="#__codelineno-13-70"></a><span class="w">              </span><span class="o">}</span>,
+<a id="__codelineno-13-71" name="__codelineno-13-71" href="#__codelineno-13-71"></a><span class="w">              </span><span class="s2">&quot;departureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>
+<a id="__codelineno-13-72" name="__codelineno-13-72" href="#__codelineno-13-72"></a><span class="w">            </span><span class="o">}</span>,
+<a id="__codelineno-13-73" name="__codelineno-13-73" href="#__codelineno-13-73"></a><span class="w">            </span><span class="s2">&quot;behaviourType&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;FULL_SERVICE&quot;</span>
+<a id="__codelineno-13-74" name="__codelineno-13-74" href="#__codelineno-13-74"></a><span class="w">          </span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-75" name="__codelineno-13-75" href="#__codelineno-13-75"></a><span class="w">            </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-76" name="__codelineno-13-76" href="#__codelineno-13-76"></a><span class="w">              </span><span class="s2">&quot;stopPoint&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-77" name="__codelineno-13-77" href="#__codelineno-13-77"></a><span class="w">                </span><span class="s2">&quot;quayId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;NSR:Quay:002A&quot;</span>,
+<a id="__codelineno-13-78" name="__codelineno-13-78" href="#__codelineno-13-78"></a><span class="w">                </span><span class="s2">&quot;stopPointId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;stop-point-002A&quot;</span>
+<a id="__codelineno-13-79" name="__codelineno-13-79" href="#__codelineno-13-79"></a><span class="w">              </span><span class="o">}</span>,
+<a id="__codelineno-13-80" name="__codelineno-13-80" href="#__codelineno-13-80"></a><span class="w">              </span><span class="s2">&quot;arrivalDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:10+01:00&quot;</span>,
+<a id="__codelineno-13-81" name="__codelineno-13-81" href="#__codelineno-13-81"></a><span class="w">              </span><span class="s2">&quot;departureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:10+01:00&quot;</span>
+<a id="__codelineno-13-82" name="__codelineno-13-82" href="#__codelineno-13-82"></a><span class="w">            </span><span class="o">}</span>,
+<a id="__codelineno-13-83" name="__codelineno-13-83" href="#__codelineno-13-83"></a><span class="w">            </span><span class="s2">&quot;behaviourType&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;FULL_SERVICE&quot;</span>
+<a id="__codelineno-13-84" name="__codelineno-13-84" href="#__codelineno-13-84"></a><span class="w">          </span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-85" name="__codelineno-13-85" href="#__codelineno-13-85"></a><span class="w">            </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-86" name="__codelineno-13-86" href="#__codelineno-13-86"></a><span class="w">              </span><span class="s2">&quot;stopPoint&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-13-87" name="__codelineno-13-87" href="#__codelineno-13-87"></a><span class="w">                </span><span class="s2">&quot;quayId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;NSR:Quay:003A&quot;</span>,
+<a id="__codelineno-13-88" name="__codelineno-13-88" href="#__codelineno-13-88"></a><span class="w">                </span><span class="s2">&quot;stopPointId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;stop-point-003A&quot;</span>
+<a id="__codelineno-13-89" name="__codelineno-13-89" href="#__codelineno-13-89"></a><span class="w">              </span><span class="o">}</span>,
+<a id="__codelineno-13-90" name="__codelineno-13-90" href="#__codelineno-13-90"></a><span class="w">              </span><span class="s2">&quot;arrivalDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-13-91" name="__codelineno-13-91" href="#__codelineno-13-91"></a><span class="w">            </span><span class="o">}</span>,
+<a id="__codelineno-13-92" name="__codelineno-13-92" href="#__codelineno-13-92"></a><span class="w">            </span><span class="s2">&quot;behaviourType&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;FULL_SERVICE&quot;</span>
+<a id="__codelineno-13-93" name="__codelineno-13-93" href="#__codelineno-13-93"></a><span class="w">          </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-13-94" name="__codelineno-13-94" href="#__codelineno-13-94"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-13-95" name="__codelineno-13-95" href="#__codelineno-13-95"></a><span class="w">      </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-13-96" name="__codelineno-13-96" href="#__codelineno-13-96"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-13-97" name="__codelineno-13-97" href="#__codelineno-13-97"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-13-98" name="__codelineno-13-98" href="#__codelineno-13-98"></a><span class="o">}</span>
+</code></pre></div>
+<h4 id="read-service-mitigation-by-id">Read Service Mitigation by Id<a class="headerlink" href="#read-service-mitigation-by-id" title="Permanent link">&para;</a></h4>
+<p>A service mitigation may be retrieved up by sending a <code>GET</code> request to <code>{baseURL}/mitigation/mitigations/{serviceMitigationId}</code>.</p>
+<p>HTTP request:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>GET<span class="w"> </span>/api/adt/v4/operational/mitigation/mitigations/1530bf5405624db1b6b449d0edbec8c0
+</code></pre></div>
+<p>HTTP response:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="m">200</span><span class="w"> </span>OK
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>POST<span class="w"> </span>/api/adt/v4/operational/mitigation/mitigations
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="o">{</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">  </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="w">    </span><span class="s2">&quot;code&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;CANCELLATION&quot;</span>,
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="w">    </span><span class="s2">&quot;impact&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="w">      </span><span class="s2">&quot;journeys&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="w">        </span><span class="s2">&quot;journey&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a><span class="w">          </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a><span class="w">            </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a><span class="w">            </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>,
+<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a><span class="w">            </span><span class="s2">&quot;firstDepartureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>
+<a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a><span class="w">          </span><span class="o">}</span>,
+<a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a><span class="w">          </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a><span class="w">            </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="w">            </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="w">          </span><span class="o">}</span>
+<a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="w">      </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a><span class="w">    </span><span class="s2">&quot;duration&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a><span class="w">      </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a><span class="w">      </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a><span class="w">    </span><span class="s2">&quot;mitigates&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;service-deviation-id-001&quot;</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a><span class="o">}</span>
+</code></pre></div>
+<h4 id="delete-service-mitigation-by-id">Delete Service Mitigation by Id<a class="headerlink" href="#delete-service-mitigation-by-id" title="Permanent link">&para;</a></h4>
+<p>A service mitigation may be deleted by posting an update request with <code>action: "DELETE"</code> to
+<code>{baseURL}/mitigation/mitigations/{serviceMitigationId}</code>.</p>
+<p>HTTP request:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>POST<span class="w"> </span>/api/adt/v4/operational/mitigation/mitigations/1530bf5405624db1b6b449d0edbec8c0
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="o">{</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">  </span><span class="s2">&quot;action&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;DELETE&quot;</span>,
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">  </span><span class="s2">&quot;comment&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;All the snow melted, we are able to drive after all!&quot;</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="o">}</span>
+</code></pre></div>
+<p>HTTP response:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="m">200</span><span class="w"> </span>OK
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="o">{</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">  </span><span class="s2">&quot;result&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">    </span><span class="s2">&quot;status&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">      </span><span class="s2">&quot;code&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;OK&quot;</span>,
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">      </span><span class="s2">&quot;reason&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;OK&quot;</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="o">}</span>
+</code></pre></div>
+<h4 id="update-service-mitigation-by-id">Update Service Mitigation by Id<a class="headerlink" href="#update-service-mitigation-by-id" title="Permanent link">&para;</a></h4>
+<p>Instead of deleting and re-creating a service mitigation to functionally modify it, a client may post an update request
+with <code>action: "UPDATE"</code> to
+<code>{baseURL}/mitigation/mitigations/{serviceMitigationId}</code> to modify an existing mitigation.</p>
+<p>In this example, we show how to update an existing quay replacement mitigation with a new quay.</p>
+<p>HTTP request:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>POST<span class="w"> </span>/api/adt/v4/operational/mitigation/mitigations/840660be96fd48c7967f90cc28ac4b34
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="o">{</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="s2">&quot;action&quot;</span>:<span class="w"> </span><span class="s2">&quot;UPDATE&quot;</span>,
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">        </span><span class="s2">&quot;code&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;REPLACEMENT_QUAY&quot;</span>,
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">        </span><span class="s2">&quot;impact&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">            </span><span class="s2">&quot;journeys&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">                </span><span class="s2">&quot;calls&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="w">                    </span><span class="s2">&quot;stopPoint&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a><span class="w">                        </span><span class="s2">&quot;quayId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;NSR:Quay:001A&quot;</span>,
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a><span class="w">                        </span><span class="s2">&quot;stopPointId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;stop-point-001A&quot;</span>
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a><span class="w">                    </span><span class="o">}</span>,
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a><span class="w">                    </span><span class="s2">&quot;departureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>
+<a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a><span class="w">                </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>,
+<a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a><span class="w">                </span><span class="s2">&quot;journey&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a><span class="w">                    </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-18-17" name="__codelineno-18-17" href="#__codelineno-18-17"></a><span class="w">                        </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-18-18" name="__codelineno-18-18" href="#__codelineno-18-18"></a><span class="w">                        </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>,
+<a id="__codelineno-18-19" name="__codelineno-18-19" href="#__codelineno-18-19"></a><span class="w">                        </span><span class="s2">&quot;firstDepartureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>
+<a id="__codelineno-18-20" name="__codelineno-18-20" href="#__codelineno-18-20"></a><span class="w">                    </span><span class="o">}</span>,
+<a id="__codelineno-18-21" name="__codelineno-18-21" href="#__codelineno-18-21"></a><span class="w">                    </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-18-22" name="__codelineno-18-22" href="#__codelineno-18-22"></a><span class="w">                        </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-18-23" name="__codelineno-18-23" href="#__codelineno-18-23"></a><span class="w">                        </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-18-24" name="__codelineno-18-24" href="#__codelineno-18-24"></a><span class="w">                    </span><span class="o">}</span>
+<a id="__codelineno-18-25" name="__codelineno-18-25" href="#__codelineno-18-25"></a><span class="w">                </span><span class="o">}</span>
+<a id="__codelineno-18-26" name="__codelineno-18-26" href="#__codelineno-18-26"></a><span class="w">            </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-18-27" name="__codelineno-18-27" href="#__codelineno-18-27"></a><span class="w">        </span><span class="o">}</span>,
+<a id="__codelineno-18-28" name="__codelineno-18-28" href="#__codelineno-18-28"></a><span class="w">        </span><span class="s2">&quot;duration&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-18-29" name="__codelineno-18-29" href="#__codelineno-18-29"></a><span class="w">            </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-18-30" name="__codelineno-18-30" href="#__codelineno-18-30"></a><span class="w">            </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-18-31" name="__codelineno-18-31" href="#__codelineno-18-31"></a><span class="w">        </span><span class="o">}</span>,
+<a id="__codelineno-18-32" name="__codelineno-18-32" href="#__codelineno-18-32"></a><span class="w">        </span><span class="s2">&quot;mitigates&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;service-deviation-id-001&quot;</span><span class="w"> </span><span class="o">]</span>,
+<a id="__codelineno-18-33" name="__codelineno-18-33" href="#__codelineno-18-33"></a><span class="w">        </span><span class="s2">&quot;parameters&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-18-34" name="__codelineno-18-34" href="#__codelineno-18-34"></a><span class="w">            </span><span class="s2">&quot;stopPoint&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-18-35" name="__codelineno-18-35" href="#__codelineno-18-35"></a><span class="w">                </span><span class="s2">&quot;quayId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Quay:003&quot;</span>
+<a id="__codelineno-18-36" name="__codelineno-18-36" href="#__codelineno-18-36"></a><span class="w">            </span><span class="o">}</span>
+<a id="__codelineno-18-37" name="__codelineno-18-37" href="#__codelineno-18-37"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-18-38" name="__codelineno-18-38" href="#__codelineno-18-38"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-18-39" name="__codelineno-18-39" href="#__codelineno-18-39"></a><span class="o">}</span>
+</code></pre></div>
+<p>HTTP response:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="m">200</span><span class="w"> </span>OK
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="o">{</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">  </span><span class="s2">&quot;mitigation&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">        </span><span class="s2">&quot;code&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;REPLACEMENT_QUAY&quot;</span>,
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">        </span><span class="s2">&quot;impact&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">            </span><span class="s2">&quot;journeys&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">                </span><span class="s2">&quot;calls&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">                    </span><span class="s2">&quot;stopPoint&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="w">                        </span><span class="s2">&quot;quayId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;NSR:Quay:001A&quot;</span>,
+<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="w">                        </span><span class="s2">&quot;stopPointId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;stop-point-001A&quot;</span>
+<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="w">                    </span><span class="o">}</span>,
+<a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="w">                    </span><span class="s2">&quot;departureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>
+<a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a><span class="w">                </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>,
+<a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a><span class="w">                </span><span class="s2">&quot;journey&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a><span class="w">                    </span><span class="s2">&quot;spec&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a><span class="w">                        </span><span class="s2">&quot;lineId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Line:001&quot;</span>,
+<a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a><span class="w">                        </span><span class="s2">&quot;journeyId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:DatedServiceJourney:0001&quot;</span>,
+<a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a><span class="w">                        </span><span class="s2">&quot;firstDepartureDateTime&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>
+<a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a><span class="w">                    </span><span class="o">}</span>,
+<a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a><span class="w">                    </span><span class="s2">&quot;serviceWindow&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a><span class="w">                        </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a><span class="w">                        </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a><span class="w">                    </span><span class="o">}</span>
+<a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a><span class="w">                </span><span class="o">}</span>
+<a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a><span class="w">            </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a><span class="w">        </span><span class="o">}</span>,
+<a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a><span class="w">        </span><span class="s2">&quot;duration&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a><span class="w">            </span><span class="s2">&quot;start&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:00+01:00&quot;</span>,
+<a id="__codelineno-19-30" name="__codelineno-19-30" href="#__codelineno-19-30"></a><span class="w">            </span><span class="s2">&quot;end&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T09:20+01:00&quot;</span>
+<a id="__codelineno-19-31" name="__codelineno-19-31" href="#__codelineno-19-31"></a><span class="w">        </span><span class="o">}</span>,
+<a id="__codelineno-19-32" name="__codelineno-19-32" href="#__codelineno-19-32"></a><span class="w">        </span><span class="s2">&quot;mitigates&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;service-deviation-id-001&quot;</span><span class="w"> </span><span class="o">]</span>,
+<a id="__codelineno-19-33" name="__codelineno-19-33" href="#__codelineno-19-33"></a><span class="w">        </span><span class="s2">&quot;parameters&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a><span class="w">            </span><span class="s2">&quot;stopPoint&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-19-35" name="__codelineno-19-35" href="#__codelineno-19-35"></a><span class="w">                </span><span class="s2">&quot;quayId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;RUT:Quay:003&quot;</span>
+<a id="__codelineno-19-36" name="__codelineno-19-36" href="#__codelineno-19-36"></a><span class="w">            </span><span class="o">}</span>
+<a id="__codelineno-19-37" name="__codelineno-19-37" href="#__codelineno-19-37"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-19-38" name="__codelineno-19-38" href="#__codelineno-19-38"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-19-39" name="__codelineno-19-39" href="#__codelineno-19-39"></a><span class="w">    </span><span class="s2">&quot;lifecycle&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-19-40" name="__codelineno-19-40" href="#__codelineno-19-40"></a><span class="w">      </span><span class="s2">&quot;created&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T05:00+01:00&quot;</span>,
+<a id="__codelineno-19-41" name="__codelineno-19-41" href="#__codelineno-19-41"></a><span class="w">      </span><span class="s2">&quot;modified&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;2025-03-03T05:15+01:00&quot;</span>,
+<a id="__codelineno-19-42" name="__codelineno-19-42" href="#__codelineno-19-42"></a><span class="w">      </span><span class="s2">&quot;serviceMitigationId&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;840660be96fd48c7967f90cc28ac4b34&quot;</span>
+<a id="__codelineno-19-43" name="__codelineno-19-43" href="#__codelineno-19-43"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-19-44" name="__codelineno-19-44" href="#__codelineno-19-44"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-19-45" name="__codelineno-19-45" href="#__codelineno-19-45"></a><span class="o">}</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../deviation/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Deviation API">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Deviation API
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../timestamps/" class="md-footer__link md-footer__link--next" aria-label="Next: Time and Date">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Time and Date
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 Ruter AS
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/RuterNo" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
