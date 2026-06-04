@@ -482,6 +482,12 @@
             "$ref": "#/components/parameters/ToDateTime"
           },
           {
+            "$ref": "#/components/parameters/EffectiveFrom"
+          },
+          {
+            "$ref": "#/components/parameters/EffectiveTo"
+          },
+          {
             "$ref": "#/components/parameters/IncludeCallsQueryParam"
           },
           {
@@ -1031,6 +1037,12 @@
           },
           {
             "$ref": "#/components/parameters/ToDateTime"
+          },
+          {
+            "$ref": "#/components/parameters/EffectiveFrom"
+          },
+          {
+            "$ref": "#/components/parameters/EffectiveTo"
           },
           {
             "$ref": "#/components/parameters/IncludeCallsQueryParam"
@@ -1748,7 +1760,7 @@
       "FromDateTime": {
         "in": "query",
         "name": "fromDateTime",
-        "description": "Optional dateTime to filter out deviations before this point in time. ISO-8601 format,\nincluding time-zone offset (format: _YYYY-MM-DD_T_hh:mm:ssZ_)\n",
+        "description": "Return only records created or modified at or after this date-time. ISO 8601 format with time-zone offset\n(e.g. `2026-05-01T06:00:00+02:00`).\n",
         "required": false,
         "schema": {
           "type": "string"
@@ -1757,7 +1769,25 @@
       "ToDateTime": {
         "in": "query",
         "name": "toDateTime",
-        "description": "Optional dateTime to filter out deviations after this point in time. ISO-8601 format,\nincluding time-zone offset (format: _YYYY-MM-DD_T_hh:mm:ssZ_)\n",
+        "description": "Return only records created or modified at or before this date-time. ISO 8601 format with time-zone offset\n(e.g. `2026-05-01T22:00:00+02:00`).\n",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "EffectiveFrom": {
+        "in": "query",
+        "name": "effectiveFrom",
+        "description": "Return only records whose effective service window ends at or after this date-time \u2014 i.e. records still active at or\nafter this point in time. ISO 8601 format with time-zone offset (e.g. `2026-05-01T06:00:00+02:00`).\nCombine with `effectiveTo` to match records active within a specific time range.\n",
+        "required": false,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "EffectiveTo": {
+        "in": "query",
+        "name": "effectiveTo",
+        "description": "Return only records whose effective service window starts at or before this date-time \u2014 i.e. records that have already\nstarted by this point in time. ISO 8601 format with time-zone offset (e.g. `2026-05-01T22:00:00+02:00`).\nCombine with `effectiveFrom` to match records active within a specific time range.\n",
         "required": false,
         "schema": {
           "type": "string"
@@ -2285,9 +2315,12 @@
             "type": "string",
             "description": "The authority owning this journey."
           },
-          "operatorId": {
-            "type": "string",
-            "description": "The operator operating this journey."
+          "operatorIds": {
+            "type": "array",
+            "description": "The operators operating this journey.",
+            "items": {
+              "type": "string"
+            }
           },
           "vehicleTaskId": {
             "type": "string",
@@ -3531,6 +3564,13 @@
           "segmentCount": {
             "type": "integer",
             "description": "Optional segment count indicating number of logical segments for multi-segment vehicles. This may be used for vehicles such as articulated buses, multi-segment trams or metro trains consisting of multiple carriages or multiple carriage sets.\n"
+          },
+          "segmentIds": {
+            "type": "array",
+            "description": "Optional array containing the ids of each segment for multi-segment vehicles.\n",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
