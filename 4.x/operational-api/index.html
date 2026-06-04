@@ -5500,12 +5500,14 @@ be provided in the request.</p>
 about the physical properties of the vehicle for passenger information purposes:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="p">{</span>
 <a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">    </span><span class="nt">&quot;vehicle&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">        </span><span class="nt">&quot;segmentCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
-<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="p">}</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">        </span><span class="nt">&quot;segmentCount&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">        </span><span class="nt">&quot;segmentIds&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;SEGMENTID001&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;SEGMENTID002&quot;</span><span class="p">]</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="p">}</span>
 </code></pre></div>
 <p>The <code>segmentCount</code> field is optional and indicates the number of carriages in a multi-segment vehicle (e.g., a metro
-train consisting of two carriage sets).</p>
+train consisting of two carriage sets).
+The <code>segmentIds</code> field is optional and contains the ids of the carriages in a multi-segment vehicle.</p>
 <h4 id="sign-on-single-journey">Sign-On - Single Journey<a class="headerlink" href="#sign-on-single-journey" title="Permanent link">&para;</a></h4>
 <p>To sign a vehicle on a single journey, an attempt request with a single
 <a href="#journey-specifications">journey specification</a> can be used.</p>
