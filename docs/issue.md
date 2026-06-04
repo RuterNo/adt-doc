@@ -2,7 +2,7 @@
 
 ## Improvement suggestions
 
-At Ruter we greatly appreciate open discussions about our APIs. If you have any suggestions on how they could work
+At Tet Digital we greatly appreciate open discussions about our APIs. If you have any suggestions on how they could work
 better, please feel free to create a Github issue here: 
 
 [Issue tracking](https://github.com/RuterNo/adt-doc/issues)

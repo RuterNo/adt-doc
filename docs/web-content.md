@@ -2,18 +2,18 @@
 
 ## Overview
 
-Ruter publishes content that is to be available on the web server on board the vehicle. This is done using `rclone`, a command line program to manage files on cloud storage. `rclone` can sync files between local file systems and cloud storage providers.
+Tet Digital publishes content that is to be available on the web server on board the vehicle. This is done using `rclone`, a command line program to manage files on cloud storage. `rclone` can sync files between local file systems and cloud storage providers.
 
 For more information, see the [`rclone` documentation](https://rclone.org/docs/).
 
 ## General information regarding update procedures
 
-- Synchronization of web content is performed using `rclone` to download the latest content from Ruter's web server.
+- Synchronization of web content is performed using `rclone` to download the latest content from Tet Digital's web server.
 - Synchronization should occur periodically throughout the day to keep files up to date.
 - At least **16 GB** of storage must be available on the vehicle to store the PTA's content.
 - **SLA requirements:**
   - Any content updated before 16:00 must be available in the vehicle before it starts its route the following morning.
-  - Ruter expects the PTO to update content at the frequency indicated in the installation instructions below. If not, SLA requirements may be adjusted in future releases.
+  - Tet Digital expects the PTO to update content at the frequency indicated in the installation instructions below. If not, SLA requirements may be adjusted in future releases.
 - The PTO should download new versions from a pre-production channel in a test environment and ensure the version is thoroughly tested before deploying to production.
 
 ## Installation Instructions

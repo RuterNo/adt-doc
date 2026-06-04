@@ -1,6 +1,6 @@
 # Traffic plan export API
 
-The API is used for syncing traffic plans between operators and Ruter. Operators can either use the exported traffic 
+The API is used for syncing traffic plans between operators and Tet Digital. Operators can either use the exported traffic 
 plans directly for sign-on or compare their own traffic plans against the exported plans in order to find differences 
 that may lead to sign-on failing.
 

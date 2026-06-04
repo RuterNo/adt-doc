@@ -1,10 +1,10 @@
 # MQTT
 
-MQTT is light-weight pub-sub messaging protocol often used for machine-to-machine (M2M)/"Internet of Things" communication. It is one of the standard communication protocols defined in ITxPT, and the way vehicles are supposed to communicate with Ruter.
+MQTT is light-weight pub-sub messaging protocol often used for machine-to-machine (M2M)/"Internet of Things" communication. It is one of the standard communication protocols defined in ITxPT, and the way vehicles are supposed to communicate with Tet Digital.
 
 !!! note "ITxPT"
     MQTT is a fairly new addition to the ITxPT standard, and is currently a work in progress. 
-    Ruter is an active member in the international standard committee.
+    Tet Digital is an active member in the international standard committee.
 
 For more information, see: 
 - [MQTT.org](https://mqtt.org)
@@ -13,8 +13,8 @@ For more information, see:
 ## Architecture
 Two key elements of the architecture are the MQTT broker and the MQTT bridges. 
 
-### MQTT broker (Ruter)
-Ruter operates a central MQTT broker that communicates with all the vehicles. 
+### MQTT broker (Tet Digital)
+Tet Digital operates a central MQTT broker that communicates with all the vehicles. 
 
 > _Notice_  Starting from ADT 3+ all vehicle bridges towards this broker are required to use the MQTT protocol version 5. 
 > Support for MQTT v3.1 will be removed at a later stage.
@@ -22,7 +22,7 @@ Ruter operates a central MQTT broker that communicates with all the vehicles.
 All communication with the MQTT broker is encrypted during transport using TLS 1.2. 
 
 !!! info "MQTT Brokers "
-    To get access to the brokers, please reach out to [rdp-support@ruter.no](mailto:rdp-support@ruter.no).
+    To get access to the brokers, please reach out to [rdp-support@tetdigital.no](mailto:rdp-support@tetdigital.no).
 
     | Environment | Hostname                   | Description                                                    |
     |-------------|----------------------------|----------------------------------------------------------------|
@@ -31,9 +31,9 @@ All communication with the MQTT broker is encrypted during transport using TLS 1
 
 ### MQTT bridge (On-board Vehicle)
 
-The operator is to maintain a MQTT bridge on board the vehicle. The MQTT bridge acts as a proxy and forwards requests back and forth between the vehicle and Ruter. 
+The operator is to maintain a MQTT bridge on board the vehicle. The MQTT bridge acts as a proxy and forwards requests back and forth between the vehicle and Tet Digital. 
 
-To get access to the MQTT broker, you need to reach out to Ruter to be provided with credentials. 
+To get access to the MQTT broker, you need to reach out to Tet Digital to be provided with credentials. 
 
 There is no strict requirement as to what implementation you chose of the mqtt bridge, as long as it is stable and fullfills the standard. 
 
@@ -47,9 +47,9 @@ There are multiple open-source solutions to choose from, i.e. [https://mosquitto
 
 ## Updating configurations and DPI content
 
-Ruter reserves the right to update the topic configuration and content packages when it deems it necessary.
+Tet Digital reserves the right to update the topic configuration and content packages when it deems it necessary.
 
-While the PTO is responsible for setting up the mqtt bridge configuration correctly according to the software running on the vehicle, Ruter provides an api listing all the topics that should be made available for the services on-board the vehicle. 
+While the PTO is responsible for setting up the mqtt bridge configuration correctly according to the software running on the vehicle, Tet Digital provides an api listing all the topics that should be made available for the services on-board the vehicle. 
 
 !!! info "MQTT Topic configurations "
     

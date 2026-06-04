@@ -2,7 +2,7 @@
 
 ## Description 
 
-Ruter will develop an operator portal in co-operation with the current PTOs. 
+Tet Digital will develop an operator portal in co-operation with the current PTOs. 
 
 ### Intended functionality
 

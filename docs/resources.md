@@ -1,6 +1,6 @@
 # Resources Manifest
 
-The resources manifest is means of describing which resources Ruter is sharing with operators. 
+The resources manifest is means of describing which resources Tet Digital is sharing with operators. 
 Initially, the list will contain an audio file intended to be played when a stop is requested
 on board the vehicle. It allows us to change the sound over time and ensure a uniform aural 
 experience for passengers.
@@ -56,14 +56,14 @@ An example of the contents of the resources.json looks like:
 |-------------|-----------------------|---------------------------------------------------------|
 | timestamp   | ISO date/time stamp   | Time the new manifest is released                       |
 | environment | test/stage/prod       | Which environment the manifest applies to               |
-| resources   | list of type Resource | a collection of one or more resources that Ruter shares |
+| resources   | list of type Resource | a collection of one or more resources that Tet Digital shares |
 
 ### Resource
 
 | Name        | Values    | Description                                                                                                            |
 |-------------|-----------|------------------------------------------------------------------------------------------------------------------------|
-| name        | string    | names that Ruter defines, only "stopRequestedSound" is currently defined                                               |
-| type        | string    | types that Ruter supports, only "audio" is currently defined                                                           |
+| name        | string    | names that Tet Digital defines, only "stopRequestedSound" is currently defined                                               |
+| type        | string    | types that Tet Digital supports, only "audio" is currently defined                                                           |
 | contentType | MIME type | a MIME type that corresponds to the type of the resource that is shared                                                |
 | url         | URL       | the location of where the resource can be fetched, the file name has a time stamp part that corresponds to its version |
 | sha256      | string    | A SHA 256 hash of the resource, which can be used to verify the validity of the downloaded file                        |
