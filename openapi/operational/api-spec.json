@@ -311,6 +311,9 @@
             "$ref": "#/components/parameters/IncludeCallsQueryParam"
           },
           {
+            "$ref": "#/components/parameters/IncludeIdentifiersQueryParam"
+          },
+          {
             "$ref": "#/components/parameters/LimitQueryParam"
           },
           {
@@ -1782,6 +1785,14 @@
         "in": "query",
         "name": "includeCalls",
         "description": "Flag indicating if returned journeys should include call data or not (default: `false`).\n",
+        "schema": {
+          "type": "boolean"
+        }
+      },
+      "IncludeIdentifiersQueryParam": {
+        "in": "query",
+        "name": "includeIdentifiers",
+        "description": "Flag indicating if returned journeys should include ownerId and operatorId for journey (default: `false`)\n",
         "schema": {
           "type": "boolean"
         }
