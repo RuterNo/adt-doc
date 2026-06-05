@@ -4,3 +4,7 @@
   --md-primary-fg-color--dark:  #90030C;
   --md-accent-fg-color: #FF3C3CFF;
 }
+
+.md-nav__item--section .md-nav__item--section .md-nav .md-nav__link {
+  padding-left: 0.3rem;
+}
