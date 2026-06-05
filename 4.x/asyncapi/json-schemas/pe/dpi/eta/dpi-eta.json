@@ -22,11 +22,6 @@
       "type": "string",
       "description": "A unique identifier - UUID"
     },
-    "status": {
-      "$id": "#/properties/status",
-      "type": "string",
-      "description": "A text string indicating if the eta is NORMAL or DEVIATION (off-route)."
-    },
     "estimatedCalls": {
       "$id": "#/properties/estimatedCalls",
       "type": "array",

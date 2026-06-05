@@ -1,0 +1,3004 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="API documentation intended for public transport operators (PTO) who needs to communicate with the  public transport authority (PTA) Ruter AS.">
+      
+      
+        <meta name="author" content="Ruter AS">
+      
+      
+        <link rel="canonical" href="https://adt.transhub.io/4.x/operational-api/intro/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../journey/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon-32x32.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Introduction - Ruters Digitale Plattform</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="ruter" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-model" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Ruters Digitale Plattform" class="md-header__button md-logo" aria-label="Ruters Digitale Plattform" data-md-component="logo">
+      
+  <img src="../../assets/ruter_logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ruters Digitale Plattform
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Introduction
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/RuterNo/adt-doc" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    RuterNo/adt-doc
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../mqtt-api/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  API
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../mqtt/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vehicle setup
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../issue/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Contribute
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Ruters Digitale Plattform" class="md-nav__button md-logo" aria-label="Ruters Digitale Plattform" data-md-component="logo">
+      
+  <img src="../../assets/ruter_logo.svg" alt="logo">
+
+    </a>
+    Ruters Digitale Plattform
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/RuterNo/adt-doc" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    RuterNo/adt-doc
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mqtt-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MQTT Api
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../traffic-plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Traffic plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operational Api
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operational Api
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#journey-identifiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Journey Identifiers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#journey-specification-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Journey Specification Options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Journey Specification Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#journey-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Journey Specifications
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Journey Specifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mapping-netex-data-to-journey-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mapping NeTEx Data to Journey Specifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#journey-call-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Journey Call Specifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#journey-line-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Journey Line Specifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#journey-pattern-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Journey Pattern Specifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#journey-stop-point-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Journey Stop Point Specifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duration-and-service-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Duration and Service Windows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Duration and Service Windows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#duration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Duration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-duration-and-service-windows-are-combined" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Duration and Service Windows Are Combined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#effective-service-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Effective Service Window
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access-tokens-retrieve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access Tokens - Retrieve
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-tokens-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access Tokens - Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Headers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Headers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#x-trace-id-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        X-Trace-Id Header
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-client-id-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        X-Client-Id Header
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-request-id-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        X-Request-Id Header
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-operator-id-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        X-Operator-Id Header
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-authority-id-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        X-Authority-Id Header
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../journey/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Journey API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../assignment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assignment API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deviation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deviation API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mitigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mitigation API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data formats
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Data formats
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timestamps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Time and Date
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Additional messages
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Additional messages
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tsp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TSP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Test specifications
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Test specifications
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../backoffice-test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backoffice test
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vehicle setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Vehicle setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mqtt/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MQTT bridge config
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../browser-requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browser requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Sync
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    File Sync
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../web-content/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Web content
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Resources
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../allowed-domains/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Allowed domains
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Display setup
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Display setup
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../screen-configs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Screen configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting-client/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting client
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PTO / PTA responsibilities
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    PTO / PTA responsibilities
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pto-pta-responsibilities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DPI Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operator_portal/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operator Portal
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hardware requirements
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hardware requirements
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../display-requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Displays
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../speaker-requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Speaker system
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contribute
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Contribute
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../issue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Report an issue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#data-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#journey-identifiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Journey Identifiers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#journey-specification-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Journey Specification Options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Journey Specification Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#journey-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Journey Specifications
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Journey Specifications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mapping-netex-data-to-journey-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mapping NeTEx Data to Journey Specifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#journey-call-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Journey Call Specifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#journey-line-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Journey Line Specifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#journey-pattern-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Journey Pattern Specifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#journey-stop-point-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Journey Stop Point Specifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#duration-and-service-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Duration and Service Windows
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Duration and Service Windows">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#duration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Duration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service Windows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-duration-and-service-windows-are-combined" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Duration and Service Windows Are Combined
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#effective-service-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Effective Service Window
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Authentication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#access-tokens-retrieve" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access Tokens - Retrieve
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-tokens-use" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Access Tokens - Use
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Headers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Headers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#x-trace-id-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        X-Trace-Id Header
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-client-id-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        X-Client-Id Header
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-request-id-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        X-Request-Id Header
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-operator-id-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        X-Operator-Id Header
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#x-authority-id-header" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        X-Authority-Id Header
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/RuterNo/adt-doc/edit/master/docs/operational-api/intro.md" title="Edit this page" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/RuterNo/adt-doc/raw/master/docs/operational-api/intro.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+  <h1>Introduction</h1>
+
+<p>The ADT Operational API consists of these functional areas:</p>
+<ol>
+<li><a href="../journey/">Journey API endpoints</a>, for looking up up-to-date lines, stop points and journeys.</li>
+<li><a href="../assignment/">Assignment API endpoints</a>, for signing vehicles on and off journeys as they are being operated.</li>
+<li><a href="../deviation/">Service Deviation API endpoints</a>, for notifying about deviations from planned operations delivery.</li>
+<li><a href="../mitigation/">Service Mitigation API endpoints</a>, for mitigating deviations.
+   <strong>NOTE: This is for internal use and not available to PTOs.</strong></li>
+</ol>
+<h3 id="data-model">Data Model<a class="headerlink" href="#data-model" title="Permanent link">&para;</a></h3>
+<pre class="mermaid"><code>flowchart TB
+    vehicle(("PTO&lt;br&gt;Vehicle"))
+    operator(("PTO&lt;br&gt;Back Office"))
+    controller(("PTA&lt;br&gt;Traffic&lt;br&gt;Controller"))
+
+    subgraph assignment-api ["Assignment API"]
+        vehicle-state("Vehicle State")
+        attempt-request("&lt;em&gt;Attempt Request&lt;/em&gt;")
+    end
+    subgraph journey-model ["Journey API"]
+        line("Line")
+        journey("Journey")
+        journey-call("Journey Call")
+        journey-state("Journey State")
+        stop-point("Stop Point")
+    end
+    subgraph mitigation-model ["Mitigation API"]
+        mitigation("Service Mitigation")
+    end
+    subgraph deviation-model ["Deviation API"]
+        deviation-request("&lt;em&gt;Service Deviation Request&lt;/em&gt;")
+        deviation("Service Deviation")
+        impact("impact")
+
+        deviation-request --&gt;|creates| deviation
+    end
+
+    vehicle .-&gt;|has| vehicle-state
+    vehicle --&gt;|sends| attempt-request
+    vehicle-state --&gt;|contains|journey
+
+    journey --&gt;|services| line
+    journey --&gt;|contains| journey-call
+    journey --&gt;|contains| journey-state
+    journey-call --&gt;|visits| stop-point
+    journey-state .-&gt;|refers to| deviation
+    journey-state .-&gt;|refers to| mitigation
+
+    deviation --&gt;|has| impact
+    impact .-&gt;|refers to| line
+    impact .-&gt;|refers to| stop-point
+    impact .-&gt;|refers to| journey-state
+
+    mitigation .-&gt;|mitigates| deviation
+    operator --&gt;|sends| deviation-request
+
+    deviation --&gt;|is processed by| controller
+    controller .-&gt;|creates| mitigation
+
+    attempt-request --&gt;|refers to| journey
+    attempt-request .-&gt;|refers to| journey-call</code></pre>
+<p><em>Simplified data model with relationships and data flow for operational APIs.</em></p>
+<h4 id="journey-identifiers">Journey Identifiers<a class="headerlink" href="#journey-identifiers" title="Permanent link">&para;</a></h4>
+<p>When looking up journeys via the <a href="../journey/">Journey API</a>, a set of three identifiers are returned for each journey:</p>
+<ol>
+<li><code>vehicleJourneyId</code>: Vehicle journey id assigned by PTA traffic planner. Reused across multiple operating dates.</li>
+<li><code>serviceJourneyId</code>: Service journey id assigned by PTA back-end system. Reused across multiple operating dates.</li>
+<li><code>datedServiceJourneyId</code>: Dated service journey id assigned by PTA back-end system. Unique for a specific service journey on a
+    specific date.</li>
+</ol>
+<p>Of these, 1.) and 2.) may be reused across multiple operating days and are therefore not unique for a specific date.</p>
+<h4 id="journey-specification-options">Journey Specification Options<a class="headerlink" href="#journey-specification-options" title="Permanent link">&para;</a></h4>
+<pre class="mermaid"><code>flowchart LR
+    subgraph _spec ["&lt;em&gt;Specification Structures&lt;/em&gt;"]
+        journey-spec("Journey Spec")
+        journey-spec-options("Journey Spec Options")
+        journey-line-spec("Journey Line Spec")
+        journey-stop-point-spec("Journey Stop Point Spec")
+        journey-call-spec("Journey Call Spec")
+    end
+    subgraph _data ["Data Structures"]
+        journey("Journey")
+        journey-line("Journey Line")
+        journey-call("Journey Call")
+        journey-stop-point("Stop Point")
+    end
+
+    journey-spec-options .-&gt;|contains| journey-call-spec
+    journey-spec-options .-&gt;|contains| journey-spec
+
+    journey-spec --&gt;|describes| journey
+    journey-call-spec --&gt;|describes| journey-call
+    journey-line-spec --&gt;|describes| journey-line
+    journey-stop-point-spec --&gt;|describes| journey-stop-point
+
+    journey .-&gt;|contains| journey-call
+    journey .-&gt;|services| journey-line
+    journey-call .-&gt;|visits| journey-stop-point
+    journey-call-spec .-&gt;|contains| journey-stop-point-spec</code></pre>
+<p><em>Simplified data model with relationships between specification structures and the objects they describe.</em></p>
+<p>Since not all journey identifiers are unique across operating days, when signing on a vehicle via the
+<a href="../assignment/">Assignment API</a> or registering a service deviation for a journey via the
+<a href="../deviation/">Service Deviation API</a>, some additional details may be required to uniquely identify a journey
+on a specific date.</p>
+<p>This structure is modeled as <em>journey specification options</em>, each describing a specific (planned) journey, a subset of
+calls in a (planned) journey or an unplanned <em>"ad-hoc"</em> journey with two properties:</p>
+<ol>
+<li><code>calls</code>, a list of <a href="#journey-call-specifications">journey call specifications</a> identifying specific calls in a
+   journey or an ad-hoc journey.</li>
+<li><code>journey</code>, a  <a href="#journey-specifications">journey specifications</a> identifying a specific (planned) journey.</li>
+</ol>
+<h5 id="journey-specifications">Journey Specifications<a class="headerlink" href="#journey-specifications" title="Permanent link">&para;</a></h5>
+<p>Certain API requests allow the client to provide a list of journeys when signing on a vehicle or
+registering a service deviation. In such requests, the <em>journey specification</em> structure describes a specific (planned)
+journey on a specific date:</p>
+<ol>
+<li><code>lineId</code>, a line identifier, such as <code>RUT:Line:xxx</code>.</li>
+<li><code>journeyId</code>, one of <code>vehicleJourneyId</code>, <code>serviceJourneyId</code> or <code>datedServiceJourneyId</code>.</li>
+<li><code>serviceWindow</code>, a date-time range with a <code>start</code> and <code>end</code> timestamp, describing the complete or partial service
+   window of the journey. See <a href="#duration-and-service-windows">Duration and Service Windows</a> for details.</li>
+</ol>
+<h6 id="mapping-netex-data-to-journey-specifications">Mapping NeTEx Data to Journey Specifications<a class="headerlink" href="#mapping-netex-data-to-journey-specifications" title="Permanent link">&para;</a></h6>
+<p>Example <em>PublicationDelivery</em> section from NeTEx data file format:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">&lt;PublicationDelivery&gt;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">&lt;dataObjects&gt;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nt">&lt;CompositeFrame&gt;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">      </span><span class="nt">&lt;frames&gt;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="nt">&lt;ServiceFrame&gt;</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">          </span><span class="nt">&lt;routes&gt;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">            </span><span class="nt">&lt;Route</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;RUT:Route:007&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">              </span><span class="nt">&lt;LineRef</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;RUT:Line:1337&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">            </span><span class="nt">&lt;/Route&gt;</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">          </span><span class="nt">&lt;/routes&gt;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">          </span><span class="nt">&lt;lines&gt;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">            </span><span class="nt">&lt;Line</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;RUT:Line:1337&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">            </span><span class="nt">&lt;/Line&gt;</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">          </span><span class="nt">&lt;/lines&gt;</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">          </span><span class="nt">&lt;journeyPatterns&gt;</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">            </span><span class="nt">&lt;JourneyPattern</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;RUT:JourneyPattern:123456&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">              </span><span class="nt">&lt;RouteRef</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;RUT:Route:007&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">            </span><span class="nt">&lt;/JourneyPattern&gt;</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">          </span><span class="nt">&lt;/journeyPatterns&gt;</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">        </span><span class="nt">&lt;/ServiceFrame&gt;</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">        </span><span class="nt">&lt;TimetableFrame&gt;</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">          </span><span class="nt">&lt;vehicleJourneys&gt;</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">            </span><span class="nt">&lt;ServiceJourney</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;RUT:ServiceJourney:1&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">              </span><span class="nt">&lt;JourneyPatternRef</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;RUT:JourneyPattern:123456&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">              </span><span class="nt">&lt;PrivateCode&gt;</span>505<span class="nt">&lt;/PrivateCode&gt;</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">              </span><span class="nt">&lt;passingTimes&gt;</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">                </span><span class="nt">&lt;TimetabledPassingTime&gt;</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">                  </span><span class="nt">&lt;StopPointInJourneyPatternRef/&gt;</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">                  </span><span class="nt">&lt;DepartureTime&gt;</span>03:28:00<span class="nt">&lt;/DepartureTime&gt;</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">                </span><span class="nt">&lt;/TimetabledPassingTime&gt;</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">                </span><span class="nt">&lt;TimetabledPassingTime&gt;</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">                  </span><span class="nt">&lt;StopPointInJourneyPatternRef/&gt;</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">                  </span><span class="nt">&lt;DepartureTime&gt;</span>03:31:00<span class="nt">&lt;/DepartureTime&gt;</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">                </span><span class="nt">&lt;/TimetabledPassingTime&gt;</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">                </span><span class="nt">&lt;TimetabledPassingTime&gt;</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">                  </span><span class="nt">&lt;StopPointInJourneyPatternRef/&gt;</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">                  </span><span class="nt">&lt;ArrivalTime&gt;</span>03:33:00<span class="nt">&lt;/ArrivalTime&gt;</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">                </span><span class="nt">&lt;/TimetabledPassingTime&gt;</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">              </span><span class="nt">&lt;/passingTimes&gt;</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">            </span><span class="nt">&lt;/ServiceJourney&gt;</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">            </span><span class="nt">&lt;DatedServiceJourney</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;RUT:DatedServiceJourney:a&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">              </span><span class="nt">&lt;ServiceJourneyRef</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;RUT:ServiceJourney:1&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">              </span><span class="nt">&lt;OperatingDayRef</span><span class="w"> </span><span class="na">ref=</span><span class="s">&quot;RUT:OperatingDay:2024-01-01&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">            </span><span class="nt">&lt;/DatedServiceJourney&gt;</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="w">          </span><span class="nt">&lt;/vehicleJourneys&gt;</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="w">        </span><span class="nt">&lt;/TimetableFrame&gt;</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="w">      </span><span class="nt">&lt;/frames&gt;</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="w">    </span><span class="nt">&lt;/CompositeFrame&gt;</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="w">  </span><span class="nt">&lt;/dataObjects&gt;</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="nt">&lt;/PublicationDelivery&gt;</span>
+</code></pre></div>
+<p>Resolved values from above example for use in journey specification:
+-  <strong>lineId</strong>: <code>RUT:Line:1337</code> value from
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>PublicationDelivery/dataObjects/CompositeFrame/frames/ServiceFrame/lines/Line/@id
+</code></pre></div>
+- <strong>journeyId</strong>: either of
+    1. <em>vehicle journey id</em> value <code>505</code> from
+        <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/PrivateCode
+</code></pre></div>
+    2. <em>service journey Id</em> value <code>RUT:ServiceJourney:1</code> from
+        <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/@Id
+</code></pre></div>
+    3. <em>dated service journey id</em> value <code>RUT:DatedServiceJourney:a</code> from
+        <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/DatedServiceJourney/@id
+</code></pre></div></p>
+<ul>
+<li><strong>serviceWindow.start</strong>: value <code>2024-01-01T03:28:00+01:00</code>, constructed by combining</li>
+<li>date of service</li>
+<li>departure time of earliest passing from
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/passingTimes/TimetabledPassingTime/DepartureTime
+</code></pre></div></li>
+<li>
+<p>current time-zone offset (CET).</p>
+</li>
+<li>
+<p><strong>serviceWindow.end</strong>: value <code>2024-01-01T03:33:00+01:00</code>, constructed by combining</p>
+</li>
+<li>date of service</li>
+<li>arrival time of latest passing time from
+    <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>PublicationDelivery/dataObjects/CompositeFrame/frames/TimetableFrame/vehicleJourneys/ServiceJourney/passingTimes/TimetabledPassingTime/ArrivalTime
+</code></pre></div></li>
+<li>current time-zone offset (CET).</li>
+</ul>
+<h5 id="journey-call-specifications">Journey Call Specifications<a class="headerlink" href="#journey-call-specifications" title="Permanent link">&para;</a></h5>
+<p>Certain API requests allow the client to provide a list of calls for a journey when signing on a vehicle or
+registering a service deviation. In such requests, a call must be uniquely specified within a journey, since a journey
+contains multiple calls and may also contain multiple calls at the same stop point (at different times).</p>
+<p>This structure is modeled as a <em>journey call specification</em>, consisting of three properties:</p>
+<ol>
+<li><code>stopPoint</code>, a <a href="#journey-stop-point-specifications">stop point specification</a>, indicating where this call occurs.</li>
+<li><code>arrivalDateTime</code>, a timestamp indicating the (planned) arrival time for the call.</li>
+<li><code>departureDatetime</code>, a timestamp indicating the (planned) departure time for the call.</li>
+</ol>
+<p><code>stopPoint</code> is always required to specify a call, but some calls may only have <code>arrivalDateTime</code> or <code>departureDateTime</code>
+specified, which is typically the case for the first (departure only) and last (arrival only) call of a journey.</p>
+<h4 id="journey-line-specifications">Journey Line Specifications<a class="headerlink" href="#journey-line-specifications" title="Permanent link">&para;</a></h4>
+<p>Certain API requests allow the client to provide a list of journey lines. In such requests, a line must be uniquely
+identified using a <em>journey line specification</em> consisting of two properties:</p>
+<ol>
+<li><code>lineId</code>, a line identifier, as returned by the <a href="../journey/#journey-lines">Journey API journey lines</a> endpoint.</li>
+<li><code>direction</code>, a line direction:</li>
+<li><code>ANY</code>, indicating any line direction.</li>
+<li><code>INBOUND</code>, indicating an inbound line.</li>
+<li><code>OUTBOUND</code>, indicating an outbound line.</li>
+</ol>
+<h4 id="journey-pattern-specifications">Journey Pattern Specifications<a class="headerlink" href="#journey-pattern-specifications" title="Permanent link">&para;</a></h4>
+<p>Certain API requests allow the client to target all dated journeys that run a specific journey pattern (turmønster).
+In such requests, the <em>journey pattern specification</em> structure identifies the pattern by a single property:</p>
+<ol>
+<li><code>journeyPatternId</code>, a NeTEx journey pattern reference, such as <code>RUT:JourneyPattern:008499</code>.</li>
+</ol>
+<p>Journey pattern specifications are wrapped in a <em>journey pattern spec window</em> that adds an optional <code>serviceWindow</code>.
+See <a href="#duration-and-service-windows">Duration and Service Windows</a> for how <code>serviceWindow</code> and <code>duration</code> interact to
+determine which journeys are included.</p>
+<h4 id="journey-stop-point-specifications">Journey Stop Point Specifications<a class="headerlink" href="#journey-stop-point-specifications" title="Permanent link">&para;</a></h4>
+<p>Since not all stop points in the operational journey database are required to have corresponding <a href="https://developer.entur.org/pages-nsr-nsr">NSR</a> quay ids,
+for example, if they represent stop points which are not official NSR quays, each stop point also has an associated
+<em>API stop point id</em>, returned when looking up stop points via the
+<a href="../journey/#journey-stop-points">Journey API stop points endpoint</a>.</p>
+<p>When supplying stop point references in API requests, either (or both) of <em>NSR quay id</em> or <em>stop point id</em> may be
+provided in the request.</p>
+<p>This structure is modeled as a <em>stop point specification</em> in the API, consisting of two
+properties:</p>
+<ol>
+<li><code>nsrQuayId</code>, an NSR quay identifier, such as <code>NSR:Quay:xxx</code>.</li>
+<li><code>stopPointId</code>, a stop point id provided by the API.</li>
+</ol>
+<p>Either, or both, of these properties may be provided to specify a stop point in an API request, but if both are
+provided they must both reference the same stop point.</p>
+<h4 id="duration-and-service-windows">Duration and Service Windows<a class="headerlink" href="#duration-and-service-windows" title="Permanent link">&para;</a></h4>
+<p>Every service deviation and service mitigation has two mechanisms for controlling which dated journeys are included in
+its impact: a top-level <code>duration</code> and optional per-entry <code>serviceWindow</code> values.</p>
+<h5 id="duration">Duration<a class="headerlink" href="#duration" title="Permanent link">&para;</a></h5>
+<p><code>duration</code> is a date-time range at the top level of the deviation or mitigation specification. It describes the overall
+active period of the event:</p>
+<ul>
+<li><code>start</code> — when the deviation or mitigation begins. May be omitted to indicate it has already started.</li>
+<li><code>end</code> — when the deviation or mitigation ends. May be omitted to indicate an open-ended event.</li>
+</ul>
+<p>When <code>duration</code> is provided it acts as the default temporal constraint for every impact entry that does not have its
+own <code>serviceWindow</code>. It is required unless every impact entry carries its own <code>serviceWindow</code>.</p>
+<h5 id="service-windows">Service Windows<a class="headerlink" href="#service-windows" title="Permanent link">&para;</a></h5>
+<p><code>serviceWindow</code> is an optional date-time range attached to individual impact entries — <code>lines[]</code>, <code>stopPoints[]</code>,
+<code>journeyPatterns[]</code>, and <code>journeys[]</code>. It refines the temporal scope of that specific entry independently of the
+top-level <code>duration</code>.</p>
+<p>Unlike <code>duration</code>, a <code>serviceWindow</code> on an impact entry must have both a <code>start</code> and an <code>end</code>; open-ended service
+windows are not permitted at the entry level.</p>
+<h5 id="how-duration-and-service-windows-are-combined">How Duration and Service Windows Are Combined<a class="headerlink" href="#how-duration-and-service-windows-are-combined" title="Permanent link">&para;</a></h5>
+<p>When resolving which dated journeys are targeted by an impact entry, the effective time window is computed as the
+<strong>intersection</strong> of the entry's <code>serviceWindow</code> and the top-level <code>duration</code>:</p>
+<ul>
+<li>The effective start is the <strong>later</strong> of the two starts (or the one present if only one is set).</li>
+<li>The effective end is the <strong>earlier</strong> of the two ends (or the one present if only one is set).</li>
+</ul>
+<p>A journey is included in the impact if its operating window falls within the effective time window — specifically,
+its first departure must be on or after the effective start, and its last arrival must be on or before the effective
+end.</p>
+<table>
+<thead>
+<tr>
+<th><code>duration</code></th>
+<th><code>serviceWindow</code></th>
+<th>Effective window used for journey matching</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>present</td>
+<td>absent</td>
+<td><code>duration</code></td>
+</tr>
+<tr>
+<td>absent</td>
+<td>present</td>
+<td><code>serviceWindow</code></td>
+</tr>
+<tr>
+<td>present</td>
+<td>present</td>
+<td>Intersection: <code>max(starts)</code> to <code>min(ends)</code></td>
+</tr>
+<tr>
+<td>absent</td>
+<td>absent</td>
+<td>No temporal constraint — all matching journeys are included</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example:</strong> If <code>duration</code> spans <code>08:00–22:00</code> and a line entry has <code>serviceWindow</code> of <code>10:00–14:00</code>, only
+journeys on that line departing from <code>10:00</code> and arriving by <code>14:00</code> are included. Journeys outside <code>10:00–14:00</code>
+are excluded even though they fall within the <code>duration</code>.</p>
+<p>This design allows a single deviation or mitigation to cover different time ranges for different impact entries — for
+example, cancelling all journeys on line A for the full day while only cancelling journeys on line B during the
+morning peak.</p>
+<h5 id="effective-service-window">Effective Service Window<a class="headerlink" href="#effective-service-window" title="Permanent link">&para;</a></h5>
+<p>Once the targeted dated journeys have been resolved, the system derives an <em>effective service window</em> for the deviation
+or mitigation as a whole. This is the span from the earliest first departure to the latest last arrival across all
+resolved journeys — i.e. the smallest contiguous time range that covers the operational activity of every affected
+journey.</p>
+<p>The effective service window is used when filtering deviations or mitigations by the <code>effectiveFrom</code> and <code>effectiveTo</code>
+search parameters:</p>
+<ul>
+<li><code>effectiveFrom</code> matches records whose effective service window <strong>ends at or after</strong> the given date-time — i.e.
+  records still active at or after that point.</li>
+<li><code>effectiveTo</code> matches records whose effective service window <strong>starts at or before</strong> the given date-time — i.e.
+  records that have already begun by that point.</li>
+</ul>
+<p>Together, the two parameters select records whose effective service window <strong>overlaps</strong> the given range.</p>
+<p>Note that the effective service window reflects the journeys resolved at the time of the last background processing run.
+It is updated whenever the deviation or mitigation is modified or its targeted journeys change.</p>
+<h3 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h3>
+<p>This document outlines the procedures for getting and using authentication tokens from the Operational Auth Service for accessing other services.</p>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>URL</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Token</td>
+<td><code>/api/adt/v4/operational/auth/oauth2/token</code></td>
+<td>Endpoint for exchanging credentials in tokens (especially access token)</td>
+</tr>
+<tr>
+<td>JWKS</td>
+<td><code>/api/adt/v4/operational/auth/.well-known/jwks</code></td>
+<td>(Optional) Endpoint for fetching a public key to verify the retrieved access token</td>
+</tr>
+<tr>
+<td>OpenID Configuration</td>
+<td><code>/api/adt/v4/operational/auth/.well-known/openid-configuration</code></td>
+<td>(Optional) Endpoint for discovering all <a href="https://openid.net/">OpenId Connect</a> endpoints</td>
+</tr>
+</tbody>
+</table>
+<p>Usage of the Operational API is restricted to Authenticated and Authorized Users only.</p>
+<p>Ensure that the credentials used match those used for MQTT access in the respective environments.</p>
+<p>Authentication supports an OpenId Connect authentication flow.</p>
+<h4 id="access-tokens-retrieve">Access Tokens - Retrieve<a class="headerlink" href="#access-tokens-retrieve" title="Permanent link">&para;</a></h4>
+<p>A successful authentication yields a JSON response containing:
+- <code>access_token</code>: JWT for authentication
+- <code>token_type</code>: Typically "Bearer"
+- <code>expires_in</code>: Token validity period in seconds
+- <code>scope</code>: Granted scopes
+- <code>id_token</code>: OpenID Connect ID token (if "openid" scope was requested)</p>
+<p>HTTP request:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>POST<span class="w"> </span>/api/adt/v4/operational/auth/oauth2/token
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Authorization:<span class="w"> </span>Basic<span class="w"> </span><span class="o">[</span>base64-encoded-VALID-credentials<span class="o">]</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>Content-Type:<span class="w"> </span>application/x-www-form-urlencoded
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nv">grant_type</span><span class="o">=</span>client_credentials<span class="p">&amp;</span><span class="nv">scope</span><span class="o">=</span>openid
+</code></pre></div>
+<p>HTTP response:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="m">200</span><span class="w"> </span>OK
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="o">{</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="s2">&quot;access_token&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;...&quot;</span>,
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="s2">&quot;token_type&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;Bearer&quot;</span>,
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span><span class="s2">&quot;expires_in&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="m">86400</span>,
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">  </span><span class="s2">&quot;scope&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;openid&quot;</span>,
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">  </span><span class="s2">&quot;id_token&quot;</span><span class="w"> </span>:<span class="w"> </span><span class="s2">&quot;...&quot;</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="o">}</span>
+</code></pre></div>
+<h4 id="access-tokens-use">Access Tokens - Use<a class="headerlink" href="#access-tokens-use" title="Permanent link">&para;</a></h4>
+<p>Any request should carry a Bearer Token in the <code>Authorization</code> header of HTTP requests.</p>
+<p>The value of the Bearer token is found in the field <code>access_token</code> from the above HTTP response.</p>
+<p>HTTP request:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>GET<span class="w"> </span>/api/adt/v4/operational/journey/journeys?query<span class="o">=</span><span class="m">1001</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Authorization:<span class="w"> </span>Bearer<span class="w"> </span>...
+</code></pre></div>
+<p>HTTP response:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="m">200</span><span class="w"> </span>OK
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="s2">&quot;&quot;</span>
+</code></pre></div>
+Common HTTP status codes when using the token:
+  - <strong>401 Unauthorized</strong>: Indicates an invalid, expired, or not permissioned enough token.
+  - <strong>403 Forbidden</strong>: Signifies a valid token lacking permission for the requested resource.</p>
+<p>In case of these errors, get a new token or verify the granted scopes.</p>
+<h3 id="common-headers">Common Headers<a class="headerlink" href="#common-headers" title="Permanent link">&para;</a></h3>
+<p>All API requests may contain one or more optional headers for tracing and request identification purposes:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Header</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a href="#x-trace-id-header"><code>X-Trace-Id</code></a></td>
+<td style="text-align: left;">May be used to identify multiple requests as part of the same "operation" or "process".</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#x-client-id-header"><code>X-Client-Id</code></a></td>
+<td style="text-align: left;">Optional client id indicating the logical name of the client making the API request.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#x-request-id-header"><code>X-Request-Id</code></a></td>
+<td style="text-align: left;">May be used to identify a single request. Should be unique for each separate request made to the API.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#x-operator-id-header"><code>X-Operator-Id</code></a></td>
+<td style="text-align: left;">Must be provided by clients with access to more than one PTO.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a href="#x-authority-id-header"><code>X-Authority-Id</code></a></td>
+<td style="text-align: left;">Must be provided by clients with access to more than one PTA.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="x-trace-id-header"><code>X-Trace-Id</code> Header<a class="headerlink" href="#x-trace-id-header" title="Permanent link">&para;</a></h4>
+<p>Optional trace id for request. May be used to trace multiple requests as part of the same "operation" or
+"process". If set, should be different from <a href="#x-request-id-header"><em>request id header</em></a>.</p>
+<h4 id="x-client-id-header"><code>X-Client-Id</code> Header<a class="headerlink" href="#x-client-id-header" title="Permanent link">&para;</a></h4>
+<p>Optional client id for request. May be used to identify client system by name or other identifier. Note that
+this is only treated as additional process metadata and not connected to authorization in any way.</p>
+<h4 id="x-request-id-header"><code>X-Request-Id</code> Header<a class="headerlink" href="#x-request-id-header" title="Permanent link">&para;</a></h4>
+<p>Optional unique identifier of request. Should be unique for every request made by the client, even if the request is a
+retry of a previous request with same <a href="#x-trace-id-header"><em>trace id</em></a>.</p>
+<h4 id="x-operator-id-header"><code>X-Operator-Id</code> Header<a class="headerlink" href="#x-operator-id-header" title="Permanent link">&para;</a></h4>
+<p>Optional operator id for request. Required by clients with access to more than one PTO.</p>
+<p>Operator id on the form:</p>
+<p><code>&lt;codespace&gt;:Operator:&lt;operator-number&gt;</code></p>
+<blockquote>
+<p>See
+<a href="https://enturas.atlassian.net/wiki/spaces/PUBLIC/pages/637370434/List+of+current+Codespaces">Entur list of NeTEx / SIRI codespaces</a>
+list of valid codespace prefixes.</p>
+</blockquote>
+<h4 id="x-authority-id-header"><code>X-Authority-Id</code> Header<a class="headerlink" href="#x-authority-id-header" title="Permanent link">&para;</a></h4>
+<p>Optional authority id for request. Required by clients with access to more than one PTA.</p>
+<p>Authority id on the form:</p>
+<p><code>&lt;authority-id&gt;</code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Operational API">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Operational API
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../journey/" class="md-footer__link md-footer__link--next" aria-label="Next: Journey API">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Journey API
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 Ruter AS
+    </div>
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/RuterNo" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
