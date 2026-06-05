@@ -1017,8 +1017,14 @@ Service deviations can be searched by sending a `GET` request to the `{baseURL}/
   - _Dated service journey ID_ — finds all deviations affecting a specific journey (e.g. `RUT:DatedServiceJourney:0001`).
   - _PTO case reference_ — finds deviations tagged with a given PTO case ref via the `PTO_CASE_REF` metadata key.
   - _PTA case reference_ — finds deviations tagged with a given PTA case ref via the `PTA_CASE_REF` metadata key.
-- `fromDateTime` and `toDateTime`: Timestamps for filtering deviations by their creation time. If not provided,
-  no time range filter is applied.
+- `fromDateTime` and `toDateTime`: Filter deviations by when they were last modified (created or updated). Useful for
+  sync clients that need to detect all changes within a time window. If not provided, no modification-time filter is
+  applied.
+- `effectiveFrom` and `effectiveTo`: Filter deviations by their effective service window — i.e. when the deviation is
+  operationally active. Returns deviations that have already started by `effectiveTo` and are still active at or after
+  `effectiveFrom` — i.e. deviations whose effective period overlaps the given range. If not provided, no
+  effective-period filter is applied. See [Effective Service Window](intro.md#effective-service-window) for how the
+  effective service window is derived.
 - `clientMetadataKey` and `clientMetadataValue`: Filter deviations by client metadata. When `clientMetadataKey` is
   provided, only deviations with a matching, searchable entry for that key are returned. `clientMetadataValue` is
   optional and further narrows the match to a specific value.

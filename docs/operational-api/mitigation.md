@@ -614,6 +614,29 @@ HTTP response:
   }
 }
 ```
+### Service Mitigation Search
+
+Service mitigations can be searched by sending a `GET` request to the `{baseURL}/mitigation/mitigations` endpoint.
+
+**Search Parameters**
+
+- `query`: Exact-match identifier lookup. Supported identifiers include:
+  - _Dated service journey ID_ — finds all mitigations affecting a specific journey (e.g. `RUT:DatedServiceJourney:0001`).
+  - _PTO case reference_ — finds mitigations tagged with a given PTO case ref via the `PTO_CASE_REF` metadata key.
+  - _PTA case reference_ — finds mitigations tagged with a given PTA case ref via the `PTA_CASE_REF` metadata key.
+- `fromDateTime` and `toDateTime`: Filter mitigations by when they were last modified (created or updated). Useful for
+  sync clients that need to detect all changes within a time window. If not provided, no
+  modification-time filter is applied.
+- `effectiveFrom` and `effectiveTo`: Filter mitigations by their effective service window — i.e. when the mitigation is
+  operationally active. Returns mitigations that have already started by `effectiveTo` and are still active at or after
+  `effectiveFrom` — i.e. mitigations whose effective period overlaps the given range. If not provided, no
+  effective-period filter is applied. See [Effective Service Window](intro.md#effective-service-window) for how the
+  effective service window is derived.
+- `clientMetadataKey` and `clientMetadataValue`: Filter mitigations by client metadata. When `clientMetadataKey` is
+  provided, only mitigations with a matching, searchable entry for that key are returned. `clientMetadataValue` is
+  optional and further narrows the match to a specific value.
+- `limit` and `offset`: Pagination parameters. Default limit is 20, maximum is 200.
+
 ### Additional Service Mitigation Operations
 
 In addition to creating service mitigations, a client may also look up, update, and delete existing service mitigations

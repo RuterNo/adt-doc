@@ -334,6 +334,26 @@ This design allows a single deviation or mitigation to cover different time rang
 example, cancelling all journeys on line A for the full day while only cancelling journeys on line B during the
 morning peak.
 
+##### Effective Service Window
+
+Once the targeted dated journeys have been resolved, the system derives an _effective service window_ for the deviation
+or mitigation as a whole. This is the span from the earliest first departure to the latest last arrival across all
+resolved journeys — i.e. the smallest contiguous time range that covers the operational activity of every affected
+journey.
+
+The effective service window is used when filtering deviations or mitigations by the `effectiveFrom` and `effectiveTo`
+search parameters:
+
+- `effectiveFrom` matches records whose effective service window **ends at or after** the given date-time — i.e.
+  records still active at or after that point.
+- `effectiveTo` matches records whose effective service window **starts at or before** the given date-time — i.e.
+  records that have already begun by that point.
+
+Together, the two parameters select records whose effective service window **overlaps** the given range.
+
+Note that the effective service window reflects the journeys resolved at the time of the last background processing run.
+It is updated whenever the deviation or mitigation is modified or its targeted journeys change.
+
 ### Authentication
 
 This document outlines the procedures for getting and using authentication tokens from the Operational Auth Service for accessing other services.

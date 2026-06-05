@@ -173,13 +173,15 @@ about the physical properties of the vehicle for passenger information purposes:
 ```json
 {
     "vehicle": {
-        "segmentCount": 2
+        "segmentCount": 2,
+        "segmentIds": ["SEGMENTID001", "SEGMENTID002"]
     }
 }
 ```
 
 The `segmentCount` field is optional and indicates the number of carriages in a multi-segment vehicle (e.g., a metro
 train consisting of two carriage sets).
+The `segmentIds` field is optional and contains the ids of the carriages in a multi-segment vehicle.
 
 #### Sign-On - Single Journey
 

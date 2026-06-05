@@ -2489,7 +2489,7 @@
       "JourneyLineSpec": {
         "type": "object",
         "title": "JourneyLineSpec",
-        "description": "Identifies a journey line by line id and diraction.",
+        "description": "Identifies a journey line by line id and direction.",
         "properties": {
           "lineId": {
             "type": "string"
