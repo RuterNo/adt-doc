@@ -273,6 +273,18 @@
                 "$id": "#/properties/route/properties/stopPlaces/items/properties/publicCode",
                 "type": "string",
                 "description": "Public code for a stop"
+              },
+              "plannedArrivalTime": {
+                "$id": "#/properties/route/properties/stopPlaces/items/properties/plannedArrivalTime",
+                "type": "string",
+                "format": "date-time",
+                "description": "Planned arrival time at this stop. May be omitted for the first stop of the journey."
+              },
+              "plannedDepartureTime": {
+                "$id": "#/properties/route/properties/stopPlaces/items/properties/plannedDepartureTime",
+                "type": "string",
+                "format": "date-time",
+                "description": "Planned departure time from this stop. May be omitted for the last stop of the journey."
               }
             }
           }
