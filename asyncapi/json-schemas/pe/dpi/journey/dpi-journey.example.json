@@ -1,10 +1,10 @@
 {
   "name": "Journey",
   "payload": {
-    "eventTimestamp": "2017-10-31T08:38:02.749Z",
+    "eventTimestamp": "2025-03-15T07:59:00.000Z",
     "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
     "journeyId": "RUT:ServiceJourney:31-117215-13227462",
-    "journeyRef": "31001-2019-02-17T21:55:00+01:00",
+    "journeyRef": "31001-2025-03-15T08:00:00+01:00",
     "assignmentId": "ab599917ed214472a40c79c18e6cb6b0",
     "route": {
       "id": "RUT:Route:31-1041",
@@ -34,7 +34,8 @@
             "latitude": 12.33345,
             "longitude": 12.33345
           },
-          "tariffZones" : [ "OST:TariffZone:227", "RUT:TariffZone:1" ]
+          "tariffZones": [ "OST:TariffZone:227", "RUT:TariffZone:1" ],
+          "plannedDepartureTime": "2025-03-15T08:00:00Z"
         },
         {
           "id": "RUT:StopPlace:03010013",
@@ -44,10 +45,22 @@
             "latitude": 12.33345,
             "longitude": 12.33345
           },
-          "tariffZones" : [ "RUT:TariffZone:1" ]
+          "tariffZones": [ "RUT:TariffZone:1" ],
+          "plannedArrivalTime": "2025-03-15T08:22:00Z",
+          "plannedDepartureTime": "2025-03-15T08:23:00Z"
+        },
+        {
+          "id": "RUT:StopPlace:03012345",
+          "name": "Tonsenhagen",
+          "cancelled": false,
+          "location": {
+            "latitude": 12.33345,
+            "longitude": 12.33345
+          },
+          "tariffZones": [ "RUT:TariffZone:1" ],
+          "plannedArrivalTime": "2025-03-15T08:45:00Z"
         }
       ]
     }
   }
 }
-
