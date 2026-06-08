@@ -35,7 +35,8 @@
             "latitude": 12.33345,
             "longitude": 12.33345
           },
-          "tariffZones" : [ "OST:TariffZone:227", "RUT:TariffZone:1" ]
+          "tariffZones" : [ "OST:TariffZone:227", "RUT:TariffZone:1" ],
+          "plannedDepartureTime": "2017-10-31T08:00:00Z"
         },
         {
           "id": "RUT:StopPlace:03010013",
@@ -64,7 +65,20 @@
           "location": {
             "latitude": 12.33345,
             "longitude": 12.33345
-          }
+          },
+          "plannedArrivalTime": "2017-10-31T08:22:00Z",
+          "plannedDepartureTime": "2017-10-31T08:23:00Z"
+        },
+        {
+          "id": "RUT:StopPlace:03012345",
+          "name": "Tonsenhagen",
+          "cancelled": false,
+          "connections": [],
+          "location": {
+            "latitude": 12.33345,
+            "longitude": 12.33345
+          },
+          "plannedArrivalTime": "2017-10-31T08:45:00Z"
         }
       ]
     }
