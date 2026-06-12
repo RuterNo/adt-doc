@@ -33,11 +33,8 @@ jobs:
       - name: Bundle AsyncAPI document
         run: node scripts/bundle-asyncapi.js
 
-      - name: Install AsyncAPI CLI
-        run: pnpm add -g @asyncapi/cli
-
       - name: Generate HTML from AsyncAPI document
-        run: asyncapi generate fromTemplate asyncapi/asyncapi.yml @asyncapi/html-template -o docs/asyncapi --force-write --param config='{"sidebar":{"useChannelAddressAsIdentifier":true}}'
+        run: pnpm dlx @asyncapi/cli generate fromTemplate asyncapi/asyncapi.yml @asyncapi/html-template -o docs/asyncapi --force-write --param config='{"sidebar":{"useChannelAddressAsIdentifier":true}}'
 
       - run: npx @redocly/cli build-docs -o docs/openapi/trafficplan/index.html openapi/trafficplan/api-spec.json
       - run: npx @redocly/cli build-docs -o docs/openapi/operational/index.html openapi/operational/api-spec.json

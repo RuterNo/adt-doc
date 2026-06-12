@@ -122,11 +122,6 @@ We recommend familiarizing your self with the MQTT standard, and recommends the 
 pnpm install
 ```
 
-#### Install the AsyncAPI CLI
-```
-pnpm add -g @asyncapi/cli
-```
-
 #### Bundle the AsyncAPI document
 
 The AsyncAPI spec is split across many source files (schemas, markdown descriptions, examples).
@@ -141,7 +136,7 @@ This produces `asyncapi/asyncapi.yml` (gitignored). The source template is `asyn
 #### Build the AsyncAPI documentation
 
 ```
-asyncapi generate fromTemplate asyncapi/asyncapi.yml @asyncapi/html-template -o docs/asyncapi --force-write --param config='{"sidebar":{"useChannelAddressAsIdentifier":true}}'
+pnpm dlx @asyncapi/cli generate fromTemplate asyncapi/asyncapi.yml @asyncapi/html-template -o docs/asyncapi --force-write --param config='{"sidebar":{"useChannelAddressAsIdentifier":true}}'
 ```
 
 #### More information
