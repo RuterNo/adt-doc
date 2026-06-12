@@ -16,12 +16,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
+          node-version: '22.x'
 
       - uses: pnpm/action-setup@v4
         with:
@@ -61,7 +61,7 @@ jobs:
           sudo find docs/asyncapi/json-schemas/ -name "*.md" -type f -delete
         shell: bash
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: 3.x
       - run: pip install mkdocs-material mike
