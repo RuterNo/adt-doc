@@ -33,6 +33,9 @@ jobs:
       - name: Bundle AsyncAPI document
         run: node scripts/bundle-asyncapi.js
 
+      - name: Inject version into bundled document
+        run: sed -i 's/version\.from\.tag/'"$RELEASE_NAME"'/g' asyncapi/asyncapi.yml
+
       - name: Generate HTML from AsyncAPI document
         run: pnpm dlx @asyncapi/cli generate fromTemplate asyncapi/asyncapi.yml @asyncapi/html-template -o docs/asyncapi --force-write --param config='{"sidebar":{"useChannelAddressAsIdentifier":true}}'
 
@@ -41,21 +44,20 @@ jobs:
 
       - name: Modify HTML output from generator
         run: |
-          sudo sed -i 's/version\.from\.tag/'"$RELEASE_NAME"'/g' docs/asyncapi/index.html
-          sudo sed -i 's/version\.from\.tag/'"$RELEASE_NAME"'/g' docs/openapi/trafficplan/index.html
-          sudo sed -i 's/version\.from\.tag/'"$RELEASE_NAME"'/g' docs/openapi/operational/index.html
-          sudo cp asyncapi/stylesheets/doc.css docs/asyncapi/css/
-          sudo mkdir docs/asyncapi/images/
-          sudo cp asyncapi/markdown/images/* docs/asyncapi/images/
-          sudo sed -i -e '\@</head>@i\<link href="css/doc.css" rel="stylesheet">' docs/asyncapi/index.html
+          sed -i 's/version\.from\.tag/'"$RELEASE_NAME"'/g' docs/openapi/trafficplan/index.html
+          sed -i 's/version\.from\.tag/'"$RELEASE_NAME"'/g' docs/openapi/operational/index.html
+          cp asyncapi/stylesheets/doc.css docs/asyncapi/css/
+          mkdir docs/asyncapi/images/
+          cp asyncapi/markdown/images/* docs/asyncapi/images/
+          sed -i -e '\@</head>@i\<link href="css/doc.css" rel="stylesheet">' docs/asyncapi/index.html
         shell: bash
 
       - name: Make Json Schemas available
         run: |
-          sudo cp -r asyncapi/json-schemas docs/asyncapi/json-schemas
-          sudo find docs/asyncapi/json-schemas/ -name "*example.json" -type f -delete
-          sudo find docs/asyncapi/json-schemas/ -name "*.meta.json" -type f -delete
-          sudo find docs/asyncapi/json-schemas/ -name "*.md" -type f -delete
+          cp -r asyncapi/json-schemas docs/asyncapi/json-schemas
+          find docs/asyncapi/json-schemas/ -name "*example.json" -type f -delete
+          find docs/asyncapi/json-schemas/ -name "*.meta.json" -type f -delete
+          find docs/asyncapi/json-schemas/ -name "*.md" -type f -delete
         shell: bash
 
       - uses: actions/setup-python@v5
