@@ -14,7 +14,7 @@
       "name": "GPL 3.0",
       "url": "https://ruter.no"
     },
-    "version": "version.from.tag"
+    "version": "4.x"
   },
   "defaultContentType": "application/json",
   "servers": {
