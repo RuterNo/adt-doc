@@ -1,0 +1,12 @@
+{
+  "name": "adt-doc",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@latest",
+  "scripts": {
+    "bundle": "node scripts/bundle-asyncapi.js"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}

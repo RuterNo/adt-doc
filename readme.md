@@ -117,21 +117,35 @@ We recommend familiarizing your self with the MQTT standard, and recommends the 
 #### Prerequisites
 - Node.js
 
-#### Installing the AsyncApi Generator
+#### Install dependencies
 ```
-npm install -g @asyncapi/generator@1.9.18
+pnpm install
 ```
 
-#### Building the asyncApi documentation
+#### Install the AsyncAPI CLI
+```
+pnpm add -g @asyncapi/cli
+```
 
-To build the documentation, run the following command:
+#### Bundle the AsyncAPI document
+
+The AsyncAPI spec is split across many source files (schemas, markdown descriptions, examples).
+This step merges them into a single self-contained file:
 
 ```
-ag asyncapi/asyncapi.yml @asyncapi/html-template@0.28.4 -o docs/asyncapi --force-write
+node scripts/bundle-asyncapi.js
+```
+
+This produces `asyncapi/asyncapi.yml` (gitignored). The source template is `asyncapi/asyncapi_template.yml`.
+
+#### Build the AsyncAPI documentation
+
+```
+asyncapi generate fromTemplate asyncapi/asyncapi.yml @asyncapi/html-template -o docs/asyncapi --force-write --param config='{"sidebar":{"useChannelAddressAsIdentifier":true}}'
 ```
 
 #### More information
-[AsyncApi HTML generator](https://github.com/asyncapi/html-template)
+[AsyncAPI HTML template](https://github.com/asyncapi/html-template)
 
 
 ### Build documentation site locally

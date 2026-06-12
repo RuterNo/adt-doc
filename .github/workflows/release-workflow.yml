@@ -11,16 +11,27 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Generating HTML from my AsyncAPI document
-        uses: actions/setup-node@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '18.x'
-      - run: npm install -g @asyncapi/generator@1.9.18
-      - run: ag asyncapi/asyncapi.yml @asyncapi/html-template@0.28.4 -o docs/asyncapi --force-write
+          node-version: '20.x'
 
-      - uses: actions/setup-node@v3
+      - uses: pnpm/action-setup@v4
         with:
-          node-version: '18.x'
+          version: latest
+
+      - name: Install bundle script dependencies
+        run: pnpm install
+
+      - name: Bundle AsyncAPI document
+        run: node scripts/bundle-asyncapi.js
+
+      - name: Install AsyncAPI CLI
+        run: pnpm add -g @asyncapi/cli
+
+      - name: Generate HTML from AsyncAPI document
+        run: asyncapi generate fromTemplate asyncapi/asyncapi.yml @asyncapi/html-template -o docs/asyncapi --force-write --param config='{"sidebar":{"useChannelAddressAsIdentifier":true}}'
+
       - run: npx @redocly/cli build-docs -o docs/openapi/trafficplan/index.html openapi/trafficplan/api-spec.json
       - run: npx @redocly/cli build-docs -o docs/openapi/operational/index.html openapi/operational/api-spec.json
 
