@@ -4,7 +4,8 @@
   "private": true,
   "packageManager": "pnpm@latest",
   "scripts": {
-    "bundle": "node scripts/bundle-asyncapi.js"
+    "bundle": "node scripts/bundle-asyncapi.js",
+    "test": "node --test scripts/"
   },
   "dependencies": {
     "js-yaml": "^4.1.0"

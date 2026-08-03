@@ -4,7 +4,6 @@ const yaml = require('js-yaml');
 
 const INPUT_FILE  = path.resolve(__dirname, '../asyncapi/asyncapi_template.yml');
 const OUTPUT_FILE = path.resolve(__dirname, '../asyncapi/asyncapi.yml');
-const BASE_DIR    = path.dirname(INPUT_FILE);
 
 function resolveJsonPointer(root, ref) {
   const parts = ref.replace(/^#\/?/, '').split('/').filter(Boolean);
@@ -63,7 +62,15 @@ function resolveNode(node, currentDir) {
   return node;
 }
 
-const doc = yaml.load(fs.readFileSync(INPUT_FILE, 'utf8'));
-const resolved = resolveNode(doc, BASE_DIR);
-fs.writeFileSync(OUTPUT_FILE, yaml.dump(resolved, { lineWidth: -1, noRefs: true }));
-console.log('Bundled →', OUTPUT_FILE);
+function bundle(inputFile, outputFile) {
+  const doc = yaml.load(fs.readFileSync(inputFile, 'utf8'));
+  const resolved = resolveNode(doc, path.dirname(inputFile));
+  fs.writeFileSync(outputFile, yaml.dump(resolved, { lineWidth: -1, noRefs: true }));
+  console.log('Bundled →', outputFile);
+}
+
+if (require.main === module) {
+  bundle(INPUT_FILE, OUTPUT_FILE);
+}
+
+module.exports = { resolveJsonPointer, expandSchemaInternalRefs, resolveNode, bundle };
