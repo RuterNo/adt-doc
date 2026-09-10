@@ -5,7 +5,7 @@
   "packageManager": "pnpm@latest",
   "scripts": {
     "bundle": "node scripts/bundle-asyncapi.js",
-    "test": "node --test scripts/"
+    "test": "node --test scripts/*.test.js"
   },
   "dependencies": {
     "js-yaml": "^4.1.0"
