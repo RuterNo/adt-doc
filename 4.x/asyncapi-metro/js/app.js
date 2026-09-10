@@ -3354,6 +3354,11 @@
                   "type": "string",
                   "description": "A unique identifier - UUID"
                 },
+                "status": {
+                  "$id": "#/properties/status",
+                  "type": "string",
+                  "description": "A text string indicating if the eta is NORMAL or DEVIATION (off-route)."
+                },
                 "estimatedCalls": {
                   "$id": "#/properties/estimatedCalls",
                   "type": "array",
@@ -3395,18 +3400,169 @@
             {
               "name": "Eta",
               "payload": {
-                "eventTimestamp": "2017-10-31T08:38:02.749Z",
-                "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
+                "eventTimestamp": "2026-06-04T13:20:55.653945494Z",
+                "traceId": "bca6ee72-6ca7-49d1-8ecf-3fde8b34f17e",
+                "status": "NORMAL",
                 "estimatedCalls": [
                   {
-                    "eta": "2017-10-13T12:27:04.416Z",
-                    "stopPlaceId": "RUT:StopPlace:03010510",
+                    "eta": "2026-06-04T13:18:33.000Z",
+                    "stopPlaceId": "NSR:StopPlace:5900",
                     "text": "Nå"
                   },
                   {
-                    "eta": "2017-10-13T12:27:04.416Z",
-                    "stopPlaceId": "RUT:StopPlace:03010511",
-                    "text": "1 Min"
+                    "eta": "2026-06-04T13:19:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:5917",
+                    "text": "1 min"
+                  },
+                  {
+                    "eta": "2026-06-04T13:21:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:5935",
+                    "text": "1 min"
+                  },
+                  {
+                    "eta": "2026-06-04T13:22:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:6086",
+                    "text": "1 min"
+                  },
+                  {
+                    "eta": "2026-06-04T13:24:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:6068",
+                    "text": "3 min"
+                  },
+                  {
+                    "eta": "2026-06-04T13:26:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:6051",
+                    "text": "5 min"
+                  },
+                  {
+                    "eta": "2026-06-04T13:28:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:6473",
+                    "text": "7 min"
+                  },
+                  {
+                    "eta": "2026-06-04T13:30:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:6488",
+                    "text": "9 min"
+                  },
+                  {
+                    "eta": "2026-06-04T13:31:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:3990",
+                    "text": "10 min"
+                  },
+                  {
+                    "eta": "2026-06-04T13:32:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:4029",
+                    "text": "11 min"
+                  },
+                  {
+                    "eta": "2026-06-04T13:34:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:4067",
+                    "text": "13 min"
+                  },
+                  {
+                    "eta": "2026-06-04T13:37:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:4452",
+                    "text": "15:37"
+                  },
+                  {
+                    "eta": "2026-06-04T13:39:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:6332",
+                    "text": "15:39"
+                  },
+                  {
+                    "eta": "2026-06-04T13:40:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:6342",
+                    "text": "15:40"
+                  },
+                  {
+                    "eta": "2026-06-04T13:42:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:6149",
+                    "text": "15:42"
+                  },
+                  {
+                    "eta": "2026-06-04T13:45:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:6073",
+                    "text": "15:45"
+                  },
+                  {
+                    "eta": "2026-06-04T13:46:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:6057",
+                    "text": "15:46"
+                  },
+                  {
+                    "eta": "2026-06-04T13:48:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:6035",
+                    "text": "15:48"
+                  },
+                  {
+                    "eta": "2026-06-04T13:50:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:58163",
+                    "text": "15:50"
+                  },
+                  {
+                    "eta": "2026-06-04T13:52:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:5905",
+                    "text": "15:52"
+                  },
+                  {
+                    "eta": "2026-06-04T13:54:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:5922",
+                    "text": "15:54"
+                  },
+                  {
+                    "eta": "2026-06-04T13:55:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:5936",
+                    "text": "15:55"
+                  },
+                  {
+                    "eta": "2026-06-04T13:56:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:5947",
+                    "text": "15:56"
+                  },
+                  {
+                    "eta": "2026-06-04T13:57:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:5963",
+                    "text": "15:57"
+                  },
+                  {
+                    "eta": "2026-06-04T14:00:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:5803",
+                    "text": "16:00"
+                  },
+                  {
+                    "eta": "2026-06-04T14:01:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:5810",
+                    "text": "16:01"
+                  },
+                  {
+                    "eta": "2026-06-04T14:02:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:5829",
+                    "text": "16:02"
+                  },
+                  {
+                    "eta": "2026-06-04T14:03:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:5848",
+                    "text": "16:03"
+                  },
+                  {
+                    "eta": "2026-06-04T14:04:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:5780",
+                    "text": "16:04"
+                  },
+                  {
+                    "eta": "2026-06-04T14:06:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:5705",
+                    "text": "16:06"
+                  },
+                  {
+                    "eta": "2026-06-04T14:07:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:5720",
+                    "text": "16:07"
+                  },
+                  {
+                    "eta": "2026-06-04T14:11:38.000Z",
+                    "stopPlaceId": "NSR:StopPlace:5730",
+                    "text": "16:11"
                   }
                 ]
               }
@@ -3794,6 +3950,18 @@
                             "$id": "#/properties/route/properties/stopPlaces/items/properties/publicCode",
                             "type": "string",
                             "description": "Public code for a stop"
+                          },
+                          "plannedArrivalTime": {
+                            "$id": "#/properties/route/properties/stopPlaces/items/properties/plannedArrivalTime",
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Planned arrival time at this stop. May be omitted for the first stop of the journey."
+                          },
+                          "plannedDepartureTime": {
+                            "$id": "#/properties/route/properties/stopPlaces/items/properties/plannedDepartureTime",
+                            "type": "string",
+                            "format": "date-time",
+                            "description": "Planned departure time from this stop. May be omitted for the last stop of the journey."
                           }
                         }
                       }
@@ -3807,10 +3975,10 @@
             {
               "name": "Journey",
               "payload": {
-                "eventTimestamp": "2017-10-31T08:38:02.749Z",
+                "eventTimestamp": "2025-03-15T07:59:00.000Z",
                 "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
                 "journeyId": "RUT:ServiceJourney:31-117215-13227462",
-                "journeyRef": "31001-2019-02-17T21:55:00+01:00",
+                "journeyRef": "31001-2025-03-15T08:00:00+01:00",
                 "assignmentId": "ab599917ed214472a40c79c18e6cb6b0",
                 "route": {
                   "id": "RUT:Route:31-1041",
@@ -3843,7 +4011,8 @@
                       "tariffZones": [
                         "OST:TariffZone:227",
                         "RUT:TariffZone:1"
-                      ]
+                      ],
+                      "plannedDepartureTime": "2025-03-15T08:00:00Z"
                     },
                     {
                       "id": "RUT:StopPlace:03010013",
@@ -3855,7 +4024,22 @@
                       },
                       "tariffZones": [
                         "RUT:TariffZone:1"
-                      ]
+                      ],
+                      "plannedArrivalTime": "2025-03-15T08:22:00Z",
+                      "plannedDepartureTime": "2025-03-15T08:23:00Z"
+                    },
+                    {
+                      "id": "RUT:StopPlace:03012345",
+                      "name": "Tonsenhagen",
+                      "cancelled": false,
+                      "location": {
+                        "latitude": 12.33345,
+                        "longitude": 12.33345
+                      },
+                      "tariffZones": [
+                        "RUT:TariffZone:1"
+                      ],
+                      "plannedArrivalTime": "2025-03-15T08:45:00Z"
                     }
                   ]
                 }

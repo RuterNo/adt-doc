@@ -2505,18 +2505,169 @@ The payload is defined as an object with no pre-defined structure to provide fle
 <p>Estimated arrival at the remaining stops.</p>
 </div></div><div class="border bg-gray-100 rounded px-4 py-2 mt-2"><div class="text-sm text-gray-700">Operation ID<span class="bg-orange-600 text-white rounded text-xs ml-2 py-0 px-2">receiveDpiEta</span></div></div><div class="mt-2 text-sm"><p>Available only on servers:</p><ul class="flex flex-wrap leading-normal"><li class="inline-block mt-2 mr-2"><a href="#server-mqttTranshub" class="border border-solid border-blue-300 hover:bg-blue-300 hover:text-blue-600 text-blue-500 font-bold no-underline text-xs rounded px-3 py-1 cursor-pointer"><span class="underline">mqttTranshub</span></a></li></ul></div><div class="mt-2" id="operation-receive-pe/dpi/eta-security"></div><div class="mt-2"></div><div class="mt-2"><div class="flex mb-4 gap-2"><div class="border rounded overflow-visible w-full"><div class="flex flex-col justify-center p-4 bg-gray-100 border-b"><div class="flex justify-between items-start"><div class="flex items-center gap-2 w-full"><div class="flex items-center gap-2"><button class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 " type="button"><div class="inline-block"><div class="inline-block text-sm"><span>Operation specific information</span><strong class="bg-teal-500 no-underline text-white uppercase rounded mx-2 px-2 py-1 text-xs">mqtt</strong></div></div><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 20 20" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" class="inline-block align-baseline cursor-pointer ml-0.5 -mb-1 w-5 h-5 transform transition-transform duration-150 ease-linear  "><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg></button></div><span class="capitalize text-sm text-teal-500 font-bold">object</span><div class="ml-auto flex gap-4"><button type="button" class="text-sm text-gray-500 hover:text-gray-700">Expand all</button></div></div></div></div><div class="flex "></div></div></div></div><div class="mt-2"></div></div><div class="w-full mt-4" id="operation-receive-pe/dpi/eta-message"><div class="mt-2"><p class="px-8">Accepts the following message:</p><div class="mt-2"><div class="panel-item"><div class="panel-item--center px-8"><div class="shadow rounded bg-gray-200 p-4 border"><div></div><ul class="leading-normal mt-2 mb-4 space-x-2 space-y-2"><li class="inline-block"><a href="https://www.iana.org/assignments/media-types/application/json" title="Opens in new window" class="border border-solid border-orange-300 hover:bg-orange-300 hover:text-orange-600 text-orange-500 font-bold no-underline text-xs uppercase rounded px-3 py-1" target="_blank" rel="nofollow noopener noreferrer"><span>application/json</span></a></li></ul><div class="border bg-gray-100 rounded px-4 py-2 mt-2"><div class="text-sm text-gray-700">Message ID<span class="bg-orange-600 text-white rounded text-xs ml-2 py-0 px-2">DpiEta</span></div></div><div class="mt-2"><div class="flex mb-4 gap-2"><div class="border rounded overflow-visible w-full"><div class="flex flex-col justify-center p-4 bg-gray-100 border-b"><div class="flex justify-between items-start"><div class="flex items-center gap-2 w-full"><div class="flex items-center gap-2"><button class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 " type="button"><div class="inline-block"><span class="break-anywhere text-sm w-full ">Payload</span></div><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 20 20" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" class="inline-block align-baseline cursor-pointer ml-0.5 -mb-1 w-5 h-5 transform transition-transform duration-150 ease-linear  "><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg></button></div><span class="capitalize text-sm text-teal-500 font-bold">object [DpiEta]</span><span class="border text-orange-600 rounded mr-2 p-1 text-xs">uid: <!-- -->https://schemas.ruter.no/adt/ota/api/v4.x/pe/dpi/eta/dpi-eta.json</span><div class="ml-auto flex gap-4"><button type="button" class="text-sm text-gray-500 hover:text-gray-700">Expand all</button></div></div></div><div class="mt-2 text-sm text-gray-600"><div class="prose max-w-none text-sm"><p>Estimated time of arrival for future stops on a journey</p>
 </div></div></div><div class="flex "></div></div></div></div></div></div><div class="panel-item--right px-8"><div class="bg-gray-800 px-8 py-4 mt-4 -mx-8 2xl:mx-0 2xl:px-4 2xl:rounded examples"><h4 class="text-white text-lg">Examples</h4><div class="mt-4"><div><button class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 " type="button"><div class="inline-block"><span class="inline-block w-20 py-0.5 mr-1 text-gray-200 text-sm border text-center rounded focus:outline-none">Payload</span></div><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 20 20" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" class="inline-block align-baseline cursor-pointer ml-0.5 -mb-1 w-5 h-5 transform transition-transform duration-150 ease-linear  fill-current text-gray-200"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg></button></div><div class="hidden"><ul><li class="mt-4"><h5 class="text-xs font-bold text-gray-500">#1 Example - Eta</h5><div class="mt-1"><div class="prose max-w-none text-sm"><pre><code class="hljs language-json">{
-  <span class="hljs-attr">"eventTimestamp"</span>: <span class="hljs-string">"2017-10-31T08:38:02.749Z"</span>,
-  <span class="hljs-attr">"traceId"</span>: <span class="hljs-string">"3841a268-0c03-4588-b476-211be0f26a0d"</span>,
+  <span class="hljs-attr">"eventTimestamp"</span>: <span class="hljs-string">"2026-06-04T13:20:55.653945494Z"</span>,
+  <span class="hljs-attr">"traceId"</span>: <span class="hljs-string">"bca6ee72-6ca7-49d1-8ecf-3fde8b34f17e"</span>,
+  <span class="hljs-attr">"status"</span>: <span class="hljs-string">"NORMAL"</span>,
   <span class="hljs-attr">"estimatedCalls"</span>: [
     {
-      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2017-10-13T12:27:04.416Z"</span>,
-      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"RUT:StopPlace:03010510"</span>,
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:18:33.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:5900"</span>,
       <span class="hljs-attr">"text"</span>: <span class="hljs-string">"Nå"</span>
     },
     {
-      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2017-10-13T12:27:04.416Z"</span>,
-      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"RUT:StopPlace:03010511"</span>,
-      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"1 Min"</span>
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:19:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:5917"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"1 min"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:21:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:5935"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"1 min"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:22:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:6086"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"1 min"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:24:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:6068"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"3 min"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:26:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:6051"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"5 min"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:28:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:6473"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"7 min"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:30:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:6488"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"9 min"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:31:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:3990"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"10 min"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:32:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:4029"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"11 min"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:34:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:4067"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"13 min"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:37:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:4452"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"15:37"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:39:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:6332"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"15:39"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:40:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:6342"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"15:40"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:42:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:6149"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"15:42"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:45:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:6073"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"15:45"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:46:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:6057"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"15:46"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:48:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:6035"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"15:48"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:50:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:58163"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"15:50"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:52:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:5905"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"15:52"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:54:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:5922"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"15:54"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:55:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:5936"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"15:55"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:56:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:5947"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"15:56"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T13:57:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:5963"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"15:57"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T14:00:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:5803"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"16:00"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T14:01:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:5810"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"16:01"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T14:02:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:5829"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"16:02"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T14:03:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:5848"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"16:03"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T14:04:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:5780"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"16:04"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T14:06:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:5705"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"16:06"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T14:07:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:5720"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"16:07"</span>
+    },
+    {
+      <span class="hljs-attr">"eta"</span>: <span class="hljs-string">"2026-06-04T14:11:38.000Z"</span>,
+      <span class="hljs-attr">"stopPlaceId"</span>: <span class="hljs-string">"NSR:StopPlace:5730"</span>,
+      <span class="hljs-attr">"text"</span>: <span class="hljs-string">"16:11"</span>
     }
   ]
 }
@@ -2650,10 +2801,10 @@ The payload is defined as an object with no pre-defined structure to provide fle
 <p>Message containing the stops included in the journey, connections to other lines, positions ++.</p>
 </div></div><div class="border bg-gray-100 rounded px-4 py-2 mt-2"><div class="text-sm text-gray-700">Operation ID<span class="bg-orange-600 text-white rounded text-xs ml-2 py-0 px-2">receiveDpiJourney</span></div></div><div class="mt-2 text-sm"><p>Available only on servers:</p><ul class="flex flex-wrap leading-normal"><li class="inline-block mt-2 mr-2"><a href="#server-mqttTranshub" class="border border-solid border-blue-300 hover:bg-blue-300 hover:text-blue-600 text-blue-500 font-bold no-underline text-xs rounded px-3 py-1 cursor-pointer"><span class="underline">mqttTranshub</span></a></li></ul></div><div class="mt-2" id="operation-receive-pe/dpi/journey-security"></div><div class="mt-2"></div><div class="mt-2"><div class="flex mb-4 gap-2"><div class="border rounded overflow-visible w-full"><div class="flex flex-col justify-center p-4 bg-gray-100 border-b"><div class="flex justify-between items-start"><div class="flex items-center gap-2 w-full"><div class="flex items-center gap-2"><button class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 " type="button"><div class="inline-block"><div class="inline-block text-sm"><span>Operation specific information</span><strong class="bg-teal-500 no-underline text-white uppercase rounded mx-2 px-2 py-1 text-xs">mqtt</strong></div></div><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 20 20" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" class="inline-block align-baseline cursor-pointer ml-0.5 -mb-1 w-5 h-5 transform transition-transform duration-150 ease-linear  "><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg></button></div><span class="capitalize text-sm text-teal-500 font-bold">object</span><div class="ml-auto flex gap-4"><button type="button" class="text-sm text-gray-500 hover:text-gray-700">Expand all</button></div></div></div></div><div class="flex "></div></div></div></div><div class="mt-2"></div></div><div class="w-full mt-4" id="operation-receive-pe/dpi/journey-message"><div class="mt-2"><p class="px-8">Accepts the following message:</p><div class="mt-2"><div class="panel-item"><div class="panel-item--center px-8"><div class="shadow rounded bg-gray-200 p-4 border"><div></div><ul class="leading-normal mt-2 mb-4 space-x-2 space-y-2"><li class="inline-block"><a href="https://www.iana.org/assignments/media-types/application/json" title="Opens in new window" class="border border-solid border-orange-300 hover:bg-orange-300 hover:text-orange-600 text-orange-500 font-bold no-underline text-xs uppercase rounded px-3 py-1" target="_blank" rel="nofollow noopener noreferrer"><span>application/json</span></a></li></ul><div class="border bg-gray-100 rounded px-4 py-2 mt-2"><div class="text-sm text-gray-700">Message ID<span class="bg-orange-600 text-white rounded text-xs ml-2 py-0 px-2">DpiJourney</span></div></div><div class="mt-2"><div class="flex mb-4 gap-2"><div class="border rounded overflow-visible w-full"><div class="flex flex-col justify-center p-4 bg-gray-100 border-b"><div class="flex justify-between items-start"><div class="flex items-center gap-2 w-full"><div class="flex items-center gap-2"><button class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 " type="button"><div class="inline-block"><span class="break-anywhere text-sm w-full ">Payload</span></div><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 20 20" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" class="inline-block align-baseline cursor-pointer ml-0.5 -mb-1 w-5 h-5 transform transition-transform duration-150 ease-linear  "><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg></button></div><span class="capitalize text-sm text-teal-500 font-bold">object [DpiJourney]</span><span class="border text-orange-600 rounded mr-2 p-1 text-xs">uid: <!-- -->https://schemas.ruter.no/adt/ota/api/v4.x/pe/dpi/journey/dpi-journey.json</span><div class="ml-auto flex gap-4"><button type="button" class="text-sm text-gray-500 hover:text-gray-700">Expand all</button></div></div></div><div class="mt-2 text-sm text-gray-600"><div class="prose max-w-none text-sm"><p>List of stops for current journey in block</p>
 </div></div></div><div class="flex "></div></div></div></div></div></div><div class="panel-item--right px-8"><div class="bg-gray-800 px-8 py-4 mt-4 -mx-8 2xl:mx-0 2xl:px-4 2xl:rounded examples"><h4 class="text-white text-lg">Examples</h4><div class="mt-4"><div><button class="focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 " type="button"><div class="inline-block"><span class="inline-block w-20 py-0.5 mr-1 text-gray-200 text-sm border text-center rounded focus:outline-none">Payload</span></div><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 20 20" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg" class="inline-block align-baseline cursor-pointer ml-0.5 -mb-1 w-5 h-5 transform transition-transform duration-150 ease-linear  fill-current text-gray-200"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg></button></div><div class="hidden"><ul><li class="mt-4"><h5 class="text-xs font-bold text-gray-500">#1 Example - Journey</h5><div class="mt-1"><div class="prose max-w-none text-sm"><pre><code class="hljs language-json">{
-  <span class="hljs-attr">"eventTimestamp"</span>: <span class="hljs-string">"2017-10-31T08:38:02.749Z"</span>,
+  <span class="hljs-attr">"eventTimestamp"</span>: <span class="hljs-string">"2025-03-15T07:59:00.000Z"</span>,
   <span class="hljs-attr">"traceId"</span>: <span class="hljs-string">"3841a268-0c03-4588-b476-211be0f26a0d"</span>,
   <span class="hljs-attr">"journeyId"</span>: <span class="hljs-string">"RUT:ServiceJourney:31-117215-13227462"</span>,
-  <span class="hljs-attr">"journeyRef"</span>: <span class="hljs-string">"31001-2019-02-17T21:55:00+01:00"</span>,
+  <span class="hljs-attr">"journeyRef"</span>: <span class="hljs-string">"31001-2025-03-15T08:00:00+01:00"</span>,
   <span class="hljs-attr">"assignmentId"</span>: <span class="hljs-string">"ab599917ed214472a40c79c18e6cb6b0"</span>,
   <span class="hljs-attr">"route"</span>: {
     <span class="hljs-attr">"id"</span>: <span class="hljs-string">"RUT:Route:31-1041"</span>,
@@ -2686,7 +2837,8 @@ The payload is defined as an object with no pre-defined structure to provide fle
         <span class="hljs-attr">"tariffZones"</span>: [
           <span class="hljs-string">"OST:TariffZone:227"</span>,
           <span class="hljs-string">"RUT:TariffZone:1"</span>
-        ]
+        ],
+        <span class="hljs-attr">"plannedDepartureTime"</span>: <span class="hljs-string">"2025-03-15T08:00:00Z"</span>
       },
       {
         <span class="hljs-attr">"id"</span>: <span class="hljs-string">"RUT:StopPlace:03010013"</span>,
@@ -2698,7 +2850,22 @@ The payload is defined as an object with no pre-defined structure to provide fle
         },
         <span class="hljs-attr">"tariffZones"</span>: [
           <span class="hljs-string">"RUT:TariffZone:1"</span>
-        ]
+        ],
+        <span class="hljs-attr">"plannedArrivalTime"</span>: <span class="hljs-string">"2025-03-15T08:22:00Z"</span>,
+        <span class="hljs-attr">"plannedDepartureTime"</span>: <span class="hljs-string">"2025-03-15T08:23:00Z"</span>
+      },
+      {
+        <span class="hljs-attr">"id"</span>: <span class="hljs-string">"RUT:StopPlace:03012345"</span>,
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Tonsenhagen"</span>,
+        <span class="hljs-attr">"cancelled"</span>: <span class="hljs-literal">false</span>,
+        <span class="hljs-attr">"location"</span>: {
+          <span class="hljs-attr">"latitude"</span>: <span class="hljs-number">12.33345</span>,
+          <span class="hljs-attr">"longitude"</span>: <span class="hljs-number">12.33345</span>
+        },
+        <span class="hljs-attr">"tariffZones"</span>: [
+          <span class="hljs-string">"RUT:TariffZone:1"</span>
+        ],
+        <span class="hljs-attr">"plannedArrivalTime"</span>: <span class="hljs-string">"2025-03-15T08:45:00Z"</span>
       }
     ]
   }

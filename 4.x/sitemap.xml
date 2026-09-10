@@ -76,4 +76,28 @@
          <loc>https://adt.transhub.io/4.x/web-content/</loc>
          <lastmod>2026-09-10</lastmod>
     </url>
+    <url>
+         <loc>https://adt.transhub.io/4.x/operational-api/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://adt.transhub.io/4.x/operational-api/assignment/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://adt.transhub.io/4.x/operational-api/deviation/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://adt.transhub.io/4.x/operational-api/intro/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://adt.transhub.io/4.x/operational-api/journey/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
+    <url>
+         <loc>https://adt.transhub.io/4.x/operational-api/mitigation/</loc>
+         <lastmod>2026-09-10</lastmod>
+    </url>
 </urlset>
