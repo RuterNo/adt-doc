@@ -2,7 +2,7 @@
   "name": "adt-doc",
   "version": "1.0.0",
   "private": true,
-  "packageManager": "pnpm@latest",
+  "packageManager": "pnpm@11.26.0",
   "scripts": {
     "bundle": "node scripts/bundle-asyncapi.js",
     "test": "node --test scripts/*.test.js"

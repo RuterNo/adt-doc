@@ -24,8 +24,6 @@ jobs:
           node-version: '22.x'
 
       - uses: pnpm/action-setup@v4
-        with:
-          version: 11
 
       - name: Install bundle script dependencies
         run: pnpm install
