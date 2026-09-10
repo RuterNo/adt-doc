@@ -1,0 +1,8 @@
+{
+  "name": "Offline signal from MADT",
+  "payload": {
+    "eventTimestamp": "2020-10-31T08:38:02.749Z",
+    "source": "MADT",
+    "offline": true
+  }
+}

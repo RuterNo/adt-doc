@@ -1,0 +1,9 @@
+{
+  "name": "CBTC trip activated",
+  "payload": {
+    "eventTimestamp": "2020-10-31T08:38:02.749Z",
+    "traceId": "123412-cd5534-12332",
+    "journeyDate": "2025-06-21",
+    "datedVehicleJourneyRef": "401027"
+  }
+}
