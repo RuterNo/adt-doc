@@ -70,7 +70,10 @@ function bundle(inputFile, outputFile) {
 }
 
 if (require.main === module) {
-  bundle(INPUT_FILE, OUTPUT_FILE);
+  const [inputArg, outputArg] = process.argv.slice(2);
+  const inputFile = inputArg ? path.resolve(inputArg) : INPUT_FILE;
+  const outputFile = outputArg ? path.resolve(outputArg) : OUTPUT_FILE;
+  bundle(inputFile, outputFile);
 }
 
 module.exports = { resolveJsonPointer, expandSchemaInternalRefs, resolveNode, bundle };

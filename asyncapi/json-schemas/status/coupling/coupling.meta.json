@@ -1,0 +1,18 @@
+{
+  "mode": "publish",
+  "mqtt": {
+    "qos": "1",
+    "retain": false,
+    "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v4/status/coupling"
+  },
+  "service-level": "internal",
+  "producers": [
+    "pta"
+  ],
+  "consumers": [
+    "pta"
+  ],
+  "maintainers": [
+    "pta"
+  ]
+}
