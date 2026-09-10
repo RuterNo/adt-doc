@@ -24,8 +24,6 @@ jobs:
           node-version: '22.x'
 
       - uses: pnpm/action-setup@v4
-        with:
-          version: latest
 
       - name: Install bundle script dependencies
         run: pnpm install
@@ -36,11 +34,19 @@ jobs:
       - name: Bundle AsyncAPI document
         run: node scripts/bundle-asyncapi.js
 
-      - name: Inject version into bundled document
-        run: sed -i 's/version\.from\.tag/'"$RELEASE_NAME"'/g' asyncapi/asyncapi.yml
+      - name: Bundle AsyncAPI Metro document
+        run: node scripts/bundle-asyncapi.js asyncapi/asyncapi_metro_template.yml asyncapi/asyncapi_metro.yml
+
+      - name: Inject version into bundled documents
+        run: |
+          sed -i 's/version\.from\.tag/'"$RELEASE_NAME"'/g' asyncapi/asyncapi.yml
+          sed -i 's/version\.from\.tag/'"$RELEASE_NAME"'/g' asyncapi/asyncapi_metro.yml
 
       - name: Generate HTML from AsyncAPI document
-        run: pnpm dlx @asyncapi/cli generate fromTemplate asyncapi/asyncapi.yml @asyncapi/html-template -o docs/asyncapi --force-write --param config='{"sidebar":{"useChannelAddressAsIdentifier":true}}'
+        run: pnpm dlx --allow-build=@hyperjump/json-pointer,@hyperjump/json-schema-core,@hyperjump/json-schema,@hyperjump/pact,@scarf/scarf,yarn @asyncapi/cli generate fromTemplate asyncapi/asyncapi.yml @asyncapi/html-template -o docs/asyncapi --force-write --param config=asyncapi/html-template-config.json
+
+      - name: Generate HTML from AsyncAPI Metro document
+        run: pnpm dlx --allow-build=@hyperjump/json-pointer,@hyperjump/json-schema-core,@hyperjump/json-schema,@hyperjump/pact,@scarf/scarf,yarn @asyncapi/cli generate fromTemplate asyncapi/asyncapi_metro.yml @asyncapi/html-template -o docs/asyncapi-metro --force-write --param config=asyncapi/html-template-config.json
 
       - run: npx @redocly/cli build-docs -o docs/openapi/trafficplan/index.html openapi/trafficplan/api-spec.json
       - run: npx @redocly/cli build-docs -o docs/openapi/operational/index.html openapi/operational/api-spec.json
@@ -53,6 +59,10 @@ jobs:
           mkdir docs/asyncapi/images/
           cp asyncapi/markdown/images/* docs/asyncapi/images/
           sed -i -e '\@</head>@i\<link href="css/doc.css" rel="stylesheet">' docs/asyncapi/index.html
+          cp asyncapi/stylesheets/doc.css docs/asyncapi-metro/css/
+          mkdir docs/asyncapi-metro/images/
+          cp asyncapi/markdown/images/* docs/asyncapi-metro/images/
+          sed -i -e '\@</head>@i\<link href="css/doc.css" rel="stylesheet">' docs/asyncapi-metro/index.html
         shell: bash
 
       - name: Make Json Schemas available
@@ -61,6 +71,10 @@ jobs:
           find docs/asyncapi/json-schemas/ -name "*example.json" -type f -delete
           find docs/asyncapi/json-schemas/ -name "*.meta.json" -type f -delete
           find docs/asyncapi/json-schemas/ -name "*.md" -type f -delete
+          cp -r asyncapi/json-schemas docs/asyncapi-metro/json-schemas
+          find docs/asyncapi-metro/json-schemas/ -name "*example.json" -type f -delete
+          find docs/asyncapi-metro/json-schemas/ -name "*.meta.json" -type f -delete
+          find docs/asyncapi-metro/json-schemas/ -name "*.md" -type f -delete
         shell: bash
 
       - uses: actions/setup-python@v5

@@ -10,5 +10,21 @@ Stylesheet to override some of the styling in the generated asyncApi HTML doc.
     }
 }
 
+/* Hide the redundant Messages section (schema already shown per-operation above) */
+section#messages {
+    display: none;
+}
+li:has(> a[href="#messages"]) {
+    display: none;
+}
 
 
+/* Equalise SEND / RECEIVE badge widths in the sidebar operation list */
+strong[title="SEND"],
+strong[title="RECEIVE"] {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    min-width: 4.5rem;
+    box-sizing: border-box;
+}
