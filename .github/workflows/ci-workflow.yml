@@ -25,7 +25,7 @@ jobs:
 
       - uses: pnpm/action-setup@v4
         with:
-          version: latest
+          version: 11
 
       - name: Install bundle script dependencies
         run: pnpm install
@@ -45,10 +45,10 @@ jobs:
           sed -i 's/version\.from\.tag/'"$RELEASE_NAME"'/g' asyncapi/asyncapi_metro.yml
 
       - name: Generate HTML from AsyncAPI document
-        run: pnpm dlx @asyncapi/cli generate fromTemplate asyncapi/asyncapi.yml @asyncapi/html-template -o docs/asyncapi --force-write --param config=asyncapi/html-template-config.json
+        run: pnpm dlx --allow-build=@hyperjump/json-pointer,@hyperjump/json-schema-core,@hyperjump/json-schema,@hyperjump/pact,@scarf/scarf,yarn @asyncapi/cli generate fromTemplate asyncapi/asyncapi.yml @asyncapi/html-template -o docs/asyncapi --force-write --param config=asyncapi/html-template-config.json
 
       - name: Generate HTML from AsyncAPI Metro document
-        run: pnpm dlx @asyncapi/cli generate fromTemplate asyncapi/asyncapi_metro.yml @asyncapi/html-template -o docs/asyncapi-metro --force-write --param config=asyncapi/html-template-config.json
+        run: pnpm dlx --allow-build=@hyperjump/json-pointer,@hyperjump/json-schema-core,@hyperjump/json-schema,@hyperjump/pact,@scarf/scarf,yarn @asyncapi/cli generate fromTemplate asyncapi/asyncapi_metro.yml @asyncapi/html-template -o docs/asyncapi-metro --force-write --param config=asyncapi/html-template-config.json
 
       - run: npx @redocly/cli build-docs -o docs/openapi/trafficplan/index.html openapi/trafficplan/api-spec.json
       - run: npx @redocly/cli build-docs -o docs/openapi/operational/index.html openapi/operational/api-spec.json
