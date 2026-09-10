@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/cbtc/trip_activated/trip-activated.json",
+  "title": "TripActivated",
+  "type": "object",
+  "required": [
+    "eventTimestamp",
+    "traceId",
+    "journeyDate",
+    "datedVehicleJourneyRef"
+  ],
+  "description": "Published onboard when CBTC activates a new trip. Contains enough information to uniquely identify the trip, used by Ruter's offline solution and matched with data stored onboard about the route plan. When vehicles have been coupled, each vehicle must send this information.",
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier - UUID"
+    },
+    "journeyDate": {
+      "$id": "#/properties/journeyDate",
+      "type": "string",
+      "description": "The date of the journey. Block and journey numbers are reused each day, so this is required for unique identification."
+    },
+    "datedVehicleJourneyRef": {
+      "$id": "#/properties/datedVehicleJourneyRef",
+      "type": "string",
+      "description": "The first 3 digits represent the Block (\"tognummer\") from Hastus. The last 3 digits represent the journey within the block. For example, 007 is the 7th journey in the block."
+    }
+  }
+}

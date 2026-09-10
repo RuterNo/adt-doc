@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/status/offline/offline.json",
+  "title": "Offline",
+  "type": "object",
+  "required": [
+    "eventTimestamp",
+    "source",
+    "offline"
+  ],
+  "description": "Signal from MADT (driver) to use offline passenger information. Ruter delivers a solution for limited passenger information to be used onboard. This message triggers use of the offline solution. The message is retained - the last message of this type published will remain on the broker, and any new subscribing client will receive it.",
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)"
+    },
+    "source": {
+      "$id": "#/properties/source",
+      "type": "string",
+      "description": "Source of the \"offline\" event. If sent by the onboard MADT it should be \"MADT\". If sent due to automatic detection of network failure, it should be, for example, \"automatic\". Anything which sends the \"offline\" event should be explicit and clear about its unique source.",
+      "examples": [
+        "MADT",
+        "automatic"
+      ]
+    },
+    "offline": {
+      "$id": "#/properties/offline",
+      "type": "boolean",
+      "description": "True when the offline solution is to be used. False when the online solution must be used."
+    }
+  }
+}
