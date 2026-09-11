@@ -1,0 +1,18 @@
+{
+  "mode": "publish",
+  "mqtt": {
+    "retain": false,
+    "qos": 1,
+    "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/denied"
+  },
+  "service-level": "external",
+  "producers": [
+    "pto"
+  ],
+  "consumers": [
+    "dpi"
+  ],
+  "maintainers": [
+    "dpi"
+  ]
+}

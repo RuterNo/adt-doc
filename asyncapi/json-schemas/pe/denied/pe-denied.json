@@ -1,0 +1,62 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/denied/pe-denied.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PeDenied",
+  "type": "object",
+  "required": [
+    "eventTimestamp",
+    "traceId",
+    "rejectedMessage",
+    "reasonCode"
+  ],
+  "description": "Published by the consumer when an incoming message fails validation.",
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)",
+      "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier - UUID"
+    },
+    "rejectedMessage": {
+      "$id": "#/properties/rejectedMessage",
+      "type": "object",
+      "required": [
+        "topic",
+        "eventTimestamp",
+        "traceId"
+      ],
+      "properties": {
+        "topic": {
+          "type": "string",
+          "description": "Local MQTT topic of the rejected message"
+        },
+        "eventTimestamp": {
+          "$ref": "#/properties/eventTimestamp"
+        },
+        "traceId": {
+          "$ref": "#/properties/traceId"
+        }
+      }
+    },
+    "reasonCode": {
+      "$id": "#/properties/reasonCode",
+      "type": "string",
+      "enum": [
+        "SCHEMA_VALIDATION_FAILED",
+        "CONTENT_POLICY_VIOLATION"
+      ],
+      "description": "Machine-readable rejection reason"
+    },
+    "reasonDetails": {
+      "$id": "#/properties/reasonDetails",
+      "type": "string",
+      "description": "Optional human-readable details about why the message was rejected"
+    }
+  }
+}
