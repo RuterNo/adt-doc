@@ -1,7 +1,7 @@
 {
-  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/denied/pe-denied.json",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/rejected/pe-rejected.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "PeDenied",
+  "title": "PeRejected",
   "type": "object",
   "required": [
     "eventTimestamp",

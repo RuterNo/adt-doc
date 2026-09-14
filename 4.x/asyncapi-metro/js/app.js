@@ -568,18 +568,18 @@
       },
       "x-parser-unique-object-id": "pe_cbtc_target_distance"
     },
-    "pe_denied": {
-      "address": "pe/denied",
-      "description": "### Denied Message\n| Field         | Value                                                                                                     |\n|---------------|-----------------------------------------------------------------------------------------------------------|\n| Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/denied                                                   |\n| Schema        | [ pe-denied.json ](json-schemas/pe/denied/pe-denied.json)                                                 |\n| Maintainer    | [DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                     |\n| Producer      | PTO                                                                                                        |\n| Consumer      | [DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                     |\n| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. |\n\nThe `pe/denied` topic is used by the external client to inform the DPI backoffice when an incoming message fails validation on the client side.\n\nA denied message must reference the original rejected message via `rejectedMessage` and include a machine-readable `reasonCode`. The optional `reasonDetails` field may contain a human-readable explanation.\n\n| `reasonCode`              | Description                                                     |\n|---------------------------|-----------------------------------------------------------------|\n| `SCHEMA_VALIDATION_FAILED` | The message did not conform to the expected JSON Schema         |\n| `CONTENT_POLICY_VIOLATION` | The message was rejected due to prohibited content (e.g. words) |\n",
+    "pe_rejected": {
+      "address": "pe/rejected",
+      "description": "### Rejected Message\n| Field         | Value                                                                                                     |\n|---------------|-----------------------------------------------------------------------------------------------------------|\n| Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/rejected                                                 |\n| Schema        | [ pe-rejected.json ](json-schemas/pe/rejected/pe-rejected.json)                                           |\n| Maintainer    | [DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                     |\n| Producer      | PTO                                                                                                        |\n| Consumer      | [DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                     |\n| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. |\n\nThe `pe/rejected` topic is used by the external client to inform the DPI backoffice when an incoming message fails validation on the client side.\n\nA rejected message must reference the original rejected message via `rejectedMessage` and include a machine-readable `reasonCode`. The optional `reasonDetails` field may contain a human-readable explanation.\n\n| `reasonCode`               | Description                                                      |\n|----------------------------|------------------------------------------------------------------|\n| `SCHEMA_VALIDATION_FAILED` | The message did not conform to the expected JSON Schema          |\n| `CONTENT_POLICY_VIOLATION` | The message was rejected due to prohibited content (e.g. words)  |\n",
       "messages": {
-        "PeDenied": {
-          "name": "PeDenied",
+        "PeRejected": {
+          "name": "PeRejected",
           "payload": {
             "schemaFormat": "application/schema+json;version=draft-07",
             "schema": {
-              "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/denied/pe-denied.json",
+              "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/rejected/pe-rejected.json",
               "$schema": "http://json-schema.org/draft-07/schema#",
-              "title": "PeDenied",
+              "title": "PeRejected",
               "type": "object",
               "required": [
                 "eventTimestamp",
@@ -647,7 +647,7 @@
           },
           "examples": [
             {
-              "name": "PE Denied",
+              "name": "PE Rejected",
               "payload": {
                 "eventTimestamp": "2017-10-31T12:45:50.749Z",
                 "traceId": "2ccf77aa-463f-4b98-ad19-61ec5d213e36",
@@ -661,10 +661,10 @@
               }
             }
           ],
-          "x-parser-unique-object-id": "PeDenied"
+          "x-parser-unique-object-id": "PeRejected"
         }
       },
-      "x-parser-unique-object-id": "pe_denied"
+      "x-parser-unique-object-id": "pe_rejected"
     },
     "pe_doors_individually": {
       "address": "pe/doors_individually",
@@ -5917,11 +5917,11 @@
       },
       "x-parser-unique-object-id": "sendCbtcTargetDistance"
     },
-    "sendPeDenied": {
+    "sendPeRejected": {
       "action": "send",
-      "channel": "$ref:$.channels.pe_denied",
+      "channel": "$ref:$.channels.pe_rejected",
       "messages": [
-        "$ref:$.channels.pe_denied.messages.PeDenied"
+        "$ref:$.channels.pe_rejected.messages.PeRejected"
       ],
       "bindings": {
         "mqtt": {
@@ -5929,7 +5929,7 @@
           "retain": false
         }
       },
-      "x-parser-unique-object-id": "sendPeDenied"
+      "x-parser-unique-object-id": "sendPeRejected"
     },
     "sendDoorsIndividually": {
       "action": "send",
@@ -6379,7 +6379,7 @@
       "DpiLogs": "$ref:$.channels.pe_dpi_logs.messages.DpiLogs",
       "DpiNextstop": "$ref:$.channels.pe_dpi_nextstop.messages.DpiNextstop",
       "DpiPa": "$ref:$.channels.pe_dpi_pa.messages.DpiPa",
-      "PeDenied": "$ref:$.channels.pe_denied.messages.PeDenied",
+      "PeRejected": "$ref:$.channels.pe_rejected.messages.PeRejected",
       "Api": "$ref:$.channels.pe_vehicle_api.messages.Api",
       "Coupling": "$ref:$.channels.status_coupling.messages.Coupling",
       "Offline": "$ref:$.channels.status_offline.messages.Offline",
