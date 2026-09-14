@@ -82,13 +82,13 @@ channels:
     messages:
       TargetDistance:
         $ref: '#/components/messages/TargetDistance'
-  pe_denied:
-    address: pe/denied
+  pe_rejected:
+    address: pe/rejected
     description:
-      $ref: json-schemas/pe/denied/pe-denied.md
+      $ref: json-schemas/pe/rejected/pe-rejected.md
     messages:
-      PeDenied:
-        $ref: '#/components/messages/PeDenied'
+      PeRejected:
+        $ref: '#/components/messages/PeRejected'
   pe_doors_individually:
     address: pe/doors_individually
     description:
@@ -377,12 +377,12 @@ operations:
       mqtt:
         qos: 0
         retain: false
-  sendPeDenied:
+  sendPeRejected:
     action: send
     channel:
-      $ref: '#/channels/pe_denied'
+      $ref: '#/channels/pe_rejected'
     messages:
-      - $ref: '#/channels/pe_denied/messages/PeDenied'
+      - $ref: '#/channels/pe_rejected/messages/PeRejected'
     bindings:
       mqtt:
         qos: 1
@@ -899,14 +899,14 @@ components:
         - $ref: json-schemas/pe/dpi/pa/dpi-pa_multiple.example.json
         - $ref: json-schemas/pe/dpi/pa/dpi-pa_text.example.json
         - $ref: json-schemas/pe/dpi/pa/dpi-pa_video.example.json
-    PeDenied:
-      name: PeDenied
+    PeRejected:
+      name: PeRejected
       payload:
         schemaFormat: application/schema+json;version=draft-07
         schema:
-          $ref: json-schemas/pe/denied/pe-denied.json
+          $ref: json-schemas/pe/rejected/pe-rejected.json
       examples:
-        - $ref: json-schemas/pe/denied/pe-denied.example.json
+        - $ref: json-schemas/pe/rejected/pe-rejected.example.json
     Api:
       name: Api
       payload:

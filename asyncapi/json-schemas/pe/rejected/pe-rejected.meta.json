@@ -3,7 +3,7 @@
   "mqtt": {
     "retain": false,
     "qos": 1,
-    "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/denied"
+    "topic": "{authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/rejected"
   },
   "service-level": "external",
   "producers": [
