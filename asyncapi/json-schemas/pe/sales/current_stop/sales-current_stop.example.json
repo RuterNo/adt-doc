@@ -14,6 +14,7 @@
     "blockId": "a83fc5a7-1002-4f34-b778-ca5ec85751f4",
     "quayId": "NSR:Quay:6220",
     "stopPlaceId": "NSR:StopPlace:3503",
+    "contractRef": "RUT:OperatorContract:1234",
     "tariffZones": {
       "onCurrentStop": {
         "id": "RUT:TariffZone:228",

@@ -8,6 +8,7 @@
     "traceId",
     "progressRef",
     "vehicleRef",
+    "lineRef",
     "stopPlaceId",
     "tariffZones"
   ],
@@ -85,6 +86,11 @@
       "type": "string",
       "description": "StopPlaceId the Progress event was received for"
     },
+    "contractRef": {
+      "$id": "#/properties/contractRef",
+      "type": "string",
+      "description": "The contract reference"
+    },
     "tariffZones": {
       "$id": "#/properties/tariffZones",
       "type": "object",
@@ -130,9 +136,9 @@
           }
         },
         "onNextStop": {
-          "$id": "#/properties/metrics/properties/nfcStatus/properties/connected",
-          "type": "boolean",
-          "description": "Zone object for the current stop",
+          "$id": "#/properties/tariffZones/properties/onNextStop",
+          "type": "object",
+          "description": "Zone object for the next stop",
           "required": [
             "id",
             "name",
