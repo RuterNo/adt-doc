@@ -4842,7 +4842,7 @@
                     "trigger": {
                       "$id": "#/properties/context/properties/trigger",
                       "type": "string",
-                      "description": "The event that triggered the diagnostics msg to be produced. Legal values: Startup, LoginStatusChanged, StopPlace, PrinterStatusChanged, NfcStatusChanged, InternetConnectionStatusChanged, IntegrationTest"
+                      "description": "The event that triggered the diagnostics msg to be produced. See table above for possible values."
                     },
                     "appVersion": {
                       "$id": "#/properties/context/properties/appVersion",
@@ -4862,7 +4862,7 @@
                     "logoutReason": {
                       "$id": "#/properties/context/properties/logoutReason",
                       "type": "string",
-                      "description": "The reason for the user being logged out"
+                      "description": "The reason for the user being logged out. See table above for possible values."
                     }
                   }
                 }
