@@ -568,104 +568,6 @@
       },
       "x-parser-unique-object-id": "pe_cbtc_target_distance"
     },
-    "pe_rejected": {
-      "address": "pe/rejected",
-      "description": "### Rejected Message\n| Field         | Value                                                                                                     |\n|---------------|-----------------------------------------------------------------------------------------------------------|\n| Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/rejected                                                 |\n| Schema        | [ pe-rejected.json ](json-schemas/pe/rejected/pe-rejected.json)                                           |\n| Maintainer    | [DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                     |\n| Producer      | PTO                                                                                                        |\n| Consumer      | [DPI](https://github.com/orgs/RuterNo/teams/dpi-team)                                                     |\n| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. |\n\nThe `pe/rejected` topic is used by the external client to inform the DPI backoffice when an incoming message fails validation on the client side.\n\nA rejected message must reference the original rejected message via `rejectedMessage` and include a machine-readable `reasonCode`. The optional `reasonDetails` field may contain a human-readable explanation.\n\n| `reasonCode`               | Description                                                      |\n|----------------------------|------------------------------------------------------------------|\n| `SCHEMA_VALIDATION_FAILED` | The message did not conform to the expected JSON Schema          |\n| `CONTENT_POLICY_VIOLATION` | The message was rejected due to prohibited content (e.g. words)  |\n",
-      "messages": {
-        "PeRejected": {
-          "name": "PeRejected",
-          "payload": {
-            "schemaFormat": "application/schema+json;version=draft-07",
-            "schema": {
-              "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/rejected/pe-rejected.json",
-              "$schema": "http://json-schema.org/draft-07/schema#",
-              "title": "PeRejected",
-              "type": "object",
-              "required": [
-                "eventTimestamp",
-                "traceId",
-                "rejectedMessage",
-                "reasonCode"
-              ],
-              "description": "Published by the consumer when an incoming message fails validation.",
-              "additionalProperties": true,
-              "properties": {
-                "eventTimestamp": {
-                  "$id": "#/properties/eventTimestamp",
-                  "type": "string",
-                  "description": "As specified in the [ADT documentation.](https://adt.transhub.io)",
-                  "format": "date-time"
-                },
-                "traceId": {
-                  "$id": "#/properties/traceId",
-                  "type": "string",
-                  "description": "A unique identifier - UUID"
-                },
-                "rejectedMessage": {
-                  "$id": "#/properties/rejectedMessage",
-                  "type": "object",
-                  "required": [
-                    "topic",
-                    "eventTimestamp",
-                    "traceId"
-                  ],
-                  "properties": {
-                    "topic": {
-                      "type": "string",
-                      "description": "Local MQTT topic of the rejected message",
-                      "x-parser-schema-id": "<anonymous-schema-8>"
-                    },
-                    "eventTimestamp": {
-                      "$id": "#/properties/eventTimestamp",
-                      "type": "string",
-                      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)",
-                      "format": "date-time"
-                    },
-                    "traceId": {
-                      "$id": "#/properties/traceId",
-                      "type": "string",
-                      "description": "A unique identifier - UUID"
-                    }
-                  }
-                },
-                "reasonCode": {
-                  "$id": "#/properties/reasonCode",
-                  "type": "string",
-                  "enum": [
-                    "SCHEMA_VALIDATION_FAILED",
-                    "CONTENT_POLICY_VIOLATION"
-                  ],
-                  "description": "Machine-readable rejection reason"
-                },
-                "reasonDetails": {
-                  "$id": "#/properties/reasonDetails",
-                  "type": "string",
-                  "description": "Optional human-readable details about why the message was rejected"
-                }
-              }
-            }
-          },
-          "examples": [
-            {
-              "name": "PE Rejected",
-              "payload": {
-                "eventTimestamp": "2017-10-31T12:45:50.749Z",
-                "traceId": "2ccf77aa-463f-4b98-ad19-61ec5d213e36",
-                "rejectedMessage": {
-                  "topic": "pe/dpi/journey",
-                  "eventTimestamp": "2017-10-31T12:45:50.123Z",
-                  "traceId": "b88aaf6a-b15b-415a-8c44-ac7ad42de59e"
-                },
-                "reasonCode": "SCHEMA_VALIDATION_FAILED",
-                "reasonDetails": "Property 'journeyRef' is required but was not present"
-              }
-            }
-          ],
-          "x-parser-unique-object-id": "PeRejected"
-        }
-      },
-      "x-parser-unique-object-id": "pe_rejected"
-    },
     "pe_doors_individually": {
       "address": "pe/doors_individually",
       "description": "### DoorsIndividually Message\n| Field         | Value                                                                                                       |\n|---------------|-------------------------------------------------------------------------------------------------------------|\n| Central Topic | {authorityId}/{operatorId}/{vehicleId}/adt/v4/pe/doors_individually                                         |\n| Schema        | [ doors-individually.json ](json-schemas/pe/doors-individually/doors-individually.json)                     |\n| Maintainer    | [Passasjertelling](https://github.com/orgs/RuterNo/teams/passasjertelling)                                  |\n| Producer      | PTO                                                                                                         |\n| Consumer      | PTA                                                                                                         |\n| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version.   |\n\nThis topic is used to track the individual status of doors. One use case is to improve the data quality of APC counts. See also topic sensors/door for status of anyDoorOpen/allDoorsClosed.\n",
@@ -790,7 +692,7 @@
                     "topic": {
                       "type": "string",
                       "description": "Local MQTT topic key of received message",
-                      "x-parser-schema-id": "<anonymous-schema-9>"
+                      "x-parser-schema-id": "<anonymous-schema-8>"
                     },
                     "eventTimestamp": {
                       "$id": "#/properties/eventTimestamp",
@@ -3163,7 +3065,7 @@
                     "userAgent": {
                       "type": "string",
                       "description": "Browser user agent string",
-                      "x-parser-schema-id": "<anonymous-schema-10>"
+                      "x-parser-schema-id": "<anonymous-schema-9>"
                     }
                   },
                   "required": [
@@ -3177,27 +3079,27 @@
                     "url": {
                       "type": "string",
                       "description": "Current url for screen",
-                      "x-parser-schema-id": "<anonymous-schema-11>"
+                      "x-parser-schema-id": "<anonymous-schema-10>"
                     },
                     "version": {
                       "type": "string",
                       "description": "Current dpi client version",
-                      "x-parser-schema-id": "<anonymous-schema-12>"
+                      "x-parser-schema-id": "<anonymous-schema-11>"
                     },
                     "screenTypeId": {
                       "type": "string",
                       "description": "The screen type being used on the client that sent this message",
-                      "x-parser-schema-id": "<anonymous-schema-13>"
+                      "x-parser-schema-id": "<anonymous-schema-12>"
                     },
                     "clientId": {
                       "type": "string",
                       "description": "The mqtt clientId of the client receiving the message. Should be a stable UUID v4 and not change",
-                      "x-parser-schema-id": "<anonymous-schema-14>"
+                      "x-parser-schema-id": "<anonymous-schema-13>"
                     },
                     "physicalId": {
                       "type": "string",
                       "description": "The given physical id to the screen. The property is provided by a querystring when configuring a screen",
-                      "x-parser-schema-id": "<anonymous-schema-15>"
+                      "x-parser-schema-id": "<anonymous-schema-14>"
                     },
                     "connectivity": {
                       "type": "string",
@@ -3207,7 +3109,7 @@
                         "OFFLINE",
                         "UNKNOWN"
                       ],
-                      "x-parser-schema-id": "<anonymous-schema-16>"
+                      "x-parser-schema-id": "<anonymous-schema-15>"
                     }
                   },
                   "required": [
@@ -3225,7 +3127,7 @@
                     "version": {
                       "type": "string",
                       "description": "Current dpi media version",
-                      "x-parser-schema-id": "<anonymous-schema-17>"
+                      "x-parser-schema-id": "<anonymous-schema-16>"
                     }
                   },
                   "required": [
@@ -3239,17 +3141,17 @@
                     "traceId": {
                       "type": "string",
                       "description": "TraceId from the latest received journey message",
-                      "x-parser-schema-id": "<anonymous-schema-18>"
+                      "x-parser-schema-id": "<anonymous-schema-17>"
                     },
                     "journeyRef": {
                       "type": "string",
                       "description": "Journey ref from the latest received journey message",
-                      "x-parser-schema-id": "<anonymous-schema-19>"
+                      "x-parser-schema-id": "<anonymous-schema-18>"
                     },
                     "assignmentId": {
                       "type": "string",
                       "description": "Assignment id from the latest received journey message",
-                      "x-parser-schema-id": "<anonymous-schema-20>"
+                      "x-parser-schema-id": "<anonymous-schema-19>"
                     }
                   },
                   "required": [
@@ -3784,7 +3686,7 @@
                   "description": "Active and inactive features",
                   "additionalProperties": {
                     "type": "boolean",
-                    "x-parser-schema-id": "<anonymous-schema-21>"
+                    "x-parser-schema-id": "<anonymous-schema-20>"
                   }
                 }
               }
@@ -3933,12 +3835,12 @@
                                 "background": {
                                   "type": "string",
                                   "description": "Background color in HEX format, e.g. '#76A300'",
-                                  "x-parser-schema-id": "<anonymous-schema-22>"
+                                  "x-parser-schema-id": "<anonymous-schema-21>"
                                 },
                                 "text": {
                                   "type": "string",
                                   "description": "Text color in HEX format, e.g. '#FFFFFF'",
-                                  "x-parser-schema-id": "<anonymous-schema-23>"
+                                  "x-parser-schema-id": "<anonymous-schema-22>"
                                 }
                               }
                             },
@@ -3955,12 +3857,12 @@
                                 "background": {
                                   "type": "string",
                                   "description": "Background color in HEX format, e.g. '#76A300'",
-                                  "x-parser-schema-id": "<anonymous-schema-24>"
+                                  "x-parser-schema-id": "<anonymous-schema-23>"
                                 },
                                 "text": {
                                   "type": "string",
                                   "description": "Text color in HEX format, e.g. '#FFFFFF'",
-                                  "x-parser-schema-id": "<anonymous-schema-25>"
+                                  "x-parser-schema-id": "<anonymous-schema-24>"
                                 }
                               }
                             }
@@ -4035,7 +3937,7 @@
                             "type": "array",
                             "items": {
                               "type": "string",
-                              "x-parser-schema-id": "<anonymous-schema-26>"
+                              "x-parser-schema-id": "<anonymous-schema-25>"
                             },
                             "description": "List of tariff zones for the specific stop."
                           },
@@ -4922,7 +4824,7 @@
                   "description": "Array containing the unique ID (doorRef) for each door that will open at the next stop.",
                   "items": {
                     "type": "string",
-                    "x-parser-schema-id": "<anonymous-schema-27>"
+                    "x-parser-schema-id": "<anonymous-schema-26>"
                   }
                 },
                 "unavailableDoorRefList": {
@@ -4931,7 +4833,7 @@
                   "description": "Array containing doorRef of each door which will not open. Reasons for not opening could be: Physically locked, CBTC data, driver selected to block certain doors.",
                   "items": {
                     "type": "string",
-                    "x-parser-schema-id": "<anonymous-schema-28>"
+                    "x-parser-schema-id": "<anonymous-schema-27>"
                   }
                 },
                 "errorDoorRefList": {
@@ -4940,7 +4842,7 @@
                   "description": "Array containing doorRef of each door that cannot open due to some error.",
                   "items": {
                     "type": "string",
-                    "x-parser-schema-id": "<anonymous-schema-29>"
+                    "x-parser-schema-id": "<anonymous-schema-28>"
                   }
                 }
               }
@@ -5131,20 +5033,20 @@
                           "WHEELCHAIR",
                           "UNKNOWN"
                         ],
-                        "x-parser-schema-id": "<anonymous-schema-32>"
+                        "x-parser-schema-id": "<anonymous-schema-31>"
                       },
                       "alightingCount": {
                         "type": "integer",
                         "description": "Number of alighting in this category detected by this sensor since the last APC message was produced.",
-                        "x-parser-schema-id": "<anonymous-schema-33>"
+                        "x-parser-schema-id": "<anonymous-schema-32>"
                       },
                       "boardingCount": {
                         "type": "integer",
                         "description": "Number of boarding in this category detected by this sensor since the last APC message was produced.",
-                        "x-parser-schema-id": "<anonymous-schema-34>"
+                        "x-parser-schema-id": "<anonymous-schema-33>"
                       }
                     },
-                    "x-parser-schema-id": "<anonymous-schema-31>"
+                    "x-parser-schema-id": "<anonymous-schema-30>"
                   }
                 }
               }
@@ -5917,20 +5819,6 @@
       },
       "x-parser-unique-object-id": "sendCbtcTargetDistance"
     },
-    "sendPeRejected": {
-      "action": "send",
-      "channel": "$ref:$.channels.pe_rejected",
-      "messages": [
-        "$ref:$.channels.pe_rejected.messages.PeRejected"
-      ],
-      "bindings": {
-        "mqtt": {
-          "qos": 1,
-          "retain": false
-        }
-      },
-      "x-parser-unique-object-id": "sendPeRejected"
-    },
     "sendDoorsIndividually": {
       "action": "send",
       "channel": "$ref:$.channels.pe_doors_individually",
@@ -6379,7 +6267,6 @@
       "DpiLogs": "$ref:$.channels.pe_dpi_logs.messages.DpiLogs",
       "DpiNextstop": "$ref:$.channels.pe_dpi_nextstop.messages.DpiNextstop",
       "DpiPa": "$ref:$.channels.pe_dpi_pa.messages.DpiPa",
-      "PeRejected": "$ref:$.channels.pe_rejected.messages.PeRejected",
       "Api": "$ref:$.channels.pe_vehicle_api.messages.Api",
       "Coupling": "$ref:$.channels.status_coupling.messages.Coupling",
       "Offline": "$ref:$.channels.status_offline.messages.Offline",

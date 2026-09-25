@@ -4455,6 +4455,7 @@
                 "traceId",
                 "progressRef",
                 "vehicleRef",
+                "lineRef",
                 "stopPlaceId",
                 "tariffZones"
               ],
@@ -4532,6 +4533,11 @@
                   "type": "string",
                   "description": "StopPlaceId the Progress event was received for"
                 },
+                "contractRef": {
+                  "$id": "#/properties/contractRef",
+                  "type": "string",
+                  "description": "The contract reference"
+                },
                 "tariffZones": {
                   "$id": "#/properties/tariffZones",
                   "type": "object",
@@ -4579,7 +4585,7 @@
                     "onNextStop": {
                       "$id": "#/properties/tariffZones/properties/onNextStop",
                       "type": "object",
-                      "description": "Zone object for the current stop",
+                      "description": "Zone object for the next stop",
                       "required": [
                         "id",
                         "name",
@@ -4632,6 +4638,7 @@
                 "blockId": "a83fc5a7-1002-4f34-b778-ca5ec85751f4",
                 "quayId": "NSR:Quay:6220",
                 "stopPlaceId": "NSR:StopPlace:3503",
+                "contractRef": "RUT:OperatorContract:1234",
                 "tariffZones": {
                   "onCurrentStop": {
                     "id": "RUT:TariffZone:228",
@@ -4700,6 +4707,7 @@
                     "nfcStatus",
                     "printerStatus",
                     "internetConnectionStatus",
+                    "mqttBrokerStatus",
                     "loggedIn"
                   ],
                   "additionalProperties": true,
@@ -4773,10 +4781,31 @@
                         }
                       }
                     },
+                    "mqttBrokerStatus": {
+                      "$id": "#/properties/metrics/properties/mqttBrokerStatus",
+                      "type": "object",
+                      "description": "MQTT broker connection status",
+                      "required": [
+                        "connected"
+                      ],
+                      "additionalProperties": true,
+                      "properties": {
+                        "connected": {
+                          "$id": "#/properties/metrics/properties/mqttBrokerStatus/properties/connected",
+                          "type": "boolean",
+                          "description": "Whether or not the device is connected to the MQTT broker"
+                        },
+                        "errorMessage": {
+                          "$id": "#/properties/metrics/properties/mqttBrokerStatus/properties/errorMessage",
+                          "type": "string",
+                          "description": "An optional error message if the MQTT broker is not connected"
+                        }
+                      }
+                    },
                     "loggedIn": {
                       "$id": "#/properties/metrics/properties/loggedIn",
                       "type": "boolean",
-                      "description": "Whether or not the user is logged in to RuterSalg"
+                      "description": "Whether or not the user is logged in to BetjentSalg"
                     }
                   }
                 },
@@ -4805,6 +4834,11 @@
                       "type": "string",
                       "description": "The tariff zone the vehicle is currently in"
                     },
+                    "contractRef": {
+                      "$id": "#/properties/context/properties/contractRef",
+                      "type": "string",
+                      "description": "The contract reference"
+                    },
                     "trigger": {
                       "$id": "#/properties/context/properties/trigger",
                       "type": "string",
@@ -4813,12 +4847,22 @@
                     "appVersion": {
                       "$id": "#/properties/context/properties/appVersion",
                       "type": "string",
-                      "description": "Version of the RuterSalg app that sent the message"
+                      "description": "Version of the BetjentSalg app that sent the message"
                     },
                     "userId": {
                       "$id": "#/properties/context/properties/userId",
                       "type": "string",
                       "description": "The userId of the logged in user"
+                    },
+                    "appApiVersion": {
+                      "$id": "#/properties/context/properties/appApiVersion",
+                      "type": "string",
+                      "description": "The ADT-version used by the app"
+                    },
+                    "logoutReason": {
+                      "$id": "#/properties/context/properties/logoutReason",
+                      "type": "string",
+                      "description": "The reason for the user being logged out"
                     }
                   }
                 }
@@ -4846,6 +4890,10 @@
                     "connected": true,
                     "errorMessage": ""
                   },
+                  "mqttBrokerStatus": {
+                    "connected": true,
+                    "errorMessage": ""
+                  },
                   "loggedIn": false
                 },
                 "context": {
@@ -4854,9 +4902,12 @@
                   "journeyRef": "42911-2020-05-25T16:42:00+02:00",
                   "stopPlaceId": "NSR:StopPlace:3996",
                   "tariffZone": "RUT:TariffZone:227",
+                  "contractRef": "RUT:OperatorContract:1234",
                   "trigger": "StopPlace",
                   "appVersion": "2.7.1",
-                  "userId": "nor12345"
+                  "userId": "nor12345",
+                  "appApiVersion": "4",
+                  "logoutReason": "USER_MANUAL_LOGOUT"
                 }
               }
             }
@@ -4928,9 +4979,8 @@
                     "progressRef",
                     "currentStopTimestamp",
                     "lineRef",
-                    "assignmentRef",
-                    "chainId",
                     "stopPlaceId",
+                    "tariffZone",
                     "appVersion",
                     "adtApiVersion"
                   ],
