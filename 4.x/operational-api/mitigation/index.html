@@ -2512,12 +2512,33 @@
 <p>Mitigations represent actions taken to address service disruptions or deviations from planned service delivery.</p>
 <p><strong>NOTE: This is for internal use and not available to PTOs.</strong></p>
 <p>The API supports the following types of service mitigations:</p>
-<ul>
-<li><a href="#service-mitigation-cancellation"><code>CANCELLATION</code></a>, indicating that a journey will be canceled.</li>
-<li><a href="#service-mitigation-replacement_service"><code>REPLACEMENT_SERVICE</code></a>, indicating that a replacement service will be provided.</li>
-<li><a href="#service-mitigation-standby_vehicle_planned"><code>STANDBY_VEHICLE_PLANNED</code></a>, indicating that a standby vehicle will be used.</li>
-<li><a href="#service-mitigation-replacement_quay"><code>REPLACEMENT_QUAY</code></a>, indicating that a replacement quay will be used for specific journey calls.</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CANCELLATION</code></td>
+</tr>
+<tr>
+<td><code>INFO_MESSAGE</code></td>
+</tr>
+<tr>
+<td><code>REPLACEMENT_QUAY</code></td>
+</tr>
+<tr>
+<td><code>REPLACEMENT_SERVICE</code></td>
+</tr>
+<tr>
+<td><code>STANDBY_VEHICLE_PLANNED</code></td>
+</tr>
+<tr>
+<td><code>WARNING_MESSAGE</code></td>
+</tr>
+</tbody>
+</table>
 <h3 id="service-mitigation-requests">Service Mitigation Requests<a class="headerlink" href="#service-mitigation-requests" title="Permanent link">&para;</a></h3>
 <p>To implement a solution for a service deviation, the operator should post a service mitigation request to the <code>{baseURL}/mitigation/mitigations</code> endpoint.</p>
 <h4 id="service-mitigation-specifications">Service Mitigation Specifications<a class="headerlink" href="#service-mitigation-specifications" title="Permanent link">&para;</a></h4>
@@ -2525,21 +2546,25 @@
 following properties:</p>
 <ol>
 <li><code>code</code>, a service mitigation code describing the type of mitigation:</li>
-<li><code>CANCELLATION</code>, indicating a journey will be canceled.</li>
-<li><code>REPLACEMENT_SERVICE</code>, indicating a replacement service will be provided.</li>
-<li><code>STANDBY_VEHICLE_PLANNED</code>, indicating a standby vehicle will be used.</li>
-<li><code>REPLACEMENT_QUAY</code>, indicating a replacement quay will be used for specific journey calls.</li>
-<li><code>impact</code>, a <a href="#service-mitigation-impact">service mitigation impact</a> structure describing the lines, journeys, stop
-   points and journey patterns impacted by the mitigation.</li>
-<li><code>duration</code>, a date-time range with a <code>start</code> and <code>end</code> describing the active period of the mitigation. Together with
-   the optional per-entry <code>serviceWindow</code> values on impact entries, it controls which dated journeys are targeted.
-   See <a href="../intro/#duration-and-service-windows">Duration and Service Windows</a> for details.</li>
-<li><code>mitigates</code>, a list of service deviation IDs that this mitigation addresses.</li>
-<li><code>metadata</code>, a <a href="#service-mitigation-metadata">list of key/value pairs</a> for associating client-specific metadata with
-   the mitigation, such as connecting service mitigations to internal / external systems.</li>
-<li><code>parameters</code>, a <a href="#service-mitigation-parameters">service mitigation parameters</a> structure detailing the functional
-   parameters of the mitigation.</li>
 </ol>
+<p>| Value |
+   |-------|
+   | <code>CANCELLATION</code> |
+   | <code>INFO_MESSAGE</code> |
+   | <code>REPLACEMENT_QUAY</code> |
+   | <code>REPLACEMENT_SERVICE</code> |
+   | <code>STANDBY_VEHICLE_PLANNED</code> |
+   | <code>WARNING_MESSAGE</code> |
+2. <code>impact</code>, a <a href="#service-mitigation-impact">service mitigation impact</a> structure describing the lines, journeys, stop
+   points and journey patterns impacted by the mitigation.
+3. <code>duration</code>, a date-time range with a <code>start</code> and <code>end</code> describing the active period of the mitigation. Together with
+   the optional per-entry <code>serviceWindow</code> values on impact entries, it controls which dated journeys are targeted.
+   See <a href="../intro/#duration-and-service-windows">Duration and Service Windows</a> for details.
+4. <code>mitigates</code>, a list of service deviation IDs that this mitigation addresses.
+5. <code>metadata</code>, a <a href="#service-mitigation-metadata">list of key/value pairs</a> for associating client-specific metadata with
+   the mitigation, such as connecting service mitigations to internal / external systems.
+6. <code>parameters</code>, a <a href="#service-mitigation-parameters">service mitigation parameters</a> structure detailing the functional
+   parameters of the mitigation.</p>
 <h5 id="service-mitigation-impact">Service Mitigation Impact<a class="headerlink" href="#service-mitigation-impact" title="Permanent link">&para;</a></h5>
 <p>The service mitigation impact structure describes one or more lines, journeys, stop points or journey patterns impacted
 by a service mitigation. Each entry type accepts an optional <code>serviceWindow</code> that refines which journeys within that
@@ -2568,12 +2593,12 @@ entry are targeted. See <a href="../intro/#duration-and-service-windows">Duratio
 </thead>
 <tbody>
 <tr>
-<td><code>PTO_CASE_REF</code></td>
-<td>A PTO case reference.</td>
-</tr>
-<tr>
 <td><code>PTA_CASE_REF</code></td>
 <td>A PTA case reference.</td>
+</tr>
+<tr>
+<td><code>PTO_CASE_REF</code></td>
+<td>A PTO case reference.</td>
 </tr>
 <tr>
 <td><code>SERVICE_DEVIATION_REF</code></td>
@@ -2583,9 +2608,12 @@ entry are targeted. See <a href="../intro/#duration-and-service-windows">Duratio
 <td><code>SERVICE_MITIGATION_REF</code></td>
 <td>A service mitigation reference.</td>
 </tr>
+<tr>
+<td><em>Additional metadata keys may be added in the future.</em></td>
+<td></td>
+</tr>
 </tbody>
 </table>
-<p><em>Additional metadata keys may be added in the future.</em></p>
 <h4 id="register-metadata-after-creation">Register Metadata - After creation<a class="headerlink" href="#register-metadata-after-creation" title="Permanent link">&para;</a></h4>
 <p>After a mitigation is created, metadata can be added to it.</p>
 <p>HTTP request:</p>
@@ -3092,8 +3120,52 @@ mitigation request with action APPROVE for a given mitigation id.</p>
 <li><code>clientMetadataKey</code> and <code>clientMetadataValue</code>: Filter mitigations by client metadata. When <code>clientMetadataKey</code> is
   provided, only mitigations with a matching, searchable entry for that key are returned. <code>clientMetadataValue</code> is
   optional and further narrows the match to a specific value.</li>
-<li><code>limit</code> and <code>offset</code>: Pagination parameters. Default limit is 20, maximum is 200.</li>
+<li><code>orderBy</code>: Sort field for the result set. Valid values:</li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MODIFIED</code></td>
+<td>Sort by last-modified timestamp.</td>
+</tr>
+<tr>
+<td><code>SERVICE_WINDOW</code></td>
+<td>Sort by the start of the effective service window.</td>
+</tr>
+<tr>
+<td>- <code>order</code>: Sort order for the result set. Valid values:</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ASC</code></td>
+<td>Ascending order.</td>
+</tr>
+<tr>
+<td><code>DESC</code></td>
+<td>Descending order.</td>
+</tr>
+<tr>
+<td>- <code>limit</code> and <code>offset</code>: Pagination parameters. Default limit is 20, maximum is 200.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h3 id="additional-service-mitigation-operations">Additional Service Mitigation Operations<a class="headerlink" href="#additional-service-mitigation-operations" title="Permanent link">&para;</a></h3>
 <p>In addition to creating service mitigations, a client may also look up, update, and delete existing service mitigations
 using the <code>{baseURL}/mitigation/mitigations/{serviceMitigationId}</code> endpoint.</p>
