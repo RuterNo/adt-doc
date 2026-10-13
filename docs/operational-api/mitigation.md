@@ -6,11 +6,14 @@ Mitigations represent actions taken to address service disruptions or deviations
 
 The API supports the following types of service mitigations:
 
-- [`CANCELLATION`](#service-mitigation-cancellation), indicating that a journey will be canceled.
-- [`REPLACEMENT_SERVICE`](#service-mitigation-replacement_service), indicating that a replacement service will be provided.
-- [`STANDBY_VEHICLE_PLANNED`](#service-mitigation-standby_vehicle_planned), indicating that a standby vehicle will be used.
-- [`REPLACEMENT_QUAY`](#service-mitigation-replacement_quay), indicating that a replacement quay will be used for specific journey calls.
-
+| Value |
+|-------|
+| `CANCELLATION` |
+| `INFO_MESSAGE` |
+| `REPLACEMENT_QUAY` |
+| `REPLACEMENT_SERVICE` |
+| `STANDBY_VEHICLE_PLANNED` |
+| `WARNING_MESSAGE` |
 ### Service Mitigation Requests
 
 To implement a solution for a service deviation, the operator should post a service mitigation request to the `{baseURL}/mitigation/mitigations` endpoint.
@@ -21,10 +24,15 @@ Each service mitigation request contains a _service mitigation specification_ de
 following properties:
 
 1. `code`, a service mitigation code describing the type of mitigation:
-   - `CANCELLATION`, indicating a journey will be canceled.
-   - `REPLACEMENT_SERVICE`, indicating a replacement service will be provided.
-   - `STANDBY_VEHICLE_PLANNED`, indicating a standby vehicle will be used.
-   - `REPLACEMENT_QUAY`, indicating a replacement quay will be used for specific journey calls.
+
+   | Value |
+   |-------|
+   | `CANCELLATION` |
+   | `INFO_MESSAGE` |
+   | `REPLACEMENT_QUAY` |
+   | `REPLACEMENT_SERVICE` |
+   | `STANDBY_VEHICLE_PLANNED` |
+   | `WARNING_MESSAGE` |
 2. `impact`, a [service mitigation impact](#service-mitigation-impact) structure describing the lines, journeys, stop
    points and journey patterns impacted by the mitigation.
 3. `duration`, a date-time range with a `start` and `end` describing the active period of the mitigation. Together with
@@ -60,13 +68,12 @@ The service mitigation metadata structure is a list of `key` / `value` pairs des
 
 The API defines a set of well-known metadata keys that may be used by clients to associate certain metadata with a service mitigation:
 
-| Key                      | Description                     |
-|--------------------------|---------------------------------|
-| `PTO_CASE_REF`           | A PTO case reference.           |
-| `PTA_CASE_REF`           | A PTA case reference.           |
-| `SERVICE_DEVIATION_REF`  | A service deviation reference.  |
+| Key | Description |
+|-------|-------------|
+| `PTA_CASE_REF` | A PTA case reference. |
+| `PTO_CASE_REF` | A PTO case reference. |
+| `SERVICE_DEVIATION_REF` | A service deviation reference. |
 | `SERVICE_MITIGATION_REF` | A service mitigation reference. |
-
 _Additional metadata keys may be added in the future._
 
 #### Register Metadata - After creation
@@ -635,6 +642,18 @@ Service mitigations can be searched by sending a `GET` request to the `{baseURL}
 - `clientMetadataKey` and `clientMetadataValue`: Filter mitigations by client metadata. When `clientMetadataKey` is
   provided, only mitigations with a matching, searchable entry for that key are returned. `clientMetadataValue` is
   optional and further narrows the match to a specific value.
+- `orderBy`: Sort field for the result set. Valid values:
+
+  | Value | Description |
+  |-------|-------------|
+  | `MODIFIED` | Sort by last-modified timestamp. |
+  | `SERVICE_WINDOW` | Sort by the start of the effective service window. |
+- `order`: Sort order for the result set. Valid values:
+
+  | Value | Description |
+  |-------|-------------|
+  | `ASC` | Ascending order. |
+  | `DESC` | Descending order. |
 - `limit` and `offset`: Pagination parameters. Default limit is 20, maximum is 200.
 
 ### Additional Service Mitigation Operations

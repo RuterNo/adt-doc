@@ -3,13 +3,12 @@ authorities about upcoming service deviations when planned journeys can not be s
 
 The following types of service deviations are supported by the API:
 
-- [`DELAY`](#service-deviation-delay), indicating a delayed start of a planned service journey.
-- [`NO_SERVICE`](#service-deviation-no_service), indicating inability to service a planned service journey.
-- [`NO_SIGN_ON`](#service-deviation-no_sign_on), indicating a service journey will be serviced, but without
-  signing on the vehicle.
-- [`BYPASS`](#service-deviation-bypass), indicating that certain calls in a journey will be bypassed by the
-  operator.
-
+| Value | Description |
+|-------|-------------|
+| `BYPASS` | A call is not serviced, but bypassed due to lack of waiting passengers or other reason. |
+| `DELAY` | Service will be delayed. |
+| `NO_SERVICE` | Journey(s), line(s) or call(s) will not be serviced by operator. |
+| `NO_SIGN_ON` | Planned journey(s), line(s) or call(s) will be serviced, but operator will not sign on. |
 ### Service Deviation Requests
 
 To notify a transport authority about an upcoming deviation in a service delivery, the operator should
@@ -21,12 +20,13 @@ Each service deviation request contains a _service deviation specification_ desc
 following properties:
 
 1. `code`, a service deviation code describing the type of deviation:
-   - `DELAY`, indicating a delayed journey start.
-   - `NO_SERVICE`, indicating a line, stop point or journey will not be serviced by the operator.
-   - `NO_SIGN_ON`, indicating a journey will be serviced by the operator, but the servicing vehicle will not be
-     signing on.
-   - `BYPASS`, indicating that certain calls in a journey will be bypassed by the operator.
-2. `reason`, a structure containing the [reason code](#service-deviation-reason-codes) for the deviation and an
+
+   | Value | Description |
+   |-------|-------------|
+   | `BYPASS` | A call is not serviced, but bypassed due to lack of waiting passengers or other reason. |
+   | `DELAY` | Service will be delayed. |
+   | `NO_SERVICE` | Journey(s), line(s) or call(s) will not be serviced by operator. |
+   | `NO_SIGN_ON` | Planned journey(s), line(s) or call(s) will be serviced, but operator will not sign on. |2. `reason`, a structure containing the [reason code](#service-deviation-reason-codes) for the deviation and an
    optional `comment` describing further details about the reason.
    The comment is for internal use by PTO and PTA and is not used for travel information.
 3. `impact`, a [service deviation impact](#service-deviation-impact) structure describing the lines, journeys, stop
@@ -65,13 +65,12 @@ deviation.
 The API defines a set of well-known metadata keys that may be used by clients to associate certain metadata with a
 service deviation:
 
-| Key                      | Description                     |
-|--------------------------|---------------------------------|
-| `PTO_CASE_REF`           | A PTO case reference.           |
-| `PTA_CASE_REF`           | A PTA case reference.           |
-| `SERVICE_DEVIATION_REF`  | A service deviation reference.  |
+| Key | Description |
+|-------|-------------|
+| `PTA_CASE_REF` | A PTA case reference. |
+| `PTO_CASE_REF` | A PTO case reference. |
+| `SERVICE_DEVIATION_REF` | A service deviation reference. |
 | `SERVICE_MITIGATION_REF` | A service mitigation reference. |
-
 _Additional metadata keys may be added in the future._
 
 #### Register Metadata - After creation
@@ -1028,6 +1027,18 @@ Service deviations can be searched by sending a `GET` request to the `{baseURL}/
 - `clientMetadataKey` and `clientMetadataValue`: Filter deviations by client metadata. When `clientMetadataKey` is
   provided, only deviations with a matching, searchable entry for that key are returned. `clientMetadataValue` is
   optional and further narrows the match to a specific value.
+- `orderBy`: Sort field for the result set. Valid values:
+
+  | Value | Description |
+  |-------|-------------|
+  | `MODIFIED` | Sort by last-modified timestamp. |
+  | `SERVICE_WINDOW` | Sort by the start of the effective service window. |
+- `order`: Sort order for the result set. Valid values:
+
+  | Value | Description |
+  |-------|-------------|
+  | `ASC` | Ascending order. |
+  | `DESC` | Descending order. |
 - `limit` and `offset`: Pagination parameters. Default limit is 20, maximum is 200.
 
 #### Find Service Deviations - by Journey Id
@@ -1181,6 +1192,77 @@ HTTP request:
 GET /api/adt/v4/operational/deviation/deviations?
 >>> clientMetadataKey=TRACKING_REF&
 >>> clientMetadataValue=TRK-2025-001
+```
+
+HTTP response:
+
+```bash
+200 OK
+{
+  "items" : [ {
+    "spec" : {
+      "code" : "NO_SERVICE",
+      "reason" : {
+        "code" : "WEATHER_SNOW_HEAVY"
+      },
+      "impact" : {
+        "journeys" : [ {
+          "journey" : {
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0001",
+              "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+            },
+            "serviceWindow" : {
+              "start" : "2025-03-03T09:00+01:00",
+              "end" : "2025-03-03T09:20+01:00"
+            }
+          }
+        } ]
+      },
+      "duration" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
+      },
+      "parameters" : {
+        "operatorExempt" : true
+      }
+    },
+    "record" : {
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:05+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:05+01:00",
+        "modifiedBy" : "system"
+      },
+      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0",
+      "name" : "SD-2026-1"
+    }
+  } ],
+  "page" : {
+    "limit" : 20,
+    "offset" : 0,
+    "itemCount" : 1,
+    "totalItemCount" : 1
+  }
+}
+```
+
+#### Find Service Deviations - by Sort Order
+
+To control the order of returned service deviations, the `orderBy` and `order` query parameters can be provided.
+
+`orderBy` accepts `MODIFIED` (sort by last-modified timestamp) or `SERVICE_WINDOW` (sort by the start of the
+effective service window). `order` accepts `ASC` or `DESC`.
+
+In this example, we retrieve the most recently modified deviations first.
+
+HTTP request:
+
+```bash
+GET /api/adt/v4/operational/deviation/deviations?
+>>> orderBy=MODIFIED&
+>>> order=DESC
 ```
 
 HTTP response:

@@ -318,6 +318,17 @@
           },
           {
             "$ref": "#/components/parameters/OffsetQueryParam"
+          },
+          {
+            "in": "query",
+            "name": "operatingDate",
+            "description": "Operating date in ISO 8601 date format.\n",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/OperatorsQueryParam"
           }
         ],
         "responses": {
@@ -498,6 +509,12 @@
           },
           {
             "$ref": "#/components/parameters/ClientMetadataValueQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/OrderByQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/OrderQueryParam"
           },
           {
             "$ref": "#/components/parameters/LimitQueryParam"
@@ -1055,6 +1072,12 @@
           },
           {
             "$ref": "#/components/parameters/ClientMetadataValueQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/OrderByQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/OrderQueryParam"
           },
           {
             "$ref": "#/components/parameters/LimitQueryParam"
@@ -1811,6 +1834,14 @@
           "type": "string"
         }
       },
+      "OperatorsQueryParam": {
+        "in": "query",
+        "name": "operators",
+        "description": "String containing a comma separated list of operatorIds to filter the query result on\n",
+        "schema": {
+          "type": "string"
+        }
+      },
       "IncludeCallsQueryParam": {
         "in": "query",
         "name": "includeCalls",
@@ -1873,6 +1904,24 @@
         "schema": {
           "type": "string",
           "maxLength": 255
+        }
+      },
+      "OrderByQueryParam": {
+        "in": "query",
+        "name": "orderBy",
+        "required": false,
+        "description": "Field to sort results by. `MODIFIED` sorts by the last-modified timestamp; `SERVICE_WINDOW` sorts by the\nstart of the effective service window.\n",
+        "schema": {
+          "$ref": "#/components/schemas/ServiceVarianceSortField"
+        }
+      },
+      "OrderQueryParam": {
+        "in": "query",
+        "name": "order",
+        "required": false,
+        "description": "Sort order. `ASC` for ascending, `DESC` for descending.",
+        "schema": {
+          "$ref": "#/components/schemas/SortOrder"
         }
       }
     },
@@ -2322,9 +2371,17 @@
               "type": "string"
             }
           },
+          "operatingDate": {
+            "type": "string",
+            "description": "Operating date in ISO 8601 date format.\n"
+          },
           "vehicleTaskId": {
             "type": "string",
             "description": "An id produced in planning to identify a collection of journeys\n"
+          },
+          "journeyPatternId": {
+            "type": "string",
+            "description": "Reference to journey pattern which particular journey assigned to"
           },
           "state": {
             "$ref": "#/components/schemas/JourneyState"
@@ -2334,6 +2391,13 @@
             "description": "Calls serviced by this journey. Note that call list may be empty or non-present (`null`) if journey was retrieved without call details.\n",
             "items": {
               "$ref": "#/components/schemas/JourneyCall"
+            }
+          },
+          "operators": {
+            "type": "array",
+            "description": "Operators serving this journey. Contains name and ref per operator\n",
+            "items": {
+              "$ref": "#/components/schemas/Operator"
             }
           }
         }
@@ -2354,6 +2418,14 @@
           "destinationDisplayText": {
             "type": "string",
             "description": "Destination display text to use at this call."
+          },
+          "stopPointName": {
+            "type": "string",
+            "description": "Human readable name of stop point.\n"
+          },
+          "stopPointPublicCode": {
+            "type": "string",
+            "description": "The identifier of the Quay that is shown to the public. It is usually a number or a letter that corresponds to a physical sign located on the quay. For example '1'. \n"
           }
         }
       },
@@ -2876,6 +2948,25 @@
           }
         }
       },
+      "Operator": {
+        "type": "object",
+        "title": "Operator",
+        "description": "Operator object containing operator ref and name",
+        "properties": {
+          "ref": {
+            "type": "string",
+            "description": "Operator ref in the format <authority-id>:Operator:<xxx>\n"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the operator\n"
+          },
+          "example": {
+            "ref": "RUT:Operator:123",
+            "name": "ruter test operator"
+          }
+        }
+      },
       "PageInfo": {
         "type": "object",
         "title": "PageInfo",
@@ -2963,6 +3054,9 @@
           },
           "journeyTargets": {
             "$ref": "#/components/schemas/ResolvedJourneyTargets"
+          },
+          "operator": {
+            "$ref": "#/components/schemas/Operator"
           }
         }
       },
@@ -3244,6 +3338,12 @@
           },
           "journeyTargets": {
             "$ref": "#/components/schemas/ResolvedJourneyTargets"
+          },
+          "messages": {
+            "$ref": "#/components/schemas/ServiceMitigationMessages"
+          },
+          "operator": {
+            "$ref": "#/components/schemas/Operator"
           }
         }
       },
@@ -3253,9 +3353,11 @@
         "description": "Service mitigation code, indicating type of service mitigation.",
         "example": [
           "CANCELLATION",
+          "INFO_MESSAGE",
           "REPLACEMENT_SERVICE",
+          "REPLACEMENT_QUAY",
           "STANDBY_VEHICLE_PLANNED",
-          "REPLACEMENT_QUAY"
+          "WARNING_MESSAGE"
         ]
       },
       "ServiceMitigationGetResponse": {
@@ -3285,6 +3387,58 @@
           },
           "page": {
             "$ref": "#/components/schemas/PageInfo"
+          }
+        }
+      },
+      "ServiceMitigationMessage": {
+        "type": "object",
+        "title": "ServiceMitigationMessage",
+        "description": "A passenger-facing message associated with a service mitigation, in a specific language. A message is only meaningful when language, title and/or text are provided.\n",
+        "properties": {
+          "language": {
+            "type": "string",
+            "description": "ISO 639-1 language code in uppercase. Supported values: NO (Norwegian, defaults to Bokm\u00e5l), NB (Norwegian Bokm\u00e5l), NN (Norwegian Nynorsk), EN (English).\n"
+          },
+          "title": {
+            "type": "string",
+            "description": "Short headline summarising the mitigation for the passenger."
+          },
+          "text": {
+            "type": "string",
+            "description": "Full message body with details about the mitigation."
+          },
+          "infoLink": {
+            "$ref": "#/components/schemas/ServiceMitigationMessageInfoLink",
+            "description": "Optional link to a page with further information about the mitigation."
+          }
+        }
+      },
+      "ServiceMitigationMessageInfoLink": {
+        "type": "object",
+        "title": "ServiceMitigationMessageInfoLink",
+        "description": "A link to a page with further information about the mitigation, with a human-readable label.\n",
+        "properties": {
+          "uri": {
+            "type": "string",
+            "description": "The URL to the information page."
+          },
+          "label": {
+            "type": "string",
+            "description": "Human-readable label for the link."
+          }
+        }
+      },
+      "ServiceMitigationMessages": {
+        "type": "object",
+        "title": "ServiceMitigationMessages",
+        "description": "Collection of passenger-facing messages for a service mitigation, one entry per language. Messages are auto-generated by the server based on the mitigation type, but may be overridden by the client.\n",
+        "properties": {
+          "items": {
+            "type": "array",
+            "description": "The list of messages, typically one per supported language.",
+            "items": {
+              "$ref": "#/components/schemas/ServiceMitigationMessage"
+            }
           }
         }
       },
@@ -3331,6 +3485,9 @@
           },
           "comment": {
             "type": "string"
+          },
+          "messages": {
+            "$ref": "#/components/schemas/ServiceMitigationMessages"
           }
         }
       },
@@ -3407,6 +3564,24 @@
             }
           }
         }
+      },
+      "ServiceVarianceSortField": {
+        "type": "string",
+        "title": "ServiceVarianceSortField",
+        "description": "Field to sort service variance (deviation / mitigation) results by.",
+        "example": [
+          "MODIFIED       # Sort by last-modified timestamp.",
+          "SERVICE_WINDOW # Sort by the start of the effective service window."
+        ]
+      },
+      "SortOrder": {
+        "type": "string",
+        "title": "SortOrder",
+        "description": "Sort order for results.",
+        "example": [
+          "ASC  # Ascending order.",
+          "DESC # Descending order."
+        ]
       },
       "StatusResponse": {
         "type": "object",
