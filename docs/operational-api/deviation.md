@@ -1027,6 +1027,11 @@ Service deviations can be searched by sending a `GET` request to the `{baseURL}/
 - `clientMetadataKey` and `clientMetadataValue`: Filter deviations by client metadata. When `clientMetadataKey` is
   provided, only deviations with a matching, searchable entry for that key are returned. `clientMetadataValue` is
   optional and further narrows the match to a specific value.
+- `codes`: Comma-separated list of service deviation codes (e.g. `NO_SERVICE,BYPASS`). Only deviations having one of the
+  listed codes are returned. If not provided, no code filter is applied.
+- `hasMitigation`: Filter deviations by whether they have related mitigations. `true` returns only deviations with at
+  least one related mitigation, `false` returns only deviations with no related mitigations. If not provided, the
+  search is not affected, and deviations are returned regardless of related mitigations.
 - `orderBy`: Sort field for the result set. Valid values:
 
   | Value | Description |
@@ -1192,6 +1197,182 @@ HTTP request:
 GET /api/adt/v4/operational/deviation/deviations?
 >>> clientMetadataKey=TRACKING_REF&
 >>> clientMetadataValue=TRK-2025-001
+```
+
+HTTP response:
+
+```bash
+200 OK
+{
+  "items" : [ {
+    "spec" : {
+      "code" : "NO_SERVICE",
+      "reason" : {
+        "code" : "WEATHER_SNOW_HEAVY"
+      },
+      "impact" : {
+        "journeys" : [ {
+          "journey" : {
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0001",
+              "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+            },
+            "serviceWindow" : {
+              "start" : "2025-03-03T09:00+01:00",
+              "end" : "2025-03-03T09:20+01:00"
+            }
+          }
+        } ]
+      },
+      "duration" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
+      },
+      "parameters" : {
+        "operatorExempt" : true
+      }
+    },
+    "record" : {
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:05+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:05+01:00",
+        "modifiedBy" : "system"
+      },
+      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0",
+      "name" : "SD-2026-1"
+    }
+  } ],
+  "page" : {
+    "limit" : 20,
+    "offset" : 0,
+    "itemCount" : 1,
+    "totalItemCount" : 1
+  }
+}
+```
+
+#### Find Service Deviations - by Codes
+
+To find service deviations having specific codes, the `codes` query parameter can be provided as a comma-separated list.
+
+In this example, we search for all deviations with code `NO_SERVICE` or `BYPASS`. Both matching deviations are returned.
+
+HTTP request:
+
+```bash
+GET /api/adt/v4/operational/deviation/deviations?codes=NO_SERVICE,BYPASS
+```
+
+HTTP response:
+
+```bash
+200 OK
+{
+  "items" : [ {
+    "spec" : {
+      "code" : "NO_SERVICE",
+      "reason" : {
+        "code" : "WEATHER_SNOW_HEAVY"
+      },
+      "impact" : {
+        "journeys" : [ {
+          "journey" : {
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0001",
+              "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+            },
+            "serviceWindow" : {
+              "start" : "2025-03-03T09:00+01:00",
+              "end" : "2025-03-03T09:20+01:00"
+            }
+          }
+        } ]
+      },
+      "duration" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
+      },
+      "parameters" : {
+        "operatorExempt" : true
+      }
+    },
+    "record" : {
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:05+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:05+01:00",
+        "modifiedBy" : "system"
+      },
+      "serviceDeviationId" : "1530bf5405624db1b6b449d0edbec8c0",
+      "name" : "SD-2026-1"
+    }
+  }, {
+    "spec" : {
+      "code" : "BYPASS",
+      "reason" : {
+        "code" : "NO_PASSENGERS"
+      },
+      "impact" : {
+        "journeys" : [ {
+          "calls" : [ {
+            "stopPoint" : {
+              "quayId" : "NSR:Quay:002A",
+              "stopPointId" : "stop-point-002A"
+            },
+            "arrivalDateTime" : "2025-03-03T09:10+01:00",
+            "departureDateTime" : "2025-03-03T09:10+01:00"
+          } ],
+          "journey" : {
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0001",
+              "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+            }
+          }
+        } ]
+      },
+      "duration" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
+      },
+      "parameters" : {
+        "operatorExempt" : true
+      }
+    },
+    "record" : {
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:05+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:05+01:00",
+        "modifiedBy" : "system"
+      },
+      "serviceDeviationId" : "69c6x21a838245cb568cb0a5d1548fd2",
+      "name" : "SD-2026-2"
+    }
+  } ],
+  "page" : {
+    "limit" : 20,
+    "offset" : 0,
+    "itemCount" : 2,
+    "totalItemCount" : 2
+  }
+}
+```
+
+#### Find Service Deviations - by Mitigation Presence
+
+To find service deviations that have no related mitigations, the `hasMitigation` query parameter can be set to `false`.
+Setting it to `true` returns only deviations with at least one related mitigation.
+
+In this example, we search for all deviations still lacking a mitigation.
+
+HTTP request:
+
+```bash
+GET /api/adt/v4/operational/deviation/deviations?hasMitigation=false
 ```
 
 HTTP response:

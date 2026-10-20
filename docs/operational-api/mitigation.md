@@ -642,6 +642,11 @@ Service mitigations can be searched by sending a `GET` request to the `{baseURL}
 - `clientMetadataKey` and `clientMetadataValue`: Filter mitigations by client metadata. When `clientMetadataKey` is
   provided, only mitigations with a matching, searchable entry for that key are returned. `clientMetadataValue` is
   optional and further narrows the match to a specific value.
+- `codes`: Comma-separated list of service mitigation codes (e.g. `CANCELLATION,INFO_MESSAGE`). Only mitigations having
+  one of the listed codes are returned. If not provided, no code filter is applied.
+- `hasDeviation`: Filter mitigations by whether they have related deviations. `true` returns only mitigations with at
+  least one related deviation, `false` returns only mitigations with no related deviations. If not provided, the
+  search is not affected, and mitigations are returned regardless of related deviations.
 - `orderBy`: Sort field for the result set. Valid values:
 
   | Value | Description |
@@ -656,6 +661,223 @@ Service mitigations can be searched by sending a `GET` request to the `{baseURL}
   | `DESC` | Descending order. |
 - `limit` and `offset`: Pagination parameters. Default limit is 20, maximum is 200.
 
+#### Find Service Mitigations - by Codes
+
+To find service mitigations having specific codes, the `codes` query parameter can be provided as a comma-separated list.
+
+In this example, we search for all mitigations with code `CANCELLATION` or `INFO_MESSAGE`. Both matching mitigations are returned.
+
+HTTP request:
+
+```bash
+GET /api/adt/v4/operational/mitigation/mitigations?codes=CANCELLATION,INFO_MESSAGE
+```
+
+HTTP response:
+
+```bash
+200 OK
+{
+  "items" : [ {
+    "spec" : {
+      "code" : "CANCELLATION",
+      "impact" : {
+        "journeys" : [ {
+          "journey" : {
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0001",
+              "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+            },
+            "serviceWindow" : {
+              "start" : "2025-03-03T09:00+01:00",
+              "end" : "2025-03-03T09:20+01:00"
+            }
+          }
+        } ]
+      },
+      "duration" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
+      },
+      "mitigates" : [ "service-deviation-id-001" ]
+    },
+    "record" : {
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:05+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:05+01:00",
+        "modifiedBy" : "system"
+      },
+      "serviceMitigationId" : "service-mitigation-unique-id",
+      "name" : "SM-2026-1"
+    }
+  }, {
+    "spec" : {
+      "code" : "INFO_MESSAGE",
+      "impact" : {
+        "lines" : [ {
+          "spec" : {
+            "lineId" : "RUT:Line:001"
+          },
+          "serviceWindow" : {
+            "start" : "2025-03-03T09:00+01:00",
+            "end" : "2025-03-03T09:20+01:00"
+          }
+        } ]
+      },
+      "duration" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
+      }
+    },
+    "record" : {
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:05+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:05+01:00",
+        "modifiedBy" : "system"
+      },
+      "serviceMitigationId" : "service-mitigation-unique-id-2",
+      "name" : "SM-2026-2"
+    }
+  } ],
+  "page" : {
+    "limit" : 20,
+    "offset" : 0,
+    "itemCount" : 2,
+    "totalItemCount" : 2
+  }
+}
+```
+
+#### Find Service Mitigations - by Deviation Presence
+
+To find service mitigations that have no related deviations, the `hasDeviation` query parameter can be set to `false`.
+Setting it to `true` returns only mitigations with at least one related deviation.
+
+In this example, we search for all mitigations not linked to any deviation.
+
+HTTP request:
+
+```bash
+GET /api/adt/v4/operational/mitigation/mitigations?hasDeviation=false
+```
+
+HTTP response:
+
+```bash
+200 OK
+{
+  "items" : [ {
+    "spec" : {
+      "code" : "CANCELLATION",
+      "impact" : {
+        "journeys" : [ {
+          "journey" : {
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0001",
+              "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+            },
+            "serviceWindow" : {
+              "start" : "2025-03-03T09:00+01:00",
+              "end" : "2025-03-03T09:20+01:00"
+            }
+          }
+        } ]
+      },
+      "duration" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
+      },
+      "mitigates" : [ "service-deviation-id-001" ]
+    },
+    "record" : {
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:05+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:05+01:00",
+        "modifiedBy" : "system"
+      },
+      "serviceMitigationId" : "service-mitigation-unique-id",
+      "name" : "SM-2026-1"
+    }
+  } ],
+  "page" : {
+    "limit" : 20,
+    "offset" : 0,
+    "itemCount" : 1,
+    "totalItemCount" : 1
+  }
+}
+```
+
+#### Find Service Mitigations - by Sort Order
+
+To control the order of returned service mitigations, the `orderBy` and `order` query parameters can be provided.
+
+`orderBy` accepts `MODIFIED` (sort by last-modified timestamp) or `SERVICE_WINDOW` (sort by the start of the
+effective service window). `order` accepts `ASC` or `DESC`.
+
+In this example, we retrieve mitigations ordered by service window start, oldest first.
+
+HTTP request:
+
+```bash
+GET /api/adt/v4/operational/mitigation/mitigations?
+>>> orderBy=SERVICE_WINDOW&
+>>> order=ASC
+```
+
+HTTP response:
+
+```bash
+200 OK
+{
+  "items" : [ {
+    "spec" : {
+      "code" : "CANCELLATION",
+      "impact" : {
+        "journeys" : [ {
+          "journey" : {
+            "spec" : {
+              "lineId" : "RUT:Line:001",
+              "journeyId" : "RUT:DatedServiceJourney:0001",
+              "firstDepartureDateTime" : "2025-03-03T09:00+01:00"
+            },
+            "serviceWindow" : {
+              "start" : "2025-03-03T09:00+01:00",
+              "end" : "2025-03-03T09:20+01:00"
+            }
+          }
+        } ]
+      },
+      "duration" : {
+        "start" : "2025-03-03T09:00+01:00",
+        "end" : "2025-03-03T09:20+01:00"
+      },
+      "mitigates" : [ "service-deviation-id-001" ]
+    },
+    "record" : {
+      "lifecycle" : {
+        "createdAt" : "2025-03-03T05:05+01:00",
+        "createdBy" : "system",
+        "modifiedAt" : "2025-03-03T05:05+01:00",
+        "modifiedBy" : "system"
+      },
+      "serviceMitigationId" : "service-mitigation-unique-id",
+      "name" : "SM-2026-1"
+    }
+  } ],
+  "page" : {
+    "limit" : 20,
+    "offset" : 0,
+    "itemCount" : 1,
+    "totalItemCount" : 1
+  }
+}
+```
 ### Additional Service Mitigation Operations
 
 In addition to creating service mitigations, a client may also look up, update, and delete existing service mitigations

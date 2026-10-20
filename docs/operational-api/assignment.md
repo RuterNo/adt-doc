@@ -196,7 +196,7 @@ POST /api/adt/v4/operational/assignment/attempts
   "vehicleId" : "VI00TEST001",
   "signOn" : {
     "vehicle" : {
-      "segmentCount" : 1
+      "trainsetIds" : [ "MX000000000003101" ]
     },
     "mqttRouting" : {
       "operatorId" : "PTO",

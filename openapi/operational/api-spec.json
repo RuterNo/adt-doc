@@ -517,6 +517,12 @@
             "$ref": "#/components/parameters/OrderQueryParam"
           },
           {
+            "$ref": "#/components/parameters/DeviationCodesQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/HasMitigationQueryParam"
+          },
+          {
             "$ref": "#/components/parameters/LimitQueryParam"
           },
           {
@@ -1072,6 +1078,12 @@
           },
           {
             "$ref": "#/components/parameters/ClientMetadataValueQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/MitigationCodesQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/HasDeviationQueryParam"
           },
           {
             "$ref": "#/components/parameters/OrderByQueryParam"
@@ -1841,6 +1853,38 @@
         "schema": {
           "type": "string"
         }
+      },
+      "MitigationCodesQueryParam": {
+        "in": "query",
+        "name": "codes",
+        "schema": {
+          "type": "string"
+        },
+        "description": "String containing a comma separated list of service mitigation codes. Filters result to contain only items having the listed codes. Separator is comma, so any code CANNOT CONTAIN A COMMA. E.g. CANCELLATION,INFO_MESSAGE\n"
+      },
+      "DeviationCodesQueryParam": {
+        "in": "query",
+        "name": "codes",
+        "schema": {
+          "type": "string"
+        },
+        "description": "String containing a comma separated list of service deviation codes. Filters result to contain only items having the listed codes. Separator is comma, so any code CANNOT CONTAIN A COMMA. E.g. NO_SERVICE,BYPASS\n"
+      },
+      "HasMitigationQueryParam": {
+        "in": "query",
+        "name": "hasMitigation",
+        "schema": {
+          "type": "boolean"
+        },
+        "description": "Flag used to filter deviations having or not having AT LEAST one related mitigation. True returns all deviations with at least one related mitigation. False returns all deviations with no related mitigations. If not provided, the search is not affected.\n"
+      },
+      "HasDeviationQueryParam": {
+        "in": "query",
+        "name": "hasDeviation",
+        "schema": {
+          "type": "boolean"
+        },
+        "description": "Flag used to filter mitigations having or not having AT LEAST one related deviation. True returns all mitigations with at least one related deviation. False returns all mitigations with no related deviations. If not provided, the search is not affected.\n"
       },
       "IncludeCallsQueryParam": {
         "in": "query",
@@ -3736,13 +3780,9 @@
         "type": "object",
         "title": "VehicleProperties",
         "properties": {
-          "segmentCount": {
-            "type": "integer",
-            "description": "Optional segment count indicating number of logical segments for multi-segment vehicles. This may be used for vehicles such as articulated buses, multi-segment trams or metro trains consisting of multiple carriages or multiple carriage sets.\n"
-          },
-          "segmentIds": {
+          "trainsetIds": {
             "type": "array",
-            "description": "Optional array containing the ids of each segment for multi-segment vehicles.\n",
+            "description": "Optional array containing the ids of each trainset for metro vehicles consisting of multiple trainsets.\n",
             "items": {
               "type": "string"
             }
