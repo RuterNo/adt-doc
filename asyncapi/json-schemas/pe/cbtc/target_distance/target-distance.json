@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/cbtc/target_distance/target-distance.json",
+  "title": "TargetDistance",
+  "type": "object",
+  "required": [
+    "eventTimestamp",
+    "platformTrackId",
+    "startDistance",
+    "targetDistance"
+  ],
+  "description": "Published every second when the vehicle has a known destination, with information about the remaining distance to the target.",
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)"
+    },
+    "platformTrackId": {
+      "$id": "#/properties/platformTrackId",
+      "type": "string",
+      "description": "The unique platform track ID of the next quay. CBTC refers to this as \"PTID\"."
+    },
+    "startDistance": {
+      "$id": "#/properties/startDistance",
+      "type": "integer",
+      "description": "Starts at 0 when the vehicle leaves the current stop. Counts up to the \"targetDistance\" (when at next stop)."
+    },
+    "targetDistance": {
+      "$id": "#/properties/targetDistance",
+      "type": "integer",
+      "description": "When the vehicle leaves the current stop, this is set to the total distance to reach the next stop. As the vehicle moves, this counts downwards. When the vehicle reaches the next stop, this value reaches 0. \"targetDistance\" and \"startDistance\" are the inverse of each other. When summed, they always yield the total distance from the previous stop to the next stop."
+    }
+  }
+}

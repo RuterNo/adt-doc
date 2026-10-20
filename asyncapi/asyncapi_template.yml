@@ -1,0 +1,1071 @@
+asyncapi: 3.0.0
+info:
+  title: Avtale om digitale tjenester - ADT
+  description:
+    $ref: markdown/introduction.md
+  termsOfService: https://ruter.no
+  contact:
+    name: RDP Support
+    url: https://ruteras.slack.com/archives/CKJ2V79SN
+    email: rdp-support@ruter.no
+  license:
+    name: GPL 3.0
+    url: https://ruter.no
+  version: version.from.tag
+defaultContentType: application/json
+servers:
+  mqttTranshub:
+    host: mqtt.transhub.io
+    protocol: mqtt
+    description: Ruters central MQTT broker
+    variables:
+      port:
+        description: The mqtt broker is available through TCP (:8883) and Websockets (:9883)
+        default: '8883'
+        enum:
+          - '8883'
+          - '9883'
+    security:
+      - $ref: '#/components/securitySchemes/user-password'
+channels:
+  di_available_destination_displays:
+    address: di/available_destination_displays
+    description:
+      $ref: json-schemas/di/available-destination-displays/available-destination-displays.md
+    messages:
+      AvailableDestinationDisplays:
+        $ref: '#/components/messages/AvailableDestinationDisplays'
+  di_override_attempt_destination_display:
+    address: di/override_attempt/destination_display
+    description:
+      $ref: json-schemas/di/override_attempt/destination_display/destination-display-override.md
+    messages:
+      DestinationDisplayOverride:
+        $ref: '#/components/messages/DestinationDisplayOverride'
+  pe_active_cab:
+    address: pe/active_cab
+    description:
+      $ref: json-schemas/pe/active-cab/active-cab.md
+    messages:
+      ActiveCab:
+        $ref: '#/components/messages/ActiveCab'
+  pe_audio:
+    address: pe/audio
+    description:
+      $ref: json-schemas/pe/audio/audio.md
+    messages:
+      Audio:
+        $ref: '#/components/messages/Audio'
+  pe_cardreader_diagnostics_vix_deviceRef:
+    address: pe/cardreader_diagnostics/vix/{deviceRef}
+    description:
+      $ref: json-schemas/pe/cardreader-diagnostics/vix/vix-cardreader_diagnostics.md
+    parameters:
+      deviceRef:
+        $ref: '#/components/parameters/deviceRef'
+    messages:
+      VixCardreaderDiagnostics:
+        $ref: '#/components/messages/VixCardreaderDiagnostics'
+  pe_doors_individually:
+    address: pe/doors_individually
+    description:
+      $ref: json-schemas/pe/doors-individually/doors-individually.md
+    messages:
+      DoorsIndividually:
+        $ref: '#/components/messages/DoorsIndividually'
+  pe_dpi_ack:
+    address: pe/dpi/ack
+    description:
+      $ref: json-schemas/pe/dpi/ack/dpi-acknowledge.md
+    messages:
+      DpiAcknowledge:
+        $ref: '#/components/messages/DpiAcknowledge'
+  pe_dpi_arriving:
+    address: pe/dpi/arriving
+    description:
+      $ref: json-schemas/pe/dpi/arriving/dpi-arriving.md
+    messages:
+      DpiArriving:
+        $ref: '#/components/messages/DpiArriving'
+  pe_dpi_command:
+    address: pe/dpi/command
+    description:
+      $ref: json-schemas/pe/dpi/command/dpi-command.md
+    messages:
+      DpiCommand:
+        $ref: '#/components/messages/DpiCommand'
+  pe_dpi_command_response:
+    address: pe/dpi/command_response
+    description:
+      $ref: json-schemas/pe/dpi/command_response/dpi-command_response.md
+    messages:
+      DpiCommandResponse:
+        $ref: '#/components/messages/DpiCommandResponse'
+  pe_dpi_connection_status:
+    address: pe/dpi/connection_status
+    description:
+      $ref: json-schemas/pe/dpi/connection_status/dpi-connection-status.md
+    messages:
+      DpiConnectionStatus:
+        $ref: '#/components/messages/DpiConnectionStatus'
+  pe_dpi_connections:
+    address: pe/dpi/connections
+    description:
+      $ref: json-schemas/pe/dpi/connections/dpi-connections.md
+    messages:
+      DpiConnections:
+        $ref: '#/components/messages/DpiConnections'
+  pe_dpi_diagnostics:
+    address: pe/dpi/diagnostics
+    description:
+      $ref: json-schemas/pe/dpi/diagnostics/dpi-diagnostics.md
+    messages:
+      DpiDiagnostics:
+        $ref: '#/components/messages/DpiDiagnostics'
+  pe_dpi_display_status:
+    address: pe/dpi/display_status
+    description:
+      $ref: json-schemas/pe/dpi/display_status/dpi-display-status.md
+    messages:
+      DpiDisplayStatus:
+        $ref: '#/components/messages/DpiDisplayStatus'
+  pe_dpi_eta:
+    address: pe/dpi/eta
+    description:
+      $ref: json-schemas/pe/dpi/eta/dpi-eta.md
+    messages:
+      DpiEta:
+        $ref: '#/components/messages/DpiEta'
+  pe_dpi_externaldisplay:
+    address: pe/dpi/externaldisplay
+    description:
+      $ref: json-schemas/pe/dpi/externaldisplay/dpi-externaldisplay.md
+    messages:
+      DpiExternaldisplay:
+        $ref: '#/components/messages/DpiExternaldisplay'
+  pe_dpi_feature_toggle:
+    address: pe/dpi/feature_toggle
+    description:
+      $ref: json-schemas/pe/dpi/feature_toggle/dpi-feature-toggle.md
+    messages:
+      DpiFeatureToggle:
+        $ref: '#/components/messages/DpiFeatureToggle'
+  pe_dpi_journey:
+    address: pe/dpi/journey
+    description:
+      $ref: json-schemas/pe/dpi/journey/dpi-journey.md
+    messages:
+      DpiJourney:
+        $ref: '#/components/messages/DpiJourney'
+  pe_dpi_key_stops:
+    address: pe/dpi/key_stops
+    description:
+      $ref: json-schemas/pe/dpi/key_stops/dpi-key_stops.md
+    messages:
+      DpiKeyStops:
+        $ref: '#/components/messages/DpiKeyStops'
+  pe_dpi_logs:
+    address: pe/dpi/logs
+    description:
+      $ref: json-schemas/pe/dpi/logs/dpi-logs.md
+    messages:
+      DpiLogs:
+        $ref: '#/components/messages/DpiLogs'
+  pe_dpi_nextstop:
+    address: pe/dpi/nextstop
+    description:
+      $ref: json-schemas/pe/dpi/nextstop/dpi-nextstop.md
+    messages:
+      DpiNextstop:
+        $ref: '#/components/messages/DpiNextstop'
+  pe_dpi_pa:
+    address: pe/dpi/pa
+    description:
+      $ref: json-schemas/pe/dpi/pa/dpi-pa.md
+    messages:
+      DpiPa:
+        $ref: '#/components/messages/DpiPa'
+  pe_input_stop_button:
+    address: pe/input/stop_button
+    description:
+      $ref: markdown/stop-button-input.md
+    messages:
+      StopButtonMessage:
+        $ref: '#/components/messages/StopButtonMessage'
+  pe_sales_current_stop:
+    address: pe/sales/current_stop
+    description:
+      $ref: json-schemas/pe/sales/current_stop/sales-current_stop.md
+    messages:
+      SalesCurrentStop:
+        $ref: '#/components/messages/SalesCurrentStop'
+  pe_sales_diagnostics:
+    address: pe/sales/diagnostics
+    description:
+      $ref: json-schemas/pe/sales/diagnostics/sales-diagnostics.md
+    messages:
+      SalesDiagnostics:
+        $ref: '#/components/messages/SalesDiagnostics'
+  pe_sales_sla:
+    address: pe/sales/sla
+    description:
+      $ref: json-schemas/pe/sales/sla/sales-sla.md
+    messages:
+      SalesSla:
+        $ref: '#/components/messages/SalesSla'
+  pe_vehicle_api:
+    address: pe/vehicle/api
+    description:
+      $ref: json-schemas/pe/vehicle/api/api.md
+    messages:
+      Api:
+        $ref: '#/components/messages/Api'
+  sensors_accelerometer:
+    address: sensors/accelerometer
+    description:
+      $ref: json-schemas/sensors/accelerometer/accelerometer.md
+    messages:
+      Accelerometer:
+        $ref: '#/components/messages/Accelerometer'
+  sensors_apc_sensorId:
+    address: sensors/apc/{sensorId}
+    description:
+      $ref: json-schemas/sensors/apc/apc.md
+    parameters:
+      sensorId:
+        $ref: '#/components/parameters/sensorId'
+    messages:
+      Apc:
+        $ref: '#/components/messages/Apc'
+  sensors_charging:
+    address: sensors/charging
+    description:
+      $ref: json-schemas/sensors/charging/charging.md
+    messages:
+      Charging:
+        $ref: '#/components/messages/Charging'
+  sensors_door:
+    address: sensors/door
+    description:
+      $ref: json-schemas/sensors/door/door.md
+    messages:
+      Door:
+        $ref: '#/components/messages/Door'
+  sensors_energy_consumption:
+    address: sensors/energy_consumption
+    description:
+      $ref: json-schemas/sensors/energy-consumption/energy-consumption.md
+    messages:
+      EnergyConsumption:
+        $ref: '#/components/messages/EnergyConsumption'
+  sensors_location:
+    address: sensors/location
+    description:
+      $ref: json-schemas/sensors/location/location.md
+    messages:
+      Location:
+        $ref: '#/components/messages/Location'
+  sensors_odometer:
+    address: sensors/odometer
+    description:
+      $ref: json-schemas/sensors/odometer/odometer.md
+    messages:
+      Odometer:
+        $ref: '#/components/messages/Odometer'
+  sensors_state_of_charge:
+    address: sensors/state_of_charge
+    description:
+      $ref: json-schemas/sensors/state-of-charge/state-of-charge.md
+    messages:
+      StateOfCharge:
+        $ref: '#/components/messages/StateOfCharge'
+  sensors_stop_button:
+    address: sensors/stop_button
+    description:
+      $ref: json-schemas/sensors/stop-button/stop-button.md
+    messages:
+      StopButton:
+        $ref: '#/components/messages/StopButton'
+  sensors_temperature_indoor:
+    address: sensors/temperature_indoor
+    description:
+      $ref: json-schemas/sensors/temperature-indoor/temperature-indoor.md
+    messages:
+      TemperatureIndoor:
+        $ref: '#/components/messages/TemperatureIndoor'
+  sensors_temperature_outdoor:
+    address: sensors/temperature_outdoor
+    description:
+      $ref: json-schemas/sensors/temperature-outdoor/temperature-outdoor.md
+    messages:
+      TemperatureOutdoor:
+        $ref: '#/components/messages/TemperatureOutdoor'
+  sensors_temperature_water:
+    address: sensors/temperature_water
+    description:
+      $ref: json-schemas/sensors/temperature-water/temperature-water.md
+    messages:
+      TemperatureWater:
+        $ref: '#/components/messages/TemperatureWater'
+  sensors_windscreen_wiper:
+    address: sensors/windscreen_wiper
+    description:
+      $ref: json-schemas/sensors/windscreen-wiper/windscreen-wiper.md
+    messages:
+      WindscreenWiper:
+        $ref: '#/components/messages/WindscreenWiper'
+operations:
+  # DI channels
+  receiveAvailableDestinationDisplays:
+    action: receive
+    channel:
+      $ref: '#/channels/di_available_destination_displays'
+    messages:
+      - $ref: '#/channels/di_available_destination_displays/messages/AvailableDestinationDisplays'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: true
+  sendDestinationDisplayOverride:
+    action: send
+    channel:
+      $ref: '#/channels/di_override_attempt_destination_display'
+    messages:
+      - $ref: '#/channels/di_override_attempt_destination_display/messages/DestinationDisplayOverride'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: false
+  # PE channels
+  sendActiveCab:
+    action: send
+    channel:
+      $ref: '#/channels/pe_active_cab'
+    messages:
+      - $ref: '#/channels/pe_active_cab/messages/ActiveCab'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: true
+  receiveAudio:
+    action: receive
+    channel:
+      $ref: '#/channels/pe_audio'
+    messages:
+      - $ref: '#/channels/pe_audio/messages/Audio'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: false
+  sendVixCardreaderDiagnostics:
+    action: send
+    channel:
+      $ref: '#/channels/pe_cardreader_diagnostics_vix_deviceRef'
+    messages:
+      - $ref: '#/channels/pe_cardreader_diagnostics_vix_deviceRef/messages/VixCardreaderDiagnostics'
+    bindings:
+      mqtt:
+        qos: 0
+        retain: false
+  sendDoorsIndividually:
+    action: send
+    channel:
+      $ref: '#/channels/pe_doors_individually'
+    messages:
+      - $ref: '#/channels/pe_doors_individually/messages/DoorsIndividually'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: false
+  sendDpiAcknowledge:
+    action: send
+    channel:
+      $ref: '#/channels/pe_dpi_ack'
+    messages:
+      - $ref: '#/channels/pe_dpi_ack/messages/DpiAcknowledge'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: false
+  receiveDpiArriving:
+    action: receive
+    channel:
+      $ref: '#/channels/pe_dpi_arriving'
+    messages:
+      - $ref: '#/channels/pe_dpi_arriving/messages/DpiArriving'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: false
+  receiveDpiCommand:
+    action: receive
+    channel:
+      $ref: '#/channels/pe_dpi_command'
+    messages:
+      - $ref: '#/channels/pe_dpi_command/messages/DpiCommand'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: false
+  sendDpiCommandResponse:
+    action: send
+    channel:
+      $ref: '#/channels/pe_dpi_command_response'
+    messages:
+      - $ref: '#/channels/pe_dpi_command_response/messages/DpiCommandResponse'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: false
+  sendDpiConnectionStatus:
+    action: send
+    channel:
+      $ref: '#/channels/pe_dpi_connection_status'
+    messages:
+      - $ref: '#/channels/pe_dpi_connection_status/messages/DpiConnectionStatus'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: true
+  receiveDpiConnections:
+    action: receive
+    channel:
+      $ref: '#/channels/pe_dpi_connections'
+    messages:
+      - $ref: '#/channels/pe_dpi_connections/messages/DpiConnections'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: false
+  sendDpiDiagnostics:
+    action: send
+    channel:
+      $ref: '#/channels/pe_dpi_diagnostics'
+    messages:
+      - $ref: '#/channels/pe_dpi_diagnostics/messages/DpiDiagnostics'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: false
+  sendDpiDisplayStatus:
+    action: send
+    channel:
+      $ref: '#/channels/pe_dpi_display_status'
+    messages:
+      - $ref: '#/channels/pe_dpi_display_status/messages/DpiDisplayStatus'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: false
+  receiveDpiEta:
+    action: receive
+    channel:
+      $ref: '#/channels/pe_dpi_eta'
+    messages:
+      - $ref: '#/channels/pe_dpi_eta/messages/DpiEta'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: false
+  receiveDpiExternaldisplay:
+    action: receive
+    channel:
+      $ref: '#/channels/pe_dpi_externaldisplay'
+    messages:
+      - $ref: '#/channels/pe_dpi_externaldisplay/messages/DpiExternaldisplay'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: true
+  receiveDpiFeatureToggle:
+    action: receive
+    channel:
+      $ref: '#/channels/pe_dpi_feature_toggle'
+    messages:
+      - $ref: '#/channels/pe_dpi_feature_toggle/messages/DpiFeatureToggle'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: true
+  receiveDpiJourney:
+    action: receive
+    channel:
+      $ref: '#/channels/pe_dpi_journey'
+    messages:
+      - $ref: '#/channels/pe_dpi_journey/messages/DpiJourney'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: true
+  receiveDpiKeyStops:
+    action: receive
+    channel:
+      $ref: '#/channels/pe_dpi_key_stops'
+    messages:
+      - $ref: '#/channels/pe_dpi_key_stops/messages/DpiKeyStops'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: true
+  sendDpiLogs:
+    action: send
+    channel:
+      $ref: '#/channels/pe_dpi_logs'
+    messages:
+      - $ref: '#/channels/pe_dpi_logs/messages/DpiLogs'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: false
+  receiveDpiNextstop:
+    action: receive
+    channel:
+      $ref: '#/channels/pe_dpi_nextstop'
+    messages:
+      - $ref: '#/channels/pe_dpi_nextstop/messages/DpiNextstop'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: true
+  receiveDpiPa:
+    action: receive
+    channel:
+      $ref: '#/channels/pe_dpi_pa'
+    messages:
+      - $ref: '#/channels/pe_dpi_pa/messages/DpiPa'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: true
+  receiveStopButtonMessage:
+    action: receive
+    channel:
+      $ref: '#/channels/pe_input_stop_button'
+    messages:
+      - $ref: '#/channels/pe_input_stop_button/messages/StopButtonMessage'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: false
+  receiveSalesCurrentStop:
+    action: receive
+    channel:
+      $ref: '#/channels/pe_sales_current_stop'
+    messages:
+      - $ref: '#/channels/pe_sales_current_stop/messages/SalesCurrentStop'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: true
+  sendSalesDiagnostics:
+    action: send
+    channel:
+      $ref: '#/channels/pe_sales_diagnostics'
+    messages:
+      - $ref: '#/channels/pe_sales_diagnostics/messages/SalesDiagnostics'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: true
+  sendSalesSla:
+    action: send
+    channel:
+      $ref: '#/channels/pe_sales_sla'
+    messages:
+      - $ref: '#/channels/pe_sales_sla/messages/SalesSla'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: true
+  receiveApi:
+    action: receive
+    channel:
+      $ref: '#/channels/pe_vehicle_api'
+    messages:
+      - $ref: '#/channels/pe_vehicle_api/messages/Api'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: true
+  # Sensor channels
+  sendAccelerometer:
+    action: send
+    channel:
+      $ref: '#/channels/sensors_accelerometer'
+    messages:
+      - $ref: '#/channels/sensors_accelerometer/messages/Accelerometer'
+    bindings:
+      mqtt:
+        qos: 0
+        retain: false
+  sendApc:
+    action: send
+    channel:
+      $ref: '#/channels/sensors_apc_sensorId'
+    messages:
+      - $ref: '#/channels/sensors_apc_sensorId/messages/Apc'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: false
+  sendCharging:
+    action: send
+    channel:
+      $ref: '#/channels/sensors_charging'
+    messages:
+      - $ref: '#/channels/sensors_charging/messages/Charging'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: false
+  sendDoor:
+    action: send
+    channel:
+      $ref: '#/channels/sensors_door'
+    messages:
+      - $ref: '#/channels/sensors_door/messages/Door'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: true
+  sendEnergyConsumption:
+    action: send
+    channel:
+      $ref: '#/channels/sensors_energy_consumption'
+    messages:
+      - $ref: '#/channels/sensors_energy_consumption/messages/EnergyConsumption'
+    bindings:
+      mqtt:
+        qos: 0
+        retain: false
+  sendLocation:
+    action: send
+    channel:
+      $ref: '#/channels/sensors_location'
+    messages:
+      - $ref: '#/channels/sensors_location/messages/Location'
+    bindings:
+      mqtt:
+        qos: 0
+        retain: false
+  sendOdometer:
+    action: send
+    channel:
+      $ref: '#/channels/sensors_odometer'
+    messages:
+      - $ref: '#/channels/sensors_odometer/messages/Odometer'
+    bindings:
+      mqtt:
+        qos: 0
+        retain: false
+  sendStateOfCharge:
+    action: send
+    channel:
+      $ref: '#/channels/sensors_state_of_charge'
+    messages:
+      - $ref: '#/channels/sensors_state_of_charge/messages/StateOfCharge'
+    bindings:
+      mqtt:
+        qos: 0
+        retain: false
+  sendStopButton:
+    action: send
+    channel:
+      $ref: '#/channels/sensors_stop_button'
+    messages:
+      - $ref: '#/channels/sensors_stop_button/messages/StopButton'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: false
+  sendTemperatureIndoor:
+    action: send
+    channel:
+      $ref: '#/channels/sensors_temperature_indoor'
+    messages:
+      - $ref: '#/channels/sensors_temperature_indoor/messages/TemperatureIndoor'
+    bindings:
+      mqtt:
+        qos: 0
+        retain: false
+  sendTemperatureOutdoor:
+    action: send
+    channel:
+      $ref: '#/channels/sensors_temperature_outdoor'
+    messages:
+      - $ref: '#/channels/sensors_temperature_outdoor/messages/TemperatureOutdoor'
+    bindings:
+      mqtt:
+        qos: 0
+        retain: false
+  sendTemperatureWater:
+    action: send
+    channel:
+      $ref: '#/channels/sensors_temperature_water'
+    messages:
+      - $ref: '#/channels/sensors_temperature_water/messages/TemperatureWater'
+    bindings:
+      mqtt:
+        qos: 0
+        retain: false
+  sendWindscreenWiper:
+    action: send
+    channel:
+      $ref: '#/channels/sensors_windscreen_wiper'
+    messages:
+      - $ref: '#/channels/sensors_windscreen_wiper/messages/WindscreenWiper'
+    bindings:
+      mqtt:
+        qos: 1
+        retain: false
+components:
+  messages:
+    AvailableDestinationDisplays:
+      name: AvailableDestinationDisplays
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/di/available-destination-displays/available-destination-displays.json
+      examples:
+        - $ref: json-schemas/di/available-destination-displays/available-destination-displays.example.json
+    DestinationDisplayOverride:
+      name: DestinationDisplayOverride
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/di/override_attempt/destination_display/destination-display-override.json
+      examples:
+        - $ref: json-schemas/di/override_attempt/destination_display/destination-display-override.example.json
+    ActiveCab:
+      name: ActiveCab
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/active-cab/active-cab.json
+      examples:
+        - $ref: json-schemas/pe/active-cab/active-cab.example.json
+    Audio:
+      name: Audio
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/audio/audio.json
+      examples:
+        - $ref: json-schemas/pe/audio/audio.example.json
+        - $ref: json-schemas/pe/audio/audio_local.example.json
+    VixCardreaderDiagnostics:
+      name: VixCardreaderDiagnostics
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/cardreader-diagnostics/vix/vix-cardreader_diagnostics.json
+      examples:
+        - $ref: json-schemas/pe/cardreader-diagnostics/vix/vix-cardreader_diagnostics.example.json
+    DoorsIndividually:
+      name: DoorsIndividually
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/doors-individually/doors-individually.json
+      examples:
+        - $ref: json-schemas/pe/doors-individually/doors-individually.example.json
+    DpiAcknowledge:
+      name: DpiAcknowledge
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/dpi/ack/dpi-acknowledge.json
+      examples:
+        - $ref: json-schemas/pe/dpi/ack/dpi-acknowledge.example.json
+    DpiArriving:
+      name: DpiArriving
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/dpi/arriving/dpi-arriving.json
+      examples:
+        - $ref: json-schemas/pe/dpi/arriving/dpi-arriving.example.json
+    DpiCommand:
+      name: DpiCommand
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/dpi/command/dpi-command.json
+      examples:
+        - $ref: json-schemas/pe/dpi/command/dpi-command.example.json
+    DpiCommandResponse:
+      name: DpiCommandResponse
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/dpi/command_response/dpi-command_response.json
+      examples:
+        - $ref: json-schemas/pe/dpi/command_response/dpi-command_response.example.json
+    DpiConnectionStatus:
+      name: DpiConnectionStatus
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/dpi/connection_status/dpi-connection-status.json
+      examples:
+        - $ref: json-schemas/pe/dpi/connection_status/dpi-connection-status-false.example.json
+        - $ref: json-schemas/pe/dpi/connection_status/dpi-connection-status-true.example.json
+    DpiConnections:
+      name: DpiConnections
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/dpi/connections/dpi-connections.json
+      examples:
+        - $ref: json-schemas/pe/dpi/connections/dpi-connections.example.json
+    DpiDiagnostics:
+      name: DpiDiagnostics
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/dpi/diagnostics/dpi-diagnostics.json
+      examples:
+        - $ref: json-schemas/pe/dpi/diagnostics/dpi-diagnostics-heartbeat.example.json
+        - $ref: json-schemas/pe/dpi/diagnostics/dpi-diagnostics.example.json
+    DpiDisplayStatus:
+      name: DpiDisplayStatus
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/dpi/display_status/dpi-display-status.json
+      examples:
+        - $ref: json-schemas/pe/dpi/display_status/dpi-display-status.example.json
+    DpiEta:
+      name: DpiEta
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/dpi/eta/dpi-eta.json
+      examples:
+        - $ref: json-schemas/pe/dpi/eta/dpi-eta.example.json
+    DpiExternaldisplay:
+      name: DpiExternaldisplay
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/dpi/externaldisplay/dpi-externaldisplay.json
+      examples:
+        - $ref: json-schemas/pe/dpi/externaldisplay/dpi-externaldisplay.example.json
+        - $ref: json-schemas/pe/dpi/externaldisplay/dpi-externaldisplay_deadrun.example.json
+    DpiFeatureToggle:
+      name: DpiFeatureToggle
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/dpi/feature_toggle/dpi-feature-toggle.json
+      examples:
+        - $ref: json-schemas/pe/dpi/feature_toggle/dpi-feature-toggle.example.json
+    DpiJourney:
+      name: DpiJourney
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/dpi/journey/dpi-journey.json
+      examples:
+        - $ref: json-schemas/pe/dpi/journey/dpi-journey.example.json
+    DpiKeyStops:
+      name: DpiKeyStops
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/dpi/key_stops/dpi-key_stops.json
+      examples:
+        - $ref: json-schemas/pe/dpi/key_stops/dpi-key_stops.example.json
+    DpiLogs:
+      name: DpiLogs
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/dpi/logs/dpi-logs.json
+      examples:
+        - $ref: json-schemas/pe/dpi/logs/dpi-logs.example.json
+    DpiNextstop:
+      name: DpiNextstop
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/dpi/nextstop/dpi-nextstop.json
+      examples:
+        - $ref: json-schemas/pe/dpi/nextstop/dpi-nextstop.example.json
+    DpiPa:
+      name: DpiPa
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/dpi/pa/dpi-pa.json
+      examples:
+        - $ref: json-schemas/pe/dpi/pa/dpi-pa_clear.example.json
+        - $ref: json-schemas/pe/dpi/pa/dpi-pa_multiple.example.json
+        - $ref: json-schemas/pe/dpi/pa/dpi-pa_text.example.json
+        - $ref: json-schemas/pe/dpi/pa/dpi-pa_video.example.json
+    StopButtonMessage:
+      name: Stop Button Message
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/sensors/stop-button/stop-button.json
+      examples:
+        - $ref: json-schemas/sensors/stop-button/stop-button-01.example.json
+        - $ref: json-schemas/sensors/stop-button/stop-button-02.example.json
+    SalesCurrentStop:
+      name: SalesCurrentStop
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/sales/current_stop/sales-current_stop.json
+      examples:
+        - $ref: json-schemas/pe/sales/current_stop/sales-current_stop.example.json
+    SalesDiagnostics:
+      name: SalesDiagnostics
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/sales/diagnostics/sales-diagnostics.json
+      examples:
+        - $ref: json-schemas/pe/sales/diagnostics/sales-diagnostics.example.json
+    SalesSla:
+      name: SalesSla
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/sales/sla/sales-sla.json
+      examples:
+        - $ref: json-schemas/pe/sales/sla/sales-sla.example.json
+    Api:
+      name: Api
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/pe/vehicle/api/api.json
+      examples:
+        - $ref: json-schemas/pe/vehicle/api/api.example.json
+    Accelerometer:
+      name: Accelerometer
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/sensors/accelerometer/accelerometer.json
+      examples:
+        - $ref: json-schemas/sensors/accelerometer/accelerometer-01.example.json
+        - $ref: json-schemas/sensors/accelerometer/accelerometer-02.example.json
+        - $ref: json-schemas/sensors/accelerometer/accelerometer-03.example.json
+    Apc:
+      name: Apc
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/sensors/apc/apc.json
+      examples:
+        - $ref: json-schemas/sensors/apc/apc-01.example.json
+    Charging:
+      name: Charging
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/sensors/charging/charging.json
+      examples:
+        - $ref: json-schemas/sensors/charging/charging-01.example.json
+        - $ref: json-schemas/sensors/charging/charging-02.example.json
+        - $ref: json-schemas/sensors/charging/charging-03.example.json
+    Door:
+      name: Door
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/sensors/door/door.json
+      examples:
+        - $ref: json-schemas/sensors/door/door-01.example.json
+    EnergyConsumption:
+      name: EnergyConsumption
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/sensors/energy-consumption/energy-consumption.json
+      examples:
+        - $ref: json-schemas/sensors/energy-consumption/energy-consumption-01.example.json
+    Location:
+      name: Location
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/sensors/location/location.json
+      examples:
+        - $ref: json-schemas/sensors/location/location-01.example.json
+    Odometer:
+      name: Odometer
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/sensors/odometer/odometer.json
+      examples:
+        - $ref: json-schemas/sensors/odometer/odometer-01.example.json
+    StateOfCharge:
+      name: StateOfCharge
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/sensors/state-of-charge/state-of-charge.json
+      examples:
+        - $ref: json-schemas/sensors/state-of-charge/state-of-charge-01.example.json
+    StopButton:
+      name: StopButton
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/sensors/stop-button/stop-button.json
+      examples:
+        - $ref: json-schemas/sensors/stop-button/stop-button-01.example.json
+        - $ref: json-schemas/sensors/stop-button/stop-button-02.example.json
+    TemperatureIndoor:
+      name: TemperatureIndoor
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/sensors/temperature-indoor/temperature-indoor.json
+      examples:
+        - $ref: json-schemas/sensors/temperature-indoor/temperature-indoor-01.example.json
+        - $ref: json-schemas/sensors/temperature-indoor/temperature-indoor-02.example.json
+    TemperatureOutdoor:
+      name: TemperatureOutdoor
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/sensors/temperature-outdoor/temperature-outdoor.json
+      examples:
+        - $ref: json-schemas/sensors/temperature-outdoor/temperature-outdoor-01.example.json
+    TemperatureWater:
+      name: TemperatureWater
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/sensors/temperature-water/temperature-water.json
+      examples:
+        - $ref: json-schemas/sensors/temperature-water/temperature-water-01.example.json
+    WindscreenWiper:
+      name: WindscreenWiper
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/sensors/windscreen-wiper/windscreen-wiper.json
+      examples:
+        - $ref: json-schemas/sensors/windscreen-wiper/windscreen-wiper-01.example.json
+  parameters:
+    authorityId:
+      description: The ID of the Public Transport Authority / PTA
+    operatorId:
+      description: The ID of the Public Transport Operator / PTO
+    vehicleId:
+      description: The vehicle ID.
+    sensorId:
+      description: Identification of the physical sensor, e.g. serial number
+    deviceRef:
+      description: An unique ID of the unit.
+  securitySchemes:
+    user-password:
+      type: userPassword
+      description: Please reach out to rdp-support@ruter.no to request access.

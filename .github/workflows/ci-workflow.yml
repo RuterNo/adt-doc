@@ -16,41 +16,68 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Generating HTML from my AsyncAPI document
-        uses: actions/setup-node@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '18.x'
-      - run: npm install -g @asyncapi/generator@1.9.18
-      - run: ag asyncapi/asyncapi.yml @asyncapi/html-template@0.28.4 -o docs/asyncapi --force-write
+          node-version: '22.x'
 
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '18.x'
+      - uses: pnpm/action-setup@v4
+
+      - name: Install bundle script dependencies
+        run: pnpm install
+
+      - name: Run tests
+        run: pnpm test
+
+      - name: Bundle AsyncAPI document
+        run: node scripts/bundle-asyncapi.js
+
+      - name: Bundle AsyncAPI Metro document
+        run: node scripts/bundle-asyncapi.js asyncapi/asyncapi_metro_template.yml asyncapi/asyncapi_metro.yml
+
+      - name: Inject version into bundled documents
+        run: |
+          sed -i 's/version\.from\.tag/'"$RELEASE_NAME"'/g' asyncapi/asyncapi.yml
+          sed -i 's/version\.from\.tag/'"$RELEASE_NAME"'/g' asyncapi/asyncapi_metro.yml
+
+      - name: Generate HTML from AsyncAPI document
+        run: pnpm dlx --allow-build=@hyperjump/json-pointer,@hyperjump/json-schema-core,@hyperjump/json-schema,@hyperjump/pact,@scarf/scarf,yarn @asyncapi/cli generate fromTemplate asyncapi/asyncapi.yml @asyncapi/html-template -o docs/asyncapi --force-write --param config=asyncapi/html-template-config.json
+
+      - name: Generate HTML from AsyncAPI Metro document
+        run: pnpm dlx --allow-build=@hyperjump/json-pointer,@hyperjump/json-schema-core,@hyperjump/json-schema,@hyperjump/pact,@scarf/scarf,yarn @asyncapi/cli generate fromTemplate asyncapi/asyncapi_metro.yml @asyncapi/html-template -o docs/asyncapi-metro --force-write --param config=asyncapi/html-template-config.json
+
       - run: npx @redocly/cli build-docs -o docs/openapi/trafficplan/index.html openapi/trafficplan/api-spec.json
       - run: npx @redocly/cli build-docs -o docs/openapi/operational/index.html openapi/operational/api-spec.json
 
       - name: Modify HTML output from generator
         run: |
-          sudo sed -i 's/version\.from\.tag/'"$RELEASE_NAME"'/g' docs/asyncapi/index.html
-          sudo sed -i 's/version\.from\.tag/'"$RELEASE_NAME"'/g' docs/openapi/trafficplan/index.html
-          sudo sed -i 's/version\.from\.tag/'"$RELEASE_NAME"'/g' docs/openapi/operational/index.html
-          sudo cp asyncapi/stylesheets/doc.css docs/asyncapi/css/
-          sudo mkdir docs/asyncapi/images/
-          sudo cp asyncapi/markdown/images/* docs/asyncapi/images/
-          sudo sed -i -e '\@</head>@i\<link href="css/doc.css" rel="stylesheet">' docs/asyncapi/index.html
+          sed -i 's/version\.from\.tag/'"$RELEASE_NAME"'/g' docs/openapi/trafficplan/index.html
+          sed -i 's/version\.from\.tag/'"$RELEASE_NAME"'/g' docs/openapi/operational/index.html
+          cp asyncapi/stylesheets/doc.css docs/asyncapi/css/
+          mkdir docs/asyncapi/images/
+          cp asyncapi/markdown/images/* docs/asyncapi/images/
+          sed -i -e '\@</head>@i\<link href="css/doc.css" rel="stylesheet">' docs/asyncapi/index.html
+          cp asyncapi/stylesheets/doc.css docs/asyncapi-metro/css/
+          mkdir docs/asyncapi-metro/images/
+          cp asyncapi/markdown/images/* docs/asyncapi-metro/images/
+          sed -i -e '\@</head>@i\<link href="css/doc.css" rel="stylesheet">' docs/asyncapi-metro/index.html
         shell: bash
 
       - name: Make Json Schemas available
         run: |
-          sudo cp -r asyncapi/json-schemas docs/asyncapi/json-schemas
-          sudo find docs/asyncapi/json-schemas/ -name "*example.json" -type f -delete
-          sudo find docs/asyncapi/json-schemas/ -name "*.meta.json" -type f -delete
-          sudo find docs/asyncapi/json-schemas/ -name "*.md" -type f -delete
+          cp -r asyncapi/json-schemas docs/asyncapi/json-schemas
+          find docs/asyncapi/json-schemas/ -name "*example.json" -type f -delete
+          find docs/asyncapi/json-schemas/ -name "*.meta.json" -type f -delete
+          find docs/asyncapi/json-schemas/ -name "*.md" -type f -delete
+          cp -r asyncapi/json-schemas docs/asyncapi-metro/json-schemas
+          find docs/asyncapi-metro/json-schemas/ -name "*example.json" -type f -delete
+          find docs/asyncapi-metro/json-schemas/ -name "*.meta.json" -type f -delete
+          find docs/asyncapi-metro/json-schemas/ -name "*.md" -type f -delete
         shell: bash
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: 3.x
       - run: pip install mkdocs-material mike

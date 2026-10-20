@@ -22,4 +22,10 @@ To see additional information in relation to the API specifications, please visi
 
 ## Resources
 
-[MQTT API Documentation](asyncapi/index.html){target=_blank .md-button }
+| Transport Mode                  | API documentation                                                |
+|---------------------------------|------------------------------------------------------------------|
+| :material-bus: Bus              | [MQTT Doc](asyncapi/index.html){target=_blank .md-button }       |
+| :material-tram: Tram            | [MQTT Doc](asyncapi/index.html){target=_blank .md-button }       |
+| :material-ferry: Ferry          | [MQTT Doc](asyncapi/index.html){target=_blank .md-button }       |
+| :material-subway-variant: Metro | [MQTT Doc](asyncapi-metro/index.html){target=_blank .md-button } |
+

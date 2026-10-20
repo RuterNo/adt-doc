@@ -1,0 +1,19 @@
+{
+  "name": "Emergency message disabled",
+  "payload": {
+    "eventTimestamp": "2017-10-31T08:40:12.749Z",
+    "traceId": "9841b268-0c03-1337-b476-211be0f26a0d",
+    "enabled": false,
+    "icon": "EXCLAMATION",
+    "message": {
+      "en": {
+        "title": "afsdf",
+        "text": "Lorem ipsum dolor sit amet"
+      },
+      "no": {
+        "title": "afsdf",
+        "text": "Lorem ipsum dolor sit amet"
+      }
+    }
+  }
+}

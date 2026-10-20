@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/status/door_request_open/door-request-open.json",
+  "title": "DoorRequestOpen",
+  "type": "object",
+  "required": [
+    "eventTimestamp",
+    "traceId",
+    "doorRef",
+    "requestOpen"
+  ],
+  "description": "Report which doors were requested to open using the door button. This topic is used to track whether the passengers have pressed the door_request button.",
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier - UUID"
+    },
+    "doorRef": {
+      "$id": "#/properties/doorRef",
+      "type": "string",
+      "description": "Unique \"doorRef\" ID for each door. Must be consistent with other messages which refer to doors by ID."
+    },
+    "requestOpen": {
+      "$id": "#/properties/requestOpen",
+      "type": "boolean",
+      "description": "True when the button on the door is pressed. False for all doors that were previously requested opened (i.e., this message was sent earlier with Boolean true) when the general door lock is enabled before leaving quay (that is - when the \"sensors/door\" message is sent with isOpen=false)."
+    }
+  }
+}

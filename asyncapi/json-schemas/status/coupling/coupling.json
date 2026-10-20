@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/status/coupling/coupling.json",
+  "title": "Coupling",
+  "type": "object",
+  "required": [
+    "eventTimestamp",
+    "traceId",
+    "carId",
+    "withCarId",
+    "coupled"
+  ],
+  "description": "Sent from both vehicles when M4 cars are coupled or decoupled. Vehicles can be coupled (\"connected\") with each other, and they can be decoupled (\"disconnected\"). Both vehicles being connected or disconnected must send information, so each coupling/decoupling action results in two such messages - one from each vehicle.",
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier - UUID"
+    },
+    "carId": {
+      "$id": "#/properties/carId",
+      "type": "string",
+      "description": "The ID of the car in this vehicle which another car is connecting to."
+    },
+    "withCarId": {
+      "$id": "#/properties/withCarId",
+      "type": "string",
+      "description": "The ID of the car from the other vehicle being connected with this carId."
+    },
+    "coupled": {
+      "$id": "#/properties/coupled",
+      "type": "boolean",
+      "description": "If the vehicles are being coupled (connected) then this is true. If the vehicles are being decoupled (disconnected) then this is false.",
+      "examples": [
+        true,
+        false
+      ]
+    }
+  }
+}

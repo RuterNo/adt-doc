@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "eventTimestamp": {
+      "$ref": "#/definitions/timestamp"
+    }
+  },
+  "definitions": {
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

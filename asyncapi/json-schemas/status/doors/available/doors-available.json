@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/status/doors/available/doors-available.json",
+  "title": "DoorsAvailable",
+  "type": "object",
+  "required": [
+    "eventTimestamp",
+    "traceId",
+    "messageNumber",
+    "availableDoorRefList",
+    "unavailableDoorRefList",
+    "errorDoorRefList"
+  ],
+  "description": "Describes which doors will open at the next stop. CBTC onboard, physically locking/blocking doors, and the vehicle itself will determine which doors can or cannot open when approaching a stop. This message broadcasts that information as a list of the doors that will open at the next stop, a list of doors that will not open, and a list of doors with errors.",
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier - UUID"
+    },
+    "messageNumber": {
+      "$id": "#/properties/messageNumber",
+      "type": "integer",
+      "description": "Sequence number - increased by one for each new message on this topic. Used to validate consistency in the data stream."
+    },
+    "availableDoorRefList": {
+      "$id": "#/properties/availableDoorRefList",
+      "type": "array",
+      "description": "Array containing the unique ID (doorRef) for each door that will open at the next stop.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "unavailableDoorRefList": {
+      "$id": "#/properties/unavailableDoorRefList",
+      "type": "array",
+      "description": "Array containing doorRef of each door which will not open. Reasons for not opening could be: Physically locked, CBTC data, driver selected to block certain doors.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "errorDoorRefList": {
+      "$id": "#/properties/errorDoorRefList",
+      "type": "array",
+      "description": "Array containing doorRef of each door that cannot open due to some error.",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

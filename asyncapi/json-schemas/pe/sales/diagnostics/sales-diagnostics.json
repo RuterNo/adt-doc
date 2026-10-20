@@ -36,6 +36,7 @@
         "nfcStatus",
         "printerStatus",
         "internetConnectionStatus",
+        "mqttBrokerStatus",
         "loggedIn"
       ],
       "additionalProperties": true,
@@ -109,10 +110,31 @@
             }
           }
         },
+        "mqttBrokerStatus": {
+          "$id": "#/properties/metrics/properties/mqttBrokerStatus",
+          "type": "object",
+          "description": "MQTT broker connection status",
+          "required": [
+            "connected"
+          ],
+          "additionalProperties": true,
+          "properties": {
+            "connected": {
+              "$id": "#/properties/metrics/properties/mqttBrokerStatus/properties/connected",
+              "type": "boolean",
+              "description": "Whether or not the device is connected to the MQTT broker"
+            },
+            "errorMessage": {
+              "$id": "#/properties/metrics/properties/mqttBrokerStatus/properties/errorMessage",
+              "type": "string",
+              "description": "An optional error message if the MQTT broker is not connected"
+            }
+          }
+        },
         "loggedIn": {
           "$id": "#/properties/metrics/properties/loggedIn",
           "type": "boolean",
-          "description": "Whether or not the user is logged in to RuterSalg"
+          "description": "Whether or not the user is logged in to BetjentSalg"
         }
       }
     },
@@ -141,20 +163,35 @@
           "type": "string",
           "description": "The tariff zone the vehicle is currently in"
         },
+        "contractRef": {
+          "$id": "#/properties/context/properties/contractRef",
+          "type": "string",
+          "description": "The contract reference"
+        },
         "trigger": {
           "$id": "#/properties/context/properties/trigger",
           "type": "string",
-          "description": "The event that triggered the diagnostics msg to be produced. Legal values: Startup, LoginStatusChanged, StopPlace, PrinterStatusChanged, NfcStatusChanged, InternetConnectionStatusChanged, IntegrationTest"
+          "description": "The event that triggered the diagnostics msg to be produced. See table above for possible values."
         },
         "appVersion": {
           "$id": "#/properties/context/properties/appVersion",
           "type": "string",
-          "description": "Version of the RuterSalg app that sent the message"
+          "description": "Version of the BetjentSalg app that sent the message"
         },
         "userId": {
           "$id": "#/properties/context/properties/userId",
           "type": "string",
           "description": "The userId of the logged in user"
+        },
+        "appApiVersion": {
+          "$id": "#/properties/context/properties/appApiVersion",
+          "type": "string",
+          "description": "The ADT-version used by the app"
+        },
+        "logoutReason": {
+          "$id": "#/properties/context/properties/logoutReason",
+          "type": "string",
+          "description": "The reason for the user being logged out. See table above for possible values."
         }
       }
     }

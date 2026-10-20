@@ -52,9 +52,8 @@
         "progressRef",
         "currentStopTimestamp",
         "lineRef",
-        "assignmentRef",
-        "chainId",
         "stopPlaceId",
+        "tariffZone",
         "appVersion",
         "adtApiVersion"
       ],

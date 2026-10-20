@@ -1,0 +1,9 @@
+{
+  "name": "CBTC distance to next quay (target)",
+  "payload": {
+    "eventTimestamp": "2020-10-31T08:38:02.749Z",
+    "platformTrackId": "1234",
+    "startDistance": 0,
+    "targetDistance": 123123
+  }
+}

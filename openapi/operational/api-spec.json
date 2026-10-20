@@ -511,16 +511,16 @@
             "$ref": "#/components/parameters/ClientMetadataValueQueryParam"
           },
           {
-            "$ref": "#/components/parameters/DeviationCodesQueryParam"
-          },
-          {
-            "$ref": "#/components/parameters/HasMitigationQueryParam"
-          },
-          {
             "$ref": "#/components/parameters/OrderByQueryParam"
           },
           {
             "$ref": "#/components/parameters/OrderQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/DeviationCodesQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/HasMitigationQueryParam"
           },
           {
             "$ref": "#/components/parameters/LimitQueryParam"

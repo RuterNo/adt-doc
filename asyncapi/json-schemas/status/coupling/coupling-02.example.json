@@ -1,0 +1,10 @@
+{
+  "name": "Coupling from 40001",
+  "payload": {
+    "eventTimestamp": "2025-05-27T08:38:02.749Z",
+    "traceId": "9841b268-0c03-1337-b476-211be0f26a0d",
+    "carId": "41001",
+    "withCarId": "41002",
+    "coupled": false
+  }
+}

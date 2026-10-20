@@ -1,0 +1,11 @@
+{
+  "name": "Doors available at next stop",
+  "payload": {
+    "eventTimestamp": "2021-10-31T12:45:50.749Z",
+    "traceId": "3841a268-0c03-4588-b476-211be0f26a0d",
+    "messageNumber": 12345,
+    "availableDoorRefList": ["1", "3", "5", "7", "9", "10"],
+    "unavailableDoorRefList": ["2", "4", "6", "8", "11", "12"],
+    "errorDoorRefList": ["2", "4", "6", "8", "11", "12"]
+  }
+}
