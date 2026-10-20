@@ -1030,6 +1030,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#find-service-deviations-by-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Find Service Deviations - by Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#find-service-deviations-by-mitigation-presence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Find Service Deviations - by Mitigation Presence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#find-service-deviations-by-sort-order" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2530,6 +2552,28 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#find-service-deviations-by-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Find Service Deviations - by Codes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#find-service-deviations-by-mitigation-presence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Find Service Deviations - by Mitigation Presence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#find-service-deviations-by-sort-order" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3677,6 +3721,11 @@ vary depending on the system configuration of a specific operator for a given tr
 <li><code>clientMetadataKey</code> and <code>clientMetadataValue</code>: Filter deviations by client metadata. When <code>clientMetadataKey</code> is
   provided, only deviations with a matching, searchable entry for that key are returned. <code>clientMetadataValue</code> is
   optional and further narrows the match to a specific value.</li>
+<li><code>codes</code>: Comma-separated list of service deviation codes (e.g. <code>NO_SERVICE,BYPASS</code>). Only deviations having one of the
+  listed codes are returned. If not provided, no code filter is applied.</li>
+<li><code>hasMitigation</code>: Filter deviations by whether they have related mitigations. <code>true</code> returns only deviations with at
+  least one related mitigation, <code>false</code> returns only deviations with no related mitigations. If not provided, the
+  search is not affected, and deviations are returned regardless of related mitigations.</li>
 <li><code>orderBy</code>: Sort field for the result set. Valid values:</li>
 </ul>
 <table>
@@ -3902,15 +3951,11 @@ Use the <code>{baseURL}/deviation/deviations/{serviceDeviationId}/client-metadat
 <a id="__codelineno-25-48" name="__codelineno-25-48" href="#__codelineno-25-48"></a><span class="w">  </span><span class="o">}</span>
 <a id="__codelineno-25-49" name="__codelineno-25-49" href="#__codelineno-25-49"></a><span class="o">}</span>
 </code></pre></div>
-<h4 id="find-service-deviations-by-sort-order">Find Service Deviations - by Sort Order<a class="headerlink" href="#find-service-deviations-by-sort-order" title="Permanent link">&para;</a></h4>
-<p>To control the order of returned service deviations, the <code>orderBy</code> and <code>order</code> query parameters can be provided.</p>
-<p><code>orderBy</code> accepts <code>MODIFIED</code> (sort by last-modified timestamp) or <code>SERVICE_WINDOW</code> (sort by the start of the
-effective service window). <code>order</code> accepts <code>ASC</code> or <code>DESC</code>.</p>
-<p>In this example, we retrieve the most recently modified deviations first.</p>
+<h4 id="find-service-deviations-by-codes">Find Service Deviations - by Codes<a class="headerlink" href="#find-service-deviations-by-codes" title="Permanent link">&para;</a></h4>
+<p>To find service deviations having specific codes, the <code>codes</code> query parameter can be provided as a comma-separated list.</p>
+<p>In this example, we search for all deviations with code <code>NO_SERVICE</code> or <code>BYPASS</code>. Both matching deviations are returned.</p>
 <p>HTTP request:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>GET<span class="w"> </span>/api/adt/v4/operational/deviation/deviations?
-<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>&gt;&gt;&gt;<span class="w"> </span><span class="nv">orderBy</span><span class="o">=</span>MODIFIED<span class="p">&amp;</span>
-<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>&gt;&gt;&gt;<span class="w"> </span><span class="nv">order</span><span class="o">=</span>DESC
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>GET<span class="w"> </span>/api/adt/v4/operational/deviation/deviations?codes<span class="o">=</span>NO_SERVICE,BYPASS
 </code></pre></div>
 <p>HTTP response:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="m">200</span><span class="w"> </span>OK
@@ -3954,32 +3999,69 @@ effective service window). <code>order</code> accepts <code>ASC</code> or <code>
 <a id="__codelineno-27-39" name="__codelineno-27-39" href="#__codelineno-27-39"></a><span class="w">      </span><span class="s2">"serviceDeviationId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"1530bf5405624db1b6b449d0edbec8c0"</span>,
 <a id="__codelineno-27-40" name="__codelineno-27-40" href="#__codelineno-27-40"></a><span class="w">      </span><span class="s2">"name"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"SD-2026-1"</span>
 <a id="__codelineno-27-41" name="__codelineno-27-41" href="#__codelineno-27-41"></a><span class="w">    </span><span class="o">}</span>
-<a id="__codelineno-27-42" name="__codelineno-27-42" href="#__codelineno-27-42"></a><span class="w">  </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>,
-<a id="__codelineno-27-43" name="__codelineno-27-43" href="#__codelineno-27-43"></a><span class="w">  </span><span class="s2">"page"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-27-44" name="__codelineno-27-44" href="#__codelineno-27-44"></a><span class="w">    </span><span class="s2">"limit"</span><span class="w"> </span>:<span class="w"> </span><span class="m">20</span>,
-<a id="__codelineno-27-45" name="__codelineno-27-45" href="#__codelineno-27-45"></a><span class="w">    </span><span class="s2">"offset"</span><span class="w"> </span>:<span class="w"> </span><span class="m">0</span>,
-<a id="__codelineno-27-46" name="__codelineno-27-46" href="#__codelineno-27-46"></a><span class="w">    </span><span class="s2">"itemCount"</span><span class="w"> </span>:<span class="w"> </span><span class="m">1</span>,
-<a id="__codelineno-27-47" name="__codelineno-27-47" href="#__codelineno-27-47"></a><span class="w">    </span><span class="s2">"totalItemCount"</span><span class="w"> </span>:<span class="w"> </span><span class="m">1</span>
-<a id="__codelineno-27-48" name="__codelineno-27-48" href="#__codelineno-27-48"></a><span class="w">  </span><span class="o">}</span>
-<a id="__codelineno-27-49" name="__codelineno-27-49" href="#__codelineno-27-49"></a><span class="o">}</span>
+<a id="__codelineno-27-42" name="__codelineno-27-42" href="#__codelineno-27-42"></a><span class="w">  </span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-27-43" name="__codelineno-27-43" href="#__codelineno-27-43"></a><span class="w">    </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-27-44" name="__codelineno-27-44" href="#__codelineno-27-44"></a><span class="w">      </span><span class="s2">"code"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"BYPASS"</span>,
+<a id="__codelineno-27-45" name="__codelineno-27-45" href="#__codelineno-27-45"></a><span class="w">      </span><span class="s2">"reason"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-27-46" name="__codelineno-27-46" href="#__codelineno-27-46"></a><span class="w">        </span><span class="s2">"code"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"NO_PASSENGERS"</span>
+<a id="__codelineno-27-47" name="__codelineno-27-47" href="#__codelineno-27-47"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-27-48" name="__codelineno-27-48" href="#__codelineno-27-48"></a><span class="w">      </span><span class="s2">"impact"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-27-49" name="__codelineno-27-49" href="#__codelineno-27-49"></a><span class="w">        </span><span class="s2">"journeys"</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-27-50" name="__codelineno-27-50" href="#__codelineno-27-50"></a><span class="w">          </span><span class="s2">"calls"</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-27-51" name="__codelineno-27-51" href="#__codelineno-27-51"></a><span class="w">            </span><span class="s2">"stopPoint"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-27-52" name="__codelineno-27-52" href="#__codelineno-27-52"></a><span class="w">              </span><span class="s2">"quayId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"NSR:Quay:002A"</span>,
+<a id="__codelineno-27-53" name="__codelineno-27-53" href="#__codelineno-27-53"></a><span class="w">              </span><span class="s2">"stopPointId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"stop-point-002A"</span>
+<a id="__codelineno-27-54" name="__codelineno-27-54" href="#__codelineno-27-54"></a><span class="w">            </span><span class="o">}</span>,
+<a id="__codelineno-27-55" name="__codelineno-27-55" href="#__codelineno-27-55"></a><span class="w">            </span><span class="s2">"arrivalDateTime"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:10+01:00"</span>,
+<a id="__codelineno-27-56" name="__codelineno-27-56" href="#__codelineno-27-56"></a><span class="w">            </span><span class="s2">"departureDateTime"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:10+01:00"</span>
+<a id="__codelineno-27-57" name="__codelineno-27-57" href="#__codelineno-27-57"></a><span class="w">          </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>,
+<a id="__codelineno-27-58" name="__codelineno-27-58" href="#__codelineno-27-58"></a><span class="w">          </span><span class="s2">"journey"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-27-59" name="__codelineno-27-59" href="#__codelineno-27-59"></a><span class="w">            </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-27-60" name="__codelineno-27-60" href="#__codelineno-27-60"></a><span class="w">              </span><span class="s2">"lineId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:Line:001"</span>,
+<a id="__codelineno-27-61" name="__codelineno-27-61" href="#__codelineno-27-61"></a><span class="w">              </span><span class="s2">"journeyId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:DatedServiceJourney:0001"</span>,
+<a id="__codelineno-27-62" name="__codelineno-27-62" href="#__codelineno-27-62"></a><span class="w">              </span><span class="s2">"firstDepartureDateTime"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:00+01:00"</span>
+<a id="__codelineno-27-63" name="__codelineno-27-63" href="#__codelineno-27-63"></a><span class="w">            </span><span class="o">}</span>
+<a id="__codelineno-27-64" name="__codelineno-27-64" href="#__codelineno-27-64"></a><span class="w">          </span><span class="o">}</span>
+<a id="__codelineno-27-65" name="__codelineno-27-65" href="#__codelineno-27-65"></a><span class="w">        </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-27-66" name="__codelineno-27-66" href="#__codelineno-27-66"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-27-67" name="__codelineno-27-67" href="#__codelineno-27-67"></a><span class="w">      </span><span class="s2">"duration"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-27-68" name="__codelineno-27-68" href="#__codelineno-27-68"></a><span class="w">        </span><span class="s2">"start"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:00+01:00"</span>,
+<a id="__codelineno-27-69" name="__codelineno-27-69" href="#__codelineno-27-69"></a><span class="w">        </span><span class="s2">"end"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:20+01:00"</span>
+<a id="__codelineno-27-70" name="__codelineno-27-70" href="#__codelineno-27-70"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-27-71" name="__codelineno-27-71" href="#__codelineno-27-71"></a><span class="w">      </span><span class="s2">"parameters"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-27-72" name="__codelineno-27-72" href="#__codelineno-27-72"></a><span class="w">        </span><span class="s2">"operatorExempt"</span><span class="w"> </span>:<span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-27-73" name="__codelineno-27-73" href="#__codelineno-27-73"></a><span class="w">      </span><span class="o">}</span>
+<a id="__codelineno-27-74" name="__codelineno-27-74" href="#__codelineno-27-74"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-27-75" name="__codelineno-27-75" href="#__codelineno-27-75"></a><span class="w">    </span><span class="s2">"record"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-27-76" name="__codelineno-27-76" href="#__codelineno-27-76"></a><span class="w">      </span><span class="s2">"lifecycle"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-27-77" name="__codelineno-27-77" href="#__codelineno-27-77"></a><span class="w">        </span><span class="s2">"createdAt"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T05:05+01:00"</span>,
+<a id="__codelineno-27-78" name="__codelineno-27-78" href="#__codelineno-27-78"></a><span class="w">        </span><span class="s2">"createdBy"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"system"</span>,
+<a id="__codelineno-27-79" name="__codelineno-27-79" href="#__codelineno-27-79"></a><span class="w">        </span><span class="s2">"modifiedAt"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T05:05+01:00"</span>,
+<a id="__codelineno-27-80" name="__codelineno-27-80" href="#__codelineno-27-80"></a><span class="w">        </span><span class="s2">"modifiedBy"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"system"</span>
+<a id="__codelineno-27-81" name="__codelineno-27-81" href="#__codelineno-27-81"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-27-82" name="__codelineno-27-82" href="#__codelineno-27-82"></a><span class="w">      </span><span class="s2">"serviceDeviationId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"69c6x21a838245cb568cb0a5d1548fd2"</span>,
+<a id="__codelineno-27-83" name="__codelineno-27-83" href="#__codelineno-27-83"></a><span class="w">      </span><span class="s2">"name"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"SD-2026-2"</span>
+<a id="__codelineno-27-84" name="__codelineno-27-84" href="#__codelineno-27-84"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-27-85" name="__codelineno-27-85" href="#__codelineno-27-85"></a><span class="w">  </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>,
+<a id="__codelineno-27-86" name="__codelineno-27-86" href="#__codelineno-27-86"></a><span class="w">  </span><span class="s2">"page"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-27-87" name="__codelineno-27-87" href="#__codelineno-27-87"></a><span class="w">    </span><span class="s2">"limit"</span><span class="w"> </span>:<span class="w"> </span><span class="m">20</span>,
+<a id="__codelineno-27-88" name="__codelineno-27-88" href="#__codelineno-27-88"></a><span class="w">    </span><span class="s2">"offset"</span><span class="w"> </span>:<span class="w"> </span><span class="m">0</span>,
+<a id="__codelineno-27-89" name="__codelineno-27-89" href="#__codelineno-27-89"></a><span class="w">    </span><span class="s2">"itemCount"</span><span class="w"> </span>:<span class="w"> </span><span class="m">2</span>,
+<a id="__codelineno-27-90" name="__codelineno-27-90" href="#__codelineno-27-90"></a><span class="w">    </span><span class="s2">"totalItemCount"</span><span class="w"> </span>:<span class="w"> </span><span class="m">2</span>
+<a id="__codelineno-27-91" name="__codelineno-27-91" href="#__codelineno-27-91"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-27-92" name="__codelineno-27-92" href="#__codelineno-27-92"></a><span class="o">}</span>
 </code></pre></div>
-<h3 id="additional-service-deviation-operations">Additional Service Deviation Operations<a class="headerlink" href="#additional-service-deviation-operations" title="Permanent link">&para;</a></h3>
-<p>In addition to creating service deviations, a client may also look up, update, and delete existing deviations using the
-<code>{baseURL}/deviation/deviations/{serviceDeviationId}</code> endpoint.</p>
-<h4 id="resolved-journey-targets">Resolved Journey Targets<a class="headerlink" href="#resolved-journey-targets" title="Permanent link">&para;</a></h4>
-<p>When reading a service deviation, the optional <code>includeTargets=true</code> query parameter can be used to include the
-<em>resolved journey targets</em> in the response. Resolved journey targets are the concrete dated journeys that have been
-resolved from the deviation's impact spec, as determined at the time of the last background processing run.</p>
-<p>This is useful for inspecting exactly which journeys are affected without having to resolve the impact spec manually.</p>
-<h4 id="read-service-deviation-by-id">Read Service Deviation by Id<a class="headerlink" href="#read-service-deviation-by-id" title="Permanent link">&para;</a></h4>
-<p>A service deviation may be retrieved up by sending a <code>GET</code> request to <code>{baseURL}/deviation/deviations/{serviceDeviationId}</code>.</p>
+<h4 id="find-service-deviations-by-mitigation-presence">Find Service Deviations - by Mitigation Presence<a class="headerlink" href="#find-service-deviations-by-mitigation-presence" title="Permanent link">&para;</a></h4>
+<p>To find service deviations that have no related mitigations, the <code>hasMitigation</code> query parameter can be set to <code>false</code>.
+Setting it to <code>true</code> returns only deviations with at least one related mitigation.</p>
+<p>In this example, we search for all deviations still lacking a mitigation.</p>
 <p>HTTP request:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>GET<span class="w"> </span>/api/adt/v4/operational/deviation/deviations/1530bf5405624db1b6b449d0edbec8c0
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>GET<span class="w"> </span>/api/adt/v4/operational/deviation/deviations?hasMitigation<span class="o">=</span><span class="nb">false</span>
 </code></pre></div>
 <p>HTTP response:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="m">200</span><span class="w"> </span>OK
 <a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="o">{</span>
-<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">  </span><span class="s2">"deviation"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">  </span><span class="s2">"items"</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
 <a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">    </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
 <a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="w">      </span><span class="s2">"code"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"NO_SERVICE"</span>,
 <a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="w">      </span><span class="s2">"reason"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
@@ -4018,20 +4100,29 @@ resolved from the deviation's impact spec, as determined at the time of the last
 <a id="__codelineno-29-39" name="__codelineno-29-39" href="#__codelineno-29-39"></a><span class="w">      </span><span class="s2">"serviceDeviationId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"1530bf5405624db1b6b449d0edbec8c0"</span>,
 <a id="__codelineno-29-40" name="__codelineno-29-40" href="#__codelineno-29-40"></a><span class="w">      </span><span class="s2">"name"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"SD-2026-1"</span>
 <a id="__codelineno-29-41" name="__codelineno-29-41" href="#__codelineno-29-41"></a><span class="w">    </span><span class="o">}</span>
-<a id="__codelineno-29-42" name="__codelineno-29-42" href="#__codelineno-29-42"></a><span class="w">  </span><span class="o">}</span>
-<a id="__codelineno-29-43" name="__codelineno-29-43" href="#__codelineno-29-43"></a><span class="o">}</span>
+<a id="__codelineno-29-42" name="__codelineno-29-42" href="#__codelineno-29-42"></a><span class="w">  </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>,
+<a id="__codelineno-29-43" name="__codelineno-29-43" href="#__codelineno-29-43"></a><span class="w">  </span><span class="s2">"page"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-29-44" name="__codelineno-29-44" href="#__codelineno-29-44"></a><span class="w">    </span><span class="s2">"limit"</span><span class="w"> </span>:<span class="w"> </span><span class="m">20</span>,
+<a id="__codelineno-29-45" name="__codelineno-29-45" href="#__codelineno-29-45"></a><span class="w">    </span><span class="s2">"offset"</span><span class="w"> </span>:<span class="w"> </span><span class="m">0</span>,
+<a id="__codelineno-29-46" name="__codelineno-29-46" href="#__codelineno-29-46"></a><span class="w">    </span><span class="s2">"itemCount"</span><span class="w"> </span>:<span class="w"> </span><span class="m">1</span>,
+<a id="__codelineno-29-47" name="__codelineno-29-47" href="#__codelineno-29-47"></a><span class="w">    </span><span class="s2">"totalItemCount"</span><span class="w"> </span>:<span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-29-48" name="__codelineno-29-48" href="#__codelineno-29-48"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-29-49" name="__codelineno-29-49" href="#__codelineno-29-49"></a><span class="o">}</span>
 </code></pre></div>
-<h4 id="read-service-deviation-with-resolved-journey-targets">Read Service Deviation with Resolved Journey Targets<a class="headerlink" href="#read-service-deviation-with-resolved-journey-targets" title="Permanent link">&para;</a></h4>
-<p>Passing <code>includeTargets=true</code> when reading a service deviation will include resolved journey targets in the response.
-Resolved journey targets represent the concrete dated journeys affected by the variance, as resolved from the impact spec
-at the time of the last background processing run.</p>
+<h4 id="find-service-deviations-by-sort-order">Find Service Deviations - by Sort Order<a class="headerlink" href="#find-service-deviations-by-sort-order" title="Permanent link">&para;</a></h4>
+<p>To control the order of returned service deviations, the <code>orderBy</code> and <code>order</code> query parameters can be provided.</p>
+<p><code>orderBy</code> accepts <code>MODIFIED</code> (sort by last-modified timestamp) or <code>SERVICE_WINDOW</code> (sort by the start of the
+effective service window). <code>order</code> accepts <code>ASC</code> or <code>DESC</code>.</p>
+<p>In this example, we retrieve the most recently modified deviations first.</p>
 <p>HTTP request:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>GET<span class="w"> </span>/api/adt/v4/operational/deviation/deviations/1530bf5405624db1b6b449d0edbec8c0?includeTargets<span class="o">=</span><span class="nb">true</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>GET<span class="w"> </span>/api/adt/v4/operational/deviation/deviations?
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>&gt;&gt;&gt;<span class="w"> </span><span class="nv">orderBy</span><span class="o">=</span>MODIFIED<span class="p">&amp;</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>&gt;&gt;&gt;<span class="w"> </span><span class="nv">order</span><span class="o">=</span>DESC
 </code></pre></div>
 <p>HTTP response:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="m">200</span><span class="w"> </span>OK
 <a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="o">{</span>
-<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">  </span><span class="s2">"deviation"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">  </span><span class="s2">"items"</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
 <a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="w">    </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
 <a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="w">      </span><span class="s2">"code"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"NO_SERVICE"</span>,
 <a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="w">      </span><span class="s2">"reason"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
@@ -4069,90 +4160,206 @@ at the time of the last background processing run.</p>
 <a id="__codelineno-31-38" name="__codelineno-31-38" href="#__codelineno-31-38"></a><span class="w">      </span><span class="o">}</span>,
 <a id="__codelineno-31-39" name="__codelineno-31-39" href="#__codelineno-31-39"></a><span class="w">      </span><span class="s2">"serviceDeviationId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"1530bf5405624db1b6b449d0edbec8c0"</span>,
 <a id="__codelineno-31-40" name="__codelineno-31-40" href="#__codelineno-31-40"></a><span class="w">      </span><span class="s2">"name"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"SD-2026-1"</span>
-<a id="__codelineno-31-41" name="__codelineno-31-41" href="#__codelineno-31-41"></a><span class="w">    </span><span class="o">}</span>,
-<a id="__codelineno-31-42" name="__codelineno-31-42" href="#__codelineno-31-42"></a><span class="w">    </span><span class="s2">"journeyTargets"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-31-43" name="__codelineno-31-43" href="#__codelineno-31-43"></a><span class="w">      </span><span class="s2">"journeys"</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-31-44" name="__codelineno-31-44" href="#__codelineno-31-44"></a><span class="w">        </span><span class="s2">"partial"</span><span class="w"> </span>:<span class="w"> </span>false,
-<a id="__codelineno-31-45" name="__codelineno-31-45" href="#__codelineno-31-45"></a><span class="w">        </span><span class="s2">"journey"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-31-46" name="__codelineno-31-46" href="#__codelineno-31-46"></a><span class="w">          </span><span class="s2">"name"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"Service Journey 0001"</span>,
-<a id="__codelineno-31-47" name="__codelineno-31-47" href="#__codelineno-31-47"></a><span class="w">          </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-31-48" name="__codelineno-31-48" href="#__codelineno-31-48"></a><span class="w">            </span><span class="s2">"lineId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:Line:001"</span>,
-<a id="__codelineno-31-49" name="__codelineno-31-49" href="#__codelineno-31-49"></a><span class="w">            </span><span class="s2">"journeyId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:DatedServiceJourney:0001"</span>,
-<a id="__codelineno-31-50" name="__codelineno-31-50" href="#__codelineno-31-50"></a><span class="w">            </span><span class="s2">"firstDepartureDateTime"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:00+01:00"</span>
-<a id="__codelineno-31-51" name="__codelineno-31-51" href="#__codelineno-31-51"></a><span class="w">          </span><span class="o">}</span>,
-<a id="__codelineno-31-52" name="__codelineno-31-52" href="#__codelineno-31-52"></a><span class="w">          </span><span class="s2">"journeyIds"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-31-53" name="__codelineno-31-53" href="#__codelineno-31-53"></a><span class="w">            </span><span class="s2">"vehicleJourneyId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"vehicle-journey-0001"</span>,
-<a id="__codelineno-31-54" name="__codelineno-31-54" href="#__codelineno-31-54"></a><span class="w">            </span><span class="s2">"serviceJourneyId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:ServiceJourney:0001"</span>,
-<a id="__codelineno-31-55" name="__codelineno-31-55" href="#__codelineno-31-55"></a><span class="w">            </span><span class="s2">"datedServiceJourneyId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:DatedServiceJourney:0001"</span>
-<a id="__codelineno-31-56" name="__codelineno-31-56" href="#__codelineno-31-56"></a><span class="w">          </span><span class="o">}</span>,
-<a id="__codelineno-31-57" name="__codelineno-31-57" href="#__codelineno-31-57"></a><span class="w">          </span><span class="s2">"serviceWindow"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-31-58" name="__codelineno-31-58" href="#__codelineno-31-58"></a><span class="w">            </span><span class="s2">"start"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:00+01:00"</span>,
-<a id="__codelineno-31-59" name="__codelineno-31-59" href="#__codelineno-31-59"></a><span class="w">            </span><span class="s2">"end"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:20+01:00"</span>
-<a id="__codelineno-31-60" name="__codelineno-31-60" href="#__codelineno-31-60"></a><span class="w">          </span><span class="o">}</span>,
-<a id="__codelineno-31-61" name="__codelineno-31-61" href="#__codelineno-31-61"></a><span class="w">          </span><span class="s2">"line"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-31-62" name="__codelineno-31-62" href="#__codelineno-31-62"></a><span class="w">            </span><span class="s2">"name"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"Testveien - Teststien"</span>,
-<a id="__codelineno-31-63" name="__codelineno-31-63" href="#__codelineno-31-63"></a><span class="w">            </span><span class="s2">"lineId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:Line:001"</span>,
-<a id="__codelineno-31-64" name="__codelineno-31-64" href="#__codelineno-31-64"></a><span class="w">            </span><span class="s2">"publicCode"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"L01"</span>,
-<a id="__codelineno-31-65" name="__codelineno-31-65" href="#__codelineno-31-65"></a><span class="w">            </span><span class="s2">"textColor"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"FFFFFF"</span>,
-<a id="__codelineno-31-66" name="__codelineno-31-66" href="#__codelineno-31-66"></a><span class="w">            </span><span class="s2">"backgroundColor"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"1F1E1A"</span>
-<a id="__codelineno-31-67" name="__codelineno-31-67" href="#__codelineno-31-67"></a><span class="w">          </span><span class="o">}</span>,
-<a id="__codelineno-31-68" name="__codelineno-31-68" href="#__codelineno-31-68"></a><span class="w">          </span><span class="s2">"direction"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"INBOUND"</span>,
-<a id="__codelineno-31-69" name="__codelineno-31-69" href="#__codelineno-31-69"></a><span class="w">          </span><span class="s2">"vehicleTaskId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"VL1001"</span>,
-<a id="__codelineno-31-70" name="__codelineno-31-70" href="#__codelineno-31-70"></a><span class="w">          </span><span class="s2">"calls"</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-31-71" name="__codelineno-31-71" href="#__codelineno-31-71"></a><span class="w">            </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-31-72" name="__codelineno-31-72" href="#__codelineno-31-72"></a><span class="w">              </span><span class="s2">"stopPoint"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-31-73" name="__codelineno-31-73" href="#__codelineno-31-73"></a><span class="w">                </span><span class="s2">"quayId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"NSR:Quay:001A"</span>,
-<a id="__codelineno-31-74" name="__codelineno-31-74" href="#__codelineno-31-74"></a><span class="w">                </span><span class="s2">"stopPointId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"stop-point-001A"</span>
-<a id="__codelineno-31-75" name="__codelineno-31-75" href="#__codelineno-31-75"></a><span class="w">              </span><span class="o">}</span>,
-<a id="__codelineno-31-76" name="__codelineno-31-76" href="#__codelineno-31-76"></a><span class="w">              </span><span class="s2">"departureDateTime"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:00+01:00"</span>
-<a id="__codelineno-31-77" name="__codelineno-31-77" href="#__codelineno-31-77"></a><span class="w">            </span><span class="o">}</span>,
-<a id="__codelineno-31-78" name="__codelineno-31-78" href="#__codelineno-31-78"></a><span class="w">            </span><span class="s2">"behaviourType"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"FULL_SERVICE"</span>
-<a id="__codelineno-31-79" name="__codelineno-31-79" href="#__codelineno-31-79"></a><span class="w">          </span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-31-80" name="__codelineno-31-80" href="#__codelineno-31-80"></a><span class="w">            </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-31-81" name="__codelineno-31-81" href="#__codelineno-31-81"></a><span class="w">              </span><span class="s2">"stopPoint"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-31-82" name="__codelineno-31-82" href="#__codelineno-31-82"></a><span class="w">                </span><span class="s2">"quayId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"NSR:Quay:002A"</span>,
-<a id="__codelineno-31-83" name="__codelineno-31-83" href="#__codelineno-31-83"></a><span class="w">                </span><span class="s2">"stopPointId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"stop-point-002A"</span>
-<a id="__codelineno-31-84" name="__codelineno-31-84" href="#__codelineno-31-84"></a><span class="w">              </span><span class="o">}</span>,
-<a id="__codelineno-31-85" name="__codelineno-31-85" href="#__codelineno-31-85"></a><span class="w">              </span><span class="s2">"arrivalDateTime"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:10+01:00"</span>,
-<a id="__codelineno-31-86" name="__codelineno-31-86" href="#__codelineno-31-86"></a><span class="w">              </span><span class="s2">"departureDateTime"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:10+01:00"</span>
-<a id="__codelineno-31-87" name="__codelineno-31-87" href="#__codelineno-31-87"></a><span class="w">            </span><span class="o">}</span>,
-<a id="__codelineno-31-88" name="__codelineno-31-88" href="#__codelineno-31-88"></a><span class="w">            </span><span class="s2">"behaviourType"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"FULL_SERVICE"</span>
-<a id="__codelineno-31-89" name="__codelineno-31-89" href="#__codelineno-31-89"></a><span class="w">          </span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-31-90" name="__codelineno-31-90" href="#__codelineno-31-90"></a><span class="w">            </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-31-91" name="__codelineno-31-91" href="#__codelineno-31-91"></a><span class="w">              </span><span class="s2">"stopPoint"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-31-92" name="__codelineno-31-92" href="#__codelineno-31-92"></a><span class="w">                </span><span class="s2">"quayId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"NSR:Quay:003A"</span>,
-<a id="__codelineno-31-93" name="__codelineno-31-93" href="#__codelineno-31-93"></a><span class="w">                </span><span class="s2">"stopPointId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"stop-point-003A"</span>
-<a id="__codelineno-31-94" name="__codelineno-31-94" href="#__codelineno-31-94"></a><span class="w">              </span><span class="o">}</span>,
-<a id="__codelineno-31-95" name="__codelineno-31-95" href="#__codelineno-31-95"></a><span class="w">              </span><span class="s2">"arrivalDateTime"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:20+01:00"</span>
-<a id="__codelineno-31-96" name="__codelineno-31-96" href="#__codelineno-31-96"></a><span class="w">            </span><span class="o">}</span>,
-<a id="__codelineno-31-97" name="__codelineno-31-97" href="#__codelineno-31-97"></a><span class="w">            </span><span class="s2">"behaviourType"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"FULL_SERVICE"</span>
-<a id="__codelineno-31-98" name="__codelineno-31-98" href="#__codelineno-31-98"></a><span class="w">          </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
-<a id="__codelineno-31-99" name="__codelineno-31-99" href="#__codelineno-31-99"></a><span class="w">        </span><span class="o">}</span>
-<a id="__codelineno-31-100" name="__codelineno-31-100" href="#__codelineno-31-100"></a><span class="w">      </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
-<a id="__codelineno-31-101" name="__codelineno-31-101" href="#__codelineno-31-101"></a><span class="w">    </span><span class="o">}</span>
-<a id="__codelineno-31-102" name="__codelineno-31-102" href="#__codelineno-31-102"></a><span class="w">  </span><span class="o">}</span>
-<a id="__codelineno-31-103" name="__codelineno-31-103" href="#__codelineno-31-103"></a><span class="o">}</span>
+<a id="__codelineno-31-41" name="__codelineno-31-41" href="#__codelineno-31-41"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-31-42" name="__codelineno-31-42" href="#__codelineno-31-42"></a><span class="w">  </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>,
+<a id="__codelineno-31-43" name="__codelineno-31-43" href="#__codelineno-31-43"></a><span class="w">  </span><span class="s2">"page"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-31-44" name="__codelineno-31-44" href="#__codelineno-31-44"></a><span class="w">    </span><span class="s2">"limit"</span><span class="w"> </span>:<span class="w"> </span><span class="m">20</span>,
+<a id="__codelineno-31-45" name="__codelineno-31-45" href="#__codelineno-31-45"></a><span class="w">    </span><span class="s2">"offset"</span><span class="w"> </span>:<span class="w"> </span><span class="m">0</span>,
+<a id="__codelineno-31-46" name="__codelineno-31-46" href="#__codelineno-31-46"></a><span class="w">    </span><span class="s2">"itemCount"</span><span class="w"> </span>:<span class="w"> </span><span class="m">1</span>,
+<a id="__codelineno-31-47" name="__codelineno-31-47" href="#__codelineno-31-47"></a><span class="w">    </span><span class="s2">"totalItemCount"</span><span class="w"> </span>:<span class="w"> </span><span class="m">1</span>
+<a id="__codelineno-31-48" name="__codelineno-31-48" href="#__codelineno-31-48"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-31-49" name="__codelineno-31-49" href="#__codelineno-31-49"></a><span class="o">}</span>
+</code></pre></div>
+<h3 id="additional-service-deviation-operations">Additional Service Deviation Operations<a class="headerlink" href="#additional-service-deviation-operations" title="Permanent link">&para;</a></h3>
+<p>In addition to creating service deviations, a client may also look up, update, and delete existing deviations using the
+<code>{baseURL}/deviation/deviations/{serviceDeviationId}</code> endpoint.</p>
+<h4 id="resolved-journey-targets">Resolved Journey Targets<a class="headerlink" href="#resolved-journey-targets" title="Permanent link">&para;</a></h4>
+<p>When reading a service deviation, the optional <code>includeTargets=true</code> query parameter can be used to include the
+<em>resolved journey targets</em> in the response. Resolved journey targets are the concrete dated journeys that have been
+resolved from the deviation's impact spec, as determined at the time of the last background processing run.</p>
+<p>This is useful for inspecting exactly which journeys are affected without having to resolve the impact spec manually.</p>
+<h4 id="read-service-deviation-by-id">Read Service Deviation by Id<a class="headerlink" href="#read-service-deviation-by-id" title="Permanent link">&para;</a></h4>
+<p>A service deviation may be retrieved up by sending a <code>GET</code> request to <code>{baseURL}/deviation/deviations/{serviceDeviationId}</code>.</p>
+<p>HTTP request:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>GET<span class="w"> </span>/api/adt/v4/operational/deviation/deviations/1530bf5405624db1b6b449d0edbec8c0
+</code></pre></div>
+<p>HTTP response:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="m">200</span><span class="w"> </span>OK
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="o">{</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="w">  </span><span class="s2">"deviation"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="w">    </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="w">      </span><span class="s2">"code"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"NO_SERVICE"</span>,
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="w">      </span><span class="s2">"reason"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a><span class="w">        </span><span class="s2">"code"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"WEATHER_SNOW_HEAVY"</span>
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a><span class="w">      </span><span class="s2">"impact"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a><span class="w">        </span><span class="s2">"journeys"</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a><span class="w">          </span><span class="s2">"journey"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-33-12" name="__codelineno-33-12" href="#__codelineno-33-12"></a><span class="w">            </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-33-13" name="__codelineno-33-13" href="#__codelineno-33-13"></a><span class="w">              </span><span class="s2">"lineId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:Line:001"</span>,
+<a id="__codelineno-33-14" name="__codelineno-33-14" href="#__codelineno-33-14"></a><span class="w">              </span><span class="s2">"journeyId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:DatedServiceJourney:0001"</span>,
+<a id="__codelineno-33-15" name="__codelineno-33-15" href="#__codelineno-33-15"></a><span class="w">              </span><span class="s2">"firstDepartureDateTime"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:00+01:00"</span>
+<a id="__codelineno-33-16" name="__codelineno-33-16" href="#__codelineno-33-16"></a><span class="w">            </span><span class="o">}</span>,
+<a id="__codelineno-33-17" name="__codelineno-33-17" href="#__codelineno-33-17"></a><span class="w">            </span><span class="s2">"serviceWindow"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-33-18" name="__codelineno-33-18" href="#__codelineno-33-18"></a><span class="w">              </span><span class="s2">"start"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:00+01:00"</span>,
+<a id="__codelineno-33-19" name="__codelineno-33-19" href="#__codelineno-33-19"></a><span class="w">              </span><span class="s2">"end"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:20+01:00"</span>
+<a id="__codelineno-33-20" name="__codelineno-33-20" href="#__codelineno-33-20"></a><span class="w">            </span><span class="o">}</span>
+<a id="__codelineno-33-21" name="__codelineno-33-21" href="#__codelineno-33-21"></a><span class="w">          </span><span class="o">}</span>
+<a id="__codelineno-33-22" name="__codelineno-33-22" href="#__codelineno-33-22"></a><span class="w">        </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-33-23" name="__codelineno-33-23" href="#__codelineno-33-23"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-33-24" name="__codelineno-33-24" href="#__codelineno-33-24"></a><span class="w">      </span><span class="s2">"duration"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-33-25" name="__codelineno-33-25" href="#__codelineno-33-25"></a><span class="w">        </span><span class="s2">"start"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:00+01:00"</span>,
+<a id="__codelineno-33-26" name="__codelineno-33-26" href="#__codelineno-33-26"></a><span class="w">        </span><span class="s2">"end"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:20+01:00"</span>
+<a id="__codelineno-33-27" name="__codelineno-33-27" href="#__codelineno-33-27"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-33-28" name="__codelineno-33-28" href="#__codelineno-33-28"></a><span class="w">      </span><span class="s2">"parameters"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-33-29" name="__codelineno-33-29" href="#__codelineno-33-29"></a><span class="w">        </span><span class="s2">"operatorExempt"</span><span class="w"> </span>:<span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-33-30" name="__codelineno-33-30" href="#__codelineno-33-30"></a><span class="w">      </span><span class="o">}</span>
+<a id="__codelineno-33-31" name="__codelineno-33-31" href="#__codelineno-33-31"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-33-32" name="__codelineno-33-32" href="#__codelineno-33-32"></a><span class="w">    </span><span class="s2">"record"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-33-33" name="__codelineno-33-33" href="#__codelineno-33-33"></a><span class="w">      </span><span class="s2">"lifecycle"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-33-34" name="__codelineno-33-34" href="#__codelineno-33-34"></a><span class="w">        </span><span class="s2">"createdAt"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T05:05+01:00"</span>,
+<a id="__codelineno-33-35" name="__codelineno-33-35" href="#__codelineno-33-35"></a><span class="w">        </span><span class="s2">"createdBy"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"system"</span>,
+<a id="__codelineno-33-36" name="__codelineno-33-36" href="#__codelineno-33-36"></a><span class="w">        </span><span class="s2">"modifiedAt"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T05:05+01:00"</span>,
+<a id="__codelineno-33-37" name="__codelineno-33-37" href="#__codelineno-33-37"></a><span class="w">        </span><span class="s2">"modifiedBy"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"system"</span>
+<a id="__codelineno-33-38" name="__codelineno-33-38" href="#__codelineno-33-38"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-33-39" name="__codelineno-33-39" href="#__codelineno-33-39"></a><span class="w">      </span><span class="s2">"serviceDeviationId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"1530bf5405624db1b6b449d0edbec8c0"</span>,
+<a id="__codelineno-33-40" name="__codelineno-33-40" href="#__codelineno-33-40"></a><span class="w">      </span><span class="s2">"name"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"SD-2026-1"</span>
+<a id="__codelineno-33-41" name="__codelineno-33-41" href="#__codelineno-33-41"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-33-42" name="__codelineno-33-42" href="#__codelineno-33-42"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-33-43" name="__codelineno-33-43" href="#__codelineno-33-43"></a><span class="o">}</span>
+</code></pre></div>
+<h4 id="read-service-deviation-with-resolved-journey-targets">Read Service Deviation with Resolved Journey Targets<a class="headerlink" href="#read-service-deviation-with-resolved-journey-targets" title="Permanent link">&para;</a></h4>
+<p>Passing <code>includeTargets=true</code> when reading a service deviation will include resolved journey targets in the response.
+Resolved journey targets represent the concrete dated journeys affected by the variance, as resolved from the impact spec
+at the time of the last background processing run.</p>
+<p>HTTP request:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>GET<span class="w"> </span>/api/adt/v4/operational/deviation/deviations/1530bf5405624db1b6b449d0edbec8c0?includeTargets<span class="o">=</span><span class="nb">true</span>
+</code></pre></div>
+<p>HTTP response:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="m">200</span><span class="w"> </span>OK
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="o">{</span>
+<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="w">  </span><span class="s2">"deviation"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="w">    </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="w">      </span><span class="s2">"code"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"NO_SERVICE"</span>,
+<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="w">      </span><span class="s2">"reason"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="w">        </span><span class="s2">"code"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"WEATHER_SNOW_HEAVY"</span>
+<a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a><span class="w">      </span><span class="s2">"impact"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a><span class="w">        </span><span class="s2">"journeys"</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-11" name="__codelineno-35-11" href="#__codelineno-35-11"></a><span class="w">          </span><span class="s2">"journey"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-12" name="__codelineno-35-12" href="#__codelineno-35-12"></a><span class="w">            </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-13" name="__codelineno-35-13" href="#__codelineno-35-13"></a><span class="w">              </span><span class="s2">"lineId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:Line:001"</span>,
+<a id="__codelineno-35-14" name="__codelineno-35-14" href="#__codelineno-35-14"></a><span class="w">              </span><span class="s2">"journeyId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:DatedServiceJourney:0001"</span>,
+<a id="__codelineno-35-15" name="__codelineno-35-15" href="#__codelineno-35-15"></a><span class="w">              </span><span class="s2">"firstDepartureDateTime"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:00+01:00"</span>
+<a id="__codelineno-35-16" name="__codelineno-35-16" href="#__codelineno-35-16"></a><span class="w">            </span><span class="o">}</span>,
+<a id="__codelineno-35-17" name="__codelineno-35-17" href="#__codelineno-35-17"></a><span class="w">            </span><span class="s2">"serviceWindow"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-18" name="__codelineno-35-18" href="#__codelineno-35-18"></a><span class="w">              </span><span class="s2">"start"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:00+01:00"</span>,
+<a id="__codelineno-35-19" name="__codelineno-35-19" href="#__codelineno-35-19"></a><span class="w">              </span><span class="s2">"end"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:20+01:00"</span>
+<a id="__codelineno-35-20" name="__codelineno-35-20" href="#__codelineno-35-20"></a><span class="w">            </span><span class="o">}</span>
+<a id="__codelineno-35-21" name="__codelineno-35-21" href="#__codelineno-35-21"></a><span class="w">          </span><span class="o">}</span>
+<a id="__codelineno-35-22" name="__codelineno-35-22" href="#__codelineno-35-22"></a><span class="w">        </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-35-23" name="__codelineno-35-23" href="#__codelineno-35-23"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-35-24" name="__codelineno-35-24" href="#__codelineno-35-24"></a><span class="w">      </span><span class="s2">"duration"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-25" name="__codelineno-35-25" href="#__codelineno-35-25"></a><span class="w">        </span><span class="s2">"start"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:00+01:00"</span>,
+<a id="__codelineno-35-26" name="__codelineno-35-26" href="#__codelineno-35-26"></a><span class="w">        </span><span class="s2">"end"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:20+01:00"</span>
+<a id="__codelineno-35-27" name="__codelineno-35-27" href="#__codelineno-35-27"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-35-28" name="__codelineno-35-28" href="#__codelineno-35-28"></a><span class="w">      </span><span class="s2">"parameters"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-29" name="__codelineno-35-29" href="#__codelineno-35-29"></a><span class="w">        </span><span class="s2">"operatorExempt"</span><span class="w"> </span>:<span class="w"> </span><span class="nb">true</span>
+<a id="__codelineno-35-30" name="__codelineno-35-30" href="#__codelineno-35-30"></a><span class="w">      </span><span class="o">}</span>
+<a id="__codelineno-35-31" name="__codelineno-35-31" href="#__codelineno-35-31"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-35-32" name="__codelineno-35-32" href="#__codelineno-35-32"></a><span class="w">    </span><span class="s2">"record"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-33" name="__codelineno-35-33" href="#__codelineno-35-33"></a><span class="w">      </span><span class="s2">"lifecycle"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-34" name="__codelineno-35-34" href="#__codelineno-35-34"></a><span class="w">        </span><span class="s2">"createdAt"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T05:05+01:00"</span>,
+<a id="__codelineno-35-35" name="__codelineno-35-35" href="#__codelineno-35-35"></a><span class="w">        </span><span class="s2">"createdBy"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"system"</span>,
+<a id="__codelineno-35-36" name="__codelineno-35-36" href="#__codelineno-35-36"></a><span class="w">        </span><span class="s2">"modifiedAt"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T05:05+01:00"</span>,
+<a id="__codelineno-35-37" name="__codelineno-35-37" href="#__codelineno-35-37"></a><span class="w">        </span><span class="s2">"modifiedBy"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"system"</span>
+<a id="__codelineno-35-38" name="__codelineno-35-38" href="#__codelineno-35-38"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-35-39" name="__codelineno-35-39" href="#__codelineno-35-39"></a><span class="w">      </span><span class="s2">"serviceDeviationId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"1530bf5405624db1b6b449d0edbec8c0"</span>,
+<a id="__codelineno-35-40" name="__codelineno-35-40" href="#__codelineno-35-40"></a><span class="w">      </span><span class="s2">"name"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"SD-2026-1"</span>
+<a id="__codelineno-35-41" name="__codelineno-35-41" href="#__codelineno-35-41"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-35-42" name="__codelineno-35-42" href="#__codelineno-35-42"></a><span class="w">    </span><span class="s2">"journeyTargets"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-43" name="__codelineno-35-43" href="#__codelineno-35-43"></a><span class="w">      </span><span class="s2">"journeys"</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-44" name="__codelineno-35-44" href="#__codelineno-35-44"></a><span class="w">        </span><span class="s2">"partial"</span><span class="w"> </span>:<span class="w"> </span>false,
+<a id="__codelineno-35-45" name="__codelineno-35-45" href="#__codelineno-35-45"></a><span class="w">        </span><span class="s2">"journey"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-46" name="__codelineno-35-46" href="#__codelineno-35-46"></a><span class="w">          </span><span class="s2">"name"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"Service Journey 0001"</span>,
+<a id="__codelineno-35-47" name="__codelineno-35-47" href="#__codelineno-35-47"></a><span class="w">          </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-48" name="__codelineno-35-48" href="#__codelineno-35-48"></a><span class="w">            </span><span class="s2">"lineId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:Line:001"</span>,
+<a id="__codelineno-35-49" name="__codelineno-35-49" href="#__codelineno-35-49"></a><span class="w">            </span><span class="s2">"journeyId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:DatedServiceJourney:0001"</span>,
+<a id="__codelineno-35-50" name="__codelineno-35-50" href="#__codelineno-35-50"></a><span class="w">            </span><span class="s2">"firstDepartureDateTime"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:00+01:00"</span>
+<a id="__codelineno-35-51" name="__codelineno-35-51" href="#__codelineno-35-51"></a><span class="w">          </span><span class="o">}</span>,
+<a id="__codelineno-35-52" name="__codelineno-35-52" href="#__codelineno-35-52"></a><span class="w">          </span><span class="s2">"journeyIds"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-53" name="__codelineno-35-53" href="#__codelineno-35-53"></a><span class="w">            </span><span class="s2">"vehicleJourneyId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"vehicle-journey-0001"</span>,
+<a id="__codelineno-35-54" name="__codelineno-35-54" href="#__codelineno-35-54"></a><span class="w">            </span><span class="s2">"serviceJourneyId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:ServiceJourney:0001"</span>,
+<a id="__codelineno-35-55" name="__codelineno-35-55" href="#__codelineno-35-55"></a><span class="w">            </span><span class="s2">"datedServiceJourneyId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:DatedServiceJourney:0001"</span>
+<a id="__codelineno-35-56" name="__codelineno-35-56" href="#__codelineno-35-56"></a><span class="w">          </span><span class="o">}</span>,
+<a id="__codelineno-35-57" name="__codelineno-35-57" href="#__codelineno-35-57"></a><span class="w">          </span><span class="s2">"serviceWindow"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-58" name="__codelineno-35-58" href="#__codelineno-35-58"></a><span class="w">            </span><span class="s2">"start"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:00+01:00"</span>,
+<a id="__codelineno-35-59" name="__codelineno-35-59" href="#__codelineno-35-59"></a><span class="w">            </span><span class="s2">"end"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:20+01:00"</span>
+<a id="__codelineno-35-60" name="__codelineno-35-60" href="#__codelineno-35-60"></a><span class="w">          </span><span class="o">}</span>,
+<a id="__codelineno-35-61" name="__codelineno-35-61" href="#__codelineno-35-61"></a><span class="w">          </span><span class="s2">"line"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-62" name="__codelineno-35-62" href="#__codelineno-35-62"></a><span class="w">            </span><span class="s2">"name"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"Testveien - Teststien"</span>,
+<a id="__codelineno-35-63" name="__codelineno-35-63" href="#__codelineno-35-63"></a><span class="w">            </span><span class="s2">"lineId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:Line:001"</span>,
+<a id="__codelineno-35-64" name="__codelineno-35-64" href="#__codelineno-35-64"></a><span class="w">            </span><span class="s2">"publicCode"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"L01"</span>,
+<a id="__codelineno-35-65" name="__codelineno-35-65" href="#__codelineno-35-65"></a><span class="w">            </span><span class="s2">"textColor"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"FFFFFF"</span>,
+<a id="__codelineno-35-66" name="__codelineno-35-66" href="#__codelineno-35-66"></a><span class="w">            </span><span class="s2">"backgroundColor"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"1F1E1A"</span>
+<a id="__codelineno-35-67" name="__codelineno-35-67" href="#__codelineno-35-67"></a><span class="w">          </span><span class="o">}</span>,
+<a id="__codelineno-35-68" name="__codelineno-35-68" href="#__codelineno-35-68"></a><span class="w">          </span><span class="s2">"direction"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"INBOUND"</span>,
+<a id="__codelineno-35-69" name="__codelineno-35-69" href="#__codelineno-35-69"></a><span class="w">          </span><span class="s2">"vehicleTaskId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"VL1001"</span>,
+<a id="__codelineno-35-70" name="__codelineno-35-70" href="#__codelineno-35-70"></a><span class="w">          </span><span class="s2">"calls"</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-71" name="__codelineno-35-71" href="#__codelineno-35-71"></a><span class="w">            </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-72" name="__codelineno-35-72" href="#__codelineno-35-72"></a><span class="w">              </span><span class="s2">"stopPoint"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-73" name="__codelineno-35-73" href="#__codelineno-35-73"></a><span class="w">                </span><span class="s2">"quayId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"NSR:Quay:001A"</span>,
+<a id="__codelineno-35-74" name="__codelineno-35-74" href="#__codelineno-35-74"></a><span class="w">                </span><span class="s2">"stopPointId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"stop-point-001A"</span>
+<a id="__codelineno-35-75" name="__codelineno-35-75" href="#__codelineno-35-75"></a><span class="w">              </span><span class="o">}</span>,
+<a id="__codelineno-35-76" name="__codelineno-35-76" href="#__codelineno-35-76"></a><span class="w">              </span><span class="s2">"departureDateTime"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:00+01:00"</span>
+<a id="__codelineno-35-77" name="__codelineno-35-77" href="#__codelineno-35-77"></a><span class="w">            </span><span class="o">}</span>,
+<a id="__codelineno-35-78" name="__codelineno-35-78" href="#__codelineno-35-78"></a><span class="w">            </span><span class="s2">"behaviourType"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"FULL_SERVICE"</span>
+<a id="__codelineno-35-79" name="__codelineno-35-79" href="#__codelineno-35-79"></a><span class="w">          </span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-80" name="__codelineno-35-80" href="#__codelineno-35-80"></a><span class="w">            </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-81" name="__codelineno-35-81" href="#__codelineno-35-81"></a><span class="w">              </span><span class="s2">"stopPoint"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-82" name="__codelineno-35-82" href="#__codelineno-35-82"></a><span class="w">                </span><span class="s2">"quayId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"NSR:Quay:002A"</span>,
+<a id="__codelineno-35-83" name="__codelineno-35-83" href="#__codelineno-35-83"></a><span class="w">                </span><span class="s2">"stopPointId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"stop-point-002A"</span>
+<a id="__codelineno-35-84" name="__codelineno-35-84" href="#__codelineno-35-84"></a><span class="w">              </span><span class="o">}</span>,
+<a id="__codelineno-35-85" name="__codelineno-35-85" href="#__codelineno-35-85"></a><span class="w">              </span><span class="s2">"arrivalDateTime"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:10+01:00"</span>,
+<a id="__codelineno-35-86" name="__codelineno-35-86" href="#__codelineno-35-86"></a><span class="w">              </span><span class="s2">"departureDateTime"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:10+01:00"</span>
+<a id="__codelineno-35-87" name="__codelineno-35-87" href="#__codelineno-35-87"></a><span class="w">            </span><span class="o">}</span>,
+<a id="__codelineno-35-88" name="__codelineno-35-88" href="#__codelineno-35-88"></a><span class="w">            </span><span class="s2">"behaviourType"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"FULL_SERVICE"</span>
+<a id="__codelineno-35-89" name="__codelineno-35-89" href="#__codelineno-35-89"></a><span class="w">          </span><span class="o">}</span>,<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-90" name="__codelineno-35-90" href="#__codelineno-35-90"></a><span class="w">            </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-91" name="__codelineno-35-91" href="#__codelineno-35-91"></a><span class="w">              </span><span class="s2">"stopPoint"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-35-92" name="__codelineno-35-92" href="#__codelineno-35-92"></a><span class="w">                </span><span class="s2">"quayId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"NSR:Quay:003A"</span>,
+<a id="__codelineno-35-93" name="__codelineno-35-93" href="#__codelineno-35-93"></a><span class="w">                </span><span class="s2">"stopPointId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"stop-point-003A"</span>
+<a id="__codelineno-35-94" name="__codelineno-35-94" href="#__codelineno-35-94"></a><span class="w">              </span><span class="o">}</span>,
+<a id="__codelineno-35-95" name="__codelineno-35-95" href="#__codelineno-35-95"></a><span class="w">              </span><span class="s2">"arrivalDateTime"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T09:20+01:00"</span>
+<a id="__codelineno-35-96" name="__codelineno-35-96" href="#__codelineno-35-96"></a><span class="w">            </span><span class="o">}</span>,
+<a id="__codelineno-35-97" name="__codelineno-35-97" href="#__codelineno-35-97"></a><span class="w">            </span><span class="s2">"behaviourType"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"FULL_SERVICE"</span>
+<a id="__codelineno-35-98" name="__codelineno-35-98" href="#__codelineno-35-98"></a><span class="w">          </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-35-99" name="__codelineno-35-99" href="#__codelineno-35-99"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-35-100" name="__codelineno-35-100" href="#__codelineno-35-100"></a><span class="w">      </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-35-101" name="__codelineno-35-101" href="#__codelineno-35-101"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-35-102" name="__codelineno-35-102" href="#__codelineno-35-102"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-35-103" name="__codelineno-35-103" href="#__codelineno-35-103"></a><span class="o">}</span>
 </code></pre></div>
 <h4 id="delete-service-deviation-by-id">Delete Service Deviation by Id<a class="headerlink" href="#delete-service-deviation-by-id" title="Permanent link">&para;</a></h4>
 <p>A service deviation may be deleted by posting an update request with <code>action: "DELETE"</code> to
 <code>{baseURL}/deviation/deviations/{serviceDeviationId}</code>.</p>
 <p>HTTP request:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>POST<span class="w"> </span>/api/adt/v4/operational/deviation/deviations/1530bf5405624db1b6b449d0edbec8c0
-<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="o">{</span>
-<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="w">  </span><span class="s2">"action"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"DELETE"</span>,
-<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="w">  </span><span class="s2">"comment"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"All the snow melted, we are able to drive after all!"</span>
-<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="o">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>POST<span class="w"> </span>/api/adt/v4/operational/deviation/deviations/1530bf5405624db1b6b449d0edbec8c0
+<a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="o">{</span>
+<a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="w">  </span><span class="s2">"action"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"DELETE"</span>,
+<a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="w">  </span><span class="s2">"comment"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"All the snow melted, we are able to drive after all!"</span>
+<a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="o">}</span>
 </code></pre></div>
 <p>HTTP response:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="m">200</span><span class="w"> </span>OK
-<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="o">{</span>
-<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="w">  </span><span class="s2">"result"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="w">    </span><span class="s2">"status"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="w">      </span><span class="s2">"code"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"OK"</span>,
-<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="w">      </span><span class="s2">"reason"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"OK"</span>
-<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a><span class="w">    </span><span class="o">}</span>
-<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a><span class="w">  </span><span class="o">}</span>
-<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a><span class="o">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="m">200</span><span class="w"> </span>OK
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="o">{</span>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="w">  </span><span class="s2">"result"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="w">    </span><span class="s2">"status"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="w">      </span><span class="s2">"code"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"OK"</span>,
+<a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a><span class="w">      </span><span class="s2">"reason"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"OK"</span>
+<a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a><span class="o">}</span>
 </code></pre></div>
 <h4 id="update-service-deviation-by-id">Update Service Deviation by Id<a class="headerlink" href="#update-service-deviation-by-id" title="Permanent link">&para;</a></h4>
 <p>Instead of deleting and re-creating a service deviation to functionally modify it, a client may post an update request
@@ -4161,85 +4368,85 @@ with <code>action: "UPDATE"</code> to
 <p>In this example, we show how to update an existing delay deviation with a new delay value and an additional comment about why the
 delay was updated.</p>
 <p>HTTP request:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>POST<span class="w"> </span>/api/adt/v4/operational/deviation/deviations/840660be96fd48c7967f90cc28ac4b34
-<a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="o">{</span>
-<a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="w">  </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="w">    </span><span class="s2">"code"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"DELAY"</span>,
-<a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="w">    </span><span class="s2">"reason"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a><span class="w">      </span><span class="s2">"code"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"TRAFFIC_CONGESTION"</span>,
-<a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a><span class="w">      </span><span class="s2">"comment"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"Even more traffic, more congestion and more delay."</span>
-<a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a><span class="w">    </span><span class="o">}</span>,
-<a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a><span class="w">    </span><span class="s2">"impact"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a><span class="w">      </span><span class="s2">"journeys"</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-34-11" name="__codelineno-34-11" href="#__codelineno-34-11"></a><span class="w">        </span><span class="s2">"journey"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-34-12" name="__codelineno-34-12" href="#__codelineno-34-12"></a><span class="w">          </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-34-13" name="__codelineno-34-13" href="#__codelineno-34-13"></a><span class="w">            </span><span class="s2">"lineId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:Line:001"</span>,
-<a id="__codelineno-34-14" name="__codelineno-34-14" href="#__codelineno-34-14"></a><span class="w">            </span><span class="s2">"journeyId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:DatedServiceJourney:0003"</span>,
-<a id="__codelineno-34-15" name="__codelineno-34-15" href="#__codelineno-34-15"></a><span class="w">            </span><span class="s2">"firstDepartureDateTime"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T10:30+01:00"</span>
-<a id="__codelineno-34-16" name="__codelineno-34-16" href="#__codelineno-34-16"></a><span class="w">          </span><span class="o">}</span>,
-<a id="__codelineno-34-17" name="__codelineno-34-17" href="#__codelineno-34-17"></a><span class="w">          </span><span class="s2">"serviceWindow"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-34-18" name="__codelineno-34-18" href="#__codelineno-34-18"></a><span class="w">            </span><span class="s2">"start"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T10:30+01:00"</span>,
-<a id="__codelineno-34-19" name="__codelineno-34-19" href="#__codelineno-34-19"></a><span class="w">            </span><span class="s2">"end"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T10:50+01:00"</span>
-<a id="__codelineno-34-20" name="__codelineno-34-20" href="#__codelineno-34-20"></a><span class="w">          </span><span class="o">}</span>
-<a id="__codelineno-34-21" name="__codelineno-34-21" href="#__codelineno-34-21"></a><span class="w">        </span><span class="o">}</span>
-<a id="__codelineno-34-22" name="__codelineno-34-22" href="#__codelineno-34-22"></a><span class="w">      </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
-<a id="__codelineno-34-23" name="__codelineno-34-23" href="#__codelineno-34-23"></a><span class="w">    </span><span class="o">}</span>,
-<a id="__codelineno-34-24" name="__codelineno-34-24" href="#__codelineno-34-24"></a><span class="w">    </span><span class="s2">"duration"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-34-25" name="__codelineno-34-25" href="#__codelineno-34-25"></a><span class="w">      </span><span class="s2">"start"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T07:30+01:00"</span>,
-<a id="__codelineno-34-26" name="__codelineno-34-26" href="#__codelineno-34-26"></a><span class="w">      </span><span class="s2">"end"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T19:30+01:00"</span>
-<a id="__codelineno-34-27" name="__codelineno-34-27" href="#__codelineno-34-27"></a><span class="w">    </span><span class="o">}</span>,
-<a id="__codelineno-34-28" name="__codelineno-34-28" href="#__codelineno-34-28"></a><span class="w">    </span><span class="s2">"parameters"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-34-29" name="__codelineno-34-29" href="#__codelineno-34-29"></a><span class="w">      </span><span class="s2">"delayMinutes"</span><span class="w"> </span>:<span class="w"> </span><span class="m">25</span>
-<a id="__codelineno-34-30" name="__codelineno-34-30" href="#__codelineno-34-30"></a><span class="w">    </span><span class="o">}</span>
-<a id="__codelineno-34-31" name="__codelineno-34-31" href="#__codelineno-34-31"></a><span class="w">  </span><span class="o">}</span>,
-<a id="__codelineno-34-32" name="__codelineno-34-32" href="#__codelineno-34-32"></a><span class="w">  </span><span class="s2">"action"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"UPDATE"</span>
-<a id="__codelineno-34-33" name="__codelineno-34-33" href="#__codelineno-34-33"></a><span class="o">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>POST<span class="w"> </span>/api/adt/v4/operational/deviation/deviations/840660be96fd48c7967f90cc28ac4b34
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="o">{</span>
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="w">  </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="w">    </span><span class="s2">"code"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"DELAY"</span>,
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a><span class="w">    </span><span class="s2">"reason"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a><span class="w">      </span><span class="s2">"code"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"TRAFFIC_CONGESTION"</span>,
+<a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a><span class="w">      </span><span class="s2">"comment"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"Even more traffic, more congestion and more delay."</span>
+<a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-38-9" name="__codelineno-38-9" href="#__codelineno-38-9"></a><span class="w">    </span><span class="s2">"impact"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-38-10" name="__codelineno-38-10" href="#__codelineno-38-10"></a><span class="w">      </span><span class="s2">"journeys"</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-38-11" name="__codelineno-38-11" href="#__codelineno-38-11"></a><span class="w">        </span><span class="s2">"journey"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-38-12" name="__codelineno-38-12" href="#__codelineno-38-12"></a><span class="w">          </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-38-13" name="__codelineno-38-13" href="#__codelineno-38-13"></a><span class="w">            </span><span class="s2">"lineId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:Line:001"</span>,
+<a id="__codelineno-38-14" name="__codelineno-38-14" href="#__codelineno-38-14"></a><span class="w">            </span><span class="s2">"journeyId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:DatedServiceJourney:0003"</span>,
+<a id="__codelineno-38-15" name="__codelineno-38-15" href="#__codelineno-38-15"></a><span class="w">            </span><span class="s2">"firstDepartureDateTime"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T10:30+01:00"</span>
+<a id="__codelineno-38-16" name="__codelineno-38-16" href="#__codelineno-38-16"></a><span class="w">          </span><span class="o">}</span>,
+<a id="__codelineno-38-17" name="__codelineno-38-17" href="#__codelineno-38-17"></a><span class="w">          </span><span class="s2">"serviceWindow"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-38-18" name="__codelineno-38-18" href="#__codelineno-38-18"></a><span class="w">            </span><span class="s2">"start"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T10:30+01:00"</span>,
+<a id="__codelineno-38-19" name="__codelineno-38-19" href="#__codelineno-38-19"></a><span class="w">            </span><span class="s2">"end"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T10:50+01:00"</span>
+<a id="__codelineno-38-20" name="__codelineno-38-20" href="#__codelineno-38-20"></a><span class="w">          </span><span class="o">}</span>
+<a id="__codelineno-38-21" name="__codelineno-38-21" href="#__codelineno-38-21"></a><span class="w">        </span><span class="o">}</span>
+<a id="__codelineno-38-22" name="__codelineno-38-22" href="#__codelineno-38-22"></a><span class="w">      </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-38-23" name="__codelineno-38-23" href="#__codelineno-38-23"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-38-24" name="__codelineno-38-24" href="#__codelineno-38-24"></a><span class="w">    </span><span class="s2">"duration"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-38-25" name="__codelineno-38-25" href="#__codelineno-38-25"></a><span class="w">      </span><span class="s2">"start"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T07:30+01:00"</span>,
+<a id="__codelineno-38-26" name="__codelineno-38-26" href="#__codelineno-38-26"></a><span class="w">      </span><span class="s2">"end"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T19:30+01:00"</span>
+<a id="__codelineno-38-27" name="__codelineno-38-27" href="#__codelineno-38-27"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-38-28" name="__codelineno-38-28" href="#__codelineno-38-28"></a><span class="w">    </span><span class="s2">"parameters"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-38-29" name="__codelineno-38-29" href="#__codelineno-38-29"></a><span class="w">      </span><span class="s2">"delayMinutes"</span><span class="w"> </span>:<span class="w"> </span><span class="m">25</span>
+<a id="__codelineno-38-30" name="__codelineno-38-30" href="#__codelineno-38-30"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-38-31" name="__codelineno-38-31" href="#__codelineno-38-31"></a><span class="w">  </span><span class="o">}</span>,
+<a id="__codelineno-38-32" name="__codelineno-38-32" href="#__codelineno-38-32"></a><span class="w">  </span><span class="s2">"action"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"UPDATE"</span>
+<a id="__codelineno-38-33" name="__codelineno-38-33" href="#__codelineno-38-33"></a><span class="o">}</span>
 </code></pre></div>
 <p>HTTP response:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="m">200</span><span class="w"> </span>OK
-<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="o">{</span>
-<a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="w">  </span><span class="s2">"deviation"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="w">    </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="w">      </span><span class="s2">"code"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"DELAY"</span>,
-<a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="w">      </span><span class="s2">"reason"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="w">        </span><span class="s2">"code"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"TRAFFIC_CONGESTION"</span>,
-<a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a><span class="w">        </span><span class="s2">"comment"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"Even more traffic, more congestion and more delay."</span>
-<a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a><span class="w">      </span><span class="o">}</span>,
-<a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a><span class="w">      </span><span class="s2">"impact"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-35-11" name="__codelineno-35-11" href="#__codelineno-35-11"></a><span class="w">        </span><span class="s2">"journeys"</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-35-12" name="__codelineno-35-12" href="#__codelineno-35-12"></a><span class="w">          </span><span class="s2">"journey"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-35-13" name="__codelineno-35-13" href="#__codelineno-35-13"></a><span class="w">            </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-35-14" name="__codelineno-35-14" href="#__codelineno-35-14"></a><span class="w">              </span><span class="s2">"lineId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:Line:001"</span>,
-<a id="__codelineno-35-15" name="__codelineno-35-15" href="#__codelineno-35-15"></a><span class="w">              </span><span class="s2">"journeyId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:DatedServiceJourney:0003"</span>,
-<a id="__codelineno-35-16" name="__codelineno-35-16" href="#__codelineno-35-16"></a><span class="w">              </span><span class="s2">"firstDepartureDateTime"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T10:30+01:00"</span>
-<a id="__codelineno-35-17" name="__codelineno-35-17" href="#__codelineno-35-17"></a><span class="w">            </span><span class="o">}</span>,
-<a id="__codelineno-35-18" name="__codelineno-35-18" href="#__codelineno-35-18"></a><span class="w">            </span><span class="s2">"serviceWindow"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-35-19" name="__codelineno-35-19" href="#__codelineno-35-19"></a><span class="w">              </span><span class="s2">"start"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T10:30+01:00"</span>,
-<a id="__codelineno-35-20" name="__codelineno-35-20" href="#__codelineno-35-20"></a><span class="w">              </span><span class="s2">"end"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T10:50+01:00"</span>
-<a id="__codelineno-35-21" name="__codelineno-35-21" href="#__codelineno-35-21"></a><span class="w">            </span><span class="o">}</span>
-<a id="__codelineno-35-22" name="__codelineno-35-22" href="#__codelineno-35-22"></a><span class="w">          </span><span class="o">}</span>
-<a id="__codelineno-35-23" name="__codelineno-35-23" href="#__codelineno-35-23"></a><span class="w">        </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
-<a id="__codelineno-35-24" name="__codelineno-35-24" href="#__codelineno-35-24"></a><span class="w">      </span><span class="o">}</span>,
-<a id="__codelineno-35-25" name="__codelineno-35-25" href="#__codelineno-35-25"></a><span class="w">      </span><span class="s2">"duration"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-35-26" name="__codelineno-35-26" href="#__codelineno-35-26"></a><span class="w">        </span><span class="s2">"start"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T07:30+01:00"</span>,
-<a id="__codelineno-35-27" name="__codelineno-35-27" href="#__codelineno-35-27"></a><span class="w">        </span><span class="s2">"end"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T19:30+01:00"</span>
-<a id="__codelineno-35-28" name="__codelineno-35-28" href="#__codelineno-35-28"></a><span class="w">      </span><span class="o">}</span>,
-<a id="__codelineno-35-29" name="__codelineno-35-29" href="#__codelineno-35-29"></a><span class="w">      </span><span class="s2">"parameters"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-35-30" name="__codelineno-35-30" href="#__codelineno-35-30"></a><span class="w">        </span><span class="s2">"delayMinutes"</span><span class="w"> </span>:<span class="w"> </span><span class="m">25</span>
-<a id="__codelineno-35-31" name="__codelineno-35-31" href="#__codelineno-35-31"></a><span class="w">      </span><span class="o">}</span>
-<a id="__codelineno-35-32" name="__codelineno-35-32" href="#__codelineno-35-32"></a><span class="w">    </span><span class="o">}</span>,
-<a id="__codelineno-35-33" name="__codelineno-35-33" href="#__codelineno-35-33"></a><span class="w">    </span><span class="s2">"record"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-35-34" name="__codelineno-35-34" href="#__codelineno-35-34"></a><span class="w">      </span><span class="s2">"lifecycle"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
-<a id="__codelineno-35-35" name="__codelineno-35-35" href="#__codelineno-35-35"></a><span class="w">        </span><span class="s2">"createdAt"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T05:00+01:00"</span>,
-<a id="__codelineno-35-36" name="__codelineno-35-36" href="#__codelineno-35-36"></a><span class="w">        </span><span class="s2">"createdBy"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"system"</span>,
-<a id="__codelineno-35-37" name="__codelineno-35-37" href="#__codelineno-35-37"></a><span class="w">        </span><span class="s2">"modifiedAt"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T05:15+01:00"</span>,
-<a id="__codelineno-35-38" name="__codelineno-35-38" href="#__codelineno-35-38"></a><span class="w">        </span><span class="s2">"modifiedBy"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"system"</span>
-<a id="__codelineno-35-39" name="__codelineno-35-39" href="#__codelineno-35-39"></a><span class="w">      </span><span class="o">}</span>,
-<a id="__codelineno-35-40" name="__codelineno-35-40" href="#__codelineno-35-40"></a><span class="w">      </span><span class="s2">"serviceDeviationId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"840660be96fd48c7967f90cc28ac4b34"</span>,
-<a id="__codelineno-35-41" name="__codelineno-35-41" href="#__codelineno-35-41"></a><span class="w">      </span><span class="s2">"name"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"SD-2026-1"</span>
-<a id="__codelineno-35-42" name="__codelineno-35-42" href="#__codelineno-35-42"></a><span class="w">    </span><span class="o">}</span>
-<a id="__codelineno-35-43" name="__codelineno-35-43" href="#__codelineno-35-43"></a><span class="w">  </span><span class="o">}</span>
-<a id="__codelineno-35-44" name="__codelineno-35-44" href="#__codelineno-35-44"></a><span class="o">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="m">200</span><span class="w"> </span>OK
+<a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="o">{</span>
+<a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="w">  </span><span class="s2">"deviation"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="w">    </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a><span class="w">      </span><span class="s2">"code"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"DELAY"</span>,
+<a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a><span class="w">      </span><span class="s2">"reason"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a><span class="w">        </span><span class="s2">"code"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"TRAFFIC_CONGESTION"</span>,
+<a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a><span class="w">        </span><span class="s2">"comment"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"Even more traffic, more congestion and more delay."</span>
+<a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-39-10" name="__codelineno-39-10" href="#__codelineno-39-10"></a><span class="w">      </span><span class="s2">"impact"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-39-11" name="__codelineno-39-11" href="#__codelineno-39-11"></a><span class="w">        </span><span class="s2">"journeys"</span><span class="w"> </span>:<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-39-12" name="__codelineno-39-12" href="#__codelineno-39-12"></a><span class="w">          </span><span class="s2">"journey"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-39-13" name="__codelineno-39-13" href="#__codelineno-39-13"></a><span class="w">            </span><span class="s2">"spec"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-39-14" name="__codelineno-39-14" href="#__codelineno-39-14"></a><span class="w">              </span><span class="s2">"lineId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:Line:001"</span>,
+<a id="__codelineno-39-15" name="__codelineno-39-15" href="#__codelineno-39-15"></a><span class="w">              </span><span class="s2">"journeyId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"RUT:DatedServiceJourney:0003"</span>,
+<a id="__codelineno-39-16" name="__codelineno-39-16" href="#__codelineno-39-16"></a><span class="w">              </span><span class="s2">"firstDepartureDateTime"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T10:30+01:00"</span>
+<a id="__codelineno-39-17" name="__codelineno-39-17" href="#__codelineno-39-17"></a><span class="w">            </span><span class="o">}</span>,
+<a id="__codelineno-39-18" name="__codelineno-39-18" href="#__codelineno-39-18"></a><span class="w">            </span><span class="s2">"serviceWindow"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-39-19" name="__codelineno-39-19" href="#__codelineno-39-19"></a><span class="w">              </span><span class="s2">"start"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T10:30+01:00"</span>,
+<a id="__codelineno-39-20" name="__codelineno-39-20" href="#__codelineno-39-20"></a><span class="w">              </span><span class="s2">"end"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T10:50+01:00"</span>
+<a id="__codelineno-39-21" name="__codelineno-39-21" href="#__codelineno-39-21"></a><span class="w">            </span><span class="o">}</span>
+<a id="__codelineno-39-22" name="__codelineno-39-22" href="#__codelineno-39-22"></a><span class="w">          </span><span class="o">}</span>
+<a id="__codelineno-39-23" name="__codelineno-39-23" href="#__codelineno-39-23"></a><span class="w">        </span><span class="o">}</span><span class="w"> </span><span class="o">]</span>
+<a id="__codelineno-39-24" name="__codelineno-39-24" href="#__codelineno-39-24"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-39-25" name="__codelineno-39-25" href="#__codelineno-39-25"></a><span class="w">      </span><span class="s2">"duration"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-39-26" name="__codelineno-39-26" href="#__codelineno-39-26"></a><span class="w">        </span><span class="s2">"start"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T07:30+01:00"</span>,
+<a id="__codelineno-39-27" name="__codelineno-39-27" href="#__codelineno-39-27"></a><span class="w">        </span><span class="s2">"end"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T19:30+01:00"</span>
+<a id="__codelineno-39-28" name="__codelineno-39-28" href="#__codelineno-39-28"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-39-29" name="__codelineno-39-29" href="#__codelineno-39-29"></a><span class="w">      </span><span class="s2">"parameters"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-39-30" name="__codelineno-39-30" href="#__codelineno-39-30"></a><span class="w">        </span><span class="s2">"delayMinutes"</span><span class="w"> </span>:<span class="w"> </span><span class="m">25</span>
+<a id="__codelineno-39-31" name="__codelineno-39-31" href="#__codelineno-39-31"></a><span class="w">      </span><span class="o">}</span>
+<a id="__codelineno-39-32" name="__codelineno-39-32" href="#__codelineno-39-32"></a><span class="w">    </span><span class="o">}</span>,
+<a id="__codelineno-39-33" name="__codelineno-39-33" href="#__codelineno-39-33"></a><span class="w">    </span><span class="s2">"record"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-39-34" name="__codelineno-39-34" href="#__codelineno-39-34"></a><span class="w">      </span><span class="s2">"lifecycle"</span><span class="w"> </span>:<span class="w"> </span><span class="o">{</span>
+<a id="__codelineno-39-35" name="__codelineno-39-35" href="#__codelineno-39-35"></a><span class="w">        </span><span class="s2">"createdAt"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T05:00+01:00"</span>,
+<a id="__codelineno-39-36" name="__codelineno-39-36" href="#__codelineno-39-36"></a><span class="w">        </span><span class="s2">"createdBy"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"system"</span>,
+<a id="__codelineno-39-37" name="__codelineno-39-37" href="#__codelineno-39-37"></a><span class="w">        </span><span class="s2">"modifiedAt"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"2025-03-03T05:15+01:00"</span>,
+<a id="__codelineno-39-38" name="__codelineno-39-38" href="#__codelineno-39-38"></a><span class="w">        </span><span class="s2">"modifiedBy"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"system"</span>
+<a id="__codelineno-39-39" name="__codelineno-39-39" href="#__codelineno-39-39"></a><span class="w">      </span><span class="o">}</span>,
+<a id="__codelineno-39-40" name="__codelineno-39-40" href="#__codelineno-39-40"></a><span class="w">      </span><span class="s2">"serviceDeviationId"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"840660be96fd48c7967f90cc28ac4b34"</span>,
+<a id="__codelineno-39-41" name="__codelineno-39-41" href="#__codelineno-39-41"></a><span class="w">      </span><span class="s2">"name"</span><span class="w"> </span>:<span class="w"> </span><span class="s2">"SD-2026-1"</span>
+<a id="__codelineno-39-42" name="__codelineno-39-42" href="#__codelineno-39-42"></a><span class="w">    </span><span class="o">}</span>
+<a id="__codelineno-39-43" name="__codelineno-39-43" href="#__codelineno-39-43"></a><span class="w">  </span><span class="o">}</span>
+<a id="__codelineno-39-44" name="__codelineno-39-44" href="#__codelineno-39-44"></a><span class="o">}</span>
 </code></pre></div>
 
 
