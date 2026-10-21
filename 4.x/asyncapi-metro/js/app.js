@@ -5816,6 +5816,91 @@
         }
       },
       "x-parser-unique-object-id": "sensors_accelerometer"
+    },
+    "sensors_simple_location": {
+      "address": "sensors/simple_location",
+      "description": "### Simple Location Message\n\n| Field         | Value                                                                                                     |\n|---------------|-----------------------------------------------------------------------------------------------------------|\n| Central Topic | ruter/sporveien_tbane/{vehicleId}/adt/v4/sensors/simple_location                                          |\n| Schema        | [ simple-location.json ](json-schemas/sensors/simple-location/simple-location.json)                       |\n| Maintainer    | [Progress](https://github.com/orgs/RuterNo/teams/progress)                                                |\n| Producer      | PTO                                                                                                       |\n| Consumer      | PTA                                                                                                       |\n| Service Level | ✅ External API. Restrictions apply. Only backward compatible changes may happen within the major version. |\n\nSimplified position data for metro vehicles. Published upon receipt of a position message from the train, regardless of whether the message is received through CBTC or CMCS.\n\nThe GNSS coordinate system is expected to be \"WGS84\". Negative values are used south of the equator and west of Greenwich.\n\nFrequency: on change (triggered by incoming position message from train).\n",
+      "messages": {
+        "SimpleLocation": {
+          "name": "SimpleLocation",
+          "payload": {
+            "schemaFormat": "application/schema+json;version=draft-07",
+            "schema": {
+              "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/sensors/simple-location/simple-location.json",
+              "$schema": "http://json-schema.org/draft-07/schema#",
+              "title": "SimpleLocation",
+              "type": "object",
+              "description": "Simplified position data for metro vehicles. Published upon receipt of a position message from the train, regardless of whether the message is received through CBTC or CMCS.",
+              "required": [
+                "traceId",
+                "eventTimestamp",
+                "messageNumber",
+                "latitudeDegree",
+                "longitudeDegree",
+                "dataSource"
+              ],
+              "additionalProperties": true,
+              "properties": {
+                "traceId": {
+                  "$id": "#/properties/traceId",
+                  "type": "string",
+                  "description": "A unique identifier - UUID",
+                  "example": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+                },
+                "eventTimestamp": {
+                  "$id": "#/properties/eventTimestamp",
+                  "type": "string",
+                  "description": "As specified in the ADT documentation. Reflects the UTC time of the position fix. Millisecond precision is preferred, if available.",
+                  "example": "2025-04-11T14:32:45.123Z"
+                },
+                "messageNumber": {
+                  "$id": "#/properties/messageNumber",
+                  "type": "integer",
+                  "description": "Sequence number, increased by one for each new message. Used to validate consistency in the data stream.",
+                  "example": 1542
+                },
+                "latitudeDegree": {
+                  "$id": "#/properties/latitudeDegree",
+                  "type": "number",
+                  "description": "Latitude coordinate in decimal degrees (WGS84).",
+                  "example": 59.911491
+                },
+                "longitudeDegree": {
+                  "$id": "#/properties/longitudeDegree",
+                  "type": "number",
+                  "description": "Longitude coordinate in decimal degrees (WGS84).",
+                  "example": 10.757933
+                },
+                "dataSource": {
+                  "$id": "#/properties/dataSource",
+                  "type": "string",
+                  "enum": [
+                    "CBTC",
+                    "CMCS"
+                  ],
+                  "description": "The source system that provided the position data. CBTC = Communications-Based Train Control, CMCS = Central Monitoring and Control System.",
+                  "example": "CBTC"
+                }
+              }
+            }
+          },
+          "examples": [
+            {
+              "name": "Simple Location",
+              "payload": {
+                "traceId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+                "eventTimestamp": "2025-04-11T14:32:45.123Z",
+                "messageNumber": 1542,
+                "latitudeDegree": 59.911491,
+                "longitudeDegree": 10.757933,
+                "dataSource": "CBTC"
+              }
+            }
+          ],
+          "x-parser-unique-object-id": "SimpleLocation"
+        }
+      },
+      "x-parser-unique-object-id": "sensors_simple_location"
     }
   },
   "operations": {
@@ -6350,6 +6435,20 @@
         }
       },
       "x-parser-unique-object-id": "sendAccelerometer"
+    },
+    "sendSimpleLocation": {
+      "action": "send",
+      "channel": "$ref:$.channels.sensors_simple_location",
+      "messages": [
+        "$ref:$.channels.sensors_simple_location.messages.SimpleLocation"
+      ],
+      "bindings": {
+        "mqtt": {
+          "qos": 0,
+          "retain": false
+        }
+      },
+      "x-parser-unique-object-id": "sendSimpleLocation"
     }
   },
   "components": {
@@ -6388,6 +6487,7 @@
       "Apc": "$ref:$.channels.sensors_apc_sensorId.messages.Apc",
       "Door": "$ref:$.channels.sensors_door.messages.Door",
       "Location": "$ref:$.channels.sensors_location.messages.Location",
+      "SimpleLocation": "$ref:$.channels.sensors_simple_location.messages.SimpleLocation",
       "Odometer": "$ref:$.channels.sensors_odometer.messages.Odometer",
       "TemperatureIndoor": "$ref:$.channels.sensors_temperature_indoor.messages.TemperatureIndoor",
       "TemperatureOutdoor": "$ref:$.channels.sensors_temperature_outdoor.messages.TemperatureOutdoor",
