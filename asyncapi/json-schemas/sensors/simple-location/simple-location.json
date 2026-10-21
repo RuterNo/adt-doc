@@ -1,0 +1,55 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/sensors/simple-location/simple-location.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SimpleLocation",
+  "type": "object",
+  "description": "Simplified position data for metro vehicles. Published upon receipt of a position message from the train, regardless of whether the message is received through CBTC or CMCS.",
+  "required": [
+    "traceId",
+    "eventTimestamp",
+    "messageNumber",
+    "latitudeDegree",
+    "longitudeDegree",
+    "dataSource"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier - UUID",
+      "example": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+    },
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the ADT documentation. Reflects the UTC time of the position fix. Millisecond precision is preferred, if available.",
+      "example": "2025-04-11T14:32:45.123Z"
+    },
+    "messageNumber": {
+      "$id": "#/properties/messageNumber",
+      "type": "integer",
+      "description": "Sequence number, increased by one for each new message. Used to validate consistency in the data stream.",
+      "example": 1542
+    },
+    "latitudeDegree": {
+      "$id": "#/properties/latitudeDegree",
+      "type": "number",
+      "description": "Latitude coordinate in decimal degrees (WGS84).",
+      "example": 59.911491
+    },
+    "longitudeDegree": {
+      "$id": "#/properties/longitudeDegree",
+      "type": "number",
+      "description": "Longitude coordinate in decimal degrees (WGS84).",
+      "example": 10.757933
+    },
+    "dataSource": {
+      "$id": "#/properties/dataSource",
+      "type": "string",
+      "enum": ["CBTC", "CMCS"],
+      "description": "The source system that provided the position data. CBTC = Communications-Based Train Control, CMCS = Central Monitoring and Control System.",
+      "example": "CBTC"
+    }
+  }
+}

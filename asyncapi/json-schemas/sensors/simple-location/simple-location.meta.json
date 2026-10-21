@@ -1,0 +1,12 @@
+{
+  "mode": "publish",
+  "mqtt": {
+    "qos": 0,
+    "retain": false,
+    "topic": "ruter/sporveien_tbane/{vehicleId}/adt/v4/sensors/simple_location"
+  },
+  "service-level": "external",
+  "producers": ["pto"],
+  "consumers": ["pta"],
+  "maintainers": ["progress"]
+}
