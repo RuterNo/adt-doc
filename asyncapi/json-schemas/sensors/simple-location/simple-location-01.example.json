@@ -1,0 +1,11 @@
+{
+  "name": "Simple Location",
+  "payload": {
+    "traceId": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+    "eventTimestamp": "2025-04-11T14:32:45.123Z",
+    "messageNumber": 1542,
+    "latitudeDegree": 59.911491,
+    "longitudeDegree": 10.757933,
+    "dataSource": "CBTC"
+  }
+}
