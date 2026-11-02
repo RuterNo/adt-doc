@@ -304,6 +304,13 @@ channels:
     messages:
       Accelerometer:
         $ref: '#/components/messages/Accelerometer'
+  sensors_simple_location:
+    address: sensors/simple_location
+    description:
+      $ref: json-schemas/sensors/simple-location/simple-location.md
+    messages:
+      SimpleLocation:
+        $ref: '#/components/messages/SimpleLocation'
 operations:
   # DI channels
   sendDestinationDisplayOverride:
@@ -689,6 +696,16 @@ operations:
       mqtt:
         qos: 1
         retain: false
+  sendSimpleLocation:
+    action: send
+    channel:
+      $ref: '#/channels/sensors_simple_location'
+    messages:
+      - $ref: '#/channels/sensors_simple_location/messages/SimpleLocation'
+    bindings:
+      mqtt:
+        qos: 0
+        retain: false
 components:
   messages:
     DestinationDisplayOverride:
@@ -972,6 +989,14 @@ components:
           $ref: json-schemas/sensors/location/location.json
       examples:
         - $ref: json-schemas/sensors/location/location-01.example.json
+    SimpleLocation:
+      name: SimpleLocation
+      payload:
+        schemaFormat: application/schema+json;version=draft-07
+        schema:
+          $ref: json-schemas/sensors/simple-location/simple-location.json
+      examples:
+        - $ref: json-schemas/sensors/simple-location/simple-location-01.example.json
     Odometer:
       name: Odometer
       payload:
