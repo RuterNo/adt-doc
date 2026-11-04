@@ -527,6 +527,16 @@ HTTP response:
   }
 }
 ```
+#### Journey State
+
+Each journey includes a `state` structure describing its current operational state:
+
+1. `assigned`, indicating whether a vehicle is currently signed on to the journey.
+2. `deviationState`, describing service deviations reported by the operator that are currently active on the journey,
+   such as the journey being omitted or operated without sign-on.
+3. `mitigationState`, describing service mitigations that are currently active on the journey, such as the journey being
+   cancelled or a standby vehicle being planned.
+
 ### Journey Lines
 
 The `{baseURL}/journey/lines` endpoint can be used for looking up service lines in the operational

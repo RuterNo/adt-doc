@@ -511,16 +511,16 @@
             "$ref": "#/components/parameters/ClientMetadataValueQueryParam"
           },
           {
-            "$ref": "#/components/parameters/OrderByQueryParam"
-          },
-          {
-            "$ref": "#/components/parameters/OrderQueryParam"
-          },
-          {
             "$ref": "#/components/parameters/DeviationCodesQueryParam"
           },
           {
             "$ref": "#/components/parameters/HasMitigationQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/OrderByQueryParam"
+          },
+          {
+            "$ref": "#/components/parameters/OrderQueryParam"
           },
           {
             "$ref": "#/components/parameters/LimitQueryParam"
@@ -2443,6 +2443,10 @@
             "items": {
               "$ref": "#/components/schemas/Operator"
             }
+          },
+          "metroInformation": {
+            "description": null,
+            "$ref": "#/components/schemas/JourneyMetroInformation"
           }
         }
       },
@@ -2650,6 +2654,24 @@
           },
           "page": {
             "$ref": "#/components/schemas/PageInfo"
+          }
+        }
+      },
+      "JourneyMetroInformation": {
+        "type": "object",
+        "title": "JourneyMetroInformation",
+        "description": "Information regarding a metro journey. Null for any journey not a metro journey.\n",
+        "properties": {
+          "plannedTrainsetCount": {
+            "type": "integer",
+            "description": "Planned number of 3-car units operating the metro journey. Null for non-metro journeys. Fetched from plandata.\n"
+          },
+          "metroSplitNumbers": {
+            "type": "array",
+            "description": "Split-trip numbers assigned when a metro journey is split into multiple parts for signal-system deviation reporting. Empty for non-metro journeys and unsplit metro journeys.\n",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
