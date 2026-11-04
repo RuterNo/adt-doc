@@ -3,7 +3,7 @@
   "info": {
     "title": "Assignment Gateway Public API",
     "description": "Definitions for Assignment Gateway Public API",
-    "version": "3.0.0"
+    "version": "version.from.tag"
   },
   "servers": [
     {
