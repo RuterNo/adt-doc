@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/cbtc/next_stop/next-stop.json",
+  "title": "NextStop",
+  "type": "object",
+  "required": [
+    "eventTimestamp",
+    "platformTrackId"
+  ],
+  "description": "Published when CBTC knows the next stop/quay of the vehicle, so that the Ruter offline solution can access it.",
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)"
+    },
+    "platformTrackId": {
+      "$id": "#/properties/platformTrackId",
+      "type": "string",
+      "description": "The unique platform track ID of this quay. CBTC refers to this as \"PTID\"."
+    }
+  }
+}

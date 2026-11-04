@@ -1,0 +1,125 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/dpi/display_status/dpi-display-status.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DpiDisplayStatus",
+  "type": "object",
+  "required": [
+    "eventTimestamp",
+    "traceId",
+    "type",
+    "browser",
+    "client",
+    "journey"
+  ],
+  "description": "DPI Display status topic",
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)",
+      "format": "date-time"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier - UUID"
+    },
+    "type": {
+      "$id": "#/properties/type",
+      "type": "string",
+      "description": "Type of status message"
+    },
+    "browser": {
+      "$id": "#/properties/browser",
+      "type": "object",
+      "properties": {
+        "userAgent": {
+          "type": "string",
+          "description": "Browser user agent string"
+        }
+      },
+      "required": [
+        "userAgent"
+      ]
+    },
+    "client": {
+      "$id": "#/properties/client",
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "Current url for screen"
+        },
+        "version": {
+          "type": "string",
+          "description": "Current dpi client version"
+        },
+        "screenTypeId": {
+          "type": "string",
+          "description": "The screen type being used on the client that sent this message"
+        },
+        "clientId": {
+          "type": "string",
+          "description": "The mqtt clientId of the client receiving the message. Should be a stable UUID v4 and not change"
+        },
+        "physicalId": {
+          "type": "string",
+          "description": "The given physical id to the screen. The property is provided by a querystring when configuring a screen"
+        },
+        "connectivity": {
+          "type": "string",
+          "description": "If the browser has internet connection",
+          "enum": [
+            "ONLINE",
+            "OFFLINE",
+            "UNKNOWN"
+          ]
+        }
+      },
+      "required": [
+        "url",
+        "version",
+        "screenTypeId",
+        "clientId",
+        "connectivity"
+      ]
+    },
+    "media": {
+      "$id": "#/properties/media",
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "Current dpi media version"
+        }
+      },
+      "required": [
+        "version"
+      ]
+    },
+    "journey": {
+      "$id": "#/properties/journey",
+      "type": "object",
+      "properties": {
+        "traceId": {
+          "type": "string",
+          "description": "TraceId from the latest received journey message"
+        },
+        "journeyRef": {
+          "type": "string",
+          "description": "Journey ref from the latest received journey message"
+        },
+        "assignmentId": {
+          "type": "string",
+          "description": "Assignment id from the latest received journey message"
+        }
+      },
+      "required": [
+        "traceId",
+        "journeyRef",
+        "assignmentId"
+      ]
+    }
+  }
+}

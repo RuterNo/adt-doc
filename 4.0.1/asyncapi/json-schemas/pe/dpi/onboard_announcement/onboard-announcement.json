@@ -1,0 +1,124 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/dpi/onboard_announcement/onboard-announcement.json",
+  "title": "OnboardAnnouncement",
+  "type": "object",
+  "required": [
+    "eventTimestamp",
+    "traceId",
+    "content"
+  ],
+  "description": "Local announcement from driver onboard the vehicle. Drivers must have the ability to notify passengers of special events or circumstances through buttons in the MADT. This message is sent from the MADT to the onboard MQTT broker. Ruter's DPI application listens to this MQTT topic and displays the information on the passenger information screens.",
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier - UUID"
+    },
+    "ref": {
+      "$id": "#/properties/ref",
+      "type": "string",
+      "description": "A reference, for example to content in the media package.",
+      "examples": [
+        "757fd8b4-2e57-4ad3-9aee-76e793c514d9"
+      ]
+    },
+    "content": {
+      "$id": "#/properties/content",
+      "type": "array",
+      "description": "Message to be displayed. The format is passed unaltered from the \"onboard announcement configuration file\" - a JSON file described in the ADT documentation.",
+      "items": {
+        "$id": "#/properties/content/items",
+        "type": "object",
+        "title": "OnboardMessage",
+        "required": [
+          "type",
+          "duration"
+        ],
+        "additionalProperties": true,
+        "properties": {
+          "type": {
+            "$id": "#/properties/content/items/properties/type",
+            "type": "string",
+            "description": "Type of message.",
+            "examples": [
+              "TEXT",
+              "IMAGE",
+              "VIDEO",
+              "HTML"
+            ]
+          },
+          "duration": {
+            "$id": "#/properties/content/items/properties/duration",
+            "type": "integer",
+            "description": "Number of seconds to display message before switching back to normal passenger announcement."
+          },
+          "colorScheme": {
+            "$id": "#/properties/content/items/properties/colorScheme",
+            "type": "string",
+            "description": "Color scheme to use when rendering a TEXT message.",
+            "examples": [
+              "INFO"
+            ]
+          },
+          "icon": {
+            "$id": "#/properties/content/items/properties/icon",
+            "type": "string",
+            "description": "Icon to be displayed together with a TEXT message.",
+            "examples": [
+              "ARROW_UP"
+            ]
+          },
+          "iconAnchor": {
+            "$id": "#/properties/content/items/properties/iconAnchor",
+            "type": "string",
+            "description": "Anchor position of the icon relative to the message.",
+            "examples": [
+              "LEFT"
+            ]
+          },
+          "src": {
+            "$id": "#/properties/content/items/properties/src",
+            "type": "string",
+            "description": "Local URL (path, not IP or internet address) pointing at the media package. Used for IMAGE, VIDEO and HTML content types."
+          },
+          "message": {
+            "$id": "#/properties/content/items/properties/message",
+            "type": "object",
+            "description": "Message for one or more languages, used for TEXT content.",
+            "additionalProperties": true,
+            "patternProperties": {
+              "^[a-z]{2}(-[a-z]{2})?$": {
+                "$id": "#/properties/content/items/properties/message/patternProperties/multilingualMessage",
+                "type": "object",
+                "description": "A multilingual message",
+                "additionalProperties": true,
+                "properties": {
+                  "title": {
+                    "$id": "#/properties/content/items/properties/message/patternProperties/multilingualMessage/properties/title",
+                    "type": "string",
+                    "description": "Title"
+                  },
+                  "paragraphs": {
+                    "$id": "#/properties/content/items/properties/message/patternProperties/multilingualMessage/properties/paragraphs",
+                    "type": "array",
+                    "description": "Body text paragraphs",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

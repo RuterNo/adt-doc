@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/pe/dpi/emergency/emergency.json",
+  "title": "Emergency",
+  "type": "object",
+  "required": [
+    "eventTimestamp",
+    "traceId",
+    "enabled",
+    "icon",
+    "message"
+  ],
+  "description": "Emergency message to passengers. Sporveien is required to provide the public with an evacuation message in case an emergency occurs. This message overrides the display on Ruter's DPI screens onboard the vehicle. This message is among those that will be sent by the MADT when the driver has selected an \"Emergency message\". It will often be sent together with pe/audio (one of several pre-recorded audio messages stored onboard in a configuration file for the MADT). This message, and an audio message, must be sent repeatedly by the MADT until the driver disables the emergency message.",
+  "additionalProperties": true,
+  "properties": {
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io)"
+    },
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "type": "string",
+      "description": "A unique identifier - UUID"
+    },
+    "icon": {
+      "$id": "#/properties/icon",
+      "type": "string",
+      "description": "Icon to be displayed together with the message. Ruter will provide a list of allowed strings. The MADT does not need to \"know\" which strings are used - this is preconfigured in the emergency message JSON configuration file.",
+      "examples": [
+        "EXCLAMATION"
+      ]
+    },
+    "enabled": {
+      "$id": "#/properties/enabled",
+      "type": "boolean",
+      "description": "When the message is triggered, and the emergency message is to be displayed, this should be Boolean \"true\". When the driver disables the emergency message from the MADT, a new message must be sent with Boolean \"false\"."
+    },
+    "message": {
+      "$id": "#/properties/message",
+      "type": "object",
+      "description": "JSON object properties referring to ISO-639 Set-1 language codes. For example, \"no\" for Norwegian, \"se\" for Swedish, \"es\" for Spanish, \"en\" for English. The object contains a single MessageText (title and text).",
+      "additionalProperties": true,
+      "patternProperties": {
+        "^[a-z]{2}(-[a-z]{2})?$": {
+          "$id": "#/properties/message/patternProperties/messageText",
+          "type": "object",
+          "title": "MessageText",
+          "description": "A multilingual message",
+          "required": [
+            "title",
+            "text"
+          ],
+          "additionalProperties": true,
+          "properties": {
+            "title": {
+              "$id": "#/properties/message/patternProperties/messageText/properties/title",
+              "type": "string",
+              "description": "The title of the message in this language."
+            },
+            "text": {
+              "$id": "#/properties/message/patternProperties/messageText/properties/text",
+              "type": "string",
+              "description": "The message text for this language."
+            }
+          }
+        }
+      }
+    }
+  }
+}

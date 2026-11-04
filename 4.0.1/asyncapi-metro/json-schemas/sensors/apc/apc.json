@@ -1,0 +1,86 @@
+{
+  "$id": "https://schemas.ruter.no/adt/ota/api/v4.x/sensors/apc/apc.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Apc",
+  "type": "object",
+  "required": [
+    "traceId",
+    "eventTimestamp",
+    "messageNumber",
+    "doorRef",
+    "alightingCount",
+    "boardingCount",
+    "categoryActivities"
+  ],
+  "description": "Raw-data from door-sensor for later evaluation.",
+  "additionalProperties": true,
+  "properties": {
+    "traceId": {
+      "$id": "#/properties/traceId",
+      "$comment": "Added in version 2.5",
+      "type": "string",
+      "description": "A unique identifier to be able to trace this message. Also used to detect duplicate messages received."
+    },
+    "eventTimestamp": {
+      "$id": "#/properties/eventTimestamp",
+      "type": "string",
+      "description": "As specified in the [ADT documentation.](https://adt.transhub.io). Reflects the current UTC time."
+    },
+    "messageNumber": {
+      "$id": "#/properties/messageNumber",
+      "$comment": "Added in version 2.1",
+      "type": "integer",
+      "description": "The sequence number is generated per vehicle and per sensor category on the vehicle. For example, three apc sensors on a vehicle would share the same messageNumber"
+    },
+    "doorRef": {
+      "$id": "#/properties/doorRef",
+      "type": "string",
+      "description": "Stable alfa-numeric reference that is unique within scope of vehicle (vehicle element/train set). If Door Number is used as DoorRef, Door Number should start at 1 (The front of the vehicle)"
+    },
+    "alightingCount": {
+      "$id": "#/properties/alightingCount",
+      "type": "integer",
+      "description": "Total number of alighting passengers detected by this sensor since the last APC message was produced."
+    },
+    "boardingCount": {
+      "$id": "#/properties/boardingCount",
+      "type": "integer",
+      "description": "Total number of boarding passengers detected by this sensor since the last APC message was produced."
+    },
+    "categoryActivities": {
+      "$id": "#/properties/categoryActivities",
+      "type": "array",
+      "description": "A list describing APC activity at each individual door divided per handled object category.",
+      "items": {
+        "type": "object",
+        "required": [
+          "categoryRef",
+          "alightingCount",
+          "boardingCount"
+        ],
+        "properties": {
+          "categoryRef": {
+            "type": "string",
+            "description": "Object class reference. Any of the following object categories.",
+            "enum": [
+              "ADULT",
+              "CHILD",
+              "PRAM",
+              "BIKE",
+              "WHEELCHAIR",
+              "UNKNOWN"
+            ]
+          },
+          "alightingCount": {
+            "type": "integer",
+            "description": "Number of alighting in this category detected by this sensor since the last APC message was produced."
+          },
+          "boardingCount": {
+            "type": "integer",
+            "description": "Number of boarding in this category detected by this sensor since the last APC message was produced."
+          }
+        }
+      }
+    }
+  }
+}
