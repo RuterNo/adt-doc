@@ -1814,3 +1814,25 @@ HTTP response:
   }
 }
 ```
+#### Related Service Mitigations
+
+A service mitigation lists the deviations it addresses in its `mitigates` property (see [Mitigation API](mitigation.md)).
+A service deviation shows the reverse relation in its read-only `mitigatedBy` property, which lists the IDs of the
+mitigations currently addressing it. This property is maintained by the server and cannot be set by clients.
+
+The related mitigations can be retrieved by sending a `GET` request to the
+`{baseURL}/deviation/deviations/{serviceDeviationId}/mitigations` endpoint.
+
+### Automatically Created Service Mitigations
+
+!!! warning "Pilot Functionality"
+    This functionality is part of a limited pilot and is only enabled for selected operators. It may be changed or
+    discontinued depending on the outcome of the pilot.
+
+When a service deviation is registered, the transport authority may automatically create one or more service
+mitigations for it, such as passenger information messages or cancellations. These mitigations are listed among the
+deviation's [related service mitigations](#related-service-mitigations), and are updated or deleted along with the
+deviation.
+
+The `code` of a service deviation with automatically created mitigations cannot be changed, and such update requests are
+rejected. To change the code, delete the deviation and register a new one.
