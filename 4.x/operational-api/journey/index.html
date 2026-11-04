@@ -727,6 +727,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#journey-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Journey State
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2010,6 +2021,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#journey-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Journey State
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2588,6 +2610,15 @@ To see the stop points in the result, please include the param <code>includeCall
 <a id="__codelineno-9-116" name="__codelineno-9-116" href="#__codelineno-9-116"></a><span class="w">  </span><span class="o">}</span>
 <a id="__codelineno-9-117" name="__codelineno-9-117" href="#__codelineno-9-117"></a><span class="o">}</span>
 </code></pre></div>
+<h4 id="journey-state">Journey State<a class="headerlink" href="#journey-state" title="Permanent link">&para;</a></h4>
+<p>Each journey includes a <code>state</code> structure describing its current operational state:</p>
+<ol>
+<li><code>assigned</code>, indicating whether a vehicle is currently signed on to the journey.</li>
+<li><code>deviationState</code>, describing service deviations reported by the operator that are currently active on the journey,
+   such as the journey being omitted or operated without sign-on.</li>
+<li><code>mitigationState</code>, describing service mitigations that are currently active on the journey, such as the journey being
+   cancelled or a standby vehicle being planned.</li>
+</ol>
 <h3 id="journey-lines">Journey Lines<a class="headerlink" href="#journey-lines" title="Permanent link">&para;</a></h3>
 <p>The <code>{baseURL}/journey/lines</code> endpoint can be used for looking up service lines in the operational
 journey database.</p>
